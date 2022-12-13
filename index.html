@@ -1,0 +1,300 @@
+    <!doctype html>
+	<html lang="en">
+    <html>
+    <head>
+	<meta charset="utf-8">
+    <title>Cartographical Index</title>
+	<link href="MainStyleSheet.css" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" href="img/logo.png">
+	</head>
+	<body>
+
+	<div>
+	<script src="nav2.js"></script>
+	<div>
+
+	
+	<br>
+	<div id="mapframe">
+	 <iframe src="maps/regionmap.html#25.56734,0.01554,4z" name="world_map" title="Eyom World Map"></iframe>
+	 </div>
+	<br>
+	
+	<div class="book">
+	<div class="regionmapcontianer"><iframe class="regionmap" src="maps/regionmap.html#25.56734,0.01554,4z" name="world_map" title="Eyom World Map"></iframe></div>
+	<h3>%georegionname%</h3>
+    <br>
+	Textiles, Tools, Steel, Cement, Glass, Ceramic, Fertilizer, Paper, Agriculture, Mining, Chemicals, Rail, Engines, Canned Food, Musical Instruments, Forestry Byproducts, Leather, Guns, Machines, Hardware, Furniture, Dyes, Tourism, Machine Tools, Medicine, Research, Finance. 
+				<center><h3>Trip Time calculator</h3></center>
+			<br /><br />
+			<form name="distform" action="">
+			  <table border=1>
+				<tr>
+				  <td>
+					Distance to travel:<br />
+					<input name="distance"/> km
+				  </td>
+				  <td>
+					<input type="submit" value="Calculate"/>
+				  </td>
+				</tr>
+				<tr>
+				  <td colspan=2>
+					<textarea name="output" cols="156" rows="15" wrap='off' disabled>
+					</textarea>
+				  </td></tr>
+			  </table>
+			</form>
+			   <script>
+				// connect the button to our script
+				let forms = document.getElementsByName("distform");
+				for (f of forms) {
+				  f.addEventListener("submit", calculateTripTime);
+				}
+				// all speeds in KPH
+				// format of each entry:
+				// [name, speed in KPH, max hours of travel per day]
+				const SPEEDS = [
+				  ["Human, overland", 5.0, 8.0],
+				  ["Human, on road", 6.4, 8.0],
+				  ["Human, on good road", 7.0, 8.0],
+				  ["Horse, overland", 6.6, 8.0],
+				  ["horse, on road", 10.2, 8.0],
+				  ["horse, on good road", 12.7, 8.0],
+				  ["train", 125.529, 24.0]
+				];
+				// here is where a constant for hours per day would be, since this calculator
+				// might give different results on different planets.  but doing that would
+				// also change how the time to be displayed is calculated and then i'd have to
+				// introduce a bunch of other constants for all of that, and that's just way
+				// too much work.  so, assuming all days are 24hr instead
+				// Given a time in hours, return a string of the duration in a human-readable format.
+				function formatHours(hr) {
+				  // hours isn't great to start with.  reduce to seconds instead
+				  let sec = hr * 60.0 * 60.0;
+				  // split out minutes from the seconds and keep growing upwards
+				  let min = sec / 60.0;
+				  sec %= 60.0;
+				  let hour = min / 60.0;
+				  min %= 60.0;
+				  let day = hour / 24.0;
+				  hour %= 24.0;
+				  let week = day / 7.0;
+				  day %= 7.0;
+				  let out = [];
+				  if (week >= 1.0) {
+					let unit = week >= 2.0 ? "weeks" : "week";
+					out.push(`${Math.floor(week)} ${unit}`);
+				  }
+				  if (day >= 1.0) {
+					let unit = day >= 2.0 ? "days" : "day";
+					out.push(`${Math.floor(day)} ${unit}`);
+				  }
+				  if (hour >= 1.0) {
+					let unit = hour >= 2.0 ? "hours" : "hour";
+					out.push(`${Math.floor(hour)} ${unit}`);
+				  }
+				  if (min >= 1.0) {
+					let unit = min >= 2.0 ? "minutes" : "minute";
+					out.push(`${Math.floor(min)} ${unit}`);
+				  }
+				  if (sec >= 1.0) {
+					let unit = sec >= 2.0 ? "seconds" : "second";
+					out.push(`${Math.floor(sec)} ${unit}`);
+				  }
+
+				  if (out.length == 0) {
+					return "none";
+				  }
+
+				  return out.join(", ");
+					
+				}
+
+				// given a travel time in hours, return the time it'd take with extra breaks added
+
+				// don't care about the details, just give me the new time
+				function tripTimeWithStops(hr, usableDailyHours) {
+				  return calculateTripStopInfo(hr, usableDailyHours).total_time;
+				}
+
+				// calculate info about the stops and dish out the deets
+				function calculateTripStopInfo(hr, usableDailyHours) {
+				  // 15 minute margin, not going to make a final stop if we're that close.
+				  // also prevents it from thinking an 8hr trip can't be made in only 8hr
+				  const MARGIN = 15/60;
+
+				  let numBreaks = Math.floor((hr - MARGIN) / usableDailyHours);
+				  if (numBreaks < 0) { numBreaks = 0; }
+
+				  let breakLength = 24.0 - usableDailyHours;
+
+				  if (breakLength <= 0) {
+					// this service doesn't have breaks, but the math above was assuming some
+					// zero-length breaks.  force everything to zero now to avoid weird results
+					breakLength = 0;
+					numBreaks = 0;
+				  }
+
+				  let timeAdded = breakLength * numBreaks;
+				  let totalTime = hr + timeAdded;
+
+				  //console.log(`For a ${hr}hr trip, you should have ${numBreaks} breaks.`);
+				  //console.log(`  That would boost the trip length to ${totalTime}`);
+					
+				  return {
+					time_without_breaks: hr,
+					total_time: totalTime,
+					individual_break_length: breakLength,
+					number_of_breaks: numBreaks,
+					total_break_time: timeAdded
+				  };
+				}
+
+				// draw out an ASCII art table (assuming monospace fonts)
+				function drawChart(title, labels, rows) {
+				  let out = [];
+
+				  // maximum length of each column, so we know how to draw it correctly
+				  let max_lengths = [];
+
+				  for (label of labels) {
+					max_lengths.push(label.length);
+				  }
+
+				  // check every cell to see if we need a larger max_length for that column
+				  for (row of rows) {
+					for (row_pos in row) {
+					  // make sure max_lengths is long enough in case a row is too big for some reason
+					  while (max_lengths.length < row_pos) {
+						max_lengths.push(0);
+					  }
+
+					  // make sure we're working with a string
+					  let entry = `${row[row_pos]}`;
+
+					  max_lengths[row_pos] = Math.max(max_lengths[row_pos], entry.length);
+					}
+				  }
+
+				  let num_columns = max_lengths.length;
+				  let num_dividers = num_columns - 1;
+
+				  // draw out a solid line, for going on the top, bottom, and under the title
+				  let total_width = max_lengths.reduce((a,b) => a+b) + (num_dividers*3);
+				  let blank_row = "".padEnd(total_width, "-");
+
+				  // top solid line, with rounded corners going down
+				  out.push(".-" + blank_row + "-.");
+
+				  // center the title, calculating spaces on the left to center, and spaces on
+				  // the right to match up with the chart's dimensions
+				  let start_spaces = "".padStart( Math.floor(total_width/2 - title.length / 2), " ");
+				  let centered_title = (start_spaces + title).padEnd(total_width, " ");
+				  out.push("| " + centered_title + " |");
+
+				  out.push("|-" + blank_row + "-|");
+
+				  // draw out the labels, and the line with notches for each column below it
+				  let msg = "";
+				  let msg2 = "";
+
+				  for (i in labels) {
+					let max_len = max_lengths[i];
+					msg += labels[i].padEnd(max_len, " ");
+					msg2 += "".padEnd(max_len, "-");
+
+					if (i < labels.length - 1) {
+					  msg += " | ";
+					  msg2 += "-+-";
+					}
+				  }
+				  out.push("| " + msg + " |");
+				  out.push("|-" + msg2 + "-|");
+
+				  // draw out each individual row of data now
+				  for (row of rows) {
+					msg = "";
+					for (i in max_lengths) {
+					  // be prepared in case one row is short for some reason
+					  let entry = "";
+					  if (row.length > i) {
+						// ensure we're working with a string
+						entry = `${row[i]}`;
+					  }
+
+					  msg += entry.padStart(max_lengths[i], " ");
+					  if (i < num_columns - 1) {
+						msg += " | ";
+					  }
+					}
+					out.push("| " + msg + " |");
+				  }
+				  out.push("'-" + blank_row + "-'");
+
+				  return out.join("\n");
+				}
+
+
+				// called when the form is submitted
+				function calculateTripTime(e) {
+				  // event handled here, don't let the form submit to the server
+				  e.preventDefault();
+					
+				  let form = e.target;
+				  
+				  let out = form.elements.namedItem("output");
+				  // clear any existing output
+				  out.value = "";
+
+				  // get user input from the form
+				  let dist_element = form.elements.namedItem("distance");
+				  let dist = parseFloat(dist_element.value);
+
+				  
+				  if (isNaN(dist)) {
+					out.value += `Could not understand your input "${dist_element.value}".\n\nPlease input a valid number.`;
+					return;
+				  }
+
+				  out.value += `Calculating time of travel with given input of ${dist}km...\n\n`;
+
+				  let chart_title = `Time required to travel ${dist}km`;
+				  let chart_labels = [
+					"Method of travel",
+					"Total time, without stops",
+					"Total time, with stops",
+					"Number of stops",
+					"Time spent stopped"
+				  ];
+				  let chart_rows = [];
+
+				  for (speed_definition of SPEEDS) {
+					let name = speed_definition[0];
+					let speed = speed_definition[1];
+					let usableHours = speed_definition[2];
+
+					// time is dist/speed.  with our dist in km, and speed in KPH, that's
+					// km/(km/hr), or a result in hours.
+					let time = dist/speed;
+
+					let tripInfo = calculateTripStopInfo(time, usableHours);
+
+					// matching up with the chart_labels defined above
+					let row = [
+					  name,
+					  formatHours(tripInfo.time_without_breaks),
+					  formatHours(tripInfo.total_time),
+					  tripInfo.number_of_breaks,
+					  formatHours(tripInfo.total_break_time)
+					];
+					chart_rows.push(row);
+
+				  }
+
+				  out.value += drawChart(chart_title, chart_labels, chart_rows);
+				}
+			</script>
+		</div>
+	</body>
+</html>
