@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html style="height: 100%; margin: 0;">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Eyom Region Map</title>
+
+<link rel="stylesheet" href="js/leaflet.css">
+<script src="js/leaflet.js"></script>
+<link rel="stylesheet" href="js/rulerplugin/Leaflet.LinearMeasurement.css">
+<script src="js/rulerplugin/Leaflet.LinearMeasurement.js"></script>
+<script src="js/permalink/leaflet.permalink.min.js"></script>
+<script type="text/javascript" src="pins.js"></script>
+</head>
+<body style="height: 100%; margin: 0;">
+
+<div id="map" style="width: 100%; height: 100%; background: #5baef3;"></div>
+
+
+<script type="text/javascript">
+
+	var satMap = L.tileLayer('img/SatMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+	vecMap2 = L.tileLayer('img/ShadeVector/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+	Religionmap = L.tileLayer('img/ReligionMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple, opacity: 0.7,});
+	Statemap = L.tileLayer('img/StateMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple, opacity: 0.7,});
+	Culturemap = L.tileLayer('img/CultureMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple, opacity: 0.7,});
+	regionMap = L.tileLayer('img/RegionTiles/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+	Roadmap = L.tileLayer('img/RoadMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+	Railmap = L.tileLayer('img/RailwayMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+
+	cities = L.tileLayer('img/Cities/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+
+
+	var baseMaps = {
+		"Satmap": satMap,
+		"Height Map (Shaded)": vecMap2
+	}
+	var regionMaps = {
+		"Regions": regionMap,
+		"Cultural Influences": Culturemap,
+		"Religious Influences": Religionmap,
+		"Nations and Provinces": Statemap,
+		"Routs": Roadmap,
+		"Railroads": Railmap,
+		"Settlments": cities,
+
+	}
+
+		// Declare Map Object
+	var mappos = L.Permalink.getMapLocation();
+	var map = L.map('map', {
+		center: mappos.center,
+	    zoom: mappos.zoom,
+		zoomDelta: 0.25,
+    	zoomSnap: 0,
+    	wheelPxPerZoomLevel: 100,
+		maxBounds: [[-5, -50], [50, 50]],
+		layers: [vecMap2],
+	});
+
+
+	// Default active Overlays
+	regionMap.addTo(map);
+	Roadmap.addTo(map);
+	cities.addTo(map);
+
+	//Layer Controll system
+	var controlLayers = L.control.layers(baseMaps, regionMaps).addTo(map);
+	L.Permalink.setup(map);
+
+	L.control.scale({
+		imperial: false
+	}).addTo(map);
+
+	 map.addControl(new L.Control.LinearMeasurement({
+        unitSystem: 'metric',
+        color: '#FF0080',
+        type: 'line'
+    }));
+
+	// Markers and Popups
+	// Cordinates Locating Marker
+	var marker = L.marker([36, -12], {
+		draggable: true,
+	}).addTo(map);
+	marker.bindPopup('');
+
+
+	// Normal Markers
+
+
+	// Special Cords Marker Function
+	marker.on('dragend', function(e) {
+		// alert(marker.getLatLng().toString());
+		marker.getPopup().setContent('Clicked' + marker.getLatLng().toString() + '<br />' + 'Pixles ' + map.project(marker.getLatLng(), map.getMaxZoom().toString()))
+			.openOn(map);
+	});
+
+</script>
+</body>
+</html>
