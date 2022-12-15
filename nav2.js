@@ -1,6 +1,7 @@
 var navbar = `
     <body>
     <div class="header">
+    <link rel="icon" type="image/x-icon" href="img/logo.png?">
     <h1 style="opacity: 0.8">Eyom Digital Encylopedia</h1>
         <p style="opacity: 0.8">`
 + document.title +
