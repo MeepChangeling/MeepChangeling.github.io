@@ -1,0 +1,117 @@
+html {
+    overflow-y:scroll;
+}
+
+.test-header {
+    padding-top: 3mm;
+    padding-bottom: 3mm;
+    background-color: #CCCCCC;
+}
+
+.test {
+}
+
+.test-success {
+    background-color: #00FF00;
+}
+
+.test-fail {
+    background-color: #FFFF00;
+}
+
+.test-error {
+    background-color: #FF0000;
+}
+
+.yadrol-value {
+    font-family: mono;
+}
+
+#header {
+    margin-top: 3mm;
+    margin-bottom: 3mm;
+}
+
+#toolbar {
+    margin-bottom: 3mm;
+}
+
+#run-button {
+    width: 8em !important;
+    height: 2.5em !important;
+}
+
+#output-mode-button {
+    width: 2em !important;
+    height: 2.5em !important;
+}
+
+#toolbar button {
+    width: 4em;
+    height: 2em;
+}
+
+.history-close-button {
+    cursor: pointer;
+}
+
+.output-mode-icon {
+    height: 2ex;
+    margin-right: 3mm;
+}
+
+#bottom-toolbar {
+    padding-top: 3mm;
+}
+
+#output-container {
+
+}
+
+#sample-records-toolbar {
+    margin-bottom: 5mm;
+}
+
+.roll-record {
+    margin-bottom: 3mm;
+}
+
+.first-roll-record {
+    margin-top: 12mm;
+}
+
+#sample-records {
+}
+
+#sample-records-graph {
+    height: 7cm;
+}
+
+#url-options {
+    padding-top: 5mm;
+}
+
+#help {
+    margin-top: 9mm;
+    margin-bottom: 6mm;
+}
+
+.help-row {
+    margin-bottom: 6mm;
+}
+
+.toc-item {
+    cursor: pointer;
+}
+
+.toc-item-selected {
+    font-weight: bold;
+}
+
+.tryit {
+    cursor: pointer;
+}
+
+code {
+    color: black;
+}
