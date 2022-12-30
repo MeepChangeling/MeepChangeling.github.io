@@ -11,14 +11,55 @@
 <script src="js/rulerplugin/Leaflet.LinearMeasurement.js"></script>
 <script src="js/permalink/leaflet.permalink.min.js"></script>
 <script type="text/javascript" src="pins.js"></script>
-<script src="js/Autolinker.min.js"></script>
-</head>
+</head><script src="../scripts/darkmode.js"></script>
 <body style="height: 100%; margin: 0;">
 
 <div id="map" style="width: 100%; height: 100%; background: #5baef3;"></div>
 
 
 <script type="text/javascript">
+
+	// Variables
+	//var mapSW = [0, 32768],
+		//mapNE = [32768, 0];
+		//16384
+	//var mapNE = [45.77, -39.49],
+		//mapSW = [2.29, 41.76];
+
+	// Declare Map Object
+	// var map = L.map('map', {
+		// zoomDelta: 0.25,
+    	//zoomSnap: 0,
+    	//wheelPxPerZoomLevel: 100,
+		//maxBounds: [
+        //south west
+        //[4, 43],
+        //north east
+        //[47, -41]
+        //],
+	//}).setView([45.77, 41.76], 3);
+
+	// Map Bounds
+
+	// Refrence the Tiles
+	// L.tileLayer('img/EyomTiles/{z}/{x}/{y}.png', {
+		// minZoom: 4,
+		// maxNativeZoom: 9,
+		// maxZoom: 11,
+		// continousWorld: false,
+		// noWrap: true,
+		// crs: L.CRS.Simple,
+	// }).addTo(map);
+
+	// L.tileLayer('img/RegionTiles/{z}/{x}/{y}.png', {
+		// minZoom: 4,
+		// maxNativeZoom: 9,
+		// maxZoom: 11,
+		// continousWorld: false,
+		// noWrap: true,
+
+		// crs: L.CRS.Simple,
+	// }).addTo(map);
 
 	var satMap = L.tileLayer('img/SatMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
 	vecMap2 = L.tileLayer('img/ShadeVector/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
@@ -31,48 +72,6 @@
 
 	cities = L.tileLayer('img/Cities/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
 
-// link shit
-
-var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
-        var bounds_group = new L.featureGroup([]);
-        function setBounds() {
-        }
-        function pop_GeoRegionLinks_0(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['URL2'] !== null ? autolinker.link(feature.properties['URL2'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_GeoRegionLinks_0_0() {
-            return {
-                pane: 'pane_GeoRegionLinks_0',
-                stroke: false, 
-                fillOpacity: 0,
-                interactive: true,
-            }
-        }
-        map.createPane('pane_GeoRegionLinks_0');
-        map.getPane('pane_GeoRegionLinks_0').style.zIndex = 400;
-        map.getPane('pane_GeoRegionLinks_0').style['mix-blend-mode'] = 'normal';
-        var layer_GeoRegionLinks_0 = new L.geoJson(json_GeoRegionLinks_0, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_GeoRegionLinks_0',
-            layerName: 'layer_GeoRegionLinks_0',
-            pane: 'pane_GeoRegionLinks_0',
-            onEachFeature: pop_GeoRegionLinks_0,
-            style: style_GeoRegionLinks_0_0,
-        });
-
-// end link shit
-
-
 
 	var baseMaps = {
 		"Satmap": satMap,
@@ -80,7 +79,6 @@ var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
 	}
 	var regionMaps = {
 		"Regions": regionMap,
-		"URL Regions": layer_GeoRegionLinks_0,
 		"Cultural Influences": Culturemap,
 		"Religious Influences": Religionmap,
 		"Nations and Provinces": Statemap,
@@ -112,6 +110,9 @@ var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
 	var controlLayers = L.control.layers(baseMaps, regionMaps).addTo(map);
 	L.Permalink.setup(map);
 
+	//var controlOverlays = layerControl.addOverlay(regionMap, "Regions").addTo(map);
+
+
 	L.control.scale({
 		imperial: false
 	}).addTo(map);
@@ -122,6 +123,12 @@ var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         type: 'line'
     }));
 
+
+	//map.setMaxBounds(new L.LatLngBounds(
+		//map.unproject(mapNE, map.getMaxZoom()),
+		//map.unproject(mapSW, map.getMaxZoom())
+	//));
+
 	// Markers and Popups
 	// Cordinates Locating Marker
 	var marker = L.marker([36, -12], {
@@ -131,8 +138,8 @@ var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
 
 
 	// Normal Markers
-	L.marker([20.71, -27.00]).addTo(map).bindPopup('<b>Shaded Vale</b>')//.openPopup();
-    	L.marker([20.71, 6.21]).addTo(map).bindPopup('<b>Chicken Yas</b>')//.openPopup();
+	//var marker_LinForrest = L.marker([37.29, -79.27]).addTo(map).bindPopup('<b>Lin Forrest</b>')//.openPopup();
+
 
 	// Special Cords Marker Function
 	marker.on('dragend', function(e) {
@@ -140,6 +147,23 @@ var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
 		marker.getPopup().setContent('Clicked' + marker.getLatLng().toString() + '<br />' + 'Pixles ' + map.project(marker.getLatLng(), map.getMaxZoom().toString()))
 			.openOn(map);
 	});
+
+
+	//var marker = L.marker([0, 0], {
+	//	draggable: true,
+	//}).addTo(map);
+	//marker.bindPopup('<b>Cursor</b>');
+
+	//Hey Vex! this is how you make a marker: L.marker([31.52, -23.76]).addTo(map).bindPopup('<b>Lin Forrest</b>')//.openPopup();
+	//Don't want to see a pin? Put // infront of it.
+	//If you want the marker's pop up open by default, get rid of the // before .openPopup();
+	//Add as many markers as you want below this line, but above the "</ script>". It wont break anything.
+
+	//L.marker([31.52, -23.76]).addTo(map).bindPopup('<b>Lin Forrest</b>')//.openPopup();
+
+
+
+
 
 </script>
 </body>
