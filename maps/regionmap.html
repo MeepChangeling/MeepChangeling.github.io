@@ -11,6 +11,7 @@
 <script src="js/rulerplugin/Leaflet.LinearMeasurement.js"></script>
 <script src="js/permalink/leaflet.permalink.min.js"></script>
 <script type="text/javascript" src="pins.js"></script>
+<script src="js/Autolinker.min.js"></script>
 </head>
 <body style="height: 100%; margin: 0;">
 
@@ -30,6 +31,48 @@
 
 	cities = L.tileLayer('img/Cities/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
 
+// link shit
+
+var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_GeoRegionLinks_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['URL2'] !== null ? autolinker.link(feature.properties['URL2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_GeoRegionLinks_0_0() {
+            return {
+                pane: 'pane_GeoRegionLinks_0',
+                stroke: false, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_GeoRegionLinks_0');
+        map.getPane('pane_GeoRegionLinks_0').style.zIndex = 400;
+        map.getPane('pane_GeoRegionLinks_0').style['mix-blend-mode'] = 'normal';
+        var layer_GeoRegionLinks_0 = new L.geoJson(json_GeoRegionLinks_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_GeoRegionLinks_0',
+            layerName: 'layer_GeoRegionLinks_0',
+            pane: 'pane_GeoRegionLinks_0',
+            onEachFeature: pop_GeoRegionLinks_0,
+            style: style_GeoRegionLinks_0_0,
+        });
+
+// end link shit
+
+
 
 	var baseMaps = {
 		"Satmap": satMap,
@@ -37,6 +80,7 @@
 	}
 	var regionMaps = {
 		"Regions": regionMap,
+		"URL Regions": layer_GeoRegionLinks_0,
 		"Cultural Influences": Culturemap,
 		"Religious Influences": Religionmap,
 		"Nations and Provinces": Statemap,

@@ -1,11 +1,11 @@
 
   function darkmodeBG () {
     var el = document.getElementById("theme");
-    if (el.href.match("MainStyleSheet.css")) {
-        el.href = "DarkStyleSheet.css";
+    if (el.href.match("../MainStyleSheet.css")) {
+        el.href = "../DarkStyleSheet.css";
     }
     else {
-        el.href = "MainStyleSheet.css";
+        el.href = "../MainStyleSheet.css";
     }
 
     }

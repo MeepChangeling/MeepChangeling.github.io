@@ -17,6 +17,7 @@ var navbar = `
         </button>
         <div class="dropdown-content">
         <a href="../races/peoples.html">Races</a>
+        <a href="../languages/langindex.html">Languages</a>
         </div>
     </div>
     <div class="dropdown">
@@ -26,7 +27,7 @@ var navbar = `
         <div class="dropdown-content">
         <a href="../maps/regionmap.html#27.60703,0.0161,4.68z">Atlas Map</a>
 		<a href="../maps/scholarsmap.html#25.21476,0.0161,4.68z">Scholar's Map</a>
-		<a href="../languages/langindex.html">Languages</a>
+
         <a href="../dungeongen.html">Dungeon Generator</a>
         <a href="../scripts/yadrol-master/index.html">MIT Dice Roller</a>
         <a href="../scripts/car-sheet/index.html">PF1E Character Sheet</a>

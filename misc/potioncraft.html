@@ -1,0 +1,294 @@
+<doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Herb and Potion Generator</title>
+<link id="theme" rel="stylesheet" type="text/css" href="../MainStyleSheet.css" />
+<link rel="icon" type="../image/x-icon" href="../img/logo.png">
+<style>
+  .inv {
+  display: none;
+  }
+  .inv1 {
+  display: none;
+  }
+
+  textarea {
+    width: 90%;
+    height: 60%;
+    padding: 3%;
+    margin-top: 1em;
+    margin-left: 5%;
+  	margin-right: 5%;
+  	border: 1px solid #4F120B;
+  	background-color: rgba(108, 98, 71, 0.34);
+  	font-family: 'Courier New';
+  	overflow: hidden;
+  }
+ label.toplable {
+   display: inline-block;
+   font-weight: 700;
+ }
+ .sectionhead {
+   border-style: solid;
+   border-width: 1px 0px;
+   border-color: black;
+   font-weight: 700;
+ }
+</style>
+</head><script src="../scripts/darkmode.js"></script>
+<body>
+<div>
+<script src="../nav.js"></script>
+</div>
+<br>
+
+<div class="book">
+<h3 class="articletitle">Herb and Potion Generator</h3>
+
+<span>
+<button type="button" name="button" onclick="BrewPotion();" >Brew Potion</button> <button type="button" name="button" onclick="CraftBottle();" >Craft Bottle</button> <button type="button" name="button" onclick="PickHerb();">Pick Herb</button>
+</span>
+
+
+<p class="sectionhead"><b>Potion</b></p>
+<p style="margin-left: 5%;"><span id="potion1"></span></p>
+<p style="margin-left: 5%;"><span id="potion2"></span></p>
+<p class="sectionhead"><b>Herb</b></p>
+<p style="margin-left: 5%;"><span id="herb1"></span></p>
+
+<textarea id="notepad" placeholder="This is a scratch pad. It holds data between refreshes, and even reloading the page..."></textarea>
+
+
+<!-- Potion Crafter -->
+
+<script>
+function BrewPotion() {
+  var roll = getRandomInt(1,20)
+  if (roll == 20) {
+    var potcolor1 = ['alabaster','aquamarine','aqua','amethyst','amber','apricot','auburn','azure','black','blue','brown','burgundy','beige','bronze','brass','buff','carmine','cerulean blue','cherry blossom','cinnabar','cinnamon','cobalt','copper','coral','corn','crimson','cyan','emerald','eggplant','flax','forest green','french rose','fuchsia','gold','green','grey','indigo','ivory','ice white','jade','lavender','lemon','lilac','lime green','linen','magenta','magnolia','malachite','maroon','mauve','midnight blue','moss green','mustard','navy blue','ochre','olive','olivine','orange','orchid','peach','pear','periwinkle','pink','pink-orange','platinum','plum','puce','pumpkin','purple','raw umber','red','rose','ruby','russet','rust','saffron','salmon','sangria','sapphire','scarlet','sea green','seashell','sepia','shocking pink','silver','sky blue','slate grey','steel blue','tan','tangerine','taupe','teal','terracotta','turquoise','vermilion','violet','viridian','wheat','white','yellow'];
+  } else {
+    var potcolor1 = ['amber','beige','black','blue','brass','brown','creamy white','gold','green','grey','indigo','orange','pink','red','silver','turquoise','violet','white','yellow'];
+  }
+  var potcolor = potcolor1[getRandomInt(0, potcolor1.length )];
+
+  var roll = getRandomInt(1,20)
+  if (roll <= 7) {
+    var pottex = 'opaque';
+  } else if (roll <= 10 && roll >= 8) {
+    var pottex = 'clear';
+  } else {
+    var roll2 = getRandomInt(1,2)
+      if (roll2 == 1) {
+        var pottex1 = ['bright', 'dark', 'dull', 'glossy', 'glowing', 'iridescent', 'light', 'metallic', 'sparkling'];
+        var pottex = pottex1[getRandomInt(0, pottex1.length )] + ' opaque';
+      } else {
+        var pottex1 = ['bright', 'dark', 'dull', 'glossy', 'glowing', 'iridescent', 'light', 'metallic', 'sparkling'];
+        var pottex = pottex1[getRandomInt(0, pottex1.length )] + ' clear' ;
+      }
+  }
+
+  var roll = getRandomInt(1,20)
+  if (roll == 20) {
+    var potsmell1 = ['a babys burp','a childhood memory','a dwarf passing wind','a large animals lair','bad eggs','beeswax','blood','burning dust','burnt hair','burnt toast','campfire smoke','cedar','chicken coop','chlorine','citronella','clean babys hair','clean ocean','cold early morning','curry','dark pine forest','dirty bed sheets','dry crypt','elven perfume','eucalyptus','feet','ferret nest','fish','fog','fresh apples','fresh milk','fresh oil paint','fresh sweat','fresh-baked bread','fresh-baked pie','fresh-cut grass','freshly scraped metal','freshly-dug earth','frying bacon','garlic','glue','good wine','grandparents','hard rain','hay in the sun','horse','horse manure','hot steamy reptile habitat','incense','lavender','lemon','liquorice','lilacs','maple syrup','mildew','mouldy-wet swamp','musk','old latrine','onions','orcish perfume','ozone','peanuts','peeling an orange','peppermint','pipe smoke','rancid ocean beach','resin','roast meat','roses','rotting flesh','rotting fruit','sandalwood','sassafras','sawing wood','shearing sheep','skunk','slightly bad raw meat','smoky lamp oil','snow','soap','sour milk','sour old sweat','spearmint','stale alcohol','steam tent','stewing fruit','strong alcohol','sun-dried clean laundry','sweaty naked people','tallow candle','tinned pipe leaf','tomato plant','urine','veggie soup','veggies roasting','vinegar','vomit','wet dog','wet wool','wild flowers','yeast'];
+  } else {
+    var potsmell1 = ['apples','curry','dust','fresh bread','garlic','lavender','liquorice','maple syrup','mildew','milk','mint','peanuts','roses','seawater','sewage','soap','vanilla','wet dog','wine'];
+  }
+  var potsmell = potsmell1[getRandomInt(0, potsmell1.length )];
+
+  var potsmellstr1 = ['virtually absent','barely notable','very weak','weak','a bit weak','average','a bit strong','strong','very Strong','overpowering'];
+  var potsmellstr = potsmellstr1[getRandomInt(0, potsmellstr1.length )];
+
+  var roll = getRandomInt(1,20)
+  if (roll == 20) {
+    var potiontaste1 = ['apple','bacon','banana','barbecued meat','beans','bell pepper','bitter','blood','broccoli','butterscotch','carrot','cauliflower','caviar','moldy cheese','cheese','cherry','chicken','chilli','chocolate','cinnamon','citrus','coconut','coffee','corn','crab','cranberry','sour cream','creamy','dog food','earthy','eggs','fresh fish','old fish','flowery','foul water','fudge','garlic','ginger','glue','grape','grapefruit','grass','hazelnut','honey','hot sauce','lamp oil','lemon','lettuce','lime','lime','licorice','mango','marmalade','meaty','menthol','metallic','milk','mint','mushroom','mustard','onion','orange','paprika','parsnips','peanut','pepper','pepperoni','fried potato','potato','prune','raspberry','rotten eggs','rum','salad dressing','salmon','salty','sardine','sausages','shampoo','sherbet','shrimp','soap','sour','spicy','spinach','sugar','sweet','sweet corn','tea','thyme','toffee','tomato','vanilla','vinegar','wasabi','woody','yogurt'];
+  } else {
+    var potiontaste1 = ['bacon','beans','cheese','chicken','cinnamon','dog food','grape','grass','hot sauce','menthol','milk','mustard','orange','parsnips','prune','sherbet','vanilla','vinegar','wasabi'];
+  }
+  var potiontaste = potiontaste1[getRandomInt(0, potiontaste1.length )];
+
+  var potiontexture1 = ['bubbly', 'sparkling', 'gelatinous', 'heavy', 'light', 'lumpy', 'rich', 'rough', 'smooth', 'thick', 'syrupy', 'watery'];
+  var potiontexture = potiontexture1[getRandomInt(0, potiontexture1.length )];
+
+  let el = document.querySelector('#potion1');
+  el.innerHTML = 'The potion itself is a ' + pottex + ' ' + potcolor + ' fluid which smells like ' +  potsmell + ', has a ' + potiontexture + ' texture, and tastes of ' + potiontaste + '. '
+}
+</script>
+
+<script>
+function CraftBottle() {
+  var roll = getRandomInt(1,100)
+  if (roll <= 35) {
+    var potcontain = 'glass';
+  } else if (roll <= 43 && roll >= 36) {
+    var color1 = ['olive', 'green', 'brown', 'amber'];
+    var potcontain = potiontexture1[getRandomInt(0, potiontexture1.length )] + ' glass';
+  } else if (roll <= 47 && roll >= 44) {
+    var potcontain = 'bone';
+  } else if (roll <= 49 && roll >= 48) {
+    var potcontain = 'brass';
+  } else if (roll <= 51 && roll >= 50) {
+    var potcontain = 'ceramic';
+  } else if (roll <= 53 && roll >= 52) {
+    var potcontain = 'clay';
+  } else if (roll <= 55 && roll >= 54) {
+    var potcontain = 'copper';
+  } else if (roll <= 57 && roll >= 56) {
+    var potcontain = 'crystal';
+  } else if (roll == 58) {
+    var gemstone = ['actinolite','nephrite','adamite','aegirine','afghanite','agrellite','algodonite','alunite','amblygonite','analcime','anatase','andalusite','chiastolite','andesine','anglesite','anhydrite','annabergite','anorthite','antigorite','bowenite','apatite','apophyllite','aragonite','arfvedsonite','asbestos','astrophyllite','atacamite','augelite','austinite','ferroaxinite','magnesioaxinite','manganaxinite','tinzenite','azurmalachite','azurite','baryte','bastnaesite','bayldonite','benitoite','aquamarine','maxixe','emerald','goshenite','golden beryl','heliodor','morganite','red beryl','beryllonite','beudantite','bismutotantalite','biotite','boleite','boracite','bornite','brazilianite','breithauptite','brookite','brucite','bustamite','bytownite','calcite','manganoan calcite','caledonite','canasite','cancrinite','vishnevite','carletonite','carnallite','cassiterite','catapleiite','cavansite','celestite','ceruleite','cerussite','chabazite','chalcopyrite','chambersite','charlesite','charoite','childrenite','chiolite','chondrodite','chrysoberyl','alexandrite','cymophane','chromite','chrysocolla','chrysotile','cinnabar','clinochlore','clinohumite','clinozoisite','clintonite','cobaltite','colemanite','cordierite','iolite','cornwallite','corundum','ruby','sapphire','padparadscha','golden sheen sapphire','covellite','creedite','crocoite','cryolite','cuprite','danburite','datolite','descloizite','diamond','bort','ballas','diaspore','dickinsonite','diopside','dioptase','dolomite','dumortierite','ekanite','elbaite','emerald','trapiche emerald','enstatite','bronzite','hypersthene','eosphorite','epidote','piemontite','erythrite','esperite','ettringite','euclase','eudialyte','euxenite','fayalite','andesine','albite','anorthite','anorthoclase','amazonite','bytownite','celsian','microcline','moonstone','adularia','rainbow','orthoclase','unakite','plagioclase','albite','labradorite','oligoclase','sanidine','sunstone','oregon sunstone','rainbow lattice sunstone','fergusonite','ferroaxinite','fluorapatite','fluorapophyllite','fluorite','forsterite','friedelite','gadolinite','gahnite','gahnospinel','pyralspite','almandine','pyrope','spessartine','ugrandite','andradite','demantoid','melanite','topazolite','grossular','hessonite','hydrogrossular','tsavorite','uvarovite','almandine-pyrope','rhodolite','andradite-grossular','grandite','pyrope-almandine-spessartine','malaia garnet','pyrope-spessartine','umbalite','gaspeite','gaylussite','gibbsite','glaucophane','goethite','goosecreekite','grandidierite','gypsum','gyrolite','halite','hambergite','hanksite','hardystonite','hauyne','helenite','hematite','hemimorphite','herderite','hexagonite','hibonite','hiddenite','hodgkinsonite','holtite','howlite','huebnerite','humite','hureaulite','hurlbutite','hyperitdiabas','ilmenite','inderite','jade','jadeite','chloromelanite','nephrite','jasper','jeremejevite','kainite','kämmererite','kaolinite','kornerupine','kutnohorite','kurnakovite','kyanite','langbeinite','lawsonite','lazulite','lazurite','legrandite','lepidolite','leucite','leucophanite','linarite','lizardite','londonite','ludlamite','ludwigite','magnesite','malachite','marialite-meionite','wernerite','marcasite','meliphanite','mellite','mesolite','microcline','microlite','milarite','millerite','mimetite','monazite','mordenite','mottramite','muscovite','fuchsite','musgravite','nambulite','narsarsukite','natrolite','nepheline','neptunite','nickeline','nosean','nuummite','olivine','opal','fire opal','moss opal','painite','palygorskite','papagoite','pargasite','parisite','pectolite','larimar','pentlandite','peridot','periclase','perthite','petalite','pezzottaite','phenakite','phlogopite','phosgenite','phosphophyllite','phosphosiderite','piemontite','pietersite','plumbogummite','pollucite','polyhalite','poudretteite','powellite','prehnite','prismatine','prosopite','proustite','psilomelane','pumpellyite','chlorastrolite','purpurite','pyrite','pyrargyrite','pyromorphite','pyrophyllite','pyroxmangite','pyrrhotite','quartz','amethyst','ametrine','aventurine','chalcedony','agate','iris agate','onyx','sardonyx','bloodstone','carnelian','chrome chalcedony','chrysoprase','dendritic agate','moss agate','fire agate','jasper','petrified wood','sard','citrine','druzy','flint','herkimer quartz','milky quartz','prasiolite','radiolarite','rose quartz','rock crystal','shocked quartz','smoky quartz','quartzite','realgar','rhodizite','rhodochrosite','rhodonite','richterite','riebeckite','crocidolite','rosasite','rutile','samarskite','sanidine','sapphirine','sarcolite','scapolite','marialite','meionite','scheelite','schizolite','scorodite','selenite','sellaite','senarmontite','sepiolite','sérandite','seraphinite','serendibite','serpentine subgroup','antigorite','bowenite','chrysotile','lizardite','stichtite','shattuckite','shigaite','shortite','shungite','siderite','sillimanite','simpsonite','sinhalite','smaltite','smithsonite','sodalite','hackmanite','sogdianite','sperrylite','spessartite','sphalerite','spinel','ceylonite','spodumene','hiddenite','kunzite','triphane','spurrite','staurolite','stibiotantalite','stichtite','stolzite','strontianite','strontium titanate','sulfur','sugilite','bustamite','richterite','sylvite','taaffeite','talc','tantalite','tektites','moldavite','tephroite','thomsonite','thaumasite','tinaksite','titanite','topaz','','achroite','chrome','dravite','elbaite','fluor-liddicoatite','indicolite','olenite','paraiba','rossmanite','rubellite','tremolite','hexagonite','triphylite','triplite','tugtupite','turquoise','ulexite','ussingite','vanadinite','variscite','väyrynenite','vesuvianite','californite','villiaumite','vivianite','vlasovite','wardite','wavellite','weloganite','whewellite','wilkeite','willemite','witherite','wollastonite','wulfenite','wurtzite','xonotlite','yugawaralite','zektzerite','zeolites','analcime','apophyllite','chabazite','goosecreekite','natrolite','scolecite','stellerite','stilbite','thomsonite','zincite','zinnwaldite','zircon','jacinth','zoisite','tanzanite','thulite','zultanite','zunyite'];
+    var potcontain = gemstone[getRandomInt(0, gemstone.length )];
+  } else if (roll == 59) {
+    var potcontain = 'gold';
+  } else {
+    var potcontain1 = ['gourd', 'resin','iron', 'ivory', 'pewter', 'quartz', 'coconut', 'shell', 'silver', 'stone', 'tin', 'crystal'];
+    var potcontain = potcontain1[getRandomInt(0, potcontain1.length )];
+  }
+
+  var drams1 = getRandomInt(1,4)
+  if (drams1 == 1) {
+    var potsizeB = drams1 + ' dram'
+  } else {
+    var potsizeB = drams1 + ' drams'
+  }
+
+
+  var roll = getRandomInt(1,100)
+  if (roll <= 44) {
+    var potshape = 'vial';
+  } else if (roll <= 65 && roll >= 45) {
+    var potshape = 'bottle';
+  } else if (roll <= 69 && roll >= 66) {
+    var potshape = 'egg';
+  } else if (roll <= 73 && roll >= 70) {
+    var potshape = 'conical';
+  } else if (roll <= 77 && roll >= 74) {
+    var potshape = 'jar';
+  } else if (roll <= 81 && roll >= 78) {
+    var potshape = 'sphereical';
+  } else if (roll <= 87 && roll >= 82) {
+    var potshape1 = ['cylenderical', 'square', 'triangular'];
+    var potshape = potshape1[getRandomInt(0, potshape1.length )] + ' tube';
+  } else {
+    var potshape1 = ['cubic flask', 'cuboid flask', 'conical flask', 'pyramid-shaped flask', 'triangular flask', 'tetrahedral flask'];
+    var potshape = potshape1[getRandomInt(0, potshape1.length )];
+  }
+
+  var roll = getRandomInt(1,100)
+  if (roll <= 69) {
+    var potlable = 'is unlabled';
+  } else {
+    var potlable1 = ['has an avertisment afixed to it', 'is marked with an experation date (expired)', 'is marked with an experation date (unexpired)', 'a list of ingreedients has been affixed to it', 'has been decorated with a printed image', 'has been decorated with a hand-drawn image', 'is labled with the potions name', 'has a price tag stuck to it', 'is marked with an odd symbol', 'is marked with a common symbol', 'has a hand written set of useage instructions affixed to the side', 'has a typed set of useage instructions affixed to the side', 'has a general warning affixed to the side', 'has a warning against use in specific circumstnaces affixed to the side', 'has a warning against the use by certain individuals affixed to the side'];
+    var potlable = potlable1[getRandomInt(0, potlable1.length )];
+  }
+
+  var potcap1 = ['flip-top cap', 'bottle cap', 'twist cap', 'cork', 'leather plug', 'glass stopper', 'resin stopper', 'wax cap', 'wooden stopper'];
+  var potcap = potcap1[getRandomInt(0, potcap1.length )];
+
+  let el = document.querySelector('#potion2');
+  el.innerHTML = 'The potion is contained within a ' + potsizeB + ' ' + potshape + ' made of ' + potcontain + ' that is sealed with a ' + potcap + ', and ' + potlable + '. ';
+
+}
+</script>
+
+<script>
+function PickHerb() {
+  var pre1 = ['Ample','Black','Broad','Broken','Clear','Crinkled','Cross','Dark','Deep','Diamond','Dwarf','Edible','Edged','Eight','Entwined','Five','Four','Fragrant','Furry','Giant','Glowing','Grey/Gray','Hard','Jagged','Large','Lone','Long','Many','Narrow','Nine','Prickly','Ragged','Rough','Round','Seven','Shallow','Short','Six','Small','Smelly','Smooth','Soft','Square','Ten','Thick','Thin','Three','Tiny','Two','Wide'];
+  var pre2 = ['Flowered','Flower','Headed','Head','Horned','Horn','Leaved','Leaf','Lobed','Lobe','Petaled','Petal','Stemmed','Stem','Veined','Vein','Rooted','Root','Seed','Seeded'];
+  var preC = pre1[getRandomInt(0, pre1.length )] + '-' + pre2[getRandomInt(0, pre2.length )];
+  var pre1 = ['Aromatic','Autumn','Beastly','Beautiful','Beloved','Bent','Biting','Bitter','Bloody','Bowed','Bright','Bronze','Burnt','Climbing','Clustered','Coarse','Common','Creeping','Curled','Dark','Deadly','Deep','Delicate','Dire','Divine','Dried','Early','Eastern','Evening','Fast-growing','Fine','Flammable','Foul','Fragrant','Frozen','Fused','Gentle','Giant','Gold','Greater','Ground','Hard','Hardy','Harsh','Hideous','Hot','Imperial','Incrusted','Infernal','Late','Lesser','Major','Marsh','Messy','Metallic','Midget','Minor','Morning','Narrow','Northern','Oozing','Plain','Poisonous','Prickly','Pungent','Rambling','Savory','Scented','Scentless','Shadow','Shaky','Silver','Sinister','Slow-growing','Soft','Southern','Speckled','Spicy','Spotted','Spring','Stable','Stinging','Stinking','Straightened','Summer','Sweet','Tangy','Thick','Thin','Toxic','Tufted','Twisted','Ugly','Welted','Western','Wide','Wild','Winter','Woody'];
+  var preA = pre1[getRandomInt(0, pre1.length )];
+  var pre1 = ['Adder','Ale','All','Amber','Angel','Arctic','Barons','Bastard','Bishop','Bitter','Black','Blessed','Blue','Bog','Brook','Brown','Buck','Bull','Cats','Cave','Cows','Crow','Dead','Demon','Desert','Devils','Diamond','Dogs','Donkey','Dragon','Ducks','Dukes','Earth','Elder','Emerald','Emperors','Empress','Fairy','Fox','Gallow','Garden','Goat','Gold','Good','Green','Griffon','Gypsy','Hangmans','Hart','Hay','Heart','Hens','Holy','Horses','Ivory','Jungle','Kind','King','Lady','Lake','Maiden','Meadow','Milk','Moon','Mother','Mountain','Night','Oak','Ocean','Pigs','Pink','Pixie','Priest','Princes','Princesses','Queens','Rats','Red','River','Saint','Serpent','Shadow','Silver','Snake','Spring','Stag','Star','Sun','Sweet','Swine','Tangle','Toad','Twilight','Valley','Warriors','Water','White','Wolf','Wound','Yellow'];
+  var preB = pre1[getRandomInt(0, pre1.length )];
+  var suf1 = ['Ainiseed','Balm','Bane','Bark','Barrel','Bean','Bell','Berry','Bill','Bine','Bit','Blossom','Bright','Broom','Burr','Caltrop','Chip','Claw','Clover','Crown','Cup','Delight','Drake','Drop','Ear','Eye','Feather','Fern','Fig','Finger','Flax','Flower','Foil','Food','Foot','Friend','Globe','Glory','Gloss','Glove','Gourd','Grass','Hair','Heal','Hedge','Hemp','Herb','Hip','Holly','Horn','Husk','Ivy','Knee','Leaf','Lily','Mantle','Mint','Moss','Nip','Nose','Nut','Nut','Orb','Orchid','Pepper','Purse','Reed','Root','Rose','Rush','Sage','Salt','Seal','Seed','Shade','Silk','Spice','Spine','Sponge','Spurge','Star','Stone','Straw','Sweet','Tail','Tea','Thistle','Thorn','Tip','Toe','Tongue','Tooth','Tree','Tusk','Vine','Weed','Whiskers','Wing','Wood','Wort'];
+  var suf = suf1[getRandomInt(0, suf1.length )];
+
+  var roll = getRandomInt(1,20)
+  if (roll <= 8) {
+    var herbname = preA + ' ' + preB + ' ' + suf
+  } else if (roll <= 16 && roll >= 9) {
+    var herbname = preA + ' ' + suf
+  } else if (roll <= 18 && roll >= 17) {
+    var herbname = preC + ' ' + suf
+  } else {
+    var herbname = preC + ' ' + preB + ' ' + suf
+  }
+
+  var school1 = ['Abjuration', 'Conjuration', 'Divination', 'Enchantment', 'Evocation', 'Illusion', 'Necromancy', 'Transmutation'];
+  var school = school1[getRandomInt(0, school1.length )];
+
+  var roll = getRandomInt(1,20)
+  if (roll >= 12) {
+    var componant = 'None';
+  } else {
+    var componant1 = ['Verbal', 'Somatic', 'Material', 'Focus'];
+    var componant = componant1[getRandomInt(0, componant1.length )];
+  }
+  let el = document.querySelector('#herb1');
+  el.innerHTML = "<b>Name: </b>" + herbname + "<br><br>" + "<b>Attuned School:</b> " + school + "<br><br><b>Componant Substitute:</b> " + componant;
+}
+</script>
+
+
+
+
+
+<script>
+function clonename(){
+  var a = $('#gendname');
+  var b = a.find("#artikal-naziv").text();
+  return b;
+}
+</script>
+
+
+
+
+
+
+<!-- Foundation Scripts -->
+
+<script>
+  function capFirst(word) {
+    let w = String(word);
+    if (w.length == 0) {
+     return "";
+    }
+    if (w.length == 1) {
+      return w.toUpperCase();
+    }
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  }
+
+function getRandomInt(min, max) {
+  	return Math.floor(Math.random() * (max - min)) + min;
+}
+</script>
+
+
+
+<script>
+  var d = document;
+
+// not using this at the moment but might do later for graceful degradation...
+function supports_html5_storage() {
+  try {
+    return 'localStorage' in window && window['localStorage'] !== null;
+  } catch (e) {
+    return false;
+  }
+}
+
+d.addEventListener('DOMContentLoaded', function(){
+
+  var savedContent = localStorage.getItem("notepadcontent");
+  if(savedContent != null){
+    d.getElementById("notepad").value = savedContent;
+  }
+
+
+ d.getElementById("notepad").onkeyup = function(){
+  var data = d.getElementById("notepad").value;  localStorage.setItem("notepadcontent", data);
+  }
+});
+</script>

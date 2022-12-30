@@ -1,0 +1,51 @@
+<doctype html>
+<html lang="en">
+<html>
+<head>
+<meta charset="utf-8">
+<title>The Eyomic Calendar</title>
+<link id="theme" rel="stylesheet" type="text/css" href="../MainStyleSheet.css" />
+<link rel="icon" type="../image/x-icon" href="../img/logo.png">
+</head><script src="../scripts/darkmode.js"></script>
+<body>
+<div>
+<script src="../nav.js"></script>
+</div>
+<br>
+<div class="book">
+<h3 class="articletitle">The Eyomic Calendar</h3>
+<p>The Eyomic Calander is a creation of the Guild of Engineers. It began as an attempt to reverse engineer particular Z̄oman arcana. These attempts failed, but in the process, the Z̄oman timekeeping system was reverse engineered. The resulting Eyoimic Calander tracks the seasons and the phases of the moon in a very even and mechanical fashion.</p>
+<p>The exact math behind this hybridization of solar and lunar calendars is most complex and sadly not easily understood by those not entirely immersed in the minutia of mathematics.</p>
+
+<h4 class="articlesubtitle"><strong><em>Months</em></strong></h4>
+
+<p>The months are named for the four seasons, spring, summer, autumn, and winter, with each period being split into thirds. Each tri-season is named using the Z̄oman word for first, mid, and last depending on where it is in the season.</p>
+
+
+
+
+	<button type="button" class="collapsible">GM Note</button>
+	<div class="content">
+
+	</div>
+
+
+
+
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+</script>

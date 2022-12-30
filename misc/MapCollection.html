@@ -1,0 +1,295 @@
+<doctype html>
+<html lang="en">
+<html>
+<head>
+<meta charset="utf-8">
+<title>The Aethary</title>
+<link id="theme" rel="stylesheet" type="text/css" href="../MainStyleSheet.css" />
+<link rel="icon" type="../image/x-icon" href="../img/logo.png">
+<style>
+		img.mappagemap {
+		width: 95%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		}
+		mappagemap:hover {
+		  border: 2px;
+		  border-color: rgba(0, 0, 0, 0.8);
+		  }
+		.row > .column {
+		  padding: 0 8px;
+		}
+
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+
+		/* Create four equal columns that floats next to eachother */
+		.column {
+		  float: left;
+		  width: 25%;
+		}
+
+		/* The Modal (background) */
+		.modal {
+		  display: none;
+		  position: fixed;
+		  z-index: 1;
+		  padding-top: 100px;
+		  left: 0;
+		  top: 0;
+		  width: 100%;
+		  height: 100%;
+		  overflow: auto;
+		  background-color: black;
+		}
+
+		/* Modal Content */
+		.modal-content {
+		  position: relative;
+		  background-color: #fefefe;
+		  margin: auto;
+		  padding: 0;
+		  width: 90%;
+		  max-width: 1200px;
+		}
+
+		/* The Close Button */
+		.close {
+		  color: white;
+		  position: absolute;
+		  top: 10px;
+		  right: 25px;
+		  font-size: 35px;
+		  font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+		  color: #999;
+		  text-decoration: none;
+		  cursor: pointer;
+		}
+
+		/* Hide the slides by default */
+		.mySlides {
+		  display: none;
+		}
+
+		/* Next & previous buttons */
+		.prev,
+		.next {
+		  cursor: pointer;
+		  position: absolute;
+		  top: 50%;
+		  width: auto;
+		  padding: 16px;
+		  margin-top: -50px;
+		  color: white;
+		  font-weight: bold;
+		  font-size: 20px;
+		  transition: 0.6s ease;
+		  border-radius: 0 3px 3px 0;
+		  user-select: none;
+		  -webkit-user-select: none;
+		}
+
+		/* Position the "next button" to the right */
+		.next {
+		  right: 0;
+		  border-radius: 3px 0 0 3px;
+		}
+
+		/* On hover, add a black background color with a little bit see-through */
+		.prev:hover,
+		.next:hover {
+		  background-color: rgba(0, 0, 0, 0.8);
+		}
+
+		/* Number text (1/3 etc) */
+		.numbertext {
+		  color: #f2f2f2;
+		  font-size: 12px;
+		  padding: 8px 12px;
+		  position: absolute;
+		  top: 0;
+		}
+
+		/* Caption text */
+		.caption-container {
+		  text-align: center;
+		  background-color: black;
+		  padding: 2px 16px;
+		  color: white;
+		}
+
+		img.demo {
+		  opacity: 0.6;
+		  width: 100%;
+		}
+
+		.active,
+		.demo:hover {
+		  opacity: 1;
+		}
+
+		img.hover-shadow {
+		  transition: 0.3s;
+		}
+
+		.hover-shadow:hover {
+		  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+		}
+</style>
+</head><script src="../scripts/darkmode.js"></script>
+<body>
+<div>
+<script src="../nav.js"></script>
+</div>
+<div class="mediacontrol">
+	<script src="../scripts/tts.js"></script>
+	<img style="width: 90%; margin-top: 20px; display: block; margin-left: auto; margin-right: auto; margin-bottom: 3px;" src="../img/speaker.png">
+	<img id="vactube" style="width: 70%; display: block; margin-left: auto; margin-right: auto;" src="../img/vacumetube.png">
+	<div style="margin: auto; padding-left: 16%;">
+    <button class="mediacontrollbutton" id=play></button>
+    <button class="mediacontrollbutton" id=pause></button>
+    <button class="mediacontrollbutton" id=stop></button>
+	</div>
+	
+</div>
+<br>
+<div class="book">
+<h3 class="articletitle">The Aethary</h3>
+<article>
+
+
+<!-- Images used to open the lightbox -->
+
+    <img class="mappagemap" src="..\img\maps\EyomBiomes.jpeg" onclick="openModal();currentSlide(1)" class="hover-shadow">
+
+    <img class="mappagemap" src="..\img\maps\EyomCultures.jpeg" onclick="openModal();currentSlide(2)" class="hover-shadow">
+
+    <img class="mappagemap" src="..\img\maps\EyomEconomy.jpeg" onclick="openModal();currentSlide(3)" class="hover-shadow">
+
+    <img class="mappagemap" src="..\img\maps\EyomRainfall.jpeg" onclick="openModal();currentSlide(4)" class="hover-shadow">
+
+
+
+<!-- The Modal/Lightbox -->
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <div class="mySlides">
+      <div class="numbertext">1 / 4</div>
+      <img src="..\img\maps\EyomBiomes.jpeg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">2 / 4</div>
+      <img src="..\img\maps\EyomCultures.jpeg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">3 / 4</div>
+      <img src="..\img\maps\EyomEconomy.jpeg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">4 / 4</div>
+      <img src="..\img\maps\EyomRainfall.jpeg" style="width:100%">
+    </div>
+
+    <!-- Next/previous controls -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <!-- Caption text -->
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+
+    <!-- Thumbnail image controls -->
+    <div class="column">
+      <img class="demo" src="..\img\maps\EyomBiomes.jpeg" onclick="currentSlide(1)" alt="Biomes">
+    </div>
+
+    <div class="column">
+      <img class="demo" src="..\img\maps\EyomCultures.jpeg" onclick="currentSlide(2)" alt="Dominant Cultures">
+    </div>
+
+    <div class="column">
+      <img class="demo" src="..\img\maps\EyomEconomy.jpeg" onclick="currentSlide(3)" alt="Economic Zones">
+    </div>
+
+    <div class="column">
+      <img class="demo" src="..\img\maps\EyomRainfall.jpeg" onclick="currentSlide(4)" alt="Rainfall">
+    </div>
+  </div>
+</div>
+
+
+
+
+<p>The Aethary (or aethary) is Eyom's continental system of interconnected thinking machines, library archives, and messenger sending hubs, that use the Aether Sendings Protocol (ACP) to communicate between nexus and devices. It is a nexus of nexuses that consists of private, public, academic, business, and government nexuses of local to continental scope, linked by a broad array of galvanic, arcane, and mechanical technologies. The Aethary carries a vast range of information resources and services, such as interlinked hypertext documents (such as this one), informational databases, aetheric mail, telephony, and file sharing.</p>
+<p>Most traditional communication media, including telegraph, radio, television, paper mail and newspapers can be performed using the Aethary, though the expense of an Aetha has prevented the mass adoption of the nexus. The Aethary can be found is most libraries, all universities, halls so science, many banks, and most government offices of prosperous communities. Those with access to the Aethary have created new services using the technology such as Aethermail, Athersending, Aetherial Vision, and even dedicated virtual forums for socialization.</p>
+<p>The Aethary has no centralized governance in either techno-arcane implementation or policies for access and usage. Each constituent nexus has its own policies. The underlying protocols permitting the interconnection of disparate nexuses <em>(The Aetheric Protocol address (AP address), and the Speakable Name System (SNS))</em> are overseen and altered by the Aetharic Corporation for Nexus Web Management (<em>ACNWM</em>). The ACNWM is simply a body of technicians sworn to total neutrality with the goal of maintaining, expanding, and improving the interconnectivity of Eyoms Nexuses. </p>
+
+<h4 class="articlesubtitle"><span id="Material_Plane">Origins</span></h4>
+<p>The origins of the Aethary date back to the development of tools to make detailed observations of the <a href="../misc/theplanes.html">Ethereal Plane</a>, and the discovery of the Aether (<em>a strange and complex substance that occurs where the Elemental Planes touch the Ethereal Plane</em>) and its ability to permit the transmission of information across vast distances in little to no time. Further reasurch into the use of the Aether for communication purposes was commissioned by Empress Kahn of Sylvin in 1912 from the Guild of Engineers, and later given additional funding by Emperor Cerf of Daland after the initial research showed great promise, and also great development cost.</p>
+<p>The Aethary was based on the Engineer's Guild Radio Communications Forest Nexus (EGRCNex /Erg-Nex/), which linked mechanical devices through radio communications such that documents typed or drawn in one place could be replicated by another machine elsewhere. The principal remained the same, save for the use of aether to replicate an existing text at one location in ethereal form at another location in what is generally explained as an extreme-range illusion spell.</p>
+<p>This early version of the Aethary was refined through several generational iterations between the years of 1915 and 1923. By late 1923 the Aethary had reached what is widely recognized as its first practical state, which entailed the use of specialized antenna and focusing runes to tune a specially prepared aluminum-backed borosilicate mirror to the exact resonance frequency of an atheric wave, at which point whatever information contained within the amplitude and frequency modulations of the wave would be rendered as text, images, and sounds on the mirror's surface. The waves would be in turn created by a radio-adjacent device attached to the mirror along with a type-writer and stylus for writing and drawing.</p>
+<p>While each Aetha (<em>short for Aetheric Mirror</em>) was quite expensive and not easily portable due to their fragile natures, the communication occurred without any ongoing infrastructure costs, and by its very nature was nearly impossible to intercept at the time. Both the Sylvanian and Dalandic Empires adopted Aethic communications as their primary military communications methods after seeing a demonstration of these prototypes. The Guild of Engineers chose to continue developing their Galvanic solution, citing the crudeness of the Aetha's design.</p>
+<p>The current Aethary recognizable by modern people, which serves as a vast ethereal library searchable from any connected device took form in 1955 when the Constructi engineer L33 "Burner" developed the Aether Tavern, a bounded zone containing many resonant waves which could be tuned to, with fine tuning allowing for viewing different information stored within the Tavern, much like the index of a book allows one to turn to a page with information the reader is searching for.</p>
+<p>These early Taverns were rapidly improved by other inventors and even interconnected through portals, leading to the first Taven Nexus, The Sylvanian Library Nexus, being constructed in 1958. The Sylvanian Library nexus was joined to the Yastan Banking Nexus in 1959, creating the first link in the chain that would become the Aethary.</p>
+<p>The Aethary proper, linking all non-Woodelven Nexeses in Eyom was finished in 1964.</p>
+<h4 class="articlesubtitle"><span id="Material_Plane">Spread</span></h4>
+<p>The Aethary has been slow to spread beyond government, scholastic, and major financial institutions. This is due primarily to the cost of the devices necessary for accessing it. The Aethary can be found in every large city, and many smaller communities. Some of these have attempted to make Aethary access easier by installing Nexus Relays around their settlements to ensure anyone can access the Aethary from anywhere. While this has greatly reduced the cost to individuals, the expense of an Aetha continued to keep the Aethary out of the reach of most people.</p>
+<p>A few very small towns have constructed Aethary Links in the hopes of attracting wealthy individuals and new industries to their towns.</p>
+</article>
+
+<script>
+// Open the Modal
+function openModal() {
+  document.getElementById("myModal").style.display = "block";
+}
+
+// Close the Modal
+function closeModal() {
+  document.getElementById("myModal").style.display = "none";
+}
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
