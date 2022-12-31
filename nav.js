@@ -1,8 +1,8 @@
 var navbar = `
     <body>
     <div class="header">
-    <h1 style="opacity: 0.8">Eyom Digital Encylopedia</h1>
-        <p style="opacity: 0.8">`
+    <h1 class="goldtext">Eyom Digital Encylopedia</h1>
+        <p class="goldtext">`
 + document.title +
     `</p>
     </div>
@@ -19,6 +19,8 @@ var navbar = `
         <div class="dropdown-content">
         <a href="../races/peoples.html">Races</a>
         <a href="../languages/langindex.html">Languages</a>
+        <a href="../misc/miscindex.html">Index of Misc. Topics</a>
+        <a href="../gamerules/GameRuleMenu.html">Game Rules</a>
         </div>
 		</div>
     <div class="dropdown">

@@ -2,7 +2,7 @@ var navbar = `
     <body>
     <div class="header">
 		<br>
-           <p style="opacity: 0.8; margin-top: 3em; margin-bottom: 0">`
+           <p class="goldtext" style="margin-top: 3em; margin-bottom: 0">`
 + document.title +
     `</p>
     </div>
@@ -18,6 +18,8 @@ var navbar = `
         <div class="dropdown-content">
         <a href="../races/peoples.html">Races</a>
         <a href="../languages/langindex.html">Languages</a>
+        <a href="../misc/miscindex.html">Index of Misc. Topics</a>
+        <a href="../gamerules/GameRuleMenu.html">Game Rules</a>
         </div>
     </div>
     <div class="dropdown">

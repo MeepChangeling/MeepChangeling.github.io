@@ -1,0 +1,362 @@
+<doctype html>
+<html lang="en">
+<html>
+<head>
+<meta charset="utf-8">
+<title>Gamerule: Magic as Equipment</title>
+<link href="../gamerule.css" rel="stylesheet">
+<link rel="icon" type="../image/x-icon" href="../img/logo.png">
+<style>
+	.column {
+	  float: left;
+	  width: 33.33%;
+	}
+
+	/* Clear floats after the columns */
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+</style>
+</head><script src="../scripts/darkmode.js"></script>
+<body>
+<div>
+<script src="../nav3.js"></script>
+</div>
+<br>
+<div class="book">
+<h3 class="articletitle">Magic as Equipment</h3>
+<article>
+<p>Pathfinder 1e is based on Dungeons and Dragons 3.5. It inherited almost all of D&amp;D's quirks and systems as its place was to provide something new for people who loved 3.5 but hated D&amp;D's 4th edishion. One of the most well known features of Pathdiner and 3.5's rulesets is Vancian Magic (better known as "Spells per Day".). Specifically, Vancian Magic is the magic system where:</p>
+<div style="padding-left: 3%; padding-right: 3%; margin-left: 5%; margin-right: 5%; border: 1px solid #79e1f6; background-color: rgba(121, 225, 246, 0.42); font-family: 'Courier New';">
+<ol>
+<li>Magical effects are packaged into distinct spells; each spell has one fixed purpose. A spell that throws a ball of fire at an enemy <em>just</em> throws balls of fire, and generally cannot be "turned down" to light a cigarette, for instance.</li>
+<li>Spells represent a kind of magic bomb which must be prepared in advance of actual use, and each prepared spell can be used a limited number of times before needing to be prepared again. That's why it is also known as "Fire &amp; Forget magic."</li>
+<li>Magicians have a finite capacity of prepared spells which is the de facto measure of their skill and/or power as magicians. A wizard using magic for combat is thus something like a living gun: he must be "loaded" with spells beforehand and can run out of magical "ammunition".</li>
+</ol>
+<p style="text-align: right;"><a href="https://tvtropes.org/pmwiki/pmwiki.php/Main/VancianMagic">- TV Tropes, Vancian Magic</a></p>
+</div>
+<p>Eyom was constructed with the idea that it is a world like those common to Pathfinder and D&amp;D 3.5 in which time doesn't stand still, that innovation happens, and that a cataclysm should change fundamental aspects of the world. Vancian Magic is rooted in the notion that the rules of magic are ordained by higher powers. In Eyom, those higher powers are long dead. Eyom is intended to be run with its own magic system.</p>
+<p>The creation of a truly new magic system would require the creation of thousands of spells and several classes, and thus players would need to learn a lot of new things on top of the uniqueities of Eyom's setting. As this is not something everyone wants to do, games Eyom can be played using the standard Vancian Magic, or the Pathfinder Alternate Rule <a href="https://www.d20pfsrd.com/magic/variant-magic-rules/spell-points-magic-system/">Spell Point</a> magic system (A list of all recommended Alternate Rules for running games in Eyom can be found <a href="../gamerules/EyomReccomendedRules.html">here</a>.).</p>
+<p>If you choose to run Eyom in this fashion, you will want to ensure access to "wands" of nearly every spell are available to everyone and remember that Use Magic Device is a skill most everyone learned in school.</p>
+<p>The following rule systems were created to allow conversion between Vanican Magic and Eyom's magic systems. It is based on the underlying mathematics behind Pathfinder's magic system and should remain within the existing power curves.</p>
+
+<h4 class="articlesubtitle"><span id="Material_Plane">Patron Arcana</span></h4>
+<p><table style="float: left; margin: 1em; border-collapse: collapse; width: 22.8681%; height: 163px;" border="1"><caption style="caption-side: top;"><strong>Table: Patron Power Levels</strong></caption>
+<tbody>
+<tbody>
+<tr style="height: 18px;">
+<td style="width: 21.4286%; height: 18px; text-align: center;"><strong>Patron Rating</strong></td>
+<td style="width: 6.06061%; height: 18px; text-align: center;"><strong>Creature CR</strong></td>
+<td style="width: 6.06061%; height: 18px; text-align: center;"><strong>Max Spell Level</strong></td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 21.4286%; height: 18px; text-align: center;">Black Opal</td>
+<td style="width: 6.06061%; height: 18px; text-align: center;">5-10</td>
+<td style="width: 6.06061%; height: 18px; text-align: center;">3</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 21.4286%; height: 18px; text-align: center;">Dark Opal</td>
+<td style="width: 6.06061%; height: 18px; text-align: center;">11-15</td>
+<td style="width: 6.06061%; height: 18px; text-align: center;">6</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 21.4286%; height: 18px; text-align: center;">Fire Opal</td>
+<td style="width: 6.06061%; height: 18px; text-align: center;">16-20</td>
+<td style="width: 6.06061%; height: 18px; text-align: center;">9</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 21.4286%; height: 18px; text-align: center;">White Opal</td>
+<td style="width: 6.06061%; height: 18px; text-align: center;">20+</td>
+<td style="width: 6.06061%; height: 18px; text-align: center;">12</td>
+</tr>
+</tbody>
+</table>Patron Arcana is the domain of divine casters and spontaneous arcane casters in Eyom. It takes the form of the classic Vanican Magic of Pathfinder and Dungeons and Dragons. The twist in Eyom is that to have access to this form of magic, a PC must have a patron who grants them their spells. While spontaneous Arcane caster classes begin play with a Patron, any character can gain one through gameplay and consequently gain the ability to cast spells as per a sorcerer of half their level (Native casting classes gain the abilities of their class in full.).</p>
+<p>GMs should keep in mind that Eyom has different <a href="../misc/magic.html#PatronArcana">grades of patron</a>. While spontaneous casting classes begin play with a patron, they might not begin with one who can grant them their full range of spells and may need to seek one out, or supplement their abilities with other casting methods. Non-casters who are seeking the services of a patron are in the same boat.</p>
+<p>The power of a PCs patron limits the total spell levels they can cast, but not what spells they know nor how often they can cast a spell in a given day. Those are dictated by their classes. Patrons deliver a day's worth of power to their dependents at a scheduled time. The specific time is dependent on the patron. Perhaps they prefer to give their dependents power at dawn, dusk, noon, or some other time which is of note, importance, or convenience to the patron. GMs should determine what time the PCs patrons replenish their spells at character creation.</p>
+<p>Any intelligent creature capable of speech and spell casting can be a patron. The level of patron is based entirely on their CR as per the following table:</p>
+
+<p>GMs and players should remember that Patrons do not provide their services out of a sense of obligation (Some individuals may do so, but most see it as a transaction). If a PC displeases their patron in a substantial way, they can withhold granting spells. Or even sever the contract.</p>
+<h4 class="articlesubtitle"><span id="Material_Plane">Populous Arcana</span></h4>
+<div style="float: left;">
+<table style="border-collapse: collapse; width: 30.6819%; height: 180px; margin-left: 3%;" border="1"><caption style="caption-side: top;"><strong>Table: Town Aura Strength</strong></caption>
+<tbody>
+<tbody>
+<tr style="height: 18px;">
+<td style="width: 4.36681%; height: 18px;"><strong>Population</strong></td>
+<td style="width: 24.1495%; height: 18px;"><strong>Energy Level</strong></td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 4.36681%; height: 18px; text-align: center;">500</td>
+<td style="width: 24.1495%; height: 18px; text-align: center;">1</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 4.36681%; height: 18px; text-align: center;">2,068</td>
+<td style="width: 24.1495%; height: 18px; text-align: center;">2</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 4.36681%; height: 18px; text-align: center;">17,381</td>
+<td style="width: 24.1495%; height: 18px; text-align: center;">3</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 4.36681%; height: 18px; text-align: center;">50,812</td>
+<td style="width: 24.1495%; height: 18px; text-align: center;">4</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 4.36681%; height: 18px; text-align: center;">93,410</td>
+<td style="width: 24.1495%; height: 18px; text-align: center;">5</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 4.36681%; height: 18px; text-align: center;">127,093</td>
+<td style="width: 24.1495%; height: 18px; text-align: center;">6</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 4.36681%; height: 18px; text-align: center;">277,700</td>
+<td style="width: 24.1495%; height: 18px; text-align: center;">7</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 4.36681%; height: 18px; text-align: center;">548,259</td>
+<td style="width: 24.1495%; height: 18px; text-align: center;">8</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 4.36681%; height: 18px; text-align: center;">1,000,184</td>
+<td style="width: 24.1495%; height: 18px; text-align: center;">9</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The Populous Arcana system is simple. Within a settlement, all magic is functionally free, provided it is of a level equal to or lower than the settlement's energy level. PCs and GMs should note that any other sources of magical energy are drained first when casting in cities. A PC with a patron will use all of their spells per day, then start drawing on the local energy supply. A PC using talismans linked to their totem will deplete the totem first, then start drawing on the local energy supply.</p>
+<p>The intention behind this is to prevent player abuse of the system and encourage PCs to make use of Eyom's lore. If one uses a lot of magic in town, they cannot flee town to escape guards or other NPCs (Who will also have endless magic supply in town.) and use the surrounding wilderness to gain an advantage with spellcraft. Of course, if they have access to a totem and were not using talismans attuned to it in town, this strategy will still work.</p>
+<p>GMs should note that settlements energy fields cap at 9th level effects. They cannot supply power for metamagic-enhanced spells that take energy beyond 9th level. Nor can a settlement with a lower energy level</p>
+
+<h4 class="articlesubtitle"><span id="Material_Plane">Totem Arcana</span></h4>
+<p>Totem Arcana is the main form of Magic in Eyom. It is a form of magic as equipment and is available to everyone who can afford to purchase a totem and a talisman. It is important to note that each individual spell a PC whiches to cast using the energy from their totem will require its own individual talisman. All prepared caster classes begin play with a totem of no more than 2300 GP, and a number of talismans equal to that of the number of spells they would know under the normal Pathfinder magic system.</p>
+<h5 class="articlesubtitle"><span id="Material_Plane">Totems</span></h5>
+<p>Totems are arcane machines that collect, store, and distribute magical energy in a raw state. They are functionally replacing a creature's natural mana pool.</p>
+<p>Each totem has three parts, a collector, a reservoir, and an antenna. The collector determines how quickly the totem absorbs energy, the reservoir determines how much energy the totem can hold, and the antenna determines how far it can transmit that energy. When a talisman linked to a totem is activated, it draws a number of spell levels from the totem equal to the spell's level (plus any spell levels needed for meta magic feats). Note: Cantrips, being 0th level, do not deplete any appreciable amount of energy from a totem. The totem will eventually replenish its energy on its own based on its specific collector.</p>
+<p>Collectors charge rates are measured in spell levels per hour. <em>Table: Collectors</em> lists their charge rate, cost in GP, and their equivalent spells per day. For balance purposes, a wizard's base spells per day at level 20 is 40, and 4 at first level. Their price has been based on Rings of Wizardry, albeit somewhat discounted to account for mass production.</p>
+<p>Reservoirs store spell levels, with their capacity listed as the total number of spells it can store. <em>Table: Reservoirs</em> lists their price in GP and how many spell levels they can store. For balance purposes, its price is based on Rings of Spell Storing, albeit somewhat discounted to account for mass production.</p>
+<p>The antenna determines how far a totem can transmit power. Table: Antenna lists their price in GP and how far they can transmit power. For balance purposes, these distances are kept short and GMs should be aware that antenne works similarly to radio. Just because a location is theoretically in range doesn't mean that the antenna can transmit power through a quarter mile of stone.</p>
+<p>Each component's abilities and costs are as follows:</p>
+<div class="row" style="margin-left: 10%;">
+<div class="column">
+<table style="display: inline-table; border-collapse: collapse; width: 40.2236%; height: 154px;" border="1"><caption style="caption-side: top;"><strong>Table: Collectors</strong></caption>
+<tbody>
+<tr style="height: 18px;">
+<td style="width: 30.5287%; height: 18px; text-align: center;"><strong>Charge Rate</strong></td>
+<td style="width: 21.1765%; height: 18px; text-align: center;"><strong>Cost (GP)</strong></td>
+<td style="width: 38.2353%; height: 18px; text-align: center;"><strong>Spells per day </strong></td>
+</tr>
+<tr>
+<td style="width: 30.5287%; text-align: center;">0.05</td>
+<td style="width: 21.1765%; text-align: center;">50</td>
+<td style="width: 38.2353%; text-align: center;">1</td>
+</tr>
+<tr>
+<td style="width: 30.5287%; text-align: center;">0.1</td>
+<td style="width: 21.1765%; text-align: center;">500</td>
+<td style="width: 38.2353%; text-align: center;">2</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 30.5287%; height: 18px; text-align: center;">0.25</td>
+<td style="width: 21.1765%; height: 18px; text-align: center;">2,000</td>
+<td style="width: 38.2353%; height: 18px; text-align: center;">6</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 30.5287%; height: 18px; text-align: center;">0.5</td>
+<td style="width: 21.1765%; height: 18px; text-align: center;">10,000</td>
+<td style="width: 38.2353%; height: 18px; text-align: center;">12</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 30.5287%; height: 18px; text-align: center;">0.75</td>
+<td style="width: 21.1765%; height: 18px; text-align: center;">24,000</td>
+<td style="width: 38.2353%; height: 18px; text-align: center;">18</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 30.5287%; height: 18px; text-align: center;">1</td>
+<td style="width: 21.1765%; height: 18px; text-align: center;">36,000</td>
+<td style="width: 38.2353%; height: 18px; text-align: center;">24</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 30.5287%; height: 18px; text-align: center;">1.25</td>
+<td style="width: 21.1765%; height: 18px; text-align: center;">50,000</td>
+<td style="width: 38.2353%; height: 18px; text-align: center;">30</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 30.5287%; height: 18px; text-align: center;">1.5</td>
+<td style="width: 21.1765%; height: 18px; text-align: center;">72,000</td>
+<td style="width: 38.2353%; height: 18px; text-align: center;">36</td>
+</tr>
+<tr style="height: 10px;">
+<td style="width: 30.5287%; height: 10px; text-align: center;">1.75</td>
+<td style="width: 21.1765%; height: 10px; text-align: center;">80,000</td>
+<td style="width: 38.2353%; height: 10px; text-align: center;">42</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 30.5287%; height: 18px; text-align: center;">2</td>
+<td style="width: 21.1765%; height: 18px; text-align: center;">100,000</td>
+<td style="width: 38.2353%; height: 18px; text-align: center;">48</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="column">
+<table style="display: inline-table; border-collapse: collapse; width: 24.163%; height: 198px;" border="1"><caption style="caption-side: top;"><strong>Table: Reservoirs</strong></caption>
+<tbody>
+<tr style="height: 36px;">
+<td style="width: 9.97084%; height: 36px; text-align: center;"><strong>Spells Stored</strong></td>
+<td style="width: 14.1922%; height: 36px; text-align: center;"><strong>Cost (GP)</strong></td>
+</tr>
+<tr>
+<td style="width: 9.97084%; text-align: center;">1</td>
+<td style="width: 14.1922%; text-align: center;">150</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 9.97084%; height: 18px; text-align: center;">5</td>
+<td style="width: 14.1922%; height: 18px; text-align: center;">800</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 9.97084%; height: 18px; text-align: center;">10</td>
+<td style="width: 14.1922%; height: 18px; text-align: center;">1,200</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 9.97084%; height: 18px; text-align: center;">15</td>
+<td style="width: 14.1922%; height: 18px; text-align: center;">3,000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 9.97084%; height: 18px; text-align: center;">20</td>
+<td style="width: 14.1922%; height: 18px; text-align: center;">6,000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 9.97084%; height: 18px; text-align: center;">25</td>
+<td style="width: 14.1922%; height: 18px; text-align: center;">10,000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 9.97084%; height: 18px; text-align: center;">30</td>
+<td style="width: 14.1922%; height: 18px; text-align: center;">25,000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 9.97084%; height: 18px; text-align: center;">35</td>
+<td style="width: 14.1922%; height: 18px; text-align: center;">50,000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 9.97084%; height: 18px; text-align: center;">40</td>
+<td style="width: 14.1922%; height: 18px; text-align: center;">100,000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 9.97084%; height: 18px; text-align: center;">45</td>
+<td style="width: 14.1922%; height: 18px; text-align: center;">150,000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="column">
+<table style="display: inline-table; border-collapse: collapse; width: 27.2198%; height: 198px;" border="1"><caption style="caption-side: top;"><strong>Table: Antenna</strong></caption>
+<tbody>
+<tr style="height: 18px;">
+<td style="width: 12.4454%; height: 18px; text-align: center;"><strong>Distance</strong></td>
+<td style="width: 14.7744%; height: 18px; text-align: center;"><strong>Cost (GP)</strong></td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 12.4454%; height: 18px; text-align: center;">Plugin</td>
+<td style="width: 14.7744%; height: 18px; text-align: center;">180</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 12.4454%; height: 18px; text-align: center;">60 ft</td>
+<td style="width: 14.7744%; height: 18px; text-align: center;">250</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 12.4454%; height: 18px; text-align: center;">120 ft</td>
+<td style="width: 14.7744%; height: 18px; text-align: center;">500</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 12.4454%; height: 18px; text-align: center;">200 ft</td>
+<td style="width: 14.7744%; height: 18px; text-align: center;">1,000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 12.4454%; height: 18px; text-align: center;">250 ft</td>
+<td style="width: 14.7744%; height: 18px; text-align: center;">5,000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 12.4454%; height: 18px; text-align: center;">300 ft</td>
+<td style="width: 14.7744%; height: 18px; text-align: center;">10,000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 12.4454%; height: 18px; text-align: center;">500 ft</td>
+<td style="width: 14.7744%; height: 18px; text-align: center;">25,000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 12.4454%; height: 18px; text-align: center;">1 mi</td>
+<td style="width: 14.7744%; height: 18px; text-align: center;">100,000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 12.4454%; height: 18px; text-align: center;">1.5 mi</td>
+<td style="width: 14.7744%; height: 18px; text-align: center;">150000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 12.4454%; height: 18px; text-align: center;">2 mi</td>
+<td style="width: 14.7744%; height: 18px; text-align: center;">250,000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<h5 class="articlesubtitle"><span id="Material_Plane">Talismans</span></h5>
+<p>Talismans are the name given to a class of magical items designed to cast spells using remotely stored energy. They come in many shapes and sizes, with many features that vary from manufacturer to manufacturer, but all are functionally small handheld objects with a button which, when pressed, casts a spell for their user.</p>
+<p>Talismans are similar devices to wands in that they are hand-held items that use the <a href="https://www.d20pfsrd.com/magic-items#TOC-Spell-Trigger">spell trigger</a> activation method to cast a spell for their user. Using a talisman is a standard action that provokes attacks of opportunity. To use a talisman, a character must have it in hand and be free to point the talisman at the target of their spell (Talismins which cast spells with the target of self require a free hand but need not be aimed). To activate the talisman a character must make a use magic device check with a DC equal to 10 + the talisman's spell level. GMs should remember that due to the prolificity of talismans, everyone save for those from the most rural of communities has access to the Use Magic Device skill (And classes that grant it as a class skill gain a +2 bonus).</p>
+<p>Unlike wands knowing the spell allow you to use the talisman without making a use magic device check. However, like wands, failing the use magic device check does not expend any of the linked totem's energy (unless the failed roll is due to a natural 1). Like wands, if a spell has a casting time longer than one action, it takes the talisman that long to cast the spell.</p>
+<p>Talismans' spell effects count in all ways as if their user had cast the spell. Meaning a talisman's user must make concentration checks if required, can use talismans to counterspell, may apply their arcane feats to spells cast via talismans, and so on. The only difference is talismans, by default, do not require any verbal, somatic, or material components costing 1gp or less.</p>
+<p>A talisman cannot be used in any circumstance where the user does not have one hand (or equivalent manipulator) free to work the talisman. This can be overcome with a successful DC 20 escape artist, acrobatics, or UMD check (A second UMD is needed for activation on top of this check).</p>
+<p>While wands are limited to spells of 4th level or lower, talismans exist for spells all the way up through level 9. By default, talismans are created at their lowest possible caster level for the purposes of their effects.</p>
+<p>The cost of a talisman by the level of spell it casts can be found on <em>Table: Talismans</em>. GMs should remember that talismans are subject to the <a href="https://www.d20pfsrd.com/gamemastering/other-rules/timeworn-technology-glitches/">Timeworn Technology</a> rules. They can also have bonus features which may be either mechanical or cosmetic. GMs should feel free to invent quirks and drawbacks for each and every talisman their players acquire. Bonus points if such oddities and bonus features are simply there for all talismans created by a particular manufacturer.</p>
+<p>GMs should also note that while talismans for spells of levels greater than 4 exist, that does not mean such things are common. Nor are they necessarily sold to civilians, or available without a license.</p>
+<table style="border-collapse: collapse; width: 20.0873%; margin-left: auto; margin-right: auto; height: 198px;" border="1"><caption><strong>Table: Talismans</strong></caption>
+<tbody>
+<tr style="height: 18px;">
+<td style="width: 5.34759%; height: 18px; text-align: center;"><strong>Spell Level</strong></td>
+<td style="width: 5.34759%; height: 18px; text-align: center;"><strong>Cost (gp)</strong></td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 5.34759%; height: 18px; text-align: center;">0</td>
+<td style="width: 5.34759%; height: 18px; text-align: center;">10</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 5.34759%; height: 18px; text-align: center;">1</td>
+<td style="width: 5.34759%; height: 18px; text-align: center;">100</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 5.34759%; height: 18px; text-align: center;">2</td>
+<td style="width: 5.34759%; height: 18px; text-align: center;">400</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 5.34759%; height: 18px; text-align: center;">3</td>
+<td style="width: 5.34759%; height: 18px; text-align: center;">1000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 5.34759%; height: 18px; text-align: center;">4</td>
+<td style="width: 5.34759%; height: 18px; text-align: center;">5000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 5.34759%; height: 18px; text-align: center;">5</td>
+<td style="width: 5.34759%; height: 18px; text-align: center;">10000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 5.34759%; height: 18px; text-align: center;">6</td>
+<td style="width: 5.34759%; height: 18px; text-align: center;">25000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 5.34759%; height: 18px; text-align: center;">7</td>
+<td style="width: 5.34759%; height: 18px; text-align: center;">50000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 5.34759%; height: 18px; text-align: center;">8</td>
+<td style="width: 5.34759%; height: 18px; text-align: center;">75000</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 5.34759%; height: 18px; text-align: center;">9</td>
+<td style="width: 5.34759%; height: 18px; text-align: center;">100000</td>
+</tr>
+</tbody>
+</table>

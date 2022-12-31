@@ -1,0 +1,100 @@
+<doctype html>
+<html lang="en">
+<html>
+<head>
+<meta charset="utf-8">
+<title>Gamerule: Toughness (hp)</title>
+<link href="../gamerule.css" rel="stylesheet">
+<link rel="icon" type="../image/x-icon" href="../img/logo.png">
+<style media="screen">
+  p.disiease {
+    border-style: solid;
+    border-width: 1px 0px;
+    border-color: black;
+  }
+</style>
+</head><script src="../scripts/darkmode.js"></script>
+<body>
+<div>
+<script src="../nav3.js"></script>
+</div>
+<br>
+<div class="book">
+<h3 class="articletitle">Toughness and Hit Points</h3>
+<p>Toughness and Hit Points is an optional rule system for the pathfinder 1e rule system written by yours truly. It is a modified version of Paizo's "Wounds and Vigor" rules designed to function closer to Starfinder and Pathfinder 2's ideas on health mechanics in RPGs. This rule is intended to:</p>
+<ol>
+  <li>Make Eyom's citizens feel tougher and hardier than those of base Pathfinder.</li>
+  <li>Allow PCs to take more risks in combat, thus giving players the freedom to fight creatively and spark the GM's imagination with interesting ideas, thereby heightening player investment and engagement with combat.</li>
+  <li>Make combat feel more gritty by having a threshold which once passed means something serious has occurred.</li>
+  <li>Enable support classes with magical healing to contribute as healers more often and with greater relevance.</li>
+  <li>Address rules oversights in Pizo's "Wounds and Vigor" for fair and balanced play.</li>
+</ol>
+
+<h4 class="articlesubtitle"><span id="Undead">What are Hit Points?</span></h4>
+<p>You may think you know what hit points are in every RPG... But what they are intended to represent actually varies widely. According to Pathfinder's core rules, Hit Points are actually your ability to dodge attacks.</p>
+<div class="quotebox">
+  <p>Hit points are an abstraction. When a fighter gains a level, his body does not suddenly become more resistant to damage. A sword’s strike does not suddenly do proportionately less damage. Rather, hit points suggest that the fighter has undergone more training, and while he may have improved his ability to deal with wounds to a small degree, the hit points gained at higher levels reflect less his capacity for physical punishment and more his skill at avoiding hits, his ability to dodge and twist and turn. Each loss of hit points, in this case, suggests that he is becoming progressively less nimble over the course of combat—in other words, that the decreasing hit points are a marker for his overall endurance and condition. It’s not quite as satisfying, however, to roll a critical hit and then tell a player that his opponent ducked out of the way, but that the sword’s slash made the enemy a little less lucky.</p>
+  <p style="float: right;">- <a href="https://www.d20pfsrd.com/gamemastering/other-rules/wounds-and-vigor/">Ultimate Combat</a>, Jason Bulmahn, et all, Paizo Inc.</p>
+</div>
+
+<p>This is not hit points as they are in Pathfinder's parent game, Dungeons and Dragons 3.5. In D&D 3.5, hit points are an abstract representation of how much damage something can take.</p>
+<div class="quotebox">
+  <p>Your hit points measure how hard you are to kill. ... Hit points mean two things in the game world: the ability to take physical punishment and keep going, and the ability to turn a serious blow into a less serious one. </p>
+  <p style="float: right;">- <a href="https://www.d20srd.org/srd/combat/injuryandDeath.htm">Dungeons and Dragons System Reference Document</a>, Wizards of the Coast</p>
+</div>
+
+<p>In essence: Pathfinder seeks to represent martial skill with HP, while D&D is attempting to calculate a person or items resilience. Pathfinder's idea does not mesh with their other rules. If HP is to be a representation of one's ability to avoid and parry attacks (and otherwise mitigate damage), as well as a measure of stamina... Why then do objects also have HP in Pathfinder? Why is it that characters also get bonuses to their Armor Class based on how nimble they are (dodge bonuses)? Pizo's idea for hit points may seem more realistic on the surface, and they do appear to be railing against D&D's concept of HP in their description, but what they say it is, and how it meshes with the rest of the game are simply incompatible statements.</p>
+<p>In any case, in the world of Eyom the process of leveling up is a real phenomenon. It is not as granular as it is in the RPG's rules but rather a smooth spectrum. Levels (and CR) are rough calculations of spiritual power, with certain abilities and enhancements to one's self occurring within slices of the spectrum (typical called energy or power levels). While only the most geeky of Eyom's citizens would call the process of refining one's spiritual essence to the next energy level as "leveling up", it is a very real phenomenon everyone on Zo. The process is scientifically understood. In Eyom, someone who has fortified their soul by boosting its energy content really does become more resilient to damage.</p>
+<p>Thus, in Eyom, HP is an abstract measurement of how difficult something is to destroy.</p>
+<p>Of course, merely stating this does not have any noticeable effect within the game itself. Nor does Paizo's alternate rule system "Wounds and VIgor" work very well. Which is why this system was created. </p>
+
+<h5 class="articlesubtitle"><span id="Undead">Toughness</span></h5>
+<p>Toughness (aka Toughness Points / TP) represents a creature’s ability to endure injury while continuing to act with its full (or close to full) breath of ability. Any time a creature is hit, the damage is deducted from its TP first. If the creature has TP remaining after the damage is subtracted, the creature has been hit and injured, but the wound is not serious and can be ignored by the creature. If the damage has been subtracted and TP is reduced to 0, but there is no more damage to subtract, the creature gains the shaken condition until they have more than 0 TP. If the damage has been subtracted, and there was not enough TP to absorb the damage, the remaining damage is taken from the creature's HP instead, and the creature gains the shaken condition until they have more than 0 TP.</p>
+<p>A creature has an amount of Toughness Points equal to their Hit Die. At each level, a PC rolls their class's hit die and gains that much TP (they may choose to take the average result if desired). At first level, a PC gains the maximum possible amount of TP based on their hit die, and adds half their Constitution Score (not their modifier) to their Toughness. They do not receive a bonus to TP from their constitution score at any other level. Any time a PC takes a new class, they gain the full benefit of its hit die, but do not gain any bonus from their constitution.</p>
+
+<h5 class="articlesubtitle"><span id="Undead">Hit Points</span></h5>
+<figure style="width:40%" class="right">
+  <figcaption class="basic"><b>An array of naval shells.</b></figcaption>
+  <img style="width:100%" src="../img/misc/navalshells.jpg" alt="An array of naval shells.">
+</figure>
+<p>Hit points are a very old concept in roleplaying games. Infact, the pre-date roleplaying games and come from wargames. Not wargaming, but rather war games, the dice based simulations of real war which were used before computer simulations to plan effective battle strategies, and from whence wargaming (and ultimately Roleplaying Games) came from.</p>
+<p>The formal beginnings of hit points come from a naval warfare simulation wherein there was a stat referred to as "life" which was a simple integer representing (on average) how many hits from a 14-inch naval canon it would take to destroy the target. Thus, every living creature originally had but one hit point.</p>
+<p>This anecdote was not brought up without purpose. Many players believe that the early levels of RPGs are more fun since there is more risk to combat with less HP, and consequently more investment. There's also the cognitive dissonance in knowing you can take a shotgun blast point blank to the chest in real life and most certainly die, while a D&D character could entirely ignore the wound. This hitpoint system seeks to remedy the latter, solve the former, and avoid making people feel like their characters are made of glass.</p>
+<p>A creature has a number of hit points (HP) equal to twice its Constitution score. These points are divided into quarters (aka wound thresholds). If a creature's HP cannot be divided by four evenly, enough HP to make up the difference is added to the character. These quarters are thresholds, which when reached, cause certain effects to occur.</p>
+<p>When a creature's HP is full, it suffers no ill effects. When its HP is between 75 and 100 percent, it takes a -2 penalty to all rolls (except damage rolls), and gains the Determined Condition:</p>
+<div class="quotebox">
+  <p class="disiease"><b>Determined</b></p>
+  <p>A determined creature must target whatever inflicted it with the determined condition with either a hostile action, or a skill check. If the source cannot be killed, the creature must attempt skill checks to resolve the situation which has made them determined. If the source can be killed, the determined creature must attempt to kill the source. A determined creature cannot make attacks of opportunity, except against the source of its condition.</p>
+</div>
+<p>When a creature's HP is between 75 and 50%, it takes a -3 penalty to all rolls (except damage rolls), and it looses the determined condition, and gains the Frightened condition, even if they are immune to fear. When a creature's HP is between 50 and 25%, it takes a -4 penalty to all rolls (except damage rolls), and it gains the panicked condition but need not drop what it is carrying. When a creature is under 25% HP, it looses the panicked condition, and becomes Staggered.</p>
+<p>When a creature's HP is depleted, it falls unconscious and begins dying as per normal.</p>
+<p>GM's using a system where being seriously injured has consequences such as scars, loosing limbs, limps, and so on should feel free to incorporate these into being reduced to 25% HP or less.</p>
+<p>A creature has an amount of HP equal to twice its Constitution Score (not the ability modifier). Creatures without a Con score (such as undead and constructs) have an amount of HP equal to 20 + TP (Creatures without Con do not have TP.)</p>
+
+
+<p>There are many ways to regain Toughness and Hit Points, but it is always easier to regain toughness.</p>
+<p><b>Healing Spells and Effects:</b> All healing spells and abilities replenish Toughness before HP. They restore Toughness at their normal rate, but heal HP at a rate of 50% their normal affect. A caster can use a Heal Check (DC 15) to restore HP before TP, and a spellcraft check (DC 15) to heal HP at the full rate. They may make both checks at once if they so choose, but doing so bumps the DCs to 20.</p>
+<p><b>Rest:</b> A creature's TP is fully replenished by 1 hour of rest. If they are given medical attention while resting via a heal check or magical healing of any kind, they fully regain their TP in 10 minutes.</p>
+<p><b>Ego Boosts:</b> A creature regains an amount of TP equal to 1d4+CON per level/CR any time they successfully perform one of the following actions in combat:</p>
+<ol>
+  <li>Kill an enemy of their CR or higher (The die rolls stack for the purposes of abilities that can target multiple creatures, but the +CON is only gained once.).</li>
+  <li>Successfully perform a skill check.</li>
+  <li>Make an attack of opportunity.</li>
+  <li>Inflict a condition on a foe.</li>
+  <li>Remove a condition from an ally.</li>
+  <li>Any other action the GM believes would boost the PC's confidence.</li>
+</ol>
+<p><b>Confidence in Numbers:</b> A creature gains its Con mod worth of TP any time a combat round ends with at least one ally within 10 feet.</p>
+
+<h5 class="articlesubtitle"><span id="Undead">Combat Rules</span></h5>
+<p><b>Critical Hits:</b> When a creature is subject to a critical hit, the critical hit deals the damage normally, reducing TP first, and then reducing HP. If a critical hit damages toughness but not HP, it also deals an amount of HP damage equal to its critical multiplier (for example, 3 HP for a weapon with a ×3 modifier).</p>
+<p><b>Temporary Hit Points:</b> When a creature would normally gain temporary hit points, it gains Temporary Toughness points (TTP) instead. When that creature takes damage, it loses TTP first.</p>
+<p><b>Nonlethal Damage:</b> Any time a creature takes non-lethal damage, this damage is deducted from their Toughness. If a creature's TP is reduced to 0 by non-lethal damage, they are knocked unconscious.</p>
+<p><b>Spells or Effects with Hit Point Triggers:</b> When using this system, if a spell or an ability has an effect that occurs when you reduce a creature to 0 or fewer hit points (such as the disintegrate spell), that effect is instead triggered when a creature's TP is reduced to 0. In the case of the harm spell or a similar effect where a creature cannot be reduced below 1 hit point by the spell or effect, a creature’s HP cannot be reduced to or below the next wound threshold.</p>
+
+<h5 class="articlesubtitle"><span id="Undead">Feats</span></h5>
+<p>Any feat which increases HP also increases TP, granting double the bonus to TP.</p>
+<div style="margin-left: 5%">
+  <p class="disiease">Diehard</p>
+  <p>When struck by an attack which would drop your HP to the next wound threshold, the attack cannot reduce your HP to below the top of the threshold. <i>ie.</i> If your next threshold is 8, and you are at 10 HP, and are struck for 6 points of damage, you are reduced to 7 HP, and the remaining damage is negated. This ability triggers at each threshold, including 1 HP.</p>
+</div>

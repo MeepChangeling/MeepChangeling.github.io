@@ -1,0 +1,2251 @@
+<doctype html>
+<html lang="en">
+<html>
+<head>
+<meta charset="utf-8">
+<title>Gamerule: Firearms of Eyom</title>
+<link href="../gamerule.css" rel="stylesheet">
+<link rel="icon" type="../image/x-icon" href="../img/logo.png">
+<style>
+	.column {
+	  float: left;
+	  width: 33.33%;
+	}
+
+	/* Clear floats after the columns */
+	.row:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+</style>
+</head><script src="../scripts/darkmode.js"></script>
+<body>
+<div>
+<script src="../nav3.js"></script>
+</div>
+<br>
+<div class="book">
+<h3 class="articletitle">Sufficiently Shooty Shootybangs</h3>
+<h4 class="articlesubtitle"><span id="Material_Plane">Preface</span></h4>
+<article>
+<p>Sufficiently Shooty Shootybangs is a supplement for Pathfinder 1e written by yours truly. It is designed to make firearms fun, balanced, powerful, and expensive. Just like real life. It has been play tested and found to be a solid rule set by 4 separate gaming groups (with vastly different play styles), three of which were not GMed by me. As the rules appear solid after two years of testing, are well received, and allow for the creation of firearms of all kinds, Eyom makes use of these rules for its firearms.</p>
+<p>Eyom's firearms are limited to Era 5 and lower. Blowback mechanisms do exist but are very rare and typically not available to civilians. A page of common Eyomic firearms can be found here. The tactical rules for firearm use and how to create our own firearms follows.</p>
+<hr>
+<div style="float: left; margin-left: auto;" id="toc_container">
+<p class="toc_title">Contents</p>
+<ul class="toc_list">
+<li><a  href="#Introduction">Introduction</a></li>
+<li><a  href="#FirearmRules">Firearm Rules</a></li>
+	<ul style="margin-left: 3%;">
+	<li><a  href="#FirearmsInYourCampaign">Firearms in Your Campaign</a></li>
+		<ul style="margin-left: 3%;">
+		<li><a  href="#FirearmsAvailability">Firearms Availability</a></li>
+		<li><a  href="#FirearmsProficiencyForAll">Firearms Proficiency for All</a></li>
+		</ul>
+	<li><a  href="#ResolvingAttacks">Resolving Attacks</a></li>
+	<li><a  href="#DamageType">Damage Type</a></li>
+	<li><a  href="#RateOfFire">Rate of Fire</a></li>
+	<li><a  href="#LoadingAFirearm">Loading a Firearm</a></li>
+	<li><a  href="#Misfires">Misfires</a></li>
+	<li><a  href="#FirearmsSize">Firearms Size</a></li>
+	<li><a  href="#FirearmsAndShields">Firearms and Shields</a></li>
+	<li><a  href="#FireWhileProne">Firing While Prone</a></li>
+	<li><a  href="#BlackPowderandWater">Black Powder and Water</a></li>
+	<li><a  href="#DeflectingAndSnatchingBullets">Deflecting and Snatching Bullets</a></li>
+	<li><a  href="#GunsAreLoud">Guns are Loud</a></li>
+	</ul>
+<li><a  href="#TypesOfFirearms">Types of Firearms</a></li>
+	<ul style="margin-left: 3%;">
+	<li><a  href="#Pistols">Pistols</a></li>
+	<li><a  href="#Rifles">Rifles</a></li>
+	<li><a  href="#Mechanisms">Mechanisms</a></li>
+		<ul style="margin-left: 3%;">
+		<li><a  href="#Era1">Era 1 Mechanisms</a></li>
+		<li><a  href="#Era2">Era 2 Mechanisms</a></li>
+		<li><a  href="#Era3">Era 3 Mechanisms</a></li>
+		<li><a  href="#Era4">Era 4 Mechanisms</a></li>
+		<li><a  href="#Era5">Era 5 Mechanisms</a></li>
+		<li><a  href="#Era6">Era 6 Mechanisms</a></li>
+		</ul>
+	<li><a  href="#Calibers">Calibers</a></li>
+	<li><a  href="#Barrels">Barrels</a></li>
+	<li><a  href="#FirearmCreationExample">Firearm Creation</a></li>
+	</ul>
+<li><a  href="#FirearmMods">Firearm Mods</a></li>
+<li><a  href="#Ammunition">Ammunition</a></li>
+	<ul style="margin-left: 3%;">
+	<li><a  href="#AmmunitionSpecialProperties">Ammunition Special Properties</a></li>
+	</ul>
+<li><a  href="#FirearmsFeats">Firearms Feats</a></li>
+<li><a  href="#WondrousItems">Wondrous Items</a></li>
+</ul>
+
+</ul>
+</div>
+<h4 class="articlesubtitle"><span id="Introduction">Introduction</span></h4>
+<p>Firearms are deceptively diverse in nature. Two longswords, regardless of their blade geometry, will perform about the same for the same person. Likewise, bows and crossbows also share this form of effectiveness, where the user’s strength and dexterity are the primary factors in using the weapon to its fullest potential.</p>
+<p>Firearms, however, do not work this way. Two flintlock pistols can deal extremely different amounts of damage to a target due to something as simple as a difference in the length or width of the barrel. A gun still must be properly aimed, and firing one accurately is a feat of dexterity in part, but the gun’s mechanisms do just as much, if not more, of the work in putting the bullet on target.</p>
+<p>The default Pathfinder RPG rule set was never intended to model this key aspect of firearms, stating them like any other weapon while also ignoring the historical truths of early firearms. They further treated all weapons as if they were modern, cartridge based, smokeless powder fired, centerfire rounds. This is in spite of the fact that most players want firearms appropriate to the renaissance, the Golden age of Sail, and the Colonial Era.</p>
+<p>This supplement uses both historical accounts as well as modern day reproduction test data to create a simple system of rules for firearms that is rooted in historic truth but still fun to play. Each weapon presented here was taken from the Small Arms Visual Encyclopedia by Martin J. Dougherty and existed before the year 1912. The vast majority are from before 1880, but there is no reason not to include the few modern firearms mechanisms for completeness sake.</p>
+<p>Unlike other weapons, firearms are presented in three parts: Mechanism, Barrel, and Caliber. The Mechanism determines the firearm’s reloading speed, capacity, and any special rules. The Barrel determines accuracy penalties or bonuses. Caliber determines damage and the cost of each round. A DM or Player can select parts of their choosing to create a unique weapon representative of the plethora of possible firearm designs one could make in the real world.</p>
+<p>A large part of historic firearms is also ammunition and powder type. This book will also include optional ammunition types and loads for early firearms.</p>
+
+<h3 class="articletitle"style="overflow:hidden;"><span id="FirearmRules">Firearm Rules</span></h3>
+
+<div style="margin-left: 3%;">
+<h4 class="articlesubtitle"><span id="FirearmsInYourCampaign">Firearms in Your Campaign</span></h4>
+<p>To quote Pathfinder’s Rules as Written (RAW), <i>“Firearms and gunslingers are not for every campaign, and even if you are excited about introducing firearms into your campaign, you should still make a decision about how commonplace they are.”</i> This is very much true. While the purpose of this guide is to make firearms that behave much more appropriately for base Pathfinder, there is plenty of fun to be had in any historical era.</p>
+<p>To accomplish this goal all firearm parts have a rating from 1 to 6. Firearms rated as 1 are the earliest and most crude examples of weapons, and 6 are the most modern and refined examples of firearms one can find in use today. GMs should think about how old or new they want the guns of their world to be, then choose one of the following eras for your game world.</p>
+
+<div class="quotebox">
+<ol>
+<li><b>The First Firearms</b> - Gunpowder and firearms are brand new. The most advanced firearm is a tiny cannon mounted to a stick (sometimes as part of a polearm) which one fires by 
+touching a match to a hole at the base. Larger cannons exist as well but are generally employed as siege weapons rather than field artillery. This era is representative of the early 1400s.
+</li>
+<li><b>Medieval Firearms</b> - This is the era of matchlock guns and their more expensive cousins, the wheellocks. Firearms are less crude and finally have triggers, though they are still somewhat unreliable. This era is representative of the 1450s to the 1550s.</li>
+<li><b>Colonial Firearms</b> - Firearms have finally become good enough to be the primary arms of some elite military groups (Ex. The Musketeers). This is primarily thanks to the invention of the flintlock mechanism, better manufacturing processes, and in some rare cases, rifled barrels. This era is representative of the 1550s up to the year 1750.</li>
+<li><b>Industrial Firearms</b> - Militaries have discarded the bow in favor of the gun. While the gun fires more slowly and is less accurate, a line of soldiers volley firing guns is an awesome force to reckon with and cheap enough for most nations to afford. The first repeating firearms can be found here, rifled barrels are the norm, and guns are accurate enough for people to start including sights on them. This era is representative of the brief period of 1750-1820.</li>
+<li><b>Early Modern Firearms</b> - Necessity is the mother of invention, and when whole armies are using firearms, firearms need to get better. So they did. The first cartgage based rounds have been invented, revolvers are commonplace, and some semi-automatic and automatic mechanisms have started to be tested out by a few of the more “fun” gunsmiths. This era is representative of 1820 to 1912.</li>
+<li><b>Modern Firearms</b> - Practically speaking, as high tech as modern guns are, their underlying principles of operation have not changed much since the early 1900s. This era can be used to make any modern or near-future ballistic weapons one may wish.</li>
+</ol>
+</div>
+
+<div style="margin-left: 5%;">
+<h5 class="articlesubtitle"><span id="FirearmsAvailability">Firearms Availability</span></h5>
+<p>
+<div style="float: left; margin: 1em;">
+<table style="width: 235px; float: left;"><caption style="text-align: center;"><strong>Table: Firearms Availability</strong></caption>
+<tbody>
+<tr>
+<td style="width: 26.7333px; text-align: center;">
+<p><strong>Era</strong></p>
+</td>
+<td style="width: 92.7167px; text-align: center;">
+<p><strong>Firearms for Sale</strong></p>
+</td>
+<td style="width: 93.55px; text-align: center;">
+<p><strong>Firearm Ammo for Sale</strong></p>
+</td>
+</tr>
+<tr>
+<td style="width: 26.7333px; text-align: center;">
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td style="width: 92.7167px; text-align: center;">
+<p><span style="font-weight: 400;">5%</span></p>
+</td>
+<td style="width: 93.55px; text-align: center;">
+<p><span style="font-weight: 400;">10%</span></p>
+</td>
+</tr>
+<tr>
+<td style="width: 26.7333px; text-align: center;">
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td style="width: 92.7167px; text-align: center;">
+<p><span style="font-weight: 400;">10%</span></p>
+</td>
+<td style="width: 93.55px; text-align: center;">
+<p><span style="font-weight: 400;">30%</span></p>
+</td>
+</tr>
+<tr>
+<td style="width: 26.7333px; text-align: center;">
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td style="width: 92.7167px; text-align: center;">
+<p><span style="font-weight: 400;">25%</span></p>
+</td>
+<td style="width: 93.55px; text-align: center;">
+<p><span style="font-weight: 400;">60%</span></p>
+</td>
+</tr>
+<tr>
+<td style="width: 26.7333px; text-align: center;">
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td style="width: 92.7167px; text-align: center;">
+<p><span style="font-weight: 400;">60%</span></p>
+</td>
+<td style="width: 93.55px; text-align: center;">
+<p><span style="font-weight: 400;">100%</span></p>
+</td>
+</tr>
+<tr>
+<td style="width: 26.7333px; text-align: center;">
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td style="width: 92.7167px; text-align: center;">
+<p><span style="font-weight: 400;">80%</span></p>
+</td>
+<td style="width: 93.55px; text-align: center;">
+<p><span style="font-weight: 400;">100%</span></p>
+</td>
+</tr>
+<tr>
+<td style="width: 26.7333px; text-align: center;">
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td style="width: 92.7167px; text-align: center;">
+<p><span style="font-weight: 400;">100%</span></p>
+</td>
+<td style="width: 93.55px; text-align: center;">
+<p><span style="font-weight: 400;">100%</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="float: right; margin: 1em;">
+<table><caption style="text-align: center;"><strong>Table: Availability Modifiers</strong></caption>
+<tbody>
+<tr>
+<td style="text-align: center;">
+<p><strong>Era</strong></p>
+</td>
+<td style="text-align: center;">
+<p><strong>Step Smaller</strong></p>
+</td>
+<td style="text-align: center;">
+<p><strong>Step Larger</strong></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">-5%</span></p>
+</td>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">+1%</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">-4%</span></p>
+</td>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">+3%</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">-3%</span></p>
+</td>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">+7%</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">-2%</span></p>
+</td>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">+15%</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">-1%</span></p>
+</td>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">+20%</span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">-1%</span></p>
+</td>
+<td style="text-align: center;">
+<p><span style="font-weight: 400;">+25%</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+Each Era has logical consequences for the availability of firearms, gunpowder, and bullets. The first of which is that firearms from the previous era cost 20% less than those of the current era due to them being old, but already fairly widespread and in the hands of common folk. However, even older firearms cost 20% more than their stated price due to having to be specially made by people producing for collectors of relics and antiques. The availability of firearms in a given settlement is shown on <i>Table: Firearms Availability</i>.</p>
+<p>GMs who want more granularity and realism should assume this table is for a large town. As cities tend to have more things available for purchase, and smaller towns less, these economic differences can be represented with a few simple modifiers to <i>Table: Firearms Availability</i> which are found on <i>Table: Availability Modifiers</i>.</p>
+<p>Both Firearms and Ammo supplies use the same modifiers. If the modifiers reduce the chance below 0%, guns, or ammo, are simply not available in that settlement. If the modifiers raise the chance above 100%, consider having the settlement's militia, police, and/or guards use firearms as their primary weapons.</p>
+
+<h5 class="articlesubtitle"><span id="FirearmsProficiencyForAll">Firearms Proficiency for All</span></h5>
+<p>None of the firearms in this book are classified as exotic weapons. While guns do require training to use effectively, the first firearms were too simple to be thought of in terms of “exotic weapons requiring special teaching”. These weapons consisted of a tube with one open end and a little hole to touch with a smoldering match to light the gunpowder. The only trick to these ancient weapons was knowing how to load them, which is simple enough. Use this much powder, pour it in the tube, tamp it down with a stick, ram this shot down the tube too, touch match to this hole to fire, hope it doesn't explode in an undesirable way. Ancient firearms are not that much more complex than a bow, assuming you learn to make your own arrows.</p>
+<p>Modern firearms are less complicated to use than that. Take bullet, put bullets in the cylinder/magazine/breach/bolt, close the cylinder/ put in the mag / close the breach/bolt, pull the trigger. Of course, the maintenance of firearms requires some detailed knowledge, especially for automatic weapons. But none of that knowledge is necessary to shoot the weapon. Sharpening a blade is a specialist skill, and always has been. Sure anyone can touch up the edge of a blade, but few can make a good sharp edge out of a mangled one, and very few people can fix chips and cracks while preserving a weapons' balance, temper, and other properties. In fact, even sharpening your every day kitchen knife to professional quality requires expensive tools or mailing the knife to the manufacturer or some other professional. As edged melee tools are not classified as exotic weapons in spite of their maintenance needs, there is no reason to classify firearms as exotic based on their maintenance requirements.</p>
+<p>Thus, in a world with guns, firearms are all classed as simple or martial weapons. This choice has not been made within this document, and is up to the GM. Perhaps it makes the most sense to you for rapid-fire weapons to be marshal, and single shot ones to be simple. Perhaps you think that the current era's firearms should be marshal and older ones simple. Or maybe you think all guns should be marshal weapons to represent the training one needs to fight with one effectively. These are all valid answers.</p>
+<p>Due to this change, Gunslingers replace their Firearms Proficiency class feature with the feat Weapon Focus for a firearm of their choice.</p>
+</div>
+
+<h4 class="articlesubtitle"><span id="ResolvingAttacks">Resolving Attacks</span></h4>
+
+<p><b>Rule:</b> Attacks with a firearm are resolved normally (IE, in the same manner as any other weapon).
+</br>
+<b>Elaboration:</b> If the character were wielding a crossbow and not a firearm, and would attack AC, then they attack AC with their firearm. If they would instead attack Touch, they attack Touch, ect.
+</br>
+<b>Explanation:</b> The term “bullet proof” comes from a historic practice where armorers would shoot their armor before selling it so the dent left behind would serve as proof of the armor’s bullet resistance. Etymology and legends aside, many history-loving nerds with access to reproductive arms and armor as well as YouTube channels have shot all manner of armor with all manner of weapons. Their tests show that early firearms do not always pierce armor.</br>This is true of armor one may not expect. Most people assume that a full set of plate armor, or other armor made from sheets of metal could stop a bullet. However, lamellar armor, and even thicker gambersons (a popular form of cloth armor) can be quite effective at stopping a bullet. Medieval Helmets are also in general able to stop bullets, though they will generally be destroyed with just a few hits.</br>A general rule of thumb can be found in modern weapons and armor. Speed beats armor. This is true now and it was true then. Therefore the weapon’s barrel, given the speed of a round is primarily determined by the completeness the combustion of the powder is before the bullet leaves the barrel, determines how much armor it can bypass.</p>
+
+<h4 class="articlesubtitle"><span id="DamageType">Damage Type</span></h4>
+<p>All firearms deal bludgeoning and piercing damage.</p>
+
+<h4 class="articlesubtitle"><span id="RateOfFire">Rate of Fire</span></h4>
+<p>Not all firearms can be fired quickly. Each mechanism has a Rate of Fire, which is the amount of time required to cock and fire a single round. In some cases, this can be a full round action. Gunslingers are not affected by this and treat these mechanisms as if their rate of fire was the typical standard action. The feat Reloading Training (See feats pg…) allows other characters to gain this ability.</p>
+
+<h4 class="articlesubtitle"><span id="LoadingAFirearm">Loading a Firearm</span></h4>
+<p>Loading a firearm works nearly identical to RAW. <i>“You need at least one hand free to load one-handed and two-handed firearms. In the case of two-handed firearms, you hold the weapon in one hand and load it with the other—you only need to hold it in two hands to aim and shoot the firearm. ... The Rapid Reload feat reduces the time required to load one-handed and two-handed firearms, but this feat does not reduce the time it takes to load siege firearms.”</i></p>
+
+<p>The exception here is the time it takes to load a firearm varies wildly depending on the mechanism the firearm uses. Each Mechanism will list its own reload time, with the time listed being how long it takes to load each round. If the firearm can hold more than one round, multiply mechanisum’s capasity by the reload time to determine the total reload time.</p>
+
+<p><b>Note:</b> Reload times have been taken from historical sources as the rough speed at which a trained soldier of the mechanisum’s era could load the weapon.</br>
+The feat Rapid Reload will reduce the reload time by one step as per normal, and a firearm doesn't need to be fully reloaded to function unless specifically stated in its mechanism entry. This means in general the reload process can be interrupted or shortened as the situation requires.</br>
+<b>Example:</b> Tannis the elf has a 4 shot flintlock weapon, with a reload time of 1 full-round action. To fully reload his weapon, he must spend 4 rounds loading his gun. However, if he needs/wants he can instead spend one round to load his weapon, then in the next round, he can run for cover, then on the third round, resume loading his weapon, or even fire the one shot he has loaded.</br>
+<b>Tip:</b> In real life, people who fought with primitive firearms generally carried a “brace” of several guns and would switch guns when their currently wielded weapon ran dry. This strategy should be equally effective in games using these rules.</p>
+
+<h4 class="articlesubtitle"><span id="Misfires">Misfires</span></h4>
+<p>Guns misfire. Not all misfires cause permanent damage to the firearm. Sometimes the powder was damp, or the mechanism just didn’t close correctly. Other times, the bullet was rammed in too tightly and the firearm explodes. Rather than make players track their weapon’s condition between multiple sessions, these rules simply have a misfire cause a specific effect which is based on the mechanism itself and what is most likely to happen given how the firearm works.</p>
+
+<p>DMs should feel free to have other misfire conditions occur as appropriate. Especially if a weapon misfires frequently.</p>
+
+<p><b>Rule:</b> If a character rolls a 1 on an attack action with a firearm they must then roll 1d6. If they roll a 2, 3, 4, 5, or 6, the attack is a critical failure but the weapon has not misfired. If instead they roll a 1 on the d6, the weapon misfires and the misfire condition of the mechanism is applied.</p>
+
+<h4 class="articlesubtitle"><span id="FirearmsSize">Firearms Size</span></h4>
+<p>Firearms change performance based on size. Firearms use the same size categories as other weapons. For each size category over medium, increase the damage dice by 1 step (adding a second die if the dice is a d12, max 2d12). In addition, increase the range increments by 10%. For smaller firearms, reduce these by the same factors instead (minimum 1d4 damage, minimum 5 foot range increment).</p>
+<p>Attempting to use a weapon that is not correctly sized for its user has the same plenaties as otehr weapons in Pathfinder, with the addition of the following:</p>
+<div class="quotebox">
+<ol>
+<li>If a character shoots a weapon 1 size category larger than they are while standing or sitting, they must pass a DC 20 strength check or the firearm will be torn from their grasp and land on the ground at their feet.</li>
+<li>If the weapon is 2 size categories larger, they must also succeed on a DC 20 Combat Maneuver Defense check, or be knocked prone by the recoil and take 1d4 points of bludgeoning damage (with +1d4 per additional size over this point).</li>
+<li>If the weapon is three or more size categories larger, and they happen to roll a 1 while attacking with the weapon, if wielding a pistol their wrist / forearm will be sprained, if wielding a rifle their shoulder will be dislocated instead. This inflicts a -5 attack penalty with attacks using that arm until the character receives appropriate healing, or a full night’s rest. If they continue to use the weapon, and a second 1 is rolled with the same arm, the arm breaks.</li>
+</ol>
+</div>
+
+<h4 class="articlesubtitle"><span id="FirearmsAndShields">Firearms and Shields</span></h4>
+<p><b>Rule:</b> Shields can be used alongside any one handed firearm at the cost of doubling the reload speed. Bucklers, due to their extremely small size, do not impose a reload penalty on pistols.</p>
+<p><b>Rule:</b> Shields can be specially modified for +25% their base price to add a “rifle shelf”. A rifle shelf allows the shield to support the end of the rifle’s barrel, thereby allowing the user to make use of their shield and a two handed firearm at the same time. This comes at the cost of doubling the reload speed and a -2 penalty to attack rolls. Bucklers, due to their extremely small size, do not interfere with the use of rifles.</p>
+<p><b>Rule:</b> Shields provide their full AC bonus to attacks against firearms.</p>
+
+<h4 class="articlesubtitle"><span id="FireWhileProne">Firing While Prone</span></h4>
+<p><b>Rule:</b> Firearms can be fired while their wielders are prone. Reloading a firearm while prone doubles the reload time. Firearms may not be reloaded while prone and using the “squeeze” movement action.</p>
+
+<h4 class="articlesubtitle"><span id="BlackPowderandWater">Black Powder and Water</span></h4>
+<p>As per RAW, <i>“Black powder becomes useless when exposed to water, but powder horns and cartridges protect black powder from exposure. You cannot normally load an early firearm underwater or fire any firearm underwater without magical aid.”</i>
+<p><b>Rule:</b> Once Black Powder is wet, it must be dried. To dry one’s powder it must be spread it out in a thin layer to ensure even drying. This process must be preformed within an hour of the powder becoming wet, or the powder will be rendered unusable due to forming large clumps as it dries. If powder clumps, it must either be discarded or reground with a DC 15 Craft Alchemy or Craft Gunsmithing check to become useable again.</br><b>Tip:</b> Attempting to use a gun with clumpy powder is a good way to make it explode in your hand, mere inches from your face!</p>
+
+<h4 class="articlesubtitle"><span id="DeflectingAndSnatchingBullets">Deflecting and Snatching Bullets</span></h4>
+<p><b>Rule:</b>The Deflect Arrows feat and the Snatch Arrows feat can not be used to deflect an attack from a firearm. Mythbusters may have proved that you can catch an arrow, but if you try to catch a bullet, the bullet will thank you for your cooperation in destroying your hand.</br>
+<b>Rule:</b> A Monk can spend 1 point of ki from their ki pool to use Deflect Arrows to deflect a bullet.</p>
+
+<h4 class="articlesubtitle"><span id="GunsAreLoud">Guns are Loud</span></h4>
+<p>Movies are full of nonsense. In real life you cannot stick your shotgun behind a shower curtain, pull the trigger, and turn a thundering explosion into a mouse fart. A gun is incredibly, stupidly, amazingly loud. You can hear pistols from a litteral mile away, and rifles and shotguns from two miles or so. That's possible because gunshots produce an average of 158 dB. This is an average of all pistols, rifles, and shotguns. Many types of firearms are much <i>much</i> louder.</p>
+<p>Don't know what dB is? That's decibels, the unit of volume. For context, noises louder than 85 dB can cause permanent hearing damage, and noises louder than 130 dB are physically painful for those close to their origins. Every increase of 10 dB on the decibel scale is equal to a 10-fold increase in sound pressure level (SPL). Near silence is expressed as 0 dB but a sound measured at 10 dB is actually 10 times louder. If a sound is 20 dB, that's 100 times louder than near silence. This means a gunshot is 28 DB louder than the pain threshold.</p>
+<p>Even with a proper suppressor, guns are still loud as hell in real life. Hell, suppressed guns are not even necessarily shooter-experiences-permanent-hearing-loss levels of loud. Many suppressed weapons still clock in a mighty 120 dBs. Not to say that guns can never be quiet, but it takes special modifications, attachments, and ammunition to achieve a quiet gun.</p>
+<p>Let's take a moment to step away from numbers and use real world examples. How loud is a gun? Well a modern day Bowing 747 taking off is a mere 130 dB, a chainsaw clocks in at about 115 dB, a thunder clap averages around 120 dB, and that asshole vacuuming the apartment above you at 3 am is somehow only 70 dB. Hell, the god damn eruption of Krakatoa registered 172 decibels. Sure that was how loud it was when measured from 100 miles away from the volcano. The point is that a gunshot up close is in the same volume range as a literal mountain exploding into shrapnel on the horizon.</p>
+<p>One of the only things louder than a gunshot was a Saturn V rocket taking off. That clocked in at 203 dB, a sound level so loud they were worried noise of takeoff might destroy concrete structures in a large radius around the rocket. Fun fact, the vast majority of rockets taking off are a mere 165 dB, which is louder than an average gunshot, but 10 times quieter than the report of your average hunting rifle. The point I'm trying to make here is guns are some of the loudest things on earth.</p>
+<p><b>Rule:</b> Attacking with a firearm from stealth prompts an immediate stealth check to remain hidden. This check is made at a -20 penalty. Even if this check succeeds, all enemies within 100 feet know the general location the shot came from, unless there is substancial ambient noise (Like a rock concert, a pitched battle with many gunshots, a thunderstorm, or <a href="https://youtu.be/ViNcBQ8cDA0?t=18">this</a>.). Certain firearm modifications and ammunition types can reduce this penalty.</p>
+</div>
+
+
+<h3 class="articletitle"><span id="TypesOfFirearms">Types of Firearms</span></h3>
+<p>Due to how diverse firearms are and how much the firearm itself matters for how it performs, these rules have firearms are built from three parts. Making a firearm with this streamlined system is quick and easy. Simply pick your options and apply all mechanics to the resulting weapon.</p>
+<p>Making a firearm starts with a simple choice: A pistol or a rifle?</p>
+
+<p><b>Note:</b> Pistol vs Rifle only changes how many hands the gun is intended to be operated with. It in no way prohibits you from creating a shotgun, machinegun, or any other form of weapon.</p>
+
+<div style="margin-left: 3%;">
+<h4 class="articlesubtitle"><span id="Pistols">Pistols</span></h4>
+<p>Pistols are firearms which can be operated with one hand. This allows them to be used with another weapon, a shield, or even in pairs. However, they lack range, power, and accuracy due to the short length of their barrels. At close range, pistols can be just as deadly as rifles, more so even, given the ease of use.</p>
+<p><b>Mechanics:</b> Pistols can be used as a light mace by holding them by the barrel. Using a pistol in this fashion while it is cocked will cause it to fire.</p>
+
+<h4 class="articlesubtitle"><span id="Rifles">Rifles</span></h4>
+<p>Rifles are firearms which require two hands to operate. This makes them exceptionally accurate and powerful weapons. However they are not especially good in close quarters due to their length making them somewhat unwieldy at close range.</p>
+<p><b>Mechanics:</b> Rifles can be used as a club by holding them by the barrel with both hands, or as a light mace by whipping the weapon's butt around to strike an opponent with it while maintaining a shooting grip. Using a rifle in this fashion while it is cocked will cause it to fire. A rifle’s mundane attack bonus does not apply within the first 10 feet.</p>
+
+<h4 class="articlesubtitle"><span id="Mechanisms">Mechanisms</span></h4>
+
+<p> Mechanism is the mechanical parts of the firearm which allow it to operate in a particular and distinct manner. Every mechanical advantage of a mechanism is imparted to the firearms which utilize them. The cost listed in these entries is the base price for the weapon, and will be modified by the other components. The grand total may be more or less expensive than the listed price in this section.</p>
+<p>The base cost of some weapons depends on how many barrels / chambers / rounds the weapon holds. Be sure to decide how many you want your gun to have before continuing.</p>
+
+<h5 class="articlesubtitle"><span id="Era1">Era 1 Mechanisms</span></h5>
+
+<table class="c42"><tr class="c30"><td class="c40 c127" colspan="1" rowspan="1"><h4 class="c9 c94" id="h.54g0s1xlmx6i"><span class="c18 c1">Era 1</span></h4></td><td class="c104" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Handcannon</span></p></td></tr><tr class="c30"><td class="c83" colspan="5" rowspan="2"><p class="c9"><span class="c4">This mechanism is little more than a tube with a touch hole in it. A match or other ignition source is required to fire the weapon.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 196.50px; height: 47.00px;"><img alt="" src="../img/shooty/image9.png" style="width: 196.50px; height: 47.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c40 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c75 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c51 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c114 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c53 c79" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">REALLY Slow to Fire.</span><span class="c1">&nbsp;</span><span class="c10 c8">-2 to attack rolls.</span></p><p class="c9"><span class="c28">Hafted.</span><span class="c28 c8">&nbsp;</span><span class="c10 c8">Can be incorporated into any polearm for 50% the cost of the firearm added onto the polearm&rsquo;s price.</span></p></td></tr><tr class="c30"><td class="c40" colspan="1" rowspan="1"><p class="c5"><span class="c4">Full Round</span></p></td><td class="c75 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">2 Rounds</span></p></td><td class="c51" colspan="1" rowspan="1"><p class="c5"><span class="c4">1-10 barrels</span></p></td><td class="c114 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">75 GP per barrel</span></p></td><td class="c79" colspan="1" rowspan="1"><p class="c5"><span class="c4">1 lb. per barrel</span></p></td></tr><tr class="c30"><td class="c96" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">KA-BOOM!</span><span class="c10 c8">&nbsp;The firearm explodes, destroying itself and dealing the damage of each remaining shot to the user. This damage can be halved with a successful DC 15 Reflex save.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.4ba0995647acec0643af29e16a45038e8ddf219e"></a><a id="t.3"></a>
+
+<h5 class="articlesubtitle"><span id="Era2">Era 2 Mechanisms</span></h5>
+
+<table class="c42"><tr class="c30"><td class="c40 c138" colspan="1" rowspan="1"><h4 class="c9 c94" id="h.ncavrc5yw4u5"><span class="c18 c1">Era 2</span></h4></td><td class="c104" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Matchlock</span></p></td></tr><tr class="c30"><td class="c83" colspan="5" rowspan="2"><p class="c9"><span class="c4">Effectively a crude trigger mechanism for holding a slow burning fuse which lowers into place over the touch hole of a cannon. Easier and safer than holding it yourself, but introduces some random delay in between the trigger pull and weapon firing.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 191.50px; height: 105.00px;"><img alt="" src="../img/shooty/image6.png" style="width: 358.61px; height: 105.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c40 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c75 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c51 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c44 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c107 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Slow to fire.</span><span class="c1">&nbsp;</span><span class="c10 c8">-1 to attack rolls.</span></p><p class="c9"><span class="c28">Smouldering.</span><span>&nbsp;</span><span class="c8">Must replace the match every 10 minutes or weapon becomes inoperable.</span></p></td></tr><tr class="c30"><td class="c40" colspan="1" rowspan="1"><p class="c5"><span class="c4">Full Round</span></p></td><td class="c75 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Full</span></p><p class="c5"><span class="c4">Round</span></p></td><td class="c51" colspan="1" rowspan="1"><p class="c5"><span class="c4">1-2 barrels</span></p></td><td class="c44 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">250 GP per barrel</span></p></td><td class="c107" colspan="1" rowspan="1"><p class="c5"><span class="c4">1 lb. per barrel</span></p></td></tr><tr class="c30"><td class="c96" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Bad Load.</span><span class="c1">&nbsp;</span><span class="c10 c8">The firearm must be unloaded, cleaned, and reloaded before it can be fired again. This requires 10 minutes of work. (If the weapon is multi barreled, the other barrel can still be used)</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.912c9826cb86b5ed2c49fc97a8c4b48b0a850962"></a><a id="t.4"></a><table class="c42"><tr class="c30"><td class="c40 c138" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 2</span></p></td><td class="c104" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Wheelock</span></p></td></tr><tr class="c30"><td class="c83" colspan="5" rowspan="2"><p class="c9"><span class="c4">An expensive and complicated weapon which makes use of a clockwork mechanism to spin a flint and steel rapidly, creating sparks to ignite the gunpowder within the firearm. While it&rsquo;s not faster to fire than its contemporaries, at least winding the mechanism for each shot is less annoying than constantly supplying your weapon with new matches.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 172.00px; height: 116.00px;"><img alt="" src="../img/shooty/image21.png" style="width: 394.23px; height: 156.00px; margin-left: -87.11px; margin-top: -17.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c40 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c75 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c51 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c51 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c53 c129" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Slow to fire.</span><span class="c8 c1">&nbsp;</span><span class="c10 c8">-1 to attack rolls.</span></p></td></tr><tr class="c30"><td class="c40" colspan="1" rowspan="1"><p class="c5"><span class="c4">Full Round</span></p></td><td class="c75 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Full</span></p><p class="c5"><span class="c4">Round</span></p></td><td class="c51" colspan="1" rowspan="1"><p class="c5"><span class="c4">1-2 barrels</span></p></td><td class="c51 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">500 GP per barrel</span></p></td><td class="c129" colspan="1" rowspan="1"><p class="c5"><span class="c4">2 lb. per barrel</span></p></td></tr><tr class="c30"><td class="c96" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Spring-a-ma-thing&rsquo;s sproing-a-ma-thung</span><span class="c28">.</span><span class="c1">&nbsp;</span><span class="c10 c8">The firearm&rsquo;s clockwork has broken. The weapon cannot be operated until a DC 20 Craft Gunsmithing check is made to repair it for 25% the cost of a new weapon. (If the weapon is multi barreled, the other barrel can still be used)</span></p></td></tr></table>
+
+<h5 class="articlesubtitle"><span id="Era3">Era 3 Mechanisms</span></h5>
+
+<table class="c42"><tr class="c123"><td class="c87 c73" colspan="1" rowspan="1"><h4 class="c9 c94" id="h.nhixqrx31tmw"><span class="c18 c1">Era 3</span></h4></td><td class="c155" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Doglock</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">A prototype to the better known flintlock, this mechanism utilises a spring action to strike a piece of flint against a steel frizzen, thereby sparking blackpowder. The design incorporates a special external catch which allows the weapon to be cocked ahead of time and carried semi-safely to permit faster firing.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 197.00px; height: 128.00px;"><img alt="" src="../img/shooty/image1.png" style="width: 513.00px; height: 240.00px; margin-left: -116.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c87 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c87 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c44 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c113 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c17 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Half-Cocked.</span><span>&nbsp;</span><span class="c10 c8">The weapon can be cocked before combat, and carried in a readied state. In this state the first shot fired with that weapon in combat is made as a swift action.</span></p><p class="c9"><span class="c28">Hair Trigger.</span><span>&nbsp;</span><span class="c8">If carried halfcocked, any jolt can cause the weapon to fire at the DM&rsquo;s discretion, aditionaly any natural 1 on any Dex related roll will cause it to fire.</span></p></td></tr><tr class="c30"><td class="c87" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c87 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Full</span></p><p class="c5"><span class="c4">Round</span></p></td><td class="c44" colspan="1" rowspan="1"><p class="c5"><span class="c4">1-2 barrels</span></p></td><td class="c113 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">650 GP per barrel</span></p></td><td class="c17" colspan="1" rowspan="1"><p class="c5"><span class="c4">2 lb. per barrel</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Broken Flint</span><span class="c28">.</span><span class="c1">&nbsp;</span><span class="c8">The flint cracked and won&#39;t strike a spark anymore, rendering the weapon inoperable until a new flint is installed, a process taking 2 full round actions. (If the weapon is multi barreled, the other barrel can still be used)</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.66ab8c593cc5acfd4615943348ee4d2f490a50dc"></a><a id="t.6"></a><table class="c42"><tr class="c30"><td class="c73 c82" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 3</span></p></td><td class="c144" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Flintlock</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">This mechanism utilises a spring action to strike a piece of flint against a steel frizzen, thereby sparking blackpowder. The design incorporates a special internal mechanism &nbsp;which allows the weapon to be cocked ahead of time and carried safely to permit faster firing.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 197.00px; height: 128.00px;"><img alt="" src="../img/shooty/image1.png" style="width: 513.00px; height: 240.00px; margin-left: -116.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c82 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c81 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c82 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c51 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c110 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Half-Cocked.</span><span>&nbsp;</span><span class="c8">The weapon can be cocked before combat, and carried in a readied state. In this state the first shot fired with that weapon in combat is made as a swift action.</span></p></td></tr><tr class="c30"><td class="c82" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c81 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Full</span></p><p class="c5"><span class="c4">Round</span></p></td><td class="c82" colspan="1" rowspan="1"><p class="c5"><span class="c4">1-2 barrels</span></p></td><td class="c51 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">800 GP per barrel</span></p></td><td class="c110" colspan="1" rowspan="1"><p class="c5"><span class="c4">2 lb. per barrel</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Broken Flint.</span><span class="c1">&nbsp;</span><span class="c8">The flint cracked and won&#39;t strike a spark anymore, rendering the weapon inoperable until a new flint is installed, a process taking 2 full round actions. (If the weapon is multi barreled, the other barrel can still be used)</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.e88b9c788499e9f28c6eb097eb5b979cb3e1f3b1"></a><a id="t.7"></a><table class="c42"><tr class="c30"><td class="c77 c73" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 3</span></p></td><td class="c46" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Revolving Flintlock</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">This mechanism utilises a spring action to strike a piece of flint against a steel frizzen, thereby sparking blackpowder. The design incorporates a special internal mechanism &nbsp;which allows the weapon to be cocked ahead of time and carried safely to permit faster firing. Most critically, it utilises a indexable cylinder containing pre-loaded rounds to permit multiple shots before reloading.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 158.00px; height: 124.00px;"><img alt="" src="../img/shooty/image5.png" style="width: 391.00px; height: 137.00px; margin-left: -87.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c77 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c20 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c87 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c87 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c47" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Half-Cocked.</span><span>&nbsp;</span><span class="c10 c8">The weapon can be cocked before combat, and carried in a readied state. In this state the first shot fired with that weapon in combat is made as a swift action.</span></p></td></tr><tr class="c30"><td class="c77" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c20 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move Action</span></p></td><td class="c87" colspan="1" rowspan="1"><p class="c5"><span class="c4">6-10 rounds</span></p></td><td class="c87 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">350 GP per round</span></p></td><td class="c105" colspan="1" rowspan="1"><p class="c5"><span class="c4">6 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Jammed cylinder</span><span class="c28">.</span><span class="c1">&nbsp;</span><span class="c8">Something has fouled the gears which allow the cylinder to turn, stopping it between positions. The shot goes off in the cylinder, dealing it&rsquo;s damage to the user. The weapon cannot be fired again until a DC 20 Craft Gunsmithing check is made to clear the jam.</span></p></td></tr></table>
+
+<h5 class="articlesubtitle"><span id="Era4">Era 4 Mechanisms</span></h5>
+
+<table class="c42"><tr class="c30"><td class="c55 c128" colspan="1" rowspan="1"><h4 class="c9 c94" id="h.fclrfuodw3lt"><span class="c18 c1">Era 4</span></h4></td><td class="c150" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Caplock</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">Safer and more reliable than the flintlock, this mechanism consists of a hammer, similar to the cock used in a flintlock, and a nipple, which holds a small percussion cap. The nipple contains a tube which goes into the barrel. The percussion cap contains a chemical compound which detonates when struck by the hammer, lighting off a charge of black powder. </span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 159.00px; height: 97.00px;"><img alt="" src="../img/shooty/image15.png" style="width: 531.00px; height: 215.00px; margin-left: -99.00px; margin-top: -23.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c53 c55" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c20 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c68 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c115 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c99 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Half-Cocked.</span><span>&nbsp;</span><span class="c8">The weapon can be cocked before combat, and carried in a readied state. In this state the first shot fired with that weapon in combat is made as a swift action.</span></p><p class="c9"><span class="c28">Cap Fired.</span><span class="c10 c8">&nbsp;Requires a cap to be shot in addition to shot and powder.</span></p></td></tr><tr class="c30"><td class="c55" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c20 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move Action</span></p></td><td class="c68" colspan="1" rowspan="1"><p class="c5"><span class="c4">1-2 barrels</span></p></td><td class="c41 c115" colspan="1" rowspan="1"><p class="c5"><span class="c4">1,700 GP per barrel</span></p></td><td class="c99" colspan="1" rowspan="1"><p class="c5"><span class="c4">4 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Backfire</span><span>.</span><span class="c8">&nbsp;The weapon fires normally, but blows the nipple off of the mechanism. The resulting shot does half damage within the first range increment, and no damage after that distance is exceeded. This also renders the weapon inoperable until it is prepared, requiring a DC 25 craft gunsmithing check and 30 minutes of work. (If the weapon has multiple barrels, the other barel continues to function.)</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.162354d143c458132739a752036ff6813bb58829"></a><a id="t.9"></a><table class="c42"><tr class="c30"><td class="c21 c128" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 4</span></p></td><td class="c0" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Pepperbox</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">This mechanism utilises a spring action to strike a percussion cap which detonated, lighting off a charge of black powder. Most critically, it utilises a indexable set of barrels containing pre-loaded rounds to permit multiple shots before reloading.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 195.00px; height: 98.67px;"><img alt="" src="../img/shooty/image19.png" style="width: 195.00px; height: 98.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c71 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c53 c61" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c77 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c109 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Spin to Win.</span><span>&nbsp;</span><span class="c10 c8">For an additional 50% GP cost, the firearm can be made to rapidly fire by spinning the barrels manually. This full round action allows the weapon to use all of its remaining ammo to make a single attack at a -5 penalty which combines the damage dice of all remaining shots.</span></p><p class="c9"><span class="c28">Cap Fired.</span><span class="c8">&nbsp;Requires a cap to be shot in addition to shot and powder.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c71 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move Action</span></p></td><td class="c61" colspan="1" rowspan="1"><p class="c5"><span class="c4">6-10 rounds</span></p></td><td class="c77 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">400 GP per round</span></p></td><td class="c109" colspan="1" rowspan="1"><p class="c5"><span class="c4">10 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Hoop-a-jooped</span><span class="c28">.</span><span class="c1">&nbsp;</span><span class="c8">A critical piece of the internal mechanism breaks. Pulling the trigger no longer advances the barrel. If installed on a pistol, the weapon must be operated with two hands. If installed on a rifle the rate of fire becomes a full round action due to the weight of the barrel assembly. This condition remains in effect until a</span><span class="c10 c8">&nbsp;DC 30 Craft Gunsmithing check is made to repair the weapon, a process taking an hour and requiring access to the proper tools.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.e8592fcc471407520fe6b92eafc7771542ec26dd"></a><a id="t.10"></a><table class="c42"><tr class="c30"><td class="c21 c128" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 4</span></p></td><td class="c0" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Repeating Flintlock</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">A rare and advanced version of the flintlock, this mechanism has an internal tube magazine for ammo, and a small reservoir for powder. A lever on the gun can be turned, which opens internal shutters, allowing powder, then shot to fall into the firing chamber, then cocks the hammer automatically, allowing for very swift shooting.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 195.00px; height: 78.67px;"><img alt="" src="../img/shooty/image11.png" style="width: 195.00px; height: 78.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c68 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c77 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c95 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c100 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Reservoir Fed.</span><span>&nbsp;</span><span class="c10 c8">This weapon can be fully reloaded in a single full round action.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c68 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Special</span></p></td><td class="c77" colspan="1" rowspan="1"><p class="c5"><span class="c4">5-15 rounds</span></p></td><td class="c95 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">550 GP per round</span></p></td><td class="c100" colspan="1" rowspan="1"><p class="c5"><span class="c4">5 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">KA-BOOM!</span><span class="c1">&nbsp;</span><span class="c8">The firearm explodes, destroying itself and dealing the damage of each remaining shot to the user. This damage can be halved with a successful DC 15 Reflex save.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.a079c0b3c470a854449bc19f6774b868d5b059f6"></a><a id="t.11"></a><table class="c42"><tr class="c30"><td class="c77 c128" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 4</span></p></td><td class="c46" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Percussion Revolver</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">An improved version of the flintlock revolver, this weapon uses the updated percussion cap and hammer technologies to create a far more reliable revolving weapon.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 195.00px; height: 90.67px;"><img alt="" src="../img/shooty/image16.png" style="width: 195.00px; height: 90.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c77 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c81 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c44 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c51 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c102 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Fan-the-Hammer</span><span class="c28">.</span><span>&nbsp;</span><span class="c8 c10">As a full attack action, this weapon can make a number of attacks against a single target within its first range increment equal to its remaining ammo capacity. Each attack is made at a -5, and during this abuse, the weapon will crit fail on a 1, 2, 3, or 4, and automatically misfire.</span></p><p class="c9"><span class="c28">Cylinder Swap.</span><span>&nbsp;</span><span class="c10 c8">The weapon&rsquo;s cylinder can be replaced with a freshly loaded one, allowing the entire weapon to be reloaded as a move action. Cylinders cost 200 per round and must match the round count of the original cylinder.</span></p></td></tr><tr class="c30"><td class="c77" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c81 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move Action</span></p></td><td class="c44" colspan="1" rowspan="1"><p class="c5"><span class="c4">5-8 rounds</span></p></td><td class="c51 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">600 GP per round</span></p></td><td class="c102" colspan="1" rowspan="1"><p class="c5"><span class="c4">4 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Jammed cylinder.</span><span class="c8">&nbsp;Something has fouled the gears which allow the cylinder to turn, stopping it between positions. The shot goes off in the cylinder, dealing it&rsquo;s damage to the user. The weapon cannot be fired again until a DC 20 Craft Gunsmithing check is made to clear the jam.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.d693ac149adcbd7afcd8749f0b9dfc1f86659df4"></a><a id="t.12"></a><table class="c42"><tr class="c30"><td class="c55 c128" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 4</span></p></td><td class="c150" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Needle Revolver</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">An improved version of the flintlock revolver, this weapon uses specialised paper cartridges containing a &ldquo;primer&rdquo; at the rear, which is struck by a needle to detonate the entire cartridge, greatly speeding up the reloading process. Unfortunately it can only use a highly specialized and somewhat rare form of ammunition.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 195.00px; height: 106.67px;"><img alt="" src="../img/shooty/image2.png" style="width: 195.00px; height: 106.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c55 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c81 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c44 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c61 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c102 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Exotic Ammo</span><span class="c28">.</span><span>&nbsp;</span><span class="c10 c8">This weapon can only fire especially prepared paper cartridges with a -10% to availability due to their rarity. Normal paper cartridges can be converted for 2 copper each with either a craft Alchemy or Craft Gunsmithing check of DC 15.</span></p></td></tr><tr class="c30"><td class="c55" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c81 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Swift action</span></p></td><td class="c44" colspan="1" rowspan="1"><p class="c5"><span class="c4">5-8 rounds</span></p></td><td class="c61 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">650 GP per round</span></p></td><td class="c102" colspan="1" rowspan="1"><p class="c5"><span class="c4">4 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Jammed cylinder.</span><span class="c1">&nbsp;</span><span class="c8">Something has fouled the gears which allow the cylinder to turn, stopping it between positions. The shot goes off in the cylinder, dealing it&rsquo;s damage to the user. The weapon cannot be fired again until a DC 20 Craft Gunsmithing check is made to clear the jam.</span></p></td></tr></table>
+
+<h5 class="articlesubtitle"><span id="Era5">Era 5 Mechanisms</span></h5>
+
+<table class="c42"><tr class="c30"><td class="c40 c86" colspan="1" rowspan="1"><h4 class="c9 c94" id="h.9jai5jnx4odp"><span class="c18 c1">Era 5</span></h4></td><td class="c104" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Cranked Gatling</span></p></td></tr><tr class="c30"><td class="c83" colspan="5" rowspan="2"><p class="c9"><span class="c4">An improved version of pepperbox weapons, the gatling mechanism utilizes a rotating barrel assembly with a single firing mechanism to rapidly fire bullets using a system of metal cartridges in a large hopper. The entire system is operated with a hand crank, or a trigger operated clockwork mechanism.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 195.00px; height: 84.00px;"><img alt="" src="../img/shooty/image18.png" style="width: 195.00px; height: 84.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c40 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c75 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c51 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c112 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c47" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Manual Dakka</span><span class="c28">.</span><span>&nbsp;</span><span class="c10 c8">This weapon fires 9 rounds per standard action. These are treated as a single line attack Multiply the number of damage dice by 3 (this multiplication bypasses barrel damage die limits).</span></p><p class="c9"><span class="c28">Hopper-Fed. </span><span class="c10 c8">This weapon uses a hopper to feed ammo into the weapon via gravity. It takes a full minute to reload the weapon.</span></p><p class="c9"><span class="c28">Clunky</span><span class="c10 c8">&nbsp;- Pistol gatlings larger than .308 are considered large weapons. For every 3 calibers, the size increases one step.</span></p></td></tr><tr class="c30"><td class="c40" colspan="1" rowspan="1"><p class="c5"><span class="c4">Special</span></p></td><td class="c75 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Special</span></p></td><td class="c51" colspan="1" rowspan="1"><p class="c5"><span class="c4">Pistol - 40</span></p><p class="c5"><span class="c4">Rifle - 150</span></p></td><td class="c112 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">12,000 GP</span></p></td><td class="c105" colspan="1" rowspan="1"><p class="c5"><span class="c4">10 lb.</span></p></td></tr><tr class="c30"><td class="c96" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Proper Hoop-a-jooped.</span><span class="c1">&nbsp;</span><span class="c8">A critical piece of the internal mechanism breaks. Turning the crank no longer advances the barrel. The weapon is inoperable until a DC 30 Craft Gunsmithing check is made to repair the weapon, a process taking an hour and requiring access to the proper tools.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.99791d43ebe38d1886cbb1f52bd7a98731ee6312"></a><a id="t.14"></a><table class="c42"><tr class="c30"><td class="c21 c86" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 5</span></p></td><td class="c0" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Break Action</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">A system based on the new metal cartridges involving a set of barrels that pivot down to load cartridges into the breach of the weapon, where an internal mechanism uses a pin to strike the cartrage&rsquo;s primer, firing the weapon.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 186.50px; height: 118.59px;"><img alt="" src="../img/shooty/image7.png" style="width: 186.50px; height: 118.59px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">One-Man-Volly.</span><span>&nbsp;</span><span class="c8">For an additional 20% GP cost, the weapon can be made to discharge all of its barrels simultaneously in a line attack made at a -2 attack penalty. This attack deals extra damage dice equal to the number of remaining shots at the time it is used. Can only be used if there are at least 2 shots remaining in the weapon.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move Action</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">1-5 barrels</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">1,500 GP</span></p><p class="c5"><span class="c4">per barrel</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">6 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Swollen Casing</span><span class="c28">.</span><span class="c1">&nbsp;</span><span class="c8">A cartridge expanded incorrectly when fired and has wedged into the weapon&rsquo;s breach. THe weapon cannot be reloaded until a full round action is taken to remove the jammed cartridge.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.ccbb7353c86b227971ad32082c7d8d45d4ae0f66"></a><a id="t.15"></a><table class="c42"><tr class="c30"><td class="c21 c86" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 5</span></p></td><td class="c0" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Lancaster Break Action</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">A system based on the new metal cartridges involving a set of four barrels that pivot down to load cartridges into the breach of the weapon, where an internal mechanism uses a rotating striker to strike the cartridges&#39; primers in sequence, firing the weapon. It also features an ejection system to remove spent cartridges automatically upon the opening of the barrel assembly.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 185.00px; height: 115.00px;"><img alt="" src="../img/shooty/image14.png" style="width: 320.00px; height: 149.00px; margin-left: -51.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Set-Trigger.</span><span>&nbsp;</span><span class="c8">A special two stage trigger allows the user to cock the weapon and hold it ready to fire at 98% of the trigger&rsquo;s distance of travel. When holding an action to attack with this weapon, the attack roll gains a +2 attack bonus.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Swift Action</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">2 or 4 barrels</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">750 GP</span></p><p class="c5"><span class="c4">per barrel</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">4 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Dud Cartridge</span><span class="c28">.</span><span class="c1">&nbsp;</span><span class="c8">The reliability of the lancaster mechanism is legendary. The ultra-simplistic mechanisms are almost mechanically incapable of failure, but cartridges are. On a misfire, the attack is wasted and the cartridge is expended.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.eff517e3c8bd43acc116be2f8de448f2077d14a3"></a><a id="t.16"></a><table class="c42"><tr class="c30"><td class="c21 c86" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 5</span></p></td><td class="c0" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Breechloader</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">A system based on the new metal cartridges where the rear of the barrel opens to allow the user to slide a cartridge into the weapon. The cartridge is then struck by a hammer and fired.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 195.00px; height: 117.33px;"><img alt="" src="../img/shooty/image13.png" style="width: 195.00px; height: 117.33px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Hunter&rsquo;s Weapon. </span><span class="c8">Due to the weapon&rsquo;s proliferation due to being what the army used last generation, it is used by hunters everywhere. Ammo for the weapon is 10% easier to find, and this weapon is 20% easier to find overall.</span></p><p class="c9"><span class="c28">Half-Cocked.</span><span>&nbsp;</span><span class="c8">The weapon can be cocked before combat, and carried in a readied state. In this state the first shot fired with that weapon in combat is made as a swift action.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">1 or 2 barrels</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">1,200 GP</span></p><p class="c5"><span class="c4">per barrel</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">4 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Bad Seal</span><span class="c28">.</span><span class="c1">&nbsp;</span><span class="c8">The weapon&rsquo;s breach was not properly closed and blows open, dealing half-damage to the user. The shot is otherwise wasted.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.051bf3e25fdef306d6c22f62c286379f66266766"></a><a id="t.17"></a><table class="c42"><tr class="c30"><td class="c21 c86" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 5</span></p></td><td class="c0" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Bolt Action</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">A system based on the new metal cartridges where the rear of the can be pulled back, like the bolt of a door, to allow a cartridge to be placed in the weapon. An extractor mechanism pulls the spent cartridge from the barrel and then tosses it away from the gun, allowing a new round to be fired immediately. Some versions incorporate an internal magazine to allow many shots before the weapon needs to be reloaded.</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 195.00px; height: 130.67px;"><img alt="" src="../img/shooty/image24.png" style="width: 195.00px; height: 130.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Internal Magazine</span><span class="c28">. </span><span class="c8">Bolt Action weapons can have magazines. If the weapon holds one round, reloading is a move action. If it holds multiple rounds, reloading is a full round action, but need only be done once all rounds are expended.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Special</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">1 to 10</span></p><p class="c5"><span class="c4">rounds</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">1,800 + 200 GP</span></p><p class="c5"><span class="c4">Per round after the first</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">4 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Jammed</span><span class="c28">.</span><span class="c1">&nbsp;</span><span class="c8">The extractor cannot get a grip on the cartridge. The weapon cannot be fired until a full round action is used to clear the jam.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.2ef96bff53c4a34df50b57e9a778c604d345ac8e"></a><a id="t.18"></a><table class="c42"><tr class="c30"><td class="c21 c86" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 5</span></p></td><td class="c0" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Cartridge Revolver</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">An improved version of the needle revolver, this weapon uses metal cartridges which are struck by a hammer and firing pin to detonate the entire cartridge. Each cartridge is held within an indexable cylinder, allowing the weapon to be fired quickly, though the hammer must be cocked for each shot. Unfortunately, the use of an extractor leaver makes them a little slower to reload than the needle revolvers they are descended from.</span></p></td><td class="c66" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 147.00px; height: 127.00px;"><img alt="" src="../img/shooty/image10.png" style="width: 369.00px; height: 245.00px; margin-left: -66.00px; margin-top: -41.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Fan-the-Hammer.</span><span>&nbsp;</span><span class="c10 c8">During a full attack action, this weapon can make an extra attack against a single target within its first range increment. This attack is made at a -5, and during this abuse, the weapon will crit fail on a 1, 2, 3, or 4, and automatically misfire.</span></p><p class="c9"><span class="c28">Half-Cocked.</span><span>&nbsp;</span><span class="c8">The weapon can be cocked before combat, and carried in a readied state. In this state the first shot fired with that weapon in combat is made as a swift action.</span><span class="c10 c8">.</span></p><p class="c9"><span class="c28">Unsafe.</span><span>&nbsp;</span><span class="c10 c8">Due to the hammer&rsquo;s design, any jolt can cause the weapon to fire at the DM&rsquo;s discretion. Unless the first chamber is kept empty.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move Action</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">5 to 8</span></p><p class="c5"><span class="c4">rounds</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">250 GP</span></p><p class="c5"><span class="c4">Per round</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">4 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Jammed cylinder.</span><span class="c1">&nbsp;</span><span class="c8">Something has fouled the gears which allow the cylinder to turn, stopping it between positions. The shot goes off in the cylinder, dealing it&rsquo;s damage to the user. The weapon cannot be fired again until a DC 20 Craft Gunsmithing check is made to clear the jam.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.9819f267d6c77155df77a6371e1bbe2c08e5d4e9"></a><a id="t.19"></a><table class="c42"><tr class="c30"><td class="c21 c86" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 5</span></p></td><td class="c0" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Double-Action Revolver</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">An improved but expensive version of the cartridge revolver, this weapon uses metal cartridges which are struck by a hammer and firing pin to detonate the entire cartridge. Each cartridge is held within an indexable cylinder, and a mechanism which allows the trigger to cock and fire the weapon, allowing the weapon to be fired very quickly. Unfortunately, the use of an extractor leaver makes them a little slower to reload than the needle revolvers they are descended from.</span></p></td><td class="c66" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 184.00px; height: 161.50px;"><img alt="" src="../img/shooty/image17.png" style="width: 461.00px; height: 218.00px; margin-left: -51.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Double-Action</span><span class="c28">.</span><span>&nbsp;</span><span class="c10 c8">When used with the feat &ldquo;rapid shot&rdquo; a double-action weapon can make an additional attack each attack action, as if Rapid Shot allowed two extra attacks.</span></p><p class="c9 c13"><span class="c18 c1"></span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move Action</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">5 to 8</span></p><p class="c5"><span class="c4">rounds</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">350 GP</span></p><p class="c5"><span class="c4">Per round</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">4 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Spring-a-ma-thing&rsquo;s sproing-a-ma-thung.</span><span class="c1">&nbsp;</span><span class="c8">The firearm&rsquo;s clockwork has broken. The weapon cannot be operated until a DC 20 Craft Gunsmithing check is made to repair it for 25% the cost of a new weapon.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.798d729a7852e4f6a944a1f53cd5898c655128f7"></a><a id="t.20"></a><table class="c42"><tr class="c30"><td class="c21 c86" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 5</span></p></td><td class="c0" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Lever Action</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">This mechanism uses a lever action to draw fresh rounds from a spring loaded tube-magazine beneath the barrel, while also ejecting old rounds. A hammer then strikes the cartrage&rsquo;s primer, detonating it.</span></p></td><td class="c66" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 166.99px; height: 102.50px;"><img alt="" src="../img/shooty/image12.png" style="width: 633.32px; height: 335.88px; margin-left: -269.40px; margin-top: -74.12px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Rapid-Fire. </span><span class="c10 c8">The nature of this weapon grants the user the effects of Rapid Shot while using it. This does not count towards qualifying for feats requiring Rapid Shot.</span></p><p class="c9"><span class="c28">Point-of-Aim. </span><span class="c10 c8">Subsequent shots made against the same target gain a +1 attack bonus, so long as the user continues to attack the target and performs no other actions.</span></p><p class="c9"><span class="c28">Two Hands. </span><span class="c10 c8">Due to their nature, even lever-action pistols require two hands to cock. While they can be shot one handed, they cannot be cocked one handed without a DC 20 dexterity check to preform a &ldquo;one-handed-spin-cock&rdquo;.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move Action</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">12 to 18</span></p><p class="c5"><span class="c4">rounds</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">350 GP</span></p><p class="c5"><span class="c4">Per round</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">6 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Jammed.</span><span class="c1">&nbsp;</span><span class="c8">The extractor cannot get a grip on the cartridge. The weapon cannot be fired until a full round action is used to clear the jam.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.2ca1fa651c8cd4b93e964e3a9c60b4b034507649"></a><a id="t.21"></a><table class="c42"><tr class="c30"><td class="c21 c86" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 5</span></p></td><td class="c0" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Pump Action</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">This mechanism uses a pumping action to draw fresh rounds from a spring loaded tube-magazine beneath the barrel, while also ejecting old rounds. A hammer then strikes the cartrage&rsquo;s primer, detonating it.</span></p></td><td class="c66" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 164.00px; height: 73.00px;"><img alt="" src="../img/shooty/image20.png" style="width: 290.50px; height: 220.00px; margin-left: -70.00px; margin-top: -55.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Rapid-Fire. </span><span class="c8">The nature of this weapon grants the user the effects of Rapid Shot while using it. This does not count towards qualifying for feats requiring Rapid Shot.</span></p><p class="c9"><span class="c28">Two Hands. </span><span class="c10 c8">Due to their nature, even pump-action pistols require two hands to cock. While they can be shot one handed, they cannot be cocked one handed without a DC 20 dexterity check to preform a &ldquo;one-handed-flip-pump&rdquo;.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move Action</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">6 to 12</span></p><p class="c5"><span class="c4">rounds</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">550 GP</span></p><p class="c5"><span class="c4">Per round</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">4 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Spring-a-ma-thing&rsquo;s sproing-a-ma-thung.</span><span class="c1">&nbsp;</span><span class="c8">The firearm&rsquo;s clockwork has broken. The weapon cannot be operated until a DC 20 Craft Gunsmithing check is made to repair it for 25% the cost of a new weapon.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.0a411578b5569c46ee1b8e4fe9d962bc9c2e0f64"></a><a id="t.22"></a><table class="c42"><tr class="c30"><td class="c21 c86" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 5*</span></p></td><td class="c0" colspan="5" rowspan="1"><p class="c9"><span class="c18 c1">Blowback (Semi-Automatic)</span></p></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">This mechanism uses some of the excess pressure created by the cartrage&rsquo;s explosion to blast the empty cartridge out of the gun, and chamber a new round from an internal magazine. This allows the weapon to be fired very rapidly after being cocked once manually.</span></p></td><td class="c66" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 195.00px; height: 112.00px;"><img alt="" src="../img/shooty/image4.png" style="width: 195.00px; height: 112.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Rapid-Fire. </span><span class="c10 c8">The nature of this weapon grants the user the effects of Rapid Shot while using it. This does not count towards qualifying for feats requiring Rapid Shot.</span></p><p class="c9"><span class="c28">Semi-auto.</span><span>&nbsp;</span><span class="c10 c8">When used with the feat &ldquo;rapid shot&rdquo; a semi-automatic weapon can make an additional attack each attack action, as if Rapid Shot allowed two extra attacks.</span></p><p class="c9"><span class="c28">Detachable Mag</span><span class="c8">. For an additional 20% GP cost, the weapon can be made to use external magazines, allowing the weapon to be fully reloaded as a move action. Each magazine costs 200 GP and must be specifically designed for use with the firearm in question.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Standard</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move Action</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">5 to 12</span></p><p class="c5"><span class="c4">rounds</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">500 GP</span></p><p class="c5"><span class="c4">Per round</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">4 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c18 c1">Misfire Effect: Roll a d2 on each misfire.</span></p><p class="c6"><span class="c28">1. Failure to Feed.</span><span class="c1">&nbsp;</span><span class="c10 c8">The bolt moves back far enough to eject the spent round, but not enough to load the next round. The weapon cannot be fired until a move action is used to prime the weapon.</span></p><p class="c6"><span class="c8">OR<br>2. </span><span class="c28">Jammed.</span><span class="c1">&nbsp;</span><span class="c8">The extractor cannot get a grip on the cartridge. The weapon cannot be fired until a full round action is used to clear the jam.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.d5875ace0ad8eaeed977499cbdb4f8d07e37b020"></a><a id="t.23"></a><table class="c42"><tr class="c30"><td class="c21 c86" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 5*</span></p></td><td class="c0" colspan="5" rowspan="1"><h4 class="c131" id="h.nox5dhvq1k7k"><span class="c149 c1">Blowback (Automatic)</span></h4></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">This mechanism uses some of the excess pressure created by the cartrage&rsquo;s explosion to blast the empty cartridge out of the gun, chamber a new round from an internal magazine, then continue to fire until the trigger is released. This allows the weapon to fire itself after being charged manually when fresh ammo is inserted.</span></p></td><td class="c66" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 188.35px; height: 97.50px;"><img alt="" src="../img/shooty/image22.png" style="width: 544.13px; height: 136.99px; margin-left: -224.05px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Automatic</span><span class="c28">.</span><span>&nbsp;</span><span class="c10 c8">An automatic weapon can fire a single shot as a standard action, or make one of two special Full-Round attacks:</span></p><p class="c9"><span class="c8 c1">Suppressing Fire:</span><span class="c10 c8">&nbsp;The weapon empties it&rsquo;s magazine to make an attack at all enemies within a 20 foot radius around a given point. Each attack is made at a -2 to attack and damage as these shots are not aimed.</span></p><p class="c9"><span class="c8 c1">Blaze Away:</span><span class="c10 c8">&nbsp;The weapon empties it&rsquo;s magazine to make a line attack at a -4 attack penalty. Anything hit by this attack takes damage as if it were hit by 4 rounds from the weapon. Static modifiers apply once. Can only be used if the weapon has at least 50% of its ammunition capacity left.</span></p><p class="c9"><span class="c28">Detachable Mag</span><span class="c10 c8">. For an additional 20% GP cost, the weapon can be made to use external magazines, allowing the weapon to be fully reloaded as a move action. Each magazine costs 200 GP and must be specifically designed for use with the firearm in question.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Special</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move Action</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">15 to 25</span></p><p class="c5"><span class="c4">rounds</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">240 GP</span></p><p class="c5"><span class="c4">per round</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">6 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c18 c1">Misfire Effect: Roll a d2 on each misfire.</span></p><p class="c6"><span class="c28">1. Failure to Feed.</span><span class="c1">&nbsp;</span><span class="c10 c8">The bolt moves back far enough to eject the spent round, but not enough to load the next round. The weapon cannot be fired until a move action is used to prime the weapon.</span></p><p class="c6"><span class="c8">OR<br>2. </span><span class="c28">Jammed.</span><span class="c1">&nbsp;</span><span class="c8">The extractor cannot get a grip on the cartridge. The weapon cannot be fired until a full round action is used to clear the jam.</span></p></td></tr></table>
+
+<p><b>Note:</b> Blowback weapons can only be taken with GM permission, even if the setting is within the 5th Era of Firearms. This is because while they are period appropriate for settings in the 5th era, the equivalent time period in real life ended with a period of extremely rapid firearms innovation. Many people would not think of early blowback weapons as "Wild West Guns", even though the blowback mechanism dates back to 1883. The range of the 5th Era of Firearms is intended to cover the 1800s, but it's understandable if GMs would prefer to keep this era to "cowyboy guns" due to popular conceptions of firearms history.</p>
+<p>Additionally, machine guns other than Gatling guns technically existed since the mid 1850s but were not widely used or adopted until Sir Hiram Maxim invited the first practical machine gun (the Maxim) in 1884. This technically makes the belt-fed machine gun a Era 5 weapon alongside blowback type weapons. Yet the Maxim and other belt-fed weapons are so synonymous with World War 1 that they feel more like a early 1900s weapon, which would put them in Era 6. The problem here is that eras 5 and 6 blur together where they meet when accounting for both history and common perceptions of time as well as aesthetics. GMs should decide for themselves where these weapons belong.</p>
+
+<h5 class="articlesubtitle"><span id="Era6">Era 6 Mechanisms</span></h5>
+
+<table class="c42"><tr class="c30"><td class="c21 c106" colspan="1" rowspan="1"><h4 class="c9 c94" id="h.3bi580vrajh4"><span class="c18 c1">Era 6</span></h4></td><td class="c0" colspan="5" rowspan="1"><h4 class="c131" id="h.5sdzouuuyuvh"><span class="c149 c1">Belt-feed (Automatic)</span></h4></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">This mechanism uses some of the excess pressure created by the cartrage&rsquo;s explosion to blast the empty cartridge out of the gun, chamber a new round from a long belt of ammunition (held in a box mounted to the weapon, or hung loose from the action), and will continue to fire until the trigger is released. This allows the weapon to fire itself after being charged manually when fresh ammo is inserted.</span></p></td><td class="c66" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 195.00px; height: 162.67px;"><img alt="" src="../img/shooty/image23.png" style="width: 195.00px; height: 162.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special: </span><span class="c28">Automatic.</span><span>&nbsp;</span><span class="c10 c8">An automatic weapon can fire a single shot as a standard action, or make one of two special Full-Round attacks:</span></p><p class="c9"><span class="c8 c1">Suppressing Fire:</span><span class="c10 c8">&nbsp;The weapon empties it&rsquo;s magazine to make an attack at all enemies within a 20 foot radius around a given point. Each attack is made at a -2 to attack and damage as these shots are not aimed. Can only be used if the weapon has at least 50% of its ammunition capacity left.</span></p><p class="c9"><span class="c8 c1">Blaze Away:</span><span class="c8">&nbsp;The weapon empties it&rsquo;s magazine to make a line attack at a -4 attack penalty. Anything hit by this attack takes damage as if it were hit by 4 rounds from the weapon. Static modifiers apply once. Can only be used if the weapon has at least 50% of its ammunition capacity left.</span></p><p class="c9"><span class="c28">Belt-Fed</span><span class="c10 c8">. This weapon fires belts of ammo, which can be of any length. For practical purposes, these belts typically come in boxes of 100 rounds. Belts can be linked together to one&rsquo;s heart&rsquo;s content but each link requires a DC 15 Craft Gunsmithing check.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Special</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Full Round</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">Special</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">20,000 GP</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">20 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c18 c1">Misfire Effect: SPECIAL!</span></p><p class="c6"><span class="c18 c1">If occured on single shot mode&hellip;</span></p><p class="c6"><span class="c28">Broken Link.</span><span>&nbsp;</span><span class="c10 c8">The belt has come apart and the weapon must be reloaded immediately.</span></p><p class="c6"><span class="c18 c1">If occurred on a special mode...</span></p><p class="c6"><span class="c28">Overheated</span><span class="c28">.</span><span class="c1">&nbsp;</span><span class="c10 c8">The weapon has become too hot to fire. It cannot be used again for 1d6 rounds without exploding dealing 3d12 damage to the user. Furthermore, until the weapon is repaired with a Craft Gunsmithing Check of DC 30, the weapon will deal half damage and all attacks are made at a -4 due to barrel warping.</span></p><p class="c2"><span class="c10 c8"></span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.79a40d42de4f78cf300dbee35d9b1af82c4a445c"></a><a id="t.25"></a><table class="c42"><tr class="c30"><td class="c21 c106" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 6</span></p></td><td class="c0" colspan="5" rowspan="1"><h4 class="c131" id="h.y12txtwpwu0o"><span class="c149 c1">Motor-Driven Rotary Cannon (Automatic)</span></h4></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">This mechanism uses a motor to operate a gatling-like weapon&rsquo;s action. This allows the weapon to fire itself after being charged manually when fresh ammo is inserted. Typically these weapons cannot be used without a tripod, but some are able to handle them.</span></p></td><td class="c66" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 195.00px; height: 96.00px;"><img alt="" src="../img/shooty/image3.png" style="width: 195.00px; height: 96.00px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special:</span><span class="c28">&nbsp;Dat&rsquo;s Some Gud</span><span class="c1">&nbsp;</span><span class="c28">Dakka</span><span class="c28">.</span><span>&nbsp;</span><span class="c10 c8">A rotary cannon fires in two modes, burst, and automatic.</span></p><p class="c9"><span class="c8 c1">Burst:</span><span class="c10 c8">&nbsp;As a standard action, the weapon fires a burst of 12 rounds dealing 12 damage dice worth of damage to a single target.</span></p><p class="c9"><span class="c28 c8 c1">WARRRGH!:</span><span class="c10 c8">&nbsp;As a full round action the weapon burns through 100 rounds of ammunition to create a line attack at a -2 penalty to hit. Any creature struck by the line attack takes ten damage dice worth of damage, and all static damage is multiplied by two. Using this mode makes the user flat footed till the start of their next turn.</span></p><p class="c9"><span class="c28">Belt-Fed</span><span class="c10 c8">. This weapon fires belts of ammo, which can be of any length. For practical purposes, these belts typically come in boxes of 100 rounds. Belts can be linked together to one&rsquo;s heart&rsquo;s content but each link requires a DC 15 Craft Gunsmithing check.</span></p><p class="c9"><span class="c28">Heavy Weapon.</span><span class="c10 c8">&nbsp;Requires a minimum strength of 18 to use with a -4 penalty to every attack, and a strength of 20 to use normally.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Special</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Full Round</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">Special</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">40,000 GP</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">40 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c1">Misfire Effect: </span><span class="c28">Burnout</span><span class="c28">.</span><span class="c1">&nbsp;</span><span class="c8">The weapon has become too hot to fire. It cannot be used again for 1d6 rounds without exploding dealing 3d12 damage to the user. Furthermore, until the weapon is repaired with a Craft Gunsmithing Check of DC 30, the weapon will deal half damage and all attacks are made at a -4.</span></p></td></tr></table><p class="c2"><span class="c4"></span></p><a id="t.5dc0d8269753c75b6639ed1e3e9b921eeb12b00c"></a><a id="t.26"></a><table class="c42"><tr class="c30"><td class="c21 c106" colspan="1" rowspan="1"><p class="c9"><span class="c18 c1">Era 6</span></p></td><td class="c0" colspan="5" rowspan="1"><h4 class="c131" id="h.quchz95lyvf6"><span class="c1 c149">Select-Fire Mechanism</span></h4></td></tr><tr class="c30"><td class="c60" colspan="5" rowspan="2"><p class="c9"><span class="c4">This mechanism uses some of the excess pressure created by the cartrage&rsquo;s explosion to blast the empty cartridge out of the gun, then chamber a new round from an internal magazine. A specially engineered internal mechanism allows the user to switch between multiple firing modes, single, burst, or automatic.</span></p></td><td class="c66" colspan="1" rowspan="2"><p class="c5"><span style="overflow: hidden; display: inline-block; margin: 0.00px 0.00px; border: 0.00px solid #000000; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px); width: 195.00px; height: 146.67px;"><img alt="" src="../img/shooty/image8.png" style="width: 195.00px; height: 146.67px; margin-left: 0.00px; margin-top: 0.00px; transform: rotate(0.00rad) translateZ(0px); -webkit-transform: rotate(0.00rad) translateZ(0px);" title=""></span></p></td></tr><tr class="c30"></tr><tr class="c30"><td class="c21 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Rate of Fire</span></p></td><td class="c22 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Reload Speed</span></p></td><td class="c16" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Capacity</span></p></td><td class="c29" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Cost</span></p></td><td class="c37 c53" colspan="1" rowspan="1"><p class="c5"><span class="c18 c1">Weight</span></p></td><td class="c27" colspan="1" rowspan="2"><p class="c9"><span class="c1">Special:</span><span class="c28">&nbsp;Detachable Mag</span><span class="c10 c8">. These weapons use external magazines, allowing the weapon to be fully reloaded as a move action. Each magazine costs 200 GP and must be specifically designed for use with the firearm in question. Each weapon comes with one 30 round magazine.</span></p><p class="c9"><span class="c28">Select Fire.</span><span class="c8">&nbsp;This weapon can fire in several &nbsp;modes.<br></span><span class="c8 c1">Single Action:</span><span class="c10 c8">&nbsp;Fires one shot per standard action.</span></p><p class="c9"><span class="c8 c1">Burst:</span><span class="c10 c8">&nbsp;Fires 5 rounds at once at a -2 penalty to hit, dealing 4x the damage dice of a normal attack. &nbsp;Can only be used if the weapon has at least 5 rounds left.</span></p><p class="c9"><span class="c8 c1">Suppressing Fire:</span><span class="c10 c8">&nbsp;The weapon empties it&rsquo;s magazine to make an attack at all enemies within a 20 foot radius around a given point. Each attack is made at a -2 to attack and damage as these shots are not aimed. Can only be used if the weapon has at least 50% of its ammunition capacity left.</span></p><p class="c9"><span class="c8 c1">Blaze Away:</span><span class="c8">&nbsp;The weapon empties it&rsquo;s magazine to make a line attack at a -4 attack penalty. Anything hit by this attack takes damage as if it were hit by 4 rounds from the weapon. Static modifiers apply once. &nbsp;Can only be used if the weapon has at least 50% of its ammunition capacity left.</span></p></td></tr><tr class="c30"><td class="c21" colspan="1" rowspan="1"><p class="c5"><span class="c4">Special</span></p></td><td class="c22 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">Move Action</span></p></td><td class="c49" colspan="1" rowspan="1"><p class="c5"><span class="c4">Special</span></p></td><td class="c48 c41" colspan="1" rowspan="1"><p class="c5"><span class="c4">8,000 GP</span></p></td><td class="c37" colspan="1" rowspan="1"><p class="c5"><span class="c4">12 lb.</span></p></td></tr><tr class="c30"><td class="c38" colspan="6" rowspan="1"><p class="c6"><span class="c18 c1">Misfire Effect: Roll a d2 on each misfire.</span></p><p class="c6"><span class="c28">1. Failure to Feed.</span><span class="c1">&nbsp;</span><span class="c10 c8">The bolt moves back far enough to eject the spent round, but not enough to load the next round. The weapon cannot be fired until a move action is used to prime the weapon.</span></p><p class="c6"><span class="c8">OR<br>2. </span><span class="c28">Jammed.</span><span class="c1">&nbsp;</span><span class="c8">The extractor cannot get a grip on the cartridge. The weapon cannot be fired until a full round action is used to clear the jam.</span></p></td></tr></table>
+
+<h4 class="articlesubtitle"><span id="Calibers">Calibers</span></h4>
+
+<p>Caliber is a measure of the internal diameter of the barrel which determines the diameter of bullets a firearm uses. In real life countless different calibers have been used. For the purposes of these rules only the most common historical and modern calibers will be represented here. Additionally, this list does not take into account the length of a bullet. While this is a crucial factor in real life to determining the true power of the bullet, the abstraction handling this aspect of bullets is handled in the barrel rules of firearm creation.</p>
+<p>Some Calibers may have another name listed after them. This is due to them being best known by that name, however the list is still organized in terms of caliber so the relative size of bullets can be easily compared. Some calibers will have a listing after them which states a "gauge". This is to show which calibers are common shotgun shell sizes. These calibers do not have to be used with “shot” type barrels, the label is there for people who want to make shotguns accurate to real life weapons.</p>
+<p>Some Calibers will have the label "Grenade Round". These calibers damage differs in that they deal AOE damage. Weapons using the grenade round version of a given caliber cannot use normal ammunition of that type, nor can they use “shot” type barrels.</p>
+<p>Each Caliber has a damage die, cost modifier, cost per shot, and a special ability. The damage die tells you what damage dice the weapon uses. The critical tells you the weapon's crit threshold and multiplier. The Cost modifier alters the price of the firearm given to you in the mechanism. The cost per shot tells you how expensive ammo for your firearm will be. The special ability attaches an extra rule or ability to the weapon either conditionally or unconditionally.</p>
+<p>While most calibers are unrestricted, some special calibers are restricted to particular Eras. This will be noted in the special ability column of <i>Table: Calibers</i>.</p>
+
+<table><caption style="text-align: center;"><b>Table: Calibers</b></caption>
+<tbody>
+<tr>
+<td>
+<p><strong>Caliber</strong></p>
+</td>
+<td>
+<p><strong>Damage</strong></p>
+<p><strong>Die</strong></p>
+</td>
+<td>
+<p><strong>Critical</strong></p>
+</td>
+<td>
+<p><strong>Cost Mod</strong></p>
+</td>
+<td>
+<p><strong>Cost per shot</strong></p>
+</td>
+<td>
+<p><strong>Special</strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">1.57 (40mm Grenade Round)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">d12</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">(19-20) x4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+50%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">50 gp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Deals damage in a 20 foot radius. Reflex save for half damage, DC equal to attack roll.</span></p>
+<p><strong>RESTRICTED Era 6 Only.&nbsp;</strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">0.78 (20mm Grenade Round)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">d12</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">x4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+40%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">40 gp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Deals damage in a 15 foot radius. Reflex save for half damage, DC equal to attack roll.</span></p>
+<p><strong>RESTRICTED Era 6 Only.&nbsp;</strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">.78 (10 Gauge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">d10</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">(19-20) x3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2 gp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2 damage when used with a shot-type barrel.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">.72 (12 gauge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">d10</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">x3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1 gp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+1 damage when used with a shot-type barrel.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">.50</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">d10</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">(19-20) x4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+15%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1 gp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2 damage when used in a rifle.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">.45</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">d8</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">x2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+5%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">5 sp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2 damage when used in a pistol or rifle.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">.44</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">d8</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">(19-20) x2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+5%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">5 sp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2 damage when used in a pistol.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">.357 (aka .38)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">d8</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">x2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">5 sp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2 damage when used in a pistol or rifle.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">.355 (aka 9mm)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">d6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">x2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3 sp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2 damage when used in a pistol.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">.308 (aka 7.62)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">d6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">(19-20) x3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2 sp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2 damage when used in a rifle.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">.223 (aka 22LR)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">d4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">x2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">5 cp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2 damage when used in a pistol.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">.218 ( aka 5.56)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">d4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">x2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">5 cp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2 damage when used in a rifle.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p><b>Note:</b> For firearms of the 4th Era and earlier, pistols were generally within the .357 to .308 caliber range, and rifles were in the .78 to .50 caliber range. However, calibers varied wildly and choosing any of these modern calibers for any firearm will not make it historically inaccurate.</p>
+
+<h4 class="articlesubtitle"><span id="Barrels">Barrels</span></h4>
+
+<p>Firearms barrels are deceptively complicated pieces of technology. Seemingly irrelevant things like a finger's width difference in length, a hair tighter rifling patern, or even how much of the barrel's length is rifled can have massive effects on the firearm’s performance compared to other weapons of the same action and cartridge.</p>
+
+<p>Barrels determine the max number of damage dice the firearm can have from non-magical sources, its accuracy, and its range increment, as well as help determine the final cost of a weapon. The available barrel types change by Era. Each barrel has a name, a type, cost modifier, max attack die number, attack modifier, critical type, range, and special ability.</p>
+
+<div class="quotebox">
+<p><b>Era:</b> The minimum era your setting must be in to take that barrel.</br>
+<b>Barrel Type:</b> Whether the barrel is for bullets, or shotgun shells/loads, and therefore what kinds of ammo it can use.</br>
+<b>Cost Mod:</b> Adjusts the base price of the firearm given to you by the mechanism.</br>
+<b>Max Attack Dice:</b> The maximum number of damage dice coming from non-magical sources the barrel can support without failing.</br>
+<b>Attack Mod:</b> tells you if the weapon will have an attack bonus or penalty due to the barrel.</br>
+<b>Range:</b> The weapon’s range increment.</p>
+</div>
+
+<p>Due to the nature of guns, the type of ammo a weapon uses limits the amount of damage dice and attack bonus the weapon can use. <i>Table: Barrels</i> lists the maximum possible for a type of barrel. Better ammunition cannot increase performance beyond the barrel’s specifications. In fact, doing so can make the gun explode on a misfire rather than trigger its misfire effect at the GM’s discretion.</p>
+
+<table><caption style="text-align: center;"><b>Table: Barrels</b></caption>
+<tbody>
+<tr>
+<td>
+<p><strong>Era</strong></p>
+</td>
+<td>
+<p><strong>Barrel Name</strong></p>
+</td>
+<td>
+<p><strong>Type</strong></p>
+</td>
+<td>
+<p><strong>Cost Mod</strong></p>
+</td>
+<td>
+<p><strong>Max Attack Dice</strong></p>
+</td>
+<td>
+<p><strong>Attack Mod</strong></p>
+</td>
+<td>
+<p><strong>Range</strong></p>
+</td>
+<td>
+<p><strong>Special</strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Smooth Bore</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">20 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Fluted Smooth Bore</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">20 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Rifle&rsquo;s attack bonus applies 1 range increment closer.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Long Smooth Bore</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+15%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">30 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Short Smooth Bore</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">10 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Rifle&rsquo;s attack bonus applies 1 range increment closer.</span></p>
+<p><span style="font-weight: 400;">Pistols gain +1 attack bonus.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Banded Smooth Bore</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+20%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">20 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Negates the KA-BOOM! Misfire effect.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Blunderbuss</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+20%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">5 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Cannot use Shot-Slugs.&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Primitive Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+15%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">30 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Fluted Primitive Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+25%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">30 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Rifle&rsquo;s attack bonus applies 1 range increment closer.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Long Primitive Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+30%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">40 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Short Primitive Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+5%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">15 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Rifle&rsquo;s attack bonus applies 1 range increment closer.</span></p>
+<p><span style="font-weight: 400;">Pistols gain +1 attack bonus.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">40 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Fluted Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+15%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">40 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Rifle&rsquo;s attack bonus applies 1 range increment closer.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Long Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">50 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+<tr>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+
+<td>
+<p><span style="font-weight: 400;">Short Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-5%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">20 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Rifle&rsquo;s attack bonus applies 1 range increment closer.</span></p>
+<p><span style="font-weight: 400;">Pistols gain +1 attack bonus.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Snub Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">15 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Range increment penalty is doubled.</span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">+5 to checks to conceal the firearm.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Rifled Choke</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">40 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Smooth Choak</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+5%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">30 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Replaces splash damage of Shot ammunition with a doubling of critical threshold.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Advanced Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">50 ft.</span></p>
+</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Fluted</span></p>
+<p><span style="font-weight: 400;">Advanced Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+15%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">50 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Rifle&rsquo;s attack bonus applies 2 range increments closer.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Long Advanced Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+25%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">60 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Halves Range increment penalty.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Short Advanced Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">40 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Rifle&rsquo;s attack bonus applies 2 range increments closer.</span></p>
+<p><span style="font-weight: 400;">Pistols gain +1 attack bonus.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Snub Advanced Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-20%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">20 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Range increment penalty is doubled.</span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">+5 to checks to conceal the firearm.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Precision Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">80 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+<tr>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Fluted Precision Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">80 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Rifle&rsquo;s attack bonus applies 2 range increments closer.</span></p>
+<p><span style="font-weight: 400;">Pistols gain +1 attack bonus.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Long Precision Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+20%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">100 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Range Increment Penalty ignored for first 4 increments.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Short Precision Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-5%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">60 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Rifle&rsquo;s attack bonus applies 2 range increments closer.</span></p>
+<p><span style="font-weight: 400;">Pistols gain +2 attack bonus.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Snub Precision Rifled</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Both</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-10%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">25 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Range increment penalty is doubled.</span><span style="font-weight: 400;"><br /></span><span style="font-weight: 400;">+5 to checks to conceal the firearm.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Sabot Barrel</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+20%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">120 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Allows the use of sabot and finned shot-shells. Cannot use normal shot-shells.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Grenade Barrel</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+50%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">50 ft.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Allows the firearm to fire grenade rounds.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p><b>Optional:</b> Ordinarily a firearm can only have one type of barrel no matter how many individual barrels it has. At the DM’s discretion a firearm can have multiple kinds of barrel. However, this does induce some tedious record keeping and is a good way for dishonest players to fudge numbers> Hence, it is not recommended.</p>
+
+<h4 class="articlesubtitle"><span id="FirearmCreationExample">Firearm Creation</span></h4>
+
+<p>This system may seem a little overwhelming, but it is easy to use once you understand how it works. Here is an example.</p>
+
+<div class="quotebox">
+<p>Tannis the Elf lives in a world where guns are in the 4th Era of development. He wants to be a gunslinger, and goes to purchase a pistol from the local gunsmith. After viewing his options he decides he wants rapid fire and selects a Pepperbox pistol with 6 rounds. Tannis doesn't have much money, however, and chooses not to purchase one with the Spin to Win special ability.</p>
+</div>
+<p>Right now Tannis' gun costs 2,400 GP. It weighs 10 pounds, reloads with a move action, holds 6 rounds, and has the Cap Fired special property. It does not have any damage dice yet.</p>
+<div class="quotebox">
+<p>Tannis is not a very strong elf and doesn't think he can manage the recoil of a large weapon, but knows his hand-eye coordination is great. So he elects for a Pepperbox pistol in a smaller caliber, specifically .223.</p>
+</div>
+<p>Tannis' gun now costs 2,160 GP. It also has gained damage dice. Specifically it uses a d4 for its damage dice and deals double damage on a critical. The cost of the bullet, cap, and powder for each shot comes out to 1 silver piece.</p>
+
+<div class="quotebox">
+<p>Tannis knows he’s going to be going into a lot of places where it would be a good idea to hide his weapon, but doesn't want to accidentally hit someone he doesn't intend to kill. Hence of the available .223 Peperbox pistols, he chooses one with a snub rifled barrel to make it as small as possible, but still somewhat accurate.</p>
+</div>
+
+<p>Tannis' gun’s final cost comes out to 1,994 GP. It rolls a single d4 for damage, gains a -4 to attack rolls, has a range increment of five feet, and gets a +1 to the pistol bonuses for close quarters. Tannis’s Pepperbox, once finished, has the following stats:</p>
+
+<table>
+<tbody>
+<tr>
+<td>
+<p><strong>Name</strong></p>
+</td>
+<td>
+<p><strong>Cost</strong></p>
+</td>
+<td>
+<p><strong>Att.</strong></p>
+</td>
+<td>
+<p><strong>Dmg</strong></p>
+</td>
+<td>
+<p><strong>Crit</strong></p>
+</td>
+<td>
+<p><strong>Range</strong></p>
+</td>
+<td>
+<p><strong>Capacity</strong></p>
+</td>
+<td>
+<p><strong>Weight</strong></p>
+</td>
+<td>
+<p><strong>Type</strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">Snubnosed Pepperbox Pistol</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1,994 gp</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1d4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">x2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">5 ft</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">10 lbs.</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">B / P</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<p>His pepperbox also has the following Special properties:</p>
+
+<div class="quotebox">
+<p><b>Pistol.</b> Positive Attack modifiers granted by the barrel exclusively apply in the first 2 range increments. Negative attack modifiers always apply.</br>
+<b>Cap Fired.</b> Requires a cap to be shot in addition to shot and powder.</br>
+<b>Snub Barrel.</b> +1 Pistol Aim bonus and +5 to checks to conceal the firearm.</br>
+<b>On Misfire.</b> <i>Hoop-a-jooped.</i> A critical piece of the internal mechanism breaks. Pulling the trigger no longer advances the barrel. If installed on a pistol, the weapon must be operated with two hands. If installed on a rifle the rate of fire becomes a full round action due to the weight of the barrel assembly. This condition remains in effect until a DC 30 Craft Gunsmithing check is made to repair the weapon, a process taking an hour and requiring access to the proper tools.</p>
+</div>
+
+<p>Just like that, Tannis has a unique firearm appropriate for his time period with advantages and disadvantages appropriate for each part of the weapon.</p>
+
+<p>You may have noticed that guns begin to get amazingly OP in the last few eras. This is true to life, and it is suggested that DMs do not tweak anything at all about this system. Yes, 5th and 6th era guns are very powerful, but remember, humanoid enemies will have them as well, making combat a much more intense, short, and bloody affair. The PCs are just as likely to die as NPCs and monsters.</p>
+
+<p>What’s more, automatic weapons chew through ammo at alarming rates. The hand cranked Gatling can be fired 16 times before being empty, and each reload costs quite a bit. Assuming the gun is using .357 caliber rounds, a pistol Gatling will cost 12 GP to fully load, and a rifle version will cost 45 GP to fully load.</p>
+
+<p>While those numbers do not seem too great, at low levels most PCs will be able to fully load their automatic weapon 3-4 times per adventure. Keep in mind that most special attacks with automatic weapons also consume all remaining ammo in the magazine/belt. This is the balancing system. Guns can do crazy damage, but cost a lot to buy and to operate.</p>
+
+<p>By the time the PCs can afford to go ham with later era weapons, they almost certainly are being outclassed in damage by casters. Think of guns as an expensive way of leveling the marshal magical playing field while also making sure the party never has enough treasure to cast wish 5 times per boss encounter.</p>
+</div>
+<h3 class="articletitle"><span id="FirearmMods">Firearm Mods</span></h3>
+
+<p>Most firearms can be improved with simple modifications to the basic design. These are some non-magical modifications that can be made to a firearm which enhance its properties in one way or another.</p>
+
+<div class="quotebox">
+<b>Buttcap</b> +2 melee striking damage.</br>
+<b>Ergonomic <i>(muzzleloader)</i></b> Reduces reload speed by one step.</br>
+<b>Ergonomic <i>(cartridge based)</i></b> Drawing weapon is a free action.</br>
+<b>Sights</b> +1 attack bonus.</br>
+<b>Ion Stone Sight</b> +1 attack bonus, +2 in low light.</br>
+<b>Short Scope</b> - Halves range increment penalty.</br>
+<b>Medium Scope</b> - Removes Range increment penalty for first 5 increments, reduces penalty by 2. -2 on attacks made within 30 feet of the shooter.</br>
+<b>Long Scope</b> - Removes Range increment penalty for first 10 increments, reduces penalty by 2. -2 on attacks made within 60 feet of the shooter.</br>
+<b>Elven Sight</b> +2 to attack rolls made against targets obscured by foliage.</br>
+<b>Dwarven “Sight” <i>(actually a bayonet)</i></b> +2 melee attack damage.</br>
+
+    <b>Improved sights</b> +1 attack bonus (stacks with sights)</br>
+       <b>Advanced sights</b> +1 attack bonus stacks with Improved sights.</br>
+<b>Banded Barrel</b> Prevents the first misfire effect during a combat.</br>
+<b>Reinforced Banded Barrel</b> Can be packed with a load more powerful than normal, allowing the weapon to use ammo that would grant 1 attack die over the barrel’s maximum. Prevents the first misfire effect during combat.</br>
+<b>Silencer</b> - Doubles DC of perception checks to hear weapons being fired. Removes stealth penalty of firearms use if combined with certain ammunition.</br>
+<b>Loudener</b> - +2 to intimidate checks made if your weapon is fired as a part of the action. Also +2 awesome and deals 1 point of non-lethal damage to everyone within 30 feet of the weapon <i>(Also, yes, these are a real thing, and you are <i>absolutely</i> an asshole if you use one at a gun range.)</i>.</br>
+</div>
+
+<h3 class="articletitle"><span id="Ammunition">Ammunition</span></h3>
+<p>The type of powder a weapon uses is a major defining feature of how much damage the weapon can use. In the real world, modern firearms use generally one of two forms of smokeless powder. The performance advantages of these powders are the subject of endless debate. Historically, many formulations of blackpowder existed, most of which were snake oil. For the sake of gameplay variety, some decisions have to be made</p>
+
+<p>Each of the ammunition types listed on <i>Table: Ammunition</i> is listed by the era in which it is available. Firearms can generally use ammo from prior eras, so long as they do not depend on cartridge based ammunition. Ammo from a prior era costs 20% less than that from the current era.</p>
+
+<p>Each ammo type has an era, type, damage dice, name, and cost adjustment. The attack dice from ammunition tells you how many damage dice to roll when attacking with your weapon. Attempting to use ammunition which provides more dice than your barrel’s max attack dice stat means your weapon will be destroyed on a misfire.</p>
+<p>The cost Adjustment stat tells you how much the cost per shot increases or decreases based on what you are purchasing. The Type tells you if the ammo is meant for a standard weapon, or a shotgun. Max Range tells you how many range increments the round can travel. Special informs you of any inherent traits the round has, such as bypassing DR.</p>
+
+<p>Each entry is considered to be the bullet, powder, and primer/cap/charge required for the weapon to fire in one package.</p>
+
+<p>Special ammunition properties are purchased separately as generally any round can be silver, or alchemicaly enhanced, or hollow pointed, etc.</p>
+
+<p>Shot type rounds are used in shotguns. Shot rounds spread out, trading range for accuracy at close range. With a shot based weapon you roll twice and take the better result on attack rolls.</p>
+<table><caption style="text-align: center;"><b>Table: Ammunition</b></caption>
+<tbody>
+<tr>
+<td>
+<p><strong>Era</strong></p>
+</td>
+<td>
+<p><strong>Name</strong></p>
+</td>
+<td>
+<p><strong>Type</strong></p>
+</td>
+<td>
+<p><strong>Attack Dice</strong></p>
+</td>
+<td>
+<p><strong>Cost Adjustment</strong></p>
+</td>
+<td>
+<p><strong>Max Range</strong></p>
+</td>
+<td>
+<p><strong>Special</strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Crude shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-50%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Crude Ball</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-50%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Ball</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet&nbsp;</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Refined Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+15%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Refined Ball</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+15%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Graded Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+25</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Match Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+50%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">8</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Large Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+50%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Graded Ball</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+25%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">8</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Minne Ball</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+50%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">8</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bird Shot (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">-20%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">8</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Deals the weapon&rsquo;s minimum damage as splash damage to 1 adjacent target. Max Dice is 3 vs unarmored targets.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Buck Shot (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+15%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">10</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Slug (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+25%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">10</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Doubles critical range. Don&rsquo;t roll Twice for attack rolls.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Flishette (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+50%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">8</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Attacks touch AC.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Lead Round (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+0</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">12</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Jacketed Round&nbsp; (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+15%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">14</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Full Metal Jacket&nbsp; (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+20%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">14</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Deals the weapon&rsquo;s minimum damage as splash damage to 1 target within 5 feet of the first opposite the side of the shooter.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Boat Tail Round&nbsp; (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+30%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">16</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;&nbsp;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Hollowpoint Round&nbsp; (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">1</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+20%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">12</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+1d4 Bleed damage. Max Dice is 3 vs unarmored targets.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">5</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Armor Piercing Round&nbsp; (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">2</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+50%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">12</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Attacks touch AC.</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Discarding Sabot (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+100%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">14</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Finned Slug (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Shot</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">4</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+100%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">16</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">&mdash;</span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-weight: 400;">6</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Precision Ammo (Cartridge)</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Bullet</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">3</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">+50%</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">20</span></p>
+</td>
+<td>
+<p><span style="font-weight: 400;">Deals the weapon&rsquo;s minimum damage as splash damage to 1 target within 5 feet of the first opposite the side of the shooter.</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+
+<h4 class="articlesubtitle"><span id="AmmunitionSpecialProperties">Ammunition Special Properties</span></h4>
+<div class="quotebox">
+<b>Alchemical Powder</b> +1 damage die.</br>
+<b>Silver Bullet</b> Bypasses DR/silver.</br>
+<b>Adamantine Tip</b> bypasses DR.</br>
+<b>Frangible Round</b> shatters on hard surfaces -50% damage, deals subdual damage to targets in hard armor (natural or artificial).</br>
+<b>Rubber bullet</b> converts damage to subdual damage. Does not affect targets with an armor bonus greater than 4.</br>
+<b>Low Powder load</b> - reduces stealth penalty by 10. With a silencer, allows the shooter to remain in stealth after firing. Reduces max damage die by 1 (minimum 1).</br>
+<b>Whisper Powder</b> - reduces stealth penalty by 15, With a silencer, allows the shooter to remain in stealth after firing.</br>
+<b>Alchemical Tracer</b> - creates a fairy path of light from gun to target. Provides a +2 to attacks made against the same target but a -5 to stealth.</br>
+<b>Fairy Fire Round</b> - Round conveys the effects of the spell Fairy Fire to whatever it strikes.</br>
+<b>Gun Cotton</b> - Ignore the first range penalty you would normally take.</br>
+</div>
+
+<h3 class="articletitle"><span id="FirearmsFeats">Firearms Feats</span></h3>
+<div class="quotebox">
+<p><strong>Weapon Proficiency (firearms) - </strong><span style="font-weight: 400;">you are proficient in firearms and can wield them effectively in battle.</span></p>
+<p><strong>Deflect Bullets</strong><span style="font-weight: 400;"> - <i>Prereq, shield proficiency, BAB 5, wielding a shield.</i> You know how to hold a shield to deflect incoming bullets. On your turn as a free action, pick a direction, you automatically negate the first ranged attack from a firearm from that direction which would hit you that turn. Can be combined with the Tower Shield&rsquo;s cover action, but must use the same direction.</span></p>
+<p><strong>Heavy Weapons Training</strong><span style="font-weight: 400;">- <i>Prereq proficiency firearms, BAB 4.</i> You know how to wield the biggest baddest firearms anyone has ever seen! You count as 1 size larger for the purpose of wielding firearms.</span></p>
+	<div style="margin-left: 5%;">
+	<p><strong>Warboss -</strong><span style="font-weight: 400;"> <i>Prereq Firearms proficiency, BAB 8, Heavy Weapons Training.</i> You are capable of putting an impressive amount of lead down range in a short time, even with heavy weapons. Your first reload in combat is a free action, and you can make an intimidate check as a part of any full round action consisting of firing your weapons to intimidate your enemies into running away.</span></p>
+		<div style="margin-left: 5%;">
+		<p><strong>Thundermug - </strong><span style="font-weight: 400;"><i>Prereq proficiency firearms, BAB 16, Heavy Weapons Training, Warboss.</i> Intimidate checks made using the warboss feat gain a bonus equal to the attack bonus of your currently wielded firearm(s). In the event you are wielding more than one firearm, the bonuses stack.</span></p>
+		<p><strong>Sufficient Dakka -</strong><span style="font-weight: 400;"> <i>Prereq proficiency firearms, BAB 16, Heavy Weapons Training, Warboss, Ability to cast 1st level spells.</i> You are capable of using magic to recycle recently fired bullets. When wielding an automatic weapon if you run out of ammunition mid-combat, your weapon is treated as if you had enough mundane, non-magical, non-alchemical rounds to finish the combat. This feat doesn't allow you to begin a fight without ammo and continue to use your firearm. You still need to reload while this feat is in effect.</span></p>
+		</div>
+	</div>
+
+<p><strong>Catch Bullets</strong><span style="font-weight: 400;"> - <i>Prereq Int less than 8, non-Monk.</i> You can stop a bullet! Once. This ability will negate any single ranged firearms attack, but will immediately reduce you to 0 HP.</span></p>
+<p><strong>Skin of Iron </strong><span style="font-weight: 400;">- <i>Prereq Rage Class feature.</i> While raging, you ignore the first firearm attack per round, and gain DR 5/magic vs firearms.</span></p>
+<p><strong>Release the Hounds</strong><span style="font-weight: 400;"> - <i>Prereq Dex 15.</i> Doubles the critical threat range of Doglock pistols, if you have more than one on your person.</span></p>
+<p><strong>Lead the Shot</strong><span style="font-weight: 400;"> - <i>Prerec Deadly Aim.</i> When wielding a rifle and making use of the Deadly Aim feat as a part of an attack action, you can double your negative attack modifier in exchange for doubling the critical threat range of your weapon.</span></p>
+</div>
+
+<h3 class="articletitle"><span id="WondrousItems">Wondrous Items</span></h3>
+<div class="quotebox">
+<p><strong>Targeting monocle.</strong> This small monocle provides essential information to the wearer relating to their weapons and targets. BY displaying a small number of runes and sigles on the lens.</br>
+<strong>Everburning Match.</strong> This small length of oil-infused cloth rope is constantly smoldering, even underwater. It can be used to fire a matchlock or handcannon based weapon, or light small fires.</br>
+<strong>Mage’s Brace of Pistols.</strong> This set of 6, 8, or 10 identical pistols and bandoleer are enchanted. When one or more of the pistol is drawn, the others draw themselves and float near the wielder's hands. Once fired, a pistol can be dropped, whereupon it begins to float and a new pistol is placed into the wielder's hand, ready to fire. This makes reloading a free action until all pistols are empty.</p>
+</div>
