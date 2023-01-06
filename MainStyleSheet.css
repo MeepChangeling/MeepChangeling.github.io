@@ -796,3 +796,12 @@ ol ol ol {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.indent {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.indent2 {
+  margin-left: 6%;
+  margin-right: 6%;
+}
