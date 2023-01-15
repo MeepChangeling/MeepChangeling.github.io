@@ -1,0 +1,888 @@
+/* Header Styling */
+
+h1 {
+  font-family: Garamond, serif;
+}
+h2 {
+  font-family: Garamond, serif;
+}
+
+/* Title Styling */
+
+.header {
+  padding: 30px;
+  text-align: center;
+  /*background: #1abc9c;*/
+  background-image: url("../img/maeve/MaeveHeadder.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 75%, 20%;
+
+  color: #B49933;
+  font-size: 30px;
+  font-family: Garamond, serif;
+  z-index: 1;
+  margin-bottom: -25px;
+  }
+
+/* Navbar Styling */
+
+ul {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /*background-color: #333;
+  background-image: url("img/navbar.jpg");*/
+
+
+}
+
+
+ /* Navbar container */
+.navbar {
+  width: 100%;
+  background-color: #333;
+  background-image: url("img/prim/navbar.jpg");
+  background-size: 100% 100%;
+  font-family: Times New Roman;
+  font-size: 22px;
+  float: left;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-bottom: 20px;
+  z-index: 1;
+  transition: filter 2.5s;
+}
+.navbardark {
+  width: 100%;
+  background-color: #333;
+  background-image: url("img/prim/navbar.jpg");
+  background-size: 100% 100%;
+  filter: brightness(.5);
+  background-size: 100% 100%;
+  font-family: Times New Roman;
+  font-size: 22px;
+  float: left;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-bottom: 20px;
+  z-index: 1;
+  transition: filter 2.5s;
+}
+
+.navbar2 {
+  width: 100%;
+  font-family: Times New Roman;
+  font-size: 22px;
+  float: left;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-bottom: 20px;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: right;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: white;
+  background-image: url("img/buttonbackground.png");
+  background-size: 100% 100%;
+}
+
+	/* The dropdown container */
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+	/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+    background-image: url("img/buttonbackground.png");
+  background-size: 100% 100%;
+}
+
+	/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+  display: inline-block;  // or display:inline if you want them horizontally positioned
+}
+
+	/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  background-image: url("img/prim/paper-texture.jpg");
+  	border: solid #4F120B;
+	border-width: 5px;
+	Border-style: outset;
+	background-color: #FCF5E5;
+	background-repeat: repeat-y;
+}
+
+	/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  background-image: none;
+
+}
+
+	/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+	/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+/* Page Title */
+
+.pagetitlenav {
+	float: left;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-left: 18px;
+	padding-right: 18px;
+	padding-top: 13px;
+	padding-bottom:13px;
+	font-size: 16px;
+	color: white;
+	text-align: center;
+	background-image: url("img/buttonbackground.png");
+	background-size: 100% 100%;
+}
+
+/* Basic Page Styling */
+
+body {
+	background-image: url("../img/maeve/maevebg.webp");
+  background-color: #7F7F7F;
+	background-repeat: no-repeat;
+	background-position: right top;
+	background-attachment: fixed;
+  background-size: 100%;
+}
+/* Book Effect 4F120B */
+
+div.book {
+	display: block;
+  border: solid #999999;
+	border-width: 15px;
+	Border-style: outset;
+	background-image: url("../img/gamerulepagebackground.jpg");
+
+	background-color: #C9C8C6;
+	background-repeat: repeat-y;
+	width: 60%;
+	padding: 20px;
+	margin: auto;
+}
+
+div.journal {
+	display: block;
+	border: solid #333333;
+	border-width: 15px;
+	Border-style: outset;
+	background-image: url("../img/maeve/compbg.webp");
+
+	background-color: #999999;
+	background-repeat: repeat;
+	width: 60%;
+	padding: 20px;
+	margin: auto;
+  margin-bottom: 2em;
+}
+
+img.inline {
+    height: 1em;
+    width: 1em;
+}
+
+img.document {
+	float: right;
+	border: 1px dotted black;
+	margin: 0px 0px 15px 20px;
+}
+
+
+
+iframe.regionmap {
+    border: none;
+    height: 100%;
+    width: 100%;
+}
+
+div.regionmapcontianer {
+  height: 400px;
+  width: 50%;
+  float: right;
+  clear: right;
+  border: solid #4F120B;
+  border-width: 3px;
+  margin: 0.5em 0 0.5em 1em;
+}
+
+/* Headding Styling */
+
+h3.articletitle {
+	font-weight: bold;
+	font-size: 30px;
+	border-bottom: 1px solid #4F120B;
+	overflow: hidden;
+	font-family: Palatino, serif;
+}
+
+div.journal h3 {
+  font-family: 'caligraphy';
+	font-weight: bold;
+	font-size: 30px;
+	border-bottom: 1px solid #4F120B;
+	overflow: hidden;
+}
+
+h4.articlesubtitle {
+	font-weight: bold;
+	font-size: 22px;
+
+	overflow: hidden;
+	font-family: Palatino, serif;
+}
+
+div.journal h4 {
+	font-weight: bold;
+	font-size: 22px;
+  font-family: 'Singeldust';
+}
+
+h5.articlesubtitle {
+	font-weight: bold;
+	font-size: 18px;
+	border-bottom: 1px solid #4F120B;
+	overflow: hidden;
+	font-family: Palatino, serif;
+}
+
+div.journal h5 {
+	font-weight: bold;
+	font-size: 18px;
+	border-bottom: 1px solid #4F120B;
+	overflow: hidden;
+  font-family: 'Singeldust';
+}
+
+h6.articlesubtitle {
+	font-weight: bold;
+	font-size: 14px;
+	border-bottom: 1px solid #4F120B;
+	overflow: hidden;
+	font-family: Palatino, serif;
+}
+
+div.journal h6  {
+	font-weight: bold;
+	font-size: 14px;
+	border-bottom: 1px solid #4F120B;
+	overflow: hidden;
+  font-family: 'Singeldust';
+}
+
+/* List Styling */
+
+ul.articlelist {
+	background: none;
+	background-image: none;
+	list-style-type: circle;
+}
+ul.demographicslist {
+	background: none;
+	background-image: none;
+	list-style-type: none;
+}
+ol.articlelist2 {
+	background: none;
+	background-image: none;
+	list-style-type: disc;
+}
+
+/* Link Styling */
+
+a.doclink:link {
+  color: #1a4210;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+a.doclink:visited {
+  color: #eb5519;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+a.doclink:hover {
+  color: #c29b2e;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+a.articlelink:link {
+  color: #1a4210;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+a.articlelink:visited {
+  color: #eb5519;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+a.articlelink:hover {
+  color: #c29b2e;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+
+
+
+
+/* Info Boxes */
+
+table.infobox {
+border: 1px solid #a2a9b1;
+border-spacing: 3px;
+background-color: #f8f9fa;
+color: black;
+margin: 0.5em 0 0.5em 1em;
+padding: 0.2em;
+float: right;
+clear: right;
+font-size: 88%;
+line-height: 1.5em;
+width: 22em;
+}
+
+td.infobox-subheadder {
+	text-align: center;
+}
+
+th.infobox-head {
+	background-color: hsla(32, 24%, 33%, 0.82);
+	font-weight: bold;
+	text-align: center;
+}
+
+th.infobox-lable {
+	text-align: left;
+	font-weight: bold;
+}
+
+th.infobox-data {
+	text-align: left;
+}
+
+.infobox-image {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Special Tags */
+
+p.AutoUpdateTag {
+display: none;
+}
+
+/* Collapsible */
+
+.collapsible {
+  background-color: hsla(32, 24%, 33%, 0.82);
+  color: white;
+  cursor: pointer;
+  padding: 0px;
+  width: auto;
+  border: none;
+  padding-right: 10px;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: rgba(108, 98, 71, 0.34);
+}
+
+.collapsible:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: white;
+    float: left;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+/* Lists */
+
+ul.simple {
+	list-style-type: none;
+	background-image: none;
+	background: none;
+	text-indent: 30px;
+}
+
+.zoomleft {
+  padding: 0px;
+  background-color: none;
+  transition: transform .2s; /* Animation */
+  width: 20%;
+  margin: 0 auto;
+  border: solid #4F120B;
+  border-width: 3px;
+  margin: 10px;
+  float: left;
+  width: 20%;
+  padding: 0px;
+   z-index: 2;
+}
+
+.zoomright {
+  padding: 0px;
+  background-color: none;
+  transition: transform .2s; /* Animation */
+  width: 20%;
+  margin: 0 auto;
+  border: solid #4F120B;
+  border-width: 3px;
+  margin: 10px;
+  float: right;
+  width: 20%;
+  padding: 0px;
+   z-index: 2;
+}
+
+.zoomleft:hover {
+  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transition-delay:1s;
+
+}
+
+.zoomright:hover {
+  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transition-delay:1s;
+
+}
+
+/* Media Control System */
+
+div.mediacontrol {
+	  float: left;
+  position: sticky; top:80;
+  background-image: url("img/woodplate.jpg");
+  background-size: cover;
+  padding: 13px;
+  width: 15%;
+  border-radius: 10px;
+}
+
+button.mediacontrollbutton {
+	background-color: transparent;
+	background-size: contain;
+	border: none;
+	cursor: pointer;
+	width: 60px;
+	padding: 2px;
+	margin-bottom: 16px;
+	height: 60px;
+}
+
+button.mediacontrollbutton#play {
+	background-image: url("img/play.png");
+}
+button.mediacontrollbutton#play:hover {
+	background-image: url("img/playlit.png");
+}
+
+
+button.mediacontrollbutton#pause {
+	background-image: url("img/pause.png");
+}
+button.mediacontrollbutton#pause:hover {
+	background-image: url("img/pauselit.png");
+}
+
+
+button.mediacontrollbutton#stop {
+	background-image: url("img/stop.png");
+}
+button.mediacontrollbutton#stop:hover {
+	background-image: url("img/stoplit.png");
+}
+
+/* Table of Contents */
+
+div.storytoc {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 60px;
+  max-height: 360vh;
+  float: left;
+  border: solid #333333;
+	border-width: 5px;
+	Border-style: outset;
+	background-image: url("img/prim/paper-texture.jpg");
+
+	background-color: #999999;
+
+  display: table;
+  font-size: 90%;
+  margin-bottom: 1em;
+  margin-right: 1em;
+  padding: 20px;
+  width: 15%;
+  z-index: 100;
+}
+
+
+.toc_title {
+  font-family: 'caligraphy';
+  font-weight: bold;
+  font-size: 30px;
+  border-bottom: 1px solid #4F120B;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+#toc_container{
+    font-family: 'hyperlegibler';
+    line-height: 0.95em;
+}
+
+ol.toc_list {
+  list-style-type: decimal;
+  margin-left: 5%;
+  padding-left: 0px;
+}
+ol.nested {
+  list-style-type: lower-greek;
+  margin-left: 5%;
+  padding-left: 0px;
+}
+
+
+html {
+	scroll-padding-top: 4rem;
+}
+
+@font-face {
+    font-family: 'hyperlegibler';
+    src: url('../fonts/atkinson-hyperlegible-regular-102.woff2') format('woff2'),
+         url('../fonts/atkinson-hyperlegible-regular-102.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'typewriter';
+    src: url('../fonts/TT2020StyleB-Regular.woff2') format('woff2'),
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Singeldust';
+    src: url('../fonts/PencilsRB.woff2') format('woff2'),
+         url('../fonts/PencilsRB.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'caligraphy';
+    src: url('../fonts/EraserRegular.woff2') format('woff2'),
+         url('../fonts/EraserRegular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'cursive';
+    src: url('../fonts/ruthie-regular-webfont.woff2') format('woff2'),
+         url('../fonts/ruthie-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+p {
+	font-family:'hyperlegibler';
+	font-size: 0.95em;
+	line-height: 1em;
+}
+
+.journal p {
+	font-family:'Singeldust';
+	font-size: 0.9em;
+	line-height: 26px;
+  color: #000;
+    text-shadow: 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff, -1px 0 0 #fff;
+}
+
+div.journal img {
+	border: 3px solid #33251f;
+	margin: 1em;
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.quotebox {
+	padding-left: 3%;
+	padding-right: 3%;
+	margin-left: 5%;
+	margin-right: 5%;
+	border: 1px solid #4F120B;
+	background-color: rgba(108, 98, 71, 0.34);
+	font-family: 'Courier New';
+	overflow: hidden;
+}
+
+figure.right {
+	  padding: 0px;
+  background-color: none;
+  transition: transform .2s; /* Animation */
+  width: 20%;
+  margin: 0 auto;
+  border: solid #4F120B;
+  border-width: 3px;
+  margin: 10px;
+  float: right;
+  width: 20%;
+  padding: 0px;
+}
+
+
+figure.left {
+  padding: 0px;
+  background-color: none;
+  transition: transform .2s; /* Animation */
+  width: 20%;
+  margin: 0 auto;
+  border: solid #4F120B;
+  border-width: 3px;
+  margin: 10px;
+  float: left;
+  width: 20%;
+  padding: 0px;
+}
+
+figure.left:hover {
+  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transition-delay:1s;
+
+}
+
+figure.right:hover {
+  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transition-delay:1s;
+}
+
+figcaption.basic {
+	text-align: center;
+	border-bottom: 3px solid #4F120B;
+	background-color: rgba(108, 98, 71, 0.34);
+}
+
+@font-face {
+    font-family: 'typewriter';
+    src: url('../fonts/TT2020StyleB-Regular.woff2') format('woff2');
+	font-weight: normal;
+    font-style: normal;
+}
+
+.typed {
+	font-family: 'typewriter';
+	font-size: 0.85em;
+	line-height: 1em;
+}
+
+.bgtint {
+position: fixed;
+background-color: black;
+opacity: .85;
+width: 100%;
+height: 100%;
+z-index: -100;
+transition: opacity 2.5s;
+}
+.center {
+      position: fixed;
+      margin: auto;
+      background-color: black;
+      width: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      object-fit: fill;
+      opacity: 0;
+      transition: opacity 2.5s;
+      z-index: -999
+}
+.center1 {
+    position: fixed;
+    margin: auto;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    object-fit: fill;
+    opacity: 0.75;
+    transition: opacity 2.5s;
+    z-index: -999
+}
+
+hr {
+    border: none;
+    border-top: none;
+    color: #333;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+}
+
+hr:after {
+    background: rgba(212, 43, 164, 0);
+    content: '⊱⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⊰';
+    font-weight: bolder;
+    font-size: 2em;
+    padding: 0 4px;
+    position: relative;
+    top: -10px;
+}
+
+/* Paper Effect /*
+
+/* styling paper */
+#paper {
+  width: auto;
+  height: auto;
+  position: relative;
+  margin: 0px auto;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px #888;
+}
+
+/* styling red vertical line */
+#paper::before {
+  content: '';
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 40px;
+  background-color: rgba(255,0,0,0.6);
+}
+
+/* styling blue horizontal lines */
+#pattern {
+  height: 100%;
+  background-image: repeating-linear-gradient(white 0px, white 24px, teal 25px);
+}
+
+/* styling text content */
+#content {
+  padding-top: 6px;
+  padding-left: 56px;
+  padding-right: 16px;
+  line-height: 10px;
+  font-family: 'Singeldust';
+  font-size: 1.2em;
+  letter-spacing: 3px;
+  word-spacing: 5px;
+}
+
+.notepage {
+  background-color: #fff;
+  background-image:
+  linear-gradient(90deg, transparent 79px, #d11f1f 79px, #abced4 81px, transparent 81px),
+  linear-gradient(#e5f6f5 .1em, transparent .1em);
+  background-size: 100% 1.2em;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.notepage p {
+  padding-left: 85px;
+  padding-right: 85px;
+  font-family:'Singeldust';
+  font-size: 1.2em;
+
+  color: #000;
+    text-shadow: 1px 0 0 #fff, 0 -1px 0 #fff, 0 1px 0 #fff, -1px 0 0 #fff;
+}
+
+.notepage h4 {
+  padding-left: 85px;
+
+}

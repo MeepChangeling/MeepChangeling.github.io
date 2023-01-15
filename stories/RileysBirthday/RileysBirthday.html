@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<html>
+<head>
+<meta charset="utf-8">
+<title>Riley's Birthday</title>
+<link href="../../StoryStyleSheet.css" rel="stylesheet">
+<link rel="icon" type="../image/x-icon" href="../../img/logo.png">
+<style media="screen">
+</style>
+</head><script src="../scripts/darkmode.js"></script>
+<body>
+  <!-- Darkmode Switch -->
+
+<div>
+<script src="storynav.js"></script>
+</div>
+<br>
+<!-- IMGs below vvv -->
+
+<img id="img1" class="invis" src="../img/rileyswork.jpg" style="" alt="">
+
+
+<!-- IMGs above ^^^ -->
+<div id="BGtint" class="center" style=""></div>
+
+<div id="book" class="book">
+<h3 id="storytitle" class="articletitle">Riley's Birthday</h3>
+<div id="quotebox" class="quotebox" >
+  <p style="font-family: Courier New; color: red; font-size: 2em; text-align: center;"><b>Content Advisory</b></p>
+  <p style="font-family: Courier New; font-size: 1em;">This is a work of erotic fiction depicting a futa and female couple. It includes:</p>
+  <ul style="font-family: Courier New; list-style-type: none; margin-left: 5%; font-size: 1em;">
+    <li>Kemonomimi (Specificly: cow-girl)</li>
+    <li>Humanoids (Specificly: goblin (shortstack))</li>
+    <li>Transformation</li>
+    <ul style="margin-left: 3%;">
+      <li>Udder growth</li>
+    </ul>
+    <li>Anal sex</li>
+    <li>BDSM (light)</li>
+    <ul style="margin-left: 3%;">
+      <li>Loving Dom, Happy Sub</li>
+      <li>Aftercare</li>
+    </ul>
+  </ul>
+  <p style="font-family: Courier New; font-size: 1em;">Reader discression is advised.</p>
+</div>
+
+</div>
+
+<!-- Image change weaypoints -->
+
+<script src="../scripts/noframework.waypoints.js"></script>
+<script>
+  var waypoint = new Waypoint({
+    element: document.getElementById('basic-waypoint'),
+    handler: function() {
+      document.getElementById("img1").className = "center1";
+    },
+    offset: '50%'
+  })
+</script>
+<script>
+  var waypoint = new Waypoint({
+    element: document.getElementById('basic-waypoint2'),
+    handler: function() {
+      document.getElementById("img1").className = "center";
+    },
+    offset: '50%'
+  })
+</script>
+
+<!-- Toggles Darkmode -->
+<script type="text/javascript">
+  function darkmodeBG () {
+    let element = document.getElementById('BGtint');
+    element.classList.toggle('bgtint');
+    let element2 = document.getElementById('book');
+    element2.classList.toggle('darkmode');
+    let element3 = document.getElementById('navbar');
+    element3.classList.toggle('navdarkmode');
+    let element4 = document.getElementById('storytitle');
+    element4.classList.toggle('darkmode');
+    let element5 = document.getElementById('quotebox');
+    element5.classList.toggle('quotedarkmode');
+
+  }
+</script>
+
+<!-- Unticks Light Mode box on refresh -->
+<script>
+window.onload = function(){
+   var checkboxes = document.getElementsByTagName("INPUT");
+
+   for(var x=0; x<checkboxes.length; x++)
+   {
+      if(checkboxes[x].type == "checkbox")
+      {
+          checkboxes[x].checked = false;
+      }
+   }
+
+}
+</script>
