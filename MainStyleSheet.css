@@ -257,17 +257,18 @@ div.dungeongen {
 /* Basic Page Styling */
 
 body {
-  -webkit-animation: fadein 1.5s;
+
 	background-image: url("img/hideout.webp");
   background-color: #black;
 	background-repeat: no-repeat;
 	background-position: right top;
 	background-attachment: fixed;
+  overflow-anchor: none
 }
 
 body.darkmode {
   color: #CECECE;
-  -webkit-animation: fadein 1.5s;
+
   background-image: url("img/hideoutdark.webp");
   background-color: #black;
 }
@@ -279,7 +280,7 @@ div.book {
 	border-width: 15px;
 	Border-style: outset;
 	background-image: url("img/bookpage.jpg");
-overflow: auto;
+	display: block;
 	background-color: #FCF5E5;
 
 	width: 60%;
@@ -294,7 +295,7 @@ div.book.darkmodebook {
   display: block;
   border-width: 15px;
   Border-style: outset;
-  overflow: auto;
+
   background-color: #FCF5E5;
   width: 60%;
   padding: 20px;
@@ -363,6 +364,8 @@ body.darkmode tr:nth-child(even) {
 td:nth-child(even) {
   background-color: hsla(32, 24%, 50%, 0.48);
 }
+
+
 
 body.darkmode td:nth-child(even) {
   background-color: hsla(349, 29%, 37%, 0.46);
@@ -595,7 +598,7 @@ display: none;
 
 }
 
-body.darkmode .collapsible {
+body.darkmode button.collapsible {
   background-color: hsla(349, 34%, 37%, 0.46);
 }
 
@@ -609,6 +612,11 @@ body.darkmode .collapsible {
   overflow: hidden;
   transition: max-height 0.2s ease-out;
   background-color: rgba(108, 98, 71, 0.34);
+}
+
+body.darkmode .content {
+  background-color: hsla(349, 29%, 53%, 0.22);
+  color: #e3e3e3;
 }
 
 .collapsible:after {
