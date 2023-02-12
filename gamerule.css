@@ -171,9 +171,9 @@ div.mapframe, iframe {
     margin: 0 auto;
     border: solid #4F120B;
 	border-width: 15px;
-	background-image: url("img/bookpage.jpg");
+	background-image: url("img/gamerulepagebackground.jpg");
 	background-color: #FCF5E5;
-	background-repeat: repeat-y;
+
 }
 
 iframe.infoboxiframe {
@@ -181,9 +181,9 @@ iframe.infoboxiframe {
      border: solid #4F120B;
 	 margin: auto;
 	border-width: 3px;
-	background-image: url("img/bookpage.jpg");
+	background-image: url("img/gamerulepagebackground.jpg");
 	background-color: #FCF5E5;
-	background-repeat: repeat-y;
+
 
 	width: 98%;
 	height: 250px;
@@ -196,9 +196,9 @@ div.dungeongen {
     margin: 0 auto;
     border: solid #4F120B;
 	border-width: 15px;
-	background-image: url("img/bookpage.jpg");
+	background-image: url("img/gamerulepagebackground.jpg");
 	background-color: #FCF5E5;
-	background-repeat: repeat-y;
+
 }
 
 /* Page Title */
@@ -237,7 +237,6 @@ div.book {
 	background-image: url("img/gamerulepagebackground.jpg");
 	overflow: hidden;
 	background-color: #FCF5E5;
-	background-repeat: repeat-y;
 	width: 60%;
 	padding: 20px;
 	margin: auto;

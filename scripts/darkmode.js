@@ -1,13 +1,16 @@
 
   function darkmodeBG () {
-    var el = document.getElementById("theme");
-    if (el.href.match("../MainStyleSheet.css")) {
-        el.href = "../DarkStyleSheet.css";
-    }
-    else {
-        el.href = "../MainStyleSheet.css";
-    }
+    const toggleClass = (el, className) => el.classList.toggle(className);
 
+    document.body.classList.toggle("darkmode");
+    toggleClass(document.querySelector('div.book'), 'darkmodebook');
+    toggleClass(document.querySelector('div.header'), 'darkmodeheader');
+    toggleClass(document.querySelector('div.navbar'), 'darkmode');
+    // document.querySelector('div.dropdown-content').forEach(e => e.classList.toggle('darkmode'));
+    document.querySelectorAll('h3.articletitle').forEach(e => e.classList.toggle('darkmode'));
+    document.querySelectorAll('h4.articlesubtitle').forEach(e => e.classList.toggle('darkmode'));
+    document.querySelectorAll('h5.articlesubtitle').forEach(e => e.classList.toggle('darkmode'));
+    document.querySelectorAll('h6.articlesubtitle').forEach(e => e.classList.toggle('darkmode'));
     }
 
 

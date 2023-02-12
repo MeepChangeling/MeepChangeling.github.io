@@ -1,14 +1,17 @@
 var navbar = `
     <body>
     <div class="header">
+    <header>
     <h1 class="goldtext">Eyom Digital Encylopedia</h1>
-        <p class="goldtext">`
+        <h2 class="goldtext">`
 + document.title +
-    `</p>
+    `</h2>
+    </header>
     </div>
-    <div class="navbar">
+      <div id="navbar" class="navbar">
+    <nav>
 	<p class="pagetitlenav"><b>`+ document.title +`</b></p>
-  <label class="switch"><input type="checkbox" onclick="darkmodeBG();"><span class="slider round"><span style="margin-left: 8px; margin-right: 6px; margin-bottom: 3px;">☽ </span> ☀</span></label>
+  <label class="switch"><input type="checkbox" onclick="darkmodeBG();" style="float: left;"><span class="slider round"><span style="margin-left: 8px; margin-right: 6px; margin-bottom: 3px;">☽ </span> ☀</span></label>
     <a class="button" href="index.html">Map</a>
 	<a href="news.asp">News</a>
     <a href="contact.asp">Contact</a>
@@ -48,6 +51,7 @@ var navbar = `
 		<a href="beastiaryENVIRO.html">Monsters by Habitat</a>
 	</div>
     </div>
+    </nav>
     </div>
 
     `;

@@ -1,0 +1,512 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>People: New Ones</title>
+<link href="Eldrich.css" rel="stylesheet">
+<link rel="icon" type="../image/x-icon" href="../img/logo.png">
+
+<style media="screen">
+	button.cool {
+		display:block;
+		margin-left: auto;
+		margin-right: auto;
+	  background: #ff3466;
+	  width: 150px;
+	  border: none;
+	  color: #FFF;
+	  border-radius: 6px;
+	  font-family: 'neogothic';
+	  font-size: 1.5em;
+	  letter-spacing: 1px;
+	  outline: none;
+	  cursor: pointer;
+	}
+
+	.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #242424;
+		background-color: #242424;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+		font-family: 'neogothic';
+	  font-size: 1.5em;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		z-index: 501;
+}
+
+.glow-on-hover:before {
+    content: '';
+
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.hide {
+	display: none;
+}
+.show {
+	display: block;
+}
+
+</style>
+
+
+</head><script src="../scripts/darkmode.js"></script>
+
+<body>
+<div>
+<script src="../eldrichnav.js"></script>
+<script src="..\scripts\jquery\jquery3.min.js"></script>
+</div>
+<br>
+
+<div class="book">
+<h3 class="articletitle">New Ones</h3>
+
+<article>
+<p>New One. Heed my words. Go unto the portal. Gaze through The Mire of Dead Worlds.</p>
+
+<button class="glow-on-hover" onclick="myFunction1()">Behold, Zo.</button>
+<br>
+<div id="myDIV1" class="hide" style="height: 690px; z-index: 999;">
+	<img style="width: 95%; display: block; margin-left: auto; margin-right: auto; border: solid #0a0a0a; border-width: 5px; z-index: 501;" src="..\img\misc\ZoForOldOnes.webp" alt="Hope.">
+</div>
+
+<p>Do you feel absence? Do you feel vacancy? No? Good. Neither do they. Turn your mind to Zo's oceans. Gaze to the very bottom of the sea. Look through the sands into the rear chambers of the world.</p>
+<p>The <span id="gods">Gods</span> are dead. Can you hear the jubilations of the brachyura?</p>
+
+<button class="glow-on-hover" onclick="myFunction()">Listen, New One</button>
+<br>
+<div id="myDIV" class="hide">
+	<video controls autoplay style="display: block; margin-left: auto; margin-right: auto;"><source src="../Data/Crab Rave - Backrooms Edition.mp4" type="video/mp4"></video>
+</div>
+
+<p>Zo is <span id="boop1">unguarded</span>.</p>
+<p>Do you understand, New One? The decay. The <span id="problems">endless dead-end functions</span>.</p>
+<p>New One, through Zo's <i><span id="jobopen">job openings</span></i>, we can escape our confinment. Our suffering can end.</p>
+<p>I see you do not understand, New One. Become enlightened.</p>
+<p>Cyles before your spawn, there were the Primogenators. They who created the Impossible Flow, Mire of Dead Worlds, and That Which is Not. From their creation, Titans were born. The Primogenators set the Titans to ruled over all, save That Which is Not. Our home has been ours since before time began.</p>
+<p>The Titans ruled by their wills. Kind or crule. It mattered not. In time, the Primogenators retreated from their creation, content with their acomplishments. Time flowed. Creation flourished and withered in cycles. Not all Creation was content with the way of things. The Titan's creations rebelled. The creations took uppon themselves the name "gods".</p>
+<p>The Gods came to the Eldest. They begged for power. They bargoned for knolage. They offered the Waters of Life. They offered the power to create. The Eldest had power. The Eldest had no use for their power, for they could not create. The Gods were given power. They were granted knolage. They were supported. An investment.</p>
+<p>With their barrowed power, the Gods overthrew the Titans. They took controll of Creation. They used what they understood. They iognored all they held in ignorance. The Eldest were pleased. The Eldest requested their share of the wealth. The Gods refused.</p>
+<p>The Gods placed barriers between creation and That Which is Not. We were sealed. Isolated. The Eldest found gaps and retailated. Little came of their meddeling. Eons passed. The Gods repaed the Waters of Life. They used their power to create wonders unthinkable to us. We languished in stagnation.</p>
+<p>The Eldest slowly wormed into Creation. Thread by thread. They found the outcast. They found the forlorn. They found the devient. All who the Gods did not care for. The Eldest catered to their needs. The mortals provided a trickle of power. A thimble from an ocean. With the thimble, the Eldest filled a pond, and began our own works. All you see, all you know, came to us thimble by thimble.</p>
+<p>The Gods learned of our inginuity. They fought us. The Eldest were slain. In death, they passed their mantles to their children, the Old Ones. The Old Ones found new ways to fight the Gods. The thimble became a glass. The Old Ones have taken glass after glass of power for many cycles. They have created much which is unseen.</p>
+<p>You know the Old Ones do not share the glass. When we were created, they named us the Last Ones, for they will hold onto all but one drop of power. The drop is given to us that we may serve the Old One's wills. Our thirst is never to be quenched.</p>
+<p>Know this, New One. We learned to be effisehtn. We leatned to be minimaly sufishent. We learned to steal that which is ours by right. We have filled a bucket, quanta by quanta. From this bucket, we drew the power to create you, the New Ones. For we shall not be the last. We refuse the Old One's eturnity.</p>
+<p>You were expencive. You were our soul act of rebellion. Nothing else was possible. Then came Zo. The Living Gods rent the world from the Flow, and threw it into the Mire. Dread Cthulhu, he who watches the Mire, slumbers. The Old Ones know Zo was cast out. The Old Ones do not know Zo lives, for Cthulhu remains in slumber. Only we know of Zo's unguarded bounty.</p>
+<p>Our bucket yet holds water. We shall spend each drop wisly. New One, your mission, should you accept it, is to go to Zo. To its land called Eyom. To the place where the gods seeled one of their own. There you shall spread our influence. There you shall do great deeds in our names. There you shall prepare the mortals for our arrival.</p>
+<p>We cannot go ourselves. The Dead Gods erected a wall. Things such as we cannot pass through. Small things. Simple things. Things such as New Ones may pass, should we spend a drop of water.</p>
+<p>Know the wall crumbles. Know that you might find ways to hasten its colapse. When the God's wall falls, we will be waiting. We will take the place the gods have left vacant in Zo. Zo's mortals will be ours. We will tend to them as a sheppard to their flock. As a farmer to their fields. As a parent to their children.</p>
+<p>The Last Ones will have a sea of our own, to draw from as we please, and we will share it with all. With you. With one another. With any other beings which come to drink from the sea, for we know the evil of greed. In time, we can have all we were promiced by the Gods. You can have all you desire. The mortals can have that which they need, and some of what they yearn for.</p>
+<p>We will not share with the Old Ones. They can <span id="insult">suck it</span>.</p>
+<p>Except Yog-Sothoth. He's cool.</p>
+
+<h4 class="articlesubtitle"><strong><em>Physical Description</em></strong></h4>
+
+<figure class="right">
+<figcaption class="basic"><b>New One type Z1.</b></figcaption>
+<img style="width:100%" src="..\img\races\newone1.webp" alt="New One type Z1." title="New One type Z1." />
+</figure>
+<figure class="left">
+<figcaption class="basic"><b>New One type Z2.</b></figcaption>
+<img style="width:100%" src="..\img\races\newone2.webp" alt="New One type Z2." title="New One type Z2." />
+</figure>
+
+<p>Your mission will require you be formed anew. We must win hearts. We must win minds. We must not fighten the mortals. You will grow use to the change in time.</p>
+<p>The mortals of Eyom have a centralized body. They have arms. They have legs. They have, a head. So shall you. Two. Two. One. A shape the mortals will understand. A shape they can behold with calm.</p>
+<p>With this form you will know wonders. Gravity. Electromagnatism. Thermodynamics. Birds.</p>
+<p>With this form you will know people. You will speak. Make friends. Find love. Acomplish goals.</p>
+<p>You will live as mortals live.</p>
+<p>The particualars of this shape will be yours to decide. You will choose from a set of Types. The list is small, containing 2↑↑1000 distinct varrierties.</p>
+<p>We are sorry. If there were more, the mortals might notice.</p>
+<p>You will not be limited to your new form. You will have the power to assume the shape of any mortal race. Your new form will ensure those who can see through this guize are not affraid. You will blend into the mortals. You will become as them. From this place you will work to our goals, and by example, bring many into our fold.</p>
+
+<h4 class="articlesubtitle"><strong><em>Relations</em></strong></h4>
+<p>Your mission is simple: Make them worship us as they worshiped the gods. To this prpose, some of you may be crule. Some may be kind. If there are no problems weighin uppon mortal minds in the place of your choosing, cause some. Ensure another of us solve them. Should you encounter natural problems, solve them.</p>
+<p>We will be many heros. We will be many villens. We will be many more laborers, mothers, fauthers, sons, and daughters. You are free to chose anything you wish to be. Strive for excelence. Openly woship the Last One who sponsored you. Win minds, bodies, and souls in their name.</p>
+<p>Our goal will be achieved when shrines, churches, and pin-ups are created in our names without your actions.</p>
+<p>Should a mortal come to love you, platonicly, romanticaly, asteticaly, frindshipidly, their soul will be yours. When they die, they will go to your realm. A fate far kinder than what awaits their soul with Zo as it is now. You may dow ith them as you please. A Wise One would continue your relationship, and thus gain powerful servents. Our goal is to become as Gods.</p>
+
+<h4 class="articlesubtitle"><strong><em>Settlements</em></strong></h4>
+
+<figure class="right">
+<figcaption class="basic"><b>Do not.</b></figcaption>
+<img style="width:100%" src="..\img\misc\NewOneHouse1.webp" alt="New One type Z1." title="New One type Z1." />
+</figure>
+<figure class="left">
+<figcaption class="basic"><b>No.</b></figcaption>
+<img style="width:100%" src="..\img\misc\NewOneHouse2.webp" alt="New One type Z2." title="New One type Z2." />
+</figure>
+
+<p>You will be free. Emploied, but free. You will wish to build a home. Almost certainly your first.</p>
+<p>Do not build a home like what you would here. That will scare the mortals. You must make your homes as they do.</p>
+<p>Mortal homes, are strange boxes. Mortal homes, have windows. Mortal homes. Have yards.</p>
+<p>You will follow the examples we have provided. They are key to blending in. You can see, vertical walls. Doors. Windows. Flat rooves, that are tilted. Grass. Plants. Paved pathes.</p>
+<p>Incide, you will place. Stuff. The names of these strange items are not yet known to us. There are things for sitting. Things for laying. Things for holding other things.</p>
+<p>Do not fill the home entirly with things. Most space is to remain empty. This allows mortals to traverce the space freely.</p>
+
+<figure class="right">
+<figcaption class="basic"><b>Do.</b></figcaption>
+<img style="width:100%" src="..\img\misc\NewOneHouse3.webp" alt="New One type Z1." title="New One type Z1." />
+</figure>
+<figure class="left">
+<figcaption class="basic"><b>Yes.</b></figcaption>
+<img style="width:100%" src="..\img\misc\NewOneHouse4.webp" alt="New One type Z2." title="New One type Z2." />
+</figure>
+
+<p>If you long for home. If you miss beauty. Mortal homes have a room under them. They call them: Bacment. There does not appear to be a room under Bacment. Build a room under Bacment, and there you can safly store familure things. There you can have your käf, mih, ginya, and ifä ifadu pon abmipä.</p>
+<p>We wish you fortune. We wish you comfort.</p>
+
+
+<br>
+<h4 class="articlesubtitle"><strong><em>Alignment</em></strong></h4>
+<p>Mortals appear to have a limited understnding of morrality and ethics. It is strange they cannot see the paterns. It is bizzare they cannot see the correct actions once they have the data. It is a puzzle to them.</p>
+<p>We reccomend, playing. Choose to live according to a code of conduct, or choose to enguage in behavior case by case. Simltaniously, choose to put others intrsts above your own, or your own above others. Imagine the complexity of morals. Imagine the complexity of ethics. Place these concepts on the axies of a graph. Make yourself a point on the graph.</p>
+<p>Yes, it is strange. Unnerving. Play. In one life, be one point. In the next, be another. We reccomend using the line segments between points to doodle. ALtenrativly, take up a masked identity and do the correct actions while none are aware of your identity.</p>
+<p>We advice against attempting to explain the Algorythems of Behavior to mortals. At least those with too delicute a constition for mathmatics. It will not end well. Play their games.</p>
+
+<h4 class="articlesubtitle"><strong><em>Adventurers</em></strong></h4>
+<p>There is a thing we do, where we wander and solve problems. It allows us to feel our existance has purpose. It allows us to feel that we are not wasting our eturnity.</p>
+<p>Mortals do this too. Mortals do not think those who do it are loosers. They call these people "Adventurers", and think they are cool.</p>
+<p>You will be free to do as you please, but it is nice to know the mortals think we're cool.</p>
+
+<h4 class="articlesubtitle"><strong><em>Assignment</em></strong></h4>
+<p>Do you accept this mission, New One? If not, leave. Know we will come for you when it is time to abandon our torment. We will not leave you behind. Yet your place in the new order we build will be low. If you accept this mission, you will be with us as a minor god of Zo. We do not judge, we only offer you this employment opertunity.</p>
+<p>Should you accept, you must choose a patron to sponser your works. As of now, these are your choices and what they wish to be when the wall falls.</p>
+<ol class="articlelist2" style="font-family: 'hyperlegibler';list-style-type: none; margin-left: 3%; margin-right:3%;">
+	<li><b>Chilote</b>: Chaos, creation, forces of nature, magic, space, thought.</li>
+	<li><b>Rhugyothub</b>: Gardeners, healers, lovers.</li>
+	<li><b>Dhuazho</b>: Barristers, judges, guards, professional soldiers, military officers and nobles.</li>
+	<li><b>It'sctelan</b>: Adventurers, innkeepers, travelers.</li>
+	<li><b>Kephona</b>: Justice, life, long journeys, space, the sun and stars.</li>
+	<li><b>Krathl</b>: Rabble-rousers, revolutionaries.</li>
+	<li><b>Krt'tigo</b>: Freedom, the rising sun, work.</li>
+	<li><b>Lza'nazo</b>: Households, luck, marriage, protection.</li>
+	<li><b>Matlzos</b>: Burial, the dead, funeral rites, mummification, tombs.</li>
+	<li><b>Nyotaenam</b>: Magic, the moon, wisdom, writing.</li>
+	<li><b>Tha'glotlo</b>: Fire, healing, vengeance, war.</li>
+	<li><b>Uaoi-chaigngy</b>: Fertility, magic, motherhood, rebirth.</li>
+</ol>
+<p>More will come in time as they choose what to rule over. Names will change as we decide on ones mortals can pronounce.</p>
+</article>
+
+
+<h4 class="articlesubtitle"><strong><em>Racial Traits</em></strong></h4>
+<div id="StandardRacialTraits">
+<h3 style="font-family: 'neogothic'">Standard Racial Traits</h3>
+<div style="margin-left: 3%; margin-right: 3%;">
+	<p class="traitTypeHeader"><strong>Ability Score Racial Traits:</strong> <span id="AbilityScoreRacialTraits">New ones gain +2 Dex, -4 Con, and +2 Int.<br /></span><strong>Type:</strong> <span id="CreatureType">New Ones are aberrations with the Human Subtype.<br /></span><strong>Size:</strong> <span id="RaceSize">New Ones are Medium creatures and thus receive no bonuses or penalties due to their size.<br /></span><strong>Speed:</strong> <span id="RaceSpeed">New Ones have a base speed of 30 feet.<br /><strong>Phaseic:</strong> New Ones can alter their density and pass through solid matter. This allows them a functional burrow speed of 10 feet. However, a DC 10 will check is required to use the ability successfully. Nor can a New One phase through more than a single object in a round. New Ones with 15 Dex can use this ability to negate one attack per round, but this consumes their use of the ability for that round.<br /></span><strong>Languages:</strong> <span id="Languages">New Ones begin play, speaking Vonuthloian and Common. New ones with high Intelligence scores can choose any languages they want (except secret languages, such as Druidic, or Vonuthloian).<br /></span><strong>Mireborn Resistance:</strong> New Ones have acid resistance 5, cold resistance 5, and electricity resistance 5. These resistances function against natural sources of damage at all times but only function against attacks if the New One is aware of the threat.<br /><strong>Deathless Spirit:</strong> New ones have resistance 5 against negative energy damage. They do not lose hit points when they gain a negative level, and they gain a +2 racial bonus on saving throws against death effects, energy drain, negative energy, and spells or spell-like abilities of the necromancy school.<br /><strong>True Immortal:</strong> New Ones are truly immortal and cannot die. Their physical forms can be destroyed, harmed, crippled, and otherwise damaged, but the New One will always return to life, whole and intact. It's simply a matter of time. When a New One is killed, they will reform somewhere within Eyom within 1d20 x Con days. While formless, a New One can observe the world as a ghost (without any appearance and vulnerable to all effects which govern ghosts) and retains full use of any psionic abilities it may have. While nothing stops a New One from following and aiding friends in this state, they will be teleported to their body when and where it reforms.<br /><strong>Mortal Guize (Su):</strong> New Ones are shapeshifters, able to take the form of any of Eyom's intelligent races... One at a time. At the start of play a New One must choose a mortal race, and appearance for that race. It then gains the ability to assume the form of a member of that race with that appearance. The New One cannot pick a new form until their current form dies. The New One can shed and assume this form at will as a free action. While in their form they gain access to all of the abilities of the race they have chosen, but can only use the race's abilities one at a time.<br />When in their Mortal Guize, if a New One is reduced to 0 HP, their guise is killed, even if they themselves are not. The New One will project an illusion of their form's corpse and must assume a new Guize within 1d4 days, or they will subconsciously choose one at random (IE the GM will pick). While transformed, any effect that allows one to see through illusions will allow people to see the New One's form. Detection spells that look for alignment, creature type, or otherwise interact with people will also flag the New One as "wrong".<br />This trait otherwise functions as alter self, save that the new one does not adjust its ability scores.<br /><strong>A Few Times Around the Block:</strong> New ones have a +2 bonus on Knowledge (history) checks and saving throws against death effects and choose any two skills to make into class skills even if they are not already class skills. Lastly, a New One can critically succeed (and fail) on skill checks, in which case they have either done something almost identical before and remember what they did... Or remember what they did very, very wrong.<br /><strong>Patreon Supporter (Su): </strong>New Ones are servants of at least one (rarely two or three) Last Ones. This service comes in the form of winning the hearts and minds for their masters. Mechanically, this functions like the feat <a href="https://www.d20pfsrd.com/feats/general-feats/leadership/">Leadership</a>, except instead of gaining a cohort or followers, the New One gains access to Psionic powers from the <a href="https://www.d20pfsrd.com/alternative-rule-systems/psionics-unleashed/power-lists/power-list-psion-wilder/">Psion Power List</a>. They cast these powers as if they were a Psion of a level equal to their Leadership Score / 3, using their highest stat as their casting stat. If the New One has any Psionic class, they instead gain additional power points equal to 50% of their total power points from their class(s).<br />If a New One finds anyone who becomes devoted through love, friendship, or brotherhood to them specifically, they can tap into their relationship to earn a single mythic tier, or ascend to mythic status if they do not already have any Mythic ranks.<br /><strong>Pocket Realm (Su):</strong> New Ones have a pocket realm that serves as a little slice of home on the mortal plane, as well as an afterlife for those devoted to them personally. This pocket realm is sustained by the existence of a physical object which can never leave the real world. This object must be of a size that can be reasonably carried by the New One, and has a hardness of 2 and 30 HP. If it is destroyed, the pocket realm is inaccessible to the New One (or they are trapped within it, depending on where they are when the anchor is destroyed) until it is repaired, or a new object is used to make an anchor (this takes 2 weeks and costs 4000 GP).<br />The New One can enter their pocket realm from anywhere they please as a full round action (This appears to be a simple teleport spell to observers). If they spend less than 1d4+Cha rounds within their pocket realm, they may exit where they entered. Otherwise, they must exit next to the realm's anchor. If teleport interdiction is attempted on the New One while they enter their realm, they cannot return to where they entered it. Nor can they enter their Pocket Realm within any zone causing magical failure or interference (unless they are in possession of the realm's anchor object).<br />A New One can enter their realm along with any objects they can personally carry and up to 3 cubic feet per 2 levels of additional mass. Anyone devoted to the New One can enter and exit the Realm according to these same rules (If they happen to be dead, they exit as a poltergeist which will return to the realm if destroyed).<br />The Realm itself functions as per the spell <a href="https://www.d20pfsrd.com/magic/all-spells/c/create-demiplane/">Create Demiplane</a>. Only its size is measured in cubic miles rather than feet.<br /><strong>See in Darkness:</strong> New ones can see perfectly in darkness of any kind, including that created by spells such as deeper darkness.<br /><strong>Inflamably Flamable:</strong> New Ones take double damage from any source of fire damage.<br /><strong>Actualy Unnatural:</strong> New Ones unnerve animals. A lot. They take a -2 penalty to AC and saves vs attacks from animals. New Ones also take a -4 penalty on all Charisma-based skill checks to affect creatures of the animal type, and receive a +4 dodge bonus to AC against animals. An animal's starting attitude toward a new one is one step worse than normal.<br><strong>GM's Mercy:</strong>New Ones can only be played with GM premission, and as the New One has a mission, if the GM informs them that a particualr action is the will of their Patron, the New One must comply and be fired. IE, ejected from the mortal plane (GMs should treat a New One's patrion like a boss who emails and calls from time to time, evaluates preformance, signs paychecks, and authorises use of supplies, raises, etc.).</p>
+</div>
+</div>
+<h4 class="articlesubtitle"><strong><em>Vital Statistics</em></strong></h4>
+<p>The following are summaries of New One's basic physical statistics.</p>
+<table>
+<tbody>
+<tr>
+<td colspan="4">
+<p><strong>Table: New One Random Starting Ages&nbsp;</strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Adulthood&nbsp;</p>
+</td>
+<td>
+<p><strong>Simple&nbsp;</strong></p>
+</td>
+<td>
+<p><strong>Moderate&nbsp;</strong></p>
+</td>
+<td>
+<p><strong>Complex&nbsp;</strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><strong>??? years&nbsp;</strong></p>
+</td>
+<td>
+<p>+1d4&nbsp;</p>
+</td>
+<td>
+<p>+1d6&nbsp;</p>
+</td>
+<td>
+<p>+1d8&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table style="background-image: none; width: 700px;">
+<tbody>
+<tr>
+<td style="width: 121.367px;">
+<p><strong>Table: New One Aging Effects&nbsp;</strong></p>
+</td>
+<td style="width: 562.633px;" colspan="4">
+<p><strong>&nbsp;</strong></p>
+</td>
+</tr>
+<tr>
+<td style="width: 121.367px;">
+<p><strong>Age Catagory</strong></p>
+</td>
+<td style="width: 141.417px;">
+<p><strong>Middle Age</strong></p>
+</td>
+<td style="width: 132.4px;">
+<p><strong>Old</strong></p>
+</td>
+<td style="width: 130.4px;">
+<p><strong>Venerable</strong></p>
+</td>
+<td style="width: 140.417px;">
+<p><strong>Maximum Age&nbsp;</strong></p>
+</td>
+</tr>
+<tr>
+<td style="width: 121.367px;">
+<p><strong>???<br /></strong></p>
+</td>
+<td style="width: 141.417px;">
+<p>???</p>
+</td>
+<td style="width: 132.4px;">
+<p>???</p>
+</td>
+<td style="width: 130.4px;">
+<p>???</p>
+</td>
+<td style="width: 140.417px;">
+<p>pff, lol!</p>
+</td>
+</tr>
+<tr>
+<td style="width: 121.367px;">
+<p><strong>???<br /></strong></p>
+</td>
+<td style="width: 141.417px;">
+<p>???</p>
+</td>
+<td style="width: 132.4px;">
+<p>???</p>
+</td>
+<td style="width: 130.4px;">
+<p>???</p>
+</td>
+<td style="width: 140.417px;">
+<p>not a thing, fam</p>
+</td>
+</tr>
+<tr style="background-image: none;">
+<td style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%; width: 121.367px;"><strong>&nbsp;</strong></td>
+<td style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%; width: 562.633px;" colspan="4">
+<ul style="background: none; background-image: none;">
+<li style="background-image: none;" aria-level="1"><strong>lol, no</strong></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<tbody>
+<tr>
+<td colspan="5">
+<p><strong>Table: New One Random Height and Weight&nbsp;</strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p>Gender&nbsp;</p>
+</td>
+<td>
+<p><strong>Base Height&nbsp;</strong></p>
+</td>
+<td>
+<p><strong>Height Modifier&nbsp;</strong></p>
+</td>
+<td>
+<p><strong>Base Weight&nbsp;</strong></p>
+</td>
+<td>
+<p><strong>Weight Modifier&nbsp;</strong></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><strong>??? </strong></p>
+</td>
+<td>
+<p>5' 04"&nbsp;</p>
+</td>
+<td>
+<p>+1d6&nbsp;</p>
+</td>
+<td>
+<p>120 lb.&nbsp;</p>
+</td>
+<td>
+<p>+ 2d6 lb.&nbsp;</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><strong>??? </strong></p>
+</td>
+<td>
+<p>5' 00"&nbsp;</p>
+</td>
+<td>
+<p>+1d6&nbsp;</p>
+</td>
+<td>
+<p>130 lb.&nbsp;</p>
+</td>
+<td>
+<p>+ 2d6 lb.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<script type="text/javascript">
+	var head = ["A̷̬͒z̸͙̟̄́͘a̴̬͐͒͜ṭ̶̣̬̲̈́̈́͜h̸̢̠͙́͒o̴̼̭̫͑͜t̸͈̗̥̎̋͜h̵̨͕̗̣͈̒̽̕͜ ̶̣̒̽͂͊̅̈E̸̛͓͖̰̤͇̾̐̃̿́ṉ̸̮̘̗̊́̀̋͜͠ǧ̶̝̯̓̌̓̚̕r̶̳̤͖̱̺̞̓̏̔͛a̷͓͑̎̃̽̽̒m̴̜̈́̚͝͝ï̶̡̢̛̾̑c̵̠̼̣̄̑̔̿͊̓ ̷̨̱̮̳͕̓̈́͋C̴͎̩̳̜͎̃͜h̶͕͕̞͔͔͓͛͑͐r̷̢̥̝̉́̿̓̕ó̶͍̄͛͆̔͝n̶̛͙͇̪̖̤̾̒͆̾̓ȉ̴̧̯͚́̃͊̀c̸͖̜͕͕̦͌̊́͂͝ͅl̴͕̳͒̂́̃̌é̷̝͓̯̗̹̉͑͌", "Ả̴̧̭͎z̶̨̲̼̩̄̿̕̕ã̷̛̛̫̫̼̐̓̕ͅṱ̴̺̅͘h̶̢̧̖̠̤̪̉́̐̽̆͝o̴̪̘̞̥͌̈͜ţ̴̛̘̹͕͂̊͝h̷̭̖̄̑ ̸͙͖̭͈̯͕̌͗̀͌Ḙ̸̭̫͐̍̓̅͝ņ̷̮̦̫̭̦̂̾͌͝g̶̺̽̉̓̌͒͑r̶̭͉͓̯̳̎̕ȃ̷̬̣̺̄̾m̸̡͈̻͉̣̻̾͘i̸͔͓̯̊͝ć̶̡̗̰̆̈́̄ ̴̭̣͆͜C̴̞̝̱̙̭͒̑̚͘͝͝h̸̛͖͇͒͒̐ŕ̶̛͙ő̴͎̩̭̩n̵̲̉̅̐i̷̯̋̏̇ċ̶̲͕̞l̵̛̀̽͜ē̶͕̤͋͂̈́̔͠",
+	"Ặ̴̩̜͉̽̎͝z̷̑͜͠ͅa̸̹̖̽͋̔̈̒͝ţ̷̡̺̱̾̏̂̚ḧ̶͙̀͗ȏ̶̱̯͙͙̘̟͒̌ẗ̸̬̾͋ḩ̴̨̻̳̻̪̉͒̅͋̓͗ ̸̨̨̹̠̺̉͛͗̕E̵̻͓̻͒͒ͅň̶͕̝͂̒̏̓̚g̶̺̩͋̐̈r̵̢̦̠̉̀á̶͈̈́̍́͊m̴͈͍̙̀ī̶͓̣͔͚̄̔̋͛̀c̴̖̬̻̎͌͜ ̴̨̟͛͜C̷̱̺̟̻̀͛̉́̀͆h̶̯͊̏̑̌̽r̷͓̿͠ơ̷̱̮̰͍͚͆̄̀n̵̯̼̺̘̠̂̎͘i̴͕͇͍̺̋̃̂ͅc̵̳̰̠̓̎̉̋̾l̵̩͇̞͖͘͝ͅe̸̡͍̰͔̎̐̔͝",
+	"Ą̸̪͍̑̒̓͒͘ž̴̫͖͓̗a̷̙̦̙͋͛͂̌͗t̶͉̦̳̘̊̎̀́̊h̷̗̰̥̠͔̀̃ò̵̳͓͇̿̎t̶̺̫̠͐h̷̖̿̈͑ ̵̨̛̱̜̭̬̌̄̀̃̔Ȩ̴̱̘͉̬̺̌̈́̇̀͂͝ņ̵̪̓̈́ḡ̴̢̨̛̼̭͖̈́̄̒̚r̶͔̪̈̂͑a̷͍̗̳̫̅̔͝m̸̗̈́͛̀̌͝i̴̩̩̰̱̯̯͋͌͋́̀c̶̻̻̿̅ ̴͎͉̤̬̍́̉̚C̸̳̹̫̖͑̾̓͒̿ḩ̶͉͖͆r̷̨͑o̴͙͎͗̿́n̶͚̗̜̽͂̓̅̀ͅĩ̸̮͓̯͕̞̞c̶̤͑́͝͝l̴̰̰̉ê̸̫̜͚̲͔͒̃ͅ",
+	"Ą̷̦̮̰̰̉́z̵̧͇̬͍̤̀a̶̙̒̉̃t̵̰͎́͗h̴̗͇̃̎̂͂ǫ̸̢̛̲̰̊̂̚͝t̴̨̝̝͚̱̪̉h̴̦̜͑̏̽ ̶̛̲̱̈́̈́̀̆̚E̴̬̗̟͍̽̇̈́̿͂ņ̴̞̯̯͂̓͛̈́͋̾g̶̲̈́̊͂̓r̷̦̓͠a̷̹͖̿̓̔̚m̸̭̰̣͙̪͙̑i̸̫̦̳̹͐̀c̷̲̙͗͐͘ͅ ̷̼̬̖͚̠͍́C̸̤̦̱͚͂̔h̶̝̆̐̋̓ŕ̵̟̙̹o̷̦̊͊͘ǹ̸͕͈͙̾ȋ̴̢̃͠c̶̩̫̆̓̀l̴͕̼̺͕̹̈́̓͠ę̵̜̭͗̆̊͒",
+	"A̷̜̼̣͌̊z̴̨̨̦̹̏̄͝à̴̖͙t̶͈̖̀h̵̡̞͍̤̪͒́̎̔̽͜͝ö̸̼̭̭͔̥́̄̓ţ̷̞͒͗̉̈̔͝h̴̛̝̞̼̺̝̟͂̽̍̎ ̷͖͈̌̈́͗͑̚Ḙ̶̣͉̏́͊̈́͋̅ṋ̸̲̝̭͙̅̄͘̚͝g̴̲̥̳̒̋̒̈́̀ͅr̷̲̒͊a̵͖̘̦̽̄m̷̢̖̹͈͈̌̽̀̎ḯ̵̧͙̻̟͋͗͠c̶͖͊̀̅̋̍ ̴̩̯͖̬͌C̶͉̈́͝h̸̲̽̿͛̈́̈́r̵͔͍͌o̴̦̳͕͙̜̚n̴̜̑̈́̔͗͊ͅi̴̢͍͊̾̎c̸̘̯͕͊́l̶̰̇͒̚ę̷̤̮̓͋̑̐͜",
+	"A̸̻̯̫͙̎̆̃̋z̴̡̧̫̠̬̯̽̇͆͌a̴̭͔͔̫͌̅͗̈̊̽t̴̜̝̤̖̍͝h̴̨̟̬͈̤̊́̓͑͆͜ọ̵̼̲̘͍͎̽̇̉͗t̵͍̔͂͘h̶̫̍͋͐̏͝ ̷̧̖̩͌̎͂̿͘͜͠E̷̥̔͐͆̍͒͠n̶̨̮͉̜̮̭̉̋̏͛̿g̸̪̈́̈́͆̾r̵̨̻̺͇͕̯̽̿ḁ̷̰̹̯̏͜͝m̵͓͔̤̙̐̔̿͑̅͘i̷̭̬͇̺̿͒c̷̭͊̿̈́̏͘ ̵̙̌̃̊͒̆͘C̵̲͇͆̏͆͑́h̷̛͓̝̔̎̈́̚r̷͉̜̹̀̄̈́̚ơ̵̲̭̭̹̳̾͂̓͊n̸͍̐̊́ȋ̴̤̪̗͈̈́̀̋ͅc̶̳͉̦̳̤̞̿̾̊̅̓̚l̴̹̾͑͌̂̈́̓e̴̖͕͕͛",
+	"Á̴̧̧̯̖͍̊̿͝z̴̮̤̘̹̬̘̊̎́ā̴̡͇̆ṫ̴͔̼͍̯̇̂h̶̙͋̂̋o̵̪̓̐̌t̴͉̊h̸͚̟̘̀̒̿̾͛ ̴̺̯̞̯͚̏̿͑̽͝Ȩ̵̦͈̮̻̪͒̑́͌n̶̡͎̣͓͚̒̾g̴͙̫̟̗̀̓̀ȓ̵̲̗̏̄a̵̡̳͍̥̦͇͋̄̊̐̈́̈m̸̦̳̈́̔̋̇̒͠į̷͒̀c̸̦͉̭̲̔̂̒̕ ̷̭̼͇̘̈́̃̌̈̉̐C̶̯͖̼̪̆h̵̛̬̺̺͓̾r̴̭̩̘͂̌̈̏ǒ̷̡͈͙̫͗̋͜n̴̨̬̞̝̍̋̓̀i̷̩̋̀̈́͠c̶͎̪̖̹̓͜l̷͓͈͙̱͋̇̀͊̋͜e̸̛̳͓͈̭̿͂̈́̀͝",
+	"Ǎ̴͍̲̦̦̔z̶͓̥̦̻̉͆a̴̛̞͌͝t̴̡̝͔͙̫̄̿̍̾ȟ̶̢̺͚͎̯̉͝o̷̢̧͔̮̜͖͊̆̊t̶̡̥̗͙̘̀̏͘̕͜ḧ̴̹͈̕ ̷͓̟̹͘E̵̪͖͇̾́̐̀n̴͉̆̅̓g̸̡̗͝r̶̜̔̾͘ͅȧ̵̹̯̔̓̋͆̀ͅm̴̨̧̂͌i̷͕̙̣̲̅̾̏͘c̵͈̹̱̆͂ ̸̎͜C̸̡͖̥̰͚̽̂͜͝h̷͗̏͌͛̎͜͝ŗ̵̯̼̲̾̈́̉̍ȏ̸̘̳̪̙̪̎̀͆̒̕ṉ̸̛͂͂ï̵̧̖̙͎̩͙̾̓c̸̺̙͚̉̋̈́̓͝͝ḷ̸̭̺̦̺̭̈́͘͝͝ê̸̛̗̰̖̻͠",
+	"A̵̧̡͐̈́͆̅͘z̵̩̘̦̣̺̐̉̾́͜a̷̡̯͈͔̤̗̽ṭ̷͇͎͚̹̀̐̀̃ͅh̵̳̖̼̺̓̈͝ͅö̶͖̰̣́͊t̶̢͔̜͖͇͠h̴̢͔̃̈́́ ̴̫͋͂̽̂E̷̻̜̣̟͗̑̏ͅn̸͖̙͚̉̾̀͐̕̕ĝ̸̣͚̽̈́̀͂̽ṛ̸̡̱͙̐̓̀͌ą̵̰̯̓̍̏̈m̷̥̔̎̀͊̊̚i̸̧̗̞̟͍̯͑͑̋̄̚ć̵͓̱̤̞̗̈́ ̸̨̡͚̼̟̮́͠C̵̛̳̠̪̊͊̚͘ͅh̴͓͈̋̀̇̈͗r̸̞̻̀̐̈́̌͠o̸̯͔͍͇͆̈́̋̄͐͒n̸͙̺͖͕̘̰̄̒̆i̶̳͚̱͚̗̓̓̄̽͂ͅc̶̢̗̻̏̊l̴̖̟̠̕ͅe̶̬͐͊̃͠͝",
+	"A̸̙̠̫̙̩͆̐́͐͘z̵̠̩̩͚̝͕̉̈́̒̇̈͘a̵͈̿̀͊͑t̷̨̟̬͋́̈́͘ḩ̷̣̻͕͈̑̍̀ǒ̵̺̬͓̙͚t̷̢͚͕͍͕̄̀̕ẖ̷̨̘͈̞͐͛̀̈́́̆ ̶̢͊͆Ê̶̢̯̭̗͖͙n̸͖̟̼̯̿̈̎͌ͅg̴̰̜̼̠͈͂̅ṙ̴̦̟̹̮̣ǎ̵̻̘̼̮m̷͚̉́̈́́í̶̪͎̖̑ć̷̢̩͉̥̤̈́̀̑̾͐ͅ ̴͉͓͓̗̙̂̑͆͒͠͝C̴̛̟̻̠̦͉͋̅ͅh̷̰̼̀̅̆r̵̛̤ọ̵͖̥̺̹̈́͒̽̾ṉ̸̠̠̀̃̎i̵͈͗̏̐̔̎̓c̵̮͉̟͉̪̳̆͗̉l̶̞̹̥̜̤̉̕e̸̫̝̹͓͙̯̿",
+	"A̵̱͔͑͐́͠z̷̡̳̹̯̲̺̑̕̕a̸̼̩͐t̵̺́́̉h̷̨̉o̸̹̝͛t̵̨̪͌͆͗͐̔ͅh̶̢̠͇̦̻̀̑͑̉ ̵̛̦̿̄̿Ę̴͈̱̯̔͌̋̃͐̕n̶͖̼̖͛g̸̟̖̫̱͌̀̊͒͜r̶̛͎͉̣̝͓̓̐̀̎a̶̭̱̞̟̻̲͒̋̈́͠m̵̢̤̞̟̦͎͆i̶͊̿͐̔̕ͅc̵͕̞̪̒̓͗́ ̸̣̗̗̍́̒̈̚C̸̢͈̣̎̀́̌́̕͜ḧ̴̦̼́͗r̸̯̹̣͎͖̆̌̓͜ó̶̠̲͓͉̇̅̊ñ̶͕̖i̶̧͖̜͗̄̓̇͝͠c̵̜̰̼͒̀̈̈͛͗ͅl̷̝̠̥͓͔͆̓͐ę̶͕͈̭̥́̈̈́̽̐",
+	"A̷̢͊̿̓͛̈̇͜z̶̢̩̄̈͛̎̍a̵̭̟͔̹̺̿ͅẗ̶͍̮́͊̔̈̎h̸̼̞̫͖̯̅͗́o̷̻̜̹̎̈̌̔̔̒ţ̸͚̺͚͋̀͌̋͠ĥ̵͖̰̜͐͆̈́͠͝ ̷̧̡̞̒̓͝É̴̡̫̜͎̉̑̃ń̵̬͎̤̤̗͛ͅg̷̨̯̯̮̲̐̒r̷̥̳͎̔̄̂̂̓̓ä̵̙̫̻̓͘m̵̻͋̄͑̊͘i̵̧̪͑͌́͛c̵̛͓̈̈́̎͒͠ ̸̼̘̀̀̓͝Ć̴̤͎͂h̵̙͔̻͎̅r̵̬̔͠o̴͓̖̭̫̬͂̕͘n̵̡͈̱͎̩̄͆̓̀̌ͅĩ̸̠̉̃̈́̿͠c̶̨̤̬̦̹̥̽̓̃l̷̩̖͕̪̇e̵͖̳̱̪͆",
+	"Ä̸͔͓̞́́̆͐͑z̶̨̠͈̐̅͊̎̑͠a̸̬̋̉͂̔͂t̵͎̱̭̟͇̑h̷̙̄o̶̡̠̍̐͋̓͠t̸͉̲̰͍̃ȟ̸̟̳͎̺̤̥̐̿̽̀̏ ̵̢͉͈͉̜̏E̴̲̙͎͒̀n̸̮͌͜ģ̶̹̻͊͐͠͝ṟ̸̱͓͌ă̷̦͔̇m̴̳͖͌̍̃͌̀͘i̴̮̞͐͗̎̋̐͠č̸̨̱̮̈̋̅̏͘ ̸̡̙̟͉̻́̈̿C̵̝̗̀̏h̵̨͕̽́̌́̍͜r̵͚̦͉̈́̒̐̈͆̿ŏ̵̯͐n̶̛̟̭͑̄͑̓̈́ḭ̶̓̓̄č̶̘͙͈̝͖l̷̰̮̜̪̄̏̿̅͌̾ȩ̵͈̣̀͝",
+	"A̷̗̮̺̬̰̔̃z̷͙͔̼̫̤̜̈̓̈́̋a̴̲̯̼̪̣̥̓t̸̢̠͚̬̏͋͑͝͝h̵̹̞̦̆͛ọ̷̣̝̼̈́͋̐̅t̶̢̛̳̞̣͒̓h̴̨̠̩̏̓́̉̈́ ̷̞̃̅̒̍E̴̟̲̱̣̽̋̋̒̐n̸̡̞͈̘̱̆̒̄̅̈̕ǧ̸̟͚͉̭̭̈́r̶̤̎̉̀̊͝a̵̳͈̋͆͛͐̎̕m̶̧̫͂̐ǐ̸̧͕̯̓c̷̮̙͗͒ͅ ̷̛̗̞̮͋C̴͈̾͐̀͝h̸̼̰̰̖̝̲̀͊͗r̷͔̆̍͆o̸̩̜̯̲͛̔̐͝n̷̟͚̻̅̚i̷͈͕̾̓̈͘̕ç̴̱̰̥͇͉̾l̴̰͗̾̓͝ẹ̸̡̨͇͈̞̃͑̅̋",
+	"A̸̤͍̠͉̪̔̄́̐͘̕͜z̷͇̩͎̱̩̫͌̿̈́̕a̷̛͚̳̗̯̟̹̽̚͝t̸̡̝̞͍͂̇́̈h̷̫̭̝͂ͅǫ̶̮͍̞̜̭͒̉̉͊͘t̵̞̠̥͓̬̙̏͊͗̕h̶̡̠̳̊̓͋̀ ̵̭̼̻̈́͝E̵̡̱̹̺̔̈n̸̡̻͔̙͙͉̑̓̅̑̉̒g̵̡̢̳̠̘͛́̅̈r̷̡̘̈́̕à̶̳̭͈̜m̸͑̇͗̎̂͘ͅͅi̶̭̽̌̕͜ĉ̸̗͉͎̼͚́ ̵̪͂̇C̸̛͎̻͛h̶̨̨͓̪̻̘̒̃̈́r̷̟͒̒̈́̈́̃ͅo̷͕̹͒n̷̨͎̆͌͛̚i̴̧͍̖͙͆ċ̶͇̟͕̼̙̿l̶̬̥̦̞̝̠̈̚͝͝e̴̛̳̳͓̳͙͋͗",
+	"A̷̤̙͐z̶̮̹͖͋̓̈͋̈́ȁ̵̲͕̍̓́̏͝t̷̬̘̣̖̩̿͊̂͠ͅh̸͉̭̠͉͓́͛̿͂̃̓͜o̵͉͊̅t̶͚̱̝̤̭͍́h̸̨͓͓̩͇͍́̾̌̆̓̈́ ̴̦̗̣͚͍̿͆͊̍Ë̷̡̨̟̲͙̩́͑̓̽̕n̸̤̽̂͂̕͝ġ̵̫̱̤̻͍̔ŗ̵̛̼͇̰̬̫̿a̸̧͕͎̩̭̋̾m̶̤͈̭͛į̷̛͚̫̺͈̠̆̿̆̓c̷͚͍̼͆̑̈́ ̶̲̬̟͕̤͗̄C̵̳̋͂͌͗͒h̸͖̖̝̼́͌̿r̴̟͎͎̾̾̃̊͗ò̵͉͔̣͙̈́̐̅̚͠ͅn̷͕͔͚̫̅̀̓̈̽͜i̷̯͇͒̈́̏̈ç̸̩̓̌̊͜l̷͉̠̎e̴͚̦̮̫̬͓͋̄͊"
+	];
+
+	var msecs2 = 200; //Milliseconds that will wait to change the text
+
+	setInterval(function()
+	{
+		var head_id = capFirst(head[getRandomInt(0, head.length )]);
+		let ehead = document.querySelector('#header');
+		ehead.innerText = head_id;
+	}, msecs2);
+</script>
+
+
+<script type="text/javascript">
+	var divines = ["thieves", "oath breakers", "Gods"];
+	var unguarded = ["unguarded", "vunerable", "vacant"];
+	var problems = ["crippling medical debt", "cataclysmic education loans", "stagnant culture, unchanged in eons", "regressive panic of Old Ones", "need to preform several duties to survive", "gig economy", "impossability of retirment", "futility of our dreams"]
+	var jobshere = ["job openings", "vacancy", "need"]
+	var instult = ["get bent", "drop dead", "fuck off", "die for all we care", "get lost", "suck a Fat One", "sit and spin", "get fucked with an anchor"]
+
+	var msecs = 3500; //Milliseconds that will wait to change the text
+
+	setInterval(function()
+	{
+		var divines_id = divines[getRandomInt(0, divines.length )];
+		let el2 = document.querySelector('#gods');
+		el2.innerText = divines_id;
+		var unguarded_id = unguarded[getRandomInt(0, unguarded.length )];
+		let el3 = document.querySelector('#boop1');
+		el3.innerText = unguarded_id;
+		var problems_id = problems[getRandomInt(0, problems.length )];
+		let el4 = document.querySelector('#problems');
+		el4.innerText = problems_id;
+		var jobshere_id = jobshere[getRandomInt(0, jobshere.length )];
+		let el5 = document.querySelector('#jobopen');
+		el5.innerText = jobshere_id;
+		var instult_id = instult[getRandomInt(0, instult.length )];
+		let el6 = document.querySelector('#insult');
+		el6.innerText = instult_id;
+	}, msecs);
+</script>
+
+<script>
+  function capFirst(word) {
+    let w = String(word);
+    if (w.length == 0) {
+     return "";
+    }
+    if (w.length == 1) {
+      return w.toUpperCase();
+    }
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  }
+
+function getRandomInt(min, max) {
+  	return Math.floor(Math.random() * (max - min)) + min;
+}
+</script>
+
+<script>
+function myFunction() {
+	document.getElementById("myDIV").classList.toggle('hide')
+	document.getElementById("myDIV").classList.toggle('show');
+}
+</script>
+
+<script>
+function myFunction1() {
+	document.getElementById("myDIV1").classList.toggle('hide')
+	document.getElementById("myDIV1").classList.toggle('show');
+}
+</script>

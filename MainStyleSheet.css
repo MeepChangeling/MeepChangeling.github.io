@@ -2,9 +2,23 @@
 
 h1 {
   font-family: Garamond, serif;
+  font-family:illuminated;
 }
 h2 {
   font-family: Garamond, serif;
+  font-family:illuminated;
+  font-size: 1.2em;
+}
+
+.goldtext {
+  background: url(img/goldtex.jpg) no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -moz-background-clip:text;
+  background-clip:text;
+
 }
 
 /* Title Styling */
@@ -21,6 +35,11 @@ h2 {
   font-size: 30px;
   font-family: Garamond, serif;
   z-index: 1;
+  }
+
+  .header.darkmodeheader {
+    color: #B49933;
+    filter: brightness(50%);
   }
 
 /* Navbar Styling */
@@ -40,6 +59,9 @@ ul {
 
 }
 
+nav {
+  display: block;
+}
 
  /* Navbar container */
 .navbar {
@@ -81,6 +103,10 @@ ul {
   background-size: 100% 100%;
 }
 
+.navbar.darkmode {
+  filter: brightness(50%);
+}
+
 	/* The dropdown container */
 .dropdown {
   float: right;
@@ -101,6 +127,18 @@ ul {
   background-size: 100% 100%;
 }
 
+.dropdown.darkmode {
+  background-image: url("img/bookpage2.jpg");
+  border: solid #1c0503;
+  color: gray;
+}
+
+.dropdown .dropbtn .darkmode {
+  color: gray;
+  filter: brightness(50%);
+}
+
+
 	/* Add a red background color to navbar links on hover */
 .navbar a:hover, .dropdown:hover .dropbtn {
   background-color: red;
@@ -120,7 +158,13 @@ ul {
 	border-width: 5px;
 	Border-style: outset;
 	background-color: #FCF5E5;
-	background-repeat: repeat-y;
+
+}
+
+.dropdown-content.darkmode {
+  background-image: url("img/bookpage2.jpg");
+  border: solid #1c0503;
+  color: gray;
 }
 
 	/* Links inside the dropdown */
@@ -160,7 +204,7 @@ div.mapframe, iframe {
 	border-width: 15px;
 	background-image: url("img/bookpage.jpg");
 	background-color: #FCF5E5;
-	background-repeat: repeat-y;
+
 }
 
 iframe.infoboxiframe {
@@ -170,7 +214,7 @@ iframe.infoboxiframe {
 	border-width: 3px;
 	background-image: url("img/bookpage.jpg");
 	background-color: #FCF5E5;
-	background-repeat: repeat-y;
+
 
 	width: 98%;
 	height: 250px;
@@ -185,7 +229,7 @@ div.dungeongen {
 	border-width: 15px;
 	background-image: url("img/bookpage.jpg");
 	background-color: #FCF5E5;
-	background-repeat: repeat-y;
+
 }
 
 /* Page Title */
@@ -206,14 +250,26 @@ div.dungeongen {
 	background-size: 100% 100%;
 }
 
+.pagetitlenav .darkmode {
+  filter: brightness(50%);
+}
+
 /* Basic Page Styling */
 
 body {
-	background-image: url("img/hideout.jpg");
-  background-color: #7F7F7F;
+  -webkit-animation: fadein 1.5s;
+	background-image: url("img/hideout.webp");
+  background-color: #black;
 	background-repeat: no-repeat;
 	background-position: right top;
 	background-attachment: fixed;
+}
+
+body.darkmode {
+  color: #CECECE;
+  -webkit-animation: fadein 1.5s;
+  background-image: url("img/hideoutdark.webp");
+  background-color: #black;
 }
 /* Book Effect 4F120B */
 
@@ -223,12 +279,26 @@ div.book {
 	border-width: 15px;
 	Border-style: outset;
 	background-image: url("img/bookpage.jpg");
-
+overflow: auto;
 	background-color: #FCF5E5;
-	background-repeat: repeat-y;
+
 	width: 60%;
 	padding: 20px;
 	margin: auto;
+}
+
+div.book.darkmodebook {
+	background-image: url("img/bookpage2.jpg");
+	margin: auto;
+  border: solid #1c0503;
+  display: block;
+  border-width: 15px;
+  Border-style: outset;
+  overflow: auto;
+  background-color: #FCF5E5;
+  width: 60%;
+  padding: 20px;
+  margin: auto;
 }
 
 img.inline {
@@ -265,19 +335,42 @@ table, {
 
 }
 
+body.darkmode table a {
+  color: #004cf0;
+}
+
+body.darkmode table a:visited {
+  color: #ca3312;
+}
+
 th {
 	background-color: hsla(32, 24%, 33%, 0.82);
 	font-size: 20px;
+}
+
+body.darkmode th {
+  background-color: hsla(349, 34%, 37%, 0.46);
 }
 
 tr:nth-child(even) {
   background-color: hsla(32, 24%, 50%, 0.48);
 }
 
+body.darkmode tr:nth-child(even) {
+	background-color: hsla(349, 29%, 30%, 0.34);
+}
+
 td:nth-child(even) {
   background-color: hsla(32, 24%, 50%, 0.48);
 }
 
+body.darkmode td:nth-child(even) {
+  background-color: hsla(349, 29%, 37%, 0.46);
+}
+
+body.darkmode th:nth-child(even) {
+	background-color: hsla(349, 29%, 37%, 0.46);
+}
 
 table, th, td {
   border: 1px solid;
@@ -297,12 +390,33 @@ td {
 
 /* Headding Styling */
 
+h3 {
+  font-family:illuminated;
+}
+
+h4 {
+  font-family:illuminated;
+}
+
+h5 {
+  font-family:illuminated;
+}
+
+h6 {
+  font-family:illuminated;
+}
+
 h3.articletitle {
 	font-weight: bold;
 	font-size: 30px;
 	border-bottom: 1px solid #4F120B;
 	overflow: hidden;
-	font-family: Palatino, serif;
+  font-family:illuminated;
+}
+
+
+h3.articletitle.darkmode {
+	border-bottom: 1px solid #1c0503;
 }
 
 h4.articlesubtitle {
@@ -310,7 +424,11 @@ h4.articlesubtitle {
 	font-size: 22px;
 	border-bottom: 1px solid #4F120B;
 	overflow: hidden;
-	font-family: Palatino, serif;
+  font-family:illuminated;
+}
+
+h4.articlesubtitle.darkmode {
+	border-bottom: 1px solid #1c0503;
 }
 
 h5.articlesubtitle {
@@ -318,7 +436,11 @@ h5.articlesubtitle {
 	font-size: 18px;
 	border-bottom: 1px solid #4F120B;
 	overflow: hidden;
-	font-family: Palatino, serif;
+  font-family:illuminated;
+}
+
+h5.articlesubtitle.darkmode {
+	border-bottom: 1px solid #1c0503;
 }
 
 h6.articlesubtitle {
@@ -326,8 +448,13 @@ h6.articlesubtitle {
 	font-size: 14px;
 	border-bottom: 1px solid #4F120B;
 	overflow: hidden;
-	font-family: Palatino, serif;
+  font-family:illuminated;
 }
+
+h6.articlesubtitle.darkmode {
+	border-bottom: 1px solid #1c0503;
+}
+
 /* List Styling */
 
 ul.articlelist {
@@ -348,14 +475,21 @@ ol.articlelist2 {
 
 /* Link Styling */
 
-a.doclink:link {
-  color: #1a4210;
+body.darkmode a:link {
+  color: #0066cc;
   background-color: transparent;
   text-decoration: underline;
   text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
 }
 
-a.doclink:visited {
+body.darkmode a:visited {
+  color: #eb5519;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+body.darkmode a:visited {
   color: #eb5519;
   background-color: transparent;
   text-decoration: underline;
@@ -420,6 +554,10 @@ th.infobox-head {
 	text-align: center;
 }
 
+body.darkmode th.infobox-head {
+	background-color: rgba(71, 64, 46, 0.34);
+}
+
 th.infobox-lable {
 	text-align: left;
 	font-weight: bold;
@@ -455,6 +593,10 @@ display: none;
   outline: none;
   font-size: 15px;
 
+}
+
+body.darkmode .collapsible {
+  background-color: hsla(349, 34%, 37%, 0.46);
 }
 
 .active, .collapsible:hover {
@@ -535,13 +677,16 @@ ul.simple {
 /* Media Control System */
 
 div.mediacontrol {
-	  float: left;
+	float: left;
   position: sticky; top:80;
   background-image: url("img/woodplate.jpg");
   background-size: cover;
-  padding: 13px;
+  padding: 0;
   width: 15%;
+  overflow: auto;
   border-radius: 10px;
+  margin-left: 1em;
+  margin-right: -16em;
 }
 
 button.mediacontrollbutton {
@@ -551,6 +696,7 @@ button.mediacontrollbutton {
 	cursor: pointer;
 	width: 60px;
 	padding: 2px;
+  padding-bottom: 2em;
 	margin-bottom: 16px;
 	height: 60px;
 }
@@ -620,6 +766,14 @@ html {
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'illuminated';
+    src: url('fonts/blkchcry-webfont.woff2') format('woff2'),
+         url('fonts/blkchcry-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 
 p {
@@ -637,6 +791,11 @@ div.quotebox {
 	background-color: rgba(108, 98, 71, 0.34);
 	font-family: 'Courier New';
 	overflow: hidden;
+}
+
+body.darkmode div.quotebox {
+  border: 1px solid #1c0503;
+	background-color: hsla(349, 29%, 30%, 0.34);
 }
 
 figure.right {
@@ -666,17 +825,21 @@ figure.left {
   float: left;
   width: 20%;
   padding: 0px;
+  display: inline-block;
 }
 
 figure.left:hover {
-  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(2) translateY(25%) translateX(25%); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   transition-delay:1s;
+  display: inline-block;
+
 
 }
 
 figure.right:hover {
-  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(2) translateY(25%) translateX(-25%); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   transition-delay:1s;
+  display: inline-block;
 }
 
 figcaption.basic {
@@ -804,4 +967,9 @@ ol ol ol {
 .indent2 {
   margin-left: 6%;
   margin-right: 6%;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
 }
