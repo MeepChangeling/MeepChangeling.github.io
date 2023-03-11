@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Fallout: Revitalized</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="fallout.css" />
+    <link rel="icon" type="image/x-icon" href="img/vaultgirl.webp">
+
+  </head>
+  <body>
+    <audio id="myAudio">
+      <source src="data/PipStart2.mp3" type="audio/mp3">
+    </audio>
+    <div class="buttonpannel">
+      <button type="button" name="button" class="redglow" onclick="location.href='utilities/falloutwiki.html';"></button><span class=buttontext>Database</span>
+      </br>
+      <button type="button" name="button" class="redglow" onclick="location.href='utilities/blank.html';"></button><span class=buttontext>Test Page</span>
+      </br>
+      <button type="button" name="button" class="redglow" onclick="location.href='worldmap.html';"></button><span class=buttontext>World Map</span>
+      </br>
+      <button type="button" name="button" class="redglow" onclick="location.href='localmap.html';"></button><span class=buttontext>Local Map</span>
+      </br>
+      <button type="button" name="button" class="redglow"></button><span class=buttontext>testing</span>
+    </div>
+    <img class="pagebg" src="img/pipboy2000.webp"></img>
+    <div id="navcontainer" class="navcontainer">
+      <script src="pipnav.js"></script>
+    </div>
+    <div class="screen">
+        <div id="vanish">
+        <img src="img/pipboybootanim.webp" class="fullscreennotint">
+      </div>
+      <div id="appear" style="display:none;">
+        <h1>Premse</h1>
+        <p>Fallout: Revitalized is a roleplaying setting taking the form of an alternate timeline of the Fallout Universe. This timeline splits from the canon timeline at the end of Fallout 2 (IE late fall of 2242), with the main divergence being the Chosen One’s efforts and heroics are not forgotten and the NCR is able to consolidate and hold onto its power in the years following the events of Fallout 2.</p>
+        <p>In this timeline, the NCR expands its territory, pushing eastward and establishing new settlements and outposts. With its vast resources and stable government, the NCR becomes a beacon of hope for the people of the wasteland, offering protection and a chance for a better life.</p>
+        <p>As the NCR grows in power, other factions and nations begin to emerge. The Brotherhood of Steel, impressed by the NCR's commitment to rebuilding, establishes an alliance with the republic, sharing their knowledge of technology and weapons in exchange for access to the NCR's resources.</p>
+        <p>Meanwhile, the Enclave, still reeling from its defeat in 2242, goes into hiding, slowly rebuilding its strength and planning its revenge against the NCR.
+        Over time, the NCR establishes a system of trade and commerce with other factions and settlements across the wasteland. This leads to the development of new technologies, as well as a cultural exchange between different groups. The wasteland is still a dangerous place, with raiders and mutants posing a constant threat, but the NCR is able to provide a measure of stability and security.</p>
+        <p>As of 2287 (the time of Fallout 4), the world looks very different from what we see in the canonical Fallout timeline. The NCR has become a major superpower, controlling much of the western United States and maintaining a strong military presence throughout the region. Other nations have also emerged, including the Brotherhood of Steel, the Republic of Texas, and the Kingdom of Hawaii.</p>
+        <p>While there are still conflicts and wars between different groups, the wasteland is slowly healing, with new settlements and communities emerging and trade between groups prospering. The Enclave, meanwhile, remains a shadowy threat, with rumors of its continued existence and plans for revenge spreading throughout the wasteland.</p>
+      </div>
+
+
+    </div>
+  </body>
+  <script type="text/javascript">
+    // Get references to the elements
+    var element1 = document.getElementById("vanish");
+    var element2 = document.getElementById("appear");
+
+    // Hide element1 and show element2 after a delay of 3 seconds (3000 milliseconds)
+    setTimeout(function() {
+      element1.classList.add("fadeout");
+
+    }, 21000);
+  </script>
+  <script type="text/javascript">
+    setTimeout(function() {
+      element1.style.display = "none";
+      element2.style.display = "block";
+    }, 21010);
+  </script>
+  <script>
+    window.addEventListener('load', function() {
+    document.getElementById('myAudio').play();
+    });
+  </script>
+</html>
