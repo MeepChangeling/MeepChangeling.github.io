@@ -13,6 +13,7 @@ var navbar = `<nav>
       <a href="../world/worldindex.html">World Index</a>
       <a href="../world/regionindex.html">Region Index</a>
       <a href="../world/factionindex.html">Faction Index</a>
+      <a href="../docs/factionindex.html">Timeline</a>
     </div>
   </div>
   <div class="dropdown">
@@ -20,7 +21,7 @@ var navbar = `<nav>
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="../locations/texplexbadlands.html">Texaplex Badlands</a>
+      <a href="locations/TexasBadlands.html">Texas Badlands</a>
       <a href="#">Link 2</a>
       <a href="#">Link 3</a>
     </div>
