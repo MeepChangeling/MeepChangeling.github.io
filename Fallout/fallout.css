@@ -374,3 +374,44 @@ div.greentint {
  a.pipboy:hover {
    border: solid 2px #009a00;
  }
+
+div.screen p a {
+  color: orange;
+}
+
+div.screen ul.timeline {
+  list-style-type: none;
+}
+div.screen ul.timeline ul {
+  list-style-type: none;
+}
+
+div.screen ul.timeline ul li.ch {
+  list-style-type: '⚙';
+  padding-inline-start: 1ch;
+  font-weight: bold;
+  border-top: solid 1px none;
+  border-bottom: solid 1px none;
+}
+
+div.screen ul.timeline ul li.ad {
+  list-style-type: '★';
+  padding-inline-start: 1ch;
+  border-top: solid 1px none;
+  border-bottom: solid 1px none;
+}
+
+div.screen ul.timeline ul li.nu {
+  list-style-type: '☢';
+  padding-inline-start: 1ch;
+  font-style: bolder;
+  border-top: solid 1px #DCCF68;
+  border-bottom: solid 1px #DCCF68;
+}
+
+
+
+
+div.screen ul a {
+  color: orange;
+}
