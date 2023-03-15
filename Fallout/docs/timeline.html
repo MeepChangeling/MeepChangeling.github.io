@@ -11,15 +11,39 @@
     <div id="buttonpannel" class="buttonpannel">
 
     </div>
+    <div id="date">
+      <span id="day"></span>
+      <span id="month"></span>
+      <span id="year"></span>
+      <span class="time"></span>
+    </div>
+    <script src="../clock.js"></script>
+
     <img class="pagebg" src="../img/pipboy2000.webp"></img>
     <div id="navcontainer" class="navcontainer">
       <script src="../pipnav2.js"></script>
     </div>
     <div class="screen">
+      <div class="timelinecontrol">
+        <input class="form-control" type="checkbox" id="show-all" checked>
+          <label for="show-all">Show Full Timeline</label>
+
+          <input class="form-control" type="checkbox" id="show-class1" checked>
+          <label for="show-class1">Show Additions</label>
+
+          <input class="form-control" type="checkbox" id="show-class2" checked>
+          <label for="show-class2">Show Changes</label>
+
+          <input class="form-control" type="checkbox" id="show-class3" checked>
+          <label for="show-class3">Show Alt-Canon</label>
+      </div>
   	<h1>Timeline</h1>
   	<p>Fallout: Revitalized takes place in an alternate timeline from the Canon Fallout. This is to allow creative freedom for its creators in order to create a better Tabletop Roleplaying Game experience. The more freedom a TTRPG can offer players, the better. Hence, Fallout: Revitalized has elected to count certain events as canon which Bethesda has not, decanonized some of Bethesda's changes, and create some new lore atop these changes.</p>
   	<p>The idea is to smooth out the rough transition occurring in the lore due to Interplay's death, allow for some things Interplay couldn't show/do due to time/money to have occurred, and most importantly, make the actions of player characters matter by allowing the world to change for the better... or the worse, depending on what kind of person the players choose to be.</p>
   	<p>To allow GMs to understand what is added and what is changed, items marked with a ⚙ are changes to base cannon, while items marked with a ★ are additions. Items marked with ☢ are events from non-canon or canceled sources which Fallout: Revitalized considers canon.</p>
+
+
+
   	<h2>Pre-War</h2>
   	<ul class="timeline" id="2053">
     	<li><b>2053</b></li>
@@ -125,7 +149,7 @@
     	<li><b>2089</b></li>
     	<ul>
       	<li class="ad">A loose alliance of various technically-adept wastelanders located within The Woodlands, a community north of Houston, join forces and technologies to found a safe home. Calling themselves The Houston Technocracy this new group elects to create the best possible standard of living for its people, then turn their attention to expanding their territory, influence, and wealth when possible.</li>
-      	<li>The Automated Utility Service Telecommunications Internal Network, now called Austin by its citizens, is formally appointed as the Mayor of Austin after it successfully safeguards the populous, secures food and water, and constructs basic shelters for its citizens. Austin has no problem with its citizens having factions and deciding the rules and laws of their "Neighborhoods", but does promise it will intervene to stop violence within the city. Which it does, swiftly and brutally. Often by having its robots carry aggressors outside of the city limits to "take it outside". As a result, Austin becomes a location known as a neutral ground where members of all kinds of groups intermingle, share ideas, and otherwise cohabitate.</li>
+      	<li class="ad">The Automated Utility Service Telecommunications Internal Network, now called Austin by its citizens, is formally appointed as the Mayor of Austin after it successfully safeguards the populous, secures food and water, and constructs basic shelters for its citizens. Austin has no problem with its citizens having factions and deciding the rules and laws of their "Neighborhoods", but does promise it will intervene to stop violence within the city. Which it does, swiftly and brutally. Often by having its robots carry aggressors outside of the city limits to "take it outside". As a result, Austin becomes a location known as a neutral ground where members of all kinds of groups intermingle, share ideas, and otherwise cohabitate.</li>
     	</ul>
   	</ul>
   	<ul class="timeline" id="2122">
@@ -272,7 +296,7 @@
   	<ul class="timeline"  id="2287">
     	<li><b>2287</b></li>
     	<ul>
-      	<li class="ad">Following in the tradition of randomly wandering Vault Dwellers, Nora, the Soul Survivor of Vault 111 turns a quest to find their kidnapped child into gaining control of one of the most powerful scientific institutions in post-war America, The Institute. She rather dislikes their vaguely evil largely inconsiderate ways, but knows that as the director she can steer them down the right path. With a little bit of diplomacy, a few 10mm rounds provided by her wife KL-E-0, and help from her loyal army of Synths, Nora takes over the Institute not only as Director, but as Queen of the Commonwealth. As the region's absolute monarch, she begins to return life to the wasteland. A cult forms around her thanks to the efforts of her friend and trusted advisor <a href="https://fallout.fandom.com/wiki/Lorenzo_Cabot">Lorenzo Cabot</a>, who claims to have made Nora into an immortal god-queen.</li>
+      	<li class="ad">Following in the tradition of randomly wandering Vault Dwellers, Nora, the Soul Survivor of Vault 111 turns a quest to find their kidnapped child into gaining control of one of the most powerful scientific institutions in post-war America, The Institute. She rather dislikes their vaguely evil largely inconsiderate ways, but knows that as the director she can steer them down the right path. With a little bit of diplomacy, a few 10mm rounds provided by her wife Ada, and help from her loyal army of Synths, Nora takes over the Institute not only as Director, but as Queen of the Commonwealth. As the region's absolute monarch, she begins to return life to the wasteland. A cult forms around her thanks to the efforts of her friend and trusted advisor <a href="https://fallout.fandom.com/wiki/Lorenzo_Cabot">Lorenzo Cabot</a>, who claims to have made Nora into an immortal god-queen.</li>
     	</ul>
   	</ul>
 
@@ -295,5 +319,155 @@
     -->
 
     </div>
+    <script type="text/javascript">
+    window.addEventListener('load', function() {
+      // Set show-all checkbox to checked by default
+      document.getElementById('show-all').checked = true;
+
+      // Add event listeners to all checkboxes
+      var checkboxes = document.querySelectorAll('input[type=checkbox]');
+      for (var i = 0; i < checkboxes.length; i++) {
+        checkboxes[i].addEventListener('change', function() {
+          // Handle show-all checkbox
+          if (this.id === 'show-all' && this.checked) {
+            // Uncheck other checkboxes
+            document.getElementById('show-class1').checked = false;
+            document.getElementById('show-class2').checked = false;
+            document.getElementById('show-class3').checked = false;
+          }
+
+          // Handle other checkboxes
+          if (this.id !== 'show-all' && this.checked) {
+            // Uncheck show-all checkbox
+            document.getElementById('show-all').checked = false;
+          }
+
+          // Show or hide list items based on checkboxes
+          var adItems = document.querySelectorAll('.ad');
+          var chItems = document.querySelectorAll('.ch');
+          var nuItems = document.querySelectorAll('.nu');
+
+          // Show all items if show-all is checked
+          if (document.getElementById('show-all').checked) {
+            for (var j = 0; j < adItems.length; j++) {
+              adItems[j].classList.remove('hidden');
+            }
+            for (var j = 0; j < chItems.length; j++) {
+              chItems[j].classList.remove('hidden');
+            }
+            for (var j = 0; j < nuItems.length; j++) {
+              nuItems[j].classList.remove('hidden');
+            }
+          } else {
+            // Hide all items by default
+            for (var j = 0; j < adItems.length; j++) {
+              adItems[j].classList.add('hidden');
+            }
+            for (var j = 0; j < chItems.length; j++) {
+              chItems[j].classList.add('hidden');
+            }
+            for (var j = 0; j < nuItems.length; j++) {
+              nuItems[j].classList.add('hidden');
+            }
+
+            // Show items based on checkboxes
+            if (document.getElementById('show-class1').checked) {
+              for (var j = 0; j < adItems.length; j++) {
+                adItems[j].classList.remove('hidden');
+              }
+            }
+            if (document.getElementById('show-class2').checked) {
+              for (var j = 0; j < chItems.length; j++) {
+                chItems[j].classList.remove('hidden');
+              }
+            }
+            if (document.getElementById('show-class3').checked) {
+              for (var j = 0; j < nuItems.length; j++) {
+                nuItems[j].classList.remove('hidden');
+              }
+            }
+          }
+
+          // Hide ULs with no visible items
+          var uls = document.querySelectorAll('ul');
+          for (var j = 0; j < uls.length; j++) {
+            var adLis = uls[j].querySelectorAll('.ad:not(.hidden)');
+            var chLis = uls[j].querySelectorAll('.ch:not(.hidden)');
+            var nuLis = uls[j].querySelectorAll('.nu:not(.hidden)');
+            if (adLis.length === 0 && chLis.length === 0 && nuLis.length === 0) {
+              uls[j].classList.add('hidden');
+            } else {
+              uls[j].classList.remove('hidden');
+            }
+          }
+        });
+      }
+    });
+    </script>
+    <script type="text/javascript">
+    function flipTo(digit, n){
+      var current = digit.getAttribute('data-num');
+      digit.setAttribute('data-num', n);
+      digit.querySelector('.front').setAttribute('data-content', current);
+      digit.querySelectorAll('.back, .under').forEach(function(el) {
+        el.setAttribute('data-content', n);
+      });
+      digit.querySelector('.flap').style.display = 'block';
+      setTimeout(function(){
+        digit.querySelector('.base').textContent = n;
+        digit.querySelector('.flap').style.display = 'none';
+      }, 350);
+      }
+
+      function jumpTo(digit, n){
+      digit.setAttribute('data-num', n);
+      digit.querySelector('.base').textContent = n;
+      }
+
+      function updateGroup(group, n, flip){
+      var digit1 = document.querySelector('.ten'+group);
+      var digit2 = document.querySelector('.'+group);
+      n = String(n);
+      if(n.length == 1) n = '0'+n;
+      var num1 = n.substr(0, 1);
+      var num2 = n.substr(1, 1);
+      if(digit1.getAttribute('data-num') != num1){
+        if(flip) flipTo(digit1, num1);
+        else jumpTo(digit1, num1);
+      }
+      if(digit2.getAttribute('data-num') != num2){
+        if(flip) flipTo(digit2, num2);
+        else jumpTo(digit2, num2);
+      }
+      }
+
+      function setTime(flip){
+      var t = new Date();
+      updateGroup('hour', t.getHours(), flip);
+      updateGroup('min', t.getMinutes(), flip);
+      updateGroup('sec', t.getSeconds(), flip);
+      }
+
+      document.addEventListener("DOMContentLoaded", function() {
+      setTime(false);
+      setInterval(function(){
+        setTime(true);
+      }, 1000);
+      });
+    </script>
+    <script type="text/javascript">
+    window.addEventListener('load', function() {
+      // Get all the checkboxes
+      var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+      // Loop through all the checkboxes
+      for (var i = 0; i < checkboxes.length; i++) {
+        // Uncheck the checkbox if it's not the "show-all" checkbox
+        if (checkboxes[i].id !== 'show-all') {
+          checkboxes[i].checked = false;
+        }
+      }
+      });
+    </script>
   </body>
 </html>

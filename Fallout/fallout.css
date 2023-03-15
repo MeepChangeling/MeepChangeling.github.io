@@ -41,7 +41,7 @@ img.pagebg {
   height:20vh;
   left:0;
   opacity:.5;
-  position:absolute;
+  position:fixed;
   right:0;
   z-index:1;
 }
@@ -53,7 +53,7 @@ img.pagebg {
   content:"";
   left:0;
   pointer-events:none;
-  position:absolute;
+  position:fixed;
   right:0;
   top:0;
   z-index:2;
@@ -292,7 +292,6 @@ p:last-child:after {
 }
 
 .screen img {
-  filter: invert(9%) sepia(40%) saturate(871%) hue-rotate(82deg) brightness(50%) contrast(108%);
   z-index: -80
 }
 
@@ -409,9 +408,77 @@ div.screen ul.timeline ul li.nu {
   border-bottom: solid 1px #DCCF68;
 }
 
+div.timelinecontrol {
+  background-image:linear-gradient(#202020, #242424);
+  display: block;
+  margin-left: -20vw;
+  margin-top: -2.5vh;
+  border-bottom: solid 2px #009a00;
+  width: 100%;
+  text-align: center;
+  position: fixed;
 
+}
 
+.hidden {
+  display: none;
+}
 
 div.screen ul a {
   color: orange;
+}
+
+/* Style checkboxes */
+input[type="checkbox"] {
+  display: none; /* Hide the default checkbox */
+}
+
+input[type="checkbox"] + label:before {
+  content: "";
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  border: 1px solid black;
+  margin-top: 3px;
+  border-radius: 50%;
+  background-color: white;
+}
+
+input[type="checkbox"]:checked + label:before {
+  background-color: orange; /* Change the background color when checked */
+}
+
+
+/* Nixie Clock */
+div#date {
+  	position: fixed;
+  	top: 0;
+  	left: 0;
+  	transform: translateY(0);
+  	perspective: 100vw;
+  	perspective-origin: 50% 50%;
+  	z-index: 9999;
+    margin-left: 2vw;
+    margin-top: 3.2vh;
+    border-radius: 2%;
+    font-family: Oswald, sans-serif;
+    font-size: 1.5em;
+    color: #FFFFF0;
+    font-weight: bold;
+}
+span#day {
+  letter-spacing: 0.5vw;
+}
+span#month {
+  margin-left: 0.25vw;
+  letter-spacing: 0.5vw;
+}
+span#year {
+  margin-left: 0.5vw;
+  letter-spacing: 0.6vw;
+}
+div#date span.time {
+  margin-left: 3.7vw;
+  letter-spacing: 0.57vw;
 }

@@ -13,7 +13,7 @@ var navbar = `<nav>
       <a href="../world/worldindex.html">World Index</a>
       <a href="../world/regionindex.html">Region Index</a>
       <a href="../world/factionindex.html">Faction Index</a>
-      <a href="../docs/factionindex.html">Timeline</a>
+      <a href="../docs/timeline.html">Timeline</a>
     </div>
   </div>
   <div class="dropdown">
