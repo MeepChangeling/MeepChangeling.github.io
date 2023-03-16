@@ -11,7 +11,7 @@
 <script src="js/rulerplugin/Leaflet.LinearMeasurement.js"></script>
 <script src="js/permalink/leaflet.permalink.min.js"></script>
 <script type="text/javascript" src="pins.js"></script>
-</head>
+</head><script src="../scripts/darkmode.js"></script>
 <body style="height: 100%; margin: 0;">
 
 <div id="map" style="width: 100%; height: 100%; background: #5baef3;"></div>
@@ -61,16 +61,16 @@
 		// crs: L.CRS.Simple,
 	// }).addTo(map);
 
-	var satMap = L.tileLayer('img/SatMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 9, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
-	vecMap2 = L.tileLayer('img/ShadeVector/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 9, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
-	Religionmap = L.tileLayer('img/ReligionMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 9, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple, opacity: 0.7,});
-	Statemap = L.tileLayer('img/StateMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 9, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple, opacity: 0.7,});
-	Culturemap = L.tileLayer('img/CultureMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 9, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple, opacity: 0.7,});
-	regionMap = L.tileLayer('img/RegionTiles/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 9, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
-	Roadmap = L.tileLayer('img/RoadMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 9, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
-	Railmap = L.tileLayer('img/RailwayMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 9, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+	var satMap = L.tileLayer('img/SatMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+	vecMap2 = L.tileLayer('img/ShadeVector/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+	Religionmap = L.tileLayer('img/ReligionMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple, opacity: 0.7,});
+	Statemap = L.tileLayer('img/StateMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple, opacity: 0.7,});
+	Culturemap = L.tileLayer('img/CultureMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple, opacity: 0.7,});
+	regionMap = L.tileLayer('img/RegionTiles/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+	Roadmap = L.tileLayer('img/RoadMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+	Railmap = L.tileLayer('img/RailwayMap/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
 
-	cities = L.tileLayer('img/Cities/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 9, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+	cities = L.tileLayer('img/Cities/{z}/{x}/{y}.png', {minZoom: 4, maxNativeZoom: 10, maxZoom: 11, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
 
 
 	var baseMaps = {
@@ -133,6 +133,9 @@
 	// Cordinates Locating Marker
 	var marker = L.marker([36, -12], {
 		draggable: true,
+		icon: L.icon({
+			iconUrl: "js/leaflet/images/marker-icon2.png",
+		})
 	}).addTo(map);
 	marker.bindPopup('');
 
@@ -149,20 +152,24 @@
 	});
 
 
-	//var marker = L.marker([0, 0], {
-	//	draggable: true,
-	//}).addTo(map);
-	//marker.bindPopup('<b>Cursor</b>');
 
-	//Hey Vex! this is how you make a marker: L.marker([31.52, -23.76]).addTo(map).bindPopup('<b>Lin Forrest</b>')//.openPopup();
-	//Don't want to see a pin? Put // infront of it.
-	//If you want the marker's pop up open by default, get rid of the // before .openPopup();
-	//Add as many markers as you want below this line, but above the "</ script>". It wont break anything.
+		//var marker = L.marker([0, 0], {
+		//	draggable: true,
+		//}).addTo(map);
+		//marker.bindPopup('<b>Cursor</b>');
 
-	//L.marker([31.52, -23.76]).addTo(map).bindPopup('<b>Lin Forrest</b>')//.openPopup();
-	L.marker([20.71, -27.00]).addTo(map).bindPopup('<b>Shaded Vale</b>')//.openPopup();
-	L.marker([20.71, 6.21]).addTo(map).bindPopup('<b>Chicken Yas</b>')//.openPopup();
-	//L.marker([22.7046, 4.6873]).addTo(map).bindPopup('<b>The Patch</b>')//.openPopup();																											
+		//Hey Vex! this is how you make a marker: L.marker([31.52, -23.76]).addTo(map).bindPopup('<b>Lin Forrest</b>')//.openPopup();
+		//Don't want to see a pin? Put // infront of it.
+		//If you want the marker's pop up open by default, get rid of the // before .openPopup();
+		//Add as many markers as you want below this line, but above the "</ script>". It wont break anything.
+
+		//L.marker([31.52, -23.76]).addTo(map).bindPopup('<b>Lin Forrest</b>')//.openPopup();
+		L.marker([20.71, -27.00]).addTo(map).bindPopup('<b>Shaded Vale</b>')//.openPopup();
+		L.marker([20.71, 6.21]).addTo(map).bindPopup('<b>Chicken Yas</b>')//.openPopup();
+		//L.marker([22.7046, 4.6873]).addTo(map).bindPopup('<b>The Patch</b>')//.openPopup();
+
+
+
 
 
 
