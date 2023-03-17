@@ -18,6 +18,7 @@ var navbar = `
         <div class="dropdown-content">
         <a href="../races/peoples.html">Races</a>
         <a href="../cultures/cultureindex.html">Cultures</a>
+        <a href="../religions/index.html">Religions</a>
         <a href="../languages/langindex.html">Languages</a>
         <a href="../misc/miscindex.html">Index of Misc. Topics</a>
         <a href="../gamerules/GameRuleMenu.html">Game Rules</a>
