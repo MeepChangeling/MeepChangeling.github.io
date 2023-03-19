@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Races and Species</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../fallout.css" />
+    <link rel="icon" type="image/x-icon" href="../img/vaultgirl.webp">
+    <style media="screen">
+      .content p:first-child {
+          font-weight: bold;
+      }
+      button#toggle-button {
+        float: right;
+        margin: 0%;
+        margin-right: 5%;
+        vertical-align: bottom;
+        font-size: calc(1vw + 1vh);
+        background-color: inherit;
+        border: solid 2px orange;
+        color: orange;
+        border-radius: 5px;
+
+      }
+      button#toggle-button:hover {
+        background-color: orange;
+        color: #222222;
+      }
+      button#toggle-button:active {
+        background-color: darkorange;
+        color: #222222;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="buttonpannel" class="buttonpannel">
+
+    </div>
+    <div id="date">
+      <span id="day"></span>
+      <span id="month"></span>
+      <span id="year"></span>
+      <span class="time"></span>
+    </div>
+    <script src="../clock.js"></script>
+    <img class="pagebg" src="../img/pipboy2000.webp"></img>
+    <div id="navcontainer" class="navcontainer">
+      <script src="../pipnav2.js"></script>
+      <button button type="button" id="toggle-button">Toggle All</button>
+    </div>
+    <div class="screen">
+      <div class="contentwindow">
+        <h1>Races & Species</h1>
+    	<p>The world the Great War ended was a world humanity ruled as the soul sapient species. After the bombs fell bringing radiation and FEV contamination to Earth, humanity found itself slowly starting to share its world with other intelligent lifeforms. In the modern era, there are a number of species capable of developing culture, civilization, art, tools, and all other hallmarks of intelligent life.</p>
+    	<p>These lists are presented in order from most to least common.</p>
+    	<h2>Humans and the Human Family</h2>
+    	<p>In ancient times, before the dawn of civilization, the human race was composed of several species. <i>Homo sapiens</i> lived alongside <em>Homo <a title="Neanderthal" href="https://en.wikipedia.org/wiki/Neanderthal">Neanderthals</a>,</em> <em><a class="mw-redirect" title="H. naledi" href="https://en.wikipedia.org/wiki/H._naledi">H.&nbsp;naledi</a></em>, <em><a class="mw-redirect" title="H. ergaster" href="https://en.wikipedia.org/wiki/H._ergaster">H.&nbsp;ergaster</a></em>, <em><a class="mw-redirect" title="H. antecessor" href="https://en.wikipedia.org/wiki/H._antecessor">H.&nbsp;antecessor</a></em>, and <em><a class="mw-redirect" title="H. habilis" href="https://en.wikipedia.org/wiki/H._habilis">H.&nbsp;habilis</a></em>.</p>
+    	<p>Over the last two centuries, several new human subspecies and stable mutations have emerged. These are the ones accepted by humans into their family. The ones people will glare at you for calling them mutants outside of academic forums. In other words, these are the groups largely considered to be races rather than species.</p>
+    	<ul>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Human">Humans</a>:</b> Your typical wasteland human. Less fertile, shorter lived, and more prone to genetic defects than pre-war humans, but generally the same as their ancestors.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p><b>Traits</b></p>
+          	<p>You may choose two of the following traits, or one trait and one additional perk. Each trait has a benefit and may have an accompanying penalty.</p>
+          	<table>
+            	<tbody>
+            	<tr>
+            	<th>Trait</th>
+            	<th>Benefit</th>
+            	<th><span>Penalty</span> </th>
+            	</tr>
+            	<tr>
+            	<td>Educated</td>
+            	<td><span>You have one additional tag skill.</span> </td>
+            	<td>When you fail a skill test using a skill other than a tag skill, the GM gains 1 AP.</td>
+            	</tr>
+            	<tr>
+            	<td>Fast Shot</td>
+            	<td>If you take a second major action in combat, and use it to make a ranged attack, the additional major action only costs 1 AP, rather than 2.</td>
+            	<td>You cannot benefit from the Aim minor action - you're too impatient.</td>
+            	</tr>
+            	<tr>
+            	<td>Gifted</td>
+            	<td>Choose two S.P.E.C.I.A.L. attributes and increase them by +1 each.</td>
+            	<td>Your maximum number of Luck points is 1 fewer than your Luck attribute.</td>
+            	</tr>
+            	<tr>
+            	<td>Heavy Handed</td>
+            	<td>Your Melee Damage bonus increases by +1.</td>
+            	<td>Your melee and unarmed attacks suffer a complication on a 19 or a 20, rather than only a 20.</td>
+            	</tr>
+            	<tr>
+            	<td>Small Frame</td>
+            	<td>You may re-roll 1d20 on all AGI tests which rely on balance or contortion.</td>
+            	<td>Your carry weight is 150 + (5 x STR) lbs., rather than 150 + (10 x STR) lbs.</td>
+            	</tr>
+            	</tbody>
+            	</table>
+        	</div>
+      	</li>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Dwarf">Dwarves</a>:</b> A pre-war genetic condition resulting in a shortened stature transformed by radiation into a common enough inheritable mutation for Dwarves to have developed a breeding population and splinter off into a true human subspecies.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Stocky Build</p>
+          	<p>You gain +2 Endurance, and your Endurance cap is increased to 12. Your carry weight is 150 + (15 x STR) lbs., rather than 150 + (10 x STR) lbs. Your low center of gravity makes you harder to knock down, increasing the difficulty of the task by 1 (maximum 5).</p>
+          	<p>You are half the height of an ordinary human, and therefore are incapable of using power armor and can only use non-powered armor after it has been modified to fit your body. You cannot make use of the Sprint action without having an Agility of at least 6.</p>
+        	</div>
+      	</li>
+      	<ul>
+        	<li><b><a href="https://fallout.fandom.com/wiki/Mole_miner">Mole miners</a>:</b> While strictly speaking a group of mutant Dwarves, the Mole Miners are genetically, culturally, and geographically distinct enough to be seen by most as an entirely unrelated human group. They are most commonly found in the Applacian mountains.<br>
+          	<button type="button" class="collapsible">STATS</button>
+          	<div class="content">
+            	<p>Trait: Miner's Build</p>
+            	<p>You gain +2 Strength, and your Strength cap is increased to 12. Your carry weight is 150 + (15 x STR) lbs., rather than 150 + (10 x STR) lbs. You deal an extra 2 damage with all Melee Weapons when attacking objects or robots.</p>
+            	<p>You are half the height of an ordinary human, and therefore are incapable of using power armor and can only use non-powered armor after it has been modified to fit your body. You start play with a Breathing Apparatus which you need to survive. If the Breathing Apparatus is damaged, removed from your person, or otherwise rendered inoperable, you will begin to suffocate in 2d6 minutes. While suffocating, the difficulty of all tasks is increased by 3 (to a max of 5). You will begin dying after 2 minutes of suffocation. You can attempt to repair your breathing apparatus while suffocating.</p>
+          	</div>
+        	</li>
+      	</ul>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Slags">Slags</a>:</b> A small but growing group of subterranean adapted humans. Able to see in the dark perfectly, though blinded by sunlight and almost universally agoraphobic.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Better Living, Underground</p>
+          	<p>You are adapted for life beneath the ground. You can see perfectly in darkness, even total darkness, as if it were well lit by a headlamp you (and any other Slag(s) nearby) were wearing. You treat the difficulty of any test to move across, through, or around terrain similar to that of caves (wet stone, small spaces, etc.) as if it were 1 lower.</p>
+          	<p>You are blinded by bright light, finding sunlight to be painful. Without sunglasses, welding goggles, or similar eye protection, all tests you make during the day or in any brightly illuminated space, or during the turn after you are exposed to bright light as if it were 1 rank higher (to a maximum of 5). This includes rounds after you have been shot at by any energy weapon.</p>
+        	</div>
+      	</li>
+      	<li><b>Rad-Immunes:</b> An adaptation of the human species from several centuries worth of radiation exposure which is inheritable. Most radiation immune humans do not realize they are immune to ionization (no radiation sickness or ghoulification) as they had been taught by others to avoid it at all costs, but those that have sometimes ascribe it to a divine blessing, such as the <a title="Church of the Children of Atom" href="https://fallout.fandom.com/wiki/Church_of_the_Children_of_Atom">Church of the Children of Atom</a> who revere it as "<a title="Glossary of Children of Atom terms" href="https://fallout.fandom.com/wiki/Glossary_of_Children_of_Atom_terms">Atom's blessing</a>".<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Rad-Immune</p>
+          	<p>You are entirely immune to radiation. You cannot get radiation sickness. You cannot be harmed by exposure to ionizing radiation in any way, though low energy radiation such as UV, light, IR, radio, and microwaves effect you normally. (IE You can stand in front of an exposed fusion reactor and be fine, but sticking your hand into the corona will still destroy your hand. You can also be killed by the laser pistol the reactor's guard is shooting at you.)</p>
+          	<p>You cannot take perks which involve radiation. This includes perks with other benefits such as Aquaboy/girl. You cannot benefit from consumable items which impart radiation along with their primary effects.</p>
+        	</div>
+      	</li>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Generation_3_synth">Synths</a>:</b> Post-war synthetic organic humans created by the Institute. Typically superior to baseline humans in every way. They are immune to all diseases, do not require food, water, or to sleep (but can do all of these to appear human), and do not age. They price they pay for such glory is a cybernetic control chip in their brain, capable of overwriting their free will at any time and any place... Which may or may not be remotely hackable.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Synthetic Organic</p>
+          	<p>You may choose one trait from the Survivor Trait list, and are also immune to poison and radiation damage. You cannot become physically addicted to Chems, but can still become psychologically dependent on them.</p>
+          	<p>You require double the normal dose of a chem to gain its benefits. Many people find you to be an abomination and will become unfriendly or hostile if the truth of your existence becomes known. As you do not age, it is easy to determine your status as a Synth should you remain in one place long enough.</p>
+        	</div>
+      	</li>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Psychic">Psychics</a>:</b> An exceedingly rare form of mutant who gains extra-sensory powers, typically at the cost of headaches, nausea, and an increased appetite. Their abilities range from clairvoyance and telepathy, to more extreme projections of power like pyrokinesis.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Byond Mortal Ken</p>
+          	<p>You may choose one of the following traits. Each trait has a benefit and may have an accompanying penalty.</p>
+          	<table>
+            	<tbody>
+            	<tr>
+            	<th>Trait</th>
+            	<th>Benefit</th>
+            	<th>Penalty</th>
+            	</tr>
+            	<tr>
+            	<td>Receiving Telepath</td>
+            	<td>You hear the surface level thoughts of intelligent creatures in a radius around you equal to 100 + (20 x INT) feet. You do not need to see them to hear their thoughts, they merely need be within your range.</td>
+            	<td>You cannot turn this ability off. You hear all of the thoughts of all intelligent creatures with a brain within your radius, always. This increases the difficulty of all tests by 1 per 3 + CHA people within range of your power. This can push the difficulty beyond 5, making it impossible to complete as a single action.</td>
+            	</tr>
+            	<tr>
+            	<td>Sending Telepath</td>
+            	<td>You can implant thoughts into the heads of others. This allows you to make people believe your thoughts are their own. You must see the person you wish to implant a thought into (directly, or indirectly via a mirror, video monitor, etc.) and they must be within 10 + (5 x INT) ft. of you.</td>
+            	<td>
+            	<p>Your power is is limited by your Intelligence and Charisma. If either stat is below 4, you can only implant a suggestion of no more than 3 words. If either stat is below 6, you cannot impart a thought longer than 15 words. If either stat is below 8, you are limited to 30 words. If your stats are both 10, you can implant a thought of no more than 60 words.</p>
+            	<p>Implanting a thought successfully requires a Speech test. If you fail the test by 5 or more the target becomes aware of your presence in their mind.</p>
+            	<p>You cannot make someone act out of character with a single implanted thought, though you can over the course of many implants over many days radically alter their personality.</p>
+            	</td>
+            	</tr>
+            	<tr>
+            	<td>Photokinetic</td>
+            	<td>
+            	<p>You can manifest and control light. This allows you to create light to see, bend light to change what it is and is not illuminating, alter the color of light, and even attack and defend yourself.</p>
+            	<p>You can produce a ray of light which counts as an energy weapon dealing 1d6 energy damage at close range with a fire rate of 1.</p>
+            	<p>You can create a shield around yourself which absorbs laser fire (but not plasma or other forms of energy weapons). This shild can be created as a reaction to being hit, or preemptively as a minor action. You can use this ability to shield things behind you from attack as well as yourself.</p>
+            	</td>
+            	<td>
+            	<p>Your powers are taxing to use. While you can illuminate an area without any issues, using your power in any other way increases the difficulty of all tests by 1 until the end of your next turn.</p>
+            	<p>You can make a number of attacks equal to your CHA every 15 - INT minutes without penalty. Going over this limit causes you to take 1d6 damage immediately on each use, and then again each time you use your powers for the next 10 minutes per additional use.</p>
+            	<p>When defending, you can absorb a number of hits equal to your CHA per day. Going past this limit is impossible.</p>
+            	<p>Your power is limited to a 10 + (5 x INT) ft. radius around you. Your attacks travel past this distance, but loose too much energy to deal damage to anything they hit after this point.</p>
+            	</td>
+            	</tr>
+            	<tr>
+            	<td>Pyrokinetic</td>
+            	<td>
+            	<p>You can manifest and control fire. This allows you to make small flames suitable for illumination or cooking, as well as telekinetically move flames (but not their fule) as you please. While under your telekinetic control, fire burns indefinitely despite the lack of fule.</p>
+            	<p>You can infuse a weapon with fire, adding 1d6 of energy damage to its next attack, and potentially lighting things on fire. The weapon need not be your own, or one you are touching.</p>
+            	<p>You can create a wall of fire which deals 1d6 damage to any creature as they pass through it, and 2d6 damage if they remain within it. You can extend the wall as far as you like, manifesting up to INT feet per turn.</p>
+            	</td>
+            	<td>
+            	<p>Your powers are taxing to use. While you can illuminate an area without any issues, using your power in any other way increases the difficulty of all tests by 1 until the end of your next turn.</p>
+            	<p>You can infuse a weapon a number of times equal to your CHA every 15 - INT minutes without penalty. Going over this limit causes you to take 1d6 damage immediately on each use, and then again each time you use your powers for the next 10 minutes per additional use.</p>
+            	<p>You can only create a wall in a location you can perceive or have recently perceived (last INT turns). You can create a number of independent walls equal to 1/2 your Charisma (Minimum 1). Creating a segment of your wall of flames is a major action. Maintaining your wall requires focus, increasing the difficulty of all tests by 1 till the end of your next turn on top of the +1 from using your powers at all.</p>
+            	<p>Your power is limited to a 10 + (5 x INT) ft. radius around you. Any fire you attempt to move past this limit is snuffed out. Walls of fire created by you are extinguished if you leave this radius (and there is no fule for them to burn). Attacks made by infused weapons are not effected by this limit.</p>
+            	</td>
+            	</tr>
+            	<tr>
+            	<td>Cryokinetic</td>
+            	<td>
+            	<p>You can manifest and control ice. This allows you to cool or freeze small objects you can touch (no more than INT cubic inches per turn), as well as telekinetically move ice and snow (no more than INT cubic feet at a time) as you please.</p>
+            	<p>You can infuse a weapon with ice, adding 1d6 of physical damage to its next attack, and potentially freezing your target. The weapon need not be your own, or one you are touching.</p>
+            	<p>You can create a wall of cold which deals 1d6 damage to any creature as they pass through it, and freezes anything solid if they remain within it for 10 - CHA rounds. You can extend the wall as far as you like, manifesting up to INT feet per turn.</p>
+            	</td>
+            	<td>
+            	<p>Your powers are taxing to use. While you can illuminate freeze or cool a small object without any issues, using your power in any other way increases the difficulty of all tests by 1 until the end of your next turn.</p>
+            	<p>You can infuse a weapon a number of times equal to your CHA every 15 - INT minutes without penalty. Going over this limit causes you to take 1d6 damage immediately on each use, and then again each time you use your powers for the next 10 minutes per additional use.</p>
+            	<p>You can only create a wall in a location you can perceive or have recently perceived (last INT turns). You can create a number of independent walls equal to 1/2 your Charisma (Minimum 1). Creating a segment of your wall of cold is a major action. Maintaining your wall requires focus, increasing the difficulty of all tests by 1 till the end of your next turn on top of the +1 from using your powers at all.</p>
+            	<p>Your power is limited to a 10 + (5 x INT) ft. radius around you. Any ice/snow you attempt to move past this limit falls instantly. Walls of cold created by you are dissipate if you leave this radius. Attacks made by infused weapons are not effected by this limit.</p>
+            	</td>
+            	</tr>
+            	<tr>
+            	<td>Electrokinetic</td>
+            	<td>
+            	<p>You can manifest and control electricity. This allows you to power any low-energy electronic devices nearby you (Provided you do not excede the limits of a 120v 15a circuit with the total current produced and no individual item uses more power than a toaster), as well as telepathically detect the presence of active electronic systems nearby.</p>
+            	<p>You can create a lightning bolt which counts as an energy weapon dealing 1d6 energy damage at close range with a fire rate of 1. This deals 2d6 damage when used against robots, power armor, or other electronic systems.</p>
+            	<p>You can make all electronic systems in your current zone go haywire, shorting out, overloading, or browning out wether they are active or inactive. This includes robots.</p>
+            	</td>
+            	<td>
+            	<p>Your powers are taxing to use. Using your power increases the difficulty of all tests by 1 until the end of your next turn.</p>
+            	<p>You can make a number of attacks equal to your CHA every 15 - INT minutes without penalty. Going over this limit causes you to take 1d6 damage immediately on each use, and then again each time you use your powers for the next 10 minutes per additional use.</p>
+            	<p>Using your power to cause chaos within your current zone allows the GM to choose what effect(s) happen to what items. This is entirely beyond your control, and can create helpful or harmful circumstances. The one exception is robots, who take damage equal to 1d6 per turn (in addition to any other effect). This damage is treated like radiation damage, lowering their maximum health rather than depleting their current HP.</p>
+            	<p>Your power is limited to a 10 + (5 x INT) ft. radius around you. If you are creating chaos in a zone, your power extends through the entire zone, as well as to any adjacent zones connected to your current zone via any electronic system or conductive pathway.</p>
+            	</td>
+            	</tr>
+            	<tr>
+            	<td>Clairsentient</td>
+            	<td>
+            	<p>You have the ability to perceive future events before they occur. This allows you advanced warning as well as some details about the situation you are shown.</p>
+            	<p>When you have a vision of the future, the GM must tell you the basics of a future event, where, what, and who. You may ask the GM up to INT / 3 (minium 1, rounding up) questions which the GM must answer honestly.</p>
+            	</td>
+            	<td>
+            	<p>You do not have control over your power. The GM decides when you have a vision, and what the vision is of.</p>
+            	<p>The GM may not answer any of your questions with more than 1 sentence or 30 seconds of speech per answer.</p>
+            	<p>The GM must be honest, but can omit details or otherwise give you exactly what you ask for in misleading ways.</p>
+            	</td>
+            	</tr>
+            	<tr>
+            	<td>Telekinetic</td>
+            	<td>
+            	<p>You do not need to touch objects to manipulate them, and can preform any action you can with your own body remotely. While using your telekinesis you substitute your INT for your STR in all tests. Your maximum lifting capacity is equal to 100 + (15 x CHA) + (15 x INT) lbs.</p>
+            	<p>You can use your telekinesis to fly or levitate. You can lift your own body regardless of your TK's weight limit.</p>
+            	</td>
+            	<td>
+            	<p>Using your power increases the difficulty of all tests by 1 until the end of your next turn.</p>
+            	<p>While you can potentially lift heavier objects with your TK than your body, and size is not a factor for your TK, you cannot lift more objects with your telekinesis than you could with your body  (IE an armful of apples, a few large bags, one large crate, etc).</p>
+            	<p>You cannot fly faster than you can sprint. While you have no maximum altitude, you will require cold weather gear, an oxygen mask, and eventually a space suit as you gain altitude.</p>
+            	<p>Your telekenesis's total maximum range is limited to 30 + (10 x PER) feet.</p>
+            	</td>
+            	</tr>
+            	</tbody>
+          	</table>
+          	<p>Your powers can be entirely disabled by a device known as a <a href="https://fallout.fandom.com/wiki/Psychic_nullifier_(Fallout)">Psychic nullifier</a>, which is nowhere as rare as one would expect.</p>
+        	</div>
+      	</li>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Human#Pure_and_prime_humans">Prime Humans</a>:</b> A very rare human subspecies defined by being entirely unchanged by the War, with genetic material being exactly the same as a pre-war Human's. They exist only in isolated factions, such as in remote areas untouched by radiation, an example being Vaults Dwellers.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Out of the Past</p>
+          	<p>You lack the general genetic damage and mild mutations of the world's typical humans. Your S.P.E.C.I.A.L. maximums are increased by 2 and you start with an additional 1d6 ability points. You are exactly as medical textbooks describe humans. Auto-Docs restore you to full health without any complications and anyone with formal medical training has the difficulty of treating you reduced by 1.</p>
+          	<p>You take double damage from radiation. Individuals lacking formal medical training have the difficulty of healing you increased by 1. Your body is not adapted to drug use like other humans due to lacking their mutations and adaptations. All addictive chems have the number of effect dice needed for an addiction lowered by 1, including those already at 1 which now guarantee addiction if used.</p>
+          	<p>Your existence is key to certain scientific breakthroughs. If your nature is discovered you will attract individuals from scientifically minded institutions who require tissue samples or test subjects. They may be benign, they may be hostile, but they will never give up until they have what they want.</p>
+        	</div>
+      	</li>
+    	</ul>
+    	<h2>RAD Mutants</h2>
+    	<p>This group is comprised of individuals who were either born human or whose ancestors were humans, but are themselves no longer human biologically, mentally, socially, or any combination of the three. Only mutants created by radiation are found within this class.</li>
+    	<ul>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Ghoul">Ghouls</a>:</b> Humans that have been subjected to heavy radiation poisoning and had this misfortune to survive and gained a degenerated, zombie-like appearance for their trouble. While they are immune to radiation and seemingly ageless, they are sterile. They are often accepted into human settlements, but since the majority of Ghouls are not thinking beings but feral animals much akin to the zombies of pre-war myth, Ghouls are often seen as ticking time bombs. Even tough the ones who still have a person in their heads have been just fine for 200 years.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Necrotic Post-Human</p>
+          	<p>You are immune to radiation damage. In fact, you’re healed by it—you regain 1 HP for every 3 points of radiation damage inflicted upon you, and if you rest in an irradiated location, you may re-roll your dice pool when checking if your injuries heal. In addition, Survival becomes a Tag skill, increasing it by 2 ranks.</p>
+          	<p>You age at a much-decreased rate, and you’re probably older than your unmutated companions—you may even have survived the Great War of 2077—but you’re sterile: “the first generation of ghouls is the last” as the saying goes. You may face discrimination from “smoothskins” (humans who aren’t ghouls), increasing the difficulty or complication range of Charisma tests depending on your opponent’s beliefs.</p>
+        	</div>
+      	</li>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Beastlords">Beastlords</a>:</b> A universally psychic mutant subspecies with the ability to command various creatures through telepathy. They are not regarded as humans due to their own insistence, and their ancestors long history of raiding human settlements.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Beastmaster</p>
+          	<p>You have a potent psionic power which allows you to control any intelligent creature with a brain as if it were an extension of yourself. You can make a speech test to gain control over any animal you see for CHA minutes (control over an animal can be maintained by additional tests and line of sight is not required to maintain control). The animal is then under your full control, able to do anything your skills and its biology permit it to do. You also gain access to all of its senses, allowing you to see, hear, and feel what it does.</p>
+          	<p>Your power is taxing. The difficulty of all tests is increased by 1 to a maximum of 5 while you are controlling a creature. You feel what the creature feels, including pain. If the creature is injured while under your control the difficulty of all checks increased by 1 until the end of your next turn. Your psionic control over an animal is limited to a radius of 30 + (10 x INT) ft, and leaving this radius instant;ly returns the animal to its disposition and behavior it expressed when you assumed control be it passive, active, or hostile.</p>
+        	</div>
+      	</li>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Swampfolk">Swampfolk</a>:</b> A group of humans native to the <a title="Point Lookout (location)" href="https://fallout.fandom.com/wiki/Point_Lookout_(location)">Point Lookout</a> region who have developed extreme deformities from a combination of radiation and genetic birth defects following the <a title="Great War" href="https://fallout.fandom.com/wiki/Great_War">Great War</a>. They breed true and are extremely territorial and hostile to all outsiders. No one, not even themselves, think of them as humans.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Swamp Smash!</p>
+          	<p>Your strength is increased by 2, and your maximum strength is increased to 12. You deal an extra d6 on all melee attacks.</p>
+          	<p>You are difficult to heal due to your extreme deviation from baseline humans. THe difficulty of treating your injuries is increased by 2, and you cannot use auto-docs.</p>
+        	</div>
+      	</li>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Tunneler">Tunnelers</a>:</b> A rare form of mutant found exclusively within the Mojave desert... As far as anyone knows. They are bioluminescent, largely quadrupedal, adapted for life underground, venomous, and extremely dangerous. Rumor has it they can talk, and sometimes trade with humans for food.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Burrowing Menace</p>
+          	<p>You have a toxic bite which inflicts 1d6 persistent poison damage. You can see in total darkness thanks to your low-light friendly eyes and bioluminescence. You can tunnel under the ground to strike at attackers. Burrowing into the ground takes a major action, and while burrowing you are not visible and cannot be targeted by attacks. You can burrow 1 zone as a major action, moving underneath existing zones. You can remain underground as long as you like, and need not move to remain underground. It takes only a minor action to emerge from the ground after burrowing. You cannot burrow through stone, metal, or wood. You can move through loose stone (though your tunnels will collapse or close behind you as you move in any loose material).</p>
+          	<p>You are pyrophobic and must flee from any fire larger than the flame of a lanturn. Your fear is due to being flammable, you take double damage from fire. You are also seen as a hostile creature by most, and due to your quadrupedal stance it's not easy to disguise yourself to interact with humans.</p>
+        	</div>
+      	</li>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Ghost_people">Ghost People</a>:</b> While most are feral, and there are only a few hundred total, the few surviving intelligent Ghost People are widely believed to be a form of ghoul. It is impossible to tell thanks to their flesh being fused with their old improperly made hazmat-suits, and tissue samples taken from them have proven to resist study due to nothing else being quite like it. Samples also prove quite difficult to get due to their inhabitation of the Sierra Madre casino and it's many dangers. However, after a courier for the Mojave Express made it to the casino and survived to tell the tale, a number of Ghost People are rumored to have left by the path the courier discovered.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Highlander</p>
+          	<p>You are practically indestructible. So long as your head remains attached to your body you will recover from any wound within 2d6 minutes, and regrow limbs within 2d6 hours. You are immune to radiation and poison. If killed, it's possible to be returned form the dead via the use of 1d6 stim packs per level injected directly into your head (which will cause the regeneration reanimation of any lost or damaged body parts) so long as they are all administered within 1d6 minutes of death.</p>
+          	<p>You can only have a maximum of 3 points in speech. You take double damage when your limbs are struck by an attack. You are somewhat insane. You must discuss the nature of these beliefs, hallucinations, and/or memory distortions with the GM at character creation, and stick to them for the lifetime of the caracter.</p>
+        	</div>
+      	</li>
+    	</ul>
+    	<h2>Super Mutants</h2>
+    	<p>Super Mutants are a quite common form of <a href="https://fallout.fandom.com/wiki/Forced_Evolutionary_Virus">FEV</a> mutant, unique in that their creation is the intended use of the Forced Evolutionary Virus. Super mutants (sometimes styled as supermutant) have existed in some form since just before the great war unto the present day. They have several subspecies, each created by a different strain of FEV.</p>
+    	<p>All FEV created mutants are sterile, immune to radiation and disease, biologically immortal, and far stronger than members of their original species. The majority of FEV mutants are notably less intelligent than their ancestors though a small number of individuals become more intelligent and intellectual after being infected with FEV.</p>
+    	<ul>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Super_mutant_(Fallout)">Maraposa Mutant</a>:</b> Created using the <a href="https://fallout.fandom.com/wiki/Forced_Evolutionary_Virus#FEV-II">FEV-II</a> strain of FEV by the <a href="https://fallout.fandom.com/wiki/Master">Master</a> in <a href="https://fallout.fandom.com/wiki/Mariposa_Military_Base">Mariposa</a>, these supermutants are seen as the definitive article of mutantkind. Big, green or gray, mostly human in intelect, superhuman in physique, and scattered all across America (mostly the west coast) when the Master met his end.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Master's Army Veteran</p>
+          	<p>Your initial Strength and Endurance attributes are increased by +2 each, and your maximum Strength and Endurance are increased to 12, but your maximum Intelligence and Charisma are both reduced to 6. You may not have more than 4 ranks in any skill. You are completely immune to radiation and poison damage. You reduce the difficulty of any attack action by 1 to a minimum of 1.</p>
+          	<p>You stand over seven feet tall, and your body is bulky and muscular. Your skin is green, yellow, or grey, regardless of what color it was when you were human. You do not seem to age, but you are sterile. You can only wear armor which has been made to fit a super mutant.</p>
+        	</div>
+      	</li>
+      	<ul>
+        	<li><b><a href="https://fallout.fandom.com/wiki/Nightkin">Nightkin</a>:</b> Created as the elite of the Master's army, and the apex of his work with FEV. Nightkin are notably somewhat psychotic and visibly blue in color rather than green or gray. Both due to overuse of <a href="https://fallout.fandom.com/wiki/Stealth_Boy">Stealth Boys</a>. Most suffer from schizophrenia.<br>
+          	<button type="button" class="collapsible">STATS</button>
+          	<div class="content">
+            	<p>Trait: Ghost Reporting...</p>
+            	<p>Your initial Strength and Endurance attributes are increased by +2 each, and your maximum Strength and Endurance are increased to 12, but your maximum Intelligence and Charisma are both reduced to 6. You may not have more than 4 ranks in any skill. You are completely immune to radiation and poison damage. You can use Stealth Boys without depleting them, and can repair a used Stealth Boy to make it useable again.</p>
+            	<p>You stand over seven feet tall, and your body is bulky and muscular. Your skin is green, yellow, or gray, regardless of what color it was when you were human. You do not seem to age, but you are sterile. You can only wear armor which has been made to fit a super mutant. You are paranoid about being seen, and increase the difficulty of all tests by 1 when visible.</p>
+          	</div>
+        	</li>
+      	</ul>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Super_mutant_(Fallout_3)">87s</a>:</b> Created in Vault 87 post war using the <a href="https://fallout.fandom.com/wiki/Forced_Evolutionary_Virus#EEP_strain_(FEV_derivative)">FEV-EEP</a> strain as part of an exparimant co-run by Vault-Tech and WestTek, 87s are notably smaller, weaker, and typically dumber than all other Super Mutants. That said are the most aggressive and absolutely fearless. A small number of their strain never stop growing, becoming hulking behemoths over decades of endless growth... Assuming they survive that long.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: WARRRRGH!</p>
+          	<p>Your initial Strength and Endurance attributes are increased by +2 each, and your maximum Strength and Endurance are increased to 12, but your maximum Intelligence and Charisma are both reduced to 4. You may not have more than 3 ranks in any skill, except for Melee Weapons, which may be up to 5. You are completely immune to radiation and poison damage. You are extremely difficult to frighten or demoralize.</p>
+          	<p>You stand over seven feet tall, and your body is bulky and muscular. Your skin is green, yellow, or gray, regardless of what color it was when you were human. You do not seem to age, but you are sterile. You can only wear armor which has been made to fit a super mutant. You treat any test relating to advanced technology as being 1 difficulty higher.</p>
+        	</div>
+      	</li>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Super_mutant_(Fallout_4)">Commonwealth Mutant</a>:</b> Created through the use of <a href="https://fallout.fandom.com/wiki/Forced_Evolutionary_Virus#Institute_strains">FEV-In</a> by the <a href="https://fallout.fandom.com/wiki/The_Institute">Institute</a> post-war while during their short-lived FEV study, these mutants are unique in that their strain of FEV is the only one which can be reversed. They are on average as intelligent as a dimwitted human, rather than a cognitively impaired one. Consequently they intuitively make use of weapons, armor, and tools to the best of their abilities.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Superhumanity Redefined</p>
+          	<p>Your initial Strength and Endurance attributes are increased by +2 each, and your maximum Strength and Endurance are increased to 12, but your maximum Intelligence and Charisma are both reduced to 6. You may not have more than 4 ranks in any skill, except for your tag skills. You are completely immune to radiation and poison damage.</p>
+          	<p>You stand over seven feet tall, and your body is bulky and muscular. Your skin is green, yellow, or gray, regardless of what color it was when you were human. You do not seem to age, but you are sterile. You can only wear armor which has been made to fit a super mutant. You treat any test relating to advanced technology as being 1 difficulty higher.</p>
+        	</div>
+      	</li>
+      	<ul>
+        	<li>FEV-In is known to have been developed by the Institute, and given Commonwealth Mutants can also produce Behemoths (albeit much more rarely) it is believed that FEV-In is a refinement of FEV-EEP. If true, then the Institute sourced their FEV samples from Vault 87. If untrue, FEV-In was sourced from wild FEV and is thus a mutation of some other strain. Regardless of its origins, FEV-In mutations can be reversed, unlike all other strains.</li>
+      	</ul>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Super_mutant_(Fallout_76)">Huntersville Mutants</a>:</b> Created from FEVS an in-development offshoot of the original FEV strain (FEV-I), Huntersville Mutants are smaller and weaker than most Mutants, but are on average of human intellect. They are known to make the most of their environment, creating their own fortresses, tools, and weapons. They are the least hostile of all Super Mutants, as some are willing to trade with humans rather than attack them. They are the only Super Mutants known to farm and ranch and widely regarded as the least mutated.<br>
+   		 <button type="button" class="collapsible">STATS</button>
+   		 <div class="content">
+     		 <p>Trait: <a style="color: orange;" href="https://www.youtube.com/watch?v=87pAm4c6RlY"><i>&#60;Reb Brown Noises!&#62;</i></a></p>
+     		 <p>Your initial Strength and Endurance attributes are increased by +1 each, and your maximum Strength and Endurance are increased to 11, but your maximum Intelligence and Charisma are both reduced to 8. You may not have more than 4 ranks in any skill. You are completely immune to radiation and poison damage. You gain Big Guns as an additional tag skill.</p>
+     		 <p>You stand over seven feet tall, and your body is bulky and muscular. Your skin is green, yellow, or gray, regardless of what color it was when you were human. You do not seem to age, but you are sterile. You can only wear armor which has been made to fit a super mutant. You cant help but yell and bellow when attacking or performing acrobatic stunts, making attacks from stealth almost impossible after the first strike.</p>
+   		 </div>
+ 		 </li>
+   	 </ul>
+
+
+
+    	<h2>FEV Mutants</h2>
+    	<p>These are mutants created by FEV which are not an intended product of FEV.</p>
+    	<ul>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Intelligent_deathclaw">Intelegent Deathclaws</a>:</b> Created by the Enclave through the use of a mutagen dirived from FEV reasurch (though whether or not it was an FEV strain or something created using the same principals is unknown) the Intelligent Deathclaw is a group of true-breeding deathclaws with human level intellect, who are capable of mimicking human speech to enough of a degree to be understood (Their speech is comparable to a parrot, and they cannot make all human sounds). Surgical modification can allow them to speak fluent English. They live in villages, and take advantage of anything they can find, including Vaults such as Vault 13. Their home.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Clever Girl</p>
+          	<p>You start with the Unarmed Skill tagged. This does not count against your starting three tags. You are completely immune to Radiation. You receive +1 additional Health Point per Level. You are capable of lifting and throwing objects as large as a standard car. Thanks to your keen senses, you reduce the difficulty of all PER tests by 1 to a minimum of 0. You may also detect creatures or objects that characters normally cannot.</p>
+          	<p>Due to your immense size, your Defense is locked to being 1. You can also only wear armor that has been made to fit a Deathclaw. You may not have more than 4 ranks in any Skill unless otherwise stated previously. You cannot tag the Big Guns, Energy Weapons, or Small Guns skills. You may still allocate ranks to them. If you are not adequately disguised (such as wearing a loose robe), Humans will more than likely shoot you on sight or go running screaming in the opposite direction.</p>
+          	<p>Your torso is considered to be a weak spot. If an attacker chooses to target your torso specifically (i.e. not targeted due to random chance) then their damage ignores your natural Damage Resistance.</p>
+          	<p>You also choose one of the two traits below.</p>
+          	<p style="font-weight: bold;">Trait: Brawn!</p>
+          	<p>Your Melee Bonus Damage is considered to be one category higher (i.e. if you have Strength of 7-8, your bonus is +2 rather than +1) Your tough hide grants 3 natural Damage Resistance (All).</p>
+          	<p>You cannot have any ranks in Lockpick, Medicine, Pilot, Repair, or Science due to having inhuman claws for hands that you only know how to use for slashing/mauling. This can be negated by taking the Nimble Claws perk.</p>
+          	<p style="font-weight: bold;">Trait: Brains</p>
+          	<p>Thanks to practice with your claws, you can take ranks in Lockpick, Medicine, Pilot, Repair, and Science (up to the limit of 4). However, the complication range for these skills is increased by 2 (18-20). This can be negated by the Nimble Claws perk.</p>
+          	<p>You start with one of the following skills tagged: Lockpick, Medicine, Pilot, Repair, or Science. This chosen skill can be raised to a maximum of 6, rather than the base 4 limit. This does not count against your starting three tags. Your tough hide grants 1 natural Damage Resistance (All)</p>
+        	</div>
+      	</li>
+        	<ul>
+          	<li><b>Deathclaw Hybrids:</b> The mutation which allows Intelligent Deathclaws to exist allows them to breed with humans exposed to a small family of adaptation related mutations. While exceptionally rare due to few humans wishing to take a deathclaw as their mate, hybrids are something between both species, quite intelligent, strong, nimble, and generally possessing the traits of both their parents species in the physical form of a more humanoid deathclaw. They are new to the wasteland, and it is unknown if they are sterile as none have yet had children.<br>
+            	<button type="button" class="collapsible">STATS</button>
+            	<div class="content">
+              	<p>Trait: <i>Homo morsunguibus</i></p>
+              	<p>Strength Endurance, Intelligence, and Agility +1 Starting and +1 Limit to Strength and Endurance. You start with the Unarmed Skill tagged. This does not count against your starting three tags. You are completely immune to Radiation. You are capable of lifting and throwing objects as large as a standard car. Thanks to your keen senses, you reduce the difficulty of all PER tests by 1 to a minimum of 0. You may also detect creatures or objects that characters normally cannot.</p>
+              	<p>Charisma and Luck -2 Starting. Charisma Limit 8 and Luck Limit 5. Due to your immense size, your Defense is locked to being 1. You can also only wear armor that has been made to fit a Deathclaw. You may not have more than 5 ranks in any Skill unless otherwise stated previously. If you are not adequately disguised (such as wearing a loose robe), Humans are likely to will more than likely shoot you on sight or go running screaming in the opposite direction. You can, however, pass as a mutant due to your humanoid body posture and human-grade speech. Your torso is considered to be a weak spot. If an attacker chooses to target your torso specifically (i.e. not targeted due to random chance) then their damage ignores your natural Damage Resistance.</p>
+              	<p>Thanks to your more humanoid skeletal structure and practice with your claws, you can take ranks in any skill a human can. However, the complication range for these skills is increased by 2 (18-20). This can be negated by the Nimble Claws perk. You can raise your tagged skills to a maximum of 6, rather than your racial limit of 4. Your tough hide grants 1 natural Damage Resistance (All).</p>
+            	</div>
+          	</li>
+        	</ul>
+    	</ul>
+
+
+    	<h2>Genomorphs</h2>
+    	<p>These species were created through the use of genetic engineering in the pre-war era. Wether or not they were intended to be sapient, or if their creators knew they were sapient at all, is lost to history.</p>
+    	<ul>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Deathclaw">Deathclaws</a>:</b> While nowhere near as intelligent as humans, the baseline Deathclaw has enough intelligence to work in tribes, make use of what few types of tools they require given their biology, and do communicate in a rudimentary language. Those who study them often compare them to cavemen, and wonder what they might become in a few thousand generations.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Derper Girl</p>
+          	<p>You start with the Unarmed Skill tagged, and may only tag two other skills. You are completely immune to Radiation. You receive +1 additional Health Point per Level. You are capable of lifting and throwing objects as large as a standard car. Thanks to your keen senses, you reduce the difficulty of all PER tests by 1 to a minimum of 0. You may also detect creatures or objects that characters normally cannot.</p>
+          	<p>Your INT maximum is lowered to 5. Due to your immense size, your Defense is locked to being 1. You can also only wear armor that has been made to fit a Deathclaw. You may not have more than 3 ranks in any Skill unless otherwise stated previously. You cannot tag the Big Guns, Energy Weapons, or Small Guns skills nor allocate ranks to them. If you are not adequately disguised (such as wearing a loose robe), Humans will more than likely shoot you on sight or go running screaming in the opposite direction.</p>
+          	<p>Your torso is considered to be a weak spot. If an attacker chooses to target your torso specifically (i.e. not targeted due to random chance) then their damage ignores your natural Damage Resistance.</p>
+          	<p>You also choose one of the two traits below.</p>
+          	<p style="font-weight: bold;">Trait: Brawn!</p>
+          	<p>Your Melee Bonus Damage is considered to be one category higher (i.e. if you have Strength of 7-8, your bonus is +2 rather than +1) Your tough hide grants 3 natural Damage Resistance (All).</p>
+          	<p>You cannot have any ranks in Lockpick, Medicine, Pilot, Repair, or Science due to having inhuman claws for hands that you only know how to use for slashing/mauling. This can be negated by taking the Nimble Claws perk.</p>
+        	</div>
+      	</li>
+    	</ul>
+
+    	<h2>Robots</h2>
+    	<p>While not possible for all thinking machines, some of them, depending on their hardware, operational time, and environmental conditions, are able to exceed the limits of their programming and "evolve" for lack of a better term. These machines do not appear much different from their run-of-the-mill brethren at first, but in time they develop opinions, a range of emotions, and a web of desires almost if not just as complex as any human's.</p>
+    	<p>While many see such machines as merely malfunctioning in a strange way, others insist they are people. Notably, all machines existing in this fashion will, eventually, call themselves a person. In a world populated by giant green men created by dipping a human in glowing ooze, whose to say a rock tricked into thinking can't achieve true consciousness? Besides, some things thought of as robots are objectively people...</p>
+    	<ul>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Robobrain">Robobrains</a>:</b> A robot most distinct for using a human brain in place of a central processing unit. While technically speaking a cyborg the wasteland classifies them as robots due to their accepting programming just like any compter and having no trace of the original person left within their organic parts. Of course, it's no supprise to anyone who sees the brian under their clear domes when Robobrains suddenly wake up one day. Most self-aware Robobrains quickly find a way to die. Those who are not driven to suicide by their existance tend to be a little jaded, bitter, and hostile, but are often some of the most intelligent and skilled individuals for scientific and technical persuits.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Ghost in a Shell</p>
+          	<p>You have computer enhanced vision and improved sensory systems that can detect smells, chemicals, and radiation, reducing the difficulty of Perception tests that rely on sight and smell by 1. You can also see Ultra Violet and INfrared light, allowing you to detect temperature at range and see in the dark. You are also immune to radiation and poison damage, but you cannot use chems, nor can you benefit from food, drink, or rest. You move via tracks, which makes movement over difficult terrain such as rubble, stairs, extremely pot-holled roads, and similar rapid elevation adjustments twice as difficult. Your carry weight is 150 lbs., and it cannot be increased by your Strength or perks, but it can be increased by modified armor. You cannot recover from your own injuries or heal health points without receiving repairs.</p>
+          	<p>You are also the victim of extreme cruelty and inhumane scientific experimentation. You have a combination of programmed orders and extreme trauma. You must discuss with your GM how this aspect of your character manifests and stick to it for the lifetime of the caracter, which can be forever. It is possible to receive mental healthcare to help counteract these traits, but can never fully cure them (At least without further help from a roboticist and decades of therapy).</p>
+        	</div>
+      	</li>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Mister_Handy">Mr. Handy</a> (General Atomic/Robco Colab Model):</b> Often thought of as a "Mark II" for the Mr. Handy line, the GA-RC Mr. Handies feature a bleeding edge neural-networking processor which runs a form of true Artificial Intelligence. With enough runtime, awakening as a person appears to be inevitable for robots of this make and model, though without their regular maintenance few survive long enough to reach their awakening.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Mr. Handy Robot</p>
+          	<p>You have 360° vision and improved sensory systems that can detect smells, chemicals, and radiation, reducing the difficulty of Perception tests that rely on sight and smell by 1. You are also immune to radiation and poison damage, but you cannot use chems, nor can you benefit from food, drink, or rest. You move by jet propulsion, hovering above the ground, unaffected by difficult terrain or obstacles. Your carry weight is 150 lbs., and it cannot be increased by your Strength or perks, but it can be increased by modified armor. You cannot recover from your own injuries or heal health points without receiving repairs (see Healing Robots, core rules p.34).</p>
+          	<p>You cannot manipulate the physical world like humans do, instead you have three of the arm attachments in the Arm Attachments table (see Mister Handy: Arm Attachments, core rules p.54). If you select an arm that features a weapon, you also gain 20 shots of ammo for that weapon. You can reload these weapons even without a pincer... somehow.</p>
+          	<p>As a Mr. Handy, you’re one of the domestic models of Mister Handy robots, a robotic butler programmed to assist in maintaining a household. Your line was programmed with a masculine voice and persona based on the stereotype of a British butler.</p>
+          	<p>You receive the following equipment:</p>
+          	<ul>
+            	<li>One pincer arm attachment, one flamer arm attachment, and one buzz-saw arm attachment.</li>
+            	<li>Standard plating</li>
+            	<li>Robot repair kit</li>
+            	<li>Integral boiler mod</li>
+            	<li>10 caps</li>
+          	</ul>
+        	</div>
+      	</li>
+      	<ul>
+        	<li style="list-item-type: none;">Mr. Handy GA-RC modles</li>
+        	<ul>
+          	<li><b><a href="https://fallout.fandom.com/wiki/Miss_Nanny">Miss Nanny</a>:</b> A female version of the Mr. Handy unit created as a medical or laboratory assistant, and also sold for childcare purposes.<br>
+            	<button type="button" class="collapsible">STATS</button>
+            	<div class="content">
+              	<p>Trait: Precious Bean</p>
+              	<p>You were built and programmed to be a caretaker, performing domestic cleaning duties and taking care of kids. Your line was produced with a feminine voice and persona, as that was thought to be most acceptable to customers and most fitting for your role as maid and nanny.</p>
+              	<p>You receive the following equipment:</p>
+              	<ul>
+                	<li>One pincer arm attachment, one flamer arm attachment, and one arm attachment of your choice.</li>
+                	<li>Standard plating.</li>
+                	<li>Behavioral analysis mod.</li>
+                	<li>Hazard detection mod.</li>
+                	<li>10 caps.</li>
+              	</ul>
+            	</div>
+          	</li>
+          	<li><b><a href="https://fallout.fandom.com/wiki/Mister_Gutsy">Mister Gutsy</a>:</b> A military version produced exclusively to serve as an infantry unit, but often upgraded by its owners to serve other combat rolls.<br>
+            	<button type="button" class="collapsible">STATS</button>
+            	<div class="content">
+              	<p>Trait: Sarge here!</p>
+              	<p>You were built and programmed as a military robot for a variety of combat roles. Your line was produced with a masculine voice and persona based on a stereotypical drill sergeant, and you’re more heavily armed and armored than most Mister Handy robots.</p>
+              	<p>You receive the following equipment:</p>
+              	<ul>
+                	<li>One 10mm auto pistol arm, one buzz-saw arm attachment, and one laser emitter arm attachment.</li>
+                	<li>Mister Gutsy plating.</li>
+                	<li>Recon sensors mod.</li>
+                	<li>10 caps</li>
+              	</ul>
+            	</div>
+          	</li>
+          	<li><b>Mister Farmhand:</b> A variant designed expressly for the automation of farming.<br>
+            	<button type="button" class="collapsible">STATS</button>
+            	<div class="content">
+              	<p>Trait: Farm Equipment</p>
+              	<p>You were built and programmed to assist on a farm, tending to crop fields and herds of livestock. Your line was produced with a masculine (and stereotypically rural) voice and persona and outfitted to help with farm work such as harvesting crops and killing vermin.</p>
+              	<p>You receive the following equipment:</p>
+              	<ul>
+                	<li>One pincer arm attachment, one buzz-saw arm attachment, and one laser emitter arm attachment.</li>
+                	<li>Standard plating.</li>
+                	<li>One bag of fertilizer.</li>
+                	<li>2 mutfruits.</li>
+                	<li>25 caps</li>
+              	</ul>
+            	</div>
+          	</li>
+          	<li><b>Nurse Handy:</b> A variant designed for medical care and basic pharmacist duties.<br>
+            	<button type="button" class="collapsible">STATS</button>
+            	<div class="content">
+              	<p>Trait: Tin Doctor</p>
+              	<p>You’re one of the medical models of the Mister Handy line, intended to act as a medic, nurse, or orderly in a hospital, with some advanced models even serving as doctors (the Doctor Handy, MD., model). Your line was programmed with the same masculine voice and persona as the standard Mister Handy.</p>
+              	<p>You receive the following equipment:</p>
+              	<ul>
+                	<li>One pincer arm or buzz-saw arm attachment, one buzz saw arm attachment, and one attachment of your choice.</li>
+                	<li>Standard plating.</li>
+                	<li>Stimpak.</li>
+                	<li>Diagnosis mod.</li>
+                	<li>10 caps.</li>
+              	</ul>
+            	</div>
+          	</li>
+        	</ul>
+      	</ul>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Assaultron">Assaultron</a>:</b> A humanoid military robot shaped very much like a human female, and consequently programed with a general feminine disposition. The Assultron featured an advanced computation system based on ZAX technology, making their awakening into personhood inevitable, as such is the fate of all ZAX systems. Despite their awakening, most Assaultrons enjoy their programmed duties and continue to carry them out. Those who do not are as free to do with their lives as any human to choose what to do with their lives, and experience the full range of human emotions... Though they are quite difficult to scare.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: Gun Bunny</p>
+          	<p>You can also see Ultra Violet and Infrared light, allowing you to detect temperature at range and see in the dark. You are also immune to radiation and poison damage, but you cannot use chems, nor can you benefit from food, drink, or rest. </p>
+          	<p>You cannot recover from your own injuries or heal health points without receiving repairs. You cannot have any ranks in Lockpick, Medicine, Pilot, Repair, or Science due to having inhuman claws for hands that you only know how to use for slashing/mauling, and picking up small objects. This can be negated by taking the Synth Hands perk.</p>
+          	<p>You can build and install all robot mods relating to Assaultrons.</p>
+          	<p style="font-weight: bold;">Perk: Synth Hands</p>
+          	<p>You killed a G2 synth and had its hands attached to you. Mostly so you could finally make sue of grenades, computers, and guns. But also so you can give a thumbs up in the event you meet your death by being slowly lowered into molten metal.</p>
+          	<p>You can take skills as any human would, and do anything with your hands a human could.</p>
+        	</div>
+      	</li>
+    	</ul>
+
+    	<h2>Extra Terrestrial Lifeforms</h2>
+    	<p>While typically believed to be the ravings of madmen, post-war Earth appears to be inhabited by a small number of alien lifeforms. There are too many accounts and settings by credible, trustworthy, and even heroic individuals to dismiss the claims as pure nonsense. What's more, archeologists and scholars have been aware of certain pre-war advances in technology being credited to alien technology by the US Government. AI and plasma weapons in particular have clear ties to the study of technology discovered in crashed vessels, or at least, so the terminals say...</p>
+    	<ul>
+      	<li><b><a href="https://fallout.fandom.com/wiki/Flatwoods_monster">Flatwoods Monster</a>:</b> Called the Flatwoods Monster due to no knowledge of its true name or even home world, these aliens can be rarely found in the Appalachian Mountains, where they are believed to have a small settlement or at least a place to park their ship. They've been seen in the area for hundreds of years, off and on, but only at night. Interestingly enough they are not inherently hostile to humans and mutants, only attacking in self defense. They are said to occasionally abduct people, though they do seem to return everyone they take after some time. While there are not documented instances of them speaking to humans, anything riding around on a jet pack in an environmental suit, studying plants, animals, and structures is absolutely a person.<br>
+        	<button type="button" class="collapsible">STATS</button>
+        	<div class="content">
+          	<p>Trait: <a style="color: orange;" href="https://www.youtube.com/watch?v=87pAm4c6RlY"><i>&#60;<a href="https://youtu.be/863FDy-kPTY?list=PLGHdMNERV5jXd1XOy8DZHMzHb_qWtJjhN">Theramin Intincifies</a>&#62;</i></a></p>
+          	<p>You begin play with your trusty Ph'laught suit! A multi-environment powered environmental suit. YOur suit keeps you safe from all poison and radiation damage. The lower half can unfold into three legs for a walking mode, or fold up for flight mode. It provides protection equivalent to T-45b Power Armor (functioning as if you were using power armor minus the SPECIAL increasing abilities) and can accept power armor mods.</p>
+          	<p>You require your suit to survive in Earth's atmosphere. If it is damaged you take 1d6 poison damage per minute until it is repaired. Your carry capacity is cut by 75% when in flight mode. While your suit is quite hard, you are extremely soft. You gain an additional hit point every other level, and your starting hit points are calculated by (END / 0.8) + LUCK.</p>
+        	</div>
+
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript">
+    // get a reference to the button
+      const toggleButton = document.getElementById("toggle-button");
+
+      // add a click event listener to the button
+      toggleButton.addEventListener("click", function() {
+        // get a reference to all collapsible elements on the page
+        const collapsibles = document.querySelectorAll(".collapsible");
+
+        // loop through each collapsible element
+        collapsibles.forEach(function(collapsible) {
+          // toggle the "active" class on the current collapsible element
+          collapsible.classList.toggle("active");
+
+          // get a reference to the content element next to the current collapsible element
+          const content = collapsible.nextElementSibling;
+
+          // toggle the visibility of the content element
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            setTimeout(function() {
+              content.style.maxWidth = null;
+              content.classList.remove("content-border");
+            }, 220);
+          } else {
+            content.style.maxWidth = "95%";
+            setTimeout(function() {
+              content.style.maxHeight = content.scrollHeight + "px";
+              content.classList.add("content-border");
+            }, 150);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
