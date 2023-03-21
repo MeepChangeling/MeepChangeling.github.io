@@ -689,3 +689,62 @@ div#date span.time {
 .content table tr:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+/* hacking game */
+#failure-screen,
+#win-screen {
+  display: none;
+}
+
+#game-screen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+}
+
+#game-screen h1 {
+  flex-basis: 100%;
+}
+
+#play-area {
+  flex-basis: 68%;
+}
+
+#guess-log {
+  flex-basis: 30%;
+}
+
+@media screen and (max-width: 768px) {
+  #game-screen {
+    flex-direction: column;
+  }
+
+  #guess-log {
+    flex-basis: 100%;
+  }
+}
+
+#password-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#password-options button {
+  flex-basis: calc(50% - 10px);
+  margin-bottom: 10px;
+  background-color: #c76700;
+  border: solid 3px #c76700;
+  border-radius: 10px;
+  cursor: url('img/cursor2.png'), auto;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+#password-options button:hover {
+  background-color: orange;
+}
+
+#password-options button:active {
+  background-color: darkorange;
+}
