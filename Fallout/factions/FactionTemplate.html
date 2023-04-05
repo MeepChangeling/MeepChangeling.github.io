@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Faction: [name]</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../fallout.css" />
+    <link rel="icon" type="image/x-icon" href="../img/vaultgirl.webp">
+    <style media="screen">
+      .pips {
+        font-size: 1.3em;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="buttonpannel" class="buttonpannel">
+
+    </div>
+    <div id="date">
+      <span id="day"></span>
+      <span id="month"></span>
+      <span id="year"></span>
+      <span class="time"></span>
+    </div>
+    <script src="../clock.js"></script>
+    <img class="pagebg" src="../img/pipboy2000.webp"></img>
+    
+    <div class="screen">
+      <div id="navcontainer" class="navcontainer">
+        <script src="../pipnav2.js"></script>
+      </div>
+      <div class="contentwindow">
+        <h1>Overview</h1>
+        <figure>
+          <img width="100%" height="100%" src="../img/SpacePio.svg" alt="Space Pioneer Emblem">
+          <figcaption>emblem</figcaption>
+        </figure>
+
+        <button type="button" class="collapsible">History</button>
+        <div class="content">
+
+        </div>
+
+        <h1>Organization and Culture</h1>
+        <h1>Leader</h1>
+        <figure style="width: 25%; height:auto; float:left;">
+          <img width="100%" height="100% "src="../img/JSC.webp" alt="Johnson Space Center">
+          <figcaption>Headquarters of JSC</figcaption>
+        </figure>
+
+        <h1>Headquarters</h1>
+        <figure style="width: 50%; height:auto;">
+          <img width="100%" height="100% "src="../img/JSC.webp" alt="Johnson Space Center">
+          <figcaption>Headquarters of JSC</figcaption>
+        </figure>
+
+        <h1>Unique Assets</h1>
+          <h2>[name]</h2>
+            <figure class="left" style="width: 50%; height:auto;">
+              <img width="100%" height="100% "src="../img/airwolf.webp" alt="AH-77 in Flight">
+              <figcaption>AH-77 Conceptual Render</figcaption>
+            </figure>
+
+
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+  // get a reference to the button
+    const toggleButton = document.getElementById("toggle-button");
+
+    // add a click event listener to the button
+    toggleButton.addEventListener("click", function() {
+      // get a reference to all collapsible elements on the page
+      const collapsibles = document.querySelectorAll(".collapsible");
+
+      // loop through each collapsible element
+      collapsibles.forEach(function(collapsible) {
+        // toggle the "active" class on the current collapsible element
+        collapsible.classList.toggle("active");
+
+        // get a reference to the content element next to the current collapsible element
+        const content = collapsible.nextElementSibling;
+
+        // toggle the visibility of the content element
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          setTimeout(function() {
+            content.style.maxWidth = null;
+            content.classList.remove("content-border");
+          }, 220);
+        } else {
+          content.style.maxWidth = "95%";
+          setTimeout(function() {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.add("content-border");
+          }, 150);
+        }
+      });
+    });
+  </script>
+</html>

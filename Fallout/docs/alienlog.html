@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Alien Log</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../alien.css" />
+    <link rel="icon" type="image/x-icon" href="../img/vaultgirl.webp">
+    <style>
+      .fade-out {
+        opacity: 0;
+        transition: opacity 1s;
+      }
+    </style>
+  </head>
+<body>
+  <img class="pagebg" src="../img/AlienDisplay.webp" alt="Alien Monitor">
+  <div class="screen">
+    <img style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -55%); -webkit-transform: translate(-50%, -55%);width: 40%; height: auto; margin-left: auto; margin-Right: auto; opacity:0.1;" src="../img/AlienEmblem.webp"alt="">
+    <div class="contentwindow">
+      <h1 class="shipname">SOE Computer Network</h1>
+      <h2 class="username">Authorized Access Only</h2>
+      <h2 class="username">Please Report Malfunctions to Engineering Staff on Duity</h2>
+
+      <!-- CLOCK -->
+      <div class="clockholder">
+        <canvas id="canvas"></canvas>
+      </div>
+      <!-- SYS READOUT -->
+      <div class="readout">
+        <table>
+        <tbody>
+        <tr>
+        <td style="text-align: center;" colspan="3" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;System Readout&quot;}; font-size: 1.2em;"><em><strong>System Readout</strong></em></td>
+        </tr>
+        <tr>
+        <td style="text-align: center;" colspan="3" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Life Support&quot;}"><strong>Life Support</strong></td>
+        </tr>
+        <tr>
+        <td style="text-align: right;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Oxygen:&quot;}">Oxygen:</td>
+        <td><span class="oxygen"></span></td>
+        <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;%&quot;}">%</td>
+        </tr>
+        <tr>
+        <td style="text-align: right;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Tempature:&quot;}">Tempature:</td>
+        <td><span class="temperature"></span></td>
+        <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;°C&quot;}">°C</td>
+        </tr>
+        <tr>
+        <td style="text-align: right;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Humidity:&quot;}">Humidity:</td>
+        <td><span class="humidity"></span></td>
+        <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;%&quot;}">%</td>
+        </tr>
+        <tr>
+        <td style="text-align: center;" colspan="3" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Infra&quot;}"><strong>Infra</strong></td>
+        </tr>
+        <tr>
+        <td style="text-align: right;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Power Gen:&quot;}">Power Gen:</td>
+        <td><span class="powergen"></span></td>
+        <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;EW&quot;}">EW</td>
+        </tr>
+        <tr>
+        <td style="text-align: right;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Power Use:&quot;}">Power Use:</td>
+        <td><span class="poweruse"></span></td>
+        <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;%&quot;}">%</td>
+        </tr>
+        <tr>
+        <td style="text-align: right;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Water Avalible:&quot;}">Water Avalible:</td>
+        <td>69420</td>
+        <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Gal&quot;}">Gal</td>
+        </tr>
+        <tr>
+        <td style="text-align: right;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Water Use:&quot;}">Water Use:</td>
+        <td><span class="water"></span></td>
+        <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Gal&quot;}">%</td>
+        </tr>
+        <tr>
+        <td style="text-align: center;" colspan="3" rowspan="1" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Comp Sys&quot;}"><strong>Comp Sys</strong></td>
+        </tr>
+        <tr>
+        <td style="text-align: right;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;CPU&quot;}">CPU:</td>
+        <td><span class="CPU"></span></td>
+        <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;%&quot;}">%</td>
+        </tr>
+        <tr>
+        <td style="text-align: right;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;GPU&quot;}">GPU:</td>
+        <td><span class="GPU"></span></td>
+        <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;%&quot;}">%</td>
+        </tr>
+        <tr>
+        <td style="text-align: right;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;RAM&quot;}">RAM:</td>
+        <td><span class="RAM"></span></td>
+        <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;%&quot;}">%</td>
+        </tr>
+        <tr>
+        <td style="text-align: right;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Storage Total&quot;}">Storage Total:</td>
+        <td>869</td>
+        <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Yb&quot;}">Yb</td>
+        </tr>
+        <tr>
+        <td style="text-align: right;" data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Storage Use&quot;}">Storage Use:</td>
+        <td><span class="storage"></span></td>
+        <td data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;%&quot;}">%</td>
+        </tr>
+        </tbody>
+        </table>
+      </div>
+
+      <!--- HUD ELEMENTS --->
+      <div class="taskbar">
+        <div style="text-align:center; vertical-align: middle; position: relative; top: 50%; transform: translateY(-50%); -webkit-transform: translateY(-50%);">
+          <input class="searchbox" style="margin: auto;" type="text" id="search-box" placeholder="Search...">
+          <button style="vertical-align: middle; position: relative; top: 50%; transform: translateY(10%); -webkit-transform: translateY(10%);" id="search-button">&#x1F50E;&#xFE0E;</button>
+        </div>
+      </div>
+    <button style="padding:0%; justify-content: center;" class="collapsible bottom-left"><img src="../img/notwindows.png" alt="logo" style="width:50%; margin-left:20%; margin-right: auto; margin-top: 5%;"> </button>
+      <div class="content bottom-left">
+        <div class="content-container">
+          <div class="userimg">
+            <div class="userimgsub1">
+              <img class="userimg" src="../img/AviAlienPrincess.webp" alt="">
+            </div>
+            <div class="userimgsub2">
+              <p>Yonnae Kiertha</p>
+            </div>
+          </div>
+          <div class="bottemleftitems">
+            <p>Quick Access</p>
+            <button class="reveal-button" data-target="starmap">Steller Cartography</button><br>
+            <button class="reveal-button" data-target="Skymap">Local Sky map</button><br>
+            <button onclick="toggleFont()">Cycle Language</button><br>
+            <button class="reveal-button" data-target="localmap">Local Map</button><br>
+            <button class="reveal-button" data-target="clonefeed">C. Chamber Cam</button><br>
+          </div>
+        </div>
+      </div>
+
+
+
+    <div class="hidden-div hologram" id="starmap">
+
+      <div class="starfield">
+        <div id="darken"></div>
+         <div id="universe"></div>
+         <img id="logoLeft" src="../img/AlienEmblem.webp" />
+         <img id="logoRight" src="../img/AlienEmblem.webp" />
+         <div id="controls">
+           <div id="header"><label title="Regenerate Star Map" class="link" id="constellation"></label>
+             <span class="showOrbits"><label for="showOrbits" style="color:gray">Show Orbits</label><input id="showOrbits"
+                 type="checkbox" checked></input></span>
+           </div>
+           <div id="links"></div>
+         </div>
+      </div>
+      <button style="position: absolute; top: 6vh; right: 8vw; z-index: 100;" class="close-button">⛝</button>
+    </div>
+
+    <div class="hidden-div hologram" id="localmap">
+      <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit;" src="../../maps/FalloutHoustinMap.html" width="100%" height="100%"></iframe>
+        <button style="position: absolute; bottom: 2vh; right: 2vw; z-index: 100;" class="close-button">⛝</button>
+    </div>
+
+    <div class="hidden-div hologram" id="clonefeed">
+      <img style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit;" src="../img/clonetankfeed.webp" alt="Glitch Image">
+      <button style="position: absolute; top: 6vh; right: 4vw; z-index: 100;" class="close-button">⛝</button>
+    </div>
+
+    <div class="hidden-div hologram" id="Skymap">
+      <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit;" width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://slowe.github.io/VirtualSky/embed?longitude=97.1467&latitude=31.5493&projection=stereo&constellations=true&constellationlabels=true&meteorshowers=true&showstarlabels=true&showdate=false&gridlines_gal=true&az=244.05750775735282" allowTransparency="true"></iframe>
+      <button style="position: absolute; bottom: 2vh; right: 2vw; z-index: 100;" class="close-button">⛝</button>
+    </div>
+
+<!--- MAIN CONTENT --->
+    <div class="button-grid-container">
+      <h1 style="margin-top: -0.8em; margin-bottom: -0.8em;">Mission Log</h1>
+    </div>
+    <div class="button-grid">
+      <button class="reveal-button" data-target="div-0">Captain’s Log — <span id="stardate">2077-05-07</span></button>
+      <button class="reveal-button" data-target="div-1">Personal Log — <span id="stardate">2077-05-08</span></p></button>
+      <button class="reveal-button" data-target="div-3">Captain’s Log — <span id="stardate">2077-08-22</span></p></button>      
+      <button class="reveal-button" data-target="div-2">Personal Log — <span id="stardate">2077-08-22</span></button>
+    </div>
+
+
+</div>
+
+  <div class="hidden-div hologram" id="div-0">
+    <button class="close-button">⛝</button>
+    <p>Captain’s Log — <span id="stardate">2077-05-07</span></p>
+    <p>I've just received my mission from King Kiertha himself. It's not what I was hoping for, but duty calls. I've been tasked with escorting Princess Yonnae to a hidden colony on Earth in the Appalachian Mountains. It's a long journey, and I can't say I'm excited about it, but the safety of the heir to the throne is of utmost importance, and I understand my role in ensuring that safety.</p>
+    <p>Even if I would rather be on the frontlines. Even if I believe my ship and her crew are being wasted. If the king believes a Mothership is necessary for transporting his daughter, who am I to argue?</p>
+    <p>It's been months since I've been on a transport mission, and I'm a bit rusty, but I'm confident in my abilities as a captain and as a Thatan warrior. The Stone Butch is one of the most advanced ships in our fleet, and I trust her completely. We'll make the journey safely, and I'll make sure Princess Yonnae is well-protected.</p>
+    <p>I can't help but feel a sense of unease, though. We're at war with the Zetan Empire, and every moment away from the front lines is a moment lost. I know my duty, and I'll carry it out to the best of my abilities. I'll use this time to rest, to meditate, and to prepare myself for whatever may come.</p>
+    <p>Captain Conna Therikin, signing off.</p>
+  </div>
+
+  <div class="hidden-div hologram" id="div-1">
+  <button class="close-button">⛝</button>
+    <p>Personal Log Entry — <span id="stardate">2077-05-08</span></p>
+    <p>I can't believe this is happening. My father is sending me away to Earth to hide from the Zetan empire. I've never felt so angry and helpless before. I don't want to leave my home, my people, and my friends behind. But I know I have to do this. My father said it's for my own safety and the safety of our people.</p>
+    <p>I'm supposed to be excited about this new adventure, but all I can think of is how unfair this is. Why do we have to hide? Why can't we fight back against the Zetans? I know the answer, but I still can't help but feel angry and frustrated.</p>
+    <p>At least I have my girlfriend, Erya, with me. She's the only thing that's keeping me sane right now. She's so calm and understanding. I'm lucky to have her by my side. We're traveling in a small starship to the secret Thatan colony on Earth, located in the Appalachian Mountains. I don't know what to expect, but I hope it's not too different from home.</p>
+    <p>I'm scared, but I won't let fear control me. I have to be strong for my people, for my family, and for Erya. I'll make the best of this situation and try to find some happiness in this new place.</p>
+  </div>
+
+  <div class="hidden-div hologram" id="div-3">
+    <button class="close-button">⛝</button>
+    <p>Captain’s Log — <span id="stardate">2077-08-22</span></p>
+    <p>We've finally arrived in the Sol system, and we're making our way towards Earth. It's been a long and difficult journey, with several major incidents occurring along the way (Thank the gods for my engineers’ skill with field repairs. Hopefully the life support system remains working until we return home.). Thankfully, Princess Yonnae was never made aware of any issues. She's been a model passenger, staying out of the way and never complaining, even though the journey has been long and grueling.</p>
+    <p>I hear she sequestered herself in the bio-lab for the majority of the trip. She claims to be learning, but it’s clear from her experiments she’s an expert. Impressive for someone of her age without any secondary education. This must be the difference Royal Tudors make.</p>
+    <p>I decided to give her a view of Earth from the bridge this afternoon. It's always been one of my favorite sights, and I thought she might enjoy it too. She certainly did. I can still remember her eyes sparkling in wonder at the sight of the blue and green planet below us.</p>
+    <p>Earth is a special planet, even for a Class-M. Its continents are like an ink blot test. You can see yourself in them. It makes you feel at home. I’ve always wondered what Earthlings will think of other worlds once they are starfaring. </p>
+    <p>I can't help but feel a sense of foreboding. Earth is a dangerous place, especially for someone like Princess Yonnae. We've received reports of Zetan activity in the area, and I know we'll have to be extra vigilant during our stay here. Even worse, there is tension between Earth’s nations. Enough where they believe a war is imminent.</p>
+    <p>As kind as our Earthling allies are, I would hesitate to trust my own daughter’s safety to savages who still war amongst themselves. Thankfully, the colony is deep within a rural zone of no strategic importance. She will be safe.</p>
+    <p>But for now, I'll enjoy this moment of peace and beauty. It's rare in our line of work, and I want to savor it while it lasts. The Earth looks so fragile and delicate from up here, but I know it's a strong and resilient planet, filled with brave and determined people. I hope we can count on their help if we need it.</p>
+  </div>
+
+
+  <div class="hidden-div hologram" id="div-2">
+  <button class="close-button">⛝</button>
+  <p>Personal Log Entry — <span id="stardate">2077-08-22</span></p>
+  <p>Oh my stars! I can hardly believe it, but we've finally arrived in the Sol system, and I've just seen Earth for the first time with my own eyes. It's beautiful! The swirls of blue and green remind me of a beautiful gemstone that I once saw in the royal treasury. I can hardly wait to explore all that this new world has to offer.</span></p>
+  <p>The journey here was long and hard, but I found ways to keep myself entertained. I spent much of my time in the ship's science lab, learning about bio-engineering and other fascinating subjects. The crew has been so kind to me, but I can't help feeling a little homesick. I miss my family and my friends. Especially Erya. She's gotten extra distant. I think she only just now realized what going with me means for her.</span></p>
+  <p>As we get closer to Earth, I can't help feeling a little nervous. I'm not sure how the people of this planet will react to me or to the fact that I'm a lesbian. Back on Thata, our people were always accepting and loving, but I've heard that Earth has a long way to go when it comes to equality and acceptance.</span></p>
+  <p>I don't even know if I'll get to interact with many Earthlings. I heard I'll have to talk to their PResident, which is some kind of democratic leader. I hope I wont be too uncomfortable. I heard Earthlings are bald apes. That sounds pretty gross. All that muscle, long arms, and hunched posture? I hope that dosn't come across as racist. I just mean it sounds like they look very… Unaesthetic. Earthlings are wonderful people. They've given us a safe haven on their planet for 130 of their years. That's more than six of their generations!</span></p>
+  <p>Poor short lived dears. Maybe we can sell them some cosmetics? I know we give them some technology sometimes.</span></p>
+  <p>Despite my fears, I'm determined to make the best of this new opportunity. I'll miss my home and my people, but I'm excited to see what the future holds. I can't wait to explore the beautiful planet that is now my new home. I just hope that I can make a difference here and help my people to survive and thrive.</span></p>
+  </div>
+
+
+
+
+</body>
+  <script type="text/javascript" title="Hologram Control">
+    const revealButtons = document.querySelectorAll('.reveal-button');
+      revealButtons.forEach(button => {
+        button.addEventListener('click', event => {
+          const targetId = event.target.dataset.target;
+          const targetDiv = document.getElementById(targetId);
+          targetDiv.style.display = 'block';
+        });
+      });
+
+      const closeButtons = document.querySelectorAll('.close-button');
+      closeButtons.forEach(button => {
+        button.addEventListener('click', event => {
+          const targetDiv = event.target.parentNode;
+          targetDiv.style.display = 'none';
+        });
+      });
+  </script>
+
+  <script title="Font Switcher">
+    function toggleFont() {
+      var elements = document.getElementsByTagName("*");
+      for (var i = 0; i < elements.length; i++) {
+        if (elements[i].tagName == "BUTTON") {
+          if (elements[i].classList.contains("alt")) {
+            elements[i].style.fontFamily = "roswell";
+            elements[i].classList.remove("alt");
+          } else {
+            elements[i].style.fontFamily = "Share Tech Mono";
+            elements[i].classList.add("alt");
+          }
+          elements[i].offsetHeight; // Force reflow
+        }
+      }
+
+      var oddElements = document.querySelectorAll('.readout table tr td:nth-child(odd)');
+      for (var i = 0; i < oddElements.length; i++) {
+        var currentFont = oddElements[i].style.fontFamily;
+        if (currentFont == '' || currentFont == 'roswell') {
+          oddElements[i].style.fontFamily = "Share Tech Mono";
+        } else {
+          oddElements[i].style.fontFamily = "roswell";
+        }
+        oddElements[i].offsetHeight; // Force reflow
+      }
+
+      var evenElements = document.querySelectorAll('.readout table tr td:nth-child(even)');
+      for (var i = 0; i < evenElements.length; i++) {
+        var currentFont = evenElements[i].style.fontFamily;
+        if (currentFont == '' || currentFont == 'alien') {
+          evenElements[i].style.fontFamily = "Share Tech Mono";
+        } else {
+          evenElements[i].style.fontFamily = "alien";
+        }
+        evenElements[i].offsetHeight; // Force reflow
+      }
+
+      var pElements = document.getElementsByTagName("p");
+      for (var i = 0; i < pElements.length; i++) {
+        var currentFont = pElements[i].style.fontFamily;
+        if (currentFont == '' || currentFont == 'roswell') {
+          pElements[i].style.fontFamily = "Share Tech Mono";
+        } else {
+          pElements[i].style.fontFamily = "roswell";
+        }
+        pElements[i].offsetHeight; // Force reflow
+      }
+
+      var h1Elements = document.getElementsByTagName("h1");
+      for (var i = 0; i < h1Elements.length; i++) {
+        var currentFont = h1Elements[i].style.fontFamily;
+        if (currentFont == '' || currentFont == 'roswell') {
+          h1Elements[i].style.fontFamily = "Share Tech Mono";
+        } else {
+          h1Elements[i].style.fontFamily = "roswell";
+        }
+        h1Elements[i].offsetHeight; // Force reflow
+      }
+
+      var h2Elements = document.getElementsByTagName("h2");
+      for (var i = 0; i < h2Elements.length; i++) {
+        var currentFont = h2Elements[i].style.fontFamily;
+        if (currentFont == '' || currentFont == 'roswell') {
+          h2Elements[i].style.fontFamily = "Share Tech Mono";
+        } else {
+          h2Elements[i].style.fontFamily = "roswell";
+        }
+        h2Elements[i].offsetHeight; // Force reflow
+      }
+
+      var inputElements = document.getElementsByTagName("input");
+      for (var i = 0; i < inputElements.length; i++) {
+        var currentFont = inputElements[i].style.fontFamily;
+        if (currentFont == '' || currentFont == 'roswell') {
+          inputElements[i].style.fontFamily = "Share Tech Mono";
+        } else {
+          inputElements[i].style.fontFamily = "roswell";
+        }
+        inputElements[i].offsetHeight; // Force reflow
+      }
+
+    var stardateElements = document.querySelectorAll("#stardate");
+    for (var i = 0; i < stardateElements.length; i++) {
+      var currentFont = stardateElements[i].style.fontFamily;
+      if (currentFont == '' || currentFont == 'alien') {
+        stardateElements[i].style.fontFamily = "Share Tech Mono";
+        stardateElements[i].style.fontSize = "1em";
+      } else {
+        stardateElements[i].style.fontFamily = "alien";
+        stardateElements[i].style.fontSize = "1.5em";
+      }
+      stardateElements[i].offsetHeight; // Force reflow
+    }
+  }
+
+  </script>
+
+<script type="text/javascript" title="Colapse Controller">
+  var coll = document.getElementsByClassName("collapsible");
+
+  for (var i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.classList.contains("active")) {
+        content.classList.remove("active");
+        content.style.display = "none";
+      } else {
+        content.classList.add("active");
+        content.style.display = "block";
+      }
+    });
+  }
+</script>
+
+
+<script type="text/javascript" title="Starfield Generator">
+  (function () {
+
+    const planetSet = ["🌝", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘"]
+    const moons = ["🌛", "🌜", "🛰️"]
+    const notSpaceObjects = ["⛹", "⛄", "🎃", "🎅", "🏂", "🏃", "🏄", "🏊", "🏋", "🏌", "👀", "👤", "👥", "👦", "👧", "👨", "👩", "👪", "👫", "👬", "👭", "👮", "👯", "👰", "👱", "👲", "👳", "👴", "👵", "👶", "👷", "👸", "👹", "👺", "👻", "👼", "👽", "👾", "👿", "💀", "💁", "💂", "💃", "💆", "💇", "💏", "💑", "💩", "🕴", "🕵", "🗿", "😀", "😁", "😂", "😃", "😄", "😅", "😆", "😇", "😈", "😉", "😊", "😋", "😌", "😍", "😎", "😏", "😐", "😑", "😒", "😓", "😔", "😕", "😖", "😗", "😘", "😙", "😚", "😛", "😜", "😝", "😞", "😟", "😠", "😡", "😢", "😣", "😤", "😥", "😦", "😧", "😨", "😩", "😪", "😫", "😬", "😭", "😮", "😯", "😰", "😱", "😲", "😳", "😴", "😵", "😶", "😷", "😸", "😹", "😺", "😻", "😼", "😽", "😾", "😿", "🙀", "🙁", "🙂", "🙃", "🙄", "🙅", "🙆", "🙇", "🙈", "🙉", "🙊", "🙋", "🙌", "🙍", "🙎", "🙏", "🚴", "🚵", "🚶", "🛸", "🤐", "🤑", "🤒", "🤓", "🤔", "🤕", "🤖", "🤗", "🤠", "🤡", "🤢", "🤣", "🤤", "🤥", "🤦", "🤧", "🤨", "🤩", "🤪", "🤫", "🤬", "🤭", "🤮", "🤯", "🤰", "🤱", "🤲", "🤳", "🤴", "🤵", "🤶", "🤷", "🤸", "🤹", "🤺", "🤻", "🤼", "🤽", "🤾", "🥰", "🥳", "🥴", "🥵", "🥶", "🥺", "🦸", "🦹", "🧐", "🧑", "🧒", "🧓", "🧔", "🧕", "🧖", "🧗", "🧘", "🧙", "🧚", "🧛", "🧜", "🧝", "🧞", "🧟", "🧸", "🐀", "🐁", "🐂", "🐃", "🐄", "🐅", "🐆", "🐇", "🐈", "🐉", "🐊", "🐋", "🐌", "🐍", "🐎", "🐏", "🐐", "🐑", "🐒", "🐓", "🐔", "🐕", "🐖", "🐗", "🐘", "🐙", "🐚", "🐛", "🐜", "🐝", "🐞", "🐟", "🐠", "🐡", "🐢", "🐣", "🐤", "🐥", "🐦", "🐧", "🐨", "🐩", "🐪", "🐫", "🐬", "🐭", "🐮", "🐯", "🐰", "🐱", "🐲", "🐳", "🐴", "🐵", "🐶", "🐷", "🐸", "🐹", "🐺", "🐻", "🐼", "🦀", "🦁", "🦂", "🦃", "🦄", "🦅", "🦆", "🦇", "🦈", "🦉", "🦊", "🦋", "🦌", "🦍", "🦎", "🦏", "🦐", "🦑", "🦒", "🦓", "🦔", "🦕", "🦖", "🦗", "🦘", "🦙", "🦚", "🦛", "🦜", "🦝", "🦞", "🦟", "🦠", "🦡", "🦢"]
+    const groupNames = ["Constellation", "Cluster", "Open Cluster", "Group", "Federation"]
+    const CONSTELLATIONS = ["Andromeda", "Antlia", "Apus", "Aquarius", "Aquila", "Ara", "Aries", "Auriga", "Boötes", "Caelum", "Camelopardalis", "Cancer", "Canes Venatici", "Canis Major", "Canis Minor", "Capricornus", "Carina", "Cassiopeia", "Centaurus", "Cepheus", "Cetus", "Chamaeleon", "Circinus", "Columba", "Coma Berenices", "Corona Austrina", "Corona Borealis", "Corvus", "Crater", "Crux", "Cygnus", "Delphinus", "Dorado", "Draco", "Equuleus", "Eridanus", "Fornax", "Gemini", "Grus", "Hercules", "Horologium", "Hydra", "Hydrus", "Indus", "Lacerta", "Leo", "Leo Minor", "Lepus", "Libra", "Lupus", "Lynx", "Lyra", "Mensa", "Microscopium", "Monoceros", "Musca", "Norma", "Octans", "Ophiuchus", "Orion", "Pavo", "Pegasus", "Perseus", "Phoenix", "Pictor", "Pisces", "Piscis Austrinus", "Puppis", "Pyxis", "Reticulum", "Sagitta", "Sagittarius", "Scorpius", "Sculptor", "Scutum", "Serpens", "Sextans", "Taurus", "Telescopium", "Triangulum", "Triangulum Australe", "Tucana", "Ursa Major", "Ursa Minor", "Vela", "Virgo", "Volans", "Vulpecula"] /*88*/
+    const STARS = ["Absolutno", "Achernar", "Achird", "Acrab", "Acrux", "Acubens", "Adhafera", "Adhara", "Adhil", "Ain", "Ainalrami", "Aladfar", "Alamak", "Alasia", "Alathfar", "Albaldah", "Albali", "Albireo", "Alchiba", "Alcor", "Alcyone", "Aldebaran", "Alderamin", "Aldhanab", "Aldhibah", "Aldulfin", "Alfirk", "Algedi", "Algenib", "Algieba", "Algol", "Algorab", "Alhena", "Alioth", "Aljanah", "Alkaid", "Al Kalb al Rai", "Alkalurops", "Alkaphrah", "Alkarab", "Alkes", "Almaaz", "Almach", "Al Minliar al Asad", "Alnair", "Alnasl", "Alnilam", "Alnitak", "Alniyat", "Alphard", "Alphecca", "Alpheratz", "Alpherg", "Alrakis", "Alrescha", "Alruba", "Alsafi", "Alsciaukat", "Alsephina", "Alshain", "Alshat", "Altair", "Altais", "Alterf", "Aludra", "Alula Australis", "Alula Borealis", "Alya", "Alzirr", "Amadioha", "Amansinaya", "Anadolu", "Ancha", "Angetenar", "Aniara", "Ankaa", "Anser", "Antares", "Arcalis", "Arcturus", "Arkab Posterior", "Arkab Prior", "Arneb", "Ascella", "Asellus Australis", "Asellus Borealis", "Ashlesha", "Asellus Primus", "Asellus Secundus", "Asellus Tertius", "Aspidiske", "Asterope/Sterope", "Atakoraka", "Athebyne", "Atik", "Atlas", "Atria", "Avior", "Axolotl", "Ayeyarwady", "Azelfafage", "Azha", "Azmidi", "Baekdu", "Barnard's Star", "Baten Kaitos", "Beemim", "Beid", "Belel", "Belenos", "Bellatrix", "Berehinya", "Betelgeuse", "Bharani", "Bibha", "Biham", "Bosona", "Botein", "Brachium", "Bubup", "Buna", "Bunda", "Canopus", "Capella", "Caph", "Castor", "Castula", "Cebalrai", "Ceibo", "Celaeno", "Cervantes", "Chalawan", "Chamukuy", "Chaophraya", "Chara", "Chason", "Chechia", "Chertan", "Citadelle", "Citala", "Cocibolca", "Copernicus", "Cor Caroli", "Cujam", "Cursa", "Dabih", "Dalim", "Deneb", "Deneb Algedi", "Denebola", "Diadem", "Dingolay", "Diphda", "Diwo", "Diya", "Dofida", "Dombay", "Dschubba", "Dubhe", "Dziban", "Ebla", "Edasich", "Electra", "Elgafar", "Elkurud", "Elnath", "Eltanin", "Emiw", "Enif", "Errai", "Fafnir", "Fang", "Fawaris", "Felis", "Felixvarela", "Flegetonte", "Fomalhaut", "Formosa", "Franz", "Fulu", "Funi", "Fumalsamakah", "Furud", "Fuyue", "Gacrux", "Gakyid", "Garnet Star", "Giausar", "Gienah", "Ginan", "Gloas", "Gomeisa", "Graffias", "Grumium", "Gudja", "Gumala", "Guniibuu", "Hadar", "Haedus", "Hamal", "Hassaleh", "Hatysa", "Helvetios", "Heze", "Hoggar", "Homam", "Horna", "Hunahpu", "Hunor", "Iklil", "Illyrian", "Imai", "Intercrus", "Inquill", "Intan", "Irena", "Itonda", "Izar", "Jabbah", "Jishui", "Kaffaljidhma", "Kakkab", "Kalausi", "Kamui", "Kang", "Karaka", "Kaus Australis", "Kaus Borealis", "Delta Sagittarii", "Kaveh", "Kekouan", "Keid", "Khambalia", "Kitalpha", "Kochab", "Koeia", "Koit", "Kornephoros", "Kraz", "Kuma", "Kurhah", "La Superba", "Larawag", "Lerna", "Lesath", "Libertas", "Lich", "Liesma", "Lilii Borea", "Lionrock", "Lucilinburhuc", "Lusitania", "Maasym", "Macondo", "Mago", "Mahasim", "Mahsati", "Maia", "Malmok", "Marfark", "Marfik", "Markab", "Markeb", "Marohu", "Marsic", "Matar", "Mebsuta", "Megrez", "Meissa", "Mekbuda", "Meleph", "Menkalinan", "Menkar", "Menkent", "Menkib", "Merak", "Merga", "Meridiana", "Merope", "Mesarthim", "Miaplacidus", "Mimosa", "Minchir", "Minelauva", "Mintaka", "Mira", "Mirach", "Miram", "Mirfak", "Mirzam", "Misam", "Mizar", "Moldoveanu", "Monch", "Montuno", "Morava", "Moriah", "Mothallah", "Mouhoun", "Mpingo", "Muliphein", "Muphrid", "Muscida", "Musica", "Muspelheim", "Nahn", "Naledi", "Naos", "Nash", "Nashira", "Nasti", "Natasha", "Navi", "Nekkar", "Nembus", "Nenque", "Nervia", "Nihal", "Nikawiy", "Nosaxa", "Nunki", "Nusakan", "Nushagak", "Nyamien", "Ogma", "Okab", "Paikauhale", "Parumleo", "Peacock", "Petra", "Phact", "Phecda", "Pherkad", "Phoenicia", "Piautos", "Pincoya", "Pipoltr", "Pipirima", "Pleione", "Poerava", "Polaris", "Polaris Australis", "Polis", "Pollux", "Porrima", "Praecipua", "Prima Hyadum", "Procyon", "Propus", "Proxima Centauri", "Ran", "Rapeto", "Rasalas", "Rasalgethi", "Rasalhague", "Rastaban", "Regor", "Regulus", "Revati", "Rigel", "Rigil Kentaurus", "Rosaliadecastro", "Rotanev", "Ruchbah", "Rukbat", "Sabik", "Saclateni", "Sadachbia", "Sadalbari", "Sadalmelik", "Sadalsuud", "Sadr", "Sagarmatha", "Saiph", "Salm", "Samaya", "Sansuna", "Sargas", "Sarin", "Sarir", "Sceptrum", "Scheat", "Schedar", "Secunda Hyadum", "Segin", "Seginus", "Sham", "Shama", "Sharjah", "Shaula", "Sheliak", "Sheratan", "Sika", "Sirius", "Situla", "Skat", "Solaris", "Spica", "Sterrennacht", "Stribor", "Sualocin", "Subra", "Suhail", "Sulafat", "Syrma", "Tabit", "Taika", "Taiyangshou", "Taiyi", "Talitha", "Tangra", "Tania Australis", "Tania Borealis", "Tapecue", "Tarazed", "Tarf", "Taygeta", "Tegmine", "Tejat", "Terebellum", "Tevel", "Thabit", "Theemin", "Thuban", "Tiaki", "Tianguan", "Tianyi", "Timir", "Tislit", "Titawin", "Tojil", "Toliman", "Tonatiuh", "Torcular", "Tuiren", "Tupa", "Tupi", "Tureis", "Ukdah", "Uklun", "Unukalhai", "Unurgunite", "Uruk", "Vega", "Veritate", "Vindemiatrix", "Wasat", "Wazn", "Wezen", "Wurren", "Xamidimura", "Xihe", "Xuange", "Yed Posterior", "Yed Prior", "Yildun", "Zaniah", "Zaurak", "Zavijava", "Zhang", "Zibal", "Zosma", "Zubenelgenubi", "Zubenelhakrabi", "Zubeneschamali"]
+    var stars = [];
+    var sortedLinks = []
+    var WINDOW_MIN
+    const MIN_THRESHOLD = 640
+    var universe = document.getElementById("universe")
+    var links = document.querySelector("#links")
+
+    window.onload = attachHandlers
+
+    function attachHandlers(ev) {
+        initializeGalaxy()
+        attachZoomHandlers()
+    }
+
+    // window.addEventListener("resize", attachHandlers)
+
+    function initializeGalaxy() {
+        WINDOW_MIN = Math.min(universe.clientHeight, universe.clientWidth)
+        stars = STARS.slice()
+        links.innerHTML = ""
+        document.querySelector("#darken").style.display = "none"
+        document.querySelector("#showOrbits").checked = true
+        let numSystems = generateSystems();
+        [...document.querySelectorAll("#constellation")].forEach(el => el.addEventListener("click",
+            attachHandlers
+        ))
+        document.querySelector("#showOrbits").addEventListener("change", function (ev) {
+
+            if (!ev.target.checked) {
+                [...universe.querySelectorAll(".orbit")].forEach(o => o.style.border = "none")
+            } else {
+                [...universe.querySelectorAll(".orbit")].forEach(o => o.style.border = "")
+            }
+        })
+        document.querySelector("#constellation").innerText = `${pick(CONSTELLATIONS)} ${pick(groupNames)} [${numSystems} known star systems]`
+    }
+
+    function generateSystems() {
+
+        universe.innerHTML = ""
+        sortedLinks = [];
+        const MAX_SYSTEMS = isMobile() ? 10 : 15
+        let numSystems = getRandomInt(5, MAX_SYSTEMS)
+        for (let i = 0; i < numSystems; i++) {
+
+            let numPlanets = getRandomInt(1, 10)
+            let starSize = getRandomInt(50, 100) //fonst size - percent
+            let maxOrbit = getRandomInt(50, 500) //pixels
+            let maxPlanetSize = starSize / 5
+
+            let iconSet = Math.random() < .1 ? notSpaceObjects : planetSet
+            let sun = Math.random() < .1 ? pick(notSpaceObjects) : "🌞"
+            let system = generateSystem("Star", sun, starSize, numPlanets, iconSet, maxOrbit, maxPlanetSize)
+
+            //system position
+            system.style.left = `${getRandomInt(0,80)}%`
+            system.style.top = `${getRandomInt(10,80)}%`
+            universe.appendChild(system)
+        }
+        sortedLinks.sort((a, b) => {
+            return a.systemID < b.systemID ? -1 : 1
+        })
+        sortedLinks.forEach(link => links.appendChild(link))
+        return numSystems
+    }
+
+    function generateSystem(type, starIcon, starFont, numPlanets, planetSet, maxOrbit, maxPlanetSize) {
+
+        //system
+        let system = document.createElement("div");
+        system.setAttribute("class", "system")
+
+        //system label
+        let labl = document.createElement("div")
+        labl.classList.add("systemLabel")
+        system.appendChild(labl)
+
+        //system size and orientation
+        system.style.width = `${maxOrbit}px`
+        system.style.height = `${maxOrbit}px`
+        let xrot = getRandomInt(0, 180) /*random orientation for system*/
+        let yrot = getRandomInt(0, 180) /*note that going over 90deg for these values makes 3D orbits get painted in wrong order TODO: fix?!*/
+        let scale = getRandomFloat(.2, 1)
+        let labelScale = scale < .2 ? 3 : scale < .7 ? 2 : 1
+        system.style.transform = ` scale(${scale}) rotateX(${xrot}deg) rotateY(${yrot}deg)`
+        labl.style.transform = ` rotateY(${-yrot}deg) rotateX(${-xrot}deg) scale(${labelScale}) `
+
+        //system center (can be a star or planet)
+        let star = document.createElement("div")
+        let starInner = document.createElement("div")
+        starInner.setAttribute("class", "starInner")
+        star.setAttribute("class", "star")
+        star.style.width = `100%`
+        star.style.height = `100%`
+
+        star.appendChild(starInner)
+        starInner.innerHTML = `<div class="starIcon">${starIcon}</div>`
+        let starSpan = starInner.querySelector(".starIcon")
+        starSpan.style.fontSize = `${starFont}%`
+        starSpan.style.filter = `hue-rotate(${getRandomInt(0,360)}deg)`
+
+        star.querySelector(".starInner").style.animation = `spin ${getRandomFloat(15,30)}s infinite linear`
+
+        system.appendChild(star)
+
+        //PLANETS
+        const MIN_PLANET_SIZE = 5 /*percent of parent system*/
+        let orbitsForThisSystem = [] /*keep track so they aren't too close together*/
+
+        /*maxOrbital range is 50px-500px so 275 is middlish. note that maxOrbit (size of system) alone determines orbital speeds (and hence, "star mass")*/
+        let massOfStar = 275 / maxOrbit
+        system.starMassLabel = massOfStar > 1 ? massOfStar * 10 : massOfStar
+
+        const PERCENT_MOONS = .3
+        let moonProbability = type == "Star" ? PERCENT_MOONS : 0 /*at top level only, generate some planetary systems with moons*/
+        for (let i = 0; i < numPlanets; i++) {
+
+            //generate planet
+            let fontSize = getRandomFloat(MIN_PLANET_SIZE, maxPlanetSize);
+            let orbitExtent =  i == numPlanets - 1 ? 100 : getRandomFloat(30, 100) /*percentage of the system the orbit takes up*/
+            let planet = generatePlanet(pick(planetSet), fontSize, maxOrbit, orbitExtent, moonProbability, orbitsForThisSystem)
+
+            //orientation and spin
+            if (planet.systemType != "System") {
+                planet.querySelector(".planet").style.animation = `spin ${getRandomFloat(1,30)}s infinite linear`
+            }
+            system.appendChild(planet);
+        }
+        if (type == "Star") {
+            let systemID = generateInfo(system)
+            labl.innerText = systemID
+        }
+
+        return system
+    }
+
+    function generateInfo(system) {
+
+        let link = document.createElement("div")
+        link.classList.add("link")
+        link.style.color = getRandomColor()
+        system.querySelector(".systemLabel").style.color = link.style.color
+        let systemID = pickDistinct(stars)
+        link.innerText = systemID
+        link.systemID = systemID
+        system.systemID = systemID
+        link.onclick = (ev) => {
+            system.click()
+            let isStillOpen = system.getAttribute("data-isModal") == "true"
+            if (!isStillOpen) deactivateLink(systemID)
+        }
+        sortedLinks.push(link)
+        return systemID
+    }
+
+    function generatePlanet(icon, fontSize, systemSize, orbitExtent, moonProbability, otherOrbits) {
+
+        let template = `<div class="position"><div class="planet">${icon}</div></div>`
+        let orbit = document.createElement("div")
+        orbit.innerHTML = template
+        let inner = orbit.querySelector(".planet")
+        let outer = orbit.querySelector(".position")
+        orbit.setAttribute("class", "orbit")
+
+        const MIN_ORBIT_DISTANCE = 5 //percent of system
+        while (isCloseToOtherOrbits(orbitExtent, otherOrbits)) {
+            orbitExtent = getRandomFloat(30, 110)
+        }
+
+        //orbital calculations:
+        otherOrbits.push(orbitExtent)
+        let physicalDistance = orbitExtent * systemSize
+        let orbitalPeriod = (Math.pow(physicalDistance, 2) * .0000002)
+
+        orbit.style.animation = `orbit ${orbitalPeriod}s infinite linear`
+        orbit.style.width = `${orbitExtent}%`
+        orbit.style.height = `${orbitExtent}%`
+        orbit.style.left = `calc(50% - ${orbitExtent/2}%)` /*position orbit in middle of system*/
+        orbit.style.top = `calc(50% - ${orbitExtent/2}%)`
+
+        //icon size and position
+        inner.style.fontSize = `${fontSize}%`
+        inner.style.marginLeft = `-${fontSize/2}%`
+        inner.style.filter = `hue-rotate(${getRandomInt(0,360)}deg)`
+        outer.style.left = `-.5em`
+        outer.style.top = `calc(50% - .5em)`
+
+        //moons
+        if (Math.random() < moonProbability) {
+
+            orbit.systemType = "System"
+            let numPlanets = getRandomInt(1, 3)
+            let lowerBoundOrbit = fontSize > 20 ? 100 : 50
+            let maxOrbit = getRandomInt(lowerBoundOrbit, 150) //percentage of the system width that this orbit will occupy
+
+            let maxPlanetSize = fontSize / 3 //max moon size
+            let planetWithMoons = generateSystem("Planetary", pick(planetSet), fontSize, numPlanets, moons, maxOrbit, maxPlanetSize)
+            outer.style.left = `-${maxOrbit/2}px`
+            outer.style.top = `calc(50% - ${maxOrbit/2}px)`
+
+            orbit.querySelector(".planet").innerHTML = planetWithMoons.outerHTML
+        }
+
+        return orbit
+
+        function isCloseToOtherOrbits(val, arr) {
+            return arr.filter(o => Math.abs(o - val) < MIN_ORBIT_DISTANCE).length > 0
+        }
+    }
+
+    function attachZoomHandlers() {
+        var systems = universe.querySelectorAll("#universe > .system");
+        [...systems].forEach(s => {
+
+            const NUMPLANETS = s.querySelectorAll(":scope >.orbit").length
+            s.addEventListener("click", function (ev) {
+
+                let isModal = s.hasAttribute("data-isModal") ? s.getAttribute("data-isModal") == "true" : false
+                let isFlat = s.hasAttribute("data-isFlat") ? s.getAttribute("data-isFlat") == "true" : false
+
+                if (!isModal) {
+
+                    //show darkening layer to obscure other systems, and store relevant style attributes to restore later
+                    document.querySelector("#darken").style.display = "block"
+                    s.querySelector(".systemLabel").style.display = "none"
+                    s.setAttribute("data-fontSize", s.style.fontSize)
+                    s.setAttribute("data-width", s.style.width)
+                    s.setAttribute("data-height", s.style.height)
+                    s.setAttribute("data-left", s.style.left)
+                    s.setAttribute("data-top", s.style.top)
+                    s.setAttribute("data-transform", s.style.transform)
+                    s.setAttribute("data-isModal", true)
+
+                    s.style.zIndex = 2 /*the star system is above the darkening layer, which is z=1*/
+                    s.style.width = "100vmin" /*fullscreen size*/
+                    s.style.height = "100vmin"
+                    s.style.left = `calc(50% - 50vmin)`
+                    s.style.top = `calc(50% - 50vmin)`
+                    s.style.transform = s.style.transform.replace(/scale\(.*?\)/, "") /*remove scale*/
+
+                    activateLink(s.systemID, `  (Stellar Mass: ${s.starMassLabel.toFixed(2)} M☉, ${NUMPLANETS} Planet${NUMPLANETS>1?"s":""})`) //link
+
+                    const MODAL_ZOOM = 10 /*first modal mode adds a zoom effect */ ;
+                    [...s.querySelectorAll(".planet, .starIcon")].forEach(sp => {
+                        sp.setAttribute("data-fontSize", sp.style.fontSize)
+                        let num = sp.style.fontSize.match(/\d+/)
+                        sp.style.fontSize = `${num*MODAL_ZOOM}%`
+                    })
+
+                } else {
+                    //it's currently modal, so...
+                    if (!isFlat) { //make it flat view first, don't close it yet
+                        s.style.transform = "" /*removes the orientation transform, thus, flat*/
+                        s.setAttribute("data-isFlat", true)
+                    } else {
+                        //it was in flat mode. exit fullscreen mode and restore original size/position
+                        document.querySelector("#darken").style.display = "none"
+                        s.querySelector(".systemLabel").style.display = "block"
+                        s.style.width = s.getAttribute("data-width")
+                        s.style.height = s.getAttribute("data-height")
+                        s.style.top = s.getAttribute("data-top")
+                        s.style.left = s.getAttribute("data-left")
+                        s.style.transform = s.getAttribute("data-transform");
+                        [...s.querySelectorAll(".planet, .starIcon")].forEach(sp => {
+                            sp.style.fontSize = sp.getAttribute("data-fontSize")
+                        })
+                        s.style.zIndex = 0
+                        s.setAttribute("data-isModal", false)
+                        s.setAttribute("data-isFlat", false)
+
+                        deactivateLink(s.systemID)
+                    }
+                }
+            })
+        })
+    }
+
+    function activateLink(systemID, infoText) {
+        let link = [...links.querySelectorAll("div")].filter(l => l.systemID == systemID)[0];
+        link.innerText = link.innerText + " System" + infoText;
+        [...links.querySelectorAll("div")].forEach(el => {
+            el.classList.add("disabled")
+        })
+        link.classList.remove("disabled")
+    }
+
+    function deactivateLink(systemID) {
+        let link = [...links.querySelectorAll("div")].filter(l => l.systemID == systemID)[0]
+        link.innerText = link.innerText.replace(/System.*/, "");
+        [...links.querySelectorAll("div")].forEach(el => {
+            el.classList.remove("disabled")
+        })
+    }
+
+    function pick(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function pickDistinct(arr) {
+        let index = Math.floor(Math.random() * arr.length)
+        let item = arr[index]
+        arr.splice(index, 1) /*delete this entry*/
+        return item
+    }
+
+    function getRandomInt(min, max) {
+        min = Math.ceil(min)
+        max = Math.floor(max)
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+    function getRandomFloat(min, max) {
+        return (Math.random() * (max - min)) + min
+    }
+
+    function getRandomColor() {
+        return `rgb(${getRandomInt(100,255)},${getRandomInt(100,255)},${getRandomInt(100,255)})`
+    }
+
+    function isMobile() {
+        let mobile = window.matchMedia(`only screen and (max-width: ${MIN_THRESHOLD}px), only screen and (max-height:${MIN_THRESHOLD}px)`).matches;
+        return mobile || navigator.userAgent.indexOf("Firefox") != -1 || navigator.userAgent.indexOf("Silk") != -1;
+    }
+
+  })("sweaverD.com")
+</script>
+
+<script type="text/javascript" title="Clock">
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+
+  // set the start point of the hour, minute and second hand to top
+  const threePIByTwo = (3 * Math.PI) / 2;
+
+  console.log(threePIByTwo);
+
+  let amOrPm = 'AM';
+
+  const canvasBg = '#0FF0';
+
+  // Define colors for hour, minute and second hand
+  const hourActiveColor = '#4bbea3',
+  minuteActiveColor = '#399d86',
+  secondActiveColor = '#2b7866';
+
+  // Define inactive colors for hour, minute and second hand
+  const hourInactiveColor = '#348d7a',
+  minuteInactiveColor = '#27685a',
+  secondInactiveColor = '#19433a';
+
+  const timerBg = '#80d1bf';
+
+  function init()
+  {
+  canvas.width = document.documentElement.clientWidth - 35;
+  canvas.height = document.documentElement.clientHeight - 45;
+
+  // This calls the draw function repeatedly at a rate of 60 times per second
+  window.requestAnimationFrame(draw);
+  }
+
+  function draw()
+  {
+  // Finding center point of canvas
+  const centerX = canvas.width / 2,
+    centerY = canvas.height / 2;
+
+  const date = new Date();
+
+  let hr = date.getHours();
+  let min = date.getMinutes();
+  let sec = date.getSeconds();
+  let ms = date.getMilliseconds();
+
+  if(hr > 12)
+  {
+    amOrPm = 'PM';
+    hr -= 12;
+  }
+
+  /* Defines how much radians each hand should move */
+  let radH = 0.000008333 * ( ( hr * 60 * 60 * 1000 ) + ( min * 60 * 1000 ) + ( sec * 1000 ) + ms );
+  let radM = 0.0001 * ( ( min * 60 * 1000 ) + ( sec * 1000 ) + ms );
+  let radS = 0.006 * ( ( sec * 1000 ) + ms );
+
+
+  // Draw Canvas
+  drawRect(0, 0, canvas.width, canvas.height, canvasBg);
+
+  // Hour Hand
+  drawCircle(centerX, centerY, 110, 0, 360 , false, hourInactiveColor, 'stroke', 90);
+  drawCircle(centerX, centerY, 110, threePIByTwo, rad(radH) + threePIByTwo, false, hourActiveColor, 'stroke', 90);
+
+  // Minute Hand
+  drawCircle(centerX, centerY, 180, 0, 360, false, minuteInactiveColor, 'stroke', 50);
+  drawCircle(centerX, centerY, 180, threePIByTwo, rad(radM) + threePIByTwo, false, minuteActiveColor, 'stroke', 50);
+
+  // Second Hand
+  drawCircle(centerX, centerY, 220, 0, 360, false, secondInactiveColor, 'stroke', 30);
+  drawCircle(centerX, centerY, 220, threePIByTwo, rad(radS) + threePIByTwo, false, secondActiveColor, 'stroke', 30);
+
+  // Digital Timer
+  drawCircle(centerX, centerY, 90, 0, 360, false, timerBg, 'fill', '50');
+  drawText(`${hr.toString().padStart(2, "0")}:${min.toString().padStart(2, "0")} ${amOrPm}`, canvas.width / 2 - 60, canvas.height / 2 + 15, '#ffffff', '2em');
+
+  window.requestAnimationFrame(draw);
+  }
+
+  init();
+
+  // Convert degree to radians
+  function rad(deg){
+  return  (Math.PI / 180) * deg;
+  }
+
+  function drawText(text, x, y, color, size) {
+  ctx.font = `${size} "alien"`;
+  ctx.fillStyle = color;
+  ctx.fillText(text, x, y);
+  }
+
+  function drawRect(x, y, width, height, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, width, height);
+  }
+
+  function drawArc(x, y, radius, start, end, clockwise)
+  {
+  ctx.beginPath();
+  ctx.arc(x, y, radius, start, end, clockwise);
+  }
+
+  function drawCircle(x, y, radius, start, end, clockwise, color, type, thickness) {
+  switch (type) {
+    case 'fill':
+      ctx.fillStyle = color;
+      drawArc(x, y, radius, start, end, clockwise)
+      ctx.fill();
+      break;
+    case 'stroke':
+      ctx.strokeStyle = color;
+      ctx.lineWidth = thickness;
+      drawArc(x, y, radius, start, end, clockwise)
+      ctx.stroke();
+      break
+  }
+  }
+</script>
+
+<script type="text/javascript" title="System Readout">
+  const oxygenSpan = document.querySelector('.oxygen');
+  const humiditySpan = document.querySelector('.humidity');
+  const tempSpan = document.querySelector('.temperature');
+  const powergenSpan = document.querySelector('.powergen');
+  const poweruseSpan = document.querySelector('.poweruse');
+  const waterSpan = document.querySelector('.water');
+  const CPUSpan = document.querySelector('.CPU');
+  const GPUSpan = document.querySelector('.GPU');
+  const RAMSpan = document.querySelector('.RAM');
+  const storageSpan = document.querySelector('.storage');
+
+
+  function randomReadout() {
+    oxygenSpan.innerHTML = genRand(19.5, 20.2, 2);
+    humiditySpan.innerHTML = genRand(49, 50, 2);
+    tempSpan.innerHTML = genRand(72, 73, 2);
+    powergenSpan.innerHTML = genRand(12, 12.75, 2);
+    poweruseSpan.innerHTML = genRand(66, 72, 2);
+    waterSpan.innerHTML = genRand(45, 48, 2);
+    CPUSpan.innerHTML = genRand(33, 86, 2);
+    GPUSpan.innerHTML = genRand(98, 99, 2);
+    RAMSpan.innerHTML = genRand(45, 63, 2);
+    storageSpan.innerHTML = genRand(69, 70, 2);
+  }
+
+
+
+  function genRand(min, max, decimalPlaces) {
+    const num = (Math.random() * (max - min) + min).toFixed(decimalPlaces);
+    return num.includes('.') ? num : `${num}.`.padEnd(num.length + decimalPlaces + 1, '0');
+  }
+
+  randomReadout();
+  setInterval(randomReadout, 2000);
+
+</script>
+
+<script title="Search System">
+  const searchBox = document.getElementById('search-box');
+  const searchButton = document.getElementById('search-button');
+
+  searchButton.addEventListener('click', () => {
+    const searchTerm = searchBox.value.toLowerCase();
+    let divFound = false;
+
+    // reset visibility of all divs
+    for (const div of document.getElementsByTagName('div')) {
+      if (div.classList.contains('active')) {
+        div.classList.remove('active');
+        div.style.display = 'none';
+      }
+    }
+
+    // search for divs with the search term
+    for (const div of document.getElementsByTagName('div')) {
+      if (div.innerText.toLowerCase().includes(searchTerm) || div.innerHTML.toLowerCase().includes(searchTerm)) {
+        const divId = div.getAttribute('id');
+        if (divId) {
+          showDiv(divId);
+          divFound = true;
+          break;
+        }
+      }
+    }
+
+    if (!divFound) {
+      alert('No results found.');
+    }
+    searchBox.value = '';
+  });
+
+  function showDiv(id) {
+    const content = document.getElementById(id);
+    if (content && !content.classList.contains('active')) {
+      content.classList.add('active');
+      content.style.display = 'block';
+    }
+  }
+</script>
+
+<script type="text/javascript" title="stardate convert">
+  // Find all spans with the id of "stardate"
+  var starDateSpans = document.querySelectorAll("#stardate");
+
+  // Loop through each span and convert the contained date to a star date
+  starDateSpans.forEach(function(starDateSpan) {
+  var realDate = starDateSpan.textContent.trim();
+  var realDateParts = realDate.split("-");
+  var realYear = parseInt(realDateParts[0], 10);
+  var realMonth = parseInt(realDateParts[1], 10);
+  var realDay = parseInt(realDateParts[2], 10);
+  var realDateTime = new Date(realYear, realMonth - 1, realDay);
+  var starDate = Math.floor((realDateTime.getTime() - Date.parse("July 8, 1947")) / 31556952000 * 1000) / 1000;
+
+  // Update the contents of the span with the star date
+  starDateSpan.textContent = starDate.toString();
+  });
+</script>

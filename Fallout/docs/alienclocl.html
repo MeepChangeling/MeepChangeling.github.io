@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Alien Log</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../alien.css" />
+    <link rel="icon" type="image/x-icon" href="../img/vaultgirl.webp">
+    <style>
+    @font-face {
+      font-family: 'alien';
+      font-size: 0.9em;
+      src: url('../data/Sprykski.ttf') format('truetype');
+    }
+     body {
+    	 text-align: center;
+    	 background-color: transparent;
+    	 color: rgba(224, 230, 235, 0.89);
+    	 font-family: 'alien';
+    	 font-weight: 300;
+    	 overflow: hidden;
+    }
+     .column, .colon {
+    	 display: inline-block;
+    	 vertical-align: top;
+    	 font-size: 86px;
+    	 line-height: 86px;
+    }
+     .column {
+    	 transition: transform 300ms;
+    }
+     .colon {
+    	 transition: transform 300ms;
+    	 transform: translateY(calc(50vh - 43px));
+    }
+     .colon:after {
+    	 content: ':';
+    }
+     .num {
+    	 transition: opacity 500ms, text-shadow 100ms;
+    	 opacity: 0.025;
+    }
+     .num.visible {
+    	 opacity: 1;
+    	 text-shadow: 1px 1px 0px #369;
+    }
+     .num.close {
+    	 opacity: 0.35;
+    }
+     .num.far {
+    	 opacity: 0.15;
+    }
+     .num.distant {
+    	 opacity: 0.1;
+    }
+    </style>
+  </head>
+<body>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+  </div>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+  <div class="colon"></div>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+  </div>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+  <div class="colon"></div>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+  </div>
+  <div class="column">
+    <div class="num">0</div>
+    <div class="num">1</div>
+    <div class="num">2</div>
+    <div class="num">3</div>
+    <div class="num">4</div>
+    <div class="num">5</div>
+    <div class="num">6</div>
+    <div class="num">7</div>
+    <div class="num">8</div>
+    <div class="num">9</div>
+  </div>
+  <script type="text/javascript">
+    let size = 86;
+    let columns = Array.from(document.getElementsByClassName('column'));
+    let d, c;
+    let classList = ['visible', 'close', 'far', 'far', 'distant', 'distant'];
+    let use24HourClock = true;
+    function padClock(p, n) {
+      return p + ('0' + n).slice(-2);
+    }
+    function getClock() {
+      d = new Date();
+      return [use24HourClock ? d.getHours() : d.getHours() % 12 || 12, d.getMinutes(), d.getSeconds()].reduce(padClock, '');
+    }
+    function getClass(n, i2) {
+      return classList.find((class_, classIndex) => Math.abs(n - i2) === classIndex) || '';
+    }
+    let loop = setInterval(() => {
+      c = getClock();
+      columns.forEach((ele, i) => {
+        let n = +c[i];
+        let offset = -n * size;
+        ele.style.transform = `translateY(calc(50vh + ${offset}px - ${size / 2}px))`;
+        Array.from(ele.children).forEach((ele2, i2) => {
+          ele2.className = 'num ' + getClass(n, i2);
+        });
+      });
+    }, 200 + Math.E * 10);
+  </script>
