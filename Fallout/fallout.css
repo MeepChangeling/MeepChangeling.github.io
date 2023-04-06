@@ -168,25 +168,21 @@ div.contentwindow {
 
 .navcontainer {
   margin:0;
-  height: 8%;
   width: 100%;
-  flex-shrink: 0; /* make sure the navbar doesn't shrink */
+  flex-shrink: 0;
   background-color: none;
-  background-image:linear-gradient(#080808, #161616);
+  /*background-image:linear-gradient(#080808, #161616);*/
   box-shadow: 0 0 5px 10px linear-gradient(#080808, #161616);
   border-bottom: solid 5px #009a00;
   position: absolute;
-  top: 0.5em;
+  top: 1.2em;
   left: 0;
-
   z-index: 1;
   color: #009a00;
   font-family: 'Share Tech Mono', monospace;
   font-size: calc(1vw + 1.75vh);
-  line-height: calc(3.5vh + 1.5vw);
   cursor: pointer;
   cursor: url('img/cursor1.png'), auto;
-  vertical-align: middle;
 }
 
 .navcontainer:after {
@@ -204,60 +200,47 @@ div.contentwindow {
 }
 
 .navtitle {
-  display: inline-block;
-  vertical-align: bottom;
-
-  padding-top: 1%;
-  float: left;
   margin-right: 2%;
   margin-left: 6%;
   font-weight: bold;
-
+  float: left;
 }
 
 /* Links inside the navbar */
 .navbar a {
-
-  float: left;
-
-  color: white;
-  text-align: center;
-
+  float:left;
+  color: orange;
   text-decoration: none;
+  border: solid 2px #009a00;
   cursor: pointer;
   cursor: url('img/cursor2.png'), auto;
+  margin-left: 30%;
 }
 
 /* The dropdown container */
 .dropdown {
   float: left;
   overflow: hidden;
-  padding-top: 0.35%;
-
   cursor: url('img/cursor1.png'), auto;
 }
 
 /* Dropdown button */
 .dropbtn {
-  margin-left: 1vw;
-
+  margin-left: 0;
 }
 
 .dropdown .dropbtn {
   color: #009a00;
-  font-family:'Fira Mono', monospace;
+  font-family: inherit;
   color: orange;
-  border: none;
-  outline: none;
-
-  vertical-align: bottom;
+  border: solid 2px #009a00;
   font-size: calc(1vw + 1vh);
   background-color: inherit;
   border: solid 2px #00000000;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   cursor: url('img/cursor2.png'), auto;
-  margin: 0; /* Important for vertical align on mobile phones */
+  margin: 0;
 }
 
 /* Add a red background color to navbar links on hover */

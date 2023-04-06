@@ -2,26 +2,28 @@
 
 var navbar = `<nav>
   <span class="navtitle" id="navtitle">` + document.title + `</span>
-  <div class="dropdown">
-    <button class="dropbtn">World
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="world/worldindex.html">World Index</a>
-      <a href="world/regionindex.html">Region Index</a>
-      <a href="world/factionindex.html">Faction Index</a>
-      <a href="docs/timeline.html">Timeline</a>
-      <a href="docs/races.html">Races and Species</a>
+  <span class="navmobilehelper">
+    <div class="dropdown">
+      <button class="dropbtn">World
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="world/worldindex.html">World Index</a>
+        <a href="world/regionindex.html">Region Index</a>
+        <a href="world/factionindex.html">Faction Index</a>
+        <a href="docs/timeline.html">Timeline</a>
+        <a href="docs/races.html">Races and Species</a>
+      </div>
     </div>
-  </div>
-  <div class="dropdown">
-    <button class="dropbtn">Badlands
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="locations/TexasBadlands.html">Texas Badlands</a>
+    <div class="dropdown">
+      <button class="dropbtn">Badlands
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="locations/TexasBadlands.html">Texas Badlands</a>
+      </div>
     </div>
-  </div>
+  </span>
 
 </nav>`;
 var el = document.getElementById("navcontainer");
