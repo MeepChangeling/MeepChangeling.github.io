@@ -42,3 +42,13 @@ var buttons = `<button type="button" name="button" class="redglow" onclick="loca
 <button type="button" name="button" class="redglow"></button><span class=buttontext>testing</span>`;
 var el1 = document.getElementById("buttonpannel");
 el1.insertAdjacentHTML('afterbegin', buttons);
+
+window.onload = function() {
+  var figures = document.getElementsByTagName('figure');
+  for (var i = 0; i < figures.length; i++) {
+    var img = figures[i].getElementsByTagName('img')[0];
+    img.addEventListener('click', function() {
+      window.open(this.src, '_blank');
+    });
+  }
+}

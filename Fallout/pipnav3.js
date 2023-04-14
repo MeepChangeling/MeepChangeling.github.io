@@ -29,20 +29,6 @@ var navbar = `<nav>
 var el = document.getElementById("navcontainer");
 el.insertAdjacentHTML('afterbegin', navbar);
 
-// Adds Button Pannel to pages within a folder.
-
-var buttons = `<button type="button" name="button" class="redglow" onclick="location.href='../utilities/falloutwiki.html';"></button><span class=buttontext>Database</span>
-</br>
-<button type="button" name="button" class="redglow" onclick="location.href='../utilities/blank.html';"></button><span class=buttontext>Test Page</span>
-</br>
-<button type="button" name="button" class="redglow" onclick="location.href='../worldmap.html';"></button><span class=buttontext>World Map</span>
-</br>
-<button type="button" name="button" class="redglow" onclick="location.href='../localmap.html';"></button><span class=buttontext>Local Map</span>
-</br>
-<button type="button" name="button" class="redglow"></button><span class=buttontext>testing</span>`;
-var el1 = document.getElementById("buttonpannel");
-el1.insertAdjacentHTML('afterbegin', buttons);
-
 // Script for Colapses on pages within a folder.
 
 document.addEventListener("DOMContentLoaded", function() {

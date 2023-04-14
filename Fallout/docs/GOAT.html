@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+	<meta charset="utf-8">
+	<title>G.O.A.T.</title>
+	<link id="theme" rel="stylesheet" type="text/css" href="../fallout.css" />
+	<link rel="icon" type="image/x-icon" href="../img/vaultgirl.webp">
+	<style media="screen">
+  	.screen {
+    	animation:colorPulse 5s infinite ease-in-out;
+    	background-image:radial-gradient(#195328, #000904);
+    	box-shadow:0 0 5vmin 1vmin #000 inset;
+    	padding:10vmin;
+    	width:95vw;
+    	height:93vh;
+    	position: absolute;
+    	top: 2vh;
+    	left: 2.5vw;
+  	}
+  	.question {
+    	margin-left: auto;
+    	margin-right: auto;
+    	width: 60vw;
+  	}
+  	.button-3 {
+    	margin: 5px;
+    	appearance: none;
+    	background-color: #009a00;
+    	border: 1px solid rgba(27, 31, 35, .15);
+    	border-radius: 6px;
+    	box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+    	box-sizing: border-box;
+    	color: black;
+    	cursor: pointer;
+    	display: inline-block;
+    	font-weight: 600;
+    	line-height: 20px;
+    	padding: 6px 16px;
+    	position: relative;
+    	text-align: center;
+    	text-decoration: none;
+    	user-select: none;
+    	-webkit-user-select: none;
+    	touch-action: manipulation;
+    	vertical-align: middle;
+    	white-space: nowrap;
+  	}
+
+  	.button-3:focus:not(:focus-visible):not(.focus-visible) {
+    	box-shadow: none;
+    	outline: none;
+  	}
+
+  	.button-3:hover {
+    	background-color: #2c974b;
+  	}
+
+  	.button-3:focus {
+    	box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+    	outline: none;
+  	}
+
+  	.button-3:disabled {
+    	background-color: #94d3a2;
+    	border-color: rgba(27, 31, 35, .1);
+    	color: rgba(255, 255, 255, .8);
+    	cursor: default;
+  	}
+
+  	.button-3:active {
+    	background-color: #298e46;
+    	box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+  	}
+	</style>
+
+
+  </head>
+  <body>
+	<img class="pagebg" src="../img/TerminalScreen.webp"></img>
+	<div class="screen">
+
+  	<div class="contentwindow">
+    	<div class="question" id="0">
+      	<img src="../img/GOAT1.webp" alt="GOAT logo" style="display: block; margin-left:auto; margin-right:auto; width:25%;height:auto;">
+      	<h1 style="text-align:center;">Welcome!</h1>
+      	<p>Welcome, vault dweller, to the Generalized Occupational Aptitude Test, or G.O.A.T. This test is administered to all residents upon reaching the age of 16. The purpose of the G.O.A.T. is to evaluate your natural abilities and inclinations, and to help guide you in choosing a career path within the Vault. Your results will determine which job assignments are available to you, and which skills you will need to develop to be successful in those roles. So sit back, relax, and answer each question to the best of your ability. Your future in Vault 154 depends on it.</p>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="1" style="display:none;">
+      	<h3>Please enter your name and Dweller ID.</h3>
+      	<input type="text" id="name-input" placeholder="Name...">
+      	<input type="text" id="ID-input" placeholder="ID Number...">
+      	<button class="button-3" id="save-button" onclick="inputname()">Submit</button>
+    	</div>
+    	<div class="question" id="2" style="display:none;">
+      	<p id="t1" style="display:none;">Accessing Vault Records...</p>
+      	<p id="t2" style="display:none;">Records found.</p>
+      	<p id="t3" style="display:none;">Compiling basic psychological profile...</p>
+      	<p id="t4" style="display:none;">Profile Compiled...</p>
+      	<p id="t5" style="display:none;">Ready to accept G.O.A.T. assessment data.</p>
+    	</div>
+    	<div class="question" id="3" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 1: You are cornered by a large man in a narrow hallway. He demands you give him your ration tokens. What do you do?</h3>
+      	<input type="radio" id="q1a" name="q1a" data-skill="Athletics" value="1">
+      	<label for="q1a">A) Slip past him and run away.</label><br>
+      	<input type="radio" id="q1b" name="q1b" data-skill="Barter" value="1">
+      	<label for="q1b">B) Ask him why he needs your rations to try and sell them to him instead of loosing them.</label><br>
+      	<input type="radio" id="q1c" name="q1c" data-skill="Unarmed" value="1">
+      	<label for="q1c">C) Lay him out cold with your fists.</label><br>
+      	<input type="radio" id="q1d" name="q1d" data-skill="Speech" value="1">
+      	<label for="q1d">D) Attempt to persuade him to not mug you given how easily he will be caught in the act.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="4" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 2: The Vault prison has rioted and dangerous criminals are running rampant through the Vault. How do you defend yourself?</h3>
+      	<input type="radio" id="q2a" name="q2a" data-skill="Sneak" value="1">
+      	<label for="q1a">A) Take an injured guard's side arm and hide in your room.</label><br>
+      	<input type="radio" id="q2b" name="q2b" data-skill="SmallGuns" value="1">
+      	<label for="q1b">B) Take a carbine from a communal defense locker and preform your duty to defend the Vault.</label><br>
+      	<input type="radio" id="q2c" name="q2c" data-skill="EnergyWeapons" value="1">
+      	<label for="q1c">C) Buckle on your heirloom Wattz 1000 and get to safety.</label><br>
+      	<input type="radio" id="q2d" name="q2d" data-skill="Science" value="1">
+      	<label for="q1d">D) Hack the Vault's defense network to take manual control over a laser turret.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="5" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 3: A Vault resident has an item you want. They are willing to trade it in exchange for a favor. What do you choose to do for them?</h3>
+      	<input type="radio" id="q3a" name="q3a" data-skill="Medicine" value="1">
+      	<label for="q1a">A) Treat their pet's infected cut to spare them the vet bill.</label><br>
+      	<input type="radio" id="q3b" name="q3b" data-skill="Speech" value="1">
+      	<label for="q1b">B) Persuade their roomate to take on one of their duties.</label><br>
+      	<input type="radio" id="q3c" name="q3c" data-skill="Repair" value="1">
+      	<label for="q1c">C) Fix their broken electric razor.</label><br>
+      	<input type="radio" id="q3d" name="q3d" data-skill="Science" value="1">
+      	<label for="q1d">D) Show them how to safely mix basic cleaning chemicals to make a more effective cleaner.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="6" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 4: Oh no! An electrical fault has jammed your bedroom's door closed. How do you handle the situation?</h3>
+      	<input type="radio" id="q4a" name="q4a" data-skill="Repair" value="1">
+      	<label for="q1a">A) Open the emergency pannel to use the door's manual crank.</label><br>
+      	<input type="radio" id="q4b" name="q4b" data-skill="Explosives" value="1">
+      	<label for="q1b">B) Make a small charge using household cleaners and detonate it, knowing Security will quickly investigate any explosion and promptly free you.</label><br>
+      	<input type="radio" id="q4c" name="q4c" data-skill="Lockpick" value="1">
+      	<label for="q1c">C) Use an old coat hanger to manually flip the door latch, then push the door open.</label><br>
+      	<input type="radio" id="q4d" name="q4d" data-skill="Science" value="1">
+      	<label for="q1d">D) Use your room's terminal to bypass the door's control chip and open it.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="7" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 5: Which form of exercise do you prefer?</h3>
+      	<input type="radio" id="q5a" name="q5a" data-skill="Athletics" value="1">
+      	<label for="q1a">A) Organized sports.</label><br>
+      	<input type="radio" id="q5b" name="q5b" data-skill="MeleeWeapons" value="1">
+      	<label for="q1b">B) Fencing.</label><br>
+      	<input type="radio" id="q5c" name="q5c" data-skill="Sneak" value="1">
+      	<label for="q1c">C) Agility training.</label><br>
+      	<input type="radio" id="q5d" name="q5d" data-skill="Unarmed" value="1">
+      	<label for="q1d">D) Boxing.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="8" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 6: Your boss is going to reduce your ration tokens unless you can impress them. What do you do to try and prove your worth?</h3>
+      	<input type="radio" id="q6a" name="q6a" data-skill="Speech" value="1">
+      	<label for="q1a">A) Go to his office and discuss the situation in a firm but calm manner.</label><br>
+      	<input type="radio" id="q6b" name="q6b" data-skill="Science" value="1">
+      	<label for="q1b">B) Devise a method of preforming your job more efficiently.</label><br>
+      	<input type="radio" id="q6c" name="q6c" data-skill="Barter" value="1">
+      	<label for="q1c">C) Remind your boss of your past accomplishments to put a more fair value on your labor.</label><br>
+      	<input type="radio" id="q6d" name="q6d" data-skill="Sneak" value="1">
+      	<label for="q1d">D) Slip into his office after hours to find some dirt on him.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="9" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 7: You've been asked to qualify on a weapon to serve in the Vault's militia reserve. Which weapon do you pick?</h3>
+      	<input type="radio" id="q7a" name="q7a" data-skill="EnergyWeapons" value="1">
+      	<label for="q1a">A) A Wattz 2000 "Sunbeam" laser rifle.</label><br>
+      	<input type="radio" id="q7b" name="q7b" data-skill="SmallGuns" value="1">
+      	<label for="q1b">B) A SPAS-12 combat shotgun.</label><br>
+      	<input type="radio" id="q7c" name="q7c" data-skill="BigGuns" value="1">
+      	<label for="q1c">C) A Flambe model 450 flamethrower.</label><br>
+      	<input type="radio" id="q7d" name="q7d" data-skill="MeleeWeapons" value="1">
+      	<label for="q1d">D) A police batton.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="10" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 8: You've decided to spruce up your quarters, just for a change of pace. What do you do?</h3>
+      	<input type="radio" id="q8a" name="q8a" data-skill="Barter" value="1">
+      	<label for="q1a">A) Negotiate a discount with the Vault general store for some fresh wallpaper.</label><br>
+      	<input type="radio" id="q8b" name="q8b" data-skill="Science" value="1">
+      	<label for="q1b">B) Reprogram your room's lights to turn on, off, dim, and change color by verbal command.</label><br>
+      	<input type="radio" id="q8c" name="q8c" data-skill="Repair" value="1">
+      	<label for="q1c">C) Take care of the little things: Oil the door, touch up the rusty bolts, replace that cracked tile, etc.</label><br>
+      	<input type="radio" id="q8d" name="q8d" data-skill="Lockpick" value="1">
+      	<label for="q1d">D) Sneak a few old bottles out of the recycling center to make your own wet bar.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="11" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 9: A resident wants you to carry a heavy object to the recycling center for them. What do you do?</h3>
+      	<input type="radio" id="q9a" name="q9a" data-skill="Barter" value="1">
+      	<label for="q1a">A) Agree to do it in exchange for 3 ration tokens.</label><br>
+      	<input type="radio" id="q9b" name="q9b" data-skill="Athletics" value="1">
+      	<label for="q1b">B) Hoist it onto your shoulder without complaint and take it across the Vault.</label><br>
+      	<input type="radio" id="q9c" name="q9c" data-skill="Speech" value="1">
+      	<label for="q1c">C) Decline, but provide them with a reasonable excuse so they don't think less of you.</label><br>
+      	<input type="radio" id="q9d" name="q9d" data-skill="Sneak" value="1">
+      	<label for="q1d">D) Take it, but then ditch it somewhere nearby. Maintenance will eventually find it.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="12" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 10: A rivalry has escalated to the point where it can only be settled with a physical contest. Your rival lets you decide how you'll hash things out. What do you pick?</h3>
+      	<input type="radio" id="q10a" name="q10a" data-skill="Unarmed" value="1">
+      	<label for="q1a">A) A good old fashioned fist fight.</label><br>
+      	<input type="radio" id="q10b" name="q10b" data-skill="MeleeWeapons" value="1">
+      	<label for="q1b">B) A duel to first blood using some of the gym's foils.</label><br>
+      	<input type="radio" id="q10c" name="q10c" data-skill="Sneak" value="1">
+      	<label for="q1c">C) Arrange a contest of skill and dexterity, whomever can steal a specific item from the other first and unnoticed wins.</label><br>
+      	<input type="radio" id="q10d" name="q10d" data-skill="Repair" value="1">
+      	<label for="q1d">D) A race, with a twist. Whoever can disassemble, clean, and reassemble their pipboy first wins.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="13" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 11: It's Survival Day! Our Vault has protected us and provided for us for another year. What will you do to help with the festivities?</h3>
+      	<input type="radio" id="q11a" name="q11a" data-skill="Explosives" value="1">
+      	<label for="q1a">A) Prepare some fire-safe fireworks for a display in the atrium.</label><br>
+      	<input type="radio" id="q11b" name="q11b" data-skill="MeleeWeapons" value="1">
+      	<label for="q1b">B) Put on a show by juggling assorted objects in order of increasing danger.</label><br>
+      	<input type="radio" id="q11c" name="q11c" data-skill="Sneak" value="1">
+      	<label for="q1c">C) Stage a magic act and wow your fellow Vault-Dwellers with your slight of hand.</label><br>
+      	<input type="radio" id="q11d" name="q11d" data-skill="Unarmed" value="1">
+      	<label for="q1d">D) Enter into the Survival Day Boxing Tournament to try and take home the prize.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="14" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 12: The Vault's reactor has broken down and everyone must chip in to repair it in short order. The Overseer allows you to choose how you'll help. What do you do?</h3>
+      	<input type="radio" id="q12a" name="q12a" data-skill="Repair" value="1">
+      	<label for="q1a">A) Get a toolbox and head to the reactor room to lend a physical hand.</label><br>
+      	<input type="radio" id="q12b" name="q12b" data-skill="Speech" value="1">
+      	<label for="q1b">B) Tell stories to the children to keep them from being frightened.</label><br>
+      	<input type="radio" id="q12c" name="q12c" data-skill="BigGuns" value="1">
+      	<label for="q1c">C) Help reload old fusion cores to help jumpstart the reactor.</label><br>
+      	<input type="radio" id="q12d" name="q12d" data-skill="Medicine" value="1">
+      	<label for="q1d">D) Take a med kit and help deal with injuries from people stumbling in the dark, or spending too long in rooms with stale air.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="15" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 13: Everyone makes mistakes sometimes. You find yourself in trouble with your boss. What do you do to make up for your mistake?</h3>
+      	<input type="radio" id="q13a" name="q13a" data-skill="Athletics" value="1">
+      	<label for="q1a">A) I take a week of double shifts.</label><br>
+      	<input type="radio" id="q13b" name="q13b" data-skill="Lockpick" value="1">
+      	<label for="q1b">B) I offer to preform a full security inspection and report for the office.</label><br>
+      	<input type="radio" id="q13c" name="q13c" data-skill="Speech" value="1">
+      	<label for="q1c">C) I offer a sincere apology, explanation of the mistake from my point of view, and present a plan of action to avoid such errors in the future.</label><br>
+      	<input type="radio" id="q13d" name="q13d" data-skill="Medicine" value="1">
+      	<label for="q1d">D) I take Workplace Nurse as an additional job duties.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="16" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 14: Its your birthday. Congratulations! You've earned the chance to petition the Overseer for a boon. What would you ask of them?</h3>
+      	<input type="radio" id="q14a" name="q14a" data-skill="BigGuns" value="1">
+      	<label for="q1a">A) I'd like to get to qualify with heavy weapons on the range.</label><br>
+      	<input type="radio" id="q14b" name="q14b" data-skill="Medicine" value="1">
+      	<label for="q1b">B) I'd like to get my surgical qualification.</label><br>
+      	<input type="radio" id="q14c" name="q14c" data-skill="EnergyWeapons" value="1">
+      	<label for="q1c">C) I'd like to qualify as a Plasma System Operator.</label><br>
+      	<input type="radio" id="q14d" name="q14d" data-skill="Barter" value="1">
+      	<label for="q1d">D) I'd like the chance to negotiate my living quarters contract.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" type="button" name="button" onclick="next1();">Next</button>
+    	</div>
+    	<div class="question" id="17" style="display:none;">
+      	<h2 style="text-align:center;">Resident <span id="name-output"></span>, ID no. <span id="ID-output"></span></h2>
+      	<h3>Question 15: Due to a technical issue rations have been cut Vault wide for a brief period. What do you do to make the most of the situation?</h3>
+      	<input type="radio" id="q15a" name="q15a" data-skill="Lockpick" value="1">
+      	<label for="q1a">A) Do whatever is necessary to obtain extra supplies.</label><br>
+      	<input type="radio" id="q15b" name="q15b" data-skill="Medicine" value="1">
+      	<label for="q1b">B) Trade basic medical services for ration tokens.</label><br>
+      	<input type="radio" id="q15c" name="q15c" data-skill="Sneak" value="1">
+      	<label for="q1c">C) Supplement your diet with rations you've stashed away for a rainy day.</label><br>
+      	<input type="radio" id="q15d" name="q15d" data-skill="Speech" value="1">
+      	<label for="q1d">D) Do your best to keep your fellow Vault-Dwellers entertained to take their minds off your mutual troubles.</label><br>
+
+      	<button class="button-3" type="button" name="button" onclick="priev1();">Back</button>
+      	<button class="button-3" onclick="gradeQuiz()">Submit Answers</button>
+    	</div>
+
+
+
+
+
+    	<div class="question" id="results" style="display:none;">
+      	<h1 style="text-align:center;">Congratulations, <span id="name-output"></span>!</h1>
+      	<!-- Stats Data -->
+      	<h3 style="text-align:center;">Your Personality Matrix is:</h3>
+      	<ul style="list-style-type:none; padding-left: 0; width: fit-content; margin-left:auto; margin-right:auto;">
+        	<li><b>Sociability:</b> <span id="socialscore"></span>%</li>
+        	<li><b>Practicality:</b> <span id="utilityscore"></span>%</li>
+        	<li><b>Perseverance:</b> <span id="securityscore"></span>%</li>
+        	<li><b>Physicality:</b> <span id="physicalscore"></span>%</li>
+        	<li><b>Ambition:</b> <span id="deviantscore"></span>%</li>
+      	</ul>
+
+      	<!--- QUIZ RESULTS --->
+      	<div id="tie-message" class="hidden">
+        	<p>You have been assigned the position:</p>
+        	<ol>
+          	<li>Overseer's Assistant</li>
+        	</ol>
+        	<p>Report to the Overseer's Office for training immediately.</p>
+      	</div>
+      	<div id="athletics" class="hidden">
+        	<p>You have been assigned the position:</p>
+        	<ul>
+          	<li>Security Officer - (Patroler)</li>
+        	</ul>
+        	<p>Please report to the Security Center for job training weekends from 3 to 8pm.</p>
+      	</div>
+      	<div id="barter" class="hidden">
+        	<p>You qualify for the position of:</p>
+        	<ul>
+          	<li>Junior Chaplin</li>
+        	</ul>
+        	<p>Please report to the chappel for job training weekdays from 3 to 5pm.</p>
+      	</div>
+      	<div id="bigguns" class="hidden">
+        	<p>You qualify for the position of:</p>
+        	<ul>
+          	<li>Armorer - (Maintenance)</li>
+        	</ul>
+        	<p>Please report to the Security Center for job training weekdays from 5 to 10pm.</p>
+      	</div>
+      	<div id="energyweapons" class="hidden">
+        	<p>You qualify for the position of:</p>
+        	<ul>
+          	<li>Cook</li>
+        	</ul>
+        	<p>Please report to the cafeteria for job training weekdays from noon to 3pm.</p>
+      	</div>
+      	<div id="explosives" class="hidden">
+        	<p>You qualify for the position of:</p>
+        	<ul>
+          	<li>Waste Management Specialist</li>
+        	</ul>
+        	<p>Please report to Maintenance for job training weekdays from 10pm to 5 am.</p>
+      	</div>
+      	<div id="lockpick" class="hidden">
+        	<p>You have been assigned the position:</p>
+        	<ul>
+          	<li>Security Officer - (Investigator)</li>
+        	</ul>
+        	<p>Report to the Security Center for job training weekends from noon to 8pm.</p>
+      	</div>
+      	<div id="medicine" class="hidden">
+        	<p>You qualify for the position of:</p>
+        	<ul>
+          	<li>Nurse</li>
+        	</ul>
+        	<p>Please report to the infirmary for job training daily from 5pm to 12pm.</p>
+      	</div>
+      	<div id="meleeweapons" class="hidden">
+        	<p>You qualify for the position of:</p>
+        	<ul>
+          	<li>Teacher's Assistant - (K-12)</li>
+        	</ul>
+        	<p>Please report to the Education Center for job training weekdays from 6am to 3pm.</p>
+      	</div>
+      	<div id="repair" class="hidden">
+        	<p>You have been assigned the position:</p>
+        	<ul>
+          	<li>Junior Maintenance Technician</li>
+        	</ul>
+        	<p>Report to Maintenance immediately. You will be given a schedual depending on current mantance needs.</p>
+      	</div>
+      	<div id="science" class="hidden">
+        	<p>You qualify for the position of:</p>
+        	<ul>
+          	<li>Pip-Boy Technician</li>
+        	</ul>
+        	<p>Please report to Maintenance for job training Mondays, Wendsdays, and Saterdays from noon to 3pm.</p>
+      	</div>
+      	<div id="smallguns" class="hidden">
+        	<p>You have been assigned the position:</p>
+        	<ul>
+          	<li>Security Officer - (Guard)</li>
+        	</ul>
+        	<p>Report to the Security Center for assignment.</p>
+      	</div>
+      	<div id="sneak" class="hidden">
+        	<p>You qualify for the position of:</p>
+        	<ul>
+          	<li>Night Shift Manager</li>
+        	</ul>
+        	<p>Please report to the Overseer's Office for job training weekdays from 3 to 6pm.</p>
+      	</div>
+      	<div id="speech" class="hidden">
+        	<p>You qualify for the position of:</p>
+        	<ul>
+          	<li>Relationship Counselor</li>
+        	</ul>
+        	<p>Report to the Overseer's Office for job training weekdays from 6 to 8pm.</p>
+      	</div>
+      	<div id="unarmed" class="hidden">
+        	<p>You qualify for the position of:</p>
+        	<ul>
+          	<li>Bartender</li>
+        	</ul>
+        	<p>Report to the Lounge for job training weekdays from 8pm to 1am.</p>
+      	</div>
+    	</div>
+  	</div>
+	</div>
+	<script type="text/javascript" title="Quiz Grading System">
+  	function gradeQuiz() {
+    	document.getElementById("17").style.display = "none";
+    	document.getElementById("results").style.display = "block";
+    	let skills = {
+      	Athletics: 0,
+      	Barter: 0,
+      	BigGuns: 0,
+      	EnergyWeapons: 0,
+      	Explosives: 0,
+      	Lockpick: 0,
+      	Medicine: 0,
+      	MeleeWeapons: 0,
+      	Repair: 0,
+      	Science: 0,
+      	SmallGuns: 0,
+      	Sneak: 0,
+      	Speech: 0,
+      	Throwing: 0,
+      	Unarmed: 0,
+    	};
+    	console.log(skills);
+
+    	const radios = document.querySelectorAll('input[type="radio"]');
+    	for (const skill in skills) {
+      	let value = 0;
+      	radios.forEach(radio => {
+        	if (radio.dataset.skill === skill && radio.checked) {
+          	value += parseInt(radio.value);
+        	}
+      	});
+      	skills[skill] += value;
+      	console.log(`Set ${skill} to ${value}`);
+    	}
+
+    	const highestScore = Math.max(...Object.values(skills));
+    	const highestSkills = Object.keys(skills).filter(
+      	(key) => skills[key] === highestScore
+    	);
+
+    	if (highestSkills.length > 1) {
+      	document.getElementById("tie-message").style.display = "block";
+    	} else {
+      	const highestSkill = highestSkills[0];
+      	const highestSkillDiv = document.getElementById(highestSkill.toLowerCase());
+      	highestSkillDiv.style.display = "block";
+    	}
+
+    	// Calculate the total scores for each category
+    	let socialscore = skills.Barter + skills.Speech + skills.Sneak + 1;
+    	let utilityscore = skills.Repair + skills.Science + skills.Medicine + 1;
+    	let securityscore = skills.BigGuns + skills.EnergyWeapons + skills.SmallGuns + 1;
+    	let physicalscore = skills.Athletics + skills.Unarmed + skills.MeleeWeapons + 1;
+    	let deviantscore = skills.Explosives + skills.Lockpick + 5;
+
+    	//Atributes display
+    	let socper = ((socialscore / 24) * 100).toFixed(2);
+    	let utiper = ((utilityscore / 24) * 100).toFixed(2);
+    	let secper = ((securityscore / 24) * 100).toFixed(2);
+    	let phyper = ((physicalscore / 24) * 100).toFixed(2);
+    	let devper = ((deviantscore / 24) * 100).toFixed(2);
+
+    	document.getElementById("socialscore").innerText = socper;
+    	document.getElementById("utilityscore").innerText = utiper;
+    	document.getElementById("securityscore").innerText = secper;
+    	document.getElementById("physicalscore").innerText = phyper;
+    	document.getElementById("deviantscore").innerText = devper;
+
+  	}
+	</script>
+	<script type="text/javascript" title="Unchecks buttons on reload">
+    	window.onload = function() {
+      	uncheckAll();
+    	};
+
+    	function uncheckAll() {
+      	const radios = document.querySelectorAll('input[type="radio"]');
+      	for (const radio of radios) {
+        	radio.checked = false;
+      	}
+    	}
+	</script>
+	<script type="text/javascript" title="Question Booper +">
+  	function next1() {
+    	// Get the ID of the parent div of the button that was clicked
+    	const parentDiv = event.target.closest('div');
+    	const currentQuestionId = parseInt(parentDiv.getAttribute('id'));
+
+    	// Calculate the ID of the next question div
+    	const nextQuestionId = currentQuestionId + 1;
+
+    	// Show the next question div if it exists
+    	const nextQuestionDiv = document.getElementById(nextQuestionId.toString());
+    	if (nextQuestionDiv) {
+      	parentDiv.style.display = 'none';
+      	nextQuestionDiv.style.display = 'block';
+    	}
+  	}
+	</script>
+	<script type="text/javascript" title="Question Booper -">
+  	function priev1() {
+    	// Get the ID of the parent div of the button that was clicked
+    	const parentDiv = event.target.closest('div');
+    	const currentQuestionId = parseInt(parentDiv.getAttribute('id'));
+
+    	// Calculate the ID of the next question div
+    	const nextQuestionId = currentQuestionId - 1;
+
+    	// Show the next question div if it exists
+    	const nextQuestionDiv = document.getElementById(nextQuestionId.toString());
+    	if (nextQuestionDiv) {
+      	parentDiv.style.display = 'none';
+      	nextQuestionDiv.style.display = 'block';
+    	}
+  	}
+	</script>
+	<script type="text/javascript" title="Submit Name">
+  	function inputname() {
+    	const username = document.getElementById('name-input').value;
+    	const userID = document.getElementById('ID-input').value;
+    	const nameOutputs = document.querySelectorAll('#name-output');
+    	nameOutputs.forEach(output => {
+      	output.innerText = username;
+    	});
+
+    	const idOutputs = document.querySelectorAll('#ID-output');
+    	idOutputs.forEach(output => {
+      	output.innerText = userID;
+    	});
+    	next1();
+    	texttyper();
+  	}
+	</script>
+	<script type="text/javascript" title="Text Typer">
+  	function texttyper() {
+    	setTimeout(() => {
+      	document.getElementById("t1").style.display = 'block';
+    	}, 200);
+    	setTimeout(() => {
+      	document.getElementById("t2").style.display = 'block';
+    	}, 5000);
+    	setTimeout(() => {
+      	document.getElementById("t3").style.display = 'block';
+    	}, 8000);
+    	setTimeout(() => {
+      	document.getElementById("t4").style.display = 'block';
+    	}, 12000);
+    	setTimeout(() => {
+      	document.getElementById("t5").style.display = 'block';
+    	}, 15000);
+    	setTimeout(() => {
+      	document.getElementById("2").style.display = 'none';
+      	document.getElementById("3").style.display = 'block';
+    	}, 18000);
+  	}
+	</script>
+  </body>
+</html>
