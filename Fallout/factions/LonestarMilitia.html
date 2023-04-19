@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Faction: Lonestar Militia</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../fallout.css" />
+    <link rel="icon" type="image/x-icon" href="../img/vaultgirl.webp">
+    <style media="screen">
+      .pips {
+        font-size: 1.3em;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="buttonpannel" class="buttonpannel">
+
+    </div>
+    <div id="date">
+      <span id="day"></span>
+      <span id="month"></span>
+      <span id="year"></span>
+      <span class="time"></span>
+    </div>
+    <script src="../clock.js"></script>
+    <img class="pagebg" src="../img/pipboy2000.webp"></img>
+
+    <div class="screen">
+      <div id="navcontainer" class="navcontainer">
+        <script src="../pipnav2.js"></script>
+      </div>
+      <div class="contentwindow">
+        <h1>Overview</h1>
+        <p>The Lonestar Militia is a mercenary company based in Austin, Texas. They're a well-armed and well-trained paramilitary organization, and they see themselves as the last line of defense against the various threats that plague the region. The Region being anywhere they can reasonably reach to fight anything they are paid to fight.</p>
+        <p>The Lonestar Militia was formed from a group of pre-war survivalists and military veterans who banded together for mutual protection in the early years after the Great War. Over time, they've grown in size and strength, and they've become one of the dominant political powers in Austin.</p>
+        <p>The Militia is led by a group of officers who are elected by the rank-and-file members, with the most experienced and respected members holding the highest positions. They have a strict code of conduct and hierarchy, with clear chains of command and a focus on discipline and training.</p>
+        <p>The Lonestar Militia is primarily focused on defense, and they maintain a series of fortified bunkers and outposts throughout the Austin area. They're constantly patrolling their borders and keeping an eye out for raiders, hostile mutants, jaywalkers, and other threats. They're also heavily involved in trade, as they manufacture weapons and ammunition that they're willing to exchange for food, water, and other resources.</p>
+        <p>While the Lonestar Militia is fiercely independent and doesn't take kindly to outsiders attempting to meddle in their affairs, they're not isolationist. They maintain a diplomatic relationship with other factions in the area, and they're willing to offer assistance to settlers and travelers who are passing through their territory.</p>
+        <p>Despite their strengths, the Lonestar Militia is not without its weaknesses. They're heavily dependent on their stockpile of weapons and ammunition, and they've been known to get into conflicts with other factions over access to resources. They’ve had a war with the Texas Brotherhood of Steel, which ended in a stalemate and is technically till ongoing 30 years later. Additionally, their strict hierarchy and focus on discipline has led to some dissent and infighting within the ranks.</p>
+        <p>The Lonestar Militia is led by a council of officers who are elected by the members of the faction. The council consists of the most experienced and respected members of the Militia, with each officer overseeing a specific area of responsibility.</p>
+        <p>The highest-ranking officer in the council is the Commander-in-Chief, who is responsible for overall strategy and decision-making. This position is currently held by a grizzled veteran named John "Hawk" Thompson, who served in the pre-war US military and has a reputation for being a tough but fair leader.</p>
+        <p>Underneath the Commander-in-Chief are several other officers who oversee different aspects of the Militia's operations. These include the Quartermaster, who is responsible for managing the faction's weapons, ammunition, and other supplies, and the Chief of Scouts, who oversees the Militia's patrols and reconnaissance missions.</p>
+        <p>Other officers include the Chief of Logistics, who manages the faction's trade and supply lines, and the Chief of Security, who oversees the protection of the Militia's bunkers and outposts.</p>
+        <p>Each officer reports directly to the Commander-in-Chief, and the council as a whole makes decisions through a democratic process. While there is a clear chain of command, the Lonestar Militia operates as a cooperative collective rather than a dictatorship, with each member having a say in the faction's decisions.</p>
+        <p>The Lonestar Militia's headquarters is located in a fortified bunker under Camp Mabry on outskirts of Austin, Texas. The bunker is a pre-war military installation that the Militia has repurposed and expanded over the years, adding new sections and fortifications to make it more secure.</p>
+        <p>The bunker serves as the central command center for the Lonestar Militia, and it houses the offices of the council of officers, as well as the faction's armory, medical facilities, and living quarters. The bunker is heavily fortified, with thick walls, reinforced steel doors, and multiple layers of defenses, including automated turrets and traps.</p>
+        <p>In addition to the main bunker, the Lonestar Militia also maintains several smaller outposts and watchtowers throughout the surrounding area. These outposts are strategically located along the faction's borders, allowing them to keep a close eye on any potential threats and respond quickly to any incursions.</p>
+
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+  // get a reference to the button
+    const toggleButton = document.getElementById("toggle-button");
+
+    // add a click event listener to the button
+    toggleButton.addEventListener("click", function() {
+      // get a reference to all collapsible elements on the page
+      const collapsibles = document.querySelectorAll(".collapsible");
+
+      // loop through each collapsible element
+      collapsibles.forEach(function(collapsible) {
+        // toggle the "active" class on the current collapsible element
+        collapsible.classList.toggle("active");
+
+        // get a reference to the content element next to the current collapsible element
+        const content = collapsible.nextElementSibling;
+
+        // toggle the visibility of the content element
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          setTimeout(function() {
+            content.style.maxWidth = null;
+            content.classList.remove("content-border");
+          }, 220);
+        } else {
+          content.style.maxWidth = "95%";
+          setTimeout(function() {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.add("content-border");
+          }, 150);
+        }
+      });
+    });
+  </script>
+</html>

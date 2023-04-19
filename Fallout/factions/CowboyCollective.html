@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Faction: Cowboy Collective</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../fallout.css" />
+    <link rel="icon" type="image/x-icon" href="../img/vaultgirl.webp">
+    <style media="screen">
+      .pips {
+        font-size: 1.3em;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="buttonpannel" class="buttonpannel">
+
+    </div>
+    <div id="date">
+      <span id="day"></span>
+      <span id="month"></span>
+      <span id="year"></span>
+      <span class="time"></span>
+    </div>
+    <script src="../clock.js"></script>
+    <img class="pagebg" src="../img/pipboy2000.webp"></img>
+
+    <div class="screen">
+      <div id="navcontainer" class="navcontainer">
+        <script src="../pipnav2.js"></script>
+      </div>
+      <div class="contentwindow">
+        <h1>Overview</h1>
+        <p>The Cowboy Collective is a faction that emerged in the years following the apocalypse, formed by a group of ranchers and cowboys who banded together to protect their land and livestock from raiders and other threats. They have a deep connection to the land and a strong sense of self-sufficiency and independence, and they've combined this with an appreciation for the aesthetics of the Old West.</p>
+        <p>One of the most striking things about the Cowboy Collective is their use of energy weapons that resemble traditional western firearms. They've modified laser pistols and rifles to look like six-shooters and lever-action rifles, and they've even created energy-based shotguns that fire explosive shells. This gives them a unique advantage in combat, as they can take advantage of the iconic look and feel of classic western weapons while also having access to the advanced technology of the post-apocalyptic world.</p>
+        <p>In addition to their weapons, the Cowboy Collective has also developed a range of high-tech tools and equipment that they use to maintain their land and livestock. They have laser-powered plows that can clear fields in minutes, as well as energy-based fences that keep their cattle and horses from straying. They've even developed an energy-based lasso that can capture and restrain targets without harming them, which they use both for herding livestock and for capturing raiders and other threats.</p>
+        <p>The Cowboy Collective is also known for their unique sense of style. They wear a combination of traditional cowboy clothing and post-apocalyptic armor, with cowboy hats, leather vests, and bandoliers mixed with high-tech helmets and chest plates. They've also incorporated elements of western folklore and legend into their culture, with members taking on names like "The Lone Gunman" or "The Quickdraw Kid."</p>
+        <p>The Cowboy Collective is based out of a large ranch or series of ranches located in the countryside outside of Austin, Texas. They've fortified their ranches and turned them into defensive strongholds, using the natural features of the land to create a series of barriers and traps that make them difficult to attack.</p>
+        <p>The ranches themselves are sprawling and self-sufficient, with the Cowboy Collective growing crops and raising livestock to sustain themselves. They've also established a network of trade with other factions in the area, providing them with food and supplies in exchange for advanced technology and other resources.</p>
+        <p>The Cowboy Collective's ranches are not easy to find, as they're located in remote areas that are difficult to navigate without knowledge of the land. They've also set up numerous lookout points and patrols to detect any potential threats, making it difficult for outsiders to approach without being noticed.</p>
+        <p>Despite their isolation, the Cowboy Collective is not completely closed off from the outside world. They occasionally send out scouts and traders to establish contact with other factions and maintain their supply lines. They've also been known to offer assistance to settlers and travelers in the area, although they're cautious about revealing the location of their ranches to outsiders.</p>
+        <p>The Major Ranches are:</p>
+        <ol>
+        <li aria-level="1">The Double R: Named after the first initials of the two founders, this ranch is the largest and most heavily fortified of the Cowboy Collective's holdings. It's home to hundreds of head of cattle, and the Collective uses it as a hub for their trade and supply operations.</li>
+        <li aria-level="1">Lone Star Ranch: This ranch is situated on a hill overlooking the surrounding countryside, and it's known for its distinctive Lone Star flag flying high above the main house. It's home to some of the Collective's most skilled sharpshooters and scouts.</li>
+        <li aria-level="1">Dead Man's Gulch: This ranch is located in a narrow, rocky canyon that's difficult to navigate, making it an ideal location for defense. It's named after the many raiders and other threats who have met their end trying to attack the Cowboy Collective here.</li>
+        <li aria-level="1">Diamond W: This ranch is known for its thriving vegetable garden, which provides fresh produce for the Cowboy Collective's members and their trade partners. It's also home to a team of skilled mechanics and engineers who maintain the Collective's energy weapons and other equipment.</li>
+        <li aria-level="1">Red River Ranch: This ranch is located along the banks of the Red River, and it's known for its herd of horses and mules. The Collective uses these animals for transportation, as well as for plowing fields and other heavy labor.</li>
+        <li aria-level="1">Sundown Ranch: This ranch is located on the western edge of the Cowboy Collective's territory, and it's named for the stunning sunsets that can be seen from its high vantage point. It's a popular spot for scouts and lookouts to keep watch over the surrounding area.</li>
+        </ol>
+
+
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+  // get a reference to the button
+    const toggleButton = document.getElementById("toggle-button");
+
+    // add a click event listener to the button
+    toggleButton.addEventListener("click", function() {
+      // get a reference to all collapsible elements on the page
+      const collapsibles = document.querySelectorAll(".collapsible");
+
+      // loop through each collapsible element
+      collapsibles.forEach(function(collapsible) {
+        // toggle the "active" class on the current collapsible element
+        collapsible.classList.toggle("active");
+
+        // get a reference to the content element next to the current collapsible element
+        const content = collapsible.nextElementSibling;
+
+        // toggle the visibility of the content element
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          setTimeout(function() {
+            content.style.maxWidth = null;
+            content.classList.remove("content-border");
+          }, 220);
+        } else {
+          content.style.maxWidth = "95%";
+          setTimeout(function() {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.add("content-border");
+          }, 150);
+        }
+      });
+    });
+  </script>
+</html>

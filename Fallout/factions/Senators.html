@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Faction: Crimson Senators</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../fallout.css" />
+    <link rel="icon" type="image/x-icon" href="../img/vaultgirl.webp">
+    <style media="screen">
+      .pips {
+        font-size: 1.3em;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="buttonpannel" class="buttonpannel">
+
+    </div>
+    <div id="date">
+      <span id="day"></span>
+      <span id="month"></span>
+      <span id="year"></span>
+      <span class="time"></span>
+    </div>
+    <script src="../clock.js"></script>
+    <img class="pagebg" src="../img/pipboy2000.webp"></img>
+
+    <div class="screen">
+      <div id="navcontainer" class="navcontainer">
+        <script src="../pipnav2.js"></script>
+      </div>
+      <div class="contentwindow">
+        <h1>Overview</h1>
+        <p>The Crimson Senators are a group of former politicians and bureaucrats (mostly from post-war nations and factions, but with some ghouls who were US Politicians) who have taken over the Texas State Capitol building and turned it into their own private fortress. They believe that the pre-war government was corrupt and ineffectual, but is infinitely better than the current state of the world, and that they can do a better job of running things themselves. Using the old ways.</p>
+        <p>In many ways, they are similar to the NCR in their goals. They can be said to be more radical and hardline on many subjects, but none the less seek to create a nation-spanning constitutional republic.</p>
+        <p>The Crimson Senators have managed to survive in the Texas Capitol Building by turning it into a heavily fortified compound. They have blocked off most of the entrances and installed a sophisticated security system that keeps out unwanted visitors. They also have a team of well-trained guards who patrol the halls and keep an eye on the perimeter.</p>
+        <p>This is the extent of their territorial control thus far. They re however quite wealthy and influential holding status as one of the primary political factions within Austin. They see themselves as the protectors of Austin, and they are willing to use whatever means necessary to keep the city safe. This often means clashing with other factions who have their own ideas about how things should be run.</p>
+        <p>The Crimson Senators are fiercely loyal to each other and will go to great lengths to protect their fellow members. They have a strict code of conduct that emphasizes discipline and obedience, and those who violate it are quickly dealt with. Usually via immediate execution.</p>
+        <p>In terms of equipment and weaponry, the Crimson Senators are well-equipped. They have managed to scavenge a variety of pre-war weapons and armor, as well as some advanced technology that they have managed to keep functional. They are also skilled at improvisation and can create makeshift weapons and defenses when necessary.</p>
+        <p>The leader of the Crimson Senators is a mysterious figure known only as "The Senator". They rarely show their face and are only seen by a select few members of the faction. It is rumored that The Senator was once a powerful politician before the war, but little else is known about them. There are rumors this individual also leads the Red Line cult, but these have been disproven.</p>
+        <p>It is however, extremely likely the two know each other. The two factions are almost certain to be in a long term clandestine war. This is made interesting by the fact that the two groups used to work together on some issues.</p>
+        <p>Despite their secretive nature, The Senator is widely respected and feared within the Crimson Senators. Their word is law, and any who cross them risk being exiled from the faction, or worse. But for most members of the faction, The Senator's true identity remains a mystery.</p>
+
+
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+  // get a reference to the button
+    const toggleButton = document.getElementById("toggle-button");
+
+    // add a click event listener to the button
+    toggleButton.addEventListener("click", function() {
+      // get a reference to all collapsible elements on the page
+      const collapsibles = document.querySelectorAll(".collapsible");
+
+      // loop through each collapsible element
+      collapsibles.forEach(function(collapsible) {
+        // toggle the "active" class on the current collapsible element
+        collapsible.classList.toggle("active");
+
+        // get a reference to the content element next to the current collapsible element
+        const content = collapsible.nextElementSibling;
+
+        // toggle the visibility of the content element
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          setTimeout(function() {
+            content.style.maxWidth = null;
+            content.classList.remove("content-border");
+          }, 220);
+        } else {
+          content.style.maxWidth = "95%";
+          setTimeout(function() {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.add("content-border");
+          }, 150);
+        }
+      });
+    });
+  </script>
+</html>

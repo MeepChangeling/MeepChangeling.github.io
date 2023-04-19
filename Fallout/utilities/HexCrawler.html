@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Hex Crawl Table</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../fallout.css" />
+    <link rel="icon" type="image/x-icon" href="../img/vaultgirl.webp">
+    <style media="screen">
+      .button-3 {
+        margin: 5px;
+        appearance: none;
+        background-color: #009a00;
+        border: 1px solid rgba(27, 31, 35, .15);
+        border-radius: 6px;
+        box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+        box-sizing: border-box;
+        color: black;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        line-height: 20px;
+        padding: 6px 16px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+
+      .button-3:focus:not(:focus-visible):not(.focus-visible) {
+        box-shadow: none;
+        outline: none;
+      }
+
+      .button-3:hover {
+        background-color: #2c974b;
+      }
+
+      .button-3:focus {
+        box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+        outline: none;
+      }
+
+      .button-3:disabled {
+        background-color: #94d3a2;
+        border-color: rgba(27, 31, 35, .1);
+        color: rgba(255, 255, 255, .8);
+        cursor: default;
+      }
+
+      .button-3:active {
+        background-color: #298e46;
+        box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="buttonpannel" class="buttonpannel">
+
+    </div>
+    <div id="date">
+      <span id="day"></span>
+      <span id="month"></span>
+      <span id="year"></span>
+      <span class="time"></span>
+    </div>
+    <script src="../clock.js"></script>
+    <img class="pagebg" src="../img/pipboy2000.webp"></img>
+
+    <div class="screen">
+      <div id="navcontainer" class="navcontainer">
+        <script src="../pipnav2.js"></script>
+      </div>
+      <div class="contentwindow">
+        <h1>Hex Crawl Table</h1>
+        <button class="button-3" type="button" name="button" onclick="urbanRoll()">Urban</button>
+        <button class="button-3" type="button" name="button" onclick="ruralRoll()">Rural</button>
+
+
+        <p id="location"></p>
+        <p id="description"></p>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" title="HexCrawler">
+  function urbanRoll(){
+
+    function urbanCommon(){
+      const outcomes = {
+        1: function() {
+            document.getElementById("location").innerHTML =  'Abandoned Building';
+            document.getElementById("description").innerHTML =  "An old <span id='out2'></span> building. It's <span id='out1'></span> and looks to be <span id='out3'></span>.";
+            var size = ["Small", "Average", "Large"];
+            var catagory = ["Residential", "Commercial", "Industrial", "Medical"];
+            var search = ["Untouched", "Partly Searched", "Mostly Searched", "Heavily Searched"];
+            var out1 = size[getRandomInt(0, size.length )];
+            var out2 = catagory[getRandomInt(0, catagory.length )];
+            var out3 = search[getRandomInt(0, search.length )];
+            document.getElementById("out1").innerHTML = "<b>" + out1 + "</b>";
+            document.getElementById("out2").innerHTML = "<b>" + out2 + "</b>";
+            document.getElementById("out3").innerHTML = "<b>" + out3 + "</b>";
+        },
+        2: function() {
+          document.getElementById("location").innerHTML =  'Bandit Camp';
+          document.getElementById("description").innerHTML =  "A makeshift camp set up by raiders or bandits, likely to be well-armed and hostile to outsiders.";
+        },
+        3: function() {
+          document.getElementById("location").innerHTML =  'Caravan Camp';
+          document.getElementById("description").innerHTML =  "A small, traveling campsite used by merchants and travelers to rest and resupply.";
+        },
+        4: function() {
+          document.getElementById("location").innerHTML =  'Radiation Hotspot';
+          document.getElementById("description").innerHTML =  "An oddly highly radioactive area. Absolutly hazardious to your health in the short term.";
+        },
+        5: function() {
+          document.getElementById("location").innerHTML =  'Trading Post';
+          document.getElementById("description").innerHTML =  "A makeshift market where travelers and traders barter for goods and services.";
+        },
+        6: function() {
+          document.getElementById("location").innerHTML =  'Settlement';
+          document.getElementById("description").innerHTML =  "A <span id='out1'></span> of <span id='out2'></span>. The settelment is notably <span id='out2'></span>";
+          var size = ["Small Settlment", "Settelment", "Small Town"]
+          var out1 = size[getRandomInt(0, size.length )];
+          document.getElementById("out1").innerHTML = "<b>" + out1 + "</b>";
+          if (out1 == 'Small Settlment') {
+            var population = getRandomInt(16, 40);
+          } else if (out1 == 'Settelment') {
+            var population = getRandomInt(100, 41);
+          } else {
+            var population = getRandomInt(250, 101);
+          }
+          const people = ['Super Mutants','Super Mutants with a clear hatred of Humans 2','Robots','Robots with a clear hatred of Organics','Ghouls','Ghouls with a clear hatred of Humans','Ghouls with a clear hatred of Super Mutants','Humans','Humans with a clear hatred of Super Mutants','Humans with a clear hatred of Ghouls and Super Mutants','Humans with a clear hatred of Robots','Ghouls and Humans','Ghouls, Humans, and Robots','Ghouls and Super Mutants','All types'];
+          var out2 = people[getRandomInt(0, people.length )];
+          document.getElementById("out2").innerHTML = "<b>" + out2 + "</b>";
+          var trait = ['tribal','suspicious of outsiders','beleaguered','ravaged by illness or disease','a boomtown','matriarchal','patriarchal','industrious','zealous','fairly trusting of outsiders','overly peaceful','mostly populated by younger people','notably militaristic','something of a breadbasket'];
+          var out3 = trait[getRandomInt(0, trait.length )];
+          document.getElementById("out3").innerHTML = "<b>" + out3 + "</b>";
+        }
+      };
+      // Roll the dice and get a random outcome
+      const outcome = getRandomInt(6, 1);
+
+
+      // Call the behavior associated with the outcome
+      outcomes[outcome]();
+    };
+    function urbanUncommon(){
+      const outcomes = {
+        1: function() {
+            document.getElementById("location").innerHTML =  'Chemical Plant';
+            document.getElementById("description").innerHTML =  "An old <span id='out2'></span> chemical plant. It's <span id='out1'></span> and looks to be <span id='out3'></span>.";
+            var size = ["Average", "Large"];
+            var catagory = ["Industrial", "Medical"];
+            var search = ["Untouched", "Partly Searched", "Mostly Searched", "Heavily Searched"];
+            var out1 = size[getRandomInt(0, size.length )];
+            var out2 = catagory[getRandomInt(0, catagory.length )];
+            var out3 = search[getRandomInt(0, search.length )];
+            document.getElementById("out1").innerHTML = "<b>" + out1 + "</b>";
+            document.getElementById("out2").innerHTML = "<b>" + out2 + "</b>";
+            document.getElementById("out3").innerHTML = "<b>" + out3 + "</b>";
+        },
+        2: function() {
+          document.getElementById("location").innerHTML =  'Abandoned Military Convoy';
+          document.getElementById("description").innerHTML =  "An abandoned military convoy, filled with vehicles, weapons, and supplies, but also likely to be guarded by automated defenses.";
+        },
+        3: function() {
+          document.getElementById("location").innerHTML =  'Gulf Coast Confederacy Fortification';
+          document.getElementById("description").innerHTML =  "A fort belonging to the Gulf Coast Confederacy.";
+        },
+        4: function() {
+          document.getElementById("location").innerHTML =  'Hydroponic Farm';
+          document.getElementById("description").innerHTML =  "A small, hidden farm where plants are grown in nutrient-rich water, used to produce fresh food.";
+        },
+        5: function() {
+          document.getElementById("location").innerHTML =  'Junkyard';
+          document.getElementById("description").innerHTML =  "A large, sprawling area filled with scrapped machinery, vehicles, and other junk, used as a source of spare parts or materials.";
+        },
+        6: function() {
+          document.getElementById("location").innerHTML =  'Military Outpost';
+          document.getElementById("description").innerHTML =  "An abandoned military base or outpost, likely to contain weapons, ammunition, and other supplies.";
+        },
+        7: function() {
+          document.getElementById("location").innerHTML =  'Museum';
+          document.getElementById("description").innerHTML =  "A museum filled with artifacts and exhibits from before the war, now a potential treasure trove for those who know how to unlock its secrets.";
+        },
+        8: function() {
+          document.getElementById("location").innerHTML =  'Mutant Lair';
+          document.getElementById("description").innerHTML =  "A dangerous area where mutated creatures have made their home, possibly guarding valuable resources or treasures.";
+        },
+        9: function() {
+          document.getElementById("location").innerHTML =  'Mutant Nest';
+          document.getElementById("description").innerHTML =  "A large, dangerous lair belonging to a powerful mutant or group of mutants, likely to be guarded by formidable creatures and valuable resources.";
+        },
+        10: function() {
+        document.getElementById("location").innerHTML =  'Pre-War Research Facility';
+        document.getElementById("description").innerHTML =  "An old <span id='out2'></span> Research Facility. It's <span id='out1'></span> and looks to be <span id='out3'></span>.";
+        var size = ["Average", "Large"];
+        var catagory = ["Industrial", "Medical", "Millitary"];
+        var search = ["Untouched", "Partly Searched", "Mostly Searched", "Heavily Searched"];
+        var out1 = size[getRandomInt(0, size.length )];
+        var out2 = catagory[getRandomInt(0, catagory.length )];
+        var out3 = search[getRandomInt(0, search.length )];
+        document.getElementById("out1").innerHTML = "<b>" + out1 + "</b>";
+        document.getElementById("out2").innerHTML = "<b>" + out2 + "</b>";
+        document.getElementById("out3").innerHTML = "<b>" + out3 + "</b>";
+        },
+        11: function() {
+          document.getElementById("location").innerHTML =  'Radio Station';
+          document.getElementById("description").innerHTML =  "A radio station used to broadcast news, music, or propaganda, possibly guarded by its own security forces.";
+        },
+        12: function() {
+          document.getElementById("location").innerHTML =  'Red Line Cult Temple';
+          document.getElementById("description").innerHTML =  "A religious temple belonging to the Red Line Cult faction, dedicated to worshiping a mysterious red line that they believe will lead them to salvation.";
+        },
+        13: function() {
+          document.getElementById("location").innerHTML =  'Tribal Village';
+          document.getElementById("description").innerHTML =  "A small, isolated village belonging to a tribe of survivors who have adopted a primitive way of life.";
+        },
+        14: function() {
+          document.getElementById("location").innerHTML =  'Sewer System';
+          document.getElementById("description").innerHTML =  "An underground network of tunnels and pipes, often used as a shelter or hideout by scavengers and mutants.";
+        },
+        15: function() {
+          document.getElementById("location").innerHTML =  'Pre-War Ruins';
+          document.getElementById("description").innerHTML =  "An old <span id='out2'></span> facility. It's <span id='out1'></span> and looks to be <span id='out3'></span>.";
+          var size = ["Small", "Average", "Large"];
+          var out1 = size[getRandomInt(0, size.length )];
+          var catagory = ["Residential", "Commercial", "Industrial", "Medical"];
+          var out2 = catagory[getRandomInt(0, catagory.length )];
+          var search = ["Untouched", "Partly Searched", "Mostly Searched", "Heavily Searched"];
+          var out3 = search[getRandomInt(0, search.length )];
+          document.getElementById("out1").innerHTML = "<b>" + out1 + "</b>";
+          document.getElementById("out2").innerHTML = "<b>" + out2 + "</b>";
+          document.getElementById("out3").innerHTML = "<b>" + out3 + "</b>";
+        },
+        16: function() {
+          document.getElementById("location").innerHTML =  'Raider Stronghold';
+          document.getElementById("description").innerHTML =  "A heavily fortified stronghold belonging to a group of raiders or bandits, likely to be well-armed and aggressive.";
+        }
+      };
+      // Roll the dice and get a random outcome
+      const outcome = getRandomInt(16, 1);
+
+
+      // Call the behavior associated with the outcome
+      outcomes[outcome]();
+    };
+    function urbanRare(){
+      const outcomes = {
+        1: function() {
+          document.getElementById("location").innerHTML =  'Ancient Battlefield';
+          document.getElementById("description").innerHTML =  "A battlefield where a major battle took place before the war, now filled with the remains of soldiers and military equipment, as well as possible valuable artifacts.";
+        },
+        2: function() {
+          document.getElementById("location").innerHTML =  'Brotherhood of Steel Bunker';
+          document.getElementById("description").innerHTML =  "A hidden bunker belonging to the Brotherhood of Steel faction, filled with advanced technology and weapons.";
+        },
+        3: function() {
+          document.getElementById("location").innerHTML =  'Daughters of Athena Shrine';
+          document.getElementById("description").innerHTML =  "A rare and hidden shrine belonging to the Daughters of Athena faction, dedicated to preserving knowledge and wisdom from before the war.";
+        },
+        4: function() {
+          document.getElementById("location").innerHTML =  'Enclave Outpost';
+          document.getElementById("description").innerHTML =  "A well-defended outpost belonging to the Enclave faction, equipped with advanced technology and weapons.";
+        },
+        5: function() {
+          document.getElementById("location").innerHTML =  'Houston Technocrats Facility';
+          document.getElementById("description").innerHTML =  "A well-maintained building, possibly a research lab, belonging to the Houston Technocrats faction.";
+        },
+        6: function() {
+          document.getElementById("location").innerHTML =  'Ironwood Robots Outpost';
+          document.getElementById("description").innerHTML =  "An outpost built and maintained by the Ironwood Robots faction.";
+        },
+        7: function() {
+          document.getElementById("location").innerHTML =  'Pre-War Bunker';
+          document.getElementById("description").innerHTML =  "A hidden, underground bunker built to protect a select group of people from the nuclear war, now long-forgotten and filled with secrets.";
+        },
+        8: function() {
+          document.getElementById("location").innerHTML =  'Texas Ranger Station';
+          document.getElementById("description").innerHTML =  "A fortified station belonging to the Texas Rangers, a group dedicated to upholding law and order in the wasteland.";
+        }
+      };
+      // Roll the dice and get a random outcome
+      const outcome = getRandomInt(8, 1);
+
+      // Call the behavior associated with the outcome
+      outcomes[outcome]();
+    };
+    var die1 = getRandomInt(33, 1);
+    var die2 = getRandomInt(33, 1);
+    var die3 = getRandomInt(33, 1);
+    var dieroll = die1 + die2 + die3;
+    if (dieroll <= 60) {
+      urbanCommon();
+    } else if (dieroll >= 61 && dieroll <= 85) {
+      urbanUncommon();
+    } else {
+      urbanRare();
+    }
+  };
+  function ruralRoll(){
+
+    function ruralCommon(){
+      const outcomes = {
+        1: function() {
+            document.getElementById("location").innerHTML =  'Abandoned Highway';
+            document.getElementById("description").innerHTML =  "An abandoned stretch of highway, potentially containing valuable resources and transportation opportunities.";
+        },
+        2: function() {
+          document.getElementById("location").innerHTML =  'Abandoned Mine';
+          document.getElementById("description").innerHTML =  "An abandoned mine shaft, likely to contain minerals, ores, or even pre-war tech, but also infested with dangerous creatures or hazards.";
+        },
+        3: function() {
+          document.getElementById("location").innerHTML =  'Abandoned Railroad';
+          document.getElementById("description").innerHTML =  "An abandoned railroad track, potentially containing valuable resources and transportation opportunities.";
+        },
+        4: function() {
+          document.getElementById("location").innerHTML =  'Farmstead';
+          document.getElementById("description").innerHTML =  "A small farm, often with a farmhouse and outbuildings, and potentially valuable crops and supplies.";
+        },
+        5: function() {
+          document.getElementById("location").innerHTML =  'Fish Hatchery';
+          document.getElementById("description").innerHTML =  "A farm used to breed and raise fish for food and recreational fishing, potentially containing valuable fish and equipment.";
+        },
+        6: function() {
+          document.getElementById("location").innerHTML =  'Ghost Town';
+          document.getElementById("description").innerHTML =  "An abandoned town, filled with the remains of pre-war civilization and potential loot opportunities.";
+        },
+        7: function() {
+          document.getElementById("location").innerHTML =  'Hunting Camp';
+          document.getElementById("description").innerHTML =  "A small, temporary campsite used by hunters and trappers, often near areas with valuable game.";
+        },
+        8: function() {
+          document.getElementById("location").innerHTML =  'Rural Trading Post';
+          document.getElementById("description").innerHTML =  "A small trading post or store, often used by travelers and locals alike to buy and sell goods.";
+        },
+        9: function() {
+          document.getElementById("location").innerHTML =  'Water Tower';
+          document.getElementById("description").innerHTML =  "A tall water tower used to store and distribute water, potentially still containing valuable resources.";
+        }
+      };
+      // Roll the dice and get a random outcome
+      const outcome = getRandomInt(9, 1);
+
+
+      // Call the behavior associated with the outcome
+      outcomes[outcome]();
+    };
+    function ruralUncommon(){
+      const outcomes = {
+        1: function() {
+            document.getElementById("location").innerHTML =  'Cemetery';
+            document.getElementById("description").innerHTML =  "A large graveyard, filled with the remains of pre-war citizens and potential loot opportunities.";
+        },
+        2: function() {
+          document.getElementById("location").innerHTML =  'Hunting Lodge';
+          document.getElementById("description").innerHTML =  "A rustic lodge used as a base for hunting and trapping, likely to contain valuable supplies and equipment.";
+        },
+        3: function() {
+          document.getElementById("location").innerHTML =  'Logging Camp';
+          document.getElementById("description").innerHTML =  "A campsite used for logging operations, often with valuable timber and equipment.";
+        },
+        4: function() {
+          document.getElementById("location").innerHTML =  'Lumber Mill';
+          document.getElementById("description").innerHTML =  "A mill used for processing timber, potentially containing valuable wood and equipment.";
+        },
+        5: function() {
+          document.getElementById("location").innerHTML =  'Military Outpost';
+          document.getElementById("description").innerHTML =  "A small military outpost, potentially containing valuable weapons and equipment.";
+        },
+        6: function() {
+          document.getElementById("location").innerHTML =  'Orchard';
+          document.getElementById("description").innerHTML =  "A farm that specializes in growing fruit trees, potentially containing valuable crops and supplies.";
+        },
+        7: function() {
+          document.getElementById("location").innerHTML =  'Quaint Village';
+          document.getElementById("description").innerHTML =  "A <span id='out1'></span> of <span id='out2'></span>. The settelment is notably <span id='out2'></span>";
+          var size = ["Small Settlment", "Settelment", "Small Town"]
+          var out1 = size[getRandomInt(0, size.length )];
+          document.getElementById("out1").innerHTML = "<b>" + out1 + "</b>";
+          if (out1 == 'Small Settlment') {
+            var population = getRandomInt(16, 40);
+          } else if (out1 == 'Settelment') {
+            var population = getRandomInt(100, 41);
+          } else {
+            var population = getRandomInt(250, 101);
+          }
+          const people = ['Super Mutants','Super Mutants with a clear hatred of Humans 2','Robots','Robots with a clear hatred of Organics','Ghouls','Ghouls with a clear hatred of Humans','Ghouls with a clear hatred of Super Mutants','Humans','Humans with a clear hatred of Super Mutants','Humans with a clear hatred of Ghouls and Super Mutants','Humans with a clear hatred of Robots','Ghouls and Humans','Ghouls, Humans, and Robots','Ghouls and Super Mutants','All types'];
+          var out2 = people[getRandomInt(0, people.length )];
+          document.getElementById("out2").innerHTML = "<b>" + out2 + "</b>";
+          var trait = ['tribal','suspicious of outsiders','beleaguered','ravaged by illness or disease','a boomtown','matriarchal','patriarchal','industrious','zealous','fairly trusting of outsiders','overly peaceful','mostly populated by younger people','notably militaristic','something of a breadbasket'];
+          var out3 = trait[getRandomInt(0, trait.length )];
+          document.getElementById("out3").innerHTML = "<b>" + out3 + "</b>";
+        },
+        8: function() {
+          document.getElementById("location").innerHTML =  'Radio Tower';
+          document.getElementById("description").innerHTML =  "A tall radio tower used for broadcasting, potentially still operational and useful for communication.";
+        },
+        9: function() {
+          document.getElementById("location").innerHTML =  'Ranch';
+          document.getElementById("description").innerHTML =  "A working or abandoned ranch, complete with livestock, crops, and other resources.";
+        },
+        10: function() {
+        document.getElementById("location").innerHTML =  'Rural Church';
+        document.getElementById("description").innerHTML =  "A small church or chapel, potentially used as a shelter or safe haven for survivors.";
+        },
+        11: function() {
+          document.getElementById("location").innerHTML =  'Rural Clinic';
+          document.getElementById("description").innerHTML =  "A small medical clinic, potentially still containing valuable medical supplies and equipment.";
+        },
+        12: function() {
+          document.getElementById("location").innerHTML =  'Rural Museum';
+          document.getElementById("description").innerHTML =  "A small museum or historical site, potentially still containing valuable artifacts and educational resources.";
+        },
+        13: function() {
+          document.getElementById("location").innerHTML =  'Rural School';
+          document.getElementById("description").innerHTML =  "A small school or college, potentially still containing valuable educational resources and equipment.";
+        },
+        14: function() {
+          document.getElementById("location").innerHTML =  'Water Treatment Plant';
+          document.getElementById("description").innerHTML =  "A plant used to treat and distribute water, now abandoned and potentially hazardous.";
+        }
+      };
+      // Roll the dice and get a random outcome
+      const outcome = getRandomInt(14, 1);
+
+
+      // Call the behavior associated with the outcome
+      outcomes[outcome]();
+    };
+    function ruralRare(){
+      const outcomes = {
+        1: function() {
+          document.getElementById("location").innerHTML =  'Abandoned Water Park';
+          document.getElementById("description").innerHTML =  "An abandoned water park, potentially containing valuable resources and shelter opportunities.";
+        },
+        2: function() {
+          document.getElementById("location").innerHTML =  'Dam';
+          document.getElementById("description").innerHTML =  "A large dam used to generate hydroelectric power, now a potential source of clean water and energy.";
+        },
+        3: function() {
+          document.getElementById("location").innerHTML =  'Military Training Facility';
+          document.getElementById("description").innerHTML =  "A military training facility, potentially containing valuable weapons and equipment.";
+        },
+        4: function() {
+          document.getElementById("location").innerHTML =  'Nuclear Silo';
+          document.getElementById("description").innerHTML =  "A silo used to launch nuclear missiles, now abandoned and potentially still containing warheads.";
+        },
+        5: function() {
+          document.getElementById("location").innerHTML =  'Oil Refinery';
+          document.getElementById("description").innerHTML =  "A large industrial complex used to refine crude oil, potentially still containing valuable resources and equipment.";
+        },
+        6: function() {
+          document.getElementById("location").innerHTML =  'Rural Airport';
+          document.getElementById("description").innerHTML =  "A small, rural airport, potentially still containing operational planes and valuable aviation equipment.";
+        },
+        7: function() {
+          document.getElementById("location").innerHTML =  'Vineyard';
+          document.getElementById("description").innerHTML =  "A farm that specializes in growing grapes for wine production, potentially containing valuable wine and equipment.";
+        },
+        8: function() {
+          document.getElementById("location").innerHTML =  'Wildlife Reserve';
+          document.getElementById("description").innerHTML =  "A protected area of land used for wildlife conservation, potentially containing valuable game and wildlife resources.";
+        },
+        9: function() {
+          document.getElementById("location").innerHTML =  'Wind Farm';
+          document.getElementById("description").innerHTML =  "A large farm used to generate wind energy, potentially still containing valuable resources and equipment.";
+        }
+      };
+      // Roll the dice and get a random outcome
+      const outcome = getRandomInt(9, 1);
+
+      // Call the behavior associated with the outcome
+      outcomes[outcome]();
+    };
+    var die1 = getRandomInt(33, 1);
+    var die2 = getRandomInt(33, 1);
+    var die3 = getRandomInt(33, 1);
+    var dieroll = die1 + die2 + die3;
+    if (dieroll <= 60) {
+      ruralCommon();
+    } else if (dieroll >= 61 && dieroll <= 85) {
+      ruralUncommon();
+    } else {
+      ruralRare();
+    }
+  };
+  </script>
+  <script>
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      };
+  </script>
+  <script type="text/javascript">
+  function randomTest(){
+    let numSamples = 10000; // number of random values to generate
+    let minVal = 1; // minimum value for random numbers
+    let maxVal = 10; // maximum value for random numbers
+
+    let samples = [];
+    for (let i = 0; i < numSamples; i++) {
+    samples.push(getRandomInt(minVal, maxVal));
+    }
+
+    // Plot a histogram of the results
+    let binSize = 1;
+    let histogram = {};
+    for (let i = minVal; i <= maxVal; i += binSize) {
+    histogram[i] = 0;
+    }
+    for (let i = 0; i < samples.length; i++) {
+    histogram[samples[i]]++;
+    }
+    console.log(histogram);
+  };
+  </script>
+
+</html>

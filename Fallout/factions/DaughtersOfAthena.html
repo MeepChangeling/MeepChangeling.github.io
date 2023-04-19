@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Faction: Daughters of Athena</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../fallout.css" />
+    <link rel="icon" type="image/x-icon" href="../img/vaultgirl.webp">
+    <style media="screen">
+      .pips {
+        font-size: 1.3em;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="buttonpannel" class="buttonpannel">
+
+    </div>
+    <div id="date">
+      <span id="day"></span>
+      <span id="month"></span>
+      <span id="year"></span>
+      <span class="time"></span>
+    </div>
+    <script src="../clock.js"></script>
+    <img class="pagebg" src="../img/pipboy2000.webp"></img>
+
+    <div class="screen">
+      <div id="navcontainer" class="navcontainer">
+        <script src="../pipnav2.js"></script>
+      </div>
+      <div class="contentwindow">
+        <h1>Overview</h1>
+        <p>The Daughters of Athena are a (seemingly exclusively) female religious culture primarily found in the northern Badlands. They are less a faction and more a nation in the same sense as the pre-American indians. They make no claim on territories, but do make use of large portions of land and have several sacred sights.</p>
+        <p>This is not to say they are a native civilization. Their beliefs are entirely different and distinctly rooted in Greek mythology.</p>
+        <p>By whatever means, the Daughter’s founders either came to believe, or pretended to believe, in the existence of the Greek gods Athena, Artamus, and Aphrodite, who (according to the Daughters) are the last surviving Olympians. Their mythology is fascinating and could fill several books, but is best summarized by a quote from Jane MIchel, a ghoul born in 1998.</p>
+        <p>“They appear to have taken pre-50s Revival feminist ideology and made a religion out of it, a Greek Mythology text book, and Buffy the Vampire Slayer.”</p>
+        <p>Sadly, she would not elaborate on who this Buffy was, though she is assumed to have been extremely successful given how rare vampires appear to be. Indeed, a powerful warrior organizing women through her deeds and shaping them in her image through the use of an ancient religion which clearly favors women would explain the Daughters in their entirety.</p>
+        <p>They are quite literally, a group of warrior-poets. A large, sprawling, militant group dedicated to protecting women from the horrors of the wasteland. Albeit one which prays to ancient gods and practices a few odd religious rituals and ceremonies.</p>
+        <p>That’s the surface read. A more detailed examination reveals some serious oddities.</p>
+        <p>The Daughters are taller, stronger, and more durable than most women. Naturally plenty of women exist on the right side of the bell curve, but the Daughters are seemingly entirely made from such women. Their strongest have been known to wrestle Super Mutants and narrowly win on occasion.</p>
+        <p>They also seem to go mad quite regularly. They begin as simply dedicated and devout warriors, and while plenty end that way, a large number they call “Zealots” become prone to ranting and raving, followed by experiencing heightened aggression, near-feaverish body temperatures (which make many of them dress quite minimally), and frequent episodes of a beserk state. These events culminate in a sort of ego death, where the individual suddenly becomes passive, docile, and seemingly only capable of tending to their basic needs, loosing any ability to communicate.</p>
+        <p>Most of the wasteland believes this to be a burnout condition of an unknown combat stimulant. The Daughters claim it is a side effect of taking on too many of Giasemí’s gifts. Who is Giasemí? The fourth goddess of the Daughter’s Quadrumvirate of divinities, who no one else, not even ghoul scholars, have ever heard of.</p>
+        <p>According to the Daughters, Giasemí provides many gifts to aid her worshipers. In person. As in her divine form is tangible, existing within a place accessible to humans, and interacts with her followers.</p>
+        <p>This places the Daughters firmly into the “cult” category for most people. Clearly someone with advanced technology, likely a ghoul or FEV mutant due to their obvious longevity, has twisted a religious culture around their finger for their own ends.</p>
+        <p>Except, a few people have seen Giasemí. She is always wrapped in robes, but is at least seven feet tall, capable of levitating, manifesting light, and seems quite divine from a safe distance.</p>
+        <p>The counterpoint is she could simply be a powerful psyker. No one knows for sure, and no one knows what her goals are. A study of the Daughters actions indicate this Giasemí simply wishes to recruit a endless stream of women into her cult to… Recruit more? There is seemingly no end goal other than perpetuation.</p>
+        <p>The Daughters have become more active in recent days, preaching in the south, extending their patrols, it’s possible they’ve finally reached some critical mass and are only just now beginning to “take their actions on the board” as it were. The strangest part of all is their opening move as a faction of note appears to be preaching on street corners that the apocalypse is at hand.</p>
+
+
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+  // get a reference to the button
+    const toggleButton = document.getElementById("toggle-button");
+
+    // add a click event listener to the button
+    toggleButton.addEventListener("click", function() {
+      // get a reference to all collapsible elements on the page
+      const collapsibles = document.querySelectorAll(".collapsible");
+
+      // loop through each collapsible element
+      collapsibles.forEach(function(collapsible) {
+        // toggle the "active" class on the current collapsible element
+        collapsible.classList.toggle("active");
+
+        // get a reference to the content element next to the current collapsible element
+        const content = collapsible.nextElementSibling;
+
+        // toggle the visibility of the content element
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          setTimeout(function() {
+            content.style.maxWidth = null;
+            content.classList.remove("content-border");
+          }, 220);
+        } else {
+          content.style.maxWidth = "95%";
+          setTimeout(function() {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.add("content-border");
+          }, 150);
+        }
+      });
+    });
+  </script>
+</html>

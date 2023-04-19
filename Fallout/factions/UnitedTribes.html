@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Faction: United Tribes</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../fallout.css" />
+    <link rel="icon" type="image/x-icon" href="../img/vaultgirl.webp">
+    <style media="screen">
+      .pips {
+        font-size: 1.3em;
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="buttonpannel" class="buttonpannel">
+
+    </div>
+    <div id="date">
+      <span id="day"></span>
+      <span id="month"></span>
+      <span id="year"></span>
+      <span class="time"></span>
+    </div>
+    <script src="../clock.js"></script>
+    <img class="pagebg" src="../img/pipboy2000.webp"></img>
+
+    <div class="screen">
+      <div id="navcontainer" class="navcontainer">
+        <script src="../pipnav2.js"></script>
+      </div>
+      <div class="contentwindow">
+        <h1>Overview</h1>
+        <figure>
+          <img width="100%" height="100%" src="../img/UnitedTribes.svg" alt="Space Pioneer Emblem">
+          <figcaption>Mark of the Tribes</figcaption>
+        </figure>
+        <p>The United Tribes of Monsterland is a loose alliance of the major mutant tribes in the region for which they are named. It was formed in response to the increasing threats from certain groups of super mutants living within Monsterland, and the hostile actions of humans living on the edges of Monsterland. </p>
+        <p>The United Tribes do not control a specific territory, but their members can be found throughout Monsterland. They have established some semi-permanent settlements in strategic locations, which serve as their bases of operations and centers of trade.</p>
+        <p>The primary goal of the Tribes is to protect their members from external threats and to promote the interests of mutants in the region. They seek to establish a stable and peaceful coexistence with other factions in the wasteland, but are prepared to defend themselves by force if necessary.</p>
+        <p>The tribes forming this alliance are:</p>
+        <ol>
+        <li aria-level="1"><strong>Gecks </strong>- These are humans who have been mutated to have the appearance and abilities of geckos. They have a tough, scaly hide that provides excellent protection and can cling to surfaces like geckos do.</li>
+        <li aria-level="1"><strong>Scorps</strong> - Descended from humans who bonded with radscorpions and used them as hunting companions and mounts. Over time, FEV exposure and close contact with Radscorpians caused them to develop certain mutations, including chitinous armor on most of their bodies (save the joints, face, and neck) as well as a large scorpion tail.</li>
+        <li aria-level="1"><strong>Brahmin Gals</strong> - Strangely enough these are a group of mutants descended from Brahmin. Their close proximity to humans allowed human DNA to blend with their ancestors after FEV exposure. Their mutation twisted their forms into a centaur-like creature with the upper body of a feminine looking human which retains the twin heads Brhamin are known for. Each head is a separate person, but since they can read the minds of their “sibling” both heads are always friendly with each other and work in harmony to manage their shared body. They inhabit the town of Swell'n (pre-war Schwellenburg) and exist under the protection of super mutants as the zone’s primary source of dairy products.</li>
+        <li aria-level="1"><strong>Floromorphs -</strong> A group of humanoid mutants with plant-like features, including vine-like tendrils that grow from their skin and can ensnare their enemies. They have the ability to photosynthesize, allowing them to go for long periods without eating.</li>
+        <li aria-level="1"><strong>Goblins - </strong>A group of dwarves with pale blue skin and large pointed animal-like ears which stick out the sides of their heads. They are the most aesthetically pleasing of the mutants, and consequently some of the only people outsiders are willing to talk to. Unfortunately they are also quite distractible and energetic, seemingly incapable of paying attention to one thing at a time. Many people believe the can teleport, but the truth of the matter is they simply do not make noise when walking barefoot and tend to pass beneath a human’s sight line. They are also cute, in a way most people find eerie, as if they are a predator trying to lure in prey. Their shark-like teeth do not dispel this illusion.</li>
+        </ol>
+        <p>The United Tribes contain many other types of mutants, as well as super mutants. However, no other tribe has joined formally in full.</p>
+        <p>The United Tribes are led by a council of representatives from each member tribe. The council is chaired by a rotating representative, elected by the members for a set term. The current chair is a Gecko Folk named Gex, who is known for his diplomatic skills and his ability to bring the tribes together.</p>
+        <p>The United Tribes includes the major mutant tribes in Monsterland, including the Gecko Folk, the Scorps, the Brahmin Gals, and the Floromorphs. Each tribe retains its own identity and culture, but is bound by the common goal of mutual defense and cooperation.</p>
+        <p>The United Tribes has established alliances with a few select human factions in the region, who share their interests in promoting peace and stability. They have also established trade relationships with some friendly factions outside of Monsterland.</p>
+        <p> The United Tribes is hostile towards any factions that threaten their interests or their members. This includes the super mutants, some raider groups, and certain human factions who view mutants as a threat or a nuisance.</p>
+        <p>The United Tribes maintains a small standing army composed of volunteer warriors from each tribe. They are trained in a variety of combat styles, including guerrilla tactics and ranged combat. They also have access to some advanced technology and weapons, salvaged from pre-war military facilities or acquired through trade. Most of their warriors rely on their mutant abilities and primitive weapons such as spears, knives, and bows. Despite the technological gaps, they are formidable foes for most forces.</p>
+
+
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+  // get a reference to the button
+    const toggleButton = document.getElementById("toggle-button");
+
+    // add a click event listener to the button
+    toggleButton.addEventListener("click", function() {
+      // get a reference to all collapsible elements on the page
+      const collapsibles = document.querySelectorAll(".collapsible");
+
+      // loop through each collapsible element
+      collapsibles.forEach(function(collapsible) {
+        // toggle the "active" class on the current collapsible element
+        collapsible.classList.toggle("active");
+
+        // get a reference to the content element next to the current collapsible element
+        const content = collapsible.nextElementSibling;
+
+        // toggle the visibility of the content element
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          setTimeout(function() {
+            content.style.maxWidth = null;
+            content.classList.remove("content-border");
+          }, 220);
+        } else {
+          content.style.maxWidth = "95%";
+          setTimeout(function() {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.classList.add("content-border");
+          }, 150);
+        }
+      });
+    });
+  </script>
+</html>

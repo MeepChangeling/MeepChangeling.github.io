@@ -31,15 +31,11 @@ el.insertAdjacentHTML('afterbegin', navbar);
 
 // Adds Button Pannel to pages within a folder.
 
-var buttons = `<button type="button" name="button" class="redglow" onclick="location.href='../utilities/falloutwiki.html';"></button><span class=buttontext>Database</span>
+var buttons = `<button type="button" name="button" class="redglow" onclick="location.href='../locations/TexasBadlands.html';"></button><span class=buttontext>Database</span>
 </br>
-<button type="button" name="button" class="redglow" onclick="location.href='../utilities/blank.html';"></button><span class=buttontext>Test Page</span>
+<button type="button" name="button" class="redglow" id="AreaMap" onclick="location.href='../utilities/CrawlMapViewer.html';"></button><span class=buttontext>Area Map</span>
 </br>
-<button type="button" name="button" class="redglow" onclick="location.href='../worldmap.html';"></button><span class=buttontext>World Map</span>
-</br>
-<button type="button" name="button" class="redglow" onclick="location.href='../localmap.html';"></button><span class=buttontext>Local Map</span>
-</br>
-<button type="button" name="button" class="redglow"></button><span class=buttontext>testing</span>`;
+<button type="button" name="button" class="redglow" id="RegionMap" onclick="location.href='../utilities/BadlandsMapInteractive.html';"></button><span class=buttontext>Region Map</span>`;
 var el1 = document.getElementById("buttonpannel");
 el1.insertAdjacentHTML('afterbegin', buttons);
 
