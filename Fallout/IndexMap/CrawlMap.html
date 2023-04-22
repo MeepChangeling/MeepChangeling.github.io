@@ -2630,6 +2630,8 @@ var Vault1 = new FalloutMarker({iconUrl: 'img/AI - Green/Vault (Found).webp'}),
 	Fort1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Military Base (Found).webp'}),
 	Fort2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Military Base (Undiscovered).webp'}),
 	Camp1 = new FalloutMarker({iconUrl: 'img/AI - Green/Camp (Found).webp'}),
+	Camp2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Camp (Undiscovered).webp'}),
+	Camp1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Camp (Found).webp'}),
 	Camp2 = new FalloutMarker({iconUrl: 'img/AI - Green/Camp (Undiscovered).webp'}),
 	Radio1 = new FalloutMarker({iconUrl: 'img/AI - Green/Radio Tower (Found).webp'}),
 	Radio2 = new FalloutMarker({iconUrl: 'img/AI - Green/Radio Tower (Undiscovered).webp'}),
@@ -2787,11 +2789,14 @@ var QuestLocations = L.layerGroup([NatGuardArmory]);
 
 //       PLAYER LOCATIONS
 // Use <icon name>b for cyan icons.
-var playercurrentloc = L.marker([29.967606, -95.702299], {draggable: true, icon: PlayerPin}).bindPopup("The Party").addTo(map);
+var playercurrentloc = L.marker([29.967213, -95.703393], {draggable: true, icon: PlayerPin}).bindPopup("The Party").addTo(map);
 			playercurrentloc.on('dragend', function(e) {
 				playercurrentloc.getPopup().setContent('The Party <br /> Clicked' + playercurrentloc.getLatLng().toString())
 					.openOn(map);
 			});
+var BaseCamp = L.marker([29.967237, -95.703637], {icon: Camp1b}).bindPopup("Gas Station Base Camp");
+
+var PlayerLocations = L.layerGroup([BaseCamp]);
 
 map.on('zoomend', function() {
 	if (map.getZoom() >= 10){
@@ -2799,12 +2804,14 @@ map.on('zoomend', function() {
 					map.addLayer(Ranches);
 					map.addLayer(Settelments);
 					map.addLayer(vaultMarkers);
+					map.addLayer(PlayerLocations);
 	}
 	else {
 					map.removeLayer(Infra);
 					map.removeLayer(Ranches);
 					map.removeLayer(Settelments);
 					map.removeLayer(vaultMarkers);
+					map.removeLayer(PlayerLocations);
 			}
 });
 
