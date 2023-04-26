@@ -2609,6 +2609,8 @@ var Vault1 = new FalloutMarker({iconUrl: 'img/AI - Green/Vault (Found).webp'}),
 	RuinsA2 = new FalloutMarker({iconUrl: 'img/AI - Green/Ruins I (Undiscovered).webp'}),
 	RuinsB1 = new FalloutMarker({iconUrl: 'img/AI - Green/Ruins II (Found).webp'}),
 	RuinsB2 = new FalloutMarker({iconUrl: 'img/AI - Green/Ruins II (Undiscovered).webp'}),
+	RuinsB1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Ruins II (Found).webp'}),
+	RuinsB2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Ruins II (Undiscovered).webp'}),
 	Settlement1 = new FalloutMarker({iconUrl: 'img/AI - Green/Settlement (Found).webp'}),
 	Settlement2 = new FalloutMarker({iconUrl: 'img/AI - Green/Settlement (Undiscovered).webp'}),
 	TechnoCrats1 = new FalloutMarker({iconUrl: 'img/AI - Green/Institute (Found).webp'}),
@@ -2649,6 +2651,8 @@ var Vault1 = new FalloutMarker({iconUrl: 'img/AI - Green/Vault (Found).webp'}),
 	Bridge2 = new FalloutMarker({iconUrl: 'img/AI - Green/Bridge (Undiscovered).webp'}),
 	WaterPlant1 = new FalloutMarker({iconUrl: 'img/AI - Green/Chemical Plant (Found).webp'}),
 	WaterPlant2 = new FalloutMarker({iconUrl: 'img/AI - Green/Chemical Plant (Undiscovered).webp'}),
+	WaterPlant1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Chemical Plant (Found).webp'}),
+	WaterPlant2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Chemical Plant (Undiscovered).webp'}),
 	Forest1 = new FalloutMarker({iconUrl: 'img/AI - Green/Forest (Found).webp'}),
 	Forest2 = new FalloutMarker({iconUrl: 'img/AI - Green/Forest (Undiscovered).webp'}),
 	Grave1 = new FalloutMarker({iconUrl: 'img/AI - Green/Cemetary (Found).webp'}),
@@ -2663,7 +2667,11 @@ var Vault1 = new FalloutMarker({iconUrl: 'img/AI - Green/Vault (Found).webp'}),
 	Law2 = new FalloutMarker({iconUrl: 'img/AI - Green/Police Station (Undiscovered).webp'}),
 	Building1 = new FalloutMarker({iconUrl: 'img/AI - Green/Neighborhood (Found).webp'}),
 	Building2 = new FalloutMarker({iconUrl: 'img/AI - Green/Neighborhood (Undiscovered).webp'}),
-	PlayerPin = new FalloutMarker({iconUrl: 'img/AI - Cyan/Location Pin(Exterior).webp'});
+	PlayerPin = new FalloutMarker({iconUrl: 'img/AI - Cyan/Location Pin(Exterior).webp'}),
+	Bunker1a = new FalloutMarker({iconUrl: 'img/AI - Amber/Neighborhood (Found).webp'}),
+	Bunker2a = new FalloutMarker({iconUrl: 'img/AI - Amber/Bunker (Undiscovered).webp'}),
+	Railroad1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Railroad (Found).webp'}),
+	Railroad2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Railroad (Undiscovered).webp'});
 
 	L.icon = function (options) {
     return new L.Icon(options);
@@ -2794,9 +2802,32 @@ var playercurrentloc = L.marker([29.967213, -95.703393], {draggable: true, icon:
 				playercurrentloc.getPopup().setContent('The Party <br /> Clicked' + playercurrentloc.getLatLng().toString())
 					.openOn(map);
 			});
-var BaseCamp = L.marker([29.967237, -95.703637], {icon: Camp1b}).bindPopup("Gas Station Base Camp");
+var BaseCamp = L.marker([29.967237, -95.703637], {icon: Camp1b}).bindPopup("Gas Station Base Camp"),
+		TrainStation = L.marker([29.963419, -95.685673], {icon: Railroad2b}).bindPopup("Cypress Station"),
+		StripMall = L.marker([29.968459, -95.694668], {icon: RuinsB2b}).bindPopup("Strip Mall"),
+		WaterTower = L.marker([29.959994, -95.714288], {icon: WaterPlant2b}).bindPopup("Water Tower");
 
-var PlayerLocations = L.layerGroup([BaseCamp]);
+var PlayerLocations = L.layerGroup([BaseCamp, TrainStation, StripMall, WaterTower]);
+
+//       DM LOCATIONS
+var BillyBunker = L.marker([30.950658, -95.917897], {icon: Bunker2a}).bindPopup("Billy's Bunker");
+
+var DMLocations = L.layerGroup([BillyBunker]);
+
+// Add an event listener to the document object that listens for the keydown event
+document.addEventListener('keydown', function(event) {
+  // Check if the key pressed is the pipe key
+  if (event.key === '|') {
+    // Toggle the visibility of the layer
+    if (map.hasLayer(DMLocations)) {
+      map.removeLayer(DMLocations);
+    } else {
+      map.addLayer(DMLocations);
+    }
+  }
+});
+
+
 
 map.on('zoomend', function() {
 	if (map.getZoom() >= 10){
