@@ -112,7 +112,7 @@ var highlightLayer;
 
 	var BGMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {className: 'bw', minZoom: 8, maxNativeZoom: 19, maxZoom: 19, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
 		BGMap2 = L.tileLayer('http://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}', {minZoom: 8, maxNativeZoom: 16, maxZoom: 19, className: 'multiplylayer'});
-		SatMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {minZoom: 8, maxNativeZoom: 19, maxZoom: 19, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+		SatMap = L.tileLayer('http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {minZoom: 8, maxNativeZoom: 19, maxZoom: 19});
 
 		roadOverlay = L.tileLayer('http://services.arcgisonline.com/arcgis/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}.png', {minZoom: 8,  maxZoom: 19});
 		infoOverlay = L.tileLayer('http://services.arcgisonline.com/arcgis/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}.png', {minZoom: 8,  maxZoom: 19});
