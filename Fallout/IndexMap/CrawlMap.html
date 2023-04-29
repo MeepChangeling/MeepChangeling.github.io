@@ -16,8 +16,12 @@
 		display: none;
 	}
 	.bw {
-    filter: grayscale(100%) contrast(0.75);
+    filter: grayscale(100%);
   }
+	.multiplylayer {
+		mix-blend-mode: multiply;
+
+	}
 	</style>
 <link rel="stylesheet" href="js/leaflet.css">
 <script src="js/leaflet.js"></script>
@@ -107,14 +111,11 @@ var highlightLayer;
 		// Establish Map Tiles
 
 	var BGMap = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {className: 'bw', minZoom: 8, maxNativeZoom: 19, maxZoom: 19, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
+		BGMap2 = L.tileLayer('http://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer/tile/{z}/{y}/{x}', {minZoom: 8, maxNativeZoom: 16, maxZoom: 19, className: 'multiplylayer'});
 		SatMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {minZoom: 8, maxNativeZoom: 19, maxZoom: 19, continousWorld: false, noWrap: true, crs: L.CRS.Simple,});
-		Roads = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-hybrid/{z}/{x}/{y}{r}.{ext}', {
-			attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-			subdomains: 'abcd',
-			minZoom: 8,
-			maxZoom: 19,
-			ext: 'png'
-		});
+
+		roadOverlay = L.tileLayer('http://services.arcgisonline.com/arcgis/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}.png', {minZoom: 8,  maxZoom: 19});
+		infoOverlay = L.tileLayer('http://services.arcgisonline.com/arcgis/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}.png', {minZoom: 8,  maxZoom: 19});
 		Rails =  L.tileLayer('https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png', {
 			minZoom: 8,
 			maxZoom: 19,
@@ -127,15 +128,16 @@ var highlightLayer;
 		});
 
 
-
+var satMapLayers = L.layerGroup([roadOverlay, infoOverlay]);
+var streetMap = L.layerGroup([BGMap, BGMap2]);
 
 	var baseMaps = {
-		"Street Maps": BGMap,
+		"Street Maps": streetMap,
 		"Satalite Map": SatMap,
 	}
 
 	var overlays = {
-		"Roads and Towns": Roads,
+		"Roads and Towns": satMapLayers,
 		"Rail Lines": Rails,
 		"Hex Grid": HexGrid,
 	}
@@ -149,7 +151,7 @@ var highlightLayer;
 		zoomSnap: 0,
 		wheelPxPerZoomLevel: 100,
 		maxBounds: [[33, -103], [26, -87]],
-		layers: [BGMap],
+		layers: [streetMap],
 		preferCanvas: false,
 	}).setView([30.15, -95.77], 8.25);
 
@@ -2671,7 +2673,9 @@ var Vault1 = new FalloutMarker({iconUrl: 'img/AI - Green/Vault (Found).webp'}),
 	Bunker1a = new FalloutMarker({iconUrl: 'img/AI - Amber/Neighborhood (Found).webp'}),
 	Bunker2a = new FalloutMarker({iconUrl: 'img/AI - Amber/Bunker (Undiscovered).webp'}),
 	Railroad1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Railroad (Found).webp'}),
-	Railroad2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Railroad (Undiscovered).webp'});
+	Railroad2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Railroad (Undiscovered).webp'}),
+	ScrapYard1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Scrapyard (Found).webp'}),
+	ScrapYard2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Scrapyard (Undiscovered).webp'});
 
 	L.icon = function (options) {
     return new L.Icon(options);
@@ -2803,16 +2807,18 @@ var playercurrentloc = L.marker([29.967213, -95.703393], {draggable: true, icon:
 					.openOn(map);
 			});
 var BaseCamp = L.marker([29.967237, -95.703637], {icon: Camp1b}).bindPopup("Gas Station Base Camp"),
-		TrainStation = L.marker([29.963419, -95.685673], {icon: Railroad2b}).bindPopup("Cypress Station"),
-		StripMall = L.marker([29.968459, -95.694668], {icon: RuinsB2b}).bindPopup("Strip Mall"),
-		WaterTower = L.marker([29.959994, -95.714288], {icon: WaterPlant2b}).bindPopup("Water Tower");
+		TrainStation = L.marker([29.963419, -95.685673], {icon: Railroad1b}).bindPopup("Cypress Station ( Inhabited)"),
+		StripMall = L.marker([29.968459, -95.694668], {icon: RuinsB1b}).bindPopup("Cypress Town Center"),
+		WaterTower = L.marker([29.959994, -95.714288], {icon: WaterPlant1b}).bindPopup("FEMA Water Tower"),
+		JunkYard = L.marker([30.028409, -95.673324], {icon: ScrapYard2b}).bindPopup("Junkyard");
 
-var PlayerLocations = L.layerGroup([BaseCamp, TrainStation, StripMall, WaterTower]);
+var PlayerLocations = L.layerGroup([BaseCamp, TrainStation, StripMall, WaterTower, JunkYard]);
 
 //       DM LOCATIONS
-var BillyBunker = L.marker([30.950658, -95.917897], {icon: Bunker2a}).bindPopup("Billy's Bunker");
+var BillyBunker = L.marker([30.950658, -95.917897], {icon: Bunker2a}).bindPopup("Billy's Bunker"),
+		Shelter93 = L.marker([29.908197, -95.736569], {icon: Bunker2a}).bindPopup("Shelter93");
 
-var DMLocations = L.layerGroup([BillyBunker]);
+var DMLocations = L.layerGroup([BillyBunker, Shelter93]);
 
 // Add an event listener to the document object that listens for the keydown event
 document.addEventListener('keydown', function(event) {
