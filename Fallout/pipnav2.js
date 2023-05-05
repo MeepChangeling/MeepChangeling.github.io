@@ -35,7 +35,9 @@ var buttons = `<button type="button" name="button" class="redglow" onclick="loca
 </br>
 <button type="button" name="button" class="redglow" id="AreaMap" onclick="location.href='../utilities/CrawlMapViewer.html';"></button><span class=buttontext>Area Map</span>
 </br>
-<button type="button" name="button" class="redglow" id="RegionMap" onclick="location.href='../utilities/BadlandsMapInteractive.html';"></button><span class=buttontext>Region Map</span>`;
+<button type="button" name="button" class="redglow" id="RegionMap" onclick="location.href='../utilities/BadlandsMapInteractive.html';"></button><span class=buttontext>Region Map</span>
+</br>
+<button type="button" name="button" class="redglow" onclick="location.href='../utilities/noteadv.html';"></button><span class=buttontext>Notes</span>`;
 var el1 = document.getElementById("buttonpannel");
 el1.insertAdjacentHTML('afterbegin', buttons);
 

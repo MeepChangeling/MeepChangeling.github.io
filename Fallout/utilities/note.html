@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Notes</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="../fallout.css" />
+    <link rel="icon" type="image/x-icon" href="../img/vaultgirl.webp">
+    <style>
+      #notepad {
+        border: 3px solid #009a00;
+        background: none;
+        background-color: none;
+        color: #009a00;
+        padding: 10px;
+        margin: 3%;
+        font-size: 1.5em;
+        overflow-y: scroll;
+        min-height: 100px;
+        height: 80%;
+        width: 96%;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div id="buttonpannel" class="buttonpannel">
+
+    </div>
+    <div id="date">
+      <span id="day"></span>
+      <span id="month"></span>
+      <span id="year"></span>
+      <span class="time"></span>
+    </div>
+    <script src="../clock.js"></script>
+    <img class="pagebg" src="../img/pipboy2000.webp"></img>
+
+    <div class="screen">
+      <div id="navcontainer" class="navcontainer">
+        <script src="../pipnav2.js"></script>
+      </div>
+      <div class="contentwindow">
+        <textarea id="notepad" contenteditable="true"></textarea>
+      </div>
+    </div>
+  </body>
+  <script title="Save Note to Local Storage">
+    function saveNote() {
+      var note = document.getElementById("notepad").value;
+      localStorage.setItem("note", note);
+    }
+    document.getElementById("notepad").addEventListener("input", saveNote);
+  </script>
+  <script title="Load Note from Local Storage">
+    function loadNote() {
+      var note = localStorage.getItem("note");
+      if (note !== null) {
+        document.getElementById("notepad").value = note;
+      }
+    }
+    window.addEventListener("load", loadNote);
+  </script>
+  <script title="Formatting Script">
+    function format(command, value) {
+      document.execCommand(command, false, value);
+    }
+
+    document.getElementById("bold-btn").addEventListener("click", function () {
+      if (event.key === "b" && (event.ctrlKey || event.metaKey)) {
+        format("bold");
+      }
+    });
+    document.getElementById("italic-btn").addEventListener("click", function () {
+      event.preventDefault();
+      format("italic");
+    });
+    document.getElementById("size-btn").addEventListener("change", function () {
+      event.preventDefault();
+      format("fontSize", this.value);
+    });
+  </script>
+
+</html>

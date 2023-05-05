@@ -1687,6 +1687,7 @@
     function randMetalArmor(){
       var armors = ["combat armor", "metal armor", "raider armor", "robot armor", "marine armor"];
       var armor =  armors[getRandomInt(0, armors.length )];
+      var die = getRandomInt(1, 100);
       if (die >= 60) {
         var armors = ["painted", "enameled", "shadowed", "alloyed", "polished"];
         var armor1 =  armors[getRandomInt(0, armors.length )];
@@ -1697,6 +1698,7 @@
     function randPolymerArmor(){
       var armors = ["polymer armor", "ceramic composite armor", "ceramic armor"];
       var armor =  armors[getRandomInt(0, armors.length )];
+      var die = getRandomInt(1, 100);
       if (die >= 60) {
         var armors = ["laminated", "resin", "microcarbin", "nanofilliment"];
         var armor1 =  armors[getRandomInt(0, armors.length )];
