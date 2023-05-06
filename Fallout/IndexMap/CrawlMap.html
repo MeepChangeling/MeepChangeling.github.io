@@ -2670,12 +2670,14 @@ var Vault1 = new FalloutMarker({iconUrl: 'img/AI - Green/Vault (Found).webp'}),
 	Building1 = new FalloutMarker({iconUrl: 'img/AI - Green/Neighborhood (Found).webp'}),
 	Building2 = new FalloutMarker({iconUrl: 'img/AI - Green/Neighborhood (Undiscovered).webp'}),
 	PlayerPin = new FalloutMarker({iconUrl: 'img/AI - Cyan/Location Pin(Exterior).webp'}),
-	Bunker1a = new FalloutMarker({iconUrl: 'img/AI - Amber/Neighborhood (Found).webp'}),
+	Bunker1a = new FalloutMarker({iconUrl: 'img/AI - Amber/Bunker (Found).webp'}),
 	Bunker2a = new FalloutMarker({iconUrl: 'img/AI - Amber/Bunker (Undiscovered).webp'}),
 	Railroad1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Railroad (Found).webp'}),
 	Railroad2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Railroad (Undiscovered).webp'}),
 	ScrapYard1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Scrapyard (Found).webp'}),
-	ScrapYard2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Scrapyard (Undiscovered).webp'});
+	ScrapYard2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Scrapyard (Undiscovered).webp'}),
+	Radiation1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Radiation Site (Found).webp'}),
+	Radiation2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Radiation Site (Undiscovered).webp'});
 
 	L.icon = function (options) {
     return new L.Icon(options);
@@ -2797,7 +2799,7 @@ var Ranches = L.layerGroup([TheDoubleR, LoneStarRanch, DeadmansGulch, DiamondW, 
 //       QUEST LOCATIONS
 // Use <icon name>a for Amber icons.
 var NatGuardArmory = L.marker([29.737057, -95.65062], {icon: Fort2a}).bindPopup("National Guard Armory"),
-		Shelter93 = L.marker([29.908197, -95.736569], {icon: Bunker2a}).bindPopup("Shelter 93");
+		Shelter93 = L.marker([29.908197, -95.736569], {icon: Bunker1a}).bindPopup("Shelter 93");
 var QuestLocations = L.layerGroup([Shelter93]);
 
 //       PLAYER LOCATIONS
@@ -2811,9 +2813,10 @@ var BaseCamp = L.marker([29.967237, -95.703637], {icon: Camp1b}).bindPopup("Gas 
 		TrainStation = L.marker([29.963419, -95.685673], {icon: Railroad1b}).bindPopup("Cypress Station ( Inhabited)"),
 		StripMall = L.marker([29.968459, -95.694668], {icon: RuinsB1b}).bindPopup("Cypress Town Center"),
 		WaterTower = L.marker([29.959994, -95.714288], {icon: WaterPlant1b}).bindPopup("FEMA Water Tower"),
-		JunkYard = L.marker([30.028409, -95.673324], {icon: ScrapYard2b}).bindPopup("Junkyard");
+		JunkYard = L.marker([30.028409, -95.673324], {icon: ScrapYard2b}).bindPopup("Junkyard"),
+		Rad1 = L.marker([29.912284, -95.74225], {icon: Radiation1b}).bindPopup("Radioactive Lakes (deadly)");
 
-var PlayerLocations = L.layerGroup([BaseCamp, TrainStation, StripMall, WaterTower, JunkYard]);
+var PlayerLocations = L.layerGroup([BaseCamp, TrainStation, StripMall, WaterTower, JunkYard, Rad1]);
 
 //       DM LOCATIONS
 var BillyBunker = L.marker([30.950658, -95.917897], {icon: Bunker2a}).bindPopup("Billy's Bunker"),
