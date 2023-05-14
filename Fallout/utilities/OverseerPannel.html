@@ -1,4 +1,4 @@
-</<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -194,28 +194,71 @@
           </div>-->
           <div class="grid-item" title="Weather Table">
             <h1>Weather Table</h1>
+            <div title="Date Selector">
+              <label for="month-selector">Month:</label>
+              <select id="month-selector">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+              </select>
+
+              <label for="day-selector">Day:</label>
+              <select id="day-selector">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+              </select>
+
+              <label for="year-input">Year:</label>
+              <input type="text" id="year-input" style="width: 60px;"/>
+
+            </div>
             <fieldset>
               <legend>Climate Type:</legend>
               <div>
-                <input type="radio" id="arid" name="Climate" value="arid">
+                <input type="radio" id="arid" name="Climate" value="arid" checked>
                 <label for="arid">Arid</label>
-                <input type="radio" id="temperate" name="Climate" value="temperate" checked>
+                <input type="radio" id="temperate" name="Climate" value="temperate">
                 <label for="temperate">Temperate</label>
                 <input type="radio" id="tropical" name="Climate" value="tropical">
                 <label for="tropical">Tropical</label>
-              </div>
-            </fieldset>
-            <fieldset>
-              <legend>Season:</legend>
-              <div>
-                <input type="radio" id="spring" name="Season" value="spring" checked>
-                <label for="spring">Spring</label>
-                <input type="radio" id="summer" name="Season" value="summer">
-                <label for="summer">Summer</label>
-                <input type="radio" id="fall" name="Season" value="fall">
-                <label for="fall">Fall</label>
-                <input type="radio" id="winter" name="Season" value="winter">
-                <label for="winter">Winter</label>
               </div>
             </fieldset>
             <button class="button-3" type="button" name="button" onclick="forcast()">Weather</button>
@@ -230,57 +273,100 @@
             <p id="description"></p>
           </div>
           <div class="grid-item" title="NPC Gen">
-          <h1>NPC Gen</h1>
-          <fieldset>
-            <legend>Sex:</legend>
-            <div>
-              <input type="radio" id="Male" name="Sex" value="Male">
-              <label for="Male">Male</label>
-              <input type="radio" id="Female" name="Sex" value="Female">
-              <label for="Female">Female</label>
-              <input type="radio" id="Random" name="Sex" value="Random" checked>
-              <label for="Random">Random</label>
-            </div>
-          </fieldset>
-          <label for="race">Race:</label>
-          <select style="margin-top: 4px; margin-bottom:4px;"id="race">
-            <option value="human" selected>Human</option>
-            <option value="ghoul">Ghoul</option>
-            <option value="super-mutant">Super Mutant</option>
-            <option value="mr-handy">Mr. Handy</option>
-            <option value="protectron">Protectron</option>
-            <option value="assaultron">Assaultron</option>
-            <option value="robobrain">Robobrain</option>
-            <option value="synth">Synth</option>
-          </select>
-          <fieldset>
-            <legend>Ethnisity (Humans / Ghouls / Synths Only):</legend>
-            <div>
-              <input type="radio" id="European" name="Ethnic" value="European">
-              <label for="European">European</label>
-              <input type="radio" id="African" name="Ethnic" value="African">
-              <label for="African">African</label>
-              <input type="radio" id="Asian" name="Ethnic" value="Asian">
-              <label for="Asian">Asian</label>
-              <input type="radio" id="Hispanic" name="Ethnic" value="Hispanic">
-              <label for="Hispanic">Hispanic</label>
-              <input type="radio" id="American Indian" name="Ethnic" value="American Indian">
-              <label for="American Indian">American Indian</label>
-              <input type="radio" id="Random" name="Ethnic" value="Random" checked>
-              <label for="Random">Random</label>
-            </div>
-          </fieldset>
+            <h1>NPC Gen</h1>
+            <fieldset>
+              <legend>Sex:</legend>
+              <div>
+                <input type="radio" id="Male" name="Sex" value="Male">
+                <label for="Male">Male</label>
+                <input type="radio" id="Female" name="Sex" value="Female">
+                <label for="Female">Female</label>
+                <input type="radio" id="Random" name="Sex" value="Random" checked>
+                <label for="Random">Random</label>
+              </div>
+            </fieldset>
+            <label for="race">Race:</label>
+            <select style="margin-top: 4px; margin-bottom:4px;"id="race">
+              <option value="human" selected>Human</option>
+              <option value="ghoul">Ghoul</option>
+              <option value="super-mutant">Super Mutant</option>
+              <option value="mr-handy">Mr. Handy</option>
+              <option value="protectron">Protectron</option>
+              <option value="assaultron">Assaultron</option>
+              <option value="robobrain">Robobrain</option>
+              <option value="synth">Synth</option>
+            </select>
+            <fieldset>
+              <legend>Ethnisity (Humans / Ghouls / Synths Only):</legend>
+              <div>
+                <input type="radio" id="European" name="Ethnic" value="European">
+                <label for="European">European</label>
+                <input type="radio" id="African" name="Ethnic" value="African">
+                <label for="African">African</label>
+                <input type="radio" id="Asian" name="Ethnic" value="Asian">
+                <label for="Asian">Asian</label>
+                <input type="radio" id="Hispanic" name="Ethnic" value="Hispanic">
+                <label for="Hispanic">Hispanic</label>
+                <input type="radio" id="American Indian" name="Ethnic" value="American Indian">
+                <label for="American Indian">American Indian</label>
+                <input type="radio" id="Random" name="Ethnic" value="Random" checked>
+                <label for="Random">Random</label>
+              </div>
+            </fieldset>
 
-          <button class="button-3" type="button" name="button" onclick="npcGen()">Generate</button>
-          <p><b><span id="NPCName"></span></b></p>
-          <p id="NPCdisc"></p>
-        </div>
-        <div class="grid-item" title="Town Maker">
-          <h1>Settlment Maker</h1>
-          <button class="button-3" type="button" name="button" onclick="randomTownGenerator()">Generate</button>
-          <p><b><span id="TownName"></span></b></p>
-          <p id="TownDescription"></p>
-        </div>
+            <button class="button-3" type="button" name="button" onclick="npcGen()">Generate</button>
+            <p><b><span id="NPCName"></span></b></p>
+            <p id="NPCdisc"></p>
+          </div>
+          <div class="grid-item" title="Town Maker">
+            <h1>Settlment Maker</h1>
+            <button class="button-3" type="button" name="button" onclick="randomTownGenerator()">Generate</button>
+            <p><b><span id="TownName"></span></b></p>
+            <p id="TownDescription"></p>
+          </div>
+          <div class="grid-item" id="weatherReportsContainer">
+            <h1>Weather History</h1>
+            <button class="button-3" id="clearWeatherHistory">Clear History</button>
+            <button class="button-3" id="loadHistory" onclick="loadWeatherReports()">Load History</button>
+            <button id="backupBtn">Backup</button>
+            <input type="file" id="loadFileInput" style="display: none;">
+            <button id="loadBtn">Load</button>
+
+          </div>
+          <div class="grid-item" title="Expanded Injury Table">
+            <h1>Expanded Injury Table</h1>
+            <h3>By Idashroomcloud</h3>
+            <label for="body-part-selector">Body Part:</label>
+            <select id="body-part-selector">
+              <option value="1">Head</option>
+              <option value="2">Torso</option>
+              <option value="3">Arm</option>
+              <option value="4">Legs</option>
+              <option selected value="5">Random</option>
+            </select>
+            <button class="button-3" type="button" name="button" onclick="randomExpandedInjury()">Generate</button>
+            <p id="RandInjury"></p>
+          </div>
+          <div class="grid-item" title="Quest Maker">
+            <h1>Quest Creator</h1>
+            <p>Create a
+            <select id="quest-type-selector">
+              <option selected value="1">Random</option>
+              <option value="2">Man Hunt</option>
+              <option value="3">Monster Slaying</option>
+              <option value="4">Retribution</option>
+              <option value="5">Defence</option>
+              <option value="6">Stronghold</option>
+              <option value="7">Search and Rescue</option>
+              <option value="8">Maguffin Hunt</option>
+              <option value="9">Heist</option>
+
+            </select>
+            quest.</p>
+            <button class="button-3" type="button" name="button" onclick="randomQuest()">Generate</button>
+            <b><p id="RandQuestType"></p></b>
+            <p id="RandQuest"></p>
+          </div>
 
 
 
@@ -305,7 +391,44 @@
     };
   </script>
   <script type="text/javascript" title="Weather">
+    // Function to advance the date by 1 day
+    function advanceDate() {
+    const [day, month, year] = currentDate.split('-').map(Number);
+    const daysInMonth = new Date(year, month, 0).getDate();
+    let nextDay = day + 1;
+    let nextMonth = month;
+    let nextYear = year;
+
+    if (nextDay > daysInMonth) {
+      nextDay = 1;
+      nextMonth++;
+      if (nextMonth > 12) {
+        nextMonth = 1;
+        nextYear++;
+      }
+    }
+
+    currentDate = `${nextDay}-${nextMonth}-${nextYear}`;
+    localStorage.setItem('forecastDate', currentDate);
+
+    // Set the value of the month selector to the current month
+    const monthSelector = document.getElementById("month-selector");
+    monthSelector.value = nextMonth;
+
+    // Set the value of the day selector to the current day
+    const daySelector = document.getElementById("day-selector");
+    daySelector.value = nextDay;
+
+    // Set the value of the year input to the current year
+    const yearInput = document.getElementById("year-input");
+    yearInput.value = nextYear;
+
+    };
+
+
+
     function forcast(){
+
       var radios = document.getElementsByName('Climate');
       // Loop through the radio buttons to find the checked one
       for (var i = 0; i < radios.length; i++) {
@@ -315,15 +438,20 @@
           break; // Exit the loop since we found the checked radio button
         }
       }
-      var radios2 = document.getElementsByName('Season');
-      // Loop through the radio buttons to find the checked one
-      for (var i = 0; i < radios2.length; i++) {
-        if (radios2[i].checked) {
-          // Set the value of your JavaScript variable to the checked radio button's value
-          var season = radios2[i].value;
-          break; // Exit the loop since we found the checked radio button
-        }
+
+
+      var select = document.getElementById("month-selector");
+      var seasonValue = select.value;
+      if (seasonValue == 12 || seasonValue == 1 || seasonValue == 2) {
+        var season = 'winter';
+      } else if (seasonValue == 3 || seasonValue == 4 || seasonValue == 5) {
+        var season = 'spring';
+      } else if (seasonValue == 6 || seasonValue == 7 || seasonValue == 8) {
+        var season = 'summer';
+      } else {
+        var season = 'fall';
       }
+
 
       var sky1 = getRandomInt(1, 20);
       if (radioValue == 'temperate') {
@@ -611,14 +739,104 @@
       var barometric = humidity + "<br /><i>Barometer:</i> " + barometric1 + " inHg";
       var forcast = barometric + "<br /><i>Wind:</i> " + wind1 + " mp/h <span class='smtext'>(" + wind2 + "kp/h)</span> " + winddir;
 
+
+
+
+
+
+
+
+
       document.getElementById('forcast').innerHTML = forcast;
       document.getElementById('weatherreport').innerHTML = weather;
 
-
+      logWeatherReport();
+      advanceDate();
 
     };
+
+    // Event listeners for date selection
+    const monthSelector = document.getElementById('month-selector');
+    monthSelector.addEventListener('change', updateCurrentDate);
+
+    const daySelector = document.getElementById('day-selector');
+    daySelector.addEventListener('change', updateCurrentDate);
+
+    const yearInput = document.getElementById('year-input');
+    yearInput.addEventListener('change', updateCurrentDate);
+
+    function updateCurrentDate() {
+      const selectedMonth = monthSelector.value;
+      const selectedDay = daySelector.value;
+      const selectedYear = yearInput.value;
+      currentDate = `${selectedDay}-${selectedMonth}-${selectedYear}`;
+      localStorage.setItem('forecastDate', currentDate);
+
+
+
+    }
+
+    // Set the initial values of the date selectors to the current date
+    updateCurrentDate();
+    const [currentDay, currentMonth, currentYear] = currentDate.split('-').map(Number);
+    daySelector.value = currentDay;
+    monthSelector.value = currentMonth;
+    yearInput.value = currentYear;
   </script>
-  <script title="Random Number Gen" title="Random Intiger Gen">
+  <script type="text/javascript" title="Log Weather">
+    function logWeatherReport() {
+      const report = {
+        timestamp: '<h2><b>' + currentDate + '</b></h2>',
+        forcast: document.getElementById('forcast').innerHTML,
+        weatherreport: document.getElementById('weatherreport').innerHTML
+    };
+    const reports = JSON.parse(localStorage.getItem('weatherReports')) || [];
+    reports.push(report);
+    localStorage.setItem('weatherReports', JSON.stringify(reports));
+    loadWeatherReports();
+    }
+  </script>
+  <script type="text/javascript" title="Load Weather History">
+
+    window.onload = function weatherhistory(){
+      let currentDate = new Date(localStorage.getItem('forecastDate')) || new Date();
+      loadWeatherReports();
+    };
+
+
+
+
+    function loadWeatherReports() {
+      const reports = JSON.parse(localStorage.getItem('weatherReports')) || [];
+
+      // Iterate over the reports and display them on the page
+      reports.forEach(report => {
+        const container = document.createElement('div');
+        const timestamp = document.createElement('p');
+        const forcast = document.createElement('p');
+        const weatherReport = document.createElement('p');
+
+        timestamp.innerHTML = `${report.timestamp}`;
+        forcast.innerHTML = report.forcast; // <-- Change variable name here
+        weatherReport.innerHTML = report.weatherreport;
+
+        container.appendChild(timestamp);
+        container.appendChild(forcast); // <-- Change variable name here
+        container.appendChild(weatherReport);
+
+        document.getElementById('weatherReportsContainer').appendChild(container);
+      });
+    }
+  </script>
+  <script type="text/javascript" title="Weather history Controls">
+    const clearHistoryButton = document.getElementById('clearWeatherHistory');
+    clearHistoryButton.addEventListener('click', clearWeatherHistory);
+
+    function clearWeatherHistory() {
+    localStorage.removeItem('weatherReports');
+    };
+  </script>
+  <script type="text/javascript" title="Random Intiger Gen">
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
       };
@@ -2169,5 +2387,196 @@
       document.getElementById("TownName").innerHTML = townName;
       document.getElementById("TownDescription").innerHTML = townDesc;
     }
+  </script>
+  <script type="text/javascript" title="Random Injury">
+    function randomExpandedInjury(){
+      var select = document.getElementById("body-part-selector");
+      var hitLocation = select.value;
+      if (hitLocation == 5) {
+        var hitLocation = getRandomInt(1,4);
+      };
+
+      if (hitLocation == 1) {
+        var dieroll = getRandomInt(1,9);
+        if (dieroll == 1) {
+          var result = '<b>Arterial Wound -</b> The character suffers 1 persistent damage per turn until the injury is treated, bypassing DR.';
+        } else if (dieroll == 2) {
+          var result = '<b>Infected Wound -</b> Roll 1x on the Disease table, inflicting the result on the character immediately.';
+        } else if (dieroll == 3) {
+          var result = '<b>Gruesome Wound -</b> The difficulty of CHA tests is increased by 1 until the injury is treated.';
+        } else if (dieroll == 4) {
+          var result = '<b>Eye -</b> Character is struck in one or both eye(s). The character has trouble seeing and the difficulty of all sight-related tests is increased by 1 until the injury is treated.';
+        } else if (dieroll == 5) {
+          var result = '<b>Jaw -</b> The character is unable to speak beyond grunts and whines until the injury is treated.';
+        } else if (dieroll == 6) {
+          var result = '<b>Tinnitus -</b> The character is plagued by a loud ringing that persists until treated. The difficulty of any test relying on hearing is increased by 1.';
+        } else if (dieroll == 7) {
+          var result = '<b>Stunned -</b> The character is knocked senseless. Is considered Stunned for 1 turn.';
+        } else if (dieroll == 8) {
+          var result = '<b>Armor Removal -</b> Whatever headgear the character was wearing is either broken or knocked off their head.';
+        } else if (dieroll == 9) {
+          var result = '<b>Concussion -</b> The difficulty of all INT-related tasks is increased by 1 until the injury is treated.';
+        }
+      } else if (hitLocation == 2) {
+        var dieroll = getRandomInt(1,7);
+        if (dieroll == 1) {
+          var result = '<b>Arterial Wound -</b> The character suffers 1 persistent damage per turn until the injury is treated, bypassing DR.';
+        } else if (dieroll == 2) {
+          var result = '<b>Infected Wound -</b> Roll 1x on the Disease table, inflicting the result on the character immediately.';
+        } else if (dieroll == 3) {
+          var result = '<b>Gruesome Wound -</b> The difficulty of CHA tests is increased by 1 until the injury is treated.';
+        } else if (dieroll == 4) {
+          var result = "<b>Spinal Injury -</b> One limb of the GM's choice becomes unusable until the injury is treated.";
+        } else if (dieroll == 5) {
+          var result = "<b>Collapsed Lung -</b> The character cannot sprint or spend AP on AGI-related tests until the injury is treated.";
+        } else if (dieroll == 6) {
+          var result = "<b>Broken Rib -</b> The character treats their END as being 2 points lower until the injury is treated.";
+        } else if (dieroll == 7) {
+          var result = "<b>Groin Shot -</b> The character immediately loses 1 Luck point if they had one, and is knocked prone.";
+        }
+      } else if (hitLocation == 3) {
+        var dieroll = getRandomInt(1,7);
+        if (dieroll == 1) {
+          var result = '<b>Arterial Wound -</b> The character suffers 1 persistent damage per turn until the injury is treated, bypassing DR.';
+        } else if (dieroll == 2) {
+          var result = '<b>Infected Wound -</b> Roll 1x on the Disease table, inflicting the result on the character immediately.';
+        } else if (dieroll == 3) {
+          var result = '<b>Gruesome Wound -</b> The difficulty of CHA tests is increased by 1 until the injury is treated.';
+        } else if (dieroll == 4) {
+          var result = "<b>Droped Weapon -</b> The character's current weapon or item is knocked from their grasp, and may be damaged at the GM's discretion.";
+        } else if (dieroll == 5) {
+          var result = "<b>Mangled Hand -</b> The character is unable to grasp or manipulate objects with the damaged hand until the injury is treated.";
+        } else if (dieroll == 6) {
+          var result = "<b>Broken Arm -</b> The difficulty of all tests involving the use of the character's arm is increased by 1 until the injury is treated.";
+        } else if (dieroll == 7) {
+          var result = "<b>Torn Muscle -</b> The difficulty of all STR-based tests involving the arm is increased by 1 until the injury is treated.";
+        }
+      } else if (hitLocation == 4) {
+        var dieroll = getRandomInt(1,6);
+        if (dieroll == 1) {
+          var result = '<b>Arterial Wound -</b> The character suffers 1 persistent damage per turn until the injury is treated, bypassing DR.';
+        } else if (dieroll == 2) {
+          var result = '<b>Infected Wound -</b> Roll 1x on the Disease table, inflicting the result on the character immediately.';
+        } else if (dieroll == 3) {
+          var result = '<b>Gruesome Wound -</b> The difficulty of CHA tests is increased by 1 until the injury is treated.';
+        } else if (dieroll == 4) {
+          var result = '<b>Kneecapped -</b> A standard movement is now treated as a Major Action, and the character may not attempt the Sprint action. The difficulty of movement-related tests is increased by 1 until the injury is treated.';
+        } else if (dieroll == 5) {
+          var result = '<b>Broken Leg -</b> The character is knocked prone and rendered unable to move beyond crawling until the injury is treated.';
+        } else if (dieroll == 6) {
+         var result = '<b>Torn Muscle -</b> The character treats their STR as being 2 points lower until the injury is treated.';
+        }
+      };
+      document.getElementById("RandInjury").innerHTML = result;
+    };
+  </script>
+  <script type="text/javascript" title="Random Quest">
+    function randomQuest(){
+      var select = document.getElementById("quest-type-selector");
+      var questType = select.value;
+      if (questType == 1) {
+        var questType = getRandomInt(2,9);
+      };
+
+    if (questType == 2) {
+      var dieroll = getRandomInt(1,50);
+      if (dieroll >= 50) {
+        var firstname = randMaleName();
+      } else {
+        var firstname = randFemName();
+      }
+      var lastname = randLastName();
+      var questgiver = firstname + " " + lastname;
+      var questtownname1 = randTownName();
+      var patron1 = [questgiver + ", the mayor of " + questtownname1, questgiver + ", the head of a caravan", questgiver + " a wasteland scientist", questgiver + ", a militia officer from " + questtownname1, questgiver + ", a chem maker", questgiver + ", a priest", questgiver + ", a water baron", questgiver + ", a bounty hunter", questgiver + ", a scavanger", questgiver + ", a memeber of the wealthy eliet", questgiver + ", the sherrif of " + questtownname1, questgiver + ", a tribal witch", questgiver + ", a tribal shaman", "A detailed note from " + questgiver + ", who", "A holotape recorded by " + questgiver + ", who", "Somone you met before", questgiver + ", a hunter", questgiver + ", a wastelander", questgiver + ", an explorer"];
+      var patron = patron1[getRandomInt(0, patron1.length )];
+
+      var dieroll = getRandomInt(1,50);
+      if (dieroll >= 50) {
+        var firstname = randMaleName();
+      } else {
+        var firstname = randFemName();
+      }
+      var lastname = randLastName();
+      var questtarget = firstname + " " + lastname;
+      var questtownname2 = randTownName();
+      var target1 = [questtarget + ", the mayor of " + questtownname2, questtarget + ", the head of a caravan", questtarget + " a wasteland scientist", questtarget + ", a militia officer from " + questtownname2, questtarget + ", a chem maker", questtarget + ", a priest", questtarget + ", a water baron", questtarget + ", a bounty hunter", questtarget + ", a scavanger", questtarget + ", a memeber of the wealthy eliet", questtarget + ", the sherrif of " + questtownname2, questtarget + ", a tribal witch", questtarget + ", a tribal shaman", "somone you met before", questtarget + ", a hunter", questtarget + ", a wastelander", questtarget + ", an explorer", questtarget + ", a raider"];
+      var target = target1[getRandomInt(0, target1.length )];
+
+      var reason1 = ["murdered a loved one", "commited a coup", "stole something valuable", "has vital information", "possesses a sought-after relic", "knows too much", "is related to them", "is running from a debt", "poses a future threat to them", "is plotting something"];
+      var reason = reason1[getRandomInt(0, reason1.length )];
+      var location1 = ["a fettid swamp", "an abandoned mine", "a ruin in a city", "a hellish place", "a radier infested hellhole", "a petrified forest", "a green oasis", "a norotrious crime ridden post-war city", "an ancient sewer system", "an abandoned metro system", "a mountain", "an especialy harsh patch of wasteland", "a stretch of badlands", "a place most people think is haunted", "a remote cave system", "a remote settlment", "a radioactive waste"];
+      var location = location1[getRandomInt(0, location1.length )];
+      var guards1 = ["a hoard of feral ghouls", "super mutants", "a gang of intelegent ghouls", "a raider gang", "a group of robots", "a gang", "protective wasters", "a religious cult", "a pack of mole rats", "yao-guai", "a pack of deathclaws", "a mercinary crew"];
+      var guards = guards1[getRandomInt(0, guards1.length )];
+      var sanctum1 = ["a millitary outpost", "an old millitary base", "a fortified shack in the wilderness", "an old bunker", "a Series 1000 Shelter, an old library", "a manshion", "a hidden labratory", "a cave", "a raider den", "a crashed airplane", "a survivalist's bunker"];
+      var sanctum = sanctum1[getRandomInt(0, sanctum1.length )];
+      var quest = patron + " " + ' wants you to track down ' + target + ' who ' + reason + '. ' + questtarget + ' was last seen in ' + location + ' and can be found in ' + sanctum + ' guarded by ' + guards + '.';
+      document.getElementById("RandQuestType").innerHTML = 'Man Hunt';
+      document.getElementById("RandQuest").innerHTML = quest;
+
+        document.getElementById("questtarget").innerHTML = questtarget;
+        document.getElementById("questtownname2").innerHTML = questtownname2;
+        document.getElementById("questtownname1").innerHTML = questtownname1;
+        document.getElementById("questgiver").innerHTML = questgiver;
+
+
+
+    }
+
+
+
+    }
+  </script>
+  <script type="text/javascript" title="Save / Load Weather Data">
+      // Function to download the JSON file
+    function downloadJSON(data, filename) {
+    const jsonStr = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+
+    URL.revokeObjectURL(url);
+    }
+
+    // Function to handle the backup button click event
+    function handleBackup() {
+    const data = JSON.parse(localStorage.getItem('weatherReports'));
+    downloadJSON(data, 'backup.json');
+    }
+
+    // Function to handle the load button click event
+    function handleLoad() {
+    const fileInput = document.getElementById('loadFileInput');
+    fileInput.click();
+    }
+
+    // Function to handle the file input change event
+    function handleFileChange(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+      const data = JSON.parse(event.target.result);
+      localStorage.setItem('weatherReports', JSON.stringify(data));
+      alert('File loaded successfully!');
+    }
+
+    reader.readAsText(file);
+    }
+
+    // Add event listeners to the buttons and file input
+    const backupBtn = document.getElementById('backupBtn');
+    backupBtn.addEventListener('click', handleBackup);
+
+    const loadBtn = document.getElementById('loadBtn');
+    loadBtn.addEventListener('click', handleLoad);
+
+    const loadFileInput = document.getElementById('loadFileInput');
+    loadFileInput.addEventListener('change', handleFileChange);
   </script>
 </html>

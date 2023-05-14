@@ -2677,7 +2677,9 @@ var Vault1 = new FalloutMarker({iconUrl: 'img/AI - Green/Vault (Found).webp'}),
 	ScrapYard1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Scrapyard (Found).webp'}),
 	ScrapYard2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Scrapyard (Undiscovered).webp'}),
 	Radiation1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Radiation Site (Found).webp'}),
-	Radiation2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Radiation Site (Undiscovered).webp'});
+	Radiation2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Radiation Site (Undiscovered).webp'}),
+	Reactor1a = new FalloutMarker({iconUrl: 'img/AI - Amber/Reactor (Found).webp'}),
+	Reactor2a = new FalloutMarker({iconUrl: 'img/AI - Amber/Reactor (Undiscovered).webp'});
 
 	L.icon = function (options) {
     return new L.Icon(options);
@@ -2820,14 +2822,15 @@ var PlayerLocations = L.layerGroup([BaseCamp, TrainStation, StripMall, WaterTowe
 
 //       DM LOCATIONS
 var BillyBunker = L.marker([30.950658, -95.917897], {icon: Bunker2a}).bindPopup("Billy's Bunker"),
-		CampSwift = L.marker([30.191516, -97.307574], {icon: Fort2a}).bindPopup("Camp Swift");
+		CampSwift = L.marker([30.191516, -97.307574], {icon: Fort2a}).bindPopup("Camp Swift"),
+		DrsCompound = L.marker([30.018803, -95.863483], {icon: Reactor2a}).bindPopup("Dr. Delgado's Compound");
 
-var DMLocations = L.layerGroup([BillyBunker, CampSwift]);
+var DMLocations = L.layerGroup([BillyBunker, CampSwift, DrsCompound]);
 
 // Add an event listener to the document object that listens for the keydown event
 document.addEventListener('keydown', function(event) {
   // Check if the key pressed is the pipe key
-  if (event.key === '|') {
+  if (event.key === '}') {
     // Toggle the visibility of the layer
     if (map.hasLayer(DMLocations)) {
       map.removeLayer(DMLocations);
@@ -2854,7 +2857,7 @@ map.on('zoomend', function() {
 					map.removeLayer(Settelments);
 					map.removeLayer(vaultMarkers);
 					map.removeLayer(PlayerLocations);
-					map.aremoveLayer(QuestLocations);
+					map.removeLayer(QuestLocations);
 			}
 });
 
