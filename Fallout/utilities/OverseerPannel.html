@@ -835,6 +835,15 @@
     function clearWeatherHistory() {
     localStorage.removeItem('weatherReports');
     };
+
+    function removeParagraphs() {
+      const container = document.getElementById('weatherReportsContainer');
+      const paragraphs = container.getElementsByTagName('p');
+
+      while (paragraphs.length > 0) {
+        container.removeChild(paragraphs[0]);
+      }
+    };
   </script>
   <script type="text/javascript" title="Random Intiger Gen">
     function getRandomInt(min, max) {

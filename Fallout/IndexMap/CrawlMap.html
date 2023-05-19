@@ -2615,6 +2615,8 @@ var Vault1 = new FalloutMarker({iconUrl: 'img/AI - Green/Vault (Found).webp'}),
 	RuinsB2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Ruins II (Undiscovered).webp'}),
 	Settlement1 = new FalloutMarker({iconUrl: 'img/AI - Green/Settlement (Found).webp'}),
 	Settlement2 = new FalloutMarker({iconUrl: 'img/AI - Green/Settlement (Undiscovered).webp'}),
+	Settlement1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Settlement (Found).webp'}),
+	Settlement2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Settlement (Undiscovered).webp'}),
 	TechnoCrats1 = new FalloutMarker({iconUrl: 'img/AI - Green/Institute (Found).webp'}),
 	TechnoCrats2 = new FalloutMarker({iconUrl: 'img/AI - Green/Institute (Undiscovered).webp'}),
 	Wilderness1 = new FalloutMarker({iconUrl: 'img/AI - Green/Wilderness (Found).webp'}),
@@ -2816,9 +2818,10 @@ var BaseCamp = L.marker([29.967237, -95.703637], {icon: Camp1b}).bindPopup("Gas 
 		StripMall = L.marker([29.968459, -95.694668], {icon: RuinsB1b}).bindPopup("Cypress Town Center"),
 		WaterTower = L.marker([29.959994, -95.714288], {icon: WaterPlant1b}).bindPopup("FEMA Water Tower"),
 		JunkYard = L.marker([30.028409, -95.673324], {icon: ScrapYard2b}).bindPopup("Junkyard"),
-		Rad1 = L.marker([29.912284, -95.74225], {icon: Radiation1b}).bindPopup("Radioactive Lakes (deadly)");
+		Rad1 = L.marker([29.912284, -95.74225], {icon: Radiation1b}).bindPopup("Radioactive Lakes (deadly)"),
+		Nude = L.marker([30.061524, -95.739227], {icon: Settlement2b}).bindPopup("Nudist Colony");
 
-var PlayerLocations = L.layerGroup([BaseCamp, TrainStation, StripMall, WaterTower, JunkYard, Rad1]);
+var PlayerLocations = L.layerGroup([BaseCamp, TrainStation, StripMall, WaterTower, JunkYard, Rad1, Nude]);
 
 //       DM LOCATIONS
 var BillyBunker = L.marker([30.950658, -95.917897], {icon: Bunker2a}).bindPopup("Billy's Bunker"),
