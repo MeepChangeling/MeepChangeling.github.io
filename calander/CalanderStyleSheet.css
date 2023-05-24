@@ -1,0 +1,47 @@
+/* Basic Page Styling */
+
+html {
+  background: none transparent;
+}
+
+body {
+  /* background-image: url("../img/bookpage.jpg");
+  background-color: #7F7F7F; */
+  background: none transparent;
+	background-repeat: no-repeat;
+	background-position: right top;
+	background-attachment: fixed;
+}
+
+.doc-content {
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: -60px;
+}
+
+table {
+  width: 100%;
+}
+
+tr.c12 .c6 .c14 .c11 .c8 {
+  background-color: hsla(32, 24%, 33%, 0.82);
+}
+
+th {
+	background-color: hsla(32, 24%, 33%, 0.82);
+	font-size: 20px;
+}
+
+tr:nth-child(even) {
+  background-color: hsla(32, 24%, 50%, 0.48);
+}
+
+td:nth-child(even) {
+  background-color: hsla(32, 24%, 50%, 0.48);
+}
+
+
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+}

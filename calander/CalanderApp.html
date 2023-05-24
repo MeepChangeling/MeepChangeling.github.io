@@ -1,0 +1,106 @@
+<html lang="en">
+<html>
+<head>
+<meta charset="utf-8">
+<title>Eyomic Calander</title>
+<style media="screen">
+	div.yearcont {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.center {
+		display: table;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.backbutton {
+
+	}
+	.forwardbutton {
+
+	}
+	.confirm {
+
+	}
+</style>
+<link id="theme" rel="stylesheet" type="text/css" href="../MainStyleSheet.css" />
+<link rel="icon" type="../image/x-icon" href="../img/logo.png">
+
+</head><script src="../scripts/darkmode.js"></script>
+<body>
+<div>
+<script src="../nav.js"></script>
+</div>
+
+<br>
+<div class="book">
+<h3 class="articletitle">Eyomic Calander</h3>
+<article>
+	<div class="yearcont">
+		<span class="center">
+			<label for="Name">Year:</label>
+			<input type="text" id="year" name="Name" placeholder="2000" value="2000">
+		</span>
+		<br>
+		<span class="center">
+			<button class="backbutton" type="button" name="yearback" onclick="yearback();">⬅</button>
+			<button class="confirm" type="button" name="button" onclick="enteryear();">Enter Year</button>
+			<button class="forwardbutton" type="button" name="yearforward" onclick="yearforward();">➡</button>
+		</span>
+	</div>
+
+	<iframe id="calanderpage" src="EyomCalander1.html" allowtransparency = "true" style="width: 95%; height: 7025px; border: none; background: none transparent;"></iframe>
+</article>
+</div>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+</script>
+
+<script type="text/javascript">
+	function enteryear() {
+			let theyear = document.getElementById("year").value;
+			let themath = theyear % 5;
+			let newsrc = "EyomCalander" + (themath) + ".html";
+			let el = document.querySelector('#calanderpage');
+			el.src = newsrc;
+	}
+</script>
+
+<script type="text/javascript">
+	function yearback() {
+		let theyear = document.getElementById("year").value;
+		let themodyear = theyear - 1;
+		let themath = themodyear % 5;
+		let newsrc = "EyomCalander" + (themath) + ".html";
+		let el = document.querySelector('#calanderpage');
+		el.src = newsrc;
+		document.getElementById('year').value = themodyear;
+	}
+</script>
+
+<script type="text/javascript">
+	function yearforward() {
+		let theyear = document.getElementById("year").value;
+		let themodyear = parseInt(theyear) + 1;
+		console.log(themodyear);
+		let themath = themodyear % 5;
+		let newsrc = "EyomCalander" + (themath) + ".html";
+		let el = document.querySelector('#calanderpage');
+		el.src = newsrc;
+		document.getElementById('year').value = themodyear;
+	}
+</script>

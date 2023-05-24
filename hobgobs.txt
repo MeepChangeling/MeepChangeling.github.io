@@ -1,0 +1,39 @@
+Hobgoblins 
+
+
+Standard Racial Traits
+Ability Score Racial Traits: Hobgoblins gain +2 Str, +2 Con, and -2 Int. 
+Type: Hobgoblins are fey. 
+Size: Hobgoblins are Medium creatures and thus receive no bonuses or penalties due to their size. 
+Speed: Hobgoblins have a base speed of 30 feet. 
+Languages: Hobgoblins begin play speaking Common. 
+Defense Racial Traits
+
+Natural Armor: Hobgoblins have a +1 natural armor bonus to their Armor Class.
+Fearless: Hobgoblins have a +2 racial bonus on all saving throws against fear effects.
+Illusion Resistance: Hobgoblins have a +2 racial bonus on saving throws against illusion spells or effects.
+Feat and Skill Racial Traits
+
+Cave Dweller: Hobgoblins have a +1 bonus on Knowledge (dungeoneering) and Survival checks made underground.
+Skill Training: Knowledge (Dungeoneering) and Survival are always considered class skills for hobgoblins.
+Magical Racial Traits
+
+Movement Racial Traits
+
+Jumper: Hobgoblins are always considered to have a running start when making Acrobatics checks to jump.
+Sprinter: Hobgoblins gain a +10 foot racial bonus to their speed when using the charge, run, or withdraw actions.
+Offense Racial Traits
+
+Natural Weapons: Hobgoblins have a bite primary natural attack that deals 1d4 damage.
+Kneecapper: Hobgoblins have a +4 racial bonus on combat maneuver checks to trip an opponent.
+Senses Racial Traits
+
+Low-Light Vision: Hobgoblins can see twice as far as a race with normal vision in conditions of dim light.
+See in Darkness: Hobgoblins can see perfectly in darkness of any kind, including that created by spells such as deeper darkness.
+Scent: Members of this race gain the scent ability.
+Weakness Racial Traits
+
+Elemental Vulnerability: Hobgoblin have vulnerability to fire.
+Other Racial Traits
+
+Hold Breath: Hobgoblins can hold their breath for a number of rounds equal to four times their Constitution score before risking drowning or suffocating.

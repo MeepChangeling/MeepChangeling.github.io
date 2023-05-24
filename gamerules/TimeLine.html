@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>General Timeline</title>
+  <link href="../gamerule.css" rel="stylesheet">
+  <link rel="icon" type="../image/x-icon" href="../img/logo.png">
+  <style media="screen">
+    p.disiease {
+      border-style: solid;
+      border-width: 1px 0px;
+      border-color: black;
+    }
+    .timeline{
+      margin-left: auto;
+      margin-right: auto;
+      width:80%;
+      
+    }
+    .timeline ul{
+    	list-style-type:none;
+    	border-left:2px solid #0da1bf;
+    	padding:10px 5px;
+    }
+    .timeline ul li{
+    	padding:20px 20px;
+    	position:relative;
+      border-bottom: 1px solid #0da1bf;
+    	transition:.5s;
+    }
+    .timeline ul li:first-child {
+      border-top: 1px solid #0da1bf;
+    }
+    .timeline ul li span{
+    	display:inline-block;
+    	background-color:#0ea9c8;
+    	border-radius:25px;
+    	padding:2px 5px;
+    	font-size:1.1em;
+    	text-align:center;
+    }
+    .timeline ul li .timelinecontent h5{
+    	color:#34ace0;
+    	font-size:17px;
+
+      overflow:visible;
+    }
+    .timeline ul li .timelinecontent p{
+    	font-size:15px;
+      overflow:visible;
+    }
+    .timeline ul li:before{
+    	position:absolute;
+    	content:'';
+    	width:20px;
+    	height:20px;
+    	background-color:#0da1bf;
+    	border-radius:50%;
+    	left:-15px;
+    	top:23px;
+    	transition:.5s;
+
+    }
+    .timeline ul li:hover{
+    	background-color:rgba(45, 208, 240, 0.49);
+    }
+
+    div.timelinecontent a {
+      z-index: 11;
+    }
+    div.timelinecontent p {
+      z-index: 10;
+    }
+    div.timelinecontent a.bglink {
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         top: 0;
+         left: 0;
+         text-decoration: none; /* No underlines on the link */
+         z-index: 0; /* Places the link above everything else in the div */
+         background-color: #FFF; /* Fix to make div clickable in IE */
+         opacity: 0; /* Fix to make div clickable in IE */
+         filter: alpha(opacity=1); /* Fix to make div clickable in IE */
+     }
+    @media (max-width:300px){
+    	.timeline{
+    		width:100%;
+    		padding:30px 5px 30px 10px;
+    	}
+    	.timeline ul li .timelinecontent h3{
+    		color:#34ace0;
+    		font-size:15px;
+        overflow: visible;
+    	}
+    }
+    .era {
+      background-color:rgba(121, 225, 246, 0.42);
+      border: 1px solid #0ea9c8;
+    }
+    .era2 {
+      margin-top: 1.5em;
+      background-color:rgba(121, 225, 246, 0.42);
+      border: 1px solid #0ea9c8;
+    }
+  </style>
+</head>
+<script src="../scripts/darkmode.js"></script>
+<body>
+<div>
+<script src="../nav3.js"></script>
+</div>
+<br>
+<div class="book">
+<h3 class="articletitle">General Timeline of Eyom</h3>
+
+<div class="era" id="TyrantEra">
+  <h4 class="centertext">The Tyrant's Era</h4>
+  <p class="centertext">Events occuring durring the first age of Zo, when it was under the dominion of The Tyrant.</p>
+    <div class="timeline">
+      <ul>
+        <li>
+          <span>-14m FC</span>
+          <div class="timelinecontent">
+            <h5><a href="http://www.example.com">Zo is Created</a></h5>
+            <p>
+              A divine known only as "The Tyrant" creates Zo along with the other contents of Zo's Crystal Sphere. They are not partiuruly skilled at bringing their visions to life, and punish their creations for failing to live up to expectations rather than improving their own skills.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span>-13.2m FC</span>
+          <div class="timelinecontent">
+            <h5><a href="http://www.example.com">Birth of the Primordials</a></h5>
+            <p>
+              The Tyrant creates lesser divines to manage his creation for him. These entities are named "The Primordials" and exist more as anthropomorphic Personifications than people. The Primordials are able to keep The Tyrant's vision of reality working, but only just. <a href="..\religions\GoblinBeliefs.html">Tol</a> was created at this time.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span>-10.6m FC</span>
+          <div class="timelinecontent">
+            <h5><a href="http://www.example.com">The First Tyranical War</a></h5>
+            <p>
+              The Tyrant, unable to achieve his exact vision, begins to steal creations of other gods from all actross the multiverce. His thefts are aided and abeded by a means of reaching through the phlogistion which even divines can use. This method has been eraced from time.
+            </p>
+            <p>The multiverce's major divines track the thefts back to The Tyrant and begin a war against him and his influence. The war ravages the multiverce for an age, ending only when The Tyrant's means of travel is destroyed and he is confined to his own sphere. The majority of his stolen items are not recovered.</p>
+          </div>
+        </li>
+        <li>
+          <span>-8.6m FC</span>
+          <div class="timelinecontent">
+            <h5><a href="http://www.example.com">The First Divines</a></h5>
+            <p>
+              Using stolen knolage, items, and mortals from across the unierce The Tyrant is able to create traditional deities, beings needing the worship of mortals to survive, to further manage his creation. These goes have defined personalities, apperances, and goals, and do a very quick job of getting mortal kind to heed the Tyrant's will with near prefection. Yet, this is not enough for the Tyrant, who begins to stew in his guilded cage.
+            </p>
+            <p>
+               <a href="..\religions\TheHospitalars.html">Hospitlar</a> and <a href="..\religions\WayofKings.html">Thekle</a> were created at this time.
+            </p>
+          </div>
+        </li>
+
+
+      </ul>
+    </div>
+</div>
+<div class="era2" id="Era">
+  <h4 class="centertext">The Clockwork Era</h4>
+  <p class="centertext">placeholder</p>
+    <div class="timeline">
+      <ul>
+        <li>
+          <span>3rd January 2020</span>
+          <div class="timelinecontent">
+            <h5><a href="http://www.example.com">What Is Lorem Ipsum?</a></h5>
+            <p>
+              Lorem Ipsum is simply <a href="http://www.google.com">dummy</a> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+</div>
+<!--
+<div class="era2" id="Era">
+  <h4 class="centertext">The X Era</h4>
+  <p class="centertext">placeholder</p>
+    <div class="timeline">
+      <ul>
+        <li>
+          <span>3rd January 2020</span>
+          <div class="timelinecontent">
+            <h5><a href="http://www.example.com">What Is Lorem Ipsum?</a></h5>
+            <p>
+              Lorem Ipsum is simply <a href="http://www.google.com">dummy</a> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+            </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+</div>
+-->

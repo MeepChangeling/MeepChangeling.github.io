@@ -1,0 +1,807 @@
+/* Header Styling */
+
+h1 {
+  font-family: Garamond, serif;
+}
+h2 {
+  font-family: Garamond, serif;
+}
+
+/* Title Styling */
+
+.header {
+  padding: 30px;
+  text-align: center;
+  /*background: #1abc9c;*/
+  background-image: url("img/HeadderBackground.png");
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #B49933;
+  font-size: 30px;
+  font-family: Garamond, serif;
+  z-index: 1;
+  }
+
+/* Navbar Styling */
+
+ul {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /*background-color: #333;
+  background-image: url("img/navbar.jpg");*/
+
+
+}
+
+
+ /* Navbar container */
+.navbar {
+  width: 100%;
+  background-color: #333;
+  background-image: url("img/navbar.jpg");
+  background-size: 100% 100%;
+  font-family: Times New Roman;
+  font-size: 22px;
+  float: left;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+.navbar2 {
+  width: 100%;
+  font-family: Times New Roman;
+  font-size: 22px;
+  float: left;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-bottom: 20px;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: right;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: white;
+  background-image: url("img/buttonbackground.png");
+  background-size: 100% 100%;
+}
+
+	/* The dropdown container */
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+	/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+    background-image: url("img/buttonbackground.png");
+  background-size: 100% 100%;
+}
+
+	/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+  display: inline-block;  // or display:inline if you want them horizontally positioned
+}
+
+	/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  background-image: url("img/bookpage.jpg");
+  	border: solid #4F120B;
+	border-width: 5px;
+	Border-style: outset;
+	background-color: #FCF5E5;
+	background-repeat: repeat-y;
+}
+
+	/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  background-image: none;
+
+}
+
+	/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+	/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+/* Iframe Control */
+
+div.mapframe, iframe {
+    width: 75%;
+    height: 600px;
+	display:block;
+    margin: 0 auto;
+    border: solid #4F120B;
+	border-width: 15px;
+	background-image: url("img/bookpage.jpg");
+	background-color: #FCF5E5;
+	background-repeat: repeat-y;
+}
+
+iframe.infoboxiframe {
+	display:block;
+     border: solid #4F120B;
+	 margin: auto;
+	border-width: 3px;
+	background-image: url("img/bookpage.jpg");
+	background-color: #FCF5E5;
+	background-repeat: repeat-y;
+
+	width: 98%;
+	height: 250px;
+}
+
+div.dungeongen {
+	width: 75%;
+	height: 1700px;
+	display: block;
+    margin: 0 auto;
+    border: solid #4F120B;
+	border-width: 15px;
+	background-image: url("img/bookpage.jpg");
+	background-color: #FCF5E5;
+	background-repeat: repeat-y;
+}
+
+/* Page Title */
+
+.pagetitlenav {
+	float: left;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-left: 18px;
+	padding-right: 18px;
+	padding-top: 13px;
+	padding-bottom:13px;
+	font-size: 16px;
+	color: white;
+	text-align: center;
+	background-image: url("img/buttonbackground.png");
+	background-size: 100% 100%;
+}
+
+/* Basic Page Styling */
+
+body {
+	background-image: url("img/hideout.jpg");
+  background-color: #7F7F7F;
+	background-repeat: no-repeat;
+	background-position: right top;
+	background-attachment: fixed;
+}
+/* Book Effect 4F120B */
+
+div.book {
+	display: block;
+	border: solid #4F120B;
+	border-width: 15px;
+	Border-style: outset;
+	background-image: url("img/bookpage.jpg");
+
+	background-color: #FCF5E5;
+	background-repeat: repeat-y;
+	width: 60%;
+	padding: 20px;
+	margin: auto;
+}
+
+img.inline {
+    height: 1em;
+    width: 1em;
+}
+
+img.document {
+	float: right;
+	border: 1px dotted black;
+	margin: 0px 0px 15px 20px;
+}
+
+iframe.regionmap {
+    border: none;
+    height: 100%;
+    width: 100%;
+}
+
+div.regionmapcontianer {
+  height: 400px;
+  width: 50%;
+  float: right;
+  clear: right;
+  border: solid #4F120B;
+  border-width: 3px;
+  margin: 0.5em 0 0.5em 1em;
+}
+
+/* Table Styling */
+
+table, {
+	width: 100%;
+
+}
+
+th {
+	background-color: hsla(32, 24%, 33%, 0.82);
+	font-size: 20px;
+}
+
+tr:nth-child(even) {
+  background-color: hsla(32, 24%, 50%, 0.48);
+}
+
+td:nth-child(even) {
+  background-color: hsla(32, 24%, 50%, 0.48);
+}
+
+
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+td {
+	font-size: 18px;
+}
+
+/* Headding Styling */
+
+h3.articletitle {
+	font-weight: bold;
+	font-size: 30px;
+	border-bottom: 1px solid #4F120B;
+	overflow: hidden;
+	font-family: Palatino, serif;
+}
+
+h4.articlesubtitle {
+	font-weight: bold;
+	font-size: 22px;
+	border-bottom: 1px solid #4F120B;
+	overflow: hidden;
+	font-family: Palatino, serif;
+}
+
+h5.articlesubtitle {
+	font-weight: bold;
+	font-size: 18px;
+	border-bottom: 1px solid #4F120B;
+	overflow: hidden;
+	font-family: Palatino, serif;
+}
+
+h6.articlesubtitle {
+	font-weight: bold;
+	font-size: 14px;
+	border-bottom: 1px solid #4F120B;
+	overflow: hidden;
+	font-family: Palatino, serif;
+}
+/* List Styling */
+
+ul.articlelist {
+	background: none;
+	background-image: none;
+	list-style-type: circle;
+}
+ul.demographicslist {
+	background: none;
+	background-image: none;
+	list-style-type: none;
+}
+ol.articlelist2 {
+	background: none;
+	background-image: none;
+	list-style-type: disc;
+}
+
+/* Link Styling */
+
+a.doclink:link {
+  color: #1a4210;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+a.doclink:visited {
+  color: #eb5519;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+a.doclink:hover {
+  color: #c29b2e;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+a.articlelink:link {
+  color: #1a4210;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+a.articlelink:visited {
+  color: #eb5519;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+a.articlelink:hover {
+  color: #c29b2e;
+  background-color: transparent;
+  text-decoration: underline;
+  text-shadow: 1px 1px 1px hsla(32, 24%, 0%, 0.4);
+}
+
+
+
+
+
+/* Info Boxes */
+
+table.infobox {
+border: 1px solid #a2a9b1;
+border-spacing: 3px;
+background-color: #f8f9fa;
+color: black;
+margin: 0.5em 0 0.5em 1em;
+padding: 0.2em;
+float: right;
+clear: right;
+font-size: 88%;
+line-height: 1.5em;
+width: 22em;
+}
+
+td.infobox-subheadder {
+	text-align: center;
+}
+
+th.infobox-head {
+	background-color: hsla(32, 24%, 33%, 0.82);
+	font-weight: bold;
+	text-align: center;
+}
+
+th.infobox-lable {
+	text-align: left;
+	font-weight: bold;
+}
+
+th.infobox-data {
+	text-align: left;
+}
+
+.infobox-image {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Special Tags */
+
+p.AutoUpdateTag {
+display: none;
+}
+
+/* Collapsible */
+
+.collapsible {
+  background-color: hsla(32, 24%, 33%, 0.82);
+  color: white;
+  cursor: pointer;
+  padding: 0px;
+  width: auto;
+  border: none;
+  padding-right: 10px;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: rgba(108, 98, 71, 0.34);
+}
+
+.collapsible:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: white;
+    float: left;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+/* Lists */
+
+ul.simple {
+	list-style-type: none;
+	background-image: none;
+	background: none;
+	text-indent: 30px;
+}
+
+.zoomleft {
+  padding: 0px;
+  background-color: none;
+  transition: transform .2s; /* Animation */
+  width: 20%;
+  margin: 0 auto;
+  border: solid #4F120B;
+  border-width: 3px;
+  margin: 10px;
+  float: left;
+  width: 20%;
+  padding: 0px;
+   z-index: 2;
+}
+
+.zoomright {
+  padding: 0px;
+  background-color: none;
+  transition: transform .2s; /* Animation */
+  width: 20%;
+  margin: 0 auto;
+  border: solid #4F120B;
+  border-width: 3px;
+  margin: 10px;
+  float: right;
+  width: 20%;
+  padding: 0px;
+   z-index: 2;
+}
+
+.zoomleft:hover {
+  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transition-delay:1s;
+
+}
+
+.zoomright:hover {
+  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transition-delay:1s;
+
+}
+
+/* Media Control System */
+
+div.mediacontrol {
+	  float: left;
+  position: sticky; top:80;
+  background-image: url("img/woodplate.jpg");
+  background-size: cover;
+  padding: 13px;
+  width: 15%;
+  border-radius: 10px;
+}
+
+button.mediacontrollbutton {
+	background-color: transparent;
+	background-size: contain;
+	border: none;
+	cursor: pointer;
+	width: 60px;
+	padding: 2px;
+	margin-bottom: 16px;
+	height: 60px;
+}
+
+button.mediacontrollbutton#play {
+	background-image: url("img/play.png");
+}
+button.mediacontrollbutton#play:hover {
+	background-image: url("img/playlit.png");
+}
+
+
+button.mediacontrollbutton#pause {
+	background-image: url("img/pause.png");
+}
+button.mediacontrollbutton#pause:hover {
+	background-image: url("img/pauselit.png");
+}
+
+
+button.mediacontrollbutton#stop {
+	background-image: url("img/stop.png");
+}
+button.mediacontrollbutton#stop:hover {
+	background-image: url("img/stoplit.png");
+}
+
+/* Table of Contents */
+
+#toc_container {
+    background: rgba(108, 98, 71, 0.34) none repeat scroll 0 0;
+    border: 1px solid #4F120B;
+    display: table;
+    font-size: 90%;
+    margin-bottom: 1em;
+	margin-right: 1em;
+    padding: 20px;
+    width: auto;
+}
+
+.toc_title {
+    font-weight: 700;
+    text-align: center;
+}
+
+#toc_container li, #toc_container ul, #toc_container ul li{
+    list-style: outside none none !important;
+}
+
+html {
+	scroll-padding-top: 4rem;
+}
+
+@font-face {
+    font-family: 'hyperlegibler';
+    src: url('fonts/atkinson-hyperlegible-regular-102.woff2') format('woff2'),
+         url('fonts/atkinson-hyperlegible-regular-102.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'typewriter';
+    src: url('fonts/TT2020StyleB-Regular.woff2') format('woff2'),
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+p {
+	font-family:hyperlegibler;
+	font-size: 0.95em;
+	line-height: 1em;
+}
+
+div.quotebox {
+	padding-left: 3%;
+	padding-right: 3%;
+	margin-left: 5%;
+	margin-right: 5%;
+	border: 1px solid #4F120B;
+	background-color: rgba(108, 98, 71, 0.34);
+	font-family: 'Courier New';
+	overflow: hidden;
+}
+
+figure.right {
+	  padding: 0px;
+  background-color: none;
+  transition: transform .2s; /* Animation */
+  width: 20%;
+  margin: 0 auto;
+  border: solid #4F120B;
+  border-width: 3px;
+  margin: 10px;
+  float: right;
+  width: 20%;
+  padding: 0px;
+}
+
+
+figure.left {
+  padding: 0px;
+  background-color: none;
+  transition: transform .2s; /* Animation */
+  width: 20%;
+  margin: 0 auto;
+  border: solid #4F120B;
+  border-width: 3px;
+  margin: 10px;
+  float: left;
+  width: 20%;
+  padding: 0px;
+}
+
+figure.left:hover {
+  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transition-delay:1s;
+
+}
+
+figure.right:hover {
+  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transition-delay:1s;
+}
+
+figcaption.basic {
+	text-align: center;
+	border-bottom: 3px solid #4F120B;
+	background-color: rgba(108, 98, 71, 0.34);
+}
+
+@font-face {
+    font-family: 'typewriter';
+    src: url('fonts/TT2020StyleB-Regular.woff2') format('woff2');
+	font-weight: normal;
+    font-style: normal;
+}
+
+.typed {
+	font-family: 'typewriter';
+	font-size: 0.85em;
+	line-height: 1em;
+}
+
+ol ol {
+  list-style-type: lower-greek;
+}
+
+ol ol ol {
+  list-style-type: lower-roman;
+}
+
+/* Light Mode Button Styles
+        --------------------------- */
+        .light-mode-button {
+            background:0;
+            border: 0;
+            box-sizing: border-box;
+            cursor: pointer;
+            height: 40px;
+            width: 100px;
+            position: relative;
+            border: 2px solid white;
+            border-radius: 5%;
+            background-color: #121212;
+            color: #BBBBBB;
+        }
+
+        /* The switch - the box around the slider */
+        .switch {
+          position: sticky;
+
+          display: inline-block;
+          width: 60px;
+          height: 34px;
+          margin-left: 1em;
+          margin-right: 1em;
+          margin-top: 6px;
+          color: #BBBBBB;
+
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        /* The slider */
+        .slider {
+          position: absolute;
+          cursor: pointer;
+
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: none;
+          -webkit-transition: .4s;
+          transition: .4s;
+          border-style: solid;
+          border-width: 2px;
+          border-color: #B49933;
+          color: #BBBBBB;
+        }
+
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 26px;
+          width: 26px;
+          left: 2px;
+          bottom: 2px;
+          background-color: #B49933;
+          -webkit-transition: .4s;
+          transition: .4s;
+
+        }
+
+        input:checked + .slider {
+          background-color: #140f00;
+
+        }
+
+        input:focus + .slider {
+          box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked + .slider:before {
+          -webkit-transform: translateX(26px);
+          -ms-transform: translateX(26px);
+          transform: translateX(26px);
+        }
+
+        .slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.indent {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.indent2 {
+  margin-left: 6%;
+  margin-right: 6%;
+}

@@ -1,0 +1,233 @@
+<doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Utility: NPC ORG</title>
+<link id="theme" rel="stylesheet" type="text/css" href="../MainStyleSheet.css" />
+<link rel="icon" type="../image/x-icon" href="../img/logo.png">
+<style>
+    .inv {
+    display: none;
+    }
+    .inv1 {
+    display: none;
+    }
+
+    textarea {
+      width: 90%;
+      height: 60%;
+      padding: 3%;
+      margin-top: 1em;
+      margin-left: 5%;
+    	margin-right: 5%;
+    	border: 1px solid #4F120B;
+    	background-color: rgba(108, 98, 71, 0.34);
+    	font-family: 'Courier New';
+    	overflow: hidden;
+    }
+   label.toplable {
+     display: inline-block;
+     font-weight: 700;
+   }
+   .sectionhead {
+     border-style: solid;
+     border-width: 1px 0px;
+     border-color: black;
+     font-weight: 700;
+   }
+</style>
+</head>
+<script src="../scripts/darkmode.js"></script>
+<body>
+<div>
+<script src="../nav.js"></script>
+</div>
+<br>
+
+<div class="book">
+<h3 class="articletitle">NPC Organization Reaction Generator</h3>
+
+
+<label class="toplable" for="target">Org Type</label>
+<select id="target">
+  <option value="content_0">Org Type...</option>
+  <option value="content_1">Financial</option>
+  <option value="content_2">Political</option>
+  <option value="content_3">Mystical</option>
+</select>
+
+<label class="toplable" for="target1">How Player Action is Seen</label>
+<select id="target1">
+  <option value="content1_0">PC Action is...</option>
+  <option value="content1_1">Great Boon</option>
+  <option value="content1_2">Extreemly Favorable</option>
+  <option value="content1_3">Favorable</option>
+  <option value="content1_4">Somewhat Favorable</option>
+  <option value="content1_5">Nutural</option>
+  <option value="content1_6">Somewhat Disfavorable</option>
+  <option value="content1_7">Disfavorable</option>
+  <option value="content1_8">Extreemly Disfavorable</option>
+  <option value="content1_9">Exostential Threat</option>
+</select>
+
+<label class="toplable" for="target2">Org Attitude is...</label>
+<select id="target2">
+  <option value="content2_0">Attitude...</option>
+  <option value="content2_1">Petty</option>
+  <option value="content2_2">Nutural</option>
+  <option value="content2_3">Mature</option>
+</select>
+
+<label class="toplable" for="target4">ORG Responce Level...</label>
+<select id="target4">
+  <option value="content4_0">Responce Level...</option>
+  <option value="content4_1">Dispreportionate</option>
+  <option value="content4_2">Preportionate</option>
+</select>
+
+</br>
+
+<label class="toplable" for="target3">ORG Action is...</label>
+<select id="target3">
+  <option value="content3_0">ORG Action is...</option>
+  <option value="content3_1">Very Responcible</option>
+  <option value="content3_2">Responcible</option>
+  <option value="content3_3">Middle of the road</option>
+  <option value="content3_4">Irresponcible</option>
+  <option value="content3_5">Verry Irresponcible</option>
+</select>
+
+<button onclick="planbelike();">Their plans...</button>
+
+<p><b>It Goes... :</b> <span id="result"></span></p>
+
+<textarea id="notepad" placeholder="This is a scratch pad. It holds data between refreshes, and even reloading the page..."></textarea>
+
+
+<!-- Potion Crafter -->
+
+<script>
+  function planbelike() {
+    var orgtype1 = document.getElementById("target").value;
+    if (orgtype1 == 'content_1') {
+      var orgtype = 'financial';
+    } else if (orgtype1 == 'content_2') {
+      var orgtype = 'political';
+    } else if (orgtype1 == 'content_3') {
+      var orgtype = 'mystical';
+    } else {
+      var orgtype = 'unselected';
+    }
+    var actiontype1 = document.getElementById("target1").value;
+    if (actiontype1 == 'content1_1') {
+      var actiontype = 'a great boon';
+    } else if (actiontype1 == 'content1_2') {
+      var actiontype = 'extreemly favorable';
+    } else if (actiontype1 == 'content1_3') {
+      var actiontype = 'favorable';
+    }  else if (actiontype1 == 'content1_4') {
+      var actiontype = 'somewhat favorable';
+    } else if (actiontype1 == 'content1_5') {
+      var actiontype = 'nutural';
+    } else if (actiontype1 == 'content1_6') {
+      var actiontype = 'somewhat disfavorable';
+    } else if (actiontype1 == 'content1_7') {
+      var actiontype = 'disfavorable';
+    } else if (actiontype1 == 'content1_8') {
+      var actiontype = 'extreemly disfavorable';
+    } else if (actiontype1 == 'content1_9') {
+      var actiontype = 'an existential threat';
+    } else {
+      var actiontype = 'unselected';
+    }
+    var orgattitude1 = document.getElementById("target2").value;
+    if (orgattitude1 == 'content2_1') {
+      var orgattitude = 'petty';
+    } else if (orgattitude1 == 'content2_2') {
+      var orgattitude = 'nutural';
+    } else if (orgattitude1 == 'content2_3') {
+      var orgattitude = 'mature';
+    } else {
+      var orgattitude = 'unselected';
+    }
+    var orgreaction1 = document.getElementById("target3").value;
+    if (orgreaction1 == 'content3_1') {
+      var orgreaction = 'very responcible';
+    } else if (orgreaction1 == 'content_3_2') {
+      var orgreaction = 'responcible';
+    } else if (orgreaction1 == 'content3_3') {
+      var orgreaction = 'middle of the road';
+    } else if (orgreaction1 == 'content3_4') {
+      var orgreaction = 'irresponcible';
+    } else if (orgreaction1 == 'content3_5') {
+      var orgreaction = 'verry irresponcible';
+    } else {
+      var orgreaction = 'unselected';
+    }
+    var degree1 = document.getElementById("target4").value;
+    
+    if (degree1 == 'content4_1') {
+      var degree = 'dispreportionatly so';
+    } else if (degree1 == 'content4_2') {
+      var degree = 'in a preportionate manner';
+    } else {
+      var degree = 'unselected';
+    }
+
+
+    var success = getRandomInt(-100, 100);
+    document.querySelector('#result').innerHTML = 'The ' + orgtype + ' organization views the PC\'s action as ' + actiontype + ' and their attiude while discussing it is ' + orgattitude + '. They react to the PC\'s action in a ' + orgreaction + ' way ' + degree + '. Their plan\'s success roll is: ' + success + '%.';
+
+  }
+</script>
+
+
+
+
+
+
+<!-- Foundation Scripts -->
+
+<script>
+  function capFirst(word) {
+    let w = String(word);
+    if (w.length == 0) {
+     return "";
+    }
+    if (w.length == 1) {
+      return w.toUpperCase();
+    }
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  }
+
+function getRandomInt(min, max) {
+  	return Math.floor(Math.random() * (max - min)) + min;
+}
+</script>
+
+
+
+<script>
+  var d = document;
+
+// not using this at the moment but might do later for graceful degradation...
+function supports_html5_storage() {
+  try {
+    return 'localStorage' in window && window['localStorage'] !== null;
+  } catch (e) {
+    return false;
+  }
+}
+
+d.addEventListener('DOMContentLoaded', function(){
+
+  var savedContent = localStorage.getItem("notepadcontent");
+  if(savedContent != null){
+    d.getElementById("notepad").value = savedContent;
+  }
+
+
+ d.getElementById("notepad").onkeyup = function(){
+  var data = d.getElementById("notepad").value;  localStorage.setItem("notepadcontent", data);
+  }
+});
+</script>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html style="height: 100%; margin: 0;">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Eyom Map</title>
+
+<link rel="stylesheet" href="js/leaflet/leaflet.css">
+<script src="js/leaflet/leaflet.js"></script>
+<link rel="stylesheet" href="js/rulerplugin/Leaflet.LinearMeasurement.css">
+<script src="js/rulerplugin/Leaflet.LinearMeasurement.js"></script>
+<style>
+#map{
+   background-color: #5baef3;
+   background: #5baef3;
+}
+</style>
+</head><script src="../scripts/darkmode.js"></script>
+<body style="height: 100%; margin: 0; background-color: #5baef3;">
+
+<div id="map" style="width: 100%; height: 100%; background-color: #5baef3; background: #5baef3;"></div>
+
+<script type="text/javascript">
+	// Variables
+	//var mapSW = [0, 32768],
+		//mapNE = [32768, 0];
+		//16384
+	//var mapNE = [45.77, -39.49],
+		//mapSW = [2.29, 41.76];
+	
+	// Declare Map Object
+	var map = L.map('map', {
+		zoomDelta: 0.25,
+    	zoomSnap: 0,
+    	wheelPxPerZoomLevel: 100,
+		maxBounds: [
+        //south west
+        [4, 43],
+        //north east
+        [47, -41]
+        ], 
+	}).setView([45.77, 41.76], 3);
+	
+	// Map Bounds
+		
+	// Refrence the Tiles
+	L.tileLayer('img/EyomTiles/{z}/{x}/{y}.png', {
+		minZoom: 4,
+		maxNativeZoom: 9,
+		maxZoom: 11,
+		continousWorld: false,
+		noWrap: true,
+		crs: L.CRS.Simple,
+	}).addTo(map);
+	
+	L.control.scale({
+		imperial: false
+	}).addTo(map);
+	
+	 map.addControl(new L.Control.LinearMeasurement({
+        unitSystem: 'metric',
+        color: '#FF0080',
+        type: 'line'
+    }));
+	
+	
+	//map.setMaxBounds(new L.LatLngBounds(
+		//map.unproject(mapNE, map.getMaxZoom()),
+		//map.unproject(mapSW, map.getMaxZoom())
+	//));
+	
+	// Markers and Popups
+	// Cordinates Locating Marker
+	var marker = L.marker([36, -12], {
+		draggable: true,
+	}).addTo(map);
+	marker.bindPopup('');
+
+
+	// Normal Markers
+	//var marker_LinForrest = L.marker([37.29, -79.27]).addTo(map).bindPopup('<b>Lin Forrest</b>')//.openPopup();
+
+
+	// Special Cords Marker Function
+	marker.on('dragend', function(e) {
+		// alert(marker.getLatLng().toString());
+		marker.getPopup().setContent('Clicked' + marker.getLatLng().toString() + '<br />' + 'Pixles ' + map.project(marker.getLatLng(), map.getMaxZoom().toString()))
+			.openOn(map);
+	});
+
+
+	//var marker = L.marker([0, 0], {
+	//	draggable: true,
+	//}).addTo(map);
+	//marker.bindPopup('<b>Cursor</b>');
+
+
+
+
+
+
+
+
+
+</script>
+
+<!-- BG color set -->
+
+
+</body>
+</html>

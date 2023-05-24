@@ -331,9 +331,19 @@ div.regionmapcontianer {
 
 /* Table Styling */
 
-table, {
-	width: 100%;
+table {
+	width: 95%;
+  table-layout:auto;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+td.centered {
+    text-align: center;
+}
+
+td.bold {
+  font-weight: bold;
 }
 
 body.darkmode table a {
@@ -389,6 +399,13 @@ th, td {
 
 td {
 	font-size: 18px;
+}
+
+thead {
+  background-color: hsla(32, 24%, 33%, 0.82);
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
 }
 
 /* Headding Styling */
@@ -671,13 +688,13 @@ ul.simple {
 }
 
 .zoomleft:hover {
-  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(2) translateY(25%) translateX(25%);
   transition-delay:1s;
 
 }
 
 .zoomright:hover {
-  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(2) translateY(25%) translateX(-25%);
   transition-delay:1s;
 
 }
@@ -691,7 +708,7 @@ div.mediacontrol {
   background-size: cover;
   padding: 0;
   width: 15%;
-  overflow: auto;
+
   border-radius: 10px;
   margin-left: 1em;
   margin-right: -16em;
@@ -980,4 +997,8 @@ ol ol ol {
 .center {
   margin-left: auto;
   margin-right: auto;
+}
+
+.centertext {
+  text-align: center;
 }

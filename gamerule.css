@@ -2,11 +2,25 @@
 
 h1 {
   font-family: Garamond, serif;
+  font-family:illuminated;
 }
 h2 {
   font-family: Garamond, serif;
+  font-family:illuminated;
+  font-size: 1.2em;
+}
+
+.goldtext {
+  background: url(img/goldtex.jpg) no-repeat center center;
+  background-size: cover;
+  color: #fff;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -moz-background-clip:text;
+  background-clip:text;
 
 }
+
 
 .indent {
   margin-left: 3%;
@@ -226,6 +240,7 @@ body {
 	background-repeat: no-repeat;
   background-size: 100%;
    background-attachment: fixed;
+     overflow-anchor: none
 }
 /* Book Effect 4F120B */
 
@@ -235,7 +250,7 @@ div.book {
 	border-width: 15px;
 	Border-style: outset;
 	background-image: url("img/gamerulepagebackground.jpg");
-	overflow: hidden;
+
 	background-color: #FCF5E5;
 	width: 60%;
 	padding: 20px;
@@ -444,7 +459,7 @@ display: none;
 /* Collapsible */
 
 .collapsible {
-  background-color: hsla(32, 24%, 33%, 0.82);
+  background-color: #0ea9c8;
   color: white;
   cursor: pointer;
   padding: 0px;
@@ -458,15 +473,21 @@ display: none;
 }
 
 .active, .collapsible:hover {
-  background-color: #555;
+  background-color: #0a798f;
 }
 
 .content {
-  padding: 0 18px;
+
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
-  background-color: #f1f1f1;
+  padding-left: 3%;
+	padding-right: 3%;
+	margin-left: 5%;
+	margin-right: 5%;
+
+	background-color: rgba(121, 225, 246, 0.42);
+
 }
 
 .collapsible:after {
@@ -671,18 +692,24 @@ figure.left {
 }
 
 figure.left:hover {
-  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(2) translateY(25%) translateX(25%); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   transition-delay:1s;
+  display: inline-block;
 
 }
 
 figure.right:hover {
-  transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  transform: scale(2) translateY(25%) translateX(-25%); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
   transition-delay:1s;
+  display: inline-block;
 }
 
 figcaption.basic {
 	text-align: center;
 	border-bottom: 3px solid #0ea9c8;
 	background-color: rgba(121, 225, 246, 0.42);
+}
+
+.centertext {
+  text-align: center;
 }

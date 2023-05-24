@@ -1,0 +1,383 @@
+<doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cult Generator</title>
+<link id="theme" rel="stylesheet" type="text/css" href="../MainStyleSheet.css" />
+<link rel="icon" type="../image/x-icon" href="../img/logo.png">
+<style>
+  .inv {
+  display: none;
+  }
+  .inv1 {
+  display: none;
+  }
+
+  textarea {
+    width: 90%;
+    height: 60%;
+    padding: 3%;
+    margin-top: 1em;
+    margin-left: 5%;
+  	margin-right: 5%;
+  	border: 1px solid #4F120B;
+  	background-color: rgba(108, 98, 71, 0.34);
+  	font-family: 'Courier New';
+  	overflow: hidden;
+  }
+ label.toplable {
+   display: inline-block;
+   font-weight: 700;
+ }
+ span.sectionhead {
+   border-style: solid;
+   border-width: 1px 0px;
+   border-color: black;
+   font-weight: 700;
+ }
+</style>
+</head><script src="../scripts/darkmode.js"></script>
+<body>
+<div>
+<script src="../nav.js"></script>
+</div>
+<br>
+
+<div class="book">
+<h3 class="articletitle">Eyom Cult Generator</h3>
+<button type="button" class="collapsible">Instructions</button>
+<div class="content">
+<p>This page contains a simple generator which will detail a cult for you. Simply press the button to get new details. You cannot adjust individual paramiters, this is intended to be more of a prompt generator than a system to create a finished product.</p>
+<p>Type a name into the Name of Cult field to give your cult a specific name. If the cult's name begins with the word "the", omit it as the generator automaticaly adds the word "the" to the cult's name where appropriate. If you do not have an intended name for the cult, simply type "cult" into the field if it has not automaticaly done so for you.</p>
+<p>The scratch pad at the bottem of the page stores text localy on your device via a cookie, and will persist through closing the tabs, opening and closing the browser, and even system reboots. You should, howeaver, backup anything stored there as your device may clear cookies automaticaly. To clear the text yourself you can either select all of the text and delete it, or clear this site's cookie.</p>
+</div>
+<br>
+<label for="fname"><b>Name of Cult:</b></label>
+  <input type="text" id="cultname" name="cultname" value="Cult"><br><br>
+<button onclick="doTheThingCult();">Generate Cult</button>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+
+
+
+
+<textarea id="notepad" placeholder="This is a scratch pad. It holds data between refreshes, and even reloading the page..."></textarea>
+
+
+<!-- Test Name Clone -->
+
+<script>
+function doTheThingCult() {
+  var cultname = document.querySelector('#cultname').value;
+
+  var ageocult = getRandomInt(1, 20);
+
+  if (ageocult == 1) {
+	var months = getRandomInt(1, 12);
+	var cultage = ' was founded around ' + months + ' months ago.';
+  } else if (ageocult >= 2 && ageocult <= 3) {
+	var months = getRandomInt(1, 10);
+	var cultage = ' was founded around ' + months + ' years ago.';
+  } else if (ageocult >= 4 && ageocult <= 5) {
+	var months = getRandomInt(2, 20);
+	var cultage = ' was founded around ' + months + ' years ago.';
+  } else if (ageocult >= 6 && ageocult <= 8) {
+	var months = getRandomInt(4, 40);
+	var cultage = ' was founded around ' + months + ' years ago.';
+  } else if (ageocult >= 9 && ageocult <= 11) {
+	var months = getRandomInt(10, 100);
+	var cultage = ' was founded arround ' + months + ' years ago.';
+  } else if (ageocult >= 12 && ageocult <= 14) {
+	var months = getRandomInt(1, 10);
+	var cultage = ' was founded approximately ' + months + ' centuries ago.';
+  } else if (ageocult >= 15 && ageocult <= 16) {
+	var months = getRandomInt(1, 4);
+  	if (months == 1) {
+    	var doot = 'st';
+  	} else if (months == 2) {
+    	var doot = 'nd';
+  	} else if (months == 3) {
+    	var doot = 'rd';
+  	} else {
+    	var doot = 'th';
+  	}
+	var cultage = ' was founded some time durring the ' + months + doot + ' century.';
+  } else if (ageocult >= 17 && ageocult <= 18) {
+	var months = getRandomInt(100, 6000);
+	var cultage = ' is believed to be ancient in orgin, dating back to at least ' + months + ' years before the return of civilization to Eyom.';
+  } else if (ageocult == 19) {
+	var cultage = ' is known to be ancient in orgin, dating back to at least ' + months + ' years before the return of civilization to Eyom.';
+  } else {
+	var cultage = '\'s is known to be ancient in orgin, dating back to at least ' + months + ' years before the return of civilization to Eyom.';
+  }
+
+  var foundocult = getRandomInt(1, 20);
+
+  if (foundocult >= 1 && foundocult <= 4) {
+	var founder = 'The cult was founded by an individual known to be of mortal orgins';
+  } else if (foundocult >= 5 && foundocult <= 7) {
+	var founder = 'The cult was founded by two people known to be of mortal orgins';
+  } else if (foundocult >= 8 && foundocult <= 9) {
+	var numfounders = getRandomInt(1, 6) + 2;
+  	if (numfounders == 3) {
+    	var founders = 'three';
+  	} else if (numfounders == 4) {
+    	var founders = 'four';
+  	} else if (numfounders == 5) {
+    	var founders = 'five';
+  	} else if (numfounders == 6) {
+    	var founders = 'six';
+  	} else if (numfounders == 7) {
+    	var founders = 'seven';
+  	} else {
+    	var founders = 'eight';
+  	}
+	var founder = 'The cult was founded by ' + founders + ' people known to be of mortal orgins';
+  } else if (foundocult >= 5 && foundocult <= 7) {
+	var founder = 'The cult was founded by two people known to be of mortal origins';
+  } else if (foundocult >= 10 && foundocult <= 11) {
+	var founder = 'The cult was founded by a guild of mages';
+  } else if (foundocult == 12) {
+	var founder = 'The cult was founded by priests of a forgotten god';
+  } else if (foundocult == 13) {
+	var founder = 'The cult was founded by an unknown government body';
+  } else if (foundocult == 14) {
+	var founder = 'The cult was founded by one or more undead beings';
+  } else if (foundocult == 15) {
+	var founder = 'The cult was founded by demonic creatures';
+  } else if (foundocult == 16) {
+	var founder = 'The cult was founded by a god';
+  } else if (foundocult == 17) {
+	var founder = 'The cult was founded by an eldritch being';
+  } else if (foundocult == 18) {
+	var founder = 'The cult was founded by an unknown entity reported to be extraterrestrial in origin, but not extra-planar';
+  } else if (foundocult >= 19) {
+	var founder = 'The cult\'s founder is unknown';
+  }
+
+  var goalocult = getRandomInt(1, 20);
+
+  var goalocult = ['and was created simply for the accumulation of wealth', 'with the intent of discovering a means of accending to divinity', 'with the intent of discovering a means of obtaining immortality', 'and was founded to attempt to size control of a specific place', 'and was founded to attempt to size control of a specific idustry', 'and was founded to attempt to size control of a specific faction', 'and was founded to attempt to size control of the contry', 'and was founded to attempt to size control of Eyom', 'and was founded to attempt to size control of a specific town', 'and was created inorder to bring about the end of the world', 'its founding purpose is to being specific experiances to its members', 'its founding purpose is to bring specific erotic experiances to its members', 'and was created to bring immortality to its members', 'with the stated purpose of preparing the world for the coming of one particular event', 'and was established to prevent a specific prophesy from being fufilled', 'its apparent purpose is to restore some lost place to its formor glory', 'its apparent purpose is to restore a god to life', 'its apparent purpose is to restore an unknown thing to a place of prominence it once held', 'and was created simply as a secrate scociety for the fun of being part of a hidden scocial club', 'and was created to foster socical connections to gain political power', 'with the soul intention of summoning a specific entity to Eyom', 'with the intent of worshiping a specific entity', 'it was founded with the goal of inflicting evil into the world', 'it was founded with the interntion of doing good for the world at large', 'its founding purpose is unknown'];
+  var goal = goalocult[getRandomInt(0, goalocult.length )];
+
+  var deviate = getRandomInt(1, 100)
+
+  if (deviate <= 80) {
+	var trueogoal = ['The cult has remained true and unwavering to its founding goal.', 'The cult has branched out from its initial goal, but remains working towards its original purpose with the other endeavors serving to support the cult as a whole.', 'The cult has branched out from its initial purpose, and has somewhat forgotten this goal in favor of several of its new endeavors.'];
+	var true2goal = trueogoal[getRandomInt(0, trueogoal.length )];
+  } else {
+	var trueogoal = ["The cult abandoned this original goal in favor of the accumulation of wealth.","The cult abandoned this original goal in favor of discovering a means of accending to divinity.","The cult abandoned this original goal in favor of discovering a means of obtaining immortality.","The cult abandoned this original goal in favor of sizing control of a specific place.","The cult abandoned this original goal in favor of sizing control of a specific industry.","The cult abandoned this original goal in favor of sizing control of a specific faction.","The cult abandoned this original goal in favor of sizing control of the country.","The cult abandoned this original goal in favor of sizing control of Eyom.","The cult abandoned this original goal in favor of sizing control of a specific town.","The cult abandoned this original goal in favor of bringing about the end of the world.","The cult abandoned this original goal in favor of bringing specific experiences to its members.","The cult abandoned this original goal in favor of bringing specific erotic experiences to its members.","The cult abandoned this original goal in favor of obtaining a means of immortality for its members.","The cult abandoned this original goal in favor of preparing the world for the coming of one particular event.","The cult abandoned this original goal in favor of preventing a specific prophesy from being fulfilled.","The cult abandoned this original goal in favor of restoring some lost place to its former glory.","The cult abandoned this original goal in favor of restoring a god to life.","The cult abandoned this original goal in favor of restoring an unknown thing to a place of prominence it once held.","The cult abandoned this original goal in favor of being a secret society for the fun of being part of a hidden social club.","The cult abandoned this original goal in favor of fostering social connections to gain political power.","The cult abandoned this original goal in favor of summoning a specific entity to Eyom.","The cult abandoned this original goal in favor of worshiping a specific entity.","The cult abandoned this original goal in favor of inflicting evil onto the world.","The cult abandoned this original goal in favor of doing good for the world at large."]
+	var true2goal = trueogoal[getRandomInt(0, trueogoal.length )];
+  }
+
+  document.querySelector('#demo1').innerText = 'The ' + cultname + cultage + ' ' + founder + ', ' + goal + '. ' + true2goal;
+
+  var leader1 = ['an anthropomorphic personification of a concept', 'an anthropomorphic personification of a place', 'an anthropomorphic personification of a event', 'an anthropomorphic personification of a fictional event', 'an advanced (though not conscious) construct', 'a masked identity', 'a masked identity held by several people', 'a masked identity which is occasionally transferred to a new "vessel"', 'an eldritch being', 'a disguised demon', 'a demon', 'an individual serving as the vessel for a demon', 'a demon that speaks through processing random cult members', 'a rotating roster of individuals who serve set terms', 'a randomly chosen member for a set term', 'its still living founder', 'its founder who is known to transfer their consciousness to another person\'s body on their death', 'an oracle who speaks for the founder\'s remains', 'an intelligent monster', 'an intelligent magical item', 'a council', 'the cult as a whole through democratic processes', 'the cult as a whole via emergent policy', 'a specific member who holds their position for life', 'an undead individual', 'a ghost', 'an unknown individual who speaks through a figurehead'];
+  var leader = leader1[getRandomInt(0, leader1.length )];
+
+  var baseloc = getRandomInt(1, 100)
+
+  if (baseloc <= 10) {
+	var base1 = ['a basement rented by one of the members', 'an attic rented by one of the members', 'a loft rented by one of the members', 'a room above a pub'];
+  	var base = base1[getRandomInt(0, base1.length )];
+  } else if (baseloc >= 11 && baseloc <= 20) {
+  	var base1 = ['a basement owned by one of the members', 'an attic owned by one of the members', 'a loft owned by one of the members'];
+    	var base = base1[getRandomInt(0, base1.length )];
+  } else if (baseloc >= 21 && baseloc <= 30) {
+  	var base1 = ['a forge', 'a workshop', 'an industrial warehouse', 'a public park', 'a town square', 'a diffrent location each week', 'a different location each month', 'a sewer'];
+    	var base = base1[getRandomInt(0, base1.length )];
+  } else if (baseloc >= 31 && baseloc <= 40) {
+  	var base1 = ['a cave', 'a cave behind a waterfall', 'a forest grove', 'a hidden grotto'];
+    	var base = base1[getRandomInt(0, base1.length )];
+  } else if (baseloc >= 41 && baseloc <= 50) {
+  	var base1 = ['a meeting room in a hotel', 'a meeting room in a public building', 'a meeting room in a building owned by the cult', 'a mobile caravan'];
+    	var base = base1[getRandomInt(0, base1.length )];
+  } else if (baseloc >= 51 && baseloc <= 60) {
+  	var base1 = ['a private club', 'a private crypt', 'a private estate', 'a manor house owned by the cult'];
+    	var base = base1[getRandomInt(0, base1.length )];
+  } else if (baseloc >= 61 && baseloc <= 70) {
+  	var base1 = ['a church owned by the cult', 'a shrine owned by the cult', 'an arena owned by the cult'];
+    	var base = base1[getRandomInt(0, base1.length )];
+  } else if (baseloc >= 71 && baseloc <= 80) {
+  	var base1 = ['a pocket dimension accessible through a single fixed point', 'a pocket dimension accessible from several fixed points', 'a pocket dimension accessible via a secret spell'];
+    	var base = base1[getRandomInt(0, base1.length )];
+  } else if (baseloc >= 81 && baseloc <= 90) {
+  	var base1 = ['a grand cathedral built by the cult itself', 'a government building secretly owned by the cult', 'a castle owned by the cult'];
+    	var base = base1[getRandomInt(0, base1.length )];
+  } else {
+  	var base = 'an unknown location';
+  }
+
+  var funding1 = ['via acting as a consultant for other groups', 'through solisiting bribes from the general public', 'by solisting bribes from the wealthy', 'by solisiting bribes from institutions', ' by solisiting bribes from the government', 'via partisipating in the drug trade', 'though extortion', 'by providing forged documents to other groups', 'through criminal activity', 'by robbing the rich', 'via stealing from institutions', 'via petty theft', 'through the sell of arcane services', 'through the development of arcane science', 'by providing aethiary services', 'via subscriptions to an aethiary game the cult developed', 'via subscriptions to an aethiary game the cult runs', 'via donations from its members', 'via donations from the general public', 'via legaly obtaining the wealth of unclaimed estates', 'through gambeling', 'by running a gambeling ring', 'through government handouts it is able to qualify for', 'by operating as a charity and taking a cut from the donations', 'through the independent wealth of the current leader', 'via a treasury owned by the cult\'s founder which is used to make investments and play the stock market', 'via a treasure given to the cult by its founder', 'by owning and operating an entirly above board buisness', 'by insurance fraud', 'by tax fraud', 'via abusing the legal system to sue countless parties for damages', 'via tithes from members', 'via expert investments in the stock market', 'by means unknown'];
+  var funding = funding1[getRandomInt(0, funding1.length )];
+
+  var fundingroll = getRandomInt(1, 100);
+
+  if (fundingroll <= 80) {
+	var otherfunding = ' and lacks any other major sources of funding, but does obtain small sums by varrious miscilanious means.'
+  } else {
+	var otherfunding1 = ['via acting as a consultant for other groups', 'through solisiting bribes from the general public', 'by solisting bribes from the wealthy', 'by solisiting bribes from institutions', ' by solisiting bribes from the government', 'via partisipating in the drug trade', 'though extortion', 'by providing forged documents to other groups', 'through criminal activity', 'by robbing the rich', 'via stealing from institutions', 'via petty theft', 'through the sell of arcane services', 'through the development of arcane science', 'by providing aethiary services', 'via subscriptions to an aethiary game the cult developed', 'via subscriptions to an aethiary game the cult runs', 'via donations from its members', 'via donations from the general public', 'via legaly obtaining the wealth of unclaimed estates', 'through gambeling', 'by running a gambeling ring', 'through government handouts it is able to qualify for', 'by operating as a charity and taking a cut from the donations', 'through the independent wealth of the current leader', 'via a treasury owned by the cult\'s founder which is used to make investments and play the stock market', 'via a treasure given to the cult by its founder', 'by owning and operating an entirly above board buisness', 'by insurance fraud', 'by tax fraud', 'via abusing the legal system to sue countless parties for damages', 'via tithes from members', 'via expert investments in the stock market', 'by means unknown'];
+	var otherfunding = ', the cult also obtains significant income ' + otherfunding1[getRandomInt(0, otherfunding1.length )] + ', and obtains the rest of its finances through various miscellaneous means.';
+  }
+
+  var secracylevel = getRandomInt(1, 100);
+
+  if (secracylevel >= 20) {
+	var secrate = ' The cult is well known to the general public.';
+  } else if (secracylevel >= 21 && secracylevel <= 40) {
+	var secrate = ' The cult is somewhat known by the general public.';
+  } else if (secracylevel >= 41 && secracylevel <= 60) {
+	var secrate = ' The cult is well known by those who invest time in learning about the general underworld of the cult\'s area of operations.';
+  } else if (secracylevel >= 61 && secracylevel <= 80) {
+	var secrate = ' The cult is somewhat understood by select individuals aware of their activities in the cult\'s area of operations.';
+  } else {
+	var secrate = ' The cult is understood by precious few outside of its members.';
+  }
+
+  document.querySelector('#demo2').innerText = 'The ' + cultname + ' is lead by ' + leader + ' from its base of operations in ' + base + '. The cult is primarily funded ' + funding + otherfunding + secrate;
+
+  var symbol1 = ['an alchemical symbol', 'an ancient glyph', 'an ancient holy symbol', 'an astrological sign', 'a body part', 'an ancient healer\'s symbol', 'a specific monster', 'a specific plant', 'the infinity symbol', 'a mobius strip', 'the oroborus', 'a specific type of knot', 'a rune', 'an animal', 'a specific number', 'a specific tool', 'a specific weapon'];
+  var symbol = symbol1[getRandomInt(0, symbol1.length )];
+
+  var members1 = ['primarily composed of adventurers', 'primarily composed of explorers', 'primarily composed of bards', 'primarily composed of actors', 'primarily composed of entertainers', 'primarily composed of blacksmiths', 'primarily composed of artisans', 'primarily composed of business owners', 'primarily composed of celebrities', 'primarily composed of members of the clergy', 'primarily composed of members of law enforcement', 'primarily composed of soldiers', 'primarily composed of guards', 'primarily composed of criminals', 'primarily composed of engineers', 'primarily composed of the homeless', 'primarily composed of transients', 'primarily composed of hobos', 'primarily composed of members of the judicial system', 'primarily composed of common laborers', 'primarily composed of prostitutes', 'primarily composed of mages', 'primarily composed of sages', 'primarily composed of scientists', 'primarily composed of scholars', 'primarily composed of slaves', 'open to everyone', 'open to any male who wishes to join', 'open to any female who wishes to join', 'is open to any herm who wishes to join'];
+  var members = members1[getRandomInt(0, members1.length )];
+
+  var clothing1 = ['their blindfolds with the cult\'s symbol over the eyes', 'wearing themed eye masks', 'their head covering animal themed masks', 'their blank featureless full face concealing masks', 'their masks designed to look like a specific monster', 'their unique hooded robes', 'their plain and simplistic robes', 'wearing the cult\'s military inspired uniforms', 'their uniform composed of plain work clothes', 'their matching headbands', 'their unique metal masks', 'their unique masks which are styled to appear to be a specific person', 'their garishly over-decorated robes', 'their crappy disguises straight from a costume shop', 'their lack of clothing save that which is objectively necessary for their current task (typically just shoes and a shoulder bag)'];
+  var clothing = clothing1[getRandomInt(0, clothing1.length )];
+
+  var meetings1 = ['three times a week.', 'frequently and randomly during the day.', 'frequently and randomly during the night.', 'every ten days.', 'every fourteen days.', 'every eighteen months.', 'every two months.', 'every three months.', 'every three weeks.', 'every six months.', 'once a day.', 'once a month.', 'once a week.', 'once a year.', 'twice a week.', 'during certain astronomical events.', 'frequently via the aethiary, but almost never in person unless there is a major emergency.'];
+  var meetings = meetings1[getRandomInt(0, meetings1.length )];
+
+  var cultpractices = getRandomInt(1, 100);
+
+  if (cultpractices >= 20) {
+	var practices = 'The cult\'s general practices relating to their meetings are unknown.';
+  } else if (cultpractices >= 21 && cultpractices <= 60) {
+	var practices1 = ["The cult\'s members are known to bring small bottles of sacrad liquid to their meetings.","The cult\'s members are known to bring viles of sacrad liquid to their meetings.","The cult\'s members are known to bring matching coin purses to their meetings.","The cult\'s members are known to bring special grooming kits to their meetings.","The cult\'s members are known to bring special cutulary to their meetings.","The cult\'s members are known to bring special cups to their meetings.","The cult\'s members are known to bring dice to their meetings.","The cult\'s members are known to bring matching hankerchiefs to their meetings.","The cult\'s members are known to bring makeup kits to their meetings.","The cult\'s members are known to bring maps to their meetings.","The cult\'s members are known to bring scrolls to their meetings.","The cult\'s members are known to bring medical supplies to their meetings.","The cult\'s members are known to bring matching pens and books to their meetings.","The cult\'s members are known to bring suicide potions to their meetings in case of capture.","The cult\'s members are known to bring satches of herbs to their meetings.","The cult\'s members are known to bring spices to their meetings.","The cult\'s members are known to bring preserved flowers to their meetings.","The cult\'s members are known to bring seeds to their meetings.","The cult\'s members are known to bring a symbolic talismin to their meetings."];
+	var practices = practices1[getRandomInt(0, practices1.length )];
+  } else if (cultpractices >= 61 && cultpractices <= 90) {
+	var practices = 'The cult\'s practices are somewhat known, with partial accounts of their rituals, workings, and beliefs avalible to those who look for them.'
+  } else {
+	var practices = 'The cult\'s practices are fairly well known, with detailed accounts of their rituals, workings, and beliefs being public knowledge.'
+  }
+
+
+  document.querySelector('#demo3').innerText = 'The ' + cultname + ' uses ' + symbol + ' as its identifying symbol, and is ' + members + '. When meeting and working the cult\'s members can be identified by ' + clothing + '. They are known to meet ' + meetings + ' ' + practices;
+
+
+}
+</script>
+
+
+
+<!-- Foundation Scripts -->
+
+<!-- ??? Script -->
+
+<script>
+function clonename(){
+  var a = $('#gendname');
+  var b = a.find("#artikal-naziv").text();
+  return b;
+}
+</script>
+
+<!-- Word capper script -->
+
+<script>
+  function capFirst(word) {
+    let w = String(word);
+    if (w.length == 0) {
+     return "";
+    }
+    if (w.length == 1) {
+      return w.toUpperCase();
+    }
+    return w.charAt(0).toUpperCase() + w.slice(1);
+  }
+
+function getRandomInt(min, max) {
+  	return Math.floor(Math.random() * (max - min)) + min;
+}
+</script>
+
+<!-- Scratch Pad Script -->
+
+<!--
+<script>
+  document
+  .getElementById('target')
+  .addEventListener('change', function () {
+  'use strict';
+  var vis = document.querySelector('.vis'),
+  target = document.getElementById(this.value);
+    if (vis !== null) {
+      vis.className = 'inv';
+    }
+    if (target !== null ) {
+      target.className = 'vis';
+    }
+  });
+</script>
+<script>
+  document
+  .getElementById('target2')
+  .addEventListener('change', function () {
+  'use strict';
+  var vis = document.querySelector('.vis1'),
+  target = document.getElementById(this.value);
+    if (vis !== null) {
+      vis.className = 'inv1';
+    }
+    if (target !== null ) {
+      target.className = 'vis1';
+    }
+  });
+</script>
+
+
+
+<script>
+  var d = document;
+
+// not using this at the moment but might do later for graceful degradation...
+function supports_html5_storage() {
+  try {
+    return 'localStorage' in window && window['localStorage'] !== null;
+  } catch (e) {
+    return false;
+  }
+}
+
+d.addEventListener('DOMContentLoaded', function(){
+
+  var savedContent = localStorage.getItem("notepadcontent");
+  if(savedContent != null){
+    d.getElementById("notepad").value = savedContent;
+  }
+
+
+ d.getElementById("notepad").onkeyup = function(){
+  var data = d.getElementById("notepad").value;  localStorage.setItem("notepadcontent", data);
+  }
+});
+</script> -->
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+</script>

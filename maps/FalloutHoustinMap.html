@@ -5,16 +5,102 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Houston Badlands Map</title>
 	<style>
-	.leaflet-tooltip-left::before {
-		border-left-color: none;
+	body {
+		overflow: hidden;
 	}
+
+	.leaflet-tooltip.leaflet-zoom-animated.hidden {
+	  display: none !important;
+	}
+
+	path.leaflet-interactive,
+	path.leaflet-interactive:active {
+	cursor: url('../Fallout/img/cursor5.png') 12 12, auto;
+}
+
+path.leaflet-interactive:active  {
+	cursor: url('../Fallout/img/cursor4.png') 12 12, auto;
+}
+
+path.leaflet-interactive {
+    cursor: url('../Fallout/img/cursor5.png') 12 12, auto !important;
+}
+
+path.leaflet-interactive:active {
+    cursor: url('../Fallout/img/cursor4.png') 12 12, auto !important;
+}
+
+	.leaflet-tooltip.css_69_6 {
+		background-color: transparent !important;
+		border: none !important;
+	}
+
 	.leaflet-tooltip {
-		background-color: none;
-		border: none;
+		cursor: url('../Fallout/img/cursor5.png') 12 12, auto;
+		position: absolute;
+		padding: 1px !important;
+		background-color: rgba(196, 196, 196, 0.52) !important;
+		border: 1px solid rgba(0, 0, 0, 0.52) !important;
+		border-radius: 3px;
+		color: white !important;
+		font-weight: bold;
+		white-space: nowrap;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		pointer-events: none;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+		text-shadow:
+    -1px -1px 0 #000,
+     1px -1px 0 #000,
+    -1px  1px 0 #000,
+     1px  1px 0 #000;
+		}
+	.leaflet-tooltip.leaflet-interactive {
+		cursor: url('../Fallout/img/cursor5.png') 12 12, auto;
+		pointer-events: auto;
+
+		}
+		.leaflet-interactive {
+			cursor: url('../Fallout/img/cursor5.png') 12 12, auto;
+		}
+	.leaflet-tooltip-top:before,
+	.leaflet-tooltip-bottom:before,
+	.leaflet-tooltip-left:before,
+	.leaflet-tooltip-right:before {
+		border-top-color: black !important;
+		border-right-color: transparent;
+		border-bottom-color: transparent;
+		border-left-color: transparent;
+		position: absolute;
+		pointer-events: none;
+		border: 6px solid transparent;
+		background: transparent;
+		content: "";
+
+		}
+		.leaflet-popup-tip {
+			background: white;
+			color: #333;
+			box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+			}
+	.my-label-class {
+    color: pink;
+    background-color: green;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1;
+    padding: 2px 5px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.75);
+}
+	div#map {
+		cursor: url('../Fallout/img/cursor4.png') 12 12, auto;
 	}
-		.leaflet-popup-tip-container {
-		display: none;
-	} 
+
+
+
 	</style>
 <link rel="stylesheet" href="js/leaflet.css">
 <script src="js/leaflet.js"></script>
@@ -34,7 +120,8 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-		<script src="js/permalink/leaflet.permalink.min.js"></script>
+				<script src="js/permalink/leaflet.permalink.min.js"></script>
+				<script src="js\rulerplugin\Leaflet.LinearMeasurement.js"></script>
         <script src="data/Water_0.js"></script>
         <script src="data/465copycopy_1.js"></script>
         <script src="data/465copy_2.js"></script>
@@ -77,6 +164,8 @@
         <script src="data/BadlandsLocations_39.js"></script>
         <script src="data/FALLOUTVaults_40.js"></script>
         <script src="data/FalloutMapMarkers_41.js"></script>
+		<script src="data/Pasted_0.js"></script>
+        <script src="data/Pasted_1.js"></script>
 
 </head>
 <body style="height: 100%; margin: 0; background-color: #000; background-size: 100% 100%;">
@@ -93,8 +182,8 @@ var highlightLayer;
         }
 
 		// Declare Map Object
-	
-	
+
+
 
 	// var map = L.map('map').setView([51.505, -0.09], 13);
 
@@ -114,22 +203,22 @@ var highlightLayer;
 			maxZoom: 19,
 			attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href="https://www.OpenRailwayMap.org">OpenRailwayMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
 		});
-		
 
-	
-		
+
+
+
 	var baseMaps = {
 		"Street Maps": BGMap,
 		"Satalite Map": SatMap,
 	}
-	
+
 	var overlays = {
 		"Roads and Towns": Roads,
 		"Rail Lines": Rails,
 	}
-	
+
 	var mappos = L.Permalink.getMapLocation();
-	
+
 	var map = L.map('map', {
 		center: mappos.center,
 		zoom: mappos.zoom,
@@ -138,13 +227,15 @@ var highlightLayer;
 		wheelPxPerZoomLevel: 100,
 		maxBounds: [[33, -103], [26, -87]],
 		layers: [BGMap],
-		preferCanvas: false,		
-	}).setView([30.15, -95.77], 8.25);
-	
-	var controlLayers = L.control.layers(baseMaps, overlays).addTo(map);	
-	L.Permalink.setup(map);
-	
-	
+		preferCanvas: false,
+
+	}).setView([30.15, -95.77], 8.25, {
+		animate: true
+	});
+
+
+
+
 // vectors
  var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
@@ -152,55 +243,56 @@ var highlightLayer;
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-	function pop_Water_0(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
+				function pop_Water_0(feature, layer) {
+			            layer.on({
+			                mouseout: function(e) {
+			                    if (typeof layer.closePopup == 'function') {
+			                        layer.closePopup();
+			                    } else {
+			                        layer.eachLayer(function(feature){
+			                            feature.closePopup()
+			                        });
+			                    }
+			                },
+			                mouseover: highlightFeature,
+			            });
+			            var popupContent = '<table>\
+			                    <tr>\
+			                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+			                    </tr>\
+			                </table>';
+			            layer.bindPopup(popupContent, {maxHeight: 400});
+			        }
 
-        function style_Water_0_0() {
-            return {
-                pane: 'pane_Water_0',
-                opacity: 1,
-                color: 'rgba(35,35,35,0.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(170,211,222,1.0)',
-                interactive: false,
-            }
-        }
-        map.createPane('pane_Water_0');
-        map.getPane('pane_Water_0').style.zIndex = 400;
-        map.getPane('pane_Water_0').style['mix-blend-mode'] = 'normal';
-        var layer_Water_0 = new L.geoJson(json_Water_0, {
-            attribution: '',
-            interactive: false,
-            dataVar: 'json_Water_0',
-            layerName: 'layer_Water_0',
-            pane: 'pane_Water_0',
-            onEachFeature: pop_Water_0,
-            style: style_Water_0_0,
-        });
-        bounds_group.addLayer(layer_Water_0);
+				function style_Water_0_0() {
+					 return {
+							 pane: 'pane_Water_0',
+							 opacity: 1,
+							 color: 'rgba(35,35,35,0.0)',
+							 dashArray: '',
+							 lineCap: 'butt',
+							 lineJoin: 'miter',
+							 weight: 1.0,
+							 fill: true,
+							 fillOpacity: 1,
+							 fillColor: 'rgba(170,211,222,1.0)',
+							 interactive: false,
+					 }
+			 }
+			 map.createPane('pane_Water_0');
+         map.getPane('pane_Water_0').style.zIndex = 400;
+         map.getPane('pane_Water_0').style['mix-blend-mode'] = 'normal';
+         var layer_Water_0 = new L.geoJson(json_Water_0, {
+             attribution: '',
+             interactive: false,
+             dataVar: 'json_Water_0',
+             layerName: 'layer_Water_0',
+             pane: 'pane_Water_0',
+             onEachFeature: pop_Water_0,
+             style: style_Water_0_0,
+         });
+         bounds_group.addLayer(layer_Water_0);
+				 map.addLayer(layer_Water_0);
         function pop_465copycopy_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -212,7 +304,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -260,7 +352,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -308,7 +400,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -356,7 +448,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -374,7 +466,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 3.0, 
+                weight: 3.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(0,0,255,0.0)',
@@ -389,7 +481,7 @@ var highlightLayer;
                 dashArray: '1,5',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 2.0, 
+                weight: 2.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(232,113,141,0.0)',
@@ -421,7 +513,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -439,7 +531,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 3.0, 
+                weight: 3.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(0,0,255,0.0)',
@@ -454,7 +546,7 @@ var highlightLayer;
                 dashArray: '10,5,1,5',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 2.0, 
+                weight: 2.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(232,113,141,0.0)',
@@ -486,7 +578,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -504,7 +596,7 @@ var highlightLayer;
                 dashArray: '10,5',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 2.0, 
+                weight: 2.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(190,178,151,0.0)',
@@ -536,7 +628,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -554,7 +646,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(211,249,41,0.5647058823529412)',
@@ -586,7 +678,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -604,7 +696,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(114,114,114,0.6)',
@@ -636,7 +728,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
         }
 
@@ -648,11 +740,12 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(196,60,57,1.0)',
                 interactive: true,
+
             }
         }
         map.createPane('pane_Monsters_9');
@@ -666,6 +759,7 @@ var highlightLayer;
             pane: 'pane_Monsters_9',
             onEachFeature: pop_Monsters_9,
             style: style_Monsters_9_0,
+
         });
         bounds_group.addLayer(layer_Monsters_9);
         map.addLayer(layer_Monsters_9);
@@ -680,7 +774,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -698,7 +792,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(190,207,80,1.0)',
@@ -730,7 +824,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -748,7 +842,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(97,222,42,0.39215686274509803)',
@@ -780,7 +874,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -807,7 +901,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(139,92,41,0.43137254901960786)',
@@ -839,7 +933,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -866,7 +960,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(11,61,145,0.3803921568627451)',
@@ -898,7 +992,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -925,7 +1019,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(230,162,220,0.611764705882353)',
@@ -957,7 +1051,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -984,7 +1078,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(224,4,48,0.4627450980392157)',
@@ -1016,7 +1110,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1043,7 +1137,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(97,56,118,0.5529411764705883)',
@@ -1075,7 +1169,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1102,7 +1196,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(139,0,0,0.42745098039215684)',
@@ -1134,7 +1228,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1161,7 +1255,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(237,95,0,0.47058823529411764)',
@@ -1193,7 +1287,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1220,7 +1314,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(41,225,28,0.2549019607843137)',
@@ -1252,7 +1346,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1279,7 +1373,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(69,75,27,0.4627450980392157)',
@@ -1311,7 +1405,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1338,7 +1432,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(0,140,74,0.3686274509803922)',
@@ -1370,7 +1464,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1397,7 +1491,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(105,104,103,0.3764705882352941)',
@@ -1429,7 +1523,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1456,7 +1550,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(220,20,60,0.49019607843137253)',
@@ -1488,7 +1582,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1515,7 +1609,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(98,74,46,0.43137254901960786)',
@@ -1547,7 +1641,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1574,7 +1668,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(114,228,0,0.20784313725490197)',
@@ -1606,7 +1700,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1627,7 +1721,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(211,206,100,0.6509803921568628)',
@@ -1659,7 +1753,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1680,7 +1774,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(190,207,80,1.0)',
@@ -1712,7 +1806,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1733,7 +1827,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(141,90,153,1.0)',
@@ -1765,7 +1859,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1786,7 +1880,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(225,219,132,1.0)',
@@ -1818,7 +1912,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1839,7 +1933,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(255,158,23,1.0)',
@@ -1871,7 +1965,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1892,7 +1986,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(120,229,140,1.0)',
@@ -1924,7 +2018,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1945,7 +2039,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(141,90,153,1.0)',
@@ -1977,7 +2071,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1998,7 +2092,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(113,161,229,1.0)',
@@ -2030,7 +2124,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -2051,7 +2145,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(243,166,178,1.0)',
@@ -2083,7 +2177,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -2104,7 +2198,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(225,89,137,1.0)',
@@ -2136,7 +2230,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -2157,7 +2251,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(133,182,111,1.0)',
@@ -2189,7 +2283,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -2210,7 +2304,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(183,72,141,1.0)',
@@ -2242,7 +2336,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -2263,7 +2357,7 @@ var highlightLayer;
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1.0,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(164,113,88,1.0)',
@@ -2295,7 +2389,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -2333,43 +2427,34 @@ var highlightLayer;
         map.createPane('pane_BadlandsLocations_39');
         map.getPane('pane_BadlandsLocations_39').style.zIndex = 439;
         map.getPane('pane_BadlandsLocations_39').style['mix-blend-mode'] = 'normal';
-        var layer_BadlandsLocations_39 = new L.geoJson(json_BadlandsLocations_39, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_BadlandsLocations_39',
-            layerName: 'layer_BadlandsLocations_39',
-            pane: 'pane_BadlandsLocations_39',
-            onEachFeature: pop_BadlandsLocations_39,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.circleMarker(latlng, style_BadlandsLocations_39_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_BadlandsLocations_39);
-        map.addLayer(layer_BadlandsLocations_39);
-        function pop_FALLOUTVaults_40(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
+				var layer_BadlandsLocations_39 = new L.geoJson(json_BadlandsLocations_39, {
+    attribution: '',
+    interactive: true,
+    dataVar: 'json_BadlandsLocations_39',
+    layerName: 'layer_BadlandsLocations_39',
+    pane: 'pane_BadlandsLocations_39',
+    onEachFeature: pop_BadlandsLocations_39,
+    pointToLayer: function (feature, latlng) {
+        var context = {
+            feature: feature,
+            variables: {}
+        };
+        var markerOptions = {
+            radius: 5,
+            fillColor: "black",
+            color: "black",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+        };
+        var marker = L.circleMarker(latlng, markerOptions);
+        marker.bindTooltip(feature.properties.Name, { permanent: true, direction: 'top', style: 'background-color: red; color: white;' });
+        return marker;
+    },
+});
+
+bounds_group.addLayer(layer_BadlandsLocations_39);
+map.addLayer(layer_BadlandsLocations_39);
 
         function style_FALLOUTVaults_40_0() {
             return {
@@ -2418,7 +2503,7 @@ var highlightLayer;
                         });
                     }
                 },
-                
+                mouseover: highlightFeature,
             });
             var popupContent = '<table>\
                     <tr>\
@@ -2451,21 +2536,32 @@ var highlightLayer;
         map.createPane('pane_FalloutMapMarkers_41');
         map.getPane('pane_FalloutMapMarkers_41').style.zIndex = 441;
         map.getPane('pane_FalloutMapMarkers_41').style['mix-blend-mode'] = 'normal';
-        var layer_FalloutMapMarkers_41 = new L.geoJson(json_FalloutMapMarkers_41, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_FalloutMapMarkers_41',
-            layerName: 'layer_FalloutMapMarkers_41',
-            pane: 'pane_FalloutMapMarkers_41',
-            onEachFeature: pop_FalloutMapMarkers_41,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.circleMarker(latlng, style_FalloutMapMarkers_41_0(feature));
-            },
+				var layer_FalloutMapMarkers_41 = new L.geoJson(json_FalloutMapMarkers_41, {
+    attribution: '',
+    interactive: true,
+    dataVar: 'json_FalloutMapMarkers_41',
+    layerName: 'layer_FalloutMapMarkers_41',
+    pane: 'pane_FalloutMapMarkers_41',
+    onEachFeature: pop_FalloutMapMarkers_41,
+    pointToLayer: function (feature, latlng) {
+        var context = {
+            feature: feature,
+            variables: {}
+        };
+        var layer = L.circleMarker(latlng, style_FalloutMapMarkers_41_0(feature));
+        layer.bindTooltip((feature.properties['Name'] !== null ? String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + feature.properties['Name']) + '</div>' : ''), {
+            permanent: true,
+            offset: [-0, -16],
+            className: 'css_FALLOUTVaults_40'
         });
+        labels.push(layer);
+        totalMarkers += 1;
+        layer.added = true;
+        addLabel(layer, i);
+        i++;
+        return layer;
+    },
+});
         bounds_group.addLayer(layer_FalloutMapMarkers_41);
         map.addLayer(layer_FalloutMapMarkers_41);
         map.on("zoomend", function(e) {
@@ -2560,7 +2656,7 @@ var highlightLayer;
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Zone'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Noto Serif Cond\', sans-serif;">' + layer.feature.properties['Zone']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_69_6'});
+            layer.bindTooltip((layer.feature.properties['Zone'] !== null?String('<div style="color: #dedede; font-size: 10pt; font-family: \'Noto Serif Cond\', sans-serif;">' + layer.feature.properties['Zone']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_69_6'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -2581,18 +2677,34 @@ var highlightLayer;
               i++;
         });
         var i = 0;
-        layer_FALLOUTVaults_40.eachLayer(function(layer) {
-            var context = {
-                feature: layer.feature,
-                variables: {}
-            };
-            layer.bindTooltip((layer.feature.properties['Name'] !== null?String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + layer.feature.properties['Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_FALLOUTVaults_40'});
-            labels.push(layer);
-            totalMarkers += 1;
-              layer.added = true;
-              addLabel(layer, i);
-              i++;
-        });
+
+
+				var layer_FALLOUTVaults_40 = new L.geoJson(json_FALLOUTVaults_40, {
+				    attribution: '',
+				    interactive: true,
+				    dataVar: 'json_FALLOUTVaults_40',
+				    layerName: 'layer_FALLOUTVaults_40',
+				    pane: 'pane_FALLOUTVaults_40',
+				    onEachFeature: pop_FALLOUTVaults_40,
+				    pointToLayer: function (feature, latlng) {
+				        var context = {
+				            feature: feature,
+				            variables: {}
+				        };
+				        var layer = L.circleMarker(latlng, style_FALLOUTVaults_40_0(feature));
+				        layer.bindTooltip((feature.properties['Name'] !== null ? String('<div style="color: #323232; font-size: 10pt; font-family: \'Open Sans\', sans-serif;">' + feature.properties['Name']) + '</div>' : ''), {
+				            permanent: true,
+				            offset: [-0, -16],
+				            className: 'css_FALLOUTVaults_40'
+				        });
+				        labels.push(layer);
+				        totalMarkers += 1;
+				        layer.added = true;
+				        addLabel(layer, i);
+				        i++;
+				        return layer;
+				    },
+				});
         var i = 0;
         layer_FalloutMapMarkers_41.eachLayer(function(layer) {
             var context = {
@@ -2627,13 +2739,137 @@ var highlightLayer;
         map.on("layerremove", function(){
             resetLabels([layer_Water_0,layer_Difference_4,layer_FalloutNationalMapNations_5,layer_69_6,layer_TheHaze_11,layer_Cowboy_24,layer_BadlandsLocations_39,layer_FALLOUTVaults_40,layer_FalloutMapMarkers_41]);
         });
-	
-	
-	
+		function pop_Pasted_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Pasted_0_0() {
+            return {
+                pane: 'pane_Pasted_0',
+                opacity: 1,
+                color: 'rgba(133,183,80,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(164,228,88,0.3686274509803922)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Pasted_0');
+        map.getPane('pane_Pasted_0').style.zIndex = 400;
+        map.getPane('pane_Pasted_0').style['mix-blend-mode'] = 'normal';
+        var layer_Pasted_0 = new L.geoJson(json_Pasted_0, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Pasted_0',
+            layerName: 'layer_Pasted_0',
+            pane: 'pane_Pasted_0',
+            onEachFeature: pop_Pasted_0,
+            style: style_Pasted_0_0,
+        });
+        bounds_group.addLayer(layer_Pasted_0);
+        
+        function pop_Pasted_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Pasted_1_0() {
+            return {
+                pane: 'pane_Pasted_1',
+                opacity: 1,
+                color: 'rgba(116,160,61,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(164,228,88,0.6)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Pasted_1');
+        map.getPane('pane_Pasted_1').style.zIndex = 401;
+        map.getPane('pane_Pasted_1').style['mix-blend-mode'] = 'normal';
+        var layer_Pasted_1 = new L.geoJson(json_Pasted_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Pasted_1',
+            layerName: 'layer_Pasted_1',
+            pane: 'pane_Pasted_1',
+            onEachFeature: pop_Pasted_1,
+            style: style_Pasted_1_0,
+        });
+        bounds_group.addLayer(layer_Pasted_1);        
+        setBounds();
+
+
 // End Vectors
 
 
 	//var controlOverlays = layerControl.addOverlay(regionMap, "Regions").addTo(map);
+
+	var baseMaps = {
+		"Street Maps": BGMap,
+		"Satalite Map": SatMap,
+	}
+	var overlays = {
+		"Roads and Towns": Roads,
+		"Rail Lines": Rails,
+	}
+	
+	var controlLayers = L.control.layers(baseMaps, overlays, terafomring).addTo(map);
+	L.Permalink.setup(map);
+	
+	var terafomring = {
+		"Full Terra": layer_Pasted_1,
+		"Light Terra": layer_Pasted_0,
+	}
+	
+	for (var key in terafomring) {
+    controlLayers.addOverlay(terafomring[key], key);
+}
+
+
+
+	
 
 
 	L.control.scale({
@@ -2660,6 +2896,13 @@ var highlightLayer;
 	}).addTo(map);
 	marker.bindPopup('');
 
+	//Preformance Optimizations start
+
+
+	//Preformance Optimizations end
+
+
+
 
 	// Normal Markers
 	//var marker_LinForrest = L.marker([37.29, -79.27]).addTo(map).bindPopup('<b>Lin Forrest</b>')//.openPopup();
@@ -2672,7 +2915,46 @@ var highlightLayer;
 			.openOn(map);
 	});
 
+	function pop_FALLOUTVaults_40(feature, layer) {
+    layer.on({
+        mouseout: function(e) {
+            if (typeof layer.closePopup == 'function') {
+                layer.closePopup();
+            } else {
+                layer.eachLayer(function(feature){
+                    feature.closePopup()
+                });
+            }
+        },
+        mouseover: highlightFeature,
+    });
 
+    var popupContent = '<table>\
+        <tr>\
+            <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(feature.properties['Name'].toLocaleString()) : '') + '</td>\
+        </tr>\
+    </table>';
+
+    layer.bindPopup(popupContent, {maxHeight: 400});
+}
+
+	// Define a function to update the tooltip visibility based on zoom level
+	map.on('zoomend', function() {
+	    var zoomLevel = map.getZoom();
+
+
+	    if (zoomLevel > 9) {
+	        var tooltips = document.getElementsByClassName('leaflet-tooltip');
+	        for (var i = 0; i < tooltips.length; i++) {
+	            tooltips[i].classList.remove('hidden');
+	        }
+	    } else {
+	        var tooltips = document.getElementsByClassName('leaflet-tooltip');
+	        for (var i = 0; i < tooltips.length; i++) {
+	            tooltips[i].classList.add('hidden');
+	        }
+	    }
+	});
 	//var marker = L.marker([0, 0], {
 	//	draggable: true,
 	//}).addTo(map);
@@ -2685,6 +2967,9 @@ var highlightLayer;
 
 
 
+
+</script>
+<script type="text/javascript">
 
 </script>
 

@@ -85,6 +85,13 @@
 <p>Yet for a rare few, such risk ad danger is exciting. The dangers of the wilds are worth the rewards one can reap in the places long forgotten by history. Better yet, there is honor, glory, fame, fortune, and power to be had. The Taurs willing to risk their lives for such things typically have chosen to make Adventuring their career and are well prepared for the road they have chosen.</p>
 </article>
 <h4 class="articlesubtitle"><strong><em>Racial Traits</em></strong></h4>
+
+<button type="button" class="collapsible">GM Note</button>
+<div class="content">
+<p>Taurs are quite heavy and their mass is focused down onto four small areas. This gives them a very high ground pressure, which makes them more likly to be impacted by difficult terrain involving loose or wet ground. It also means they are more likly to break through a rotten floor and other thin fragile surfices.</p>
+<p>More importantly, if a Taur elects to sit on a medium humanoid, they can easily crush and suffocate them should you be playing with realism in mind rather than raw rules. Do be certain to address this with your group as relisticly a Taur using the grapple the pin action in this way would also be doing sigifnicent bludgeoning damage in the form of crushing force.</p>
+</div>
+
 <div id="StandardRacialTraits" style="padding-left: 40px;">
 <h3>Standard Racial Traits</h3>
 <strong>Ability Score Racial Traits:</strong> <span id="AbilityScoreRacialTraits">Taurs gain +2 Str, -2 Dex, and +2 Con. They also gain a +2 racial bonus to one ability score of their choice at creation to represent their varied nature.<br /></span><strong>Type:</strong> <span id="CreatureType">Taurs are humanoids.<br /></span><strong>Size:</strong> <span id="RaceSize">Taurs are Large creatures and thus take a -1 size penalty to their AC, a -1 size penalty on attack rolls, a +1 bonus to their CMB and CMD, and a -4 size penalty on Stealth checks. They take up a space that is 10 feet by 10 feet and have a reach of 5 feet.<br /></span><strong>Speed:</strong> <span id="RaceSpeed">Taurs have a base speed of 40 feet.<br /></span><strong>Languages:</strong> <span id="Languages">Taurs begin play speaking Common, as well as their regional dialect.<br /></span><strong>Fleet-Footed:</strong> Taurs receive Run as a bonus feat and a +2 racial bonus on initiative checks.<br /><strong>Beastblood:</strong> Taurs receive the general and proportional abilities of the animal they are based on. Due to the great range of creatures, and the varied nature of humans, this ability depends on GM fiat and ruling. It is recommended to allow Taurs access to the movement abilities of the animal they choose (eg climb speed for a squirrel-based taur, a clumsy and slow flight speed for any flying-animal-based-Taurs, a bonus to acrobatics for a rabbit-based taur, etc.), as well as any obvious key traits of an animal (eg, natural armor for rhino-based taurs, a claw attack for cat-based taurs, a faster run speed for horse-based taurs, etc). If the GM feels a particular animal's abilities create a PC that is too powerful, it is important to remember that Taurs do not necessarily possess all of an animal's abilities, and also, many of them possess an animals weaknesses too (eg, polar-bear-based-taurs deal very poorly with temperate temperatures, insect-based taurs being easily crippled by blunt weapons cracking their exoskeletons, feline-based taurs being incapable of remaining awake for long periods without naps, fox-based taurs possessing a musk which will attract things that like to eat foxes, etc.).<br /><strong>Scent:</strong> Members of this race gain the scent ability.<br /><strong>Low-Light Vision:</strong> Taurs can see twice as far as a race with normal vision in conditions of dim light.<br /><strong>I <s>trained</s> saved for this day:</strong> Taurs begin play with double the starting wealth and equipment for their class.<br /><strong>Hearty Appetite:</strong> A Taur requires a large amount of food every few days in order to remain healthy and active. This requires four rations of food per day, though Taurs only eat once every three to four days <i>(at which point they require days*4 rations)</i>. A Tauric character who cannot consume their needed food enters a low-activity survival state. This manifests in a -1 penalty for all rolls based on how many individual humans worth of food they missed. <i>(Ex: If a Taur missed 4 rations worth of food, they take a penalty of -4. If they missed 9, they take a penalty of -9.)</i> The practical upshot of this low energy state is it prevents starvation from setting in. A Taur can survive for 1d2+CON weeks in a low energy state before they begin to succumb to starvation.
@@ -301,3 +308,19 @@
 </tr>
 </tbody>
 </table>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+</script>

@@ -1,0 +1,775 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Cinzel&family=Noto+Sans&display=swap');
+
+body {
+	background-image: url("img/hideout.jpg");
+	background-repeat: no-repeat;
+	background-position: right top;
+	background-attachment: fixed;
+}
+
+div.book {
+	display: block;
+	border: solid #4F120B;
+	border-width: 15px;
+	Border-style: outset;
+	background-image: url("img/bookpage.jpg");
+
+	background-color: #FCF5E5;
+	background-repeat: repeat-y;
+	width: 60%;
+	padding: 20px;
+	margin: auto;
+}
+
+.pagetitlenav {
+	float: left;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-left: 18px;
+	padding-right: 18px;
+	padding-top: 13px;
+	padding-bottom:13px;
+	font-size: 16px;
+	color: white;
+	text-align: center;
+	background-image: url("img/buttonbackground.png");
+	background-size: 100% 100%;
+}
+
+ul {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /*background-color: #333;
+  background-image: url("img/navbar.jpg");*/
+
+
+}
+
+h1 {
+  font-family: Garamond, serif;
+}
+h2 {
+  font-family: Garamond, serif;
+}
+
+
+ /* Navbar container */
+.navbar {
+  width: 100%;
+  background-color: #333;
+  background-image: url("img/navbar.jpg");
+  background-size: 100% 100%;
+  font-family: Times New Roman;
+  font-size: 22px;
+  float: left;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+.navbar2 {
+  width: 100%;
+  font-family: Times New Roman;
+  font-size: 22px;
+  float: left;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-bottom: 20px;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: right;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: white;
+  background-image: url("img/buttonbackground.png");
+  background-size: 100% 100%;
+}
+
+	/* The dropdown container */
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+	/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+    background-image: url("img/buttonbackground.png");
+  background-size: 100% 100%;
+}
+
+	/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+  display: inline-block;  // or display:inline if you want them horizontally positioned
+}
+
+	/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  background-image: url("img/bookpage.jpg");
+  	border: solid #4F120B;
+	border-width: 5px;
+	Border-style: outset;
+	background-color: #FCF5E5;
+	background-repeat: repeat-y;
+}
+
+	/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  background-image: none;
+
+}
+
+	/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+	/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+
+.header {
+  padding: 30px;
+  text-align: center;
+  /*background: #1abc9c;*/
+  background-image: url("img/HeadderBackground.png");
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: #B49933;
+  font-size: 30px;
+  font-family: Garamond, serif;
+  z-index: 1;
+  }
+
+table,
+td,
+tr,
+th {
+	border: 1px solid;
+	border-collapse: collapse;
+	font-family: "Noto Sans", sans-serif;
+}
+
+th,
+td {
+	padding: 5px;
+	vertical-align: center;
+}
+
+v-sp {
+	color: #3a6391;
+	font-family: var(--n);
+	transform: var(--scale);
+	font-weight: bold
+}
+
+v-sp2 {
+	color: #505050;
+	font-family: var(--n);
+	font-size: 16px;
+	transform: var(--scale);
+	font-weight: bold
+}
+
+v-ipa {
+	font-family: var(--n);
+	transform: var(--scale)
+}
+
+v-pos {
+	color: #36454F;
+	font-size: 15px;
+	font-style: italic
+}
+
+.padtop {
+	margin-top: 20px !important
+}
+
+th,
+td {
+	padding: 5px;
+	vertical-align: center
+}
+
+.vl__settings-container {
+	background: #f7f8f9;
+	border: 1px solid #ddd
+}
+
+.vl__settings-inner {
+	margin: 15px auto;
+	max-width: 1000px;
+	padding: 7px
+}
+
+.vl__button,
+.vl__button--options,
+.vl__button--small,
+.vl__button--big,
+.vl__button--big--center {
+	background: #fff;
+	border: none;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, .4);
+	color: #e34c72;
+	cursor: pointer;
+	font-size: 16px;
+	transition-duration: .1s
+}
+
+.vl__button:hover,
+.vl__button--options:hover,
+.vl__button--small:hover,
+.vl__button--big:hover,
+.vl__button--big--center:hover,
+.vl__button:focus,
+.vl__button--options:focus,
+.vl__button--small:focus,
+.vl__button--big:focus,
+.vl__button--big--center:focus {
+	box-shadow: 0px 1px 5px rgba(0, 0, 0, .4)
+}
+
+.vl__button--big,
+.vl__button--big--center {
+	border-radius: 25px;
+	padding: 12px 32px
+}
+
+.vl__button--big--center {
+	display: block;
+	margin: auto
+}
+
+.vl__button--big--loading {
+	color: gray
+}
+
+.vl__button--small {
+	border-radius: 5px;
+	font-size: 13px;
+	margin: 4px;
+	padding: 4px 16px;
+	display: inline-block
+}
+
+.vl__button--options {
+	border-radius: 5px;
+	color: #0092c2;
+	margin: 4px;
+	padding: 8px 12px 8px 12px
+}
+
+.vl__button--options:hover,
+.vl__button--options:focus {
+	box-shadow: 0px 1px 5px rgba(0, 0, 0, .4)
+}
+
+.vl__button--options:focus {
+	background: #e5f4f8
+}
+
+.vl__sticky-ipa {
+	box-shadow: 2px 2px 6px rgba(0, 0, 0, .1);
+	outline: solid #e4e2e0;
+	padding: 10px 15px 12px 15px;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0
+}
+
+.vl__load-settings {
+	display: none
+}
+
+.vl__custom-phonemes-toggle {
+	text-align: center
+}
+
+.vl__checkbox-toggle {
+	font-family: Cabin, Calibri;
+	background: #e5e8e8;
+	display: inline-block;
+	border-radius: 1.2em;
+	padding: .2em 2em .2em .2em;
+	margin-bottom: 8px
+}
+
+.vl__checkbox-toggle input {
+	display: none
+}
+
+.vl__checkbox-toggle label {
+	font-family: Cabin, Calibri;
+	transition: transform .1s;
+	cursor: pointer;
+	background: #abb2b9;
+	color: #fff;
+	display: inline-block;
+	padding: .25em 1em;
+	border-radius: 1em
+}
+
+.vl__checkbox-toggle input:checked+label {
+	background: #black;
+	color: #fff;
+	transform: translateX(1.8em)
+}
+
+.vl__textarea--oneline {
+	background: #f3f4f5;
+	border-radius: 25px 25px 4px 25px;
+	font-family: "Noto Sans", sans-serif;
+	font-size: 16px;
+	width: 100%;
+	padding: 11px 15px 11px 15px
+}
+
+@-moz-document url-prefix() {
+	.vl__textarea--oneline {
+		height: 3em
+	}
+}
+
+.vl__textarea--multiline,
+.vl__textarea--multiline--float-left,
+.vl__textarea--multiline--notosans-serif {
+	background: #f3f4f5
+}
+
+.vl__textarea--multiline--notosans-serif {
+	font-family: "Noto Sans", sans-serif
+}
+
+.vl__textarea--multiline--float-left {
+	float: left;
+	margin-right: 20px;
+	margin-top: 10px
+}
+
+.vl__more-options {
+	padding: 0px 0px 14px 0px;
+	text-align: center
+}
+
+.vl__clear-float {
+	clear: both
+}
+
+.vl__flex {
+	display: flex;
+	flex-wrap: wrap
+}
+
+.vl__flex--right {
+	flex: 2;
+	min-width: 360px;
+	margin-left: 20px
+}
+
+.vl__flex-margin {
+	margin-bottom: 10px
+}
+
+.vl__input--greyed {
+	background: #f3f4f5
+}
+
+.vl__textarea--greyed {
+	color: #5f6b6f
+}
+
+.vl__gloss-table {
+	border-left: 4px solid #ccc;
+	font-size: 15px
+}
+
+.vl__unpad {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 12px
+}
+
+.vl__gloss-con {
+	font-family: "Noto Sans", sans-serif;
+	font-weight: bold
+}
+
+.vl__IPAsymbols {
+	background: #f7f8f9;
+	display: none;
+	z-index: 5
+}
+
+.vl__nowrap {
+	white-space: nowrap
+}
+
+.vl__ipa-button {
+	color: #0092c2;
+	cursor: pointer;
+	font-family: "Noto Sans", sans-serif;
+	font-size: 16px
+}
+
+.vl__vert-div {
+	color: black;
+	font-weight: bold
+}
+
+.vl__grammar-editor {
+	background: #f3f4f5;
+	font-family: "Cabin", Calibri, sans-serif;
+	font-size: 1em;
+	height: 525px
+}
+
+.vl__grammar-block {
+	background: rgba(108, 98, 71, 0.34);
+	border: 1px solid #4F120B;
+	display: inline-block;
+	margin-bottom: 20px;
+	margin-right: 20px;
+	overflow: auto;
+	overflow-x: auto;
+	padding: 20px;
+	text-align: left;
+	vertical-align: top
+}
+
+.vl__output-container {
+	background: #f7f8f9;
+	padding: 15px;
+	margin: 0px auto;
+	max-width: 1920px;
+	margin-top: 60px !important;
+	border: 1px solid #1d77a8;
+	text-align: center
+}
+
+.vl__the-language-of {
+	color: black;
+	font-family: "Cinzel Decorative", "Noto Sans", sans-serif;
+	text-align: center;
+	font-weight: bold
+}
+
+.vl__red-h2 {
+	color: #black;
+	text-align: center
+}
+
+.vl__sample-sentence {
+	text-align: center;
+	max-width: 700px;
+	margin: 0 auto
+}
+
+.vl__seed {
+	text-align: center;
+	background: #fff;
+	border-radius: 8px;
+	padding: 10px;
+	margin: 20px auto;
+	border: 1px dashed #black
+}
+
+.vl__translator--container {
+	margin-top: 15px
+}
+
+.vl__translator--note {
+	margin-top: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 800px
+}
+
+.vl__translator--main {
+	text-align: center;
+	margin-top: 15px
+}
+
+.vl__generate-name {
+	margin-top: 20px
+}
+
+.vl__sound-change-list {
+	font-family: "Noto Sans", sans-serif
+}
+
+.vl__freq-stats {
+	display: none
+}
+
+.vl__morph-description {
+	font-family: "Noto Sans", sans-serif;
+	padding-bottom: 5px
+}
+
+.vl__dictionary-container {
+  border: 1px solid #4F120B;
+  background: rgba(108, 98, 71, 0.34);
+	display: block;
+	margin: 0 auto;
+	padding: 20px;
+	text-align: left
+}
+
+.vl__no-bullet {
+	list-style-type: none
+}
+
+.vl__translator-affixes {
+	list-style-type: none;
+	margin: 0px;
+	text-align: left;
+	-moz-column-count: 5;
+	-moz-column-gap: 5px;
+	-webkit-column-count: 5;
+	-webkit-column-gap: 5px;
+	column-count: 5;
+	column-gap: 5px
+}
+
+.vl__dictionary-list {
+	-moz-column-count: 3;
+	-moz-column-gap: 5px;
+	-webkit-column-count: 3;
+	-webkit-column-gap: 5px;
+	column-count: 3;
+	column-gap: 5px
+}
+
+.vl__dictionary-list li {
+	font-family: "Noto Sans", sans-serif;
+	display: block;
+	float: none;
+	min-width: 198px;
+	margin: 0 0 4px 0;
+	border: 1px solid black;
+	padding: 4px;
+	-webkit-transition-duration: 1.5s;
+	transition-duration: 1.5s
+}
+
+.vl__dictionary-list li:hover {
+	border-radius: 4px;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, .3);
+	cursor: context-menu;
+	border: 1px solid #a4c8dc
+}
+
+.vl__selected-lang {
+	color: #black
+}
+
+.vl__hard-footer {
+	padding: 3%
+}
+
+.vl__question {
+	background: #99d3e6;
+	border-radius: 100px;
+	color: #fff;
+	display: inline;
+	font-size: 12px;
+	padding: 2px 7.5px
+}
+
+.vl__popup {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	padding-top: 100px;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: #000;
+	background-color: rgba(0, 0, 0, .7)
+}
+
+.vl__popup-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%
+}
+
+.vl__X-close {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold
+}
+
+.vl__X-close:hover,
+.vl__X-close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer
+}
+
+.vl__form {
+	display: inline-block
+}
+
+.vl__aff {
+	color: #0092c2 !important
+}
+
+.vl__center {
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #fff
+}
+
+.vl__center tr {
+	padding: 12px
+}
+
+.vl__TAGS {
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto
+}
+
+@media screen and (max-width: 810px) {
+	.vl__dictionary-list {
+		-moz-column-count: 2;
+		-webkit-column-count: 2;
+		column-count: 2;
+		overflow: none
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.vl__app {
+		padding: 0%
+	}
+
+	.vl__nowrap {
+		white-space: normal
+	}
+
+	.vl__dictionary-list {
+		-moz-column-count: 1;
+		-moz-column-gap: 0px;
+		-webkit-column-count: 1;
+		-webkit-column-gap: 0px;
+		column-count: 1;
+		column-gap: 0px
+	}
+}
+
+#toolbar-container .ql-font span[data-label="Noto Sans"]::before {
+	font-family: "Noto Sans", sans-serif
+}
+
+#toolbar-container .ql-font span[data-label="Noto Sans"]::before {
+	font-family: "Noto Sans", sans-serif
+}
+
+#toolbar-container .ql-font span[data-label="Roboto Mono"]::before {
+	font-family: "Roboto Mono", "Noto Sans", sans-serif
+}
+
+#toolbar-container .ql-font span[data-label=Cinzel]::before {
+	font-family: "Cinzel Decorative"
+}
+
+#toolbar-container .ql-font span[data-label=Cabin]::before {
+	font-family: "Cabin"
+}
+
+.ql-font-sans-serif-regular {
+	font-family: "Noto Sans", sans-serif
+}
+
+.ql-font-sans-regular {
+	font-family: "Noto Sans", sans-serif
+}
+
+.ql-font-mono {
+	font-family: "Roboto Mono", "Noto Sans", sans-serif
+}
+
+.ql-font-cinzel {
+	font-family: "Cinzel Decorative", "Noto Sans", sans-serif
+}
+
+.ql-font-alata {
+	font-family: "Cabin", Calibri, sans-serif
+}
+
+.ql-align-center {
+	text-align: center
+}
+
+.ql-align-justify {
+	text-align: justify
+}
+
+.ql-align-right {
+	text-align: right
+}
+
+.ql-size-small {
+	font-size: 0.75em;
+}
+
+.ql-size-large {
+	font-size: 1.5em;
+}
+
+.ql-size-huge {
+	font-size: 2.5em;
+}
+
+.vl_content-visible {
+	content-visibility: auto;
+}
