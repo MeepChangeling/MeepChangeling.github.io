@@ -2683,7 +2683,9 @@ var Vault1 = new FalloutMarker({iconUrl: 'img/AI - Green/Vault (Found).webp'}),
 	Reactor1a = new FalloutMarker({iconUrl: 'img/AI - Amber/Reactor (Found).webp'}),
 	Reactor2a = new FalloutMarker({iconUrl: 'img/AI - Amber/Reactor (Undiscovered).webp'}),
 	PowerStation1a = new FalloutMarker({iconUrl: 'img/AI - Cyan/Power Station (Found).webp'}),
-	PowerStation2a = new FalloutMarker({iconUrl: 'img/AI - Cyan/Power Station (Undiscovered).webp'});
+	PowerStation2a = new FalloutMarker({iconUrl: 'img/AI - Cyan/Power Station (Undiscovered).webp'}),
+	Mine1a = new FalloutMarker({iconUrl: 'img/AI - Cyan/Mine (Found).webp'}),
+  Mine1a = new FalloutMarker({iconUrl: 'img/AI - Cyan/Mine (Undiscovered).webp'});
 
 	L.icon = function (options) {
     return new L.Icon(options);
@@ -2821,10 +2823,11 @@ var BaseCamp = L.marker([29.967237, -95.703637], {icon: Camp1b}).bindPopup("Gas 
 		WaterTower = L.marker([29.959994, -95.714288], {icon: WaterPlant1b}).bindPopup("FEMA Water Tower"),
 		JunkYard = L.marker([30.028409, -95.673324], {icon: ScrapYard2b}).bindPopup("Junkyard"),
 		Rad1 = L.marker([29.912284, -95.74225], {icon: Radiation1b}).bindPopup("Radioactive Lakes (deadly)"),
-		Nude = L.marker([30.061524, -95.739227], {icon: Settlement2b}).bindPopup("Nudist Colony"),
-		Zenith = L.marker([29.910021, -95.777381], {icon: PowerStation1a}).bindPopup("Zenith Substation");
+		Nude = L.marker([30.061524, -95.739227], {icon: Settlement1b}).bindPopup("Nudist Colony"),
+		Zenith = L.marker([29.910021, -95.777381], {icon: PowerStation1a}).bindPopup("Zenith Substation"),
+		AbandonedMine = L.marker([29.977403, -95.794275], {icon: Mine1a}).bindPopup("Abandoned Mine?");
 
-var PlayerLocations = L.layerGroup([BaseCamp, TrainStation, StripMall, WaterTower, JunkYard, Rad1, Nude, Zenith]);
+var PlayerLocations = L.layerGroup([BaseCamp, TrainStation, StripMall, WaterTower, JunkYard, Rad1, Nude, Zenith, AbandonedMine]);
 
 //       DM LOCATIONS
 var BillyBunker = L.marker([30.950658, -95.917897], {icon: Bunker2a}).bindPopup("Billy's Bunker"),
