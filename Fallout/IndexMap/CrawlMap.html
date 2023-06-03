@@ -2807,8 +2807,9 @@ var Ranches = L.layerGroup([TheDoubleR, LoneStarRanch, DeadmansGulch, DiamondW, 
 //       QUEST LOCATIONS
 // Use <icon name>a for Amber icons.
 var NatGuardArmory = L.marker([29.737057, -95.65062], {icon: Fort2a}).bindPopup("National Guard Armory"),
-		Shelter93 = L.marker([29.908197, -95.736569], {icon: Bunker1a}).bindPopup("Shelter 93");
-var QuestLocations = L.layerGroup([Shelter93]);
+		Shelter93 = L.marker([29.908197, -95.736569], {icon: Bunker1a}).bindPopup("Shelter 93"),
+		DrsCompound = L.marker([30.018803, -95.863483], {icon: Reactor1a}).bindPopup("Dr. Delgado's Compound");
+var QuestLocations = L.layerGroup([Shelter93, DrsCompound]);
 
 //       PLAYER LOCATIONS
 // Use <icon name>b for cyan icons.
@@ -2832,10 +2833,9 @@ var PlayerLocations = L.layerGroup([BaseCamp, TrainStation, StripMall, WaterTowe
 
 //       DM LOCATIONS
 var BillyBunker = L.marker([30.950658, -95.917897], {icon: Bunker2a}).bindPopup("Billy's Bunker"),
-		CampSwift = L.marker([30.191516, -97.307574], {icon: Fort2a}).bindPopup("Camp Swift"),
-		DrsCompound = L.marker([30.018803, -95.863483], {icon: Reactor2a}).bindPopup("Dr. Delgado's Compound");
+		CampSwift = L.marker([30.191516, -97.307574], {icon: Fort2a}).bindPopup("Camp Swift");
 
-var DMLocations = L.layerGroup([BillyBunker, CampSwift, DrsCompound]);
+var DMLocations = L.layerGroup([BillyBunker, CampSwift]);
 
 // Add an event listener to the document object that listens for the keydown event
 document.addEventListener('keydown', function(event) {
