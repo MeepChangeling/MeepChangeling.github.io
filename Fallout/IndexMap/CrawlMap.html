@@ -2629,6 +2629,8 @@ var Vault1 = new FalloutMarker({iconUrl: 'img/AI - Green/Vault (Found).webp'}),
 	City2 = new FalloutMarker({iconUrl: 'img/AI - Green/City (Undiscovered).webp'}),
 	Farm1 = new FalloutMarker({iconUrl: 'img/AI - Green/Farm (Found).webp'}),
 	Farm2 = new FalloutMarker({iconUrl: 'img/AI - Green/Farm (Undiscovered).webp'}),
+	Farm1b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Farm (Found).webp'}),
+	Farm2b = new FalloutMarker({iconUrl: 'img/AI - Cyan/Farm (Undiscovered).webp'}),
 	Fort1 = new FalloutMarker({iconUrl: 'img/AI - Green/Military Base (Found).webp'}),
 	Fort2 = new FalloutMarker({iconUrl: 'img/AI - Green/Military Base (Undiscovered).webp'}),
 	Fort1a = new FalloutMarker({iconUrl: 'img/AI - Amber/Military Base (Found).webp'}),
@@ -2827,9 +2829,15 @@ var BaseCamp = L.marker([29.967237, -95.703637], {icon: Camp1b}).bindPopup("Gas 
 		Nude = L.marker([30.061524, -95.739227], {icon: Settlement1b}).bindPopup("Botanical's Gardens East"),
 		Zenith = L.marker([29.910021, -95.777381], {icon: PowerStation1a}).bindPopup("Zenith Substation"),
 		AbandonedMine = L.marker([29.977403, -95.794275], {icon: Mine1a}).bindPopup("Abandoned Mine?"),
-		Lismore = L.marker([29.9706763, -95.613076], {icon: RuinsB2b}).bindPopup("Lismore Lake Estates");
+		Lismore = L.marker([29.9706763, -95.613076], {icon: RuinsB2b}).bindPopup("Lismore Lake Estates"),
+		WheatFarm = L.marker([30.203077, -96.056787], {icon: Farm2b}).bindPopup("The Wheat Ranch"),
+		Waterbrook = L.marker([30.832679, -96.542073], {icon: RuinsB2b}).bindPopup("Ghost Town"),
+		JunctionTown = L.marker([31.351761, -96.167206], {icon: Camp2b}).bindPopup("Junction Town");
 
 var PlayerLocations = L.layerGroup([BaseCamp, TrainStation, StripMall, WaterTower, JunkYard, Rad1, Nude, Zenith, AbandonedMine, Lismore]);
+
+var PlayerDistantLocations =  L.layerGroup([WheatFarm, Waterbrook, JunctionTown]);
+
 
 //       DM LOCATIONS
 var BillyBunker = L.marker([30.950658, -95.917897], {icon: Bunker2a}).bindPopup("Billy's Bunker"),
@@ -2860,6 +2868,7 @@ map.on('zoomend', function() {
 					map.addLayer(vaultMarkers);
 					map.addLayer(PlayerLocations);
 					map.addLayer(QuestLocations);
+					map.addLayer(PlayerDistantLocations);
 	}
 	else {
 					map.removeLayer(Infra);
@@ -2868,8 +2877,19 @@ map.on('zoomend', function() {
 					map.removeLayer(vaultMarkers);
 					map.removeLayer(PlayerLocations);
 					map.removeLayer(QuestLocations);
+					map.removeLayer(PlayerDistantLocations);
 			}
 });
+
+map.on('zoomend', function() {
+	if (map.getZoom() >= 9){
+					map.addLayer(PlayerDistantLocations);
+	}
+	else {
+					map.removeLayer(PlayerDistantLocations);
+			}
+});
+
 
 
 </script>
