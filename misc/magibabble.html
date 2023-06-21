@@ -1,0 +1,58 @@
+<doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Magi Babble Generator</title>
+<link id="theme" rel="stylesheet" type="text/css" href="../MainStyleSheet.css" />
+<link rel="icon" type="../image/x-icon" href="../img/logo.png">
+<style>
+  .inv {
+  display: none;
+  }
+  .inv1 {
+  display: none;
+  }
+
+  textarea {
+    width: 90%;
+    height: 60%;
+    padding: 3%;
+    margin-top: 1em;
+    margin-left: 5%;
+  	margin-right: 5%;
+  	border: 1px solid #4F120B;
+  	background-color: rgba(108, 98, 71, 0.34);
+  	font-family: 'Courier New';
+  	overflow: hidden;
+  }
+ label.toplable {
+   display: inline-block;
+   font-weight: 700;
+ }
+ span.sectionhead {
+   border-style: solid;
+   border-width: 1px 0px;
+   border-color: black;
+   font-weight: 700;
+ }
+</style>
+</head><script src="../scripts/darkmode.js"></script>
+<body>
+<div>
+<script src="../nav.js"></script>
+</div>
+<br>
+
+<div class="book">
+<h3 class="articletitle">Eyom Magi Babble Generator</h3>
+
+<div id="generated-names" class="generated-content technobababble paragraphs">
+
+</div>
+
+<button type="button" class=" button generate-button" onclick="generateNew()">Generate More</button>
+
+
+<!-- Magi Babble -->
+<script src="jquery.js"></script>
+<script src="magibabble.js"></script>
