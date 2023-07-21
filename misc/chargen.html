@@ -53,7 +53,11 @@
 </div>
 
 
-<p><b>Name:</b> <span id="gendname"><span id="demo">hold</span><span id="gobnik">​</span><span id="lastname">placer</span></span></p>
+<p id="namefield"><b>Name:</b> <span id="gendname"><span id="demo">hold</span><span id="gobnik">​</span><span id="lastname">placer</span></span></p>
+<p id="demo4"></p>
+<p id="demo5"></p>
+<p id="demo6"></p>
+<p id="demo7"></p>
 <p id="demo2"></p>
 <p id="demo3"></p>
 
@@ -220,15 +224,398 @@
   </span>
 </p>
 
+<label class="toplable" for="CultureSelect">Culture</label>
+<select id="CultureSelect">
+  <option value="1">Culture...</option>
+  <option value="2">Ancient Mountain Culture</option>
+  <option value="3">Dalandic Culture</option>
+  <option value="4">Dwarvern Culture</option>
+  <option value="5">Rosid Culture</option>
+  <option value="6">Gnollish Culture</option>
+  <option value="7">Goblin Culture</option>
+  <option value="8">Hobgoblin Culture</option>
+  <option value="9">Imperial Culture</option>
+  <option value="10">Iron Elven Culture</option>
+  <option value="11">Sylvin Culture</option>
+  <option value="12">Tauric Culture</option>
+  <option value="13">Wareneese Culture</option>
+  <option value="14">Zomani Culture</option>
+</select>
+
+<label class="toplable" for="FirearmSelect">Firearm</label>
+<select id="FirearmSelect">
+  <option value="1">None...</option>
+  <option value="2">Era 1</option>
+  <option value="3">Era 2</option>
+  <option value="4">Era 3</option>
+  <option value="5">Era 4</option>
+  <option value="6">Era 5</option>
+  <option value="7">Era 6</option>
+</select>
+
+<label class="toplable" for="MeleeSelect">Melee</label>
+<select id="MeleeSelect">
+  <option value="1">None...</option>
+  <option value="2">Cutting</option>
+  <option value="3">Stabbing</option>
+  <option value="4">Striking</option>
+</select>
+
+<label class="toplable" for="ArmorSelect">Armor</label>
+<select id="ArmorSelect">
+  <option value="1">None...</option>
+  <option value="2">Armored Clothing</option>
+  <option value="3">Light Armor</option>
+  <option value="4">Medium Armor</option>
+  <option value="5">Heavy Armor</option>
+  <option value="6">Super-Heavy Armor</option>
+</select>
 
 
+</br></br>
+<label class="toplable" for="DescButton">Α</label>
+<button id="DescButton" onclick="doTheThingCopyNameIrnElf(); doTheThingHobbies(); GenClass(); GenStarGift(); GenCulture(); GenEquip();">Full Gen</button>
+<label class="toplable" for="DescButton">Ω</label>
+<button id="downloadButton">Save NPC to File</button>
+
+
+</br></br>
 <label class="toplable" for="DescButton">1</label>
 <button id="DescButton" onclick="doTheThingCopyNameIrnElf();">Describe Them</button>
 <label class="toplable" for="DescButton">2</label>
 <button id="DescButton" onclick="doTheThingHobbies();">Their Hobbies</button>
+<label class="toplable" for="DescButton">3</label>
+<button id="DescButton" onclick="GenClass();">Their Class</button>
+<label class="toplable" for="DescButton">4</label>
+<button id="DescButton" onclick="GenStarGift();">Their Gift</button>
+<label class="toplable" for="DescButton">5</label>
+<button id="DescButton" onclick="GenCulture();">Their Culture</button>
+<label class="toplable" for="EquipButton">5</label>
+<button id="EquipButton" onclick="GenEquip();">Their Equipment</button>
+</br></br>
 
-<textarea id="notepad" placeholder="This is a scratch pad. It holds data between refreshes, and even reloading the page..."></textarea>
 
+
+<!-- Class Generator -->
+<script type="text/javascript" title="Class Generator">
+  function GenClass(){
+    var die = getRandomInt(1,100);
+    var classes = ["Bard", "Barbarian", "Cleric", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard", "Regular", "Militiaman", "Witch", "Orcal", "Psion"];
+    if (die <= 80) {
+      var class1 = classes[getRandomInt(0, classes.length )];
+      document.getElementById("demo4").innerHTML = "<b>Class: </b> " + class1 + " 2";
+    } else {
+      var class1 = classes[getRandomInt(0, classes.length )];
+      var class2 = classes[getRandomInt(0, classes.length )];
+      document.getElementById("demo4").innerHTML = "<b>Class: </b> " + class1 + " 1 / " + class2 + " 1";
+    }
+  }
+</script>
+<script type="text/javascript" title="Star Gift">
+  function GenStarGift() {
+    var die = getRandomInt(1,3)
+    if (die == 1) {
+      var season = "Void Sky";
+      var die2 = getRandomInt(1,4)
+      if (die2 == 1) {
+        var month = "Full Harvest - Slayer Talent:";
+        var gifts = ["Aligned Sneak Attack", "Blood Reader", "Foil Scrutiny", "Poison Use", "Ranger Combat Style", "Redirect Poison", "Rogue Talent", "Scrying Familiarity", "Slowing Strike", "Sticks and Stones", "Studied Ally", "Sunlight Strike", "Sure Footing", "Trapfinding"];
+      } else if (die2 == 2) {
+        var month = "Half Sowing - Mutagen:";
+        var gifts = ["Strength Mutagen", "Dexterity Mutagen", "Constitution Mutagen"];
+      } else if (die2 == 3) {
+        var month = "Full Sowing - Hex:";
+        var gifts = ["Ameliorating", "Aura of Purity", "Beast of Ill-Omen", "Blight", "Cackle", "Cauldron", "Charm", "Child-Scent", "City Sight", "Combat Hypnosis", "Congeal", "Coven", "Cursed Wound", "Dark Apothecary", "Deathcall", "Discord", "Disguise", "Disrupt Connection", "Distraction", "Enemy Ground", "Evil Eye", "Feral Speech", "Flight", "Floating Lotus", "Fortune", "Gift of Consumption", "Greater Gift of Consumption", "Healing", "Heralding Bloom", "Iceplant", "Leshy Summoning", "Minor Prophecy", "Misfortune", "Mother's Eye", "Mud Witch", "Murksight", "Nails", "No Place Like Home", "Peacebond", "Poison Steep", "Poison Touch", "Pollute Water", "Polluting Glance", "Prehensile Hair", "Protective Luck", "Scar", "Seduction", "Sink", "Slumber", "Soothsayer", "Summer's Heat", "Swamp Hag", "Swamp's Grasp", "Swine", 'Tongues', "Unnerve Beasts", "Verdant Familiar", "Ward", "Water Lung", "Witch's Bottle"];
+      } else {
+        var month = "Halfharvest - Alchemist's Extract:";
+        var gifts = ['Adhesive Spittle','Abjuring Step','Ant Haul','Anticipate Peril','Blend','Blurred Movement','Body Capacitance','Bomber’s Eye','Bouncy Body','Comprehend Languages','Crafter’s Fortune','Cure Light Wounds','Detect Metal','Detect Secret Doors','Detect Undead','Disguise Self','Endure Elements','Enlarge Person','Expeditious Retreat','Fabricate Disguise','Firebelly','Fool’s Gold','Heightened Awareness','Illusion of Calm','Identify','Invisibility Alarm','Jump','Keen Senses','Linebreaker','Long Arm','Longshot','Monkey Fish','Negate Aroma','Obscure Poison','Phantom Blood','Polypurpose Panacea','Reduce Person','See Alignment','Shield','Shock Shield','Stone Fist','Targeted Bomb Admixture','Tears to Wine','Touch of the Sea','True Strike','Vocal Alteration','Wizened Appearance','Youthful Appearance'];
+      }
+    } else if (die == 2) {
+      var season = "Living Sky";
+      var die2 = getRandomInt(1,4)
+      if (die2 == 1) {
+        var month = "Frost Fall - Spell:";
+        var die3 = getRandomInt(1, 100);
+        if (die3 < 50) {
+          var gifts = ['Aversion','Babble','Bleed for Your Master','Burdened Thoughts','Charitable Impulse','Contagious Zeal','Deep Slumber','Deflect Blame','Draconic Malice','Heroism','Hold Person','Inflict Pain','Lover’s Vengeance','Matchmaker','Mindlocked Messenger','Nixie’s lure','Open Book','Psychic Leech','Pugwampi’s Grace','Rage','Reckless Infatuation','Stage Fright','Suggestion','Unadulterated Loathing'];
+        } else {
+          var gifts = ['Arcane Sight','Aura Sight','Blood Biography','Clairaudience/Clairvoyance','Detect Anxieties','Detect Desires','Detect Mindscape','Discern Value','Find Fault','Harrowing','Insect Scouts','Locate Weakness','Pack Empathy','Perfect Placement','Pierce Disguise','See Beyond','Seek Thoughts','Share Language, Communal','Spherescry','Spirit Bonds','Tongues','Unravel Destiny','Voluminous Vocabulary'];
+        }
+      } else if (die2 == 2) {
+        var month = "Longdark - Spell:";
+        var die3 = getRandomInt(1, 100);
+        if (die3 < 50) {
+          var gifts = ['Adjustable Disguise','Appearance of Life','Audiovisual Hallucination','Dazzling Blade, Mass','Displacement','Fearsome Duplicate','Illusory Poison','Illusory Script','Invisibility Sphere','Isolate','Loathsome Veil','Major Image','Minor Dream','Oneiric Horror','Phantasmal Affliction','Phantasmal Reminder','Shadow Enchantment','Shadowmind','Vision of Hell','Wall of Nausea'];
+        } else {
+          var gifts = ['Air Breathing','Ancestral Regression','Anchored Step','Anthropomorphic Animal','Ape Walk','Aristocrat’s Nightmare','Armor Lock','Assume Appearance','Beast Shape I','Blast Barrier','Blink','Blood Scent','Blood Sentinel','Blot','Burrow','Control Vermin','Countless Eyes','Darkvision, Communal','Deft Digits','Devolution','Disable Construct','Earth Tremor','Enter Image','Eruptive Pustules','Excruciating Deformation','Fins to Feet','Fire Trail','First World Revisions','Flame Arrow','Flash Fire','Fly','Fractions of Heal and Harm','Gaseous Form','Haste','Heart of the Metal','Hollow Blades','Hostile Levitation','Imbue With Addiction','Improve trap','Infuse Self','Keen Edge','Magic Weapon, Greater','Monstrous Extremities','Monstrous Physique I','Paragon Surge','Polymorph Familiar','Prehensile Pilfer','Pup Shape','Raging Rubble','Resinous Skin','Scale Spikes, Greater','Secret Page','Shifting Sand','Shrink Item','Slow','Spellsword','Spider Climb, Communal','Strangling Hair','Tail Strike','Touch Injection','Undead Anatomy I','Versatile Weapon','Water Breathing'];
+        }
+      } else if (die2 == 3) {
+        var month = "Newlight - Spell:";
+        var die3 = getRandomInt(1, 100);
+        if (die3 < 50) {
+          var gifts = ['Ablative Barrier','Apport Animal','Aqueous Orb','Ash Storm','Conjure Carriage','Force Anchor','Gloomblind Bolts','Ice Spears','Infernal Challenger','Iron Stake','Mad Monkeys','Nauseating Trail','Pellet Blast','Penumbral Disguise','Phantom Driver','Phantom Steed','Planar Inquiry','Rain of Frogs','Returning Weapon, Communal','Sepia Snake Sigil','Silver Darts','Sleet Storm','Spiked Pit','Stinking Cloud','Storm Step','Summon Monster III','Summon Totem Creature','Sundered Serpent Coil','Swarm of Fangs','Urban Step','Waves of Blood'];
+        } else {
+          var gifts = ['Ablative Sphere','Blade Snare','Cloak of Winds','Dispel Magic','Explosive Runes','Magic Circle against Chaos/Evil/Good/Law','Nondetection','Protection from Arrows, Communal','Protection from Energy','Quell Energy','Resist Energy, Communal','Scales of Deflection','Selective Alarm','Shield Companion','Stunning Barrier, Greater'];
+        }
+    } else if (die2 == 4) {
+      var month = "Eweing - Spell:";
+      var die3 = getRandomInt(1, 100);
+      if (die3 < 50) {
+        var gifts = ['Air Geyser','Battering Blast','BlackLight','Call the Void','Campfire Wall','Chain of Perdition','Channel the Gift','Contact Entity II','Contingent Action','Daylight','Diamond Spray','Distracting Cacophony','Draconic Reservoir','Ectoplasmic Snare','Elemental Aura','Final Sacrifice','Fireball','Firestream','Force Punch','Heatstroke','Hydraulic Torrent','Lightning Bolt','Motes of Dusk And Dawn','Pain Strike','Sheet Lightning','Spotlight','Thunderstomp, Greater','Tiny Hut','Trial of Fire and Acid','Twilight Knife','Vengeful Comets','Wall of Split Illumination','Wind Wall'];
+      } else {
+        var gifts = ['Accursed Glare','Animate Dead, Lesser','Aura of Cannibalism','Barrow Haze','Catatonia','Deathwine','Eldritch Fever','Gentle Repose','Halt Undead','Healing Thief','Howling Agony','Hydrophobia','Ki Leech','Malediction','Marionette Possession','Ray of Exhaustion','Sands of Time','Symbol of Exsanguination','Toxic Gift','Unliving Rag','Vampiric Touch'];
+      }
+    }
+  } else {
+      var season = "Dead Sky";
+      var die2 = getRandomInt(1,4)
+      if (die2 == 1) {
+        var month = "Gentlesun - Physical Powers:";
+        var gifts = ["+10 speed"];
+      } else if (die2 == 2) {
+        var month = "Highsun - Physical Powers:";
+        var gifts = ["+4 inishative"];
+      } else if (die2 == 3) {
+       var month = "Longwheat - Physical Powers:";
+       var gifts = ["+2 to aid other checks"];
+     } else {
+       var month = "Toolmend - Physical Powers:";
+       var gifts = ["fix absolutly anything"];
+     }
+    }
+    var gift = gifts[getRandomInt(0, gifts.length )];
+    document.getElementById("demo5").innerHTML = "<b>Star Gift:</b> " + season + " - " + month + " " + gift;
+  };
+
+</script>
+<script type="text/javascript" title="Culture Feat">
+  function GenCulture(){
+    var select = document.getElementById("CultureSelect");
+    var cultnum = select.value;
+    if (cultnum == 1) {
+      var cultnum = getRandomInt(2,13);
+    }
+    if (cultnum == 2) {
+      var culture = "Ancient Mountain Culture";
+      var feats = ["Die Hard", "Toughness", "Aligned Sneak Attack", "Blood Reader", "Foil Scrutiny", "Poison Use", "Ranger Combat Style", "Redirect Poison", "Rogue Talent", "Scrying Familiarity", "Slowing Strike", "Sticks and Stones", "Studied Ally", "Sunlight Strike", "Sure Footing", "Trapfinding", "Advanced Ranger Trap", "Extra Ranger Trap", "Learn Ranger Trap"];
+    } else if (cultnum == 3) {
+      var culture = "Dalandic Culture";
+      var feats = ["Persuasive", "Adventuring Capitol", "Well-Prepared", "Athletic", "Skill Focus"];
+    } else if (cultnum == 4) {
+      var culture = "Dwarvern Culture";
+      var feats = ["Improved Stonecunning", "Armor Proficiency, Heavy", "Armor Proficiency, Super Heavy", "Ancestral Weapon Mastery (Combat)", "Master Crafstman"];
+    } else if (cultnum == 5) {
+      var culture = "Rosid Culture";
+      var feats = ["Deadly Aim", "Rapid Reload", "Detect Oil", "Run", "Skill Focus"];
+    } else if (cultnum == 6) {
+      var culture = "Gnollish Culture";
+      var feats = ["Persuasive Bribery", "Improved Unarmed Strike", "Improved Outflank", "Merchant's Apprasial"];
+    } else if (cultnum == 7) {
+      var culture = "Goblin Culture";
+      var feats = ["Animal Affinity", "Animal Ally", "Animal Call", "Animal Disguise", "Improved Sunder"];
+    } else if (cultnum == 8) {
+      var culture = "Hobgoblin Culture";
+      var feats = ['Great Aberration Hunter', 'Acrobatic Spellcaster','Adder Strike','Pinpoint Poisoner','Advanced Armor Training','Advanced Defensive Combat Training','Advanced Weapon Training','Agile Maiden','Agile Maneuvers','Alchemical Strike','All-Consuming Swing','Amateur Gunslinger','Amateur Swashbuckler','Ambush Awareness','Ambush Sense','Ambush Squad','Ammo Drop','Anatomical Savant','Ancestral Enmity','Ancestral Weapon Mastery','Animal Ferocity','Ankle Biter','Anticipate Dodge','Aquatic Combatant','Arc Slinger','Arcane Armor Mastery','Arcane Armor Training','Arcane Strike','Archon Style','Archon Diversion','Archon Justice','Arcing Weapon','Armor Adept','Armor Focus','Improved Armor Focus','Armor Proficiency, Light','Armor Proficiency, Medium','Armor Proficiency, Heavy','Armor Trick','Armored Athlete','Artful Dodge','Artillery Team','Artistry','Ascetic Style','Ascetic Form','Ascetic Strike','Awe-Inspiring Smash','Awesome Blow','Improved Awesome Blow','Awesome Charge','Awesome Throw','Banner of Doom','Barrage of Styles','Barroom Brawler','Bashing Finish','Battle Cry','Bear’s Balance','Beast Hunter','Improved Beast Hunter','Greater Beast Hunter','Befuddling Strike','Betrayal Sense','Betraying Blow','Binding Throw','Blade Binder','Blades Above and Below','Blazing Aura','Bleeding Attack','Blind-Fight','Blind-Fight, Improved','Blind-Fight, Greater','Blinded Blade Style','Blinded Competence','Blinded Master','Blinding Flash','Blinding Light','Blinding Sneak Attack','Blistering Feint','Blood Beak','Blooded Arcane Strike','Blood Feast','Blood Spurt','Bloody Assault','Bloody Vengeance','Bludgeoner','Blundering Defense','Bodyguard','Body Shield','Branch Pounce','Bounding Hammer','Break Guard','Brutal Coup de Grace','Brutal Grappler','Brute Style','Brute Stomp','Brute Assault','Bulette Charge Style','Bulette Rampage','Bulette Leap','Bull Rush Maneuvers','Bull Rush, Improved','Bull Rush, Greater','Bull Rush Strike','Bullseye Shot','Bullying Blow','Burn it Down!','But a Scratch','Call Out','Canny Tumble','Caster’s Champion','Cat and Mouse','Catch Off-Guard','Cautious Fighter','Chairbreaker','Channel Smite','Channeling Force','Charge of the Righteous','Charge Through','Charging Hurler','Improved Charging Hurler','Choir of Blades','Chokehold','Circling Mongoose','Circuitous Shot','Clambering Escape','Claw Pounce','Cleave','Cleave, Great','Cleaving Finish','Improved Cleaving Finish','Cleave Through','Clinging Climber','Cloak and Dagger Style','Cloak and Dagger Subterfuge','Cloak and Dagger Tactics','Close-Quarters Thrower','Cloven Helm','Clustered Shots','Cockatrice Strike','Combat Expertise','Combat Medic','Combat Patrol','Combat Reflexes','Combat Style Master','Compounded Pain','Concentrated Fire','Concentrated Splash','Consume Essence','Coordinated Defense','Coordinated Distraction','Coordinated Maneuvers','Coordinated Shot','Cornugon Shield','Cornugon Smash','Cornugon Stun','Cornugon Trip','Counterpunch','Counter Reflexes','Covering Defense','Covering Fire','Crane Style','Crane Wing','Crane Riposte','Critical Focus','Critical, Banishing','Critical, Banishing','Critical, Bleeding','Critical, Blinding','Critical, Censoring','Critical, Crippling','Critical, Deafening','Critical, Exhausting','Critical, Sickening','Critical, Staggering','Critical, Stunning','Critical, Tiring','Critical, Improved','Critical Mastery','Critical Versatility','Crossbow Mastery','Crowd of Bullies','Crowd Control','Crusader’s Fist','Crushing Blow','Cudgeler Style','Cudgeler Sweep','Cudgeler Takedown','Cunning Intuition','Dance of Chains','Darting Viper','Dastardly Finish','Dazing Assault','Dazing Fist','Dazzling Display','Deadly Aim','Deadhand Style','Deadhand Initiate','Deadhand Master','Deadly Finish','Deadly Grappler','Deadly Stroke','Death from Above','Death or Glory','Death Roll','Deathless Initiate','Deathless Master','Deathless Zealot','Defensive Combat Training','Defensive Weapon Training','Deflect Arrows','Demon Hunter','Demonic Nemesis','Demoralizing Lash','Dented Helm','Dervish Dance','Desperate Swing','Desperate Battler','Destroyer’s Blessing','Destructive Persuasion','Devastating Strike','Improved Devastating Strike','Disconcerting Stare','Dimensional Awareness','Dimensional Disruption','Dirty Trick Maneuvers','Dirty Trick, Improved','Dirty Trick, Greater','Dirty Trick Master','Disarm Maneuvers','Disarm, Improved','Disarm, Greater','Disarm, Directed','Disarming Strike','Disengaging Feint','Disengaging Flourish','Disengaging Shot','Disheartening Display','Disorienting Blow','Dispelling Critical','Disrupting Shot','Disruptive','Disrupting Fist','Distance Thrower','Distracting Charge','Diva Style','Diva Strike','Diva Advance','Divert Harm','Divine Fighting Technique','Divine Assault','Dodge','Domain Strike','Dorn-Dergar Master','Double Slice','Drag Down','Drag Maneuvers','Drag, Improved','Drag, Greater','Dragon Style','Draining Strike','Dreadful Carnage','Drunken Brawler','Dueling Cape Deed','Dueling Mastery','Efreeti Style','Efreeti Stance','Efreeti Touch','Eldritch Claws','Elemental Fist','Elemental Strike','Elephant Stomp','Elven Accuracy','Elusive Redirection','Elven Battle Training','Empty Quiver Style','Empty Quiver Flexibility','Empty Quiver Flurry','Enforcer','Engulf Revulsion','Engulf Horror','Enrage Opponent','Entreating Critical','Equipment Trick','Exceptional Pull','Exotic Weapon Proficiency','Explosive Weapon','Exsanguinate','Extreme Prejudice','Faerie’s Strike','False Opening','Far Shot','Feint Action (uses Bluff Skill)','Feinting Flurry','Feint, Greater','Feinting Flurry, Improved','Feint, Improved','Felling Escape','Felling Smash','Fencing Grace','Feral Combat Training','Ferocious Tenacity','Filthy Weapons','Final Embrace','Final Embrace Horror','Final Embrace Master','Firebrand','Fire Hand','Flagbearer','Flanking Foil','Flinging Charge','Focused Discipline','Focused Shot','Following Step','Fortified Armor Training','Fox Style','Fox Insight','Fox Trickery','Friendly Fire Maneuvers','Friendly Rivalry','Frightening Ambush','Furious Focus','Fury’s Fall','Fury of the Tainted','Fury of the Tainted, Improved','Fury’s Snare','Gang Up','Gate Breaker','Ghostslayer','Giant Killer','Giantslaying Team','Gloom Strike','Gnome Weapon Focus','Goblin Cleaver','Goblin Gunslinger','Gore Fiend','Gory Finish','Got Your Back','Grabbing Style','Grabbing Drag','Grabbing Master','Graceful Steal','Grapple Maneuver','Grapple, Improved','Grapple, Greater','Grasping Strike','Great Hatred','Greater Hunter’s Bond','Greater Spring Attack','Grudge Fighter','Gruesome Slaughter','Halfling Slinger','Hamatula Grasp','Hamatula Strike','Hamatulatsu','Hammer the Gap','Hard-headed','Harrying Partners','Haunted Gnome','Haunted Gnome Assault','Haunted Gnome Shroud','Hellcat Pounce','Heroic Leader','Hex Strike','Hold the Blade','Horrific Gorging','Horse Master','Impact Critical Shot','Impaling Critical','Improved Impaling Critical','Improved Awesome Blow','Improved Critical','Improved Hunter’s Bond','Improved Initiative','Improved Low Blow','Improved Parry','Improved Surprise Follow-Through','Improved Spring Attack','Improved Swap Places','Improved Two-Weapon Feint','Improvised Weapon Mastery','Improved Bravery','Incite Paranoia','Indomitable Mount','In Harm’s Way','Inner Flame','Inspiring Bravery','Intercept Charge','Intimidate Animals','Intimidating Prowess','Jabbing Style','Jabbing Dancer','Jabbing Master','Jaguar Pounce','Jawbreaker','Bonebreaker','Neckbreaker','Juggle Load','Juke','Just out of Reach','Kick Up','Ki Diversity','Killing Flourish','Ki Throw','Ki Throw, Enhanced','Ki Throw, Improved','Kobold Ambusher','Kobold Sniper','Kraken Style','Kraken Throttle','Kraken Wrack','Kyton Style','Kyton Shield','Kyton Cut','Landing Roll','Large Target','Latching Horror','Lead from the Back','Leapfrog','Leaping Evasion','Let Them Come','Lightning Draw','Lightning Stance','Lob Shot','Lookout','Low Profile','Lucky Strike','Lunge','Mad Magic','Maddening Style','Maddening Strike','Maddening Obliteration','Manifold Stare','Mantis Style','Manyshot','Martial Dominance','Martial Focus','Martial Mastery','Martial Versatility','Martial Weapon Proficiency','Massed Charge','Master Combat Performer','Measure Foe','Measured Response','Medusa’s Wrath','Merciless Beating','Merciless Butchery','Mirror Move','Misdirection Tactics','Misdirection Attack','Missile Shield','Mobility','Mobile Bulwark Style','Mobile Fortress','Mobile Stronghold','Monastic Legacy','Monkey Lunge','Moonlight Stalker','Moonlight Stalker Feint','Moonlight Stalker Master','Mounted Archery','Mounted Combat','Mounted Onslaught','Mounted Skirmisher','Mounted Shield','Mud in Your Eye','Multiattack','Multiweapon Fighting','My Blade Is Yours','Natural Jouster','Nature’s Weapons','Net Adept','Net and Trident','Net Maneuvering','Net Trickery','Nightmare Fist','Nightmare Weaver','Nightmare Striker','Nimble Striker','Notorious Vigilante','Open Up','Opening Volley','Orc Fury Style','Orc Hewer','Orc Weapon Expertise','Ostentatious Rager','Osyluth Guile','Outflank','Outslug Style','Outslug Weave','Outslug Sprint','Overwatch Style','Overwatch Tactician','Overwatch Vortex','Overrun Maneuver','Overrun, Improved','Overrun, Greater','Owl Style','Owl Swoop','Owl Dive','Pack Intimidation','Paired Opportunists','Paralyzing Strike','Parting Shot','Passing Trick','Penetrating Strike','Penetrating Strike, Greater','Perfect Strike','Performance Weapon Mastery','Performing Combatant','Phalanx Formation','Piercing Grapple','Pinpoint Targeting','Pin Down','Pinning Knockout','Pinning Rend','Piranha Strike','Point-Blank Master','Point Blank Master','Point-Blank Shot','Power Attack','Precise Shot','Precise Shot, Improved','Precise Strike','Primal Strike','Press to the Wall','Prone Shooter','Prone Slinger','Pummeling Style','Pummeling Bully','Pummeling Charge','Punch Through','Punishing Kick','Pursuit of Glory','Pushing Assault','Quah Bond','Quarterstaff Master','Quick Bull Rush','Quick Dirty Trick','Quick Drag','Quick Draw','Quick Reposition','Quick Steal','Quick Stow','Quick Study','Quiet Death','Quivering Palm Adept','Quivering Palm Versatility','Ranged Disarm','Ranged Feint','Ranged Trip','Rapid Grappler','Rapid Reload','Rapid Shot','Rat Catcher','Ray Shield','Ready for Anything','Rebounding Leap','Rebuffing Reduction','Reckless Aim','Redirect Attack','Relentless Shot','Relic Breaker','Rending Claws','Rending Fury','Improved Rending Fury','Greater Rending Fury','Reposition Maneuvers','Reposition, Improved','Reposition, Greater','Repositioning Strike','Reposition, Tactical','Returning Throw','Revelation Strike','Reverse-Feint','Rhino Charge','Ride-By Attack','Riptide Attack','Risky Striker','River Raider','Riving Strike','Roll with It','Rubble Skirmisher','Runic Charge','Ruthless Opportunist','Sabotaging Sunder','Saddle Shrieker','Sap Adept','Sap Master','Saving Shield','School Strike','Scorching Weapons','Scorpion Style','Gorgon’s Fist','Sea Hunter','Second Chance','Second Chance, Improved','Second Wind','Seething Hatred','Seize Advantage','Serpent Lash','Shadow Strike','Shadows of Fear','Sharpclaw','Shatter Defenses','Shatterspell','Shield Bash, Improved','Shield Focus','Improved Shield Focus','Shield Focus, Greater','Shield Master','Shield Proficiency','Shield of Swings','Shield Specialization','Shield Specialization, Greater','Shield Slam','Shield Wall','Shield Gauntlet Style','Shielded Gauntlet Attack','Shielded Gauntlet Master','Cushioning Shield (Combat, Shield Mastery)','Defended Movement (Combat, Shield Mastery)','Feint Defender (Combat, Shield Mastery)','Greater Ray Shield (Combat, Shield Mastery)','Guarded Charge (Combat, Shield Mastery)','Improved Shield Focus (Combat)','Shield Brace (Combat, Shield Mastery)','Shielded Mage (Combat, Shield Mastery)','Shielded Stand (Combat, Shield Mastery)','Shield Material Expertise (Combat, Shield Mastery)','Shield Material Mastery (Combat, Shield Mastery)','Shikigami Style','Shikigami Mimicry','Shikigami Manipulation','Sprightly Armor (Combat, Armor Mastery)','Stumbling Bash (Combat, Shield Mastery)','Toppling Bash (Combat, Shield Mastery)','Tower Shield Specialist (Combat, Shield Mastery)','Unhindering Shield (Combat, Shield Mastery)','Shot on the Run','Shrapnel Strike','Shrewd Tactician','Shrug On','Sidestep','Sidestep, Improved','Siege Commander','Siege Engineer','Master Siege Engineer','Siege Gunner','Signature Strike Style','Signature Strike Taunt','Signature Strike Triumph','Silent Kill','Simple Weapon Proficiency','Slashing Grace','Slayer’s Feint','Sleeper Hold','Sliding Axe Throw','Sliding Dash','Sling Flail','Smashing Style','Smashing Crush','Smashing Dent','Smiting Reversal','Snap Shot','Improved Snap Shot','Greater Snap Shot','Snatch Arrows','Social Bravery','Solo Maneuvers','Sorcerous Strike','Soulblade','Soulwrecking Strike','Spear Dancing Style','Spear Dancing Spiral','Spear Dancing Reach','Spellbreaker','Spiked Destroyer','Spinning Throw','Spirited Charge','Spit Venom','Spring Attack','Spring-Heeled Style','Spring-Heeled Reaping','Spring-Heeled Sprint','Stabbing Shot','Stage Combatant','Staggering Fist','Stance of the Xorn','Stand Still','Starry Grace','Startling Getaway','Startoss Style','Startoss Comet','Startoss Shower','Steadfast Slayer','Steady Engagement','Steal Maneuver','Steal, Improved','Steal, Greater','Step Up','Step Up and Strike','Stick Together','Stock-Striker Style','Stock-Striker Sweep','Stock-Striker Takedown','Strangler','Street Style','Street Sweep','Street Carnage','Strike Back','Structural Strike','Stunning Assault','Stunning Fist','Stunning Fist Adept','Stunning Pin','Stunning Irruption','Sunder Maneuver','Sunder, Improved','Sunder, Greater','Sunder Blessing','Sundering Strike','Suppressive Fire','Surprise Follow-Through','Surprise Strike','Swap Places','Sweeping Dodge','Swift Iron Style','Swift Refuge','Swift Sprint','Sword And Pistol','Swordplay Style','Swordplay Upset','Swordplay Deflection','Sympathetic Rage','Tactical Reposition','Tail Terror','Duelist','Tangle Feet','Tantrum','Taskmaster','Team Up','Technology Adept','Teleport Tactician','Terrorizing Display','Thrill of the Hunt','Throat Slicer','Throw Anything','Throw Back Arrows','Thunder and Fang','Touch of Serenity','Tower Shield Proficiency','Traditional Weapons','Trample','Tree Hanger','Trick Riding','Trick Shooter','Trip Maneuver','Trip, Improved','Trip, Greater','Tripping Staff','Tripping Strike','Tripping Twirl','Twin Thunders','Twin Thunders Flurry','Twin Thunders Master','Twinned Feint','Two-Handed Thrower','Two-Weapon Defense','Two-Weapon Feint','Two-Weapon Fighting','Two-Weapon Fighting, Improved','Two-Weapon Fighting, Greater','Two-Weapon Grace','Two-Weapon Rend','Unarmed Strike, Improved','Uncanny Defense','Under and Over','Undersized Mount','Unseat','Unyielding Ferocity','Upsetting Shield Style','Upsetting Strike','Upsetting Vengeance','Vanguard Style','Vanguard Hustle','Vanguard Ward','Vast Hatred','Vicious Stomp','Vigilant Charger','Violent Display','Vital Strike','Vital Strike, Improved','Vital Strike, Greater','Volley Fire','Vulpine Pounce','Warning Shot','Wave Strike','Weapon Finesse','Weapon Focus','Weapon Focus, Greater','Weapon of the Chosen','Improved Weapon of the Chosen','Greater Weapon of the Chosen','Weapon Specialization','Weapon Specialization, Greater','Weapon Versatility','Weathered Warrior','Wheeling Charge','Whip Mastery','Improved Whip Mastery','Greater Whip Mastery','Whip Slinger','Whirlwind Attack','Wilding Strike','Improved Wilding Strike','Greater Wilding Strike','Wind Stance','Winter’s Strike','Witchbreaker','Witty Feint','Woodland Wraith','Wounded Paw Gambit'];
+    } else if (cultnum == 9) {
+      var culture = "Imperial Culture";
+      var feats = ["Citystep", "Persuasive Bribery", "Bonded Mind", "Great Aberration Hunter"];
+    } else if (cultnum == 10) {
+      var culture = "Iron Elven Culture";
+      var feats = ["Master Craftsman", "Arcane Talent", "Black Marketeer", "Battering Repair", "Believer’s Boon"];
+    } else if (cultnum == 11) {
+      var culture = "Sylvin Culture";
+      var feats = ["Aligned Sneak Attack", "Blood Reader", "Foil Scrutiny", "Poison Use", "Ranger Combat Style", "Redirect Poison", "Rogue Talent", "Scrying Familiarity", "Slowing Strike", "Sticks and Stones", "Studied Ally", "Sunlight Strike", "Sure Footing", "Trapfinding", "Blood Vengeance", "Athletic", "Skill Focus", "Sharp Senses"];
+    } else if (cultnum == 12) {
+      var culture = "Tauric Culture";
+      var feats = ["Run", "Endurence", "Scociable", "Well-Prepared", "Improved Overrun"];
+    } else if (cultnum == 13) {
+      var culture = "Wareneese Culture";
+      var feats = ["Master Crafstman", "Careful Sneak", "Technologist", "Create Enhanced Firearm"];
+    } else {
+      var culture = "Zomani Culture";
+      var feats = ["Technologist", "Cypher Script", "Skill Focus", "Fleet", "Battering Repair"];
+    }
+
+    var feat = feats[getRandomInt(0, feats.length )];
+    if (feat == "Skill Focus") {
+      var skilfoc1 = ['Acrobatics','Appraise','Bluff','Climb','Craft','Diplomacy','Disable Device','Disguise','Escape Artist','Fly','Handle Animal','Heal','Intimidate','Knowledge (arcana)','Knowledge (dungeoneering)','Knowledge (engineering)','Knowledge (geography)','Knowledge (history)','Knowledge (local)','Knowledge (nature)','Knowledge (nobility)','Knowledge (planes)','Knowledge (religion)','Linguistics','Perception','Perform','Profession','Ride','Sense Motive','Sleight of Hand','Spellcraft','Stealth','Survival','Swim','Use Magic Device'];
+      var skilfoc = skilfoc1[getRandomInt(0, skilfoc1.length )];
+      var feat = feat + ": " + skilfoc;
+    }
+    document.getElementById("demo6").innerHTML = "<b>Culture Feat: </b>" + culture + " - " + feat;
+
+  };
+</script>
+<script type="text/javascript" title="Equipment">
+  function GenEquip(){
+    var select = document.getElementById("FirearmSelect");
+    var gunval = select.value;
+    var select = document.getElementById("MeleeSelect");
+    var meleeval = select.value;
+    var select = document.getElementById("ArmorSelect");
+    var armorval = select.value;
+
+    if (gunval > 1) {
+      if (gunval == 2) {
+        var era = "1";
+        var mechanism = "Handcannon";
+        var barrels = ["Smooth Bore", "Fluted Smooth Bore", "Long Smooth Bore", "Short Smooth Bore"];
+        var barrel = barrels[getRandomInt(0, barrels.length )];
+      } else if (gunval == 3) {
+        var era = "2";
+        var mechanisms = ["Matchlock", "Wheelock"];
+        var mechanism = mechanisms[getRandomInt(0, mechanisms.length )];
+        var barrels = ["Smooth Bore", "Fluted Smooth Bore", "Long Smooth Bore", "Short Smooth Bore", "Banded Smooth Bore", "Blunderbuss"];
+        var barrel = barrels[getRandomInt(0, barrels.length )];
+      } else if (gunval == 4) {
+        var era = "3";
+        var mechanisms = ["Doglock", "Flintlock", "Revolving Flintlock"];
+        var mechanism = mechanisms[getRandomInt(0, mechanisms.length )];
+        var barrels = ["Smooth Bore", "Fluted Smooth Bore", "Long Smooth Bore", "Short Smooth Bore", "Banded Smooth Bore", "Blunderbuss", "Primitive Rifled", "Fluted Primitive Rifled", "Long Primitive Rifled", "Short Primitive Rifled"];
+        var barrel = barrels[getRandomInt(0, barrels.length )];
+      } else if (gunval == 5) {
+        var era = "4";
+        var mechanisms = ["Caplock", "Pepperbox", "Repeating Flintlock", "Percussion Revolver", "Needel Revolver"];
+        var mechanism = mechanisms[getRandomInt(0, mechanisms.length )];
+        var barrels = ["Smooth Bore", "Fluted Smooth Bore", "Long Smooth Bore", "Short Smooth Bore", "Banded Smooth Bore", "Blunderbuss", "Primitive Rifled", "Fluted Primitive Rifled", "Long Primitive Rifled", "Short Primitive Rifled", "Rifled", "Fluted Rifled", "Long Rifled", "Short Rifled", "Snub Rifled"];
+        var barrel = barrels[getRandomInt(0, barrels.length )];
+      } else if (gunval == 6) {
+        var era = "5";
+        var mechanisms = ["Cranked Gatling", "Break Action", "Lancaster Break Action", "Breachloader", "Bolt Action", "Cartridge Revolver", "Double-Action Revolver", "Lever Action", "Pump Action", "Blowback", "Blowback (Automatic)"];
+        var mechanism = mechanisms[getRandomInt(0, mechanisms.length )];
+        var barrels = ["Smooth Bore", "Fluted Smooth Bore", "Long Smooth Bore", "Short Smooth Bore", "Banded Smooth Bore", "Blunderbuss", "Primitive Rifled", "Fluted Primitive Rifled", "Long Primitive Rifled", "Short Primitive Rifled", "Rifled", "Fluted Rifled", "Long Rifled", "Short Rifled", "Snub Rifled", "Rifled Choke", "Smooth Choak", "Advanced Rifled", "Fluted Advanced Rifled", "Long Advanced Rifled", "Short Advanced Rifled", "Snub Advanced Rifled"];
+        var barrel = barrels[getRandomInt(0, barrels.length )];
+      } else {
+        var era = "6";
+        var mechanisms = ["Belt-Fed (Automatic)", "Motor-Driven Rotary Cannon (Automatic)", "Select-Fire"];
+        var mechanism = mechanisms[getRandomInt(0, mechanisms.length )];
+        var barrels = ["Smooth Bore", "Fluted Smooth Bore", "Long Smooth Bore", "Short Smooth Bore", "Banded Smooth Bore", "Blunderbuss", "Primitive Rifled", "Fluted Primitive Rifled", "Long Primitive Rifled", "Short Primitive Rifled", "Rifled", "Fluted Rifled", "Long Rifled", "Short Rifled", "Snub Rifled", "Rifled Choke", "Smooth Choak", "Advanced Rifled", "Fluted Advanced Rifled", "Long Advanced Rifled", "Short Advanced Rifled", "Snub Advanced Rifled", "Precision Rifled", "Fluted Precision Rifled", "Long Precision Rifled", "Short Precision Rifled", "Snub Precision Rifled", "Sabot Barrel", "Grenade Barrel"];
+        var barrel = barrels[getRandomInt(0, barrels.length )];
+      }
+      var calibers = [".78", ".72", ".50", ".45", ".44", ".357", ".355", ".308", ".223", ".218"];
+      var caliber = calibers[getRandomInt(0, calibers.length )];
+
+      if (barrel == "Grenade Barrel") {
+        var die = getRandomInt(1,100);
+        if (die < 80) {
+          var barrel = "20mm";
+        } else {
+          var barrel = "40mm";
+        }
+      }
+
+      var die = getRandomInt(1,100);
+      if (die < 65) {
+        var guntype = "pistol";
+      } else {
+        var guntype = "rifle";
+      }
+
+      var firearm = barrel + " " + caliber + " " + mechanism + " " + guntype;
+
+    };
+
+    if (meleeval > 1) {
+      if (meleeval == 2) {
+        var strikefaces = ["Hand Blade", "Short Blade", "Long Blade", "Great Blade", "Chopping Blade"];
+        var strikeface = strikefaces[getRandomInt(0, strikefaces.length )];
+      } else if (meleeval == 3) {
+        var strikefaces = ["Spike", "Knife-Like Spike", "Trocar", "Leaf blade", "Hooked Spike"];
+        var strikeface = strikefaces[getRandomInt(0, strikefaces.length )];
+      } else {
+        var strikefaces = ["Flat Hammer Head", "Tapered Hammer Head", "Meat Tenderizing Hammer Head", "Oversized Hammer Head", "Thin Stick", "Thick Stick", "Round Thing on a Stick"];
+        var strikeface = strikefaces[getRandomInt(0, strikefaces.length )];
+      }
+
+      var handles = ["hand handled", "short handled", "hand-and-a-half handled", "long handled", "throwing hafted", "short polarm mounted", "long polearm mounted", "extra-long polearm mounted"];
+      var handle = handles[getRandomInt(0, handles.length )];
+
+      var meleeweapon = handle + " " + strikeface;
+    };
+
+    if (armorval > 1) {
+      if (armorval == 2) {
+        var armortype = "Armored Clothing - ";
+        var armors = ["Armored Coat", "Armored Kilt", "Armored Sash", "Hide Shirt", "Plated Clothing", "Padded Clothing", "Reinforced Tunic", "Armored Robes"];
+        var armor = armors[getRandomInt(0, armors.length )];
+      } else if (armorval == 3) {
+        var armortype = "Light Armor - ";
+        var armors = ["Chain Shirt", "Lamellar (leather)", "Lamellar Cuirass", "Leaf Armor", "Leather", "Parade Armor", "Wooden Plate", "Brigandine Cuirass", "Lamellar (wood)"];
+        var armor = armors[getRandomInt(0, armors.length )];
+      } else if (armorval == 4) {
+        var armortype = "Medium Armor - ";
+        var armors = ["Chain Hauberk", "Hide Armor", "Lamellar (horn)", "Scale Mail", "Breastplate", "Breastplate (agile)", "Chainmail", "Lamellar (steel)", "Z̚oman Mountain Armor"];
+        var armor = armors[getRandomInt(0, armors.length )];
+      } else if (armorval == 5) {
+        var armortype = "Heavy Armor - ";
+        var armors = ["Segmented Cuirass", "Footman's Plate", "Lamellar (iron)", "Splint Mail", "Star Fortress Plate", "Half-Plate", "Lamellar (stone)", "Plated Lamellar", "Full Plate"];
+        var armor = armors[getRandomInt(0, armors.length )];
+      } else {
+        var armortype = "Super-Heavy Armor - ";
+        var armors = ["Grafa IV Miner's Coverall", "RAIL Interface Suit", "Steam Armor", "Galvanic Armor", "Construct Armor", "Mjolnir Mk V"];
+        var armor = armors[getRandomInt(0, armors.length )];
+      }
+      var theirarmor = armortype + armor;
+    };
+
+    if (gunval > 1 && meleeval > 1 && armorval > 1) {
+      document.getElementById("demo7").innerHTML = "<b>Equipment: </b> <i>Firearm:</i> " + firearm + ". <i>Melee Tool:</i> " + meleeweapon + ". <i>Armor:</i> " + theirarmor;
+    } else if (gunval > 1 && meleeval == 1 && armorval > 1) {
+      document.getElementById("demo7").innerHTML = "<b>Equipment: </b> <i>Firearm:</i> " + firearm +". <i>Armor:</i> " + theirarmor;
+    } else if (gunval > 1 && meleeval == 1 && armorval == 1) {
+      document.getElementById("demo7").innerHTML = "<b>Equipment: </b> <i>Firearm:</i> " + firearm;
+    } else if (gunval == 1 && meleeval > 1 && armorval > 1) {
+      document.getElementById("demo7").innerHTML = "<b>Equipment: </b> <i>Melee Tool:</i> " + meleeweapon +".  <i>Armor:</i> " + theirarmor;
+    } else if (gunval == 1 && meleeval > 1 && armorval == 1) {
+      document.getElementById("demo7").innerHTML = "<b>Equipment: </b> <i>Melee Tool:</i> " + meleeweapon;
+    } else if (gunval == 1 && meleeval == 1 && armorval > 1) {
+      document.getElementById("demo7").innerHTML = "<b>Equipment: </b> <i>Armor:</i> " + theirarmor;
+    } else {
+      document.getElementById("demo7").innerHTML = "<b>Error:</b> Meep didn't antispite this combination of equipment. Tell her what it was and she'll add it to the generator."
+    }
+
+
+  };
+
+</script>
+<script  type="text/javascript" title="Save NPC to File">
+  document.getElementById('downloadButton').addEventListener('click', function() {
+  var text = '';
+
+  // Get the contents of the fields
+  var name = document.getElementById('gendname').innerText + document.getElementById('lastname').innerText;
+  var demo4 = document.getElementById('demo4').innerText;
+  var demo5 = document.getElementById('demo5').innerText;
+  var demo6 = document.getElementById('demo6').innerText;
+  var demo7 = document.getElementById('demo7').innerText;
+  var demo2 = document.getElementById('demo2').innerText;
+  var demo3 = document.getElementById('demo3').innerText;
+
+  // Build the text content
+  text += name + '\n';
+  text += demo4 + '\n';
+  text += demo5 + '\n';
+  text += demo6 + '\n';
+  text += demo7 + '\n';
+  text += demo2 + '\n';
+  text += demo3 + '\n';
+
+  // Create a new Blob object with the text content
+  var blob = new Blob([text], { type: 'text/plain' });
+
+  // Create a temporary <a> element to trigger the download
+  var downloadLink = document.createElement('a');
+  downloadLink.href = window.URL.createObjectURL(blob);
+  downloadLink.download = name + '.txt';
+
+  // Programmatically trigger the download
+  downloadLink.click();
+
+  // Clean up
+  window.URL.revokeObjectURL(downloadLink.href);
+  document.body.removeChild(downloadLink);
+  });
+</script>
 
 <!-- Test Name Clone -->
 
@@ -1353,31 +1740,7 @@ function getRandomInt(min, max) {
 
 
 
-<script>
-  var d = document;
 
-// not using this at the moment but might do later for graceful degradation...
-function supports_html5_storage() {
-  try {
-    return 'localStorage' in window && window['localStorage'] !== null;
-  } catch (e) {
-    return false;
-  }
-}
-
-d.addEventListener('DOMContentLoaded', function(){
-
-  var savedContent = localStorage.getItem("notepadcontent");
-  if(savedContent != null){
-    d.getElementById("notepad").value = savedContent;
-  }
-
-
- d.getElementById("notepad").onkeyup = function(){
-  var data = d.getElementById("notepad").value;  localStorage.setItem("notepadcontent", data);
-  }
-});
-</script>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;

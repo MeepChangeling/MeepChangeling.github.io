@@ -259,7 +259,7 @@ div.dungeongen {
 body {
 
 	background-image: url("img/hideout.webp");
-  background-color: #black;
+  background-color: black;
 	background-repeat: no-repeat;
 	background-position: right top;
 	background-attachment: fixed;
@@ -1001,4 +1001,73 @@ ol ol ol {
 
 .centertext {
   text-align: center;
+}
+
+/* CSS styles for mobile devices */
+html.mobile {
+  width: 100%;
+}
+
+html.mobile div.book {
+  width: 90vw;
+  font-size: 2em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+html.mobile div.book figure {
+  display: none;
+}
+
+html.mobile div.book h1 {
+  font-size: 2.3em;
+}
+
+html.mobile div.book h3.articletitle  {
+  font-size: 2.1em;
+}
+
+html.mobile div.book h4.articlesubtitle {
+  font-size: 2.1em;
+}
+
+html.mobile div.book h5.articlesubtitle {
+  font-size: 1.5em;
+}
+
+html.mobile .collapsible {
+  font-size: 1.2em;
+}
+
+html.mobile div.mediacontrol {
+  display: none;
+}
+
+html.mobile .header {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+html.mobile body {
+  background-size:cover;
+  width: 99.9vw;
+}
+
+html.mobile .navbar {
+  height: 5vh;
+  width: 100vw;
+}
+
+html.mobile .navbar .pagetitlenav {
+  display: none;
+}
+
+html.mobile .navbar .dropbtn {
+  height: 3vh;
+  font-size: 1.4em;
+}
+html.mobile .navbar .a {
+  height: 3vh;
+  font-size: 1.4em;
 }

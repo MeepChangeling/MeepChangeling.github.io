@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Ponr Builder</title>
+    <link id="theme" rel="stylesheet" type="text/css" href="PonyStyle.css" />
+    <style media="screen">
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .top {
+        width: 100%;
+        height: 100px;
+        background-color: #f1f1f1;
+      }
+      .content {
+        display: flex;
+        flex-grow: 1;
+      }
+      .left {
+        flex: 0 0 30%;
+        margin-right: 3%;
+        background-color: #e3e3e3;
+        height: 100px;
+      }
+      .right {
+        flex: 1;
+        background-color: #d5d5d5;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <h1 style="text-align:center">Pony Generator</h1>
+      </div>
+      <div class="content">
+        <div class="left">
+          <h1>Contorls</h1>
+          <label for="name-input">Custom Name:</label>
+          <input type="text" id="name-input" style="width: 60px;"/>
+            <input type="checkbox" id="customname" name="customname">
+            <label for="customname">Use Custom Name (Leave unchecked for random name)</label>
+            </br>
+              <label for="PonyType">Pony Type:</label>
+              <select id="PonyType">
+                <option value="1">Random</option>
+                <option value="2">Unicorn</option>
+                <option value="3">Earth Pony</option>
+                <option value="4">Pegasus</option>
+                <option value="5">Thestral</option>
+              </select>
+            <fieldset>
+              <legend>Gender:</legend>
+              <div>
+                <input type="radio" id="random" name="Gender" value="1" checked>
+                <label for="random">Random</label>
+                <input type="radio" id="female" name="Gender" value="2">
+                <label for="female">Female</label>
+                <input type="radio" id="male" name="Gender" value="3">
+                <label for="male">Male</label>
+                <input type="radio" id="male" name="Gender" value="4">
+                <label for="other">Other</label>
+              </div>
+            </fieldset>
+            <input type="checkbox" id="sexbias" name="sexbias">
+            <label for="sexbias">Bias random genders twards female (Forces IRL horse ratio of 3:1.)</label></br>
+            <label for="PonyAge">Age Catagory:</label>
+            <select id="PonyAge">
+              <option value="1">Random</option>
+              <option value="2">Foal</option>
+              <option value="3">Young Adult</option>
+              <option value="4">Adult</option>
+              <option value="5">Elder</option>
+            </select>
+            <fieldset>
+              <legend>Lifespan:</legend>
+              <div>
+                <input type="radio" id="human" name="LifeSpan" value="1">
+                <label for="human">Human (120 Years)</label>
+                <input type="radio" id="FiMAge" name="LifeSpan" value="2">
+                <label for="FiMAge">FiM Implied (300 Years)</label>
+                <input type="radio" id="FantasyAge" name="LifeSpan" value="3">
+                <label for="FantasyAge">Generic Fantasy (500 Years)</label>
+                <input type="radio" id="BetaVerse" name="LifeSpan" value="4" checked>
+                <label for="BetaVerse">Betaverse (300 Equis Years / ~480 Earth Years)</label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Body Colors:</legend>
+              <div>
+                <input type="radio" id="randbodcolors" name="bodColorSet" value="1" checked>
+                <label for="randbodcolors">Random</label>
+                <input type="radio" id="brightbodcolors" name="bodColorSet" value="2">
+                <label for="brightbodcolors">Bright Colors</label>
+                <input type="radio" id="darkbodcolors" name="bodColorSet" value="3">
+                <label for="darkbodcolors">Dark Colors</label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Mane Colors:</legend>
+              <div>
+                <input type="radio" id="randmanecolors" name="maneColorSet" value="1" checked>
+                <label for="randmanecolors">Random</label>
+                <input type="radio" id="brightmanecolors" name="maneColorSet" value="2">
+                <label for="brightmanecolors">Complementary</label>
+                <input type="radio" id="darkmanecolors" name="maneColorSet" value="3">
+                <label for="darkmanecolors">Contrasting</label>
+              </div>
+            </fieldset>
+            </br></br>
+
+            <button type="button" name="button" onclick="GenName(); GenApp(); colorPoneBody(); colorPoneMane(); SpecialTalent(); FullDescript();">Make-a-Pone</button>
+
+            <h3>Specific Generators</h3>
+            <button type="button" name="button" onclick="GenName()">Name</button>
+            <button type="button" name="button" onclick="GenApp()">Height / Weight</button>
+            <button type="button" name="button" onclick="colorPoneBody()">Fur Color</button>
+            <button type="button" name="button" onclick="colorPoneMane()">Mane Color</button>
+            <button type="button" name="button" onclick="colorPoneBody(); colorPoneMane();">All Colors</button>
+            <button type="button" name="button" onclick="SpecialTalent()">Talent</button>
+            <button type="button" name="button" onclick="FullDescript()">Personality</button>
+          </div>
+
+
+          <div class="right">
+            <h1>Output</h1>
+            <div class="basicstats">
+              <b>Name:</b> <span id="firstname"></span><span id="lastname"></span></br>
+              <b>Gender:</b> <span id="gender"></span></br>
+              <b>Age:</b> <span id="agecat"></span><span id="age"></span></br>
+              <b>Tribe:</b> <span id="tribe"></span></br>
+              <b>Height:</b> <span id="height"></span><span id="heightcat"></span></br>
+              <b>Weight:</b> <span id="weight"></span><span id="weightcat"></span></br>
+              <b>Fur Color:</b> <span id="coatcolorstring"></span></br>
+              <b><span id="manecolorlable">Mane Color</span>:</b> <span id="manecolorstring"></span></br>
+              <span style="display:none" id="manecolorholder"></span>
+              <b>Talent:</b> <span id="talent"></span></br>
+            </div>
+            <div class="ponedescrip">
+              </br>
+              <span id="ponedescrip"></span>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+  </body>
+
+  <script title="Colapse Controller">
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.maxHeight){
+            content.style.maxHeight = null;
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+          }
+        });
+      }
+  </script>
+  <script type="text/javascript" title="Random Intiger Gen">
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+      };
+  </script>
+  <script type="text/javascript">
+    function getRandomDecimal() {
+      return Math.random() + 1;  // Generates a random number between 1 (inclusive) and 2 (exclusive)
+    }
+  </script>
+  <script type="text/javascript">
+    function genRandFloat(min, max, decimalPlaces) {
+      var rand = Math.random()*(max-min) + min;
+      var power = Math.pow(10, decimalPlaces);
+      return Math.floor(rand*power) / power;
+    }
+  </script>
+  <script type="text/javascript" title="Name Generator">
+    function GenName(){
+      if (document.getElementById('customname').checked) {
+        const name = document.getElementById("name-input").value;
+        document.getElementById("firstname").innerHTML = name;
+      } else {
+        var die = getRandomInt(1, 100);
+        if (die <= 75) {
+          var name1 = nameshortcap();
+          var name2 = nameshortcap();
+          document.getElementById("firstname").innerHTML = name1;
+          document.getElementById("lastname").innerHTML = " " + name2;
+        } else if (die >= 76 && die <= 95) {
+          var name1 = nameshortcap();
+          var name2 = nameshortlow();
+          document.getElementById("firstname").innerHTML = name1;
+          document.getElementById("lastname").innerHTML = name2;
+        } else {
+          var name = namelong();
+          document.getElementById("firstname").innerHTML = name1;
+          document.getElementById("lastname").innerHTML = "";
+        }
+      }
+
+      if (true) {
+        var radios = document.getElementsByName('Gender');
+        // Loop through the radio buttons to find the checked one
+        for (var i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            // Set the value of your JavaScript variable to the checked radio button's value
+            var radioValue = radios[i].value;
+            break; // Exit the loop since we found the checked radio button
+          }
+        }
+      }
+      if (radioValue == '1') {
+        var dieroll = getRandomInt(1, 100);
+        if (dieroll < 51) {
+          var radioValue = 'Male';
+        } else {
+          var radioValue = 'Female';
+        }
+        if (document.getElementById('sexbias').checked && radioValue == 1) {
+          var dieroll = getRandomInt(1, 100);
+          if (dieroll < 25) {
+            var radioValue = 'Male';
+          } else {
+            var radioValue = 'Female';
+          }
+        }
+      } else if (radioValue == '2') {
+        var radioValue = 'Female';
+      } else if (radioValue == '3') {
+        var radioValue = 'Male';
+      } else {
+        var radioValue = 'Intersex';
+      }
+      document.getElementById("gender").innerHTML = radioValue;
+
+      var select = document.getElementById("PonyAge");
+      var agecatagory = select.value;
+
+      if (agecatagory == 1) {
+        var agecatagory = getRandomInt(2, 5);
+      }
+
+
+
+      if (agecatagory == 2) {
+        var agemod1 = 23;
+        var agemod2 = 15;
+        var agecat = "foal";
+      } else if (agecatagory == 3) {
+        var agemod1 = 15;
+        var agemod2 = 7;
+        var agecat = "young adult";
+      } else if (agecatagory == 4) {
+        var agemod1 = 7;
+        var agemod2 = 3;
+        var agecat = "adult";
+      } else if (agecatagory == 5) {
+        var agemod1 = 3;
+        var agemod2 = 1;
+        var agecat = "elder";
+      }
+      agecat = toTitleCase(agecat);
+
+      if (true) {
+        var radios = document.getElementsByName('LifeSpan');
+        // Loop through the radio buttons to find the checked one
+        for (var i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            // Set the value of your JavaScript variable to the checked radio button's value
+            var radioValue = radios[i].value;
+            break; // Exit the loop since we found the checked radio button
+          }
+        }
+      }
+      if (radioValue == '1') {
+        var lifespan = "120";
+      } else if (radioValue == '2') {
+        var lifespan = "300";
+      } else if (radioValue == '3') {
+        var lifespan = "500";
+      } else {
+        var lifespan = "300";
+      }
+      var age = Math.round(getRandomInt(lifespan / agemod1, lifespan / agemod2));
+
+      document.getElementById("agecat").innerHTML = agecat;
+      document.getElementById("age").innerHTML = " (" + age + ")";
+
+
+    };
+  </script>
+  <script type="text/javascript" title="Appearance Generator">
+    function GenApp(){
+      var select = document.getElementById("PonyType");
+      var ponrtypenum = select.value;
+      if (ponrtypenum == 1) {
+        ponrtypenum = getRandomInt(2, 5);
+      };
+      if (ponrtypenum == 2) {
+        var ponrtype = "unicorn";
+        var maxtol = 1.15;
+        var mintol = 0.74;
+        var maxweight = 124.73;
+        var minweight = 79.37;
+      } else if (ponrtypenum == 3) {
+        var ponrtype = "earth pony";
+        var maxtol = 1.36;
+        var mintol = 0.81;
+        var maxweight = 158.75;
+        var minweight = 113.39;
+      } else if (ponrtypenum == 4) {
+        var ponrtype = "pegasus";
+        var maxtol = 1.03;
+        var mintol = 0.67;
+        var maxweight = 102.05;
+        var minweight = 56.69;
+      } else {
+        var ponrtype = "thestral";
+        var maxtol = 0.89;
+        var mintol = 0.58;
+        var maxweight = 102.05;
+        var minweight = 56.69;
+      }
+
+      var agecatagory = document.getElementById("agecat").innerHTML;
+
+      if (agecatagory == "foal") {
+        var height1 = randn_bm(mintol, maxtol, 1);
+        var weight1 = randn_bm(minweight, maxweight, 1);
+        var hmod = getRandomDecimal();
+        var wmod = getRandomDecimal();
+        var height2 = height1 / hmod;
+        var weight2 = weight1 / wmod;
+        var height = height2.toFixed(2);
+        var weight = weight2.toFixed(2);
+        var fifthsOfWeight=(((maxweight-minweight)/wmod)/5);
+        var diff = weight - (minweight / wmod);
+        var fifthsOfHeight=(((maxtol-mintol)/hmod)/5);
+        var diff1 = height - (mintol / hmod);
+      } else {
+        var height = randn_bm(mintol, maxtol, 1);
+        height = height.toFixed(2);
+        var weight = randn_bm(minweight, maxweight, 1);
+        weight = weight.toFixed(2);
+        var fifthsOfWeight=((maxweight-minweight)/5);
+        var diff = weight - minweight;
+        var fifthsOfHeight=((maxtol-mintol)/5);
+        var diff1 = height - mintol;
+      }
+
+      document.getElementById("tribe").innerHTML = toTitleCase(ponrtype);
+      document.getElementById("height").innerHTML = height + " m ";
+      document.getElementById("weight").innerHTML = weight + " kg ";
+
+      if (diff < fifthsOfWeight) {
+        var weight1 = 'thin'
+      } else if (diff >= fifthsOfWeight && diff < fifthsOfWeight * 2 ) {
+        var weight1 = 'lithe'
+     } else if (diff >= fifthsOfWeight * 2 && diff < fifthsOfWeight * 3 ) {
+        var weight1 = 'average'
+      } else if (diff >= fifthsOfWeight * 3 && diff < fifthsOfWeight * 4 ) {
+        var weight1 = 'overweight'
+      } else if (diff >= fifthsOfWeight * 4) {
+        var weight1 = 'obbese'
+      }
+      document.getElementById("weightcat").innerHTML = "(" + weight1 + ")";
+
+      if (diff1 < fifthsOfHeight) {
+        var height1 = 'very short'
+      } else if (diff1 >= fifthsOfHeight && diff1 < fifthsOfHeight * 2 ) {
+        var height1 = 'short'
+     } else if (diff1 >= fifthsOfHeight * 2 && diff1 < fifthsOfHeight * 3 ) {
+        var height1 = 'average'
+      } else if (diff1 >= fifthsOfHeight * 3 && diff1 < fifthsOfHeight * 4 ) {
+        var height1 = 'tall'
+      } else if (diff1 >= fifthsOfHeight * 4) {
+        var height1 = 'very tall'
+      }
+      document.getElementById("heightcat").innerHTML = "(" + height1 + ")";
+    }
+  </script>
+  <script type="text/javascript" title="ColorPone">
+    function colorPoneBody(){
+
+      if (true) {
+        var radios = document.getElementsByName('bodColorSet');
+        // Loop through the radio buttons to find the checked one
+        for (var i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            // Set the value of your JavaScript variable to the checked radio button's value
+            var radioValue = radios[i].value;
+            break; // Exit the loop since we found the checked radio button
+          }
+        }
+      }
+
+      var colorprefrence = radioValue;
+
+      if (colorprefrence == 1) {
+        colorprefrence = getRandomInt(2, 3);
+      };
+      if (colorprefrence == 2) {
+        var coatcolor = randLightColor();
+      } else {
+        var coatcolor = randDarkColor();
+      }
+      document.getElementById("coatcolorstring").innerHTML = "<span id='coatcolor'>" + toTitleCase(coatcolor.name) + "</span> <span id='coatcolorsquare' style='color:" + coatcolor.hex + "'>██</span>";
+
+    }
+
+    function colorPoneMane(){
+
+      if (true) {
+        var radios = document.getElementsByName('bodColorSet');
+        // Loop through the radio buttons to find the checked one
+        for (var i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            // Set the value of your JavaScript variable to the checked radio button's value
+            var radioValue = radios[i].value;
+            break; // Exit the loop since we found the checked radio button
+          }
+        }
+      }
+
+      var colorprefrence = radioValue;
+
+      if (true) {
+        var radios = document.getElementsByName('maneColorSet');
+        // Loop through the radio buttons to find the checked one
+        for (var i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            // Set the value of your JavaScript variable to the checked radio button's value
+            var radioValue = radios[i].value;
+            break; // Exit the loop since we found the checked radio button
+          }
+        }
+      }
+      var manecolorprefrence = radioValue;
+      if (manecolorprefrence == 1) {
+        manecolorprefrence = getRandomInt(2, 3);
+      };
+      if (manecolorprefrence == 2) {
+        if (colorprefrence == 2) {
+          var manecolorcontroller = 1;
+        }
+      } else {
+        if (colorprefrence == 3) {
+          var manecolorcontroller = 1;
+        }
+      }
+
+
+
+      var manecolornum = getRandomInt(1, 100);
+      if (manecolornum <= 60) {
+        if (manecolorcontroller == 1) {
+          var manecolor = randLightColor();
+        } else {
+          var manecolor = randDarkColor();
+        }
+        document.getElementById("manecolorlable").innerHTML = "Mane Color";
+        document.getElementById("manecolorstring").innerHTML = "<span id='manecolor'>" + toTitleCase(manecolor.name) + "</span> <span id='manecolorsquare' style='color:" + manecolor.hex + "'>██</span>";
+        document.getElementById("manecolorholder").innerHTML = manecolor.name;
+      } else {
+        if (manecolorcontroller == 1) {
+          var manecolor = randLightColor();
+          var othermanecolor = randLightColor();
+        } else {
+          var manecolor = randDarkColor();
+          var othermanecolor = randDarkColor();
+        }
+        var manetype = getRandomInt(1, 100);
+        if (manetype <= 45) {
+          var extramanetype = "stripe";
+          var maneextradez = "a";
+        } else if (manetype > 45 && manetype <= 65) {
+          var extramanetype = "streak";
+          var maneextradez = "a";
+        } else if (manetype > 65 && manetype <= 85) {
+          var extramanetype = "streaks";
+          var maneextradez = "";
+        } else {
+          var extramanetype = "hilights";
+          var maneextradez = "";
+        }
+        document.getElementById("manecolorlable").innerHTML = "Mane Colors";
+        document.getElementById("manecolorstring").innerHTML = "<span id='manecolor'>" + toTitleCase(manecolor.name) + "</span> <span id='manecolorsquare1' style='color:" + manecolor.hex + "'>██</span>, with " +  toTitleCase(othermanecolor.name) + "</span> <span id='manecolorsquare1' style='color:" + othermanecolor.hex + "'>██</span> " + extramanetype + ".";
+        document.getElementById("manecolorholder").innerHTML = manecolor.name + " with " + othermanecolor.name + " " + maneextradez + " " + extramanetype;
+      }
+
+    }
+  </script>
+  <script type="text/javascript" title="Talent Selector">
+    function SpecialTalent(){
+      var die = getRandomInt(1,100);
+      if (die <= 33) {
+        var talents = ['Academics','Accountant','Acting','Administration','Aircraft Electronics','Appraising','Archaeology','Architecture','Art','Auditing','Aviation Mechanics','Avionics Technician','Banking','Bookkeeping','Buisness','Business','Caregiving','Chemical Engineering','Civil Engineering','Coaching','Community Management','Computer Analytics','Computer Science','Concierge','Construction','Customer Service','Cybersecurity','Data Analysis','Data Engineering','Data Entry','Data Science','Dental Care','Dispatch Operations','Drafter','Electrical Engineering','Electrical Work','Electro-Mechanical Systems','Environmental Engineering','Event Coordination','Event Planning','Farming','Finance','Forklift Operation','Game Design','Geology','Geotechnical Engineering','Graphic Design','Healthcare','Illustration','Industrial Engineering','Industrial Labor','Instructional Design','Janitorial Labor','Journalism','Landscaping','Law Enforcement','Lawyer','Logistics','Machine Learning','Machine Operation','Machining','Magic','Mail Handling','Maintenance','Management','Manufacturing','Marine Biology','Marketing','Massage Therapy','Mechanical Engineering','Mechanics','Media','Merchandising','Meteorology','Network Administration','Network Engineering','Network Operations','Nursing','Occupational Therapy','Optical Imaging','Paleontology','Paramedicine','Penetration Testing','Personal Assistance','Personal Training','Pharmacology','Photography','Physical Therapy','Piloting','Programming','Psychologist','Radiation Therapy','React Developer','Real Estate','Research','Risk Management','Sales','Science','Security','Sheet Metal Work','Surgery','Surveying','Teaching','Technical Support','Technical Writing','Truck Driving','Veterinary Medicine','Waste Management','Welding','Writing','Zoology'];
+      } else if (die <=66 && die > 33) {
+        var talents = ['Anthropology','Archaeology','History','Linguistics','Philosophy','Religion','Culinary arts','Literature','Performing arts','Visual arts','Economics','Geography','Political science','Psychology','Sociology','Biology','Chemistry','Earth science','Physics','Astronomy','Computer science','Logic','Pure mathematics','Applied mathematics','Statistics','Systems science','Agriculture','Architecture','Business','Education','Engineering','Environmental studies','Law','Library studies','Medicine','Military sciences','Public administration','Social work','Transportation'];
+      } else {
+        var talents = ['acroyoga','acting','amateur radio','animation','aquascaping','art','astrology','astronomy','barbershop music','basket weaving','baton twirling','beatboxing','beer tasting','bell ringing','blacksmithing','blogging','bonsai','board/tabletop games','book discussion clubs','book restoration','bowling','breadmaking','building','bullet journaling','butchering','calligraphy','candle making','candy making','car spotting','card games','cardistry','chatting','cheesemaking','chess','cleaning','clothesmaking','coffee roasting','collecting','coloring','communication','community activism','construction','cooking','creative writing','crocheting','cross-stitch','crossword puzzles','cue sports','dance','decorating','decorative birds','dining','diorama','distro hopping','drama','drawing','embroidery','engraving','entertaining','experimenting','fantasy sports','fashion','fashion design','fishfarming','fishkeeping','flower arranging','fly tying','foreign language learning','furniture building','tabletop games','role-playing games','genealogy','gingerbread house making','giving advice','glassblowing','gardening','gunsmithing','hairstyle','herp keeping','home improvement','homebrewing','homing pigeons','houseplant care','hula hooping','hydroponics','inventing','jewelry making','jigsaw puzzles','journaling','juggling','knife making','knitting','knot tying','lace making','lapidary','leather crafting','machining','macrame','magic','makeup','manga','massaging','mazes','mechanics','meditation','memory training','metalworking','miniature art','model building','modeling','model engineering','music','nail art','needlepoint','origami','painting','pen spinning','photography','musical performance','poetry','pole dancing','pottery','practical jokes','pressed flower craft','proofreading and editing','proverbs','public speaking','puppetry','puzzles','pyrography','quilting','quizzes','reading','recipe creation','refinishing','reviewing gadgets','scrapbooking','diving','sculpting','sewing','shoemaking','singing','sketching','skipping rope','slot car racing','soapmaking','stamp collecting','stand-up comedy','storytelling','stretching','string figures','stripping','sudoku','talking','tapestry','tarot','tattooing','taxidermy','wargaming','watch making','watching documentaries','watching movies','watching television','wax sealing','weaving','weight training','welding','whittling','wine tasting','winemaking','witchcraft','wood carving','woodworking','word searches','worldbuilding','writing','writing music'];
+      }
+      var talent = talents[getRandomInt(0, talents.length )];
+      document.getElementById("talent").innerHTML = toTitleCase(talent);
+    }
+  </script>
+  <script type="text/javascript" title="Title Case">
+    function toTitleCase(str) {
+      return str.replace(
+        /\w\S*/g,
+        function(txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+        }
+      );
+    }
+  </script>
+  <script type="text/javascript" title="Bellcurve Roller">
+    function randn_bm(min, max, skew) {
+      let u = 0, v = 0;
+      while(u === 0) u = Math.random() //Converting [0,1) to (0,1)
+      while(v === 0) v = Math.random()
+      let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v )
+
+      num = num / 10.0 + 0.5 // Translate to 0 -> 1
+      if (num > 1 || num < 0)
+        num = randn_bm(min, max, skew) // resample between 0 and 1 if out of range
+
+      else{
+        num = Math.pow(num, skew) // Skew
+        num *= max - min // Stretch to fill range
+        num += min // offset to min
+      }
+      return num
+    }
+  </script>
+  <script type="text/javascript" title="Short First Names">
+    function nameshortcap(){
+      var array = ["Do","So","Ace","Ash","Bay","Bed","Bee","Big","Bit","Bop","Bow","Bug","Bye","Cap","Con","Cup","Day","Dee","Dew","Dip","Doo","Dot","Fly","Fox","Fun","Gem","Hay","Hum","Ice","Ivy","Jet","Joy","Loo","May","Mr.","Ms.","Nut","Nyx","Oak","Off","Paw","Pie","Pop","Ray","Red","Sap","Sea","Sew","Shy","Sir","Sky","Sun","Tap","Tea","Tex","Tie","Tin","Top","Who","Zip","Abra","Aloe","Aqua","Atom","Aura","Away","Bake","Bale","Beam","Bean","Beat","Bell","Blue","Bolt","Bone","Bows","Buck","Bulk","Burn","Buzz","Cake","Cane","Card","Chic","Chip","Claw","Coal","Coco","Colt","Core","Cozy","Crow","Cube","Cute","Dane","Dare","Dark","Dart","Dash","Dawn","Daze","Dove","Drop","Duke","Dusk","Dust","Echo","Envy","Eyes","Fair","Fang","Fast","Fear","Feet","Fern","Find","Fine","Fire","Flip","Flop","Foam","Foil","Free","Full","Fury","Gala","Gear","Glow","Gold","Good","Gown","Grey","Grub","Gust","Haze","Head","Hero","High","Hoof","Hope","Hula","Inky","Jade","Java","Jazz","Jinx","Jive","July","June","Keen","King","Kiss","Kiwi","Lace","Lady","Lake","Lane","Last","Lava","Lead","Leaf","Leap","Lila","Lily","Lime","Long","Loop","Lord","Lost","Love","Luau","Lula","Lulu","Luna","Main","Mane","Mare","Mark","Mash","Mask","Maud","Mint","Miss","Mist","Moon","Mrs.","Muse","Neon","Nile","Nosy","Note","Onyx","Palm","Paws","Pear","Pick","Pink","Plug","Plum","Pond","Pool","Prep","Prim","Puff","Rain","Rare","Rave","Reef","Road","Roan","Rock","Romp","Rose","Ruby","Sage","Sand","Scar","Shoe","Shot","Skye","Snap","Snow","Soak","Sock","Soda","Solo","Song","Soot","Sort","Spot","Spur","Star","Step","Stud","Surf","Swan","Tail","Tale","Tart","Text","Tide","Tidy","Time","Tink","Tiny","Toes","Trip","Trot","Tune","Turf","Vale","Veil","Wasp","Wave","Well","Wild","Wind","Wing","Wink","Wish","Wisp","Wood","Acorn","Agate","Aloha","Alpha","Amber","Angel","Apple","April","Armor","Arrow","Aspen","Aster","Azure","Bangs","Banjo","Batty","Beach","Belle","Beret","Berry","Betta","Black","Blank","Blaze","Bliss","Blitz","Block","Bloom","Blush","Brass","Briar","Brisk","Brook","Buggy","Bulky","Burnt","Burst","Candy","Charm","Check","Chess","Chili","Chord","Cider","Clean","Click","Cloud","Color","Comet","Comic","Coral","Cosmo","Count","Crate","Cream","Creme","Crest","Crisp","Crown","Curls","Curly","Cutie","Daisy","Dance","Dandy","Denim","Dinky","Dokey","Dosey","Dotes","Dough","Dovey","Dream","Ebony","Ember","Fairy","Fancy","Fauna","Favor","Fever","Fires","Fizzy","Flame","Flare","Flash","Fleur","Flier","Float","Flora","Fluff","Foggy","Force","Forth","Frame","Frost","Froth","Fruit","Gizmo","Glade","Glaze","Gleam","Glide","Globe","Glory","Goody","Grace","Grape","Green","Grove","Guard","Guava","Gully","Gusty","Haste","Hazel","Heart","Hokey","Holly","Honey","Image","Inkie","Ivory","Jazzy","Jewel","Jolly","Juice","Knack","Knick","Lance","Leafy","Lemon","Light","Lilac","Lilly","Links","Locks","Lofty","Lolly","Loose","Lotus","Lovey","Lucky","Lunar","Magic","Manes","Mango","Merry","Metal","Might","Mimic","Minty","Misty","Mixed","Mocha","Night","North","Oakey","Ocean","Paint","Paleo","Palms","Pansy","Paper","Party","Patch","Peach","Pearl","Penny","Petal","Photo","Piano","Pitch","Pizza","Plume","Point","Poker","Pokey","Polka","Posey","Pound","Power","Prime","Prism","Prize","Punch","Queen","Quill","Quirk","Radio","Rainy","Randy","Rapid","Raven","Retro","Rhyme","Rider","River","Rocky","Rogue","Rosey","Rouge","Round","Rowan","Royal","Rusty","Salad","Salsa","Salty","Sandy","Sassy","Satin","Sauce","Scene","Scoop","Scoot","Screw","Shade","Shady","Shake","Shell","Shill","Shine","Shiny","Shoal","Silly","Skate","Skull","Slate","Slice","Slush","Smirk","Smoke","Smoky","Sneak","Snoop","Snowy","Soapy","Socks","Solar","Spark","Speed","Spice","Spike","Split","Spray","Spurs","Stage","Stain","Steel","Steps","Stone","Storm","Study","Stuff","Style","Sugar","Sunny","Sweep","Sweet","Swift","Swing","Swirl","Swoon","Swoop","Sword","Tango","Teddy","Teeny","Telly","Thorn","Tipsy","Token","Tooth","Torch","Tough","Treat","Truly","Tulip","Twirl","Twist","Viola","Water","Whirl","White","Winds","Windy","Wings","Works","Write","Zippy","Almond","Always","Anchor","Arctic","Around","Astral","August","Aurora","Autumn","Azalea","Banana","Barber","Barrel","Beachy","Beauty","Beetle","Bigtop","Bitter","Bittle","Blinky","Bobbin","Bonnet","Boogie","Bouncy","Bowtie","Breath","Breeze","Breezy","Bright","Bronco","Bronze","Brulee","Bubble","Bumble","Burbon","Burner","Bushel","Buster","Butter","Button","Carrot","Charge","Chaser","Cheery","Cheese","Cherry","Chevre","Chilly","Chorus","Cipher","Citrus","Classy","Clever","Cloudy","Clover","Cobalt","Cobble","Comber","Cookie","Copper","Cosmic","Cosmos","Cotton","Crafty","Crunch","Crusoe","Curtsy","Dahlia","Dainty","Dancer","Dapper","Dasher","Dazzle","Desert","Doctor","Dollar","Double","Dreams","Eclair","Facade","Fiddly","Finish","Fizzle","Flight","Floral","Flower","Fluffy","Flurry","Fossil","Fresco","Fresno","Frilly","Frisco","Frocks","Frosty","Frozen","Gadget","Galaxy","Garden","Giggle","Ginger","Golden","Goldie","Goodie","Goosey","Hearts","Helmet","Hidden","Hoofer","Hooves","Hunter","Icicle","Island","Jangle","Jester","Jingle","Jitter","Jumble","Jumper","Kimono","Kisses","Knight","Komodo","Lancer","Legacy","Lemony","Lights","Lining","Little","Locket","Looney","Loosey","Lovely","Magnet","Mallet","Mallow","Marble","Maroon","Master","Meadow","Medley","Mellow","Melody","Meteor","Minute","Mirror","Mister","Muffin","Mystic","Mythic","Nettle","Nickel","Nimble","Nuzzle","Oddity","Orange","Orchid","Paints","Palace","Parade","Parcel","Parish","Pastel","Peachy","Pearly","Pebble","Pepper","Petals","Petite","Pierce","Pinkie","Pommel","Powder","Preppy","Pretty","Prince","Prints","Puddle","Purple","Pursey","Puzzle","Quartz","Rarity","Reaper","Rhythm","Ribbon","Ripple","Rocket","Romper","Safari","Sailor","Scoops","Scotch","Script","Sealed","Secret","Sentry","Serano","Shadow","Shield","Shimmy","Shores","Shower","Signal","Silent","Silver","Skater","Sketch","Sleepy","Smiles","Smooch","Smooth","Sneaky","Sneezy","Snippy","Soaker","Soakey","Somber","Sorbet","Spirit","Spooky","Spring","Sprint","Sprite","Spritz","Squash","Staged","Starry","Static","Sticky","Streak","Stream","Strike","Summer","Sunset","Surfer","Sweets","Sweety","Swirly","Tapper","Teacup","Tender","Tickle","Tinker","Toffee","Tomato","Triple","Tripsy","Tumble","Turnip","Valley","Velvet","Violet","Violin","Vision","Wander","Whinny","Willow","Winkle","Winter","Wisher","Wishes","Wonder","Wrench","Yellow","Zinnia","Zipper","Acrylic","Amazing","Anaheim","Anchors","Ancient","Anomaly","Apricot","Balloon","Bashful","Berries","Blanket","Blinkie","Blossom","Blushie","Bouncer","Bouquet","Bracing","Breaker","Breezes","Breezie","Brights","Bristle","Brushed","Bubbles","Bunches","Buttons","Buzzsaw","Caramel","Cascade","Catcher","Cattail","Cayenne","Celeste","Chalice","Charity","Charmer","Checker","Chiffon","Chipped","Chipper","Clarity","Climber","Cobbler","Coconut","Compass","Cracked","Cricket","Crimson","Crystal","Cuddles","Cupcake","Dancing","Darling","Delight","Delilah","Dessert","Dewdrop","Diamond","Dreamer","Drifter","Drizzle","Eclipse","Emerald","Fashion","Feather","Fiddler","Firefly","Flitter","Flutter","Forever","Frazzle","Frescoe","Fritter","Fuschia","Garland","Glamour","Glimmer","Glitter","Granite","Gumdrop","Harmony","Harvest","Heather","Holiday","Humming","Inkwell","Jackpot","Jasmine","Jubilee","Junebug","Juniper","Justice","Ladybug","Lantern","Lickety","Lickity","Lilypad","Lyrical","Majesty","Mittens","Monarch","Morning","Mustang","Mystery","Nourish","Obscure","Painter","Paisley","Palette","Parasol","Parsnip","Passion","Patches","Peachie","Peacock","Pebbles","Perfect","Perfume","Petunia","Piccolo","Picture","Pierrot","Pimento","Popcorn","Prairie","Prickle","Pumpkin","Raggedy","Rainbow","Ribbons","Rocking","Saddles","Saffron","Scarlet","Scooter","Scraper","Shimmer","Shining","Showers","Shuffle","Shutter","Slipper","Slugger","Slurpie","Slushie","Sno-Glo","Snuzzle","Soaring","Sparkle","Specter","Springy","Steamer","Stellar","Strikes","Strudel","Sunrise","Suprise","Sweeper","Sweetie","Tangent","Thimble","Thistle","Thunder","Tootsie","Trapeze","Trolley","Trotter","Trouble","Tumbler","Twinkle","Twirler","Twister","Venture","Victory","Weather","Whistle","Whizzer","Wiggles","Writers"];
+      var firstnamecap = array[getRandomInt(0, array.length )];
+      return firstnamecap;
+    }
+  </script>
+  <script type="text/javascript" title="Short last Names">
+    function nameshortlow(){
+      var array = ["do","so","ace","ash","bay","bed","bee","big","bit","bop","bow","bug","bye","cap","con","cup","day","dee","dew","dip","doo","dot","fly","fox","fun","gem","hay","hum","ice","ivy","jet","joy","loo","may","nut","nyx","oak","off","paw","pie","pop","ray","red","sap","sea","sew","shy","sir","sky","sun","tap","tea","tex","tie","tin","top","who","zip","abra","aloe","aqua","atom","aura","away","bake","bale","beam","bean","beat","bell","blue","bolt","bone","bows","buck","bulk","burn","buzz","cake","cane","card","chic","chip","claw","coal","coco","colt","core","cozy","crow","cube","cute","dane","dare","dark","dart","dash","dawn","daze","dove","drop","duke","dusk","dust","echo","envy","eyes","fair","fang","fast","fear","feet","fern","find","fine","fire","flip","flop","foam","foil","free","full","fury","gala","gear","glow","gold","good","gown","grey","grub","gust","haze","head","hero","high","hoof","hope","hula","inky","jade","java","jazz","jinx","jive","july","june","keen","king","kiss","kiwi","lace","lady","lake","lane","last","lava","lead","leaf","leap","lila","lily","lime","long","loop","lord","lost","love","luau","lula","lulu","luna","main","mane","mare","mark","mash","mask","maud","mint","miss","mist","moon","muse","neon","nile","nosy","note","onyx","palm","paws","pear","pick","pink","plug","plum","pond","pool","prep","prim","puff","rain","rare","rave","reef","road","roan","rock","romp","rose","ruby","sage","sand","scar","shoe","shot","skye","snap","snow","soak","sock","soda","solo","song","soot","sort","spot","spur","star","step","stud","surf","swan","tail","tale","tart","text","tide","tidy","time","tink","tiny","toes","trip","trot","tune","turf","vale","veil","wasp","wave","well","wild","wind","wing","wink","wish","wisp","wood","acorn","agate","aloha","alpha","amber","angel","apple","april","armor","arrow","aspen","aster","azure","bangs","banjo","batty","beach","belle","beret","berry","betta","black","blank","blaze","bliss","blitz","block","bloom","blush","brass","briar","brisk","brook","buggy","bulky","burnt","burst","candy","charm","check","chess","chili","chord","cider","clean","click","cloud","color","comet","comic","coral","cosmo","count","crate","cream","creme","crest","crisp","crown","curls","curly","cutie","daisy","dance","dandy","denim","dinky","dokey","dosey","dotes","dough","dovey","dream","ebony","ember","fairy","fancy","fauna","favor","fever","fires","fizzy","flame","flare","flash","fleur","flier","float","flora","fluff","foggy","force","forth","frame","frost","froth","fruit","gizmo","glade","glaze","gleam","glide","globe","glory","goody","grace","grape","green","grove","guard","guava","gully","gusty","haste","hazel","heart","hokey","holly","honey","image","inkie","ivory","jazzy","jewel","jolly","juice","knack","knick","lance","leafy","lemon","light","lilac","lilly","links","locks","lofty","lolly","loose","lotus","lovey","lucky","lunar","magic","manes","mango","merry","metal","might","mimic","minty","misty","mixed","mocha","night","north","oakey","ocean","paint","paleo","palms","pansy","paper","party","patch","peach","pearl","penny","petal","photo","piano","pitch","pizza","plume","point","poker","pokey","polka","posey","pound","power","prime","prism","prize","punch","queen","quill","quirk","radio","rainy","randy","rapid","raven","retro","rhyme","rider","river","rocky","rogue","rosey","rouge","round","rowan","royal","rusty","salad","salsa","salty","sandy","sassy","satin","sauce","scene","scoop","scoot","screw","shade","shady","shake","shell","shill","shine","shiny","shoal","silly","skate","skull","slate","slice","slush","smirk","smoke","smoky","sneak","snoop","snowy","soapy","socks","solar","spark","speed","spice","spike","split","spray","spurs","stage","stain","steel","steps","stone","storm","study","stuff","style","sugar","sunny","sweep","sweet","swift","swing","swirl","swoon","swoop","sword","tango","teddy","teeny","telly","thorn","tipsy","token","tooth","torch","tough","treat","truly","tulip","twirl","twist","viola","water","whirl","white","winds","windy","wings","works","write","zippy","almond","always","anchor","arctic","around","astral","august","aurora","autumn","azalea","banana","barber","barrel","beachy","beauty","beetle","bigtop","bitter","bittle","blinky","bobbin","bonnet","boogie","bouncy","bowtie","breath","breeze","breezy","bright","bronco","bronze","brulee","bubble","bumble","burbon","burner","bushel","buster","butter","button","carrot","charge","chaser","cheery","cheese","cherry","chevre","chilly","chorus","cipher","citrus","classy","clever","cloudy","clover","cobalt","cobble","comber","cookie","copper","cosmic","cosmos","cotton","crafty","crunch","crusoe","curtsy","dahlia","dainty","dancer","dapper","dasher","dazzle","desert","doctor","dollar","double","dreams","eclair","facade","fiddly","finish","fizzle","flight","floral","flower","fluffy","flurry","fossil","fresco","fresno","frilly","frisco","frocks","frosty","frozen","gadget","galaxy","garden","giggle","ginger","golden","goldie","goodie","goosey","hearts","helmet","hidden","hoofer","hooves","hunter","icicle","island","jangle","jester","jingle","jitter","jumble","jumper","kimono","kisses","knight","komodo","lancer","legacy","lemony","lights","lining","little","locket","looney","loosey","lovely","magnet","mallet","mallow","marble","maroon","master","meadow","medley","mellow","melody","meteor","minute","mirror","mister","muffin","mystic","mythic","nettle","nickel","nimble","nuzzle","oddity","orange","orchid","paints","palace","parade","parcel","parish","pastel","peachy","pearly","pebble","pepper","petals","petite","pierce","pinkie","pommel","powder","preppy","pretty","prince","prints","puddle","purple","pursey","puzzle","quartz","rarity","reaper","rhythm","ribbon","ripple","rocket","romper","safari","sailor","scoops","scotch","script","sealed","secret","sentry","serano","shadow","shield","shimmy","shores","shower","signal","silent","silver","skater","sketch","sleepy","smiles","smooch","smooth","sneaky","sneezy","snippy","soaker","soakey","somber","sorbet","spirit","spooky","spring","sprint","sprite","spritz","squash","staged","starry","static","sticky","streak","stream","strike","summer","sunset","surfer","sweets","sweety","swirly","tapper","teacup","tender","tickle","tinker","toffee","tomato","triple","tripsy","tumble","turnip","valley","velvet","violet","violin","vision","wander","whinny","willow","winkle","winter","wisher","wishes","wonder","wrench","yellow","zinnia","zipper"];
+      var firstnamecap = array[getRandomInt(0, array.length )];
+      return firstnamecap;
+    }
+  </script>
+  <script type="text/javascript">
+    function namelong(){
+      var array = ["Ambrosia","Amethyst","Artifact","Bracelet","Brightly","Carnival","Charcoal","Cherries","Cinnamon","Confetti","Crowning","Daffodil","Daiquiri","Daybreak","December","Dumpling","Egyptian","Electric","Fantasia","February","Flawless","Flippity","Flounder","Flourish","Frosting","Gardener","Gardenia","Graceful","Habanero","Honeydew","Hyacinth","Jalapeno","Larkspur","Lavender","Lollipop","Magnolia","Marigold","Maverick","Midnight","Milkweed","Mischief","Moondust","Mornings","Northern","Obsidian","Pampered","Paradise","Pinwheel","Platinum","Precious","Primrose","Princess","Rhapsody","Rosemary","Roulette","Sandwich","Sapphire","Savannah","Scoville","Seascape","Seashell","Seaspray","Sherbert","Shooting","Skyflier","Slippers","Sniffles","Snippity","Snowball","Snowdrop","Sparkler","Spectrum","Sprinkle","Starbeam","Starfish","Starsong","Straight","Sunlight","Sunshine","Surprise","Tiramisu","Toboggan","Treasure","Trickles","Tropical","Twilight","Whiskers","Whistler","Whitecap","Whithers","Wrangler","Wysteria","Bellaluna","Blueberry","Bottlecap","Broadcast","Bubblegum","Buttercup","Butterfly","Butternut","Calendula","Candycorn","Capsaicin","Caribbean","Carnation","Celestial","Cheerilee","Chocolate","Cranberry","Crescendo","Dandelion","Dayflower","Delicious","Dragonfly","Forsythia","Fruitcake","Gladiolus","Globetrot","Jitterbug","Kerfuffle","Lightning","Limestone","Liquorice","Mistletoe","Moondance","Moonlight","Moonstone","Parchment","Pineapple","Porcelain","Raspberry","Scarecrow","Skedoodle","Skydancer","Snowflake","Starburst","Starlight","Starshine","Sunflower","Tangerine","Toadstool","Toodleloo","Waterfall","Whirlpool","Whistling","Yesterday","Attraction","Cappuccino","Cheesecake","Chessboard","Cornflower","Heartthrob","Nightlight","Peppermint","Periwinkle","Planchette","Poinsettia","Reflective","Sea-winkle","Strawberry","Summertime","Sweetheart","Tumbleweed","Fantastical","Festivities","Firecracker","Gingerbread","Honeysuckle","Huckleberry","Marshmallow","May Belle","Serendipity","Shenanigans","Wavebreaker","Winterberry","Butterscotch","Globetrotter","Pepperoncini","Pumpernickel","Chrysanthemum"];
+      var firstnamecap = array[getRandomInt(0, array.length )];
+      return firstnamecap;
+    }
+  </script>
+  <script type="text/javascript" title="Dark Color Palate">
+    function randDarkColor(){
+      var darkcolors = [
+      	{ name: "navy blue", hex: "#000080" },
+      	{ name: "medium blue", hex: "#0000CD" },
+      	{ name: "midnight blue", hex: "#191970" },
+      	{ name: "blue", hex: "#0000FF" },
+      	{ name: "dark green", hex: "#006400" },
+      	{ name: "dark slate gray", hex: "#2F4F4F" },
+      	{ name: "dark slate blue", hex: "#483D8B" },
+      	{ name: "fire brick", hex: "#B22222" },
+      	{ name: "brown", hex: "#A52A2A" },
+      	{ name: "saddle brown", hex: "#8B4513" },
+      	{ name: "violet", hex: "#9400D3" },
+      	{ name: "red", hex: "#FF0000" },
+      	{ name: "forest green", hex: "#228B22" },
+      	{ name: "dark olive green", hex: "#556B2F" },
+      	{ name: "maroon", hex: "#B03060" },
+      	{ name: "medium violet red", hex: "#C71585" },
+      	{ name: "sea green", hex: "#2E8B57" },
+      	{ name: "sienna", hex: "#A0522D" },
+      	{ name: "dim gray", hex: "#696969" },
+      	{ name: "blue violet", hex: "#8A2BE2" },
+      	{ name: "violet red", hex: "#D02090" },
+      	{ name: "dark orchid", hex: "#9932CC" },
+      	{ name: "royal blue", hex: "#4169E1" },
+      	{ name: "olive drab", hex: "#6B8E23" },
+      	{ name: "slate blue", hex: "#6A5ACD" },
+      	{ name: "steel blue", hex: "#4682B4" },
+      	{ name: "deep pink", hex: "#FF1493" },
+      	{ name: "dodger blue", hex: "#1E90FF" },
+      	{ name: "slate gray", hex: "#708090" },
+      	{ name: "chocolate", hex: "#D2691E" },
+      	{ name: "light sea green", hex: "#20B2AA" },
+      	{ name: "medium sea green", hex: "#3CB371" },
+      	{ name: "Indian red", hex: "#CD5C5C" },
+      	{ name: "dark goldenrod", hex: "#B8860B" },
+      	{ name: "medium slate blue", hex: "#7B68EE" },
+      	{ name: "light slate gray", hex: "#778899" },
+      	{ name: "cadet blue", hex: "#5F9EA0" },
+      	{ name: "dark turquoise", hex: "#00CED1" },
+      	{ name: "deep sky blue", hex: "#00BFFF" },
+      	{ name: "medium orchid", hex: "#BA55D3" },
+      	{ name: "medium purple", hex: "#9370DB" },
+      	{ name: "light slate blue", hex: "#8470FF" },
+      	{ name: "peru", hex: "#CD853F" },
+      	{ name: "tomato", hex: "#FF6347" },
+      	{ name: "cornflower blue", hex: "#6495ED" },
+      ];
+      var randomColor = darkcolors[Math.floor(Math.random() * darkcolors.length)];
+      return {
+        name: randomColor.name,
+        hex: randomColor.hex
+      };
+    };
+  </script>
+  <script type="text/javascript" title="Light Color Palate">
+    function randLightColor(){
+      var lightcolors = [
+      	{ name: "spring green", hex: "#00FF7F" },
+      	{ name: "medium spring green", hex: "#00FA9A" },
+      	{ name: "pale violet red", hex: "#DB7093" },
+      	{ name: "dark orange", hex: "#FF8C00" },
+      	{ name: "rosy brown", hex: "#BC8F8F" },
+      	{ name: "goldenrod", hex: "#DAA520" },
+      	{ name: "coral", hex: "#FF7F50" },
+      	{ name: "yellow green", hex: "#9ACD32" },
+      	{ name: "turquoise", hex: "#48D1CC" },
+      	{ name: "orchid", hex: "#DA70D6" },
+      	{ name: "medium aquamarine", hex: "#66CDAA" },
+      	{ name: "light coral", hex: "#F08080" },
+      	{ name: "dark sea green", hex: "#8FBC8F" },
+      	{ name: "salmon", hex: "#FA8072" },
+      	{ name: "lawn green", hex: "#7CFC00" },
+      	{ name: "hot pink", hex: "#FF69B4" },
+      	{ name: "turquoise", hex: "#40E0D0" },
+      	{ name: "cyan", hex: "#00FFFF" },
+      	{ name: "dark khaki", hex: "#BDB76B" },
+      	{ name: "dark salmon", hex: "#E9967A" },
+      	{ name: "sandy brown", hex: "#F4A460" },
+      	{ name: "tan", hex: "#D2B48C" },
+      	{ name: "violet", hex: "#EE82EE" },
+      	{ name: "light salmon", hex: "#FFA07A" },
+      	{ name: "sky blue", hex: "#87CEEB" },
+      	{ name: "burly wood", hex: "#DEB887" },
+      	{ name: "light sky blue", hex: "#87CEFA" },
+      	{ name: "gray", hex: "#BEBEBE" },
+      	{ name: "plum", hex: "#DDA0DD" },
+      	{ name: "gold", hex: "#FFD700" },
+      	{ name: "green yellow", hex: "#ADFF2F" },
+      	{ name: "light steel blue", hex: "#B0C4DE" },
+      	{ name: "pale green", hex: "#98FB98" },
+      	{ name: "thistle", hex: "#D8BFD8" },
+      	{ name: "light blue", hex: "#ADD8E6" },
+      	{ name: "aquamarine", hex: "#7FFFD4" },
+      	{ name: "light pink", hex: "#FFB6C1" },
+      	{ name: "powder blue", hex: "#B0E0E6" },
+      	{ name: "light gray", hex: "#D3D3D3" },
+      	{ name: "light goldenrod", hex: "#EEDD82" },
+      	{ name: "yellow", hex: "#FFFF00" },
+      	{ name: "pink", hex: "#FFC0CB" },
+      	{ name: "pale turquoise", hex: "#AFEEEE" },
+      	{ name: "khaki", hex: "#F0E68C" },
+      	{ name: "gainsboro", hex: "#DCDCDC" },
+      	{ name: "wheat", hex: "#F5DEB3" },
+      	{ name: "pale goldenrod", hex: "#EEE8AA" },
+      	{ name: "peachpuff", hex: "#FFDAB9" },
+      	{ name: "moccasin", hex: "#FFE4B5" },
+      	{ name: "bisque", hex: "#FFE4C4" },
+      	{ name: "misty rose", hex: "#FFE4E1" },
+      	{ name: "blanched almond", hex: "#FFEBCD" },
+      	{ name: "papaya whip", hex: "#FFEFD5" },
+      	{ name: "beige", hex: "#F5F5DC" },
+      	{ name: "linen", hex: "#FAF0E6" },
+      	{ name: "light goldenrod yellow", hex: "#FAFAD2" },
+      	{ name: "lemon chiffon", hex: "#FFFACD" },
+      	{ name: "light cyan", hex: "#E0FFFF" },
+      	{ name: "whitesmoke", hex: "#F5F5F5" },
+      	{ name: "old lace", hex: "#FDF5E6" },
+      	{ name: "cornsilk", hex: "#FFF8DC" },
+      	{ name: "lavender blush", hex: "#FFF0F5" },
+      	{ name: "alice blue", hex: "#F0F8FF" },
+      	{ name: "seashell", hex: "#FFF5EE" },
+      	{ name: "honeydew", hex: "#F0FFF0" },
+      	{ name: "ghost white", hex: "#F8F8FF" },
+      	{ name: "azure", hex: "#F0FFFF" },
+      	{ name: "light yellow", hex: "#FFFFE0" },
+      	{ name: "mint cream", hex: "#F5FFFA" },
+      	{ name: "snow", hex: "#FFFAFA" },
+      	{ name: "ivory", hex: "#FFFFF0" },
+      	{ name: "white", hex: "#FFFFFF" },
+      ];
+      var randomColor = lightcolors[Math.floor(Math.random() * lightcolors.length)];
+      return {
+        name: randomColor.name,
+        hex: randomColor.hex
+      };
+    };
+  </script>
+  <script type="text/javascript" title="Personality / Finishing Touches">
+    function FullDescript() {
+      var firstname = document.getElementById('firstname').innerHTML;
+      var gender = document.getElementById('gender').innerHTML;
+      var agenum = document.getElementById('age').innerHTML;
+      var agecat = document.getElementById('agecat').innerHTML;
+      var tribe = document.getElementById('tribe').innerHTML;
+      var height = document.getElementById('heightcat').innerHTML;
+      var weight = document.getElementById('weightcat').innerHTML;
+      var furcolor = document.getElementById('coatcolor').innerHTML;
+      var manecolorholder = document.getElementById('manecolorholder').innerHTML;
+      var talent = document.getElementById('talent').innerHTML;
+
+      agenum = agenum.replace('(', '');
+      agenum = agenum.replace(')', '');
+      height = height.replace('(', '');
+      height = height.replace(')', '');
+      weight = weight.replace('(', '');
+      weight = weight.replace(')', '');
+      manecolorholder = manecolorholder.replace('█', '');
+
+      if (gender == "Male") {
+        var pronoun1 = "he";
+        var pronoun2 = "his";
+      } else if (gender == "Female") {
+        var pronoun1 = "she";
+        var pronoun2 = "her";
+      } else {
+        var pronoun1 = "they";
+        var pronoun2 = "their";
+      }
+
+      var hairlength1 = ['very short', 'short', 'medium-length', 'long', 'very long', 'extreemly long'];
+      var hairlength = hairlength1[getRandomInt(0, hairlength1.length )];
+
+      var physfeature1 = [' has bad acne all over their face',' typically squints like they are looking into a bright light',' is heavily tattooed',' has a face only a mother could love',' has large bushy eyebrows',' has a distinctive military tattoo',' has fingers that are just a little too long',' appears to have suffered a nasty burn','s skin is covered in battle scars',' has buck-teeth.',' has an unkempt and slobbish look',' has a distinctive accent',' has a hunchback.',' has a distinctive cult tattoo',' has a large scar across their chin',' has a few mechanical fingers',' has a mechanical hand',' has a mechanical arm',' has a mechanical footer',' has a mechanical leg',' has gorgeous eyes',' wears only the finest clothing',' has a patch of discolored skin around an old scar',' always smells like farm animals',' has a peg leg',' has 6 fingers instead of 5 on each hand',' is incredibly beautiful. People often do double-takes of them as they walk by',' smells terrible',' dresses like a slob, and tends to wear the same clothes for weeks',' is missing a few fingers',' is missing a finger',' has a distinctive slave tattoo',' has an abnormally long nose',' walks with a notable limp',' wears torn, dirty clothing',' keeps their eyes on the ground',' has particularly accentuated cheekbones, and hollow cheeks',' has lots of freckles',' has noticeably crooked teeth. They try to hide their mouth while speaking',' has a tiny nose',' has freckles on their face positioned in a way to resemble runes',' has happy, warm eyes',' is cross-eyed',' has an allergy that causes them to sneeze a lot',' is constantly hunched over',' has a thick, furry unibrow',' has a tattoo of a mermaid on their arm',' smells like incense',' has watchful eyes',' has an anchor tattoo',' has acne scars on their face',' has sleepy eyes',' has a skull tattoo',' has cold, calculating eyes',' has a distinctive sailing tattoo',' has a large scar over their right eye. Every time they are asked about it, their story changes on how they got it',' always seems to be covered in dirt',' has wild eyes',' has over-sized ears',' always smells like fish',' has a smile and laugh that always feel genuinely welcoming',' has clearly had their nose broken numerous times',' has elaborately pierced ears',' wears fashionable clothing',' has dry, cracked lips',' wears an ear trumpet to hear','  has a dagger tattoo',' constantly bites their nails out of nervousness',' has a distinctive tribal tattoo',' has really long, really sharp nails',' has piercing eyes',' always smells of baked bread',' has a lock of hair that will always stick right up, no matter what they try to keep it in place',' has a large bulbous nose',' has a lazy eye',' is incredibly attractive',' has a snake tattoo',' has dark eyes',' always smells like strong perfume',' always smells like garlic',' wears faded, patched clothing',' has bright, shiny eyes',' has an arrow tattoo',' is always dressed neat and proper',' always smells like mint',' has a distinctive gang tattoo',' has heterochromia',' always has stains of ink on their hands',' has shifty eyes',' always smells like pipe tobacco',' is always immaculately groomed',' has distant eyes',' wears an eye patch over one of their eyes',' has a worn, tired face',' walks with a bad limp',' has a distinctive criminal tattoo',' has an old-fashioned sense of style',' is always chewing on a piece of some root or another',' has a hook nose',' has horrible eyesight and cannot see without their glasses',' always wears flamboyant clothing',' dresses in an outlandish manner',' is constantly bundled in a thick cloak',' exclusively wears thick robes'];
+      var physfeature = physfeature1[getRandomInt(0, physfeature1.length )];
+
+      var trait11 = ['picks teeth with toothpick','is a social drinker','is a hoarder','is a sucker for romance','giggles a lot','is indiscriminately flirtatious','is easily confused','is notably frugal','is jealous','is something of a wheeler-dealer','is nosy','is intrusive','is meddlesome','is a notable snoop','compulsively organizes things','is somewhat disorganized','is often confused','is notably unhygienic','is obviously well-read','has a fairly macabre sense of humor','has a fairly grim worldview','is quite morbid'];
+      var trait1 = trait11[getRandomInt(0, trait11.length )];
+      var trait21 = ['is known for their bad jokes','constantly mangles idioms','is somewhat absent-minded','constantly corrects others grammar','constantly corrects others etiquette','is a notorious huger','occasionally nervously sniffs the air','dotes on their friends','suffers from a nervous tic','constantly fidgets with anything at hand','is often mesmerized by ordinary things','loves to get to know new people','speaks slowly','has a particular hatred of authority'];
+      var trait2 = trait21[getRandomInt(0, trait21.length )];
+      var trait31 = ['often cant seem to find the right word','is brutally honest','is always cold','is short-sighted','speaks monotone','is always singing','constantly hums','loves to rhyme','makes poor financial choices','is a prankster','is a bit mischievous','is easily frightened','is quite distractable','is a compulsive gambler','is shunned by their family','is shunned by their hometown community','is a bit gullible','is a compulsive liar','believes they are cursed','believes they are blessed','is always trying to finish others sentences','wont stop talking about their pet'];
+      var trait3 = trait31[getRandomInt(0, trait31.length )];
+      var trait41 = ['often smokes a pipe','typically refers to people by pet names','often strokes their chin','is a germaphobe','is always talking about the good old days','yawns a lot','is constantly scratching themselves','often repeats what people just said then adds eh','is needlessly apologetic','winces and grimaces at others stories','often spaces out mid-conversation','is easily impressed','is a staunch pacifist','hates violence','is a touch oversensitive','is a little too jaded'];
+      var trait4 = trait31[getRandomInt(0, trait41.length )];
+
+      var furcolor1 = furcolor.toLowerCase();
+      var talent1 = talent.toLowerCase();
+
+      if (tribe == "unicorn") {
+        tribe1 = "unicorn pony";
+      } else if (tribe == "pegasus") {
+        tribe1 = "pegasus pony";
+      } else {
+        tribe1 = "earth pony";
+      }
+
+      if (agenum < 10) {
+        var agelabler = "a"
+      } else if (agenum >= 10 && agenum < 20) {
+        var agelabler = "an"
+      } else {
+        var agelabler = "a"
+      }
+
+      var ponedescrip1 = firstname + " is " + agelabler + " " + agenum + " year old " + toTitleCase(tribe1) + ". " + toTitleCase(pronoun2) + " fur is " + furcolor1 + " and their " + hairlength + " mane is " + manecolorholder + ". " + firstname + " is of " + height + " height for a " + toTitleCase(tribe1) + " and has a " + weight + " build. They " + physfeature + ".";
+      var ponedescrip2 = toTitleCase(pronoun1) + " " + trait1 + ", " + trait2 + ", " + trait3 + ", and " + trait4 + ". They have a special talent for " + talent1  + ".";
+
+      var fulldisc = ponedescrip1 + "</br></br>" + ponedescrip2;
+      document.getElementById('ponedescrip').innerHTML = fulldisc;
+
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+</html>
