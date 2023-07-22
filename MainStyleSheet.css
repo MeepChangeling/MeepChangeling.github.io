@@ -1071,3 +1071,11 @@ html.mobile .navbar .a {
   height: 3vh;
   font-size: 1.4em;
 }
+
+html.mobile table.calculator {
+  display: none;
+}
+
+html.mobile .threecolumn {
+  padding-bottom: 33vh;
+}

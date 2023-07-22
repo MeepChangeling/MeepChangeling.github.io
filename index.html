@@ -1,50 +1,50 @@
     <!doctype html>
 	<html lang="en">
-    <html>
+
     <head>
 	<meta charset="utf-8">
     <title>Cartographical Index</title>
 	<link id="theme" rel="stylesheet" type="text/css" href="MainStyleSheet.css">
 	<link rel="icon" type="image/x-icon" href="img/logo.png">
   <style media="screen">
-  div.mapframe, iframe {
-      width: 90%;
-      height: 850px;
-  	display:block;
-      margin: 0 auto;
-      border: solid #4F120B;
-  	border-width: 15px;
-  	background-image: url("img/bookpage.jpg");
-  	background-color: #FCF5E5;
-  	background-repeat: repeat-y;
-  }
-  .container {
-      position: relative;
-      width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      margin-bottom: 620px;
-  }
-  .container div {
-      height: auto;
-  }
+    div.mapframe, iframe {
+        width: 90%;
+        height: 850px;
+    	display:block;
+        margin: 0 auto;
+        border: solid #4F120B;
+    	border-width: 15px;
+    	background-image: url("img/bookpage.jpg");
+    	background-color: #FCF5E5;
+    	background-repeat: repeat-y;
+    }
+    .container {
+        position: relative;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        margin-bottom: 620px;
+    }
+    .container div {
+        height: auto;
+    }
 
-  .column-left {
-      width: 33%;
-      left: 0;
-      position: absolute;
-  }
-  .column-center {
-      width: 34%;
-      margin-left: 33%;
-      position: absolute;
-  }
-  .column-right {
-      width: 33%;
-      right: 0;
-      position: absolute;
-  }
+    .column-left {
+        width: 33%;
+        left: 0;
+        position: absolute;
+    }
+    .column-center {
+        width: 34%;
+        margin-left: 33%;
+        position: absolute;
+    }
+    .column-right {
+        width: 33%;
+        right: 0;
+        position: absolute;
+    }
   </style>
 </head><script src="scripts/darkmode2.js"></script>
 	<body>
@@ -64,7 +64,7 @@
 	<center><h3>Trip Time calculator</h3></center>
 	<br /><br />
 	<form name="distform" action="">
-	  <table border=1>
+	  <table class="calculator" border=1>
 		<tr>
 	  <td>
 		Distance to travel:<br />
@@ -83,7 +83,7 @@
 			</form>
       <br>
       <center><h3>Georegion Index</h3></center>
-      <div class="container">
+      <div class="container threecolumn">
         <div class="column-left">
           <ul>
             <li><a href="georegions/Ablative.html">Ablative</a></li>
