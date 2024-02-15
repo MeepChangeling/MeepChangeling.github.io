@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.animation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+
+.authorization-key {
+    /* Style your authorization key elements here */
+}
+
+.main-content {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+.authorization-key {
+    text-align: center;
+}
+
+.input-container {
+    position: relative;
+    margin-top: 20px;
+}
+
+#censored-dots {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    font-size: 20px;
+    color: #333; /* Match this color with your background */
+}
+
+#censored-dots::after {
+    content: "•";
+    animation: censoredAnimation 0.8s infinite;
+}
+
+@keyframes censoredAnimation {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+bigtext {font-weight: bolder; font-size: 15em;}
+
+midtext {font-weight: bolder; font-size: 5em;}
+
+/* Add borders to the table */
+table {
+  border-collapse: collapse;
+  width: auto;
+  border: 1px solid #ddd; /* Border color for the entire table */
+}
+
+/* Style for table header cells */
+th, td {
+  border: 1px solid #ddd; /* Border color for cells */
+  padding: 8px;
+  text-align: left;
+}
+
+/* Color every other row with a pale gray background */
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Pale gray color */
+}
+
+
+
+div.textcontainer {
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.indent {
+  margin-left: 2em;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imgborder {
+  border: 1px solid #ddd;
+  padding: 3px;
+}
+
+.smallimg {
+  width: 40em;
+}

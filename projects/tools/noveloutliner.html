@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style media="screen">
+      html {
+        background-color: #4d4d4d;
+      }
+      textarea {
+        resize:none;
+        background-color: rgba(255, 255, 255, 0.33);
+        margin-top: -5px;
+      }
+      input {
+        background-color: rgba(255, 255, 255, 0.33);
+      }
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      div.container {
+        margin-left: 15%;
+        width: 33%;
+      }
+      .basicDetails {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 5px; /* Adjust the gap between elements as needed */
+      }
+
+      .basicDetails p {
+          margin: 0; /* Remove default margin for paragraphs */
+      }
+
+      .basicDetails b {
+          display: inline-block; /* Keep the <b> element inline */
+          margin-right: 5px; /* Add spacing between label and input */
+      }
+
+      .basicDetails input {
+          /*width: 100%; /* Take up 100% of available width within the column */
+      }
+      div.secondDetails {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .secondDetails p {
+          margin: 0px; /* Remove default margin for paragraphs */
+          margin-bottom: 5px;
+      }
+      /* CSS */
+      button.button-12 {
+
+        align-items: center;
+        padding: 6px 14px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+        border-radius: 6px;
+        border: none;
+        font-weight: bold;
+        background: #6E6D70;
+        box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+        color: #DFDEDF;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+
+      button.button-12:focus {
+        box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1px rgba(0, 0, 0, 0.1), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+        outline: 0;
+      }
+    </style>
+    <title>Novel Outline Tool</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Novel Outline Tool</h1>
+    <form id="chapterForm">
+      <div class="basicDetails">
+        <p><b>Chapter Number:</b> <input type="number" id="chapterNumber" required></p>
+        <p><b>Chapter Name:</b> <input type="text" id="chapterTitle" required></p>
+        <p><b>Time of day:</b> <input type="text" id="Time of day" required></p>
+        <p><b>Time of year:</b> <input type="text" id="Time of year" required></p>
+      </div>
+      <div class="secondDetails">
+        <p><b>Locale:</b> <input type="text" id="locale" required></p>
+        <p><b>POV character for the scene:</b> <input type="text" id="POV character for the scene" required></p>
+        <p><b>Time since previous scene with POV character:</b> <input type="text" id="Time passed since previous scene with this character" required></p>
+      </div>
+        <label for="Scene Summary">Scene Summary:</label>
+        <p></p>
+        <textarea id="Scene Summary" rows="10" cols="120" required></textarea>
+        <br>
+        <label for="locale">What main way is the story advanced? What new plot points are revealed?:</label>
+        <p></p>
+        <textarea id="What main way is the story advanced? What new plot points are revealed?" rows="3" cols="120" required></textarea>
+        <br>
+        <label for="locale">What conflicts/obstacles are presented in the scene?:</label>
+        <p></p>
+        <textarea  id="What conflicts/obstacles are presented in the scene?" rows="3" cols="120" required></textarea>
+        <br>
+        <label for="locale">The high moment or key info revealed in scene:</label>
+        <p></p>
+        <textarea  id="The high moment or key info revealed in scene" rows="3" cols="120" required></textarea>
+        <br>
+        <label for="locale">World-building or specific setting/locale details brought out:</label>
+        <p></p>
+        <textarea id="World-building or specific setting/locale details brought out" rows="3" cols="120" required></textarea>
+        <br>
+        <br>
+    </form>
+    <button type="button" class="button-12" onclick="addChapter()">Add Chapter</button>
+    <button type="button" class="button-12" onclick="downloadOutline()">Download Outline</button>
+  </div>
+  <script>
+    // script.js
+    let chapters = [];
+
+    function addChapter() {
+        // Retrieve chapter information from input fields
+        const chapterNumber = document.getElementById('chapterNumber').value;
+        const chapterTitle = document.getElementById('chapterTitle').value;
+        const locale = document.getElementById('locale').value;
+        const timeDay = document.getElementById('Time of day').value;
+        const timeYear = document.getElementById('Time of year').value;
+        const timeChar = document.getElementById('Time passed since previous scene with this character').value;
+        const povChar = document.getElementById('POV character for the scene').value;
+        const sceneSummary = document.getElementById('Scene Summary').value;
+        const storyAdvance = document.getElementById('What main way is the story advanced? What new plot points are revealed?').value;
+        const conflictObstacles = document.getElementById('What conflicts/obstacles are presented in the scene?').value;
+        const highMoment = document.getElementById('The high moment or key info revealed in scene').value;
+        const worldBuilding = document.getElementById('World-building or specific setting/locale details brought out').value;
+        // Get other chapter information in a similar way
+
+        // Create a chapter object
+        const chapter = {
+            number: chapterNumber,
+            title: chapterTitle,
+            locale: locale,
+            time: timeDay,
+            date: timeYear,
+            char: povChar,
+            timeChar: timeChar,
+            summary: sceneSummary,
+            advance: storyAdvance,
+            conflict: conflictObstacles,
+            high: highMoment,
+            world: worldBuilding,
+            // Include other properties based on your needs
+        };
+
+        // Add the chapter to the array
+        chapters.push(chapter);
+
+        // Clear input fields for the next chapter
+        document.getElementById('chapterNumber').value = '';
+        document.getElementById('chapterTitle').value = '';
+        document.getElementById('locale').value = '';
+        document.getElementById('Time of day').value = '';
+        document.getElementById('Time of year').value = '';
+        document.getElementById('Time passed since previous scene with this character').value = '';
+        document.getElementById('POV character for the scene').value = '';
+        document.getElementById('Scene Summary').value = '';
+        document.getElementById('What main way is the story advanced? What new plot points are revealed?').value = '';
+        document.getElementById('What conflicts/obstacles are presented in the scene?').value = '';
+        document.getElementById('The high moment or key info revealed in scene').value = '';
+        document.getElementById('World-building or specific setting/locale details brought out').value = '';
+        // Clear other input fields similarly
+    }
+
+    function downloadOutline() {
+    // Ask for the name of the story using a pop-up box
+    const storyName = window.prompt('Enter the name of the story:');
+
+    if (storyName !== null) {
+        // Generate the outline content based on the chapters array and story name
+        const outlineContent = generateOutlineContent(storyName);
+
+        // Create a Blob containing the outline content
+        const blob = new Blob([outlineContent], { type: 'text/html' });
+
+        // Create a download link and trigger the download
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = `${storyName}_outline.html`;
+        downloadLink.click();
+        }
+    }
+
+    function generateOutlineContent(storyName) {
+        // Create the outline content as an HTML document
+        let outlineContent = `<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><style media="screen">html {background-color: #4d4d4d;}div.content {width: 40%;margin-left: auto;margin-right: auto;}div.simplelist p {margin: 0; margin-bottom: 2px;} div.content div.indent {margin-left:25px;}</style><title>${storyName} Outline</title></head><body><div class="content"><h1>${storyName} Outline</h1>`;
+
+        chapters.forEach((chapter, index) => {
+            outlineContent += `<h2>Chapter ${chapter.number}: ${chapter.title}</h2>`;
+            outlineContent += `<div class="simplelist">`;
+            outlineContent += `<p><b>Time of Day:</b> ${chapter.time}</p>`;
+            outlineContent += `<p><b>Time of Year:</b> ${chapter.date}</p>`;
+            outlineContent += `<p><b>PoV Character:</b> ${chapter.char}</p>`;
+            outlineContent += `<p><b>Time since PoV's Previous Scene:</b> ${chapter.timeChar}</p>`;
+            outlineContent += `<p><b>Locale:</b> ${chapter.locale}</p>`;
+            outlineContent += `</div>`;
+            outlineContent += `<p><b>Chapter Summary</b></p>`;
+            outlineContent += `<div class="indent">`;
+            outlineContent += `<p>${chapter.summary}</p>`;
+            outlineContent += `</div>`;
+            outlineContent += `<p><b>How is the Story Advanced?</b>`;
+            outlineContent += `<div class="indent">`;
+            outlineContent += `<p> ${chapter.advance}</p>`;
+            outlineContent += `</div>`;
+            outlineContent += `<p><b>What conflict(s) drive the chapter forward?</b></p>`;
+            outlineContent += `<div class="indent">`;
+            outlineContent += `<p>${chapter.conflict}</p>`;
+            outlineContent += `</div>`;
+            outlineContent += `<p><b>What is the high point of the chapter?</b></p>`;
+            outlineContent += `<div class="indent">`;
+            outlineContent += `<p>${chapter.high}</p>`;
+            outlineContent += `</div>`;
+            outlineContent += `<p><b>What worldbuilding is crucial to include?</b></p>`;
+            outlineContent += `<div class="indent">`;
+            outlineContent += `<p>${chapter.world}</p>`;
+
+            outlineContent += `</div>`;
+            outlineContent += `<br>`;
+
+            // Include other chapter information in a similar way
+        });
+
+        outlineContent += '</div></body></html>';
+
+        return outlineContent;
+    }
+  </script>
+</body>
+</html>
