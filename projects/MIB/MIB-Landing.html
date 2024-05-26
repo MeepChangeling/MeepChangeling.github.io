@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="MIB.css">
+    <link rel="icon" type="image/x-icon" href="MiB Logo.webp">
+    <script defer src="MIDscript.js"></script>
+    <title>MIB - Main</title>
+</head>
+<body>
+  <div class="animation-container" id="animation-container">
+    <img class="PageBGa" src="MiB Logo.webp" alt="">
+      <div class="authorization-key" id="authorization-key">
+          <bigtext class="whiteoutlinebig">MIB</bigtext>
+          <br>
+          <midtext class="whiteoutlinebig">Central Database</midtext>
+          <h2 class="whiteoutlinesmall">Authorization Key Required</h2>
+          <div class="input-container">
+              <input type="password" id="auth-input" value="" readonly>
+              <div class="censored-dots" id="censored-dots"></div>
+          </div>
+      </div>
+  </div>
+
+    <div class="main-content" id="main-content">
+      <header class="mainheader">
+        <nav class="navbar navbar-default top-navigation-container">
+          <div class="nav-logo">MIB</div>
+        </nav>
+      </header>
+      <img class="PageBG" src="MiB Logo.webp" alt="">
+        <div class="textcontainer">
+          <h1>Meteorite Investigation Bureau</h1>
+          <h3>Sic Semper Barbaris</h3>
+          <nav>
+            <a href="MIB-about.html">About Us</a></br>
+            <a href="MIB-SpeciesList.html">Notable Species</a></br>
+            <a href="#">Join the MiB</a></br>
+            <a href="#">Contact</a></br>
+          </nav>
+          <section class="content-section">
+          <h2>Welcome to the Meteorite Investigation Bureau</h2>
+          <p class="redacted">[Insufficient Clearance]</p>
+        </section>
+
+        <section class="content-section">
+          <h2>Breaking News</h2>
+          <ul>
+            <li><span class="redacted">[Insufficient Clearance]</span></li>
+            <li>Date: <span class="redacted">[Insufficient Clearance]</span></li>
+            <li>Location: <span class="redacted">[Insufficient Clearance]</span></li>
+            <li>Summary: <span class="redacted">[Insufficient Clearance]</span></li>
+          </ul>
+        </section>
+
+        <section class="content-section">
+          <h2>Featured Articles</h2>
+          <ul>
+            <li><a href="#">Galatic Technology</a></li>
+            <li><a href="#">Alien Integration Programs</a></li>
+            <li><a href="#">Historical Archives</a></li>
+          </ul>
+        </section>
+
+        <section class="content-section">
+          <h2>Secure Log-In</h2>
+          <form>
+            <label for="username">Username: <span class="redacted">[Insufficient Clearance]</span></label><br>
+            <label for="password">Password: <span class="redacted">[Insufficient Clearance]</span></label>
+          </form>
+        </section>
+
+        <footer>
+          <p>Privacy Policy: <span class="redacted">[Insufficient Clearance]</span></p>
+          <p>Terms of Service: <span class="redacted">[Insufficient Clearance]</span></p>
+          <p>© <span id="current-year"></span> Meteorite Investigation Bureau. All Rights Reserved.</p>
+        </footer>
+
+        <script>
+          document.getElementById('current-year').textContent = new Date().getFullYear();
+        </script>
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="footer">
+          <img class="PageFooter invertimg" src="MiB Logo.webp" alt="">
+          <div class="agency">
+            <h1>MIB</h1>
+            <h3>Meteorite Investigation Bureau</h3>
+          </div>
+        </div>
+    </div>
+</body>
+</html>

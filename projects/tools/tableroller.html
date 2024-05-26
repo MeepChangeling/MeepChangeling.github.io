@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Item Picker</title>
+</head>
+<body>
+
+<h2>Random Item Picker</h2>
+
+<label for="inputList">Enter comma-separated values:</label>
+<input type="text" id="inputList">
+<button onclick="pickRandomItem()">Pick Random Item</button>
+
+<p>Randomly picked item: <span id="randomItem"></span></p>
+
+<script>
+function pickRandomItem() {
+    // Get the input field value
+    var input = document.getElementById("inputList").value;
+
+    // Split the input string into an array of values
+    var values = input.split(",").map(item => item.trim());
+
+    // Pick a random index from the array
+    var randomIndex = Math.floor(Math.random() * values.length);
+
+    // Get the item at the random index
+    var randomItem = values[randomIndex];
+
+    // Display the randomly picked item
+    document.getElementById("randomItem").textContent = randomItem;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Item Selector</title>
+</head>
+<body>
+    <h1>Random Item Selector</h1>
+
+    <button onclick="generateRandomItems()">Generate Random Items</button>
+
+    <p><strong>First List:</strong> <span id="firstListResult"></span></p>
+    <p><strong>Second List:</strong> <span id="secondListResult"></span></p>
+
+    <label for="numberOfItems">Select number of items from the second list (1-4): </label>
+    <input type="number" id="numberOfItems" min="1" max="4" value="1">
+
+    <script src="script.js"></script>
+</body>
+<script type="text/javascript">
+  const firstList = ['Titan','Werecreature','Elf','Hyena','Demon','Feline','Bovine','Merfolk','Insectoid','Hippo','Primate','Dinosaurian','Rhino','Harpy','Canine','Hydra','Crocodilian','Behemoth','Halfling','Orc','Giant','Elemental','Cyclops','Golem','Kobold','Lizard','Slime','Snake','Ursine','Chimera','Naga','Plantoid','Taur','Specter','Equine','Cervine','Mephidae','Pachyderm','Fae ','Mechanicals','Leviathans','Angels','Behemoths','Easter Bunny','Amphibian','Necrophage','Vulpine','Alien','Draconid'];
+  const secondList = ['Futa','Chubby','Big Breasts','Big Butt','Huge','Giant','Small ','Tiny','Extra Tails','Tentacles','Spikes','Demonic','Extra Fluids','Feathers','Cursed','Blood Sucker','Forked Tongue','Long Tail','Fangs','Bioluminescence','Two Dicks','Painted','Flowers','Glowing eyes','Thin','Spikes','Scales','Fur','Glowing Fluids','Void Body','Wings','Horns','Extra eyes','Extra Tongue','Plush','Long Tongue','Big Balls','Big Cock','Mystic Aura','Crystal','Shiny','Tentacle Dick','Oviposition','Cyborg','Translucent ','Gooy','Milky','Fertile','Extra Trait','Feral','Ghostly','Ethereal','Earthly','Angelic','Herbavore eyes','Carnivore eyes','Magically attuned','Runes','Blessed','Obese','Anorexic','Gigantic','Miniscule','Extra Horns','Dick Tail','Body Plates','Sparkles','Extra Trait','Metallic','Irridecent ','Meaty Muff','Elastic','Thick Nipples','Pale Skin','Dark Skin','Retractable Teeth','Extra Mouth','Fins','Scorpion Tail','Hypnotic Eyes ','Cosmic body','Primordial','Necrotic','Skeletal','Monstrous','Extra Head','Taur','Prismatic','Halo','Antlers','Extra Trait','Spots','Stripes','Natural Lantern','Mane','Extra Ears','Muscular','Weaponized Tail','Thick Scales'];
+
+  function generateRandomItems() {
+      const firstListResult = getFirstListResult();
+      const numberOfItems = document.getElementById('numberOfItems').value;
+      const secondListResult = getSecondListResult(firstListResult, numberOfItems);
+
+      document.getElementById('firstListResult').textContent = firstListResult;
+      document.getElementById('secondListResult').textContent = secondListResult.join(', ');
+  }
+
+  function getFirstListResult() {
+      let result = getRandomItem(firstList);
+
+      // If the result is "Werecreatures," roll a second time until it's not "Werecreatures"
+      while (result === 'Werecreatures') {
+          result = getRandomItem(firstList);
+      }
+
+      return result;
+  }
+
+  function getSecondListResult(firstListResult, numberOfItems) {
+      let result;
+
+      if (firstListResult === 'Chimera' || firstListResult === 'Taur') {
+          const filteredList = secondList.filter(item => !['Werecreatures', 'Chimera', 'Taur'].includes(item));
+          result = getRandomItems(filteredList, numberOfItems);
+      } else {
+          result = getRandomItems(secondList, numberOfItems);
+      }
+
+      // If the result includes "Extra Trait," roll 1-4 more times and combine all results
+      if (result.includes('Extra Trait')) {
+        // Replace "Extra Trait" with a different result
+        result = result.map(item => (item === 'Extra Trait') ? 'New Result' : item);
+
+        // Roll 1-4 times for extra traits and add them
+        const extraTraitResults = getExtraTraitResults(numberOfItems);
+        return result.concat(extraTraitResults);
+    }
+
+      return result;
+  }
+
+  function getExtraTraitResults(numberOfItems) {
+      const extraTraitList = secondList.filter(item => item !== 'Extra Trait');
+      return getRandomItems(extraTraitList, numberOfItems);
+  }
+
+  function getRandomItem(list) {
+      const randomIndex = Math.floor(Math.random() * list.length);
+      return list[randomIndex];
+  }
+
+  function getRandomItems(list, numberOfItems) {
+      const shuffledList = list.sort(() => Math.random() - 0.5);
+      return shuffledList.slice(0, numberOfItems);
+  }
+</script>
+</html>

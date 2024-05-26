@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="MiB Logo.webp">
+    <link rel="stylesheet" href="MIB.css">
+    <title>MIB - Xenoglossary</title>
+    <style>
+        .alien-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .alien-card {
+            background-color: #a1a1a1;
+            border: 1px solid #3c3c3c;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 15px;
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+        }
+        a.fill-div {
+          display: block;
+          height: 100%;
+          width: 100%;
+          text-decoration: none;
+        }
+        .alien-card:hover {
+          background-color: #4f4f4f;
+        }
+    </style>
+</head>
+<body>
+    <header class="mainheader">
+        <nav class="navbar navbar-default top-navigation-container">
+            <div class="nav-logo">MIB</div>
+        </nav>
+    </header>
+    <img class="PageBG" src="MiB Logo.webp" alt="Background Logo">
+    <div class="textcontainer">
+        <h1>Alien Species Database</h1>
+        <p>Welcome to the MiB Xenoglossary. Below you'll find detailed profiles of known extraterrestrial species. This database is automaticaly filtered by your clearence level.</p>
+        <div class="alien-list">
+            <div class="alien-card" onclick="location.href='species/E-089.html';">
+                <h2>Nixil</h2>
+                <p>Amphibious preditors. Only known example: E-089</p>
+            </div>
+            <div class="alien-card" onclick="location.href='species/Jirrian.html';">
+                <h2>Jirrian</h2>
+                <p>Near-human aboral rodents.</p>
+            </div>
+            <div class="alien-card" onclick="location.href='';">
+                <h2>Species Name 2</h2>
+                <p>Short description of Species 2.</p>
+            </div>
+            <div class="alien-card" onclick="location.href='';">
+                <h2>Species Name 2</h2>
+                <p>Short description of Species 2.</p>
+            </div>
+            <div class="alien-card" onclick="location.href='';">
+                <h2>Species Name 2</h2>
+                <p>Short description of Species 2.</p>
+            </div>
+            <div class="alien-card" onclick="location.href='';">
+                <h2>Species Name 2</h2>
+                <p>Short description of Species 2.</p>
+            </div>
+            <!-- Repeat for other species -->
+        </div>
+    </div>
+    <div class="footer">
+        <img class="PageFooter invertimg" src="MiB Logo.webp" alt="Footer Logo">
+        <div class="agency">
+            <h1>MIB</h1>
+            <h3>Meteorite Investigation Bureau</h3>
+        </div>
+    </div>
+</body>
+</html>

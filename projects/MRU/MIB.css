@@ -94,7 +94,6 @@ div.textcontainer {
   padding-right: 0.75vw;
   padding-top: 1vh;
   padding-bottom: 1vh;
-  min-height: calc(100vh - 202px);
 }
 
 div.textcontainer a {

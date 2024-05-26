@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star System Generator</title>
+    <style>
+      div.stardetails {
+        padding-left: 2em;
+      }
+    </style>
+</head>
+<body>
+    <h1>Star Formation</h1>
+
+    <button onclick="generateStarName()">Name a Star</button>
+    <p><strong>Name:</strong> <input type="text" id="starname"></input></p>
+    <button onclick="generateStar1()">Generate System</button>
+
+    <span id="starSystemHeader"></span>
+    <div id="starSystem"></div>
+
+</body>
+<script type="text/javascript">
+  // Helper Fucntions
+
+    // Helper Function to generate pick random items from arbatrary length arrays
+    function getRandomItem(arr) {
+        if (!Array.isArray(arr) || arr.length === 0) {
+            throw new Error("Please provide a non-empty array.");
+        }
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    }
+
+    // Helper function to get random int
+    function getRandomInt(min, max) {
+      const minCeiled = Math.ceil(min);
+      const maxFloored = Math.floor(max);
+      return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+    }
+
+
+    // Helper function to generate random float within a range
+    function getRandomFloat(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    // Helper to cut off decimal places after x
+    function truncateDecimals(number, digits) {
+        return Math.trunc(number * Math.pow(10, digits)) / Math.pow(10, digits);
+    }
+
+    function generateStarName() {
+        const firstListResult = getRandomItem(starFirst);
+        const secondListResult = getRandomItem(starSecond);
+        document.getElementById('starname').value = firstListResult + secondListResult;
+    }
+
+function generateStar1(){
+    const { starClass, starTemp, starTempNum, starColors, starColor, starMass, starRadius, starLumin, StarAbsMag, starAge, habZoneInner, habZoneOutter } = starData();
+    document.getElementById('starSystemHeader').innerHTML = "<h2>The " + document.getElementById('starname').value + " System</h2>";
+
+    const starName = document.getElementById('starname').value
+
+    document.getElementById('starSystem').innerHTML += "<div class='starCont1'><p><b>Star:</b> " + starName + "</br><div class='stardetails'><b>Spectral Type:</b> " + starClass + starTempNum + starRomanNum + "</br><b>Tempature:</b> " + starTemp + " K</br><b>Class:</b> " + starColor + " " + starCat + "</br><b>Mass:</b> " + starMass + " M<sub>☉</sub></br><b>Radius:</b> " + starRadius + " R<sub>☉</sub></br><b>Luminosity:</b> " + starLumin + " L<sub>☉</sub></br><b>Absolute Magnitude:</b> " + StarAbsMag + " M<sub>V</sub></br><b>Habitable Zone: </b>" + habZoneInner + " - " +  habZoneOutter + " AU</br><b>Age:</b> " + starAge + " Gya</p></div></div>";
+  }
+
+function starData() {
+    const starClasses = ["M", "K", "G", "F", "A", "B", "O"];
+    const starClass = getRandomItem(starClasses);
+    let starTemp, starTempNum, starColors, starColor, starMass, starRadius, starLumin, starMassTmp, starRadiusTmp, starLuminTmp, StarAbsMag; // Declare variables outside if blocks
+
+    const starAge = getRandomFloat(0, 10).toFixed(2);
+
+    if (starClass == "M") {
+        starTemp = getRandomInt(2300, 3900);
+        starTempNum = determineTenth(starTemp, 2300, 3900);
+        starColors = ["orangish red", "light orangish red"];
+        starColor = getRandomItem(starColors);
+        starMassTmp = getRandomFloat(0.08, 0.45);
+        starRadiusTmp = getRandomFloat(0.009, 0.7);
+        starLuminTmp = getRandomFloat(0.005, 0.08);
+        starCat = "Sub-Dwarf";
+        starRomanNum = "VI";
+    } else if (starClass == "K") {
+        starTemp = getRandomInt(3900, 5300);
+        starTempNum = determineTenth(starTemp, 3900, 5300);
+        starColors = ["light orange", "pale yellowish orange"];
+        starColor = getRandomItem(starColors);
+        starMassTmp = getRandomFloat(0.45, 0.8);
+        starRadiusTmp = getRandomFloat(0.7, 0.96);
+        starLuminTmp = getRandomFloat(0.08, 0.6);
+        starCat = "Dwarf";
+        starRomanNum = "VI";
+    } else if (starClass == "G") {
+        starTemp = getRandomInt(5300, 6000);
+        starTempNum = determineTenth(starTemp, 5300, 6000);
+        starColors = ["yellow", "yellowish white"];
+        starColor = getRandomItem(starColors);
+        starMassTmp = getRandomFloat(0.8, 1.04);
+        starRadiusTmp = getRandomFloat(0.96, 1.15);
+        starLuminTmp = getRandomFloat(0.6, 1.15);
+        starCat = "Main-Sequence";
+        starRomanNum = "V";
+    } else if (starClass == "F") {
+        starTemp = getRandomInt(6000, 7300);
+        starTempNum = determineTenth(starTemp, 6000, 7300);
+        starColors = ["yellowish white", "white"];
+        starColor = getRandomItem(starColors);
+        starMassTmp = getRandomFloat(1.04, 1.4);
+        starRadiusTmp = getRandomFloat(1.15, 1.4);
+        starLuminTmp = getRandomFloat(1.15, 5);
+        starCat = "Subgiant";
+        starRomanNum = "V";
+    } else if (starClass == "A") {
+        starTemp = getRandomInt(7300, 10000);
+        starTempNum = determineTenth(starTemp, 7300, 10000);
+        starColors = ["white", "bluish white"];
+        starColor = getRandomItem(starColors);
+        starMassTmp = getRandomFloat(1.4, 2.1);
+        starRadiusTmp = getRandomFloat(1.4, 1.8);
+        starLuminTmp = getRandomFloat(5, 25);
+        if (starAge < 5) {
+          starCat = "Giant";
+          if (starTemp >= 8650) {
+            starRomanNum = "II";
+          } else {
+            starRomanNum = "III";
+          }
+        } else {
+          starCat = "Stellar Remnant (White Dwarf)";
+          starRomanNum = "VII";
+        }
+    } else if (starClass == "B") {
+        starTemp = getRandomInt(10000, 33000);
+        starTempNum = determineTenth(starTemp, 10000, 33000);
+        starColors = ["bluish white", "deep bluish white"];
+        starColor = getRandomItem(starColors);
+        starMassTmp = getRandomFloat(2.1, 16);
+        starRadiusTmp = getRandomFloat(1.8, 6.6);
+        starLuminTmp = getRandomFloat(25, 30000);
+        if (starAge < 1.5) {
+          starCat = "Supergiant";
+          if (starTemp <= 17666) {
+            starRomanNum = "Ib";
+          } else if (starTemp > 7,666 && starTemp <= 25332) {
+            starRomanNum = "Iab";
+          } else {
+            starRomanNum = "Ia";
+          }
+        } else {
+          starCat = "Stellar Remnant (Neutron Star)";
+          starRomanNum = "Ib";
+        }
+    } else {
+        starTemp = getRandomInt(33000, 210000);
+        starTempNum = determineTenth(starTemp, 33000, 210000);
+        starColors = ["blue"];
+        starColor = getRandomItem(starColors);
+        starMassTmp = getRandomFloat(16, 230);
+        starRadiusTmp = getRandomFloat(6.6, 1708);
+        starLuminTmp = getRandomFloat(30000, 5012000);
+        if (starAge < 0.5) {
+          starCat = "Hypergiant";
+          starRomanNum = "Ia+";
+        } else {
+          starCat = "Stellar Remnant (Black Hole)";
+          starRomanNum = "Ia+";
+        }
+    }
+
+    // Calculate Absolute Magnitude
+    const StarAbsMagTmp = 4.83 + 2.5 * Math.log10(1 / starLuminTmp);
+    StarAbsMag = StarAbsMagTmp.toFixed(4)
+
+    // Calculate Habitable zone
+    const habZoneInner = (starLuminTmp / 1.1).toFixed(2)
+    const habZoneOutter = (starLuminTmp / 0.53).toFixed(2)
+
+
+    // Format and return data
+    starMass = starMassTmp.toFixed(4) + " ± " + getRandomFloat(0, starMassTmp*0.03).toFixed(4);
+    starRadius = starRadiusTmp.toFixed(4) + " ± " + getRandomFloat(0, starMassTmp*0.03).toFixed(4);
+    starLumin = starLuminTmp.toFixed(4) + " ± " + getRandomFloat(0, starMassTmp*0.03).toFixed(4);
+
+    return {
+        starClass, starTemp, starTempNum, starColors, starColor, starMass, starRadius, starLumin, StarAbsMag, starCat, starAge, starRomanNum, habZoneInner, habZoneOutter
+    };
+}
+
+    //Dtermines what 10th of a range a value is in
+    function determineTenth(number, minRange, maxRange) {
+        // Calculate the range of each 10th
+        var rangeSize = (maxRange - minRange + 1) / 10;
+
+        // Determine which 10th the number falls into
+        var tenth = Math.floor((number - minRange) / rangeSize);
+
+        // Ensure the tenth is within the range of 0 to 9
+        if (tenth < 0) {
+            tenth = 0;
+        } else if (tenth > 9) {
+            tenth = 9;
+        }
+
+        return tenth;
+    }
+
+    //Star Name Componant Lists
+    const starFirst = ["A","Aa","Ab","Aba","Abe","Abi","Abo","Abso","Abu","Acero","Achi","Ad","Ada","Adeno","Adi","Ado","Adu","Ae","Aegi","Aeri","Aero","Aga","Ai","Air","Aire","Al","Ala","Albi","Algo","Ali","Alle","Alpha","Alsa","Alto","Alu","Ambi","Ambro","Ami","Amma","Ampa","Ampla","Ampli","Amplo","Ampro","Ana","Andro","Ano","Anona","Ante","Anthro","Anti","Ao","Aphro","Api","Apo","Apollo","Apos","Apri","Aqua","Arca","Are","Arga","Arge","Argi","Argo","Argu","Aris","Arka","Arr","Arte","As","Asa","Ase","Asi","Asia","Aso","Astra","Astro","Asu","Asylo","Ata","Athe","Atla","Atlanta","Ato","Au","Audio","Augu","Aura","Auto","Ava","Ave","Avio","Avo","Avu","Axa","Ay","Aye","Ba","Baba","Bag","Base","Be","Beam","Bee","Bena","Beta","Bi","Bibio","Biblio","Big","Bino","Bio","Bitroni","Bla","Blake","Blue","Bo","Bog","Bota","Brah","Brahma","Brea","Brew","Bronto","Bru","Brute","Bu","By","Bya","Bygie","Byo","Byu","Ca","Cali","Caly","Cana","Cani","Canna","Canni","Capi","Capri","Carbo","Cardio","Carno","Caro","Casi","Cataly","Cava","Ce","Ced","Centi","Cha","Chee","Chemo","Chi","Cho","Chro","Chromo","Chrono","Chu","Ci","Cina","Cine","Circa","Circu","Circum","Claw","Co","Cobra","Cogni","Coito","Combi","Combo","Commo","Commu","Communi","Compu","Condra","Conso","Contra","Cope","Coperni","Cor","Corne","Coro","Corpu","Corsy","Corti","Cosmo","Coulro","Cove","Cra","Crani","Cranio","Crea","Creta","Criti","Cro","Croco","Cryo","Cryoge","Crypto","Crys","Cu","Cy","Cyba","Cyber","Cybo","Cyclo","Cyla","Cylo","Cyn","Cyno","Cyr","Cysto","Da","Data","De","Dealta","Deca","Dece","Deci","Dee","Deka","Deme","Demi","Demo","Dermi","Dermo","Destro","Deva","Di","Dia","Digi","Dimento","Dina","Dini","Dino","Diplo","Dis","Disastro","Disca","Disco","Displa","Disso","Dista","Do","Domi","Doub","Draco","Dracu","Drago","Drap","Dreama","Dref","Drip","Dro","Drono","Du","Dual","Duo","Dy","Dyna","Dyno","Dyp","Dys","E","Ea","Echo","Eco","Ego","El","Ele","Electro","Elita","Ell","Elo","Embry","Empi","Empiro","Ener","Enigma","Ense","Enyo","Ephro","Epi","Ergo","Eri","Ery","Eryxa","Eu","Euro","Euroto","Eva","Ex","Exa","Exer","Exo","Extra","Fa","Facto","Fal","Falco","Faxo","Fe","Fef","Femi","Femmi","Femto","Fetu","Fi","Fia","Fir","Fire","Flexi","Fo","For","Formi","Forti","Fortre","Fortu","Forwa","Fra","Fu","Fuc","Fuch","Fud","Futura","Ga","Galacti","Galacto","Galva","Gamma","Gamo","Ge","Gea","Geni","Geno","Geo","Gi","Gia","Giga","Giganto","Gloto","Go","God","Gra","Gran","Grana","Gro","Grud","Gu","Gya","Gyo","Gyro","Ha","Hade","Hal","Halcy","Halo","Haplo","Harmo","He","Heka","Heli","Helio","Hemi","Hemo","Hepato","Hepta","Hercu","Hero","Hetero","Hexa","Hexi","Hi","Hi-","Hia","Hippa","Hippo","Histo","Ho","Holo","Homeo","Homi","Homino","Homo","Hoop","Horri","Hu","Huma","Hurri","Husmy","Hy","Hya","Hydra","Hydro","Hyo","Hyper","Hypno","Hyu","I","Ica","Ico","Ideo","Immorta","In","Infa","Infe","Inferno","Infi","Infra","Inno","Inpha","Inse","Insi","Inter","Intro","Iro","Iron","Iso","Ja","Jaf","Janu","Jay","Je","Jet","Ji","Jo","Ju","Juli","Juno","Jupi","Jura","Ka","Kaa","Kai","Kali","Kanga","Kango","Kao","Kay","Ke","Keno","Ki","Kia","Kii","Kila","Kilo","Kine","Ko","Koa","Koo","Kosmiko","Kosmo","Kra","Kry","Kryna","Kryo","Krypto","Krys","Kryte","Ku","Kya","Kyo","Kyu","La","Laser","Lasi","Laxa","Le","Lego","Lena","Leni","Leo","Leuko","Lexa","Lexi","Li","Lia","Light","Link","Lino","Linu","Lite","Lo","Lobo","Logo","Loki","Loli","Lordi","Lori","Lu","Luna","Lydi","Lystra","Ma","Machi","Macro","Maga","Magna","Mal","Malaxo","Mana","Manni","Manno","Mar","Mara","Marvi","Masi","Massi","Mata","Matri","Maxa","Maxi","Maxima","Mazo","Me","Mecha","Mechi","Medi","Medu","Mega","Mekka","Mela","Melo","Melona","Melono","Mem","Memo","Mercen","Merci","Mercu","Meta","Metri","Metro","Mezza","Mi","Micro","Midi","Milla","Milli","Mina","Mini","Minima","Minmi","Minu","Miri","Mixi","Mlito","Mo","Mobi","Modo","Modu","Modula","Moni","Mono","Moo","Moon","Morpho","Morta","Mother-","Motio","Moto","Mu","Multi","Musa","Musi","Muso","Muta","Muti","My","Mya","Myco","Myo","Myrmi","Myro","Myxo","N","Na","Nano","Narci","Nasp","Ne","Nebu","Nebula","Necro","Neme","Nemesi","Nen","Neo","Nepha","Nepto","Neptu","Nero","Nesp","Neu","Neuro","Neutro","Nexo","Nexu","Ni","Nico","Niger","Niki","Nissa","No","Noki","Noko","Nona","Noni","Nosp","Nou","Nova","Nu","Nupri","Ny","Nya","Nympho","Nyo","Nys","Nyu","O","Obe","Octo","Odessa","Oly","Omega","Omni","Omo","Omorphia","Ooh","Opti","Optimo","Opto","Ora","Oscilla","Osy","Outer","Oxy","Pa","Pago","Paleo","Pan","Pana","Panda","Pando","Pangi","Pano","Papa","Para","Pe","Pecto","Pee","Pega","Pena","Pene","Penelo","Penni","Penta","Pente","Peri","Pero","Perse","Persepho","Peta","Pexi","Pha","Phalli","Phanta","Pharma","Phaser","Phe","Phea","Phedra","Phene","Pheno","Phi","Phila","Philo","Pho","Photo","Phy","Physio","Pi","Pia","Pico","Pina","Pino","Pixi","Pla","Place","Plane","Plar","Plasmo","Plato","Platta","Platti","Plexi","Plor","Plu","Plura","Pluto","Po","Pole","Poly","Popla","Posei","Posi","Post","Posto","Pre","Prem","Premiu","Prima","Primo","Pro","Proeto","Proto","Pseudo","Psi","Psy","Psycha","Psycho","Psyno","Pu","Pya","Pyo","Pyra","Pyrena","Pyro","Pyu","Qua","Quadra","Quanto","Quantu","Quasi","Quatro","Que","Qui","Quik","Quinti","Quo","Ra","Radi","Radia","Radio","Radiu","Ram","Rama","Rampa","Ramsha","Rani","Rast","Rava","Ray","Re","Reco","Red","Regu","Rena","Repli","Reta","Retro","Rewi","Rexa","Rexo","Rhi","Rhia","Rhino","Ri","Ria","Rino","Rip","Rive","Riza","Ro","Robo","Rove","Ru","Rya","Ryu","Sa","Sana","Sap","Sapa","Satur","Sci","Scie","Sciento","Screen","Scylla","Se","See","Semi","Senti","Sentia","Sepi","Septa","Septe","Ses","Seta","Sexta","Sexu","Sha","Shado","Shadow-","Shi","Shiva","Sho","Shu","Sigma","Silo","Singu","Sino","Sky","Sna","Snej","Sojh","Sola","Solar","Soldi","Soma","Soni","Sopu","Space","Spectro","Stanza","Star","Ste","Stella","Ster","Stereo","Stra","Strata","Su","Sub","Sui","Supo","Supra","Supre","Swi","Swipe","Switch","Sword","Symme","Syn","Syne","Synthe","Sypa","Systema","Ta","Tama","Tamo","Tanni","Taxo","Te","Tea","Techno","Tee","Tekka","Tekla","Tele","Telexo","Telo","Tera","Termi","Terra","Tetra","Tetri","Tetro","Tha","Thali","Theo","Tho","Thore","Thu","Thunder","Thundra","Thy","Ti","Tita","Titania","To","Torpo","Toxi","Tra","Tran","Trans","Transa","Tri","Tria","Trina","Trio","Tro","Trona","Troni","Try","Trypti","Tsu","Tubu","Tycho","Tyrana","U","Ubw","Uch","Ucha","Ulti","Ultima","Ultra","Uly","Uni","Ura","Urano","Va","Ve","Vee","Vela","Veloci","Venu","Verba","Vero","Vexi","Vi","Via","Video","Vio","Viri","Viru","Vo","Voco","Vor","Vu","Vul","Vulca","Wa","Wadra","War","We","Why","Wi","Wo","Wu","Xa","Xana","Xanthe","Xantho","Xe","Xena","Xeni","Xeno","Xenu","Xi","Xia","Xo","Xu","Xy","Xyla","Xylo","Ya","Yaa","Yai","Yao","Yi","Yo","Yocto","Yotta","You","Yu","Za","Zapa","Zau","Ze","Zebi","Zed","Zefi","Zefir","Zela","Zelia","Zelo","Zemmi","Zeno","Zephe","Zepto","Zero","Zeta","Zetta","Zeuso","Zho","Zi","Zir","Zo","Zoe","Zoo","Zoro","Zoti","Zotico","Zu","Zyr"];
+    const starSecond = ["a","ani","ano","anon","ant","base","batum","bay","beam","being","bet","beta","bike","bile","bina","bino","bios","bird","bit","bite","blade","ble","block","blox","boat","bol","bolt","bon","borg","bot","botic","brain","bryo","bryon","bug","bugger","bula","bular","byte","c","ca","cable","cad","cal","can","cana","cane","cano","cant","cante","capo","cardios","cas","cast","cat","cate","cator","cazon","ccio","cent","centre","ceous","ception","ceptor","chanic","chemic","chi","chic","chilla","cho","chobot","chord","chrome","cia","cide","cific","cil","cillin","cinth","cioli","cise","cius","cize","ck","cki","claw","cle","clone","clonus","co","cology","com","command","con","conic","conoid","coptor","cord","core","counter","craft","crat","cro","crodor","cron","cronoid","cryl","ctron","cu","cular","cury","cus","cutio","cycle","d","da","dama","data","datum","dea","deck","decon","deli","dello","delo","delphi","dent","denza","deo","der","deroid","deron","dia","dial","diate","dice","dicon","dillo","din","dine","dio","dion","dious","disc","disk","dite","dium","dix","dock","dog","dol","dom","dome","don","done","donius","donix","donyx","dor","dora","dore","doria","dot","dox","dra","dragon","drate","dril","drin","drite","drius","drive","driver","dro","droid","drone","drove","dryl","du","dusa","dyne","e","ere","ex","face","fen","ferno","fi","fic","film","fina","fire","fish","fix","flare","fleet","fly","for","form","forma","former","formic","formica","formix","fornia","fornian","fox","frag","frak","fu","gaea","galactus","gape","gatha","gaze","ge","gea","gee","geline","gelus","gen","gene","genia","genus","ggle","ghia","gia","gina","gle","gles","glot","gnia","gnus","god","gon","gonal","gondra","gone","gonoid","gram","graph","graphic","graphy","grok","gun","gus","gynous","ha","hal","hawk","he","hex","hi","hide","ho","hora","hymnia","i","jack","jax","jet","job","ka","kanoid","kari","ke","ker","ki","kinetic","kino","kira","ko","kong","kos","krul","ku","kus","la","lactic","lake","lander","lanta","lantis","lar","larity","las","laser","lation","laton","lator","latron","lay","lazar","lcyon","lectra","lectro","lectron","lectronic","lectronica","lectronik","leet","lek","lena","lene","lento","ler","les","lex","lexoid","lia","lic","licon","liminal","limino","limo","limon","lin","line","ling","linix","link","linux","lio","liope","lios","lisc","lite","litron","lity","lius","lix","llica","llico","llis","llix","llo","lock","logic","logica","logical","logics","logix","logy","loid","lok","lon","lone","loop","lop","lope","lopus","lord","lore","lotia","lt","lta","luminal","luminix","luna","lus","lux","ly","lyn","lyngon","lys","lysia","lystra","ma","maera","mani","mania","maniac","manion","manix","mannic","mano","mara","mat","math","matic","matica","mato","mator","matrix","matron","matum","max","maxi","maximo","maximus","maxitron","mbi","mbic","mbix","mbo","me","meda","mede","mega","meganoid","megas","meme","mena","ment","mes","mesis","metalo","meter","metre","metro","metroid","mi","mia","mic","mica","mide","miko","million","min","mina","minadron","minatron","minimus","mirinoid","missive","missor","mnia","mo","mobile","mode","modo","mon","mone","moni","monia","monic","monica","monico","monium","moog","more","morph","mortal","mos","motion","moto","mous","mph","mphadroid","mphanoid","mphanon","mpho","mu","mus","mutant","n","na","nadroid","nak","nakko","nal","nals","nance","nane","nar","nara","narc","nary","nase","nate","nation","nator","natric","natrix","natro","natron","naur","naut","nder","ndo","ne","neas","nelope","net","netics","network","ng-Li","ngle","ni","nia","niak","nic","nica","nick","nico","nics","nicus","nide","night","nika","nine","ning","niom","nios","nira","nis","nite","nium","nius","nix","nix-Major","nize","no","noid","nok","nol","nome","nomi","nomic","nomical","nomics","nomik","nomix","non","nor","noto","nox","nsor","nt","nta","nticon","ntin","ntina","ntino","ntis","ntrophy","ntum","ntumo","nu","nuk","num","nus","nux","nx","nyes","nyx","o","omega","omegus","optimus","pad","pade","page","pard","path","pathic","patho","pathos","patio","pe","pede","pera","pha","phae","phant","phase","phedro","phelia","phenia","phenic","pheno","pher","phero","phette","phi","phide","phile","phink","phinx","pho","phobia","phobic","phode","phon","phone","phonic","phonica","phonics","phonix","phos","phrine","pia","pian","pica","picon","pig","pilla","pillar","plastic","plastico","plastics","play","pleo","pler","plex","plexo","pod","polic","polis","politan","poly","ponic","pore","port","preme","prime","pso","pticon","ptio","ption","pus","puter","pyr","ra","racle","radroid","raid","ram","rama","rami","ramine","ramme","ramo","ramus","ran","rani","ranoid","raptor","rasol","ratio","ratron","rature","raxi","raxis","ray","re","reme","ren","reo","ress","rette","rex","rgo","rgonoid","rgonol","rgonon","rgotron","rgozoid","rgy","rhythm","ri","ria","rica","ricon","riel","rig","ril","rime","rine","rion","riox","ris","rise","rity","rium","river","rix","rize","rkle","rno","ro","robos","robot","robotic","robotics","robotik","rofen","roid","roin","roine","ron","rona","roo","rope","rota","roto","roux","rover","rox","rrion","rs","rt","rtal","rth","ru","rum","runner","rus","ry","ryllis","ryn","rys","s","sa","sabre","sandra","sapian","sapient","sator","saur","saurus","scan","scape","scon","scope","screen","se","sect","seidon","sephone","sexual","sha","shade","shi","shine","ship","shock","shuttle","sia","sichore","side","sine","sios","sis","site","sius","siusNiger","sive","sivo","size","sizer","sizor","sma","smeg","smitter","so","soid","sol","some","son","sone","soni","sonic","sonics","soniq","sonix","sonoid","sony","sor","space","spectrum","sphere","splay","square","ss-wing","ssa","ssbone","ssey","ssic","ssus","sswing","stant","star","state","station","stavo","ster","stia","stolos","stra","stric","strics","strip","strix","stro","stroid","stros","sts","stu","styx","su","swipe","sword","sy","syne","system","ta","tacy","tal","talia","tanoid","tant","tape","tar","tard","tata","tate","tavo","taxia","te","tec","tech","tek","teknik","tel","telex","ter","terra","terrestrial","teus","tex","tha","than","thasize","thaso","thena","thenia","theno","thia","thine","tho","thol","thon","thya","thyne","thyst","tic","tica","ticon","ticus","tik","tilla","timus","tina","tine","tino","tiny","tio","tion","titas","tix","to","tobot","tolos","ton","tonal","tone","tor","tos","tot","tox","tra","tres","tress","tris","trius","trix","tro","troid","trolux","tron","tronic","tronik","tronika","tronium","tronix","troop","trooper","trophia","trophie","tropic","tropico","tropics","tros","trum","try","tsu","tte","tu","tude","tum","tune","ture","turn","tus","type","u","us","va","vage","vani","vania","vanise","vanisor","varc","vark","vasion","vastate","ve","velu","ver","verse","verso","vex","vin","virus","vision","visor","visual","vo","voco","vole","volux","von","vorac","vore","vos","vox","vus","wa","warp","wave","we","web","wi","wind","wing","wipe","wire","wo","wolf","word","work","works","worx","x","xa","xadon","xadroid","xadron","xanoid","xatron","xi","xide","xil","xilo","xima","ximo","xinol","xio","xious","xis","xius","xo","xos","xus","xy","ya","yo","yon","yu","z","zap","zar","zarus","zen","zero","zevo","zilla","zine","zino","zoid","zoline","zome","zon","zone","zonic","zora","zox","zus"];
+
+  </script>
+  </body>
+  </html>

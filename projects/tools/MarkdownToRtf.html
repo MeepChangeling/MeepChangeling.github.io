@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markdown to Rich Text Converter</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    textarea, div {
+        width: 100%;
+        height: 200px;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-bottom: 20px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    label {
+      font-weight: bold;
+      size: 3em;
+    }
+    div.parent {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr;
+      grid-column-gap: 15px;
+      grid-row-gap: 0px;
+    }
+    div.child {
+      width: 100%;
+    }
+</style>
+</head>
+<body>
+
+<div class="parent">
+ <div class="child">
+   <h1>Markdown to Rich Text Converter</h1>
+
+   <label for="input">Input</label>
+   <textarea id="input" placeholder="Paste your markdown text here..."></textarea>
+   <button onclick="convertMarkdown()">Convert</button>
+   <br>
+   <br>
+   <label for="output">Output</label>
+   <div style="border: solid 1px gray; overflow-y: scroll;" id="output" contenteditable="true" placeholder="Formatted rich text will appear here..."></div>
+ </div>
+
+ <div class="child">
+   <h1>Rich Text to Markdown Converter</h1>
+
+   <label for="input">Input</label>
+   <textarea id="input1" placeholder="Paste your rich text here..."></textarea>
+   <button onclick="convertToMarkdown()">Convert</button>
+   <br>
+   <br>
+   <label for="output">Output</label>
+   <div style="border: solid 1px gray; overflow-y: scroll;" id="output1" contenteditable="true" placeholder="Formatted rich text will appear here..."></div>
+ </div>
+</div>
+
+
+
+<script>
+function convertMarkdown() {
+    const inputText = document.getElementById('input').value;
+    const outputDiv = document.getElementById('output');
+
+    // Convert Markdown to HTML
+    const htmlText = marked(inputText);
+
+    // Display HTML in output div
+    outputDiv.innerHTML = htmlText;
+
+    // Copy HTML to clipboard
+    const tempInput = document.createElement('textarea');
+    tempInput.value = htmlText;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+}
+
+  // Updated Markdown to HTML converter
+  const marked = (markdown) => {
+      // Replace bold markdown with <strong>
+      let html = markdown.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+      // Replace italic markdown with <em>
+      html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+      // Replace inline code markdown with <code>
+      html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+
+      // Replace headings
+      html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+      html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+      html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+      html = html.replace(/^#### (.*$)/gim, '<h4>$1</h4>');
+      html = html.replace(/^##### (.*$)/gim, '<h5>$1</h5>');
+      html = html.replace(/^###### (.*$)/gim, '<h6>$1</h6>');
+
+      // Replace blockquote markdown with <blockquote>
+      html = html.replace(/^\> (.*$)/gim, '<blockquote>$1</blockquote>');
+
+      // Replace unordered list markdown with <ul> and <li>
+      html = html.replace(/^\* (.*$)/gim, '<ul><li>$1</li></ul>');
+
+      // Replace ordered list markdown with <ol> and <li>
+      html = html.replace(/^(\d+\.) (.*$)/gim, '<ol><li>$2</li></ol>');
+
+      // Wrap paragraphs in <p> tags and preserve new lines
+      html = html.replace(/(.+?(?:\n|$))/g, '<p>$1</p>');
+
+      // Replace links
+      html = html.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+
+      // Replace images
+      html = html.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1">');
+
+      // Replace horizontal rules
+      html = html.replace(/---/g, '<hr>');
+
+      // Replace strikethrough markdown with <del>
+      html = html.replace(/~~(.*?)~~/g, '<del>$1</del>');
+
+      // Replace inline code markdown with <code>
+      html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+
+      // Replace block code markdown with <pre> and <code>
+      html = html.replace(/```\n?([^`]+)```\n?/g, '<pre><code>$1</code></pre>');
+
+      return html;
+  };
+</script>
+
+<script>
+function convertToMarkdown() {
+    const inputText = document.getElementById('input1').value;
+    const outputDiv = document.getElementById('output1');
+
+    // Convert HTML to Markdown
+    const markdownText = toMarkdown(inputText);
+
+    // Display Markdown in output div
+    outputDiv.textContent = markdownText;
+
+    // Copy Markdown to clipboard
+    const tempInput = document.createElement('textarea');
+    tempInput.value = markdownText;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+}
+
+// Updated HTML to Markdown converter
+const toMarkdown = (html) => {
+        // Replace bold markdown with <strong>
+        // Replace <strong> with bold markdown
+    let markdown = html.replace(/\<strong\>(.*?)\<\/strong\>/g, '**$1**');
+
+    // Replace <em> with italic markdown
+    markdown = markdown.replace(/\<em\>(.*?)\<\/em\>/g, '*$1*');
+
+    // Replace <code> with inline code markdown
+    markdown = markdown.replace(/\<code\>(.*?)\<\/code\>/g, '`$1`');
+
+    // Replace headings
+    markdown = markdown.replace(/\<h1\>(.*?)\<\/h1\>/g, '# $1');
+    markdown = markdown.replace(/\<h2\>(.*?)\<\/h2\>/g, '## $1');
+    markdown = markdown.replace(/\<h3\>(.*?)\<\/h3\>/g, '### $1');
+    markdown = markdown.replace(/\<h4\>(.*?)\<\/h4\>/g, '#### $1');
+    markdown = markdown.replace(/\<h5\>(.*?)\<\/h5\>/g, '##### $1');
+    markdown = markdown.replace(/\<h6\>(.*?)\<\/h6\>/g, '###### $1');
+
+    // Replace <blockquote> with blockquote markdown
+    markdown = markdown.replace(/\<blockquote\>(.*?)\<\/blockquote\>/g, '> $1');
+
+    // Replace <ul> and <li> with unordered list markdown
+    markdown = markdown.replace(/\<ul\>\<li\>(.*?)\<\/li\>\<\/ul\>/g, '* $1');
+
+    // Replace <ol> and <li> with ordered list markdown
+    markdown = markdown.replace(/\<ol\>\<li\>(.*?)\<\/li\>\<\/ol\>/g, '1. $1');
+
+    // Remove <p> tags
+    markdown = markdown.replace(/\<p\>(.*?)\<\/p\>/g, '$1');
+
+    // Replace <a> with links markdown
+    markdown = markdown.replace(/\<a href=\"(.*?)\"\>(.*?)\<\/a\>/g, '[$2]($1)');
+
+    // Replace images
+    markdown = markdown.replace(/\<img src=\"(.*?)\" alt=\"(.*?)\"\>/g, '![$2]($1)');
+
+    // Replace horizontal rules
+    markdown = markdown.replace(/\<hr\>/g, '---');
+
+    // Replace <del> with strikethrough markdown
+    markdown = markdown.replace(/\<del\>(.*?)\<\/del\>/g, '~~$1~~');
+
+    // Replace <pre><code> with block code markdown
+    markdown = markdown.replace(/\<pre\>\<code\>(.*?)\<\/code\>\<\/pre\>/g, '```\n$1\n```');
+
+    return markdown;
+    };
+</script>
+</body>
+</html>

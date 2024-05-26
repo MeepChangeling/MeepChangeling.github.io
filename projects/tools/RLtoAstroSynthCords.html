@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Star Coordinates Converter</title>
+  <style media="screen">
+    input {
+      width: 4em;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Star Coordinates Converter</h2>
+<p>This tool takes steller cordinates as listed on Wikipedia and converts them to a Cartesian Grid Cordinate system centered on Sol.</p>
+
+<form id="starForm">
+  <div>
+    <p><b>Right Ascension:</b> <input type="number" id="raHours" name="raHours" required>h <input type="number" id="raMinutes" name="raMinutes" required>m <input type="number" id="raSeconds" name="raSeconds" step="0.0001" required>s</p>
+  </div>
+
+  <div>
+    <p><b>Declination: </b> <input type="number" id="decDegrees" name="decDegrees" required>° <input type="number" id="decMinutes" name="decMinutes" required>m  <input type="number" id="decSeconds" name="decSeconds" step="0.0001" required>s</p>
+  </div>
+  <div>
+    <p><b>Distance:</b> <input type="number" id="distance" name="distance" value="1196" required>ly</p>
+
+  </div>
+  <button type="button" onclick="calculateCoordinates()">Calculate</button>
+</form>
+
+<h3>Relative Coordinates to Sol:</h3>
+<p id="result"></p>
+
+<script>
+function hmsToDegrees(hours, minutes, seconds) {
+  return (hours + minutes / 60 + seconds / 3600) * 15;
+}
+
+function dmsToDegrees(degrees, minutes, seconds) {
+  const sign = degrees >= 0 ? 1 : -1;
+  return sign * (Math.abs(degrees) + minutes / 60 + seconds / 3600);
+}
+
+function sphericalToCartesian(raHours, raMinutes, raSeconds, decDegrees, decMinutes, decSeconds, distanceLY) {
+  // Convert RA and Dec from hours/degrees to degrees/radians
+  const ra = hmsToDegrees(raHours, raMinutes, raSeconds) * (Math.PI / 180);
+  const dec = dmsToDegrees(decDegrees, decMinutes, decSeconds) * (Math.PI / 180);
+
+  // Calculate Cartesian coordinates
+  const x = distanceLY * Math.cos(dec) * Math.cos(ra);
+  const y = distanceLY * Math.cos(dec) * Math.sin(ra);
+  const z = distanceLY * Math.sin(dec);
+
+  return { x, y, z };
+}
+
+function relativeToSol(raHours, raMinutes, raSeconds, decDegrees, decMinutes, decSeconds, distanceLY) {
+  // Sol's coordinates (0, 0, 0)
+  const solX = 0;
+  const solY = 0;
+  const solZ = 0;
+
+  // Calculate Cartesian coordinates of the star
+  const { x, y, z } = sphericalToCartesian(raHours, raMinutes, raSeconds, decDegrees, decMinutes, decSeconds, distanceLY);
+
+  // Translate the coordinates to make Sol the origin
+  const relativeX = x - solX;
+  const relativeY = y - solY;
+  const relativeZ = z - solZ;
+
+  return { relativeX, relativeY, relativeZ };
+}
+
+function calculateCoordinates() {
+  const raHours = parseFloat(document.getElementById("raHours").value);
+  const raMinutes = parseFloat(document.getElementById("raMinutes").value);
+  const raSeconds = parseFloat(document.getElementById("raSeconds").value);
+  const decDegrees = parseFloat(document.getElementById("decDegrees").value);
+  const decMinutes = parseFloat(document.getElementById("decMinutes").value);
+  const decSeconds = parseFloat(document.getElementById("decSeconds").value);
+  const distance = parseFloat(document.getElementById("distance").value);
+
+  const { relativeX, relativeY, relativeZ } = relativeToSol(raHours, raMinutes, raSeconds, decDegrees, decMinutes, decSeconds, distance);
+
+  document.getElementById("result").textContent = `(${relativeX.toFixed(2)} LY, ${relativeY.toFixed(2)} LY, ${relativeZ.toFixed(2)} LY)`;
+}
+</script>
+
+</body>
+</html>
