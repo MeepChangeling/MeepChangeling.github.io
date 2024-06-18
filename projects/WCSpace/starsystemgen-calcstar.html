@@ -1,0 +1,3392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star System Generator</title>
+    <script src="scr/html2canvas.min.js"></script>
+    <script src="scr/jszip.min.js"></script>
+    <script src="scr/jszip-utils.min.js"></script>
+    <script src="scr/FileSaver.min.js"></script>
+    <style>
+      div.stardetails {
+        margin-left: 2em;
+        min-height: 272px;
+      }
+      div.planetContainer {
+       margin-left: 4em;
+      }
+      div.planetData {
+        margin-left: 6em;
+      }
+      b.miniheadder {
+        background-color: none;
+        border-bottom: 2px solid black;
+        font-variant: small-caps;
+        text-align: center;
+        margin-bottom: 1em;
+      }
+      div.planetSection {
+        margin-left: 1em;
+      }
+      div.output {width: 1200px;}
+      .starSystemHeader {font-family: 'Courier New'; font-size: 22px; text-align: right;}
+      canvas#starSystemCanvas {
+        border: 1px solid black;
+        background-color: #F5F5F5;
+        background-image: linear-gradient(rgba(53, 53, 53, 0.5) .05em, transparent .1em), linear-gradient(90deg, rgba(53, 53, 53, 0.5) .05em, transparent .1em);
+        background-size: 3em 3em;
+        background-position: center;
+      }
+      canvas#starimg {
+        border: 2px solid gray;
+        margin-right: 1em;
+        margin-bottom: 1em;
+        float: left;
+      }
+      .smallfont {
+        font-variant: small-caps;
+        font-size: 12px;
+        text-align: center;
+      }
+      h1 {
+        font-size: 30px;
+        margin-top: 0;
+      }
+      h2 {
+        font-family: 'Aboreto';
+        text-align: center;
+      }
+      h2.starName {
+        padding-top: 0.5em;
+        font-size: 27px;
+      }
+      h3 {
+        margin-top: -1em;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0px 0px;
+        grid-template-areas:
+          "Canvas Orbitals Characteristics Atmo";
+      }
+      .Canvas { grid-area: Canvas; }
+      .Orbitals { grid-area: Orbitals; }
+      .Characteristics {
+        grid-area: Characteristics;
+        border-left: 1px solid rgb(44.7% 44.7% 44.7% / 0.33);
+        padding-left: 5px;
+        border-right: 1px solid rgb(44.7% 44.7% 44.7% / 0.33);
+      }
+      .Atmo { grid-area: Atmo; padding-left: 5px;}
+      div.planetData {
+        margin-bottom: 1em;
+        padding-bottom: 1em;
+        border-bottom: 1px solid gray;
+      }
+      div.planetData:last-child) {
+        border-bottom: none;
+      }
+      div#starSystem {
+        background: linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 4px) calc(100% - 4px) no-repeat,
+          linear-gradient(270deg, transparent 0%, #b8b8b8 100%) 0 0/100% 30%;
+        border-radius: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+      .tags-container {
+          display: flex;
+          flex-wrap: wrap;
+          margin-bottom: 20px;
+      }
+
+      .tag {
+          background-color: #e0f7fa;
+          border: 1px solid #00796b;
+          border-radius: 5px;
+          padding: 5px 10px;
+          margin: 5px;
+          font-size: 14px;
+          display: inline-block;
+      }
+      .tag.good {
+        background-color: #60f23380;
+      }
+      .tag.warn {
+        background-color: #EDFF0080;
+      }
+      .tag.bad {
+        background-color: #de000080;
+      }
+    </style>
+</head>
+<body>
+    <h1>Star Formation</h1>
+
+    <button onclick="generateStarName()">Name a Star</button>
+    <p><strong>Name:</strong> <input type="text" id="starname"></input></p>
+    <p><b>Star Type:</b>
+      <input type="radio" id="random" name="star_type" value="0" checked="checked">
+      <label for="random">Random</label>
+      <b>|</b>
+      <input type="radio" id="M" name="star_type" value="M">
+      <label for="M">M</label>
+      <input type="radio" id="K" name="star_type" value="K">
+      <label for="K">K</label>
+      <input type="radio" id="G" name="star_type" value="G">
+      <label for="G">G</label>
+      <input type="radio" id="F" name="star_type" value="F">
+      <label for="F">F</label>
+      <input type="radio" id="A" name="star_type" value="A">
+      <label for="A">A</label>
+      <input type="radio" id="B" name="star_type" value="B">
+      <label for="B">B</label>
+      <input type="radio" id="O" name="star_type" value="O">
+      <label for="O">O</label>
+      <b>|</b>
+      <input type = "checkbox" id = "forcehabitable">
+      <label for="forcehabitable">Force Habitable</label>
+      <select style="width: 140px" id="Mobility" name="Mobility">
+        <option selected="">Nitro/Oxy</option>
+        <option>Oxy/Methane</option>
+        <option>Ammonia/Nitro</option>
+        <option>Neon/Oxy</option>
+      </select>
+      <input type = "checkbox" id = "allowpopulated">
+      <label for="allowpopulated">Allow Populated</label>
+      <input type = "checkbox" id = "forsepopulated">
+      <label for="forsepopulated">Force Populated</label>
+    </p>
+
+    <button onclick="generateStar1()">Generate System</button>
+    <button onclick="clearBox()">Clear Results</button>
+    <button onclick="savePage()">Save Results</button>
+
+      <br><br>
+
+      <div id="Output" class="output">
+        <span id="starSystemHeader" class="starSystemHeader"></span>
+        <canvas id="starSystemCanvas" width="1200" height="400"></canvas>
+
+        <div id="starSystem"></div>
+      </div>
+
+
+
+</body>
+
+<script type="text/javascript">
+
+  var ytcfg = "taco"
+  //Generation Script
+    //Helper Fucntions
+
+    //Reset Results
+    function clearBox() {
+        document.getElementById("starSystem").innerHTML = "";
+        document.getElementById("starSystemHeader").innerHTML = "";
+        canvas = document.getElementById("starSystemCanvas");
+        ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // Helper Function to generate pick random items from arbatrary length arrays
+    function getRandomItem(arr) {
+        if (!Array.isArray(arr) || arr.length === 0) {
+            throw new Error("Please provide a non-empty array.");
+        }
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    }
+
+    // Helper function to get random int
+    function getRandomInt(min, max) {
+      const minCeiled = Math.ceil(min);
+      const maxFloored = Math.floor(max);
+      return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+    }
+
+    // Helper function to generate random float within a range
+    function getRandomFloat(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    // Helper to cut off decimal places after x
+    function truncateDecimals(number, digits) {
+        return Math.trunc(number * Math.pow(10, digits)) / Math.pow(10, digits);
+    }
+
+    //Generates Random star names
+    function generateStarName() {
+        const firstListResult = getRandomItem(starFirst);
+        const secondListResult = getRandomItem(starSecond);
+        document.getElementById('starname').value = firstListResult + secondListResult;
+    }
+
+    //Determines Escape Velosity
+    function calculateEscapeVelocity(massOfPlanet, radius) {
+        radius = radius * 1000;//Converts to meters because MATH FOR THE MATH GOD! UNITS FOR THE UNIT THRONE!
+        return Math.sqrt((2 * G * massOfPlanet) / radius);
+    }
+
+    //Calculate Eccentricity
+    function calculateEccentricity (planetSemiMajor, planetSemiMinor) {
+      planetSemiMajor2 = Math.pow(planetSemiMajor, 2);
+      planetSemiMinor2 = Math.pow(planetSemiMinor, 2);
+      c = Math.sqrt(planetSemiMajor2 - planetSemiMinor2);
+      planetEccentricity = c / planetSemiMajor;
+      return planetEccentricity;
+    }
+
+    //Locates what third a far system planet is in
+    function checkThird(value, starFrostLine, starHillSphereAU) {
+        // Ensure starFrostLine is less than starHillSphereAU
+        if (starFrostLine >= starHillSphereAU) {
+            throw new Error("starFrostLine should be less than starHillSphereAU");
+        }
+
+        // Calculate the total range
+        const totalRange = starHillSphereAU - starFrostLine;
+
+        // Calculate the size of each third
+        const thirdSize = totalRange / 3;
+
+        // Calculate the boundaries of the thirds
+        const firstThirdEnd = starFrostLine + thirdSize;
+        const secondThirdEnd = starFrostLine + 2 * thirdSize;
+
+        // Determine which third the value falls into
+        if (value >= starFrostLine && value < firstThirdEnd) {
+            return 1; // first third
+        } else if (value >= firstThirdEnd && value < secondThirdEnd) {
+            return 2; // second third
+        } else if (value >= secondThirdEnd && value <= starHillSphereAU) {
+            return 3; // third third
+        } else {
+            return 'out of range';
+        }
+    }
+
+    // Function to pick a gas based on its abundance
+    function pickGas(atmoArray) {
+        const abundanceWeights = { 'High': 5, 'Medium': 3, 'Low': 1 };
+        let weightedArray = [];
+
+        atmoArray.forEach(gas => {
+            for (let i = 0; i < abundanceWeights[gas.abundance]; i++) {
+                weightedArray.push(gas);
+            }
+        });
+
+        return weightedArray[getRandomInt(0, weightedArray.length - 1)];
+    }
+
+    // Select 1-3 unique gases based on abundance
+    function selectGases(atmoArray, numGases) {
+        let selectedGases = [];
+        let availableGases = [...atmoArray];
+
+        for (let i = 0; i < numGases; i++) {
+            if (availableGases.length === 0) break;
+            let pickedGas = pickGas(availableGases);
+            selectedGases.push(pickedGas);
+            availableGases = availableGases.filter(gas => gas.name !== pickedGas.name);
+        }
+
+        return selectedGases;
+    }
+
+    // Function to calculate gas percentages
+    function calculatePercentages(numGases) {
+        let totalPercentage = getRandomFloat(93, 98);
+        remainingPercentage = 100 - totalPercentage;
+        let percentages = [];
+
+        for (let i = 0; i < numGases - 1; i++) {
+            let maxPercentage = totalPercentage / (numGases - i);
+            let percentage = getRandomFloat(maxPercentage / 2, maxPercentage);
+            percentages.push(percentage);
+            totalPercentage -= percentage;
+        }
+        percentages.push(totalPercentage);
+
+        // Sort percentages in descending order
+        percentages.sort((a, b) => b - a);
+        return { percentages, remainingPercentage };
+    }
+
+    // Utility function to determine if a planet has an atmosphere
+    function hasAtmosphere(starA, planet) {
+        const {
+            star_lumin_sol: luminosity,
+            star_habzone_inner: habitableZoneInner,
+            star_habzone_outter: habitableZoneOuter,
+            star_frost_line: frostLine
+        } = star1;
+        const { semiMajorAxis, semiMinorAxis, mass, radius, escapeVelocity } = planet;
+
+        // Constants
+        const LIGHT_GAS_ESCAPE_VELOCITY = 5000; // Minimum escape velocity to retain light gases (e.g., hydrogen, helium)
+        const MODERATE_GAS_ESCAPE_VELOCITY = 10000; // Minimum escape velocity to retain moderate gases (e.g., nitrogen, oxygen)
+        const HZ_FACTOR = 0.75; // Factor to determine the extended habitable zone
+
+        // Check if planet's escape velocity is sufficient for light gases
+        if (escapeVelocity < LIGHT_GAS_ESCAPE_VELOCITY) return false;
+
+        // Check if the planet is within a reasonable range of the star
+        const isWithinHabitableZone = (semiMajorAxis >= habitableZoneInner * HZ_FACTOR && semiMajorAxis <= habitableZoneOuter * 1.5);
+        const isWithinHabitableZone2 = (semiMinorAxis >= habitableZoneInner * HZ_FACTOR && semiMinorAxis <= habitableZoneOuter * 1.5);
+        const isBeyondFrostLine = (semiMajorAxis > frostLine);
+
+        // Planets close to the star must have higher escape velocities to retain any atmosphere
+        const starIntensityAtPlanet = luminosity / Math.pow(semiMajorAxis, 2);
+        if (semiMajorAxis < habitableZoneInner && escapeVelocity < MODERATE_GAS_ESCAPE_VELOCITY) return false;
+
+        // Check if the planet's mass and radius are sufficient to hold an atmosphere
+        if (mass < 0.05 || radius < 0.3) return false; // Extremely small planets are unlikely to hold any atmosphere
+
+        // If all conditions are met, the planet likely has some kind of atmosphere
+        return true;
+    }
+
+    //Check Phase State of thalassogens
+    function getSubstanceState(pressure, temperature, substance) {
+          const substances = {
+              water: {
+                  triplePointTemp: 273.16,
+                  triplePointPressure: 0.00604,
+                  criticalPointTemp: 647.1,
+                  criticalPointPressure: 218,
+                  meltingPoint: (p) => 273.15 + (p - 1) * 0.01,
+                  boilingPoint: (p) => 373.15 + (p - 1) * 3.0
+              },
+              hypochlorousAcid: {
+                  triplePointTemp: 175,
+                  triplePointPressure: 0.004,
+                  criticalPointTemp: 520,
+                  criticalPointPressure: 100,
+                  meltingPoint: (p) => 175 + (p - 1) * 0.1,
+                  boilingPoint: (p) => 293 + (p - 1) * 2.5
+              },
+              ammonia: {
+                  triplePointTemp: 195.4,
+                  triplePointPressure: 0.006,
+                  criticalPointTemp: 405.5,
+                  criticalPointPressure: 111,
+                  meltingPoint: (p) => 195.4 + (p - 1) * 0.1,
+                  boilingPoint: (p) => 239.8 + (p - 1) * 1.7
+              },
+              nitricAcid: {
+                  triplePointTemp: 231,
+                  triplePointPressure: 0.002,
+                  criticalPointTemp: 540,
+                  criticalPointPressure: 50,
+                  meltingPoint: (p) => 231 + (p - 1) * 0.1,
+                  boilingPoint: (p) => 355 + (p - 1) * 2.0
+              },
+              sulfurDioxide: {
+                  triplePointTemp: 197.7,
+                  triplePointPressure: 0.0167,
+                  criticalPointTemp: 430.8,
+                  criticalPointPressure: 78.8,
+                  meltingPoint: (p) => 197.7 + (p - 1) * 0.05,
+                  boilingPoint: (p) => 263.1 + (p - 1) * 2.5
+              },
+              sulfuricAcid: {
+                  triplePointTemp: 283,
+                  triplePointPressure: 0.001,
+                  criticalPointTemp: 923,
+                  criticalPointPressure: 50,
+                  meltingPoint: (p) => 283 + (p - 1) * 0.1,
+                  boilingPoint: (p) => 638 + (p - 1) * 2.5
+              },
+              ethane: {
+                  triplePointTemp: 90.4,
+                  triplePointPressure: 0.001,
+                  criticalPointTemp: 305.3,
+                  criticalPointPressure: 48.2,
+                  meltingPoint: (p) => 90.4 + (p - 1) * 0.05,
+                  boilingPoint: (p) => 184.6 + (p - 1) * 2.5
+              },
+              methane: {
+                  triplePointTemp: 90.7,
+                  triplePointPressure: 0.116,
+                  criticalPointTemp: 190.6,
+                  criticalPointPressure: 45.99,
+                  meltingPoint: (p) => 90.7 + (p - 1) * 0.05,
+                  boilingPoint: (p) => 111.6 + (p - 1) * 2.5
+              }
+          };
+
+          if (!substances[substance]) {
+              throw new Error(`Unknown substance: ${substance}`);
+          }
+
+          const sub = substances[substance];
+
+          if (pressure < sub.triplePointPressure) {
+              if (temperature < sub.triplePointTemp) {
+                  return 'solid';
+              } else {
+                  return 'gas';
+              }
+          } else if (pressure > sub.criticalPointPressure) {
+              return 'supercritical fluid';
+          } else {
+              const meltPoint = sub.meltingPoint(pressure);
+              const boilPoint = sub.boilingPoint(pressure);
+
+              if (temperature < meltPoint) {
+                  return 'solid';
+              } else if (temperature > boilPoint) {
+                  return 'gas';
+              } else {
+                  return 'liquid';
+              }
+          }
+      };
+
+    //Shorten thalassogen list to liquids only
+    function getLiquidSubstances(states) {
+        const liquidSubstances = [];
+
+        for (const [substance, state] of Object.entries(states)) {
+            if (state === 'liquid') {
+                liquidSubstances.push(substance);
+            }
+        }
+
+        return liquidSubstances;
+    }
+
+    //Choose the thalassogen
+    function choosePlanetThalassogen(liquidSubstances) {
+        if (liquidSubstances.includes('water')) {
+            planetThalassogen = 'water';
+        } else if (liquidSubstances.length > 0) {
+            planetThalassogen = getRandomItem(liquidSubstances);
+        } else {
+            return "Error"; // or handle this case as needed
+        }
+        return planetThalassogen;
+    }
+
+    //Moons, yo!
+    function generateMoonDescription(numMoons) {
+        const moonTypes = [
+          "large moon",
+          "small moon",
+          "captured asteroid",
+          "irregular moon"
+        ];
+
+        let moonDescription = "";
+
+        if (numMoons === 1) {
+          moonDescription = "1 " + getRandomItem(moonTypes);
+        } else {
+          let moonCounts = {
+            "large moon": 0,
+            "small moon": 0,
+            "captured asteroid": 0,
+            "irregular moon": 0
+          };
+
+          for (let i = 0; i < numMoons; i++) {
+            let moonType = getRandomItem(moonTypes);
+            moonCounts[moonType]++;
+          }
+
+          let descriptions = [];
+          for (let [type, count] of Object.entries(moonCounts)) {
+            if (count > 0) {
+              descriptions.push(`${count} ${type}${count > 1 ? 's' : ''}`);
+            }
+          }
+
+          moonDescription = descriptions.join(", ");
+        }
+
+        return moonDescription;
+      }
+
+    function generatePlanetMoons(totalPlanets, planetType) {
+        let numMoons;
+
+        if (totalPlanets <= 2) {
+          if (planetType === "Gas Giant") {
+            numMoons = getRandomInt(30, 80);
+          } else if (planetType === "Ice Giant") {
+            numMoons = getRandomInt(8, 50);
+          } else {
+            numMoons = getRandomInt(0, 1);
+          }
+        } else if (totalPlanets >= 3 && totalPlanets <= 7) {
+          if (planetType === "Gas Giant") {
+            numMoons = getRandomInt(40, 120);
+          } else if (planetType === "Ice Giant") {
+            numMoons = getRandomInt(12, 60);
+          } else {
+            numMoons = getRandomInt(0, 3);
+          }
+        } else if (totalPlanets > 8) {
+          if (planetType === "Gas Giant") {
+            numMoons = getRandomInt(50, 140);
+          } else if (planetType === "Ice Giant") {
+            numMoons = getRandomInt(16, 70);
+          } else {
+            numMoons = getRandomInt(0, 6);
+          }
+        }
+
+        let description = "";
+
+        if (planetType === "Terrestrial" || planetType === "Dwarf") {
+          if (numMoons === 0) {
+            description = "No moons";
+          } else {
+            description = generateMoonDescription(numMoons);
+          }
+        } else {
+          let moonType = "assorted moons of various types.";
+          let ringSystems = ["prominent rings", "notable rings", "thick rings", "faint rings", "no rings"];
+          let planetRing = getRandomItem(ringSystems);
+          description = planetRing + ", and " + numMoons + " " + moonType;
+        }
+
+        return description;
+      }
+
+    //Axial Tilt
+    function biasedRandom(min = 2, max = 90, biasMin = 5, biasMax = 18, skew = 0.1) {
+        function normalRandom() {
+            let u = 0, v = 0;
+            while (u === 0) u = Math.random(); // Converting [0,1) to (0,1)
+            while (v === 0) v = Math.random();
+            return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+        }
+
+        function normalRandomInRange(min, max, biasMin, biasMax, skew) {
+            let range = max - min;
+            let biasRange = biasMax - biasMin;
+            let randomNormal = normalRandom() * skew + (biasMin + biasMax) / 2;
+            return Math.min(Math.max(min, (randomNormal - biasMin) / biasRange * range + min), max);
+        }
+
+        return normalRandomInRange(min, max, biasMin, biasMax, skew);
+    }
+
+    //Rotation
+    //GenerateRotationPIriod is bugged. Makes values way too large.
+    function generateRotationPeriod(distanceFromStarAU, radiusEarthRadii, massEarthMasses) {
+      // Constants
+      const G = 6.67430e-11; // Gravitational constant in m^3 kg^-1 s^-2
+      const M_sun = 1.989e30; // Solar mass in kg
+      const AU = 1.496e11; // 1 AU in meters
+
+      // Calculate the orbital period in seconds using Kepler's third law (distance in AU)
+      const distanceFromStarMeters = distanceFromStarAU * AU;
+      const basePeriodSeconds = 2 * Math.PI * Math.sqrt(Math.pow(distanceFromStarMeters, 3) / (G * M_sun));
+
+      // Mass and radius in terms of Earth units
+      const massFactor = massEarthMasses; // Mass in Earth masses
+      const radiusFactor = radiusEarthRadii; // Radius in Earth radii
+
+      // Apply factors to base period (simplified model)
+      let rotationPeriodSeconds = basePeriodSeconds / (massFactor * radiusFactor);
+
+      // Convert rotation period from seconds to hours
+      let rotationPeriodHours = rotationPeriodSeconds / 3600;
+
+      // Debug prints to check intermediate values
+      console.log(`Distance from Star (AU): ${distanceFromStarAU}`);
+      console.log(`Distance from Star (m): ${distanceFromStarMeters}`);
+      console.log(`Base Period (s): ${basePeriodSeconds}`);
+      console.log(`Mass Factor: ${massFactor}`);
+      console.log(`Radius Factor: ${radiusFactor}`);
+      console.log(`Rotation Period (s): ${rotationPeriodSeconds}`);
+      console.log(`Rotation Period (hours): ${rotationPeriodHours}`);
+
+      return rotationPeriodHours; // in hours
+    }
+
+    //Temp random generator.
+    function generateRandomRotationPeriod() {
+        // Define the range for rotation periods (in hours)
+        const minPeriod = 10; // Minimum rotation period (e.g., Jupiter)
+        const maxPeriod = 576; // Maximum rotation period (e.g., Venus, about 24 Earth days)
+
+        // Generate a random rotation period within this range
+        const rotationPeriod = Math.random() * (maxPeriod - minPeriod) + minPeriod;
+
+        return rotationPeriod; // in hours
+      }
+
+      // Function to generate a log-normal random value
+      function getLogNormalRandom(mean, stdDev) {
+        var u = Math.random();
+        var v = Math.random();
+        var normalRandom = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+        return Math.exp(mean + stdDev * normalRandom);
+      }
+
+      // Function to generate a star mass biased towards 1
+      function getBiasedStarMass(min, max) {
+        var mean = 0; // log(1) = 0, so the mean of the log-normal distribution
+        var stdDev = 0.2; // Adjust this value to change the spread
+
+        var randomValue;
+        do {
+          randomValue = getLogNormalRandom(mean, stdDev);
+        } while (randomValue < min || randomValue > max);
+
+        return randomValue;
+      }
+
+    //Stringifies Numbers
+    function formatNumber(num) {
+        if (num < 1000) return num.toString(); // No need to format numbers less than 1000
+
+        const suffixes = ["", "thousand", "million", "billion", "trillion", "quadrillion", "quintillion"];
+        let suffixIndex = 0;
+
+        while (num >= 1000 && suffixIndex < suffixes.length - 1) {
+            num /= 1000;
+            suffixIndex++;
+        }
+
+        return `${num.toFixed(2)} ${suffixes[suffixIndex]}`;
+    }
+
+    //metalisity estimator
+    function estimateMetallicity(spectralClass) {
+        let feH_min, feH_max;
+
+        switch (spectralClass.toUpperCase()) {
+          case 'O':
+          case 'B':
+            feH_min = -1.0;
+            feH_max = 0.3;
+            break;
+          case 'A':
+          case 'F':
+            feH_min = -0.5;
+            feH_max = 0.3;
+            break;
+          case 'G':
+            feH_min = -0.2;
+            feH_max = 0.5;
+            break;
+          case 'K':
+            feH_min = -1.0;
+            feH_max = 0.4;
+            break;
+          case 'M':
+            feH_min = -2.0;
+            feH_max = 0.3;
+            break;
+          default:
+            feH_min = -1.0;
+            feH_max = 0.3;
+            break;
+        }
+
+        return getRandomFloat(feH_min, feH_max);
+      }
+
+    //Format Rotation Piriod data
+    function formatRotationPeriod(rotationPeriodHours) {
+        // Define time units in hours
+        const hour = 1;
+        const minute = 1 / 60;
+        const day = 24;
+        const year = 365 * day;
+
+        let remainingHours = rotationPeriodHours;
+
+        // Calculate the number of years
+        const years = Math.floor(remainingHours / year);
+        remainingHours %= year;
+
+        // Calculate the number of days
+        const days = Math.floor(remainingHours / day);
+        remainingHours %= day;
+
+        // Calculate the number of hours
+        const hours = Math.floor(remainingHours);
+        remainingHours %= hour;
+
+        // Calculate the number of minutes
+        const minutes = Math.floor(remainingHours / minute);
+
+        // Create the result string
+        let result = [];
+        if (years > 0) result.push(`${years} year${years > 1 ? 's' : ''}`);
+        if (days > 0) result.push(`${days} day${days > 1 ? 's' : ''}`);
+        if (hours > 0) result.push(`${hours} hour${hours > 1 ? 's' : ''}`);
+        if (minutes > 0) result.push(`${minutes} minute${minutes > 1 ? 's' : ''}`);
+
+
+
+        return result.join(' ');
+      }
+
+    //Generate a Logarithmic Spread
+    function randomLogarithmic(min, max) {
+        const logMin = Math.log(min);
+        const logMax = Math.log(max);
+        const logRandom = logMin + (logMax - logMin) * Math.random();
+        return Math.exp(logRandom);
+    }
+
+    //Get a random normal distribution
+    function randomNormal(mean, stddev) {
+        let u = 0, v = 0;
+        while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+        while(v === 0) v = Math.random();
+        let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+        return num * stddev + mean;
+    }
+
+    //GEnerates Mass / radius to get g for a Habitable planet on Force habitable
+    function generatePlanetAttributes() {
+        // Constants
+        const G = 0.0000000000667430;
+        const MIN_X = 0.8;
+        const MAX_X = 1.15;
+
+        // Generate random numbers within the specified ranges
+        let planetMass = (Math.random() * 0.5) + 0.7; // 0.7 to 1.2
+        let planetRadi = (Math.random() * 1.0) + 0.5; // 0.5 to 1.5
+
+        // Calculate X using the initial values
+        let X = (G * planetMass) / Math.pow(planetRadi, 2);
+
+        // Adjust planetRadi if X is not within the range
+        if (X < MIN_X || X > MAX_X) {
+            // We want planetRadi to be around 1, not too small or too large.
+            // Adjust planetRadi within the range [0.8, 1.2]
+            const adjustmentFactor = Math.sqrt((G * planetMass) / ((MIN_X + MAX_X) / 2));
+            planetRadi = Math.max(0.8, Math.min(1.2, adjustmentFactor));
+            // Recalculate X
+            X = (G * planetMass) / Math.pow(planetRadi, 2);
+        }
+
+        // Record X as planetLittleG
+        const planetLittleG = X;
+
+        // Return the values as an object
+        return {
+            planetMass: planetMass,
+            planetRadi: planetRadi,
+            planetLittleG: planetLittleG
+        };
+    }
+
+    function calculateGravity(mass, radius) {
+        const G = 6.67430e-11; // Gravitational constant in m^3 kg^-1 s^-2
+        const earthMass = 5.972e24; // Earth mass in kg
+        const earthRadius = 6.371e6; // Earth radius in meters
+        const gravityEarth = 9.8; // Earth's gravity in m/s^2
+
+        // Convert mass and radius from Earth units to SI units
+        const massKg = mass * earthMass;
+        const radiusM = radius * earthRadius;
+
+        // Calculate gravity
+        const gravity = (G * massKg) / (radiusM * radiusM);
+
+        // Convert gravity to g (Earth's gravity units)
+        return gravity / gravityEarth;
+    }
+
+    //Sets Star's Draw Color by its tempature
+    function tempToColor(temp) {
+        //temp = 3800;
+        wavelength = 2900000 / temp;
+          var Gamma = 0.80,
+          IntensityMax = 255,
+          factor, red, green, blue;
+          if((wavelength >= 380) && (wavelength<440)){
+            red = -(wavelength - 440) / (440 - 380);
+            green = 0.0;
+            blue = 1.0;
+          }else if((wavelength >= 440) && (wavelength<490)){
+            red = 0.0;
+            green = (wavelength - 440) / (490 - 440);
+            blue = 1.0;
+          }else if((wavelength >= 490) && (wavelength<510)){
+            red = 0.0;
+            green = 1.0;
+            blue = -(wavelength - 510) / (510 - 490);
+          }else if((wavelength >= 510) && (wavelength<580)){
+            red = (wavelength - 510) / (580 - 510);
+            green = 1.0;
+            blue = 0.0;
+          }else if((wavelength >= 580) && (wavelength<645)){
+            red = 1.0;
+            green = -(wavelength - 645) / (645 - 580);
+            blue = 0.0;
+          }else if((wavelength >= 645) && (wavelength<781)){
+            red = 1.0;
+            green = 0.0;
+            blue = 0.0;
+          }else{
+            red = 0.0;
+            green = 0.0;
+            blue = 0.0;
+          };
+          // Let the intensity fall off near the vision limits
+          if((wavelength >= 380) && (wavelength<420)){
+            factor = 0.3 + 0.7*(wavelength - 380) / (420 - 380);
+          }else if((wavelength >= 420) && (wavelength<701)){
+            factor = 1.0;
+          }else if((wavelength >= 701) && (wavelength<781)){
+            factor = 0.3 + 0.7*(780 - wavelength) / (780 - 700);
+          }else{
+            factor = 0.0;
+          };
+          if (red !== 0){
+            red = Math.round(IntensityMax * Math.pow(red * factor, Gamma));
+          }
+          if (green !== 0){
+            green = Math.round(IntensityMax * Math.pow(green * factor, Gamma));
+          }
+          if (blue !== 0){
+            blue = Math.round(IntensityMax * Math.pow(blue * factor, Gamma));
+          }
+        return "rgb(" + red + "," + green + "," + blue + ")";
+      };
+
+      //Updated Temp color
+      function tempToColor2(starTempK) {
+        // Define temperature and corresponding hex color values based on the spectrum
+          const colorMap = [
+              { temp: 80000, color: "#4F10DD" }, // Wolf-Rayet Stars (W)
+              { temp: 30000, color: "#388FFE" }, // O
+              { temp: 20000, color: "#76B3FC" }, // B
+              { temp: 10000, color: "#DBECFE" }, // A
+              { temp: 8000,  color: "#FEFCE2" }, // F
+              { temp: 6000,  color: "#FEF490" }, // G
+              { temp: 4000,  color: "#F4A012" }, // K
+              { temp: 3000,  color: "#F96806" }, // M
+              { temp: 2500,  color: "#F24F0E" }, // S
+              { temp: 2000,  color: "#DD3402" }, // C
+              { temp: 1500,  color: "#AA3702" }, // L, T, Y
+              { temp: 500,  color: "#633907" }
+          ];
+
+          console.log("starTempK " + starTempK);
+
+          // Find the two surrounding colors
+          let lower = colorMap[0];
+          let upper = colorMap[colorMap.length - 1];
+
+          for (let i = 0; i < colorMap.length - 1; i++) {
+              if (starTempK >= colorMap[i + 1].temp && starTempK <= colorMap[i].temp) {
+                  lower = colorMap[i + 1];
+                  upper = colorMap[i];
+                  break;
+              }
+          }
+
+          // Calculate the interpolation ratio
+          const ratio = (starTempK - lower.temp) / (upper.temp - lower.temp);
+
+          // Interpolate between the two surrounding colors
+          const interpolateColor = (color1, color2, ratio) => {
+              const hex = (x) => {
+                  x = x.toString(16);
+                  return (x.length === 1) ? '0' + x : x;
+              };
+
+              const r = Math.round(parseInt(color1.substring(1, 3), 16) * (1 - ratio) + parseInt(color2.substring(1, 3), 16) * ratio);
+              const g = Math.round(parseInt(color1.substring(3, 5), 16) * (1 - ratio) + parseInt(color2.substring(3, 5), 16) * ratio);
+              const b = Math.round(parseInt(color1.substring(5, 7), 16) * (1 - ratio) + parseInt(color2.substring(5, 7), 16) * ratio);
+
+              return `#${hex(r)}${hex(g)}${hex(b)}`;
+          };
+
+          return interpolateColor(lower.color, upper.color, ratio);
+      };
+
+      // Function to convert hex color to RGBA with alpha
+      function hexToRgba(hex, alpha) {
+        const r = parseInt(hex.substring(1, 3), 16);
+        const g = parseInt(hex.substring(3, 5), 16);
+        const b = parseInt(hex.substring(5, 7), 16);
+        return `rgba(${r},${g},${b},${alpha})`;
+      }
+
+    //Biome generation
+    function getBiomeProbabilities(planetEqulibriumTempature, planetAxialTilt, planetLiquidLoc) {
+        let biomeProbabilities = [];
+
+        // Define base probabilities for each biome
+        let baseProbabilities = {
+          Desert: 0.1,
+          TropicalRainforest: 0.1,
+          TemperateForest: 0.1,
+          Tundra: 0.1,
+          Grassland: 0.1,
+          Ocean: 0.1,
+          Wetlands: 0.1,
+          Savanna: 0.1,
+          BorealForest: 0.1,
+          Alpine: 0.05,
+          Mangrove: 0.05,
+          CoralReef: 0.05
+        };
+
+        // Adjust probabilities based on temperature
+        if (planetEqulibriumTempature > 320) {
+          baseProbabilities.Desert += 0.3;
+          baseProbabilities.Savanna += 0.1;
+        } else if (planetEqulibriumTempature > 290 && planetEqulibriumTempature <= 320) {
+          baseProbabilities.TropicalRainforest += 0.2;
+          baseProbabilities.Grassland += 0.1;
+        } else if (planetEqulibriumTempature >= 260 && planetEqulibriumTempature <= 290) {
+          baseProbabilities.TemperateForest += 0.2;
+          baseProbabilities.Grassland += 0.1;
+          baseProbabilities.BorealForest += 0.1;
+        } else if (planetEqulibriumTempature < 260) {
+          baseProbabilities.Tundra += 0.3;
+          baseProbabilities.Alpine += 0.1;
+        }
+
+        // Adjust probabilities based on axial tilt
+        if (planetAxialTilt >= 23.5) {
+          baseProbabilities.TemperateForest += 0.1;
+          baseProbabilities.Grassland += 0.1;
+        }
+
+        // Adjust probabilities based on liquid location
+        if (planetLiquidLoc === "surface") {
+          baseProbabilities.Ocean += 0.2;
+          baseProbabilities.Wetlands += 0.1;
+          baseProbabilities.CoralReef += 0.1;
+          baseProbabilities.Mangrove += 0.1;
+        }
+
+        // Normalize probabilities to sum to 1
+        let total = Object.values(baseProbabilities).reduce((a, b) => a + b, 0);
+        for (let biome in baseProbabilities) {
+          biomeProbabilities.push({ biome: biome, probability: baseProbabilities[biome] / total });
+        }
+
+        return biomeProbabilities;
+      }
+
+      function chooseBiomes(biomeProbabilities, numBiomes) {
+        let chosenBiomes = [];
+        let remainingBiomes = [...biomeProbabilities];
+
+        for (let i = 0; i < numBiomes; i++) {
+          if (remainingBiomes.length === 0) break; // Stop if there are no more biomes to choose from
+
+          let rand = Math.random();
+          let cumulativeProbability = 0;
+          for (let j = 0; j < remainingBiomes.length; j++) {
+            cumulativeProbability += remainingBiomes[j].probability;
+            if (rand < cumulativeProbability) {
+              chosenBiomes.push(remainingBiomes[j].biome);
+              remainingBiomes.splice(j, 1); // Remove the chosen biome from the list
+              break;
+            }
+          }
+        }
+
+        return chosenBiomes.join(", ");
+      }
+
+
+      // Main function to determine biomes
+      function determineBiomes(planetEqulibriumTempature, planetLilGinG, planetAxialTilt, planetLiquidLoc) {
+        let biomeProbabilities = getBiomeProbabilities(planetEqulibriumTempature, planetAxialTilt, planetLiquidLoc);
+        let numBiomes = getRandomInt(1, 4); // Random number of biomes between 1 and 3
+        return chooseBiomes(biomeProbabilities, numBiomes);
+      }
+
+    //Days to year string
+    function getFormatedStringFromDays(numberOfDays) {
+        var years = Math.floor(numberOfDays / 365);
+        var months = Math.floor(numberOfDays % 365 / 30);
+        var days = Math.floor(numberOfDays % 365 % 30);
+
+        var yearsDisplay = years > 0 ? years + (years == 1 ? " year, " : " years, ") : "";
+        var monthsDisplay = months > 0 ? months + (months == 1 ? " month, " : " months, ") : "";
+        var daysDisplay = days > 0 ? days + (days == 1 ? " day" : " days") : "";
+        return yearsDisplay + monthsDisplay + daysDisplay;
+    }
+
+    //dice
+    function d100() {
+      die = getRandomInt(1, 100);
+      return die;
+    }
+
+    function d6() {
+      die = getRandomInt(1, 6);
+      return die;
+    }
+
+    //decalre global variables
+    var starClass, starTemp, starTempNum, starColors, starColor, starMass, starRadius, starLumin, StarAbsMag, starAge, habZoneInner, habZoneOutter, starDensity, starRadiusTmp, starRosheLimit, starHillSphereAU, starFrostLine, starVolume, planetType, starLuminTmp, totalPlanets, planetForceHab, outerLimit, innerLimit, starDrawSize
+    var habplanetdist = 0;
+    var star = {};
+    var planets = [];
+    var star1
+    var starName = document.getElementById('starname').value
+    //console.log(starName);
+    //Unit Conversion Constants, store as Real Numbers, Just in Case™
+    var G = 0.0000000000667430; // The Gravitational Constant (m^3 kg^-1 s^-2)
+    var EARTH_MASS = 5972000000000000000000000; // kg
+    var EARTH_RADIUS = 6378000; // m
+    var R = 0.08206; // Ideal gas constant in L atm / mol K
+    var stefanBoltzmannConstant = 0.0000000567; // Stefan-Boltzmann constant in W m⁻² K⁻⁴
+
+
+
+    function generateStar1(){
+        //inishalize global variables
+        ({ starClass, starTemp, starTempNum, starColors, starColor, starMass, starRadius, starLumin, StarAbsMag, starAge, habZoneInner, habZoneOutter, starDensity, starRadiusTmp, starRosheLimit, starHillSphereAU, starFrostLine, starVolume, starLuminTmp, starMassTmp } = starData());
+
+        metallicity = star1.star_metalisity;
+        starDrawColor = star.color;
+
+        canvas = document.getElementById("starSystemCanvas");
+        ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        //blank the drawing arrays
+        star = {};
+        planets = [];
+
+        document.getElementById('starSystemHeader').innerHTML = "<h1>The " + document.getElementById('starname').value + " System</h1>";
+        starFrostLineTrunk = starFrostLine.toFixed(2);
+        starAge = formatNumber(starAge);
+
+
+
+
+        let starSystem = document.querySelector('.starSystem');
+        let starDiv = document.createElement('div');
+        starDiv.id = "starCont1";
+        document.getElementById('starSystem').innerHTML = `<div class="starCont1"><p>
+                        <h2 class="starName">${starName}</h2></br>
+                            <div class='stardetails'>
+                            <canvas id="starimg"></canvas>
+                                <b>Spectral Type:</b> ${starClass + starTempNum + starRomanNum}</br>
+                                <b>Tempature:</b> ${starTempK.toFixed(2)} K</br>
+                                <b>Class:</b> ${starColor} ${starCat} (${starWavelength.toFixed(2)} nm)</br>
+                                <b>Metallicity:</b> ${metallicity.toFixed(2)} [Fe/H] (log scale)</br>
+                                <b>Mass:</b> ${starMass} M<sub>☉</sub></br>
+                                <b>Radius:</b> ${starRadius} R<sub>☉</sub></br>
+                                <b>Luminosity:</b> ${starLumin} L<sub>☉</sub></br>
+                                <b>Absolute Magnitude:</b> ${StarAbsMag} M<sub>V</sub></br>
+                                <b>Habitable Zone:</b> ${habZoneInner} - ${habZoneOutter} AU</br>
+                                <b>Frost Line:</b> ${starFrostLineTrunk} AU</br>
+                                <b>Age:</b> ${starAge} years</p>
+                            </div>
+                        </div>`;
+
+
+       const canvas1 = document.getElementById('starimg');
+       canvas1.style.width = "256px";
+       canvas1.style.height = "256px";
+       const context = canvas1.getContext('2d');
+
+       make_base();
+
+        function make_base() {
+          const base_image = new Image();
+          base_image.src = "img/Stars/" + starClass + ".webp";
+          base_image.onload = function(){
+            // Draw the base image first
+            context.drawImage(base_image, 0, 0, base_image.width, base_image.height, 0, 0, canvas1.width, canvas1.height);
+
+            // Set the global composite operation to "destination-in"
+            context.globalCompositeOperation = "multiply";
+
+            // Then, overlay the transparent color
+            context.fillStyle = hexToRgba(starDrawColor, 0.8); // 80% transparency
+            context.fillRect(0, 0, canvas1.width, canvas1.height);
+          }
+        }
+
+        processCanvas(canvas1);
+
+        // Load star image and apply the tint
+        function processCanvas(canvas1) {
+            const starClass = canvas1.getAttribute('data-star-class'); // New attribute for star class
+            let imgloc = `img/Stars/${starClass}.webp`; // Use forward slashes in the file path
+            const tintColor = canvas1.getAttribute('data-tint-color');
+
+            const image = new Image();
+            image.crossOrigin = "Anonymous"; // Enable CORS
+            image.src = imgloc;
+            image.onload = () => {
+                tintImage(image, canvas, tintColor);
+            };
+        }
+
+        populateStarSystem();
+        //console.log(star);
+        //console.log(planets);
+        drawStarSystem(star, planets);
+        document.querySelectorAll("link[rel=stylesheet]").forEach(link => link.href = link.href.replace(/\?.*|$/, "?" + Date.now()))//Reloads CSS to fix a bug
+      }
+
+    function starData() {
+
+        let starClass;
+
+        var minMass = 0.5;
+        var maxMass = 40;
+
+        if (document.getElementById("random").checked) {
+            starMassTmp = getBiasedStarMass(minMass, maxMass);//Mass_sol
+          } else if (document.getElementById("M").checked) {
+            starMassTmp = getRandomFloat(0.08, 0.449);
+          } else if (document.getElementById("K").checked) {
+            starMassTmp = getRandomFloat(0.45, 0.79);
+          } else if (document.getElementById("G").checked) {
+            starMassTmp = getRandomFloat(0.8, 1.039);
+          } else if (document.getElementById("F").checked) {
+            starMassTmp = getRandomFloat(1.04, 1.39);
+          } else if (document.getElementById("A").checked) {
+            starMassTmp = getRandomFloat(1.4, 2.09);
+          } else if (document.getElementById("B").checked) {
+            starMassTmp = getRandomFloat(2.1, 15.9);
+          } else {
+            starMassTmp = getRandomFloat(16, 40);
+          }//System USUALY produces a star of the correct class. Sometimes it will make a star of a class below what it should be due to star classification being tempature based, not directly mass based. So a very hot F-Class star can be generated if you select an A-Class star. This could be fixed by fighing out exactly what masses corospond to the tempature ranges used later, but IDK how other than trial and error.
+
+
+
+        //starMassTmp = 1;//Troubleshooting bit. Sets star to Sol's Mass
+
+        var starTemp, starTempNum, starColors, starColor, starMass, starRadius, starLumin, starMassTmp, starRadiusTmp, starLuminTmp, StarAbsMag; // Declare variables outside if blocks
+
+        //Generate Mass - Solar Masses in Mass_sol -- Do random selection by working out mass ranges that result in the class type desired.
+
+        starMassToKG = starMassTmp * 1989000000000000000000000000000;//kg
+
+        //Calculate radius - Radius_sol
+        starRadiusTmp = Math.pow(starMassTmp, 0.8);//Radius_sol
+        starRadiusKM = starRadiusTmp * 695500;//km
+
+        //Calculate Luminosity - Solar Lumininance (Lum_sol)
+        if (starMassTmp < 0.43) {
+            starLuminTmp = 0.23 * Math.pow(starMassTmp, 2.3);//Lum_sol
+          } else if (starMassTmp > 0.43 && starMassTmp <= 2) {
+            starLuminTmp = Math.pow(starMassTmp, 4);//Lum_sol
+          } else if (starMassTmp > 2 && starMassTmp <= 55) {
+            starLuminTmp = 1.4 * Math.pow(starMassTmp, 3.5);//Lum_sol
+          } else if (starMassTmp > 55) {
+            starLuminTmp = starMassTmp * 32000;//Lum_sol
+        }
+        starLuminTmpWatts = starLuminTmp * 383900000000000000000000000;//Converts to Watts
+
+        //Calculate temp based on Limins and radius
+        starRadFactor = Math.pow(starRadiusTmp, -2);
+        starRadMult = starLuminTmp * starRadFactor;
+        starTemp = Math.pow(starRadMult, 0.25);//Star's tempature in Solar Temp units
+        starTempK = starTemp * 5778;//Star's tempature in kelvin
+
+        //Star's classification letter
+        if (starTempK >= 33000) {
+          starClass = "O";
+          starCat = "dwarf";
+          starTempNum = determineTenth(starTempK, 33000, 210000);
+          } else if (starTempK >= 10000 && starTempK < 33000) {
+            starClass = "B";
+            starCat = "dwarf";
+            starTempNum = determineTenth(starTempK, 10000, 33000);
+          } else if (starTempK >= 7300 && starTempK < 10000) {
+            starClass = "A";
+            starCat = "dwarf";
+            starTempNum = determineTenth(starTempK, 7300, 10000);
+          } else if (starTempK >= 6000 && starTempK < 7300) {
+            starClass = "F";
+            starCat = "dwarf";
+            starTempNum = determineTenth(starTempK, 6000, 7300);
+          } else if (starTempK >= 5300 && starTempK < 6000) {
+            starClass = "G";
+            starCat = "dwarf";
+            starTempNum = determineTenth(starTempK, 5300, 6000);
+          } else if (starTempK >= 3900 && starTempK < 5300) {
+            starClass = "K";
+            starCat = "dwarf";
+            starTempNum = determineTenth(starTempK, 3900, 5300);
+          } else if (starTempK >= 2300 && starTempK < 3900) {
+            starClass = "M";
+            starCat = "dwarf";
+            starTempNum = determineTenth(starTempK, 2300, 3900);
+        }
+        starRomanNum = "V"//This version only supports main sequence stars, all of them are V.
+
+        //Star color
+        starWavelength = 29000000 / starTempK;
+        if (starWavelength >= 7500) {
+            starColor = "Brown";
+          } else if (starWavelength >= 6200 && starWavelength < 7500) {
+            starColor = "Red";
+          } else if (starWavelength >= 5900 && starWavelength < 6200) {
+            starColor = "Orange";
+          } else if (starWavelength >= 5700 && starWavelength < 5900) {
+            starColor = "Yellow";
+          } else if (starWavelength >= 4950 && starWavelength < 5700) {
+            starColor = "White";
+          } else if (starWavelength >= 4500 && starWavelength < 4950) {
+            starColor = "Blue";
+          } else if (starWavelength >= 3800 && starWavelength < 4500) {
+            starColor = "Violet";
+          } else {
+            starColor = "Wolf-Ryat";
+        }
+
+        //Drawing Element data
+        starDrawColor = tempToColor2(starTempK);
+
+        starDrawSize = starMassTmp * 200;
+          if (starDrawSize > 500) {
+            starDrawSize = 500;
+          }
+          if (starDrawSize < 16) {
+            starDrawSize = 16;
+          }
+        star = { radius: starDrawSize, color: starDrawColor };
+
+        //Hillsphere calculation, returns AU.
+        const starHillSphereAU = 1000 * starMassTmp;
+        //console.log("Hill Sphere " + starHillSphereAU + " AU");
+
+        //Roshe Limit calculation
+        starVolume = calculateSphereVolume(starRadiusTmp);
+        starDensity = starMassTmp / starVolume;
+        const starRosheLimitTmp = 2.44 * starRadiusTmp * Math.pow((starDensity / 5.5), 1/3);//Distance in AU
+        starRosheLimit = starRosheLimitTmp;
+
+        //Calculate Habitable zone
+        habZoneInner = (starLuminTmp / 1.1).toFixed(2)
+        habZoneOutter = (starLuminTmp / 0.53).toFixed(2)
+
+        //Calculate star Lifespan
+        starLifespan = 100000000 / Math.pow(starMassTmp, 2.5);//Works out rough lifespan from mass
+        starAge = starLifespan * getRandomFloat(5, 99);//Randomly decides how much of the star's lifespan has gone by.
+
+        // Calculate Absolute Magnitude
+        const StarAbsMagTmp = 4.83 + 2.5 * Math.log10(1 / starLuminTmp);
+        StarAbsMag = StarAbsMagTmp.toFixed(4)
+
+        //Calculate frost Line
+        const starFrostLine = 4.85 * Math.sqrt(starLuminTmp);
+
+        //metalisity
+        metallicity = estimateMetallicity(starClass);
+
+        // Format and return data
+        starMass = starMassTmp.toFixed(4) + " ± " + getRandomFloat(0, starMassTmp*0.03).toFixed(4);
+        starRadius = starRadiusTmp.toFixed(4) + " ± " + getRandomFloat(0, starMassTmp*0.03).toFixed(4);
+        starLumin = starLuminTmp.toFixed(4) + " ± " + getRandomFloat(0, starMassTmp*0.03).toFixed(4);
+
+        star1 = {
+            star_mass_sol: starMassTmp,//Mass_sol
+            star_mass_kg: starMassToKG,
+            star_radi_sol: starRadiusTmp,//Radius_sol
+            star_radi_km: starRadiusKM,
+            star_lumin_sol: starLuminTmp,//Lumin_sol
+            star_lumin_watts: starLuminTmpWatts,
+            star_temp_sol: starTemp,//Tempature in sol
+            star_temp_K: starTempK,//temp in kelvin
+            star_lumin_rating: starRomanNum,
+            star_class: starClass,//Star's classification rating = "B";
+            star_catagory: starCat,//catagorty of star, Dwarf, Hyptergiant, Giant, etc
+            star_temp_rating: starTempNum,//Star's temp rating by catagory 0-9
+            star_protoplanet_limit: starHillSphereAU,//Far edge of protoplanetary disk
+            star_roshe_limit: starRosheLimitTmp,//Cloce edge of protoplanetary disk
+            star_habzone_inner: habZoneInner,//inner edge of the hab zone
+            star_habzone_outter: habZoneOutter,
+            star_color: starColor,//Star's color type
+            star_color_wave: starWavelength,//Wavelength of primary light in nm
+            star_estimated_lifespan: starLifespan,
+            star_current_age: starAge,
+            star_absolute_magnitude: StarAbsMagTmp,//Absolute magnitude in Sols
+            star_frost_line: starFrostLine,//Frostline boundry in AU
+            star_mass_string: starMass,//Star Mass output string
+            star_radius_string: starRadius,//Star radius output string
+            star_lumin_string: starLumin,//Star lumin output string
+            star_metalisity: metallicity
+        };
+
+
+        return {
+            starClass, starTemp, starTempNum, starColors, starColor, starMass, starRadius, starLumin, StarAbsMag, starCat, starAge, starRomanNum, habZoneInner, habZoneOutter, starDensity, starRadiusTmp, starRosheLimit, starHillSphereAU, starFrostLine, starVolume, starLuminTmp, starMassTmp, star1
+        };
+    }
+
+    // Functions to create star system
+    function generatePlanetDistances(star, numPlanets) {
+        const {
+            star_protoplanet_limit: protoplanetLimit,
+            star_roshe_limit: rosheLimit,
+            star_mass_sol: starMassTmp,
+            star_habzone_inner: habZoneInner,
+            star_habzone_outter: habZoneOutter
+        } = star1;
+
+
+
+        const PlanetLimit = 50;//This factor changes the max distance away from the star a planet can spawn. It's currently set to 50 (11 AU past Pluto's orbit) and scales with the mass of the star. If you want it to be the max possible distane, set to star_protoplanet_limit. This will make systems HUGE and spawn very few terrestrial planets, which seems unrelaistic.
+
+        innerLimit = rosheLimit;
+        outerLimit = PlanetLimit * starMassTmp;
+
+        let distances = [];
+        for (let i = 0; i < numPlanets; i++) {
+            let distance = randomLogarithmic(innerLimit, outerLimit);
+            distances.push(distance);
+        }
+
+        //Looks for the checkbox to force a habitable planet, and puts a planet within the habitable zone
+        var checkbox = document.getElementById("forcehabitable");
+             if ( checkbox.checked == true ) {
+               //console.log("Force Hab is checked");
+               habZoneInnerint = parseFloat(habZoneInner);
+               habZoneOutterint = parseFloat(habZoneOutter);
+                distance = Math.random() * (habZoneOutterint - habZoneInnerint) + habZoneInnerint;//getRandomFloat(habZoneInner, habZoneOutter);
+                habplanetdist = distance;
+                distances.push(distance);
+                //console.log("habZoneInner is " + habZoneInnerint + ", habZoneOutter is " + habZoneOutterint);
+                //console.log("Force Hab at " + habplanetdist + " AU");
+             }
+
+        distances.sort((a, b) => a - b);
+
+        return distances
+    }
+
+    function populateStarSystem(star) {
+        const numberOfPlanets = getRandomInt(1, 10);
+        totalPlanets = numberOfPlanets;
+        planetThalassogen = "Error";
+        //console.log("There should be " + totalPlanets + " planets");
+
+        const planetDistances = generatePlanetDistances(star1, numberOfPlanets);
+
+        planetDistances.forEach((distance, index) => {
+            processPlanet(distance, index);
+        });
+
+        return planetDistances;
+    }
+
+    function processPlanet(distance, index) {
+        const order = index + 1;
+        const distanceShort = distance.toFixed(3);
+        let planetInHabAllow = "no";
+        var checkbox = document.getElementById("allowpopulated");
+        if ( checkbox.checked == true ) {
+          let planetInHabAllow = "yes";
+        }
+        let planetPopulate = "no";
+        var checkbox1 = document.getElementById("forsepopulated");
+        if ( checkbox1.checked == true ) {
+          let planetPopulate = "yes";
+        }
+        let planetLiquidFlag = "no";
+        let planetForceHab = "no";
+        let planetHab = "no";
+        let vegetation = [];
+        let fauna = [];
+        let biomeTags = [];
+        let planetTags = [];
+
+        let planetType, planetMass, planetRadi, planetMassCalc, planetRadiCalc, planetEV;
+
+        const planetSemiMajor = distance;
+        const planetSemiMinor = planetSemiMajor - getRandomFloat((planetSemiMajor * 0.01),(planetSemiMajor * 0.2));
+        planetEccentricity = calculateEccentricity (planetSemiMajor, planetSemiMinor);
+        const planetOrbitalPiriod = Math.sqrt(Math.pow(planetSemiMajor, 3));
+        orbitalPiriod = planetOrbitalPiriod.toFixed(2);
+        planetEcliptic = getRandomFloat(0, 10);
+
+        if (planetSemiMajor == habplanetdist) {
+          planetForceHab = "yes";
+          //console.log("Planet Force Hab Enabled")
+        } else {
+          planetForceHab = "no";
+          //console.log("Planet Force Hab Disabled")
+        }
+
+
+
+        //console.log(distance);
+
+        const {
+            star_frost_line: frostLine,
+            star_habzone_inner: habZoneInner,
+            star_habzone_outter: habZoneOutter,
+            star_mass_sol: starMassTmp
+        } = star1;
+
+        //Determine mass of planets to help classify them. Broken into steps based on Frost line to get a realistic distribution of planet types.
+
+        gasGiantIntrusionInward = frostLine - (frostLine * 0.13);
+        iceGiantLimit = 29 * starMassTmp;//29 is the the average distance in AU to the middle of Uranus' and Pluto's orbits.
+
+        if (planetSemiMajor < frostLine && planetSemiMajor < gasGiantIntrusionInward) {
+              mean = 1; // Mean of the distribution
+              stddev = 0.5; // Standard deviation of the distribution
+              randomValue = randomNormal(mean, stddev);
+              planetMass = Math.max(0.1, Math.min(10, randomValue));//can generate between 1 and 10, but will be biased twards the 0.5 to 3 range
+          } else if (planetSemiMajor < frostLine && planetSemiMajor > gasGiantIntrusionInward) {
+            mean = 1; // Mean of the distribution
+            stddev = 0.5; // Standard deviation of the distribution
+            randomValue = randomNormal(mean, stddev);
+            massMinimum = Math.max(0.1, Math.min(10, randomValue));//can generate between 1 and 10, but will be biased twards the 0.5 to 3 range
+            massMaximum = 500;
+            planetMass = getRandomFloat(massMinimum, massMaximum);
+          } else if (planetSemiMajor > frostLine && planetSemiMajor < iceGiantLimit) {
+            planetMass = getRandomFloat(10, 1000);
+          } else if (planetSemiMajor > frostLine && planetSemiMajor > iceGiantLimit) {
+            planetMass = getRandomFloat(0.01, 0.1);
+        }
+
+        if (planetForceHab == "yes") {
+          planetAttributes = generatePlanetAttributes();
+          planetMass = planetAttributes.planetMass;
+          planetRadiHab = planetAttributes.planetRadi;
+          planetLittleGHab = planetAttributes.planetLittleG;
+          // Output the results
+          //console.log("Planet Mass:", planetMass);
+          //console.log("Planet Radius:", planetRadiHab);
+          //console.log("Planet Little G (X):", planetLittleGHab);
+        }
+
+        //Determines Planet details & type by mass
+        if (planetMass <= 0.1) {
+            planetType = "Dwarf";
+            planetRadi = 0.3 * Math.pow(planetMass, 0.1);//Radius in Earth Radi
+            planetBondAlbedo = getRandomFloat(0.2, 1);
+          } else if (planetMass >= 0.1 && planetMass < 10) {
+            planetType = "Terrestrial";
+            planetRadi = Math.pow(planetMass, 0.3333);//Radius in Earth Radi
+            planetBondAlbedo = getRandomFloat(0.0001, 0.45);
+          } else if (planetMass >= 10 && planetMass < 80) {
+            planetType = "Ice Giant";
+            planetMass = getRandomFloat(5, 50);//Mass in Earth Masses
+            planetRadi = Math.pow(planetMass, 0.22);//Radius in Earth Radi
+            planetBondAlbedo = getRandomFloat(0.1, 0.5);
+          } else if (planetMass >= 80) {
+            planetType = "Gas Giant";
+            planetMass = getRandomFloat(10, 1000);//Mass in Earth Masses
+            planetRadi = Math.pow(planetMass, 0.32);//Radius in Earth Radi
+            planetBondAlbedo = getRandomFloat(0.2, 0.6);
+        }
+
+        if (planetForceHab == "yes") {
+          planetRadi = planetRadiHab;
+        }
+
+
+
+        planetMassCalc = planetMass * 5972000000000000000000000;//Mass in kg
+        planetRadiCalc = planetRadi * 6378;//Radius in km
+        planetEV = calculateEscapeVelocity(planetMassCalc, planetRadiCalc);
+
+        //Determine Surfice Tempature
+           // Calculate stellar flux
+           distanceMeters = planetSemiMajor * 149600000000;//Convert AU to meters
+           starLuminTmpWatts = star1.star_lumin_watts;
+           flux = starLuminTmpWatts / (4 * Math.PI * Math.pow(distanceMeters, 2));
+           //console.log(starLuminTmp);
+           tempNumerator = (1 - planetBondAlbedo) * flux;
+           tempDenominator = 4 * 0.0000000567;//Multiply by the stefan-Boltzmann constant
+           planetEqulibriumTempature = Math.pow(tempNumerator / tempDenominator, 0.25);//Planetary equilibrium temperature in kelvin
+           //console.log("Planet EQ Temp " + planetEqulibriumTempature + " K");
+
+        // Check if the planet has an atmosphere
+        const starA = {
+            luminosity: starLumin, // in solar units
+            habitableZoneInner: habZoneInner, // in AU
+            habitableZoneOuter: habZoneOutter, // in AU
+            frostLine: starFrostLine // in AU
+        };
+
+        const planet = {
+            semiMajorAxis: distance, // in AU
+            semiMinorAxis: planetSemiMinor, // in AU
+            mass: planetMass, // in Earth units
+            radius: planetRadi, // in Earth units
+            escapeVelocity: planetEV, // in m/s
+            surficeTempature: planetEqulibriumTempature // in Kelvin
+        };
+
+        // Determine the type and composition of the atmosphere if it exists
+        atmosphere = hasAtmosphere(starA, planet) ? "Yes" : "No";
+
+        let atmosphereType = "None";
+        let atmosphereComp = "did not calculate";
+
+        // Define an array of gas objects
+        const gases = [
+            { name: 'Hydrogen', molarMass: 2.01568, abundance: 'High', boilingPoint: 20.28 },
+            { name: 'Helium', molarMass: 4.0026, abundance: 'High', boilingPoint: 4.22 },
+            { name: 'Water', molarMass: 18.01528, abundance: 'Medium', boilingPoint: 373.1 },
+            { name: 'Ammonia', molarMass: 17.031, abundance: 'Medium', boilingPoint: 239.8 },
+            { name: 'Methane', molarMass: 16.04, abundance: 'Medium', boilingPoint: 111.7 },
+            { name: 'Oxygen', molarMass: 32.00, abundance: 'High', boilingPoint: 90.19 },
+            { name: 'Nitrogen', molarMass: 28.02, abundance: 'High', boilingPoint: 77.36 },
+            { name: 'Carbon Dioxide', molarMass: 44.01, abundance: 'Medium', boilingPoint: 194.7 },
+            { name: 'Neon', molarMass: 20.1797, abundance: 'Medium', boilingPoint: 194.7 },
+            { name: 'Xenon', molarMass: 131.293, abundance: 'Low', boilingPoint: 165 },
+            { name: 'Argon', molarMass: 39.948, abundance: 'High', boilingPoint: 87.3 },
+            { name: 'Carbon Monoxide', molarMass: 28.01, abundance: 'Medium', boilingPoint: 81.65 },
+            { name: 'Sulfur Dioxide', molarMass: 64.066, abundance: 'Low', boilingPoint: 263.1 },
+            { name: 'Sodium', molarMass: 22.989769, abundance: 'Low', boilingPoint: 1156 },
+            { name: 'Krypton', molarMass: 83.798, abundance: 'Low', boilingPoint: 119.7 },
+            { name: 'Nitrous Oxide', molarMass: 44.013, abundance: 'Medium', boilingPoint: 184.7 }
+        ];
+
+        // Secondary gases can be added as needed
+        const secondaryGasesList = [
+            { name: 'Xenon', molarMass: 131.293, abundance: 'Low' },
+            { name: 'Argon', molarMass: 39.948, abundance: 'High' },
+            { name: 'Carbon Monoxide', molarMass: 28.01, abundance: 'Medium' },
+            { name: 'Ethane', molarMass: 30.07, abundance: 'Medium' },
+            { name: 'Potassium', molarMass: 39.0983, abundance: 'Low' },
+            { name: 'Sulfur Dioxide', molarMass: 64.066, abundance: 'Low' },
+            { name: 'Sodium', molarMass: 22.989769, abundance: 'Low' },
+            { name: 'Krypton', molarMass: 83.798, abundance: 'Low' },
+            { name: 'Nitrous Oxide', molarMass: 44.013, abundance: 'Medium' },
+            { name: 'Ozone', molarMass: 48.00, abundance: 'Low' },
+            { name: 'Iodine', molarMass: 126.90447, abundance: 'Low' }
+        ];
+
+        let totalPressure = 0; // Declare totalPressure outside the if block
+        const planetEVkms = planetEV / 1000;//Converts Escape Velosity from m/s to km/s
+
+        if (atmosphere == "Yes" || planetForceHab == "yes") {
+          let atmoArray = [];
+
+          const gasVelocityConstant = Math.sqrt((24.942 * planetEqulibriumTempature));
+
+          // Function to calculate gas velocity
+          function calcGasVelocity(molarMass) {
+              return gasVelocityConstant / (molarMass / 1000);
+          }
+
+          // Populate the atmosphere array, now ensures each gas can be gas at planet's temp
+          gases.forEach(gas => {
+              const gasVelocity = calcGasVelocity(gas.molarMass);
+
+              if (gas.name === 'Water') {
+                  if (planetEqulibriumTempature >= 373 && gasVelocity < planetEV) {
+                      atmoArray.push(gas.name);
+                  }
+              } else if (gas.name === 'Ammonia') {
+                  if (planetEqulibriumTempature >= 240 && gasVelocity < planetEV) {
+                      atmoArray.push(gas.name);
+                  }
+              } else if (gas.name === 'Methane') {
+                if (planetEqulibriumTempature >= 111 && gasVelocity < planetEV) {
+                    atmoArray.push(gas.name);
+                }
+              } else if (gas.name === 'Oxygen') {
+                if (planetEqulibriumTempature >= 90 && gasVelocity < planetEV) {
+                    atmoArray.push(gas.name);
+                }
+              } else if (gas.name === 'Nitrogen') {
+                if (planetEqulibriumTempature >= 77 && gasVelocity < planetEV) {
+                    atmoArray.push(gas.name);
+                }
+              } else if (gas.name === 'Carbon Dioxide') {
+                if (planetEqulibriumTempature >= 195 && gasVelocity < planetEV) {
+                    atmoArray.push(gas.name);
+                }
+              } else if (gas.name === 'Xenon') {
+                if (planetEqulibriumTempature >= 165 && gasVelocity < planetEV) {
+                    atmoArray.push(gas.name);
+                }
+              } else if (gas.name === 'Argon') {
+                if (planetEqulibriumTempature >= 87.3 && gasVelocity < planetEV) {
+                    atmoArray.push(gas.name);
+                }
+              } else if (gas.name === 'Carbon Monoxide') {
+                 if (planetEqulibriumTempature >= 81.65 && gasVelocity < planetEV) {
+                     atmoArray.push(gas.name);
+                 }
+               } else if (gas.name === 'Sulfur Dioxide') {
+                if (planetEqulibriumTempature >= 263.1 && gasVelocity < planetEV) {
+                    atmoArray.push(gas.name);
+                }
+              } else if (gas.name === 'Sodium') {
+                if (planetEqulibriumTempature >= 1156 && gasVelocity < planetEV) {
+                   atmoArray.push(gas.name);
+                }
+              } else if (gas.name === 'Krypton') {
+                if (planetEqulibriumTempature >= 119.7 && gasVelocity < planetEV) {
+                    atmoArray.push(gas.name);
+                }
+              } else if (gas.name === 'Nitrous Oxide') {
+                 if (planetEqulibriumTempature >= 184.7 && gasVelocity < planetEV) {
+                     atmoArray.push(gas.name);
+                 }
+              } else {
+                if (gasVelocity < planetEV) {
+                  atmoArray.push(gas.name);
+                  }
+                  }
+                });
+
+          atmosphereComp = atmoArray.join(", ");
+
+          // Filter gases from the main list based on the atmospheric composition
+          let availableGases = gases.filter(gas => atmoArray.includes(gas.name));
+
+          // Pick 1-3 gases
+          let numGases = getRandomInt(1, 3);
+
+          if (planetForceHab == "yes") {
+            atmotype = document.getElementById('Mobility').value;
+
+            if (atmotype == 'Nitro/Oxy') {
+              numGases = 2;
+              atmoArray = ['Nitrogen', 'Oxygen'];
+              //console.log("Oxy Nitro Atmo selected!");
+            }
+            if (atmotype == 'Methane') {
+              numGases = 2;
+              atmoArray = ['Methane', 'Oxygen'];
+            }
+            if (atmotype == 'Ammonia/Nitro') {
+              numGases = 2;
+              atmoArray = ['Ammonia', 'Nitrogen'];
+            }
+            if (atmotype == 'Neon/Oxy') {
+              numGases = 3;
+              atmoArray = ['Neon', 'Oxygen', 'Argon'];
+            }
+            atmosphereComp = atmoArray.join(", ");
+          }
+
+          let selectedGases = selectGases(availableGases, numGases);
+
+          if (planetForceHab == "yes") {
+            atmotype = document.getElementById('Mobility').value;
+
+            if (atmotype == 'Nitro/Oxy') {
+              selectedGases = [{ name: 'Nitrogen', molarMass: 28.02, abundance: 'High', boilingPoint: 77.36 }, { name: 'Oxygen', molarMass: 32.00, abundance: 'High', boilingPoint: 90.19 }];
+              //console.log("selectedGases updated to Nitro/Oxy")
+            }
+            if (atmotype == 'Methane') {
+              selectedGases = [{ name: 'Methane', molarMass: 16.04, abundance: 'Medium', boilingPoint: 111.7 }, { name: 'Oxygen', molarMass: 32.00, abundance: 'High', boilingPoint: 90.19 }];
+            }
+            if (atmotype == 'Ammonia/Nitro') {
+              selectedGases = [{ name: 'Ammonia', molarMass: 17.031, abundance: 'Medium', boilingPoint: 239.8 }, { name: 'Nitrogen', molarMass: 28.02, abundance: 'High', boilingPoint: 77.36 }];
+            }
+            if (atmotype == 'Neon/Oxy') {
+              selectedGases = [{ name: 'Neon', molarMass: 20.1797, abundance: 'Medium', boilingPoint: 194.7 }, { name: 'Oxygen', molarMass: 32.00, abundance: 'High', boilingPoint: 90.19 }, { name: 'Argon', molarMass: 39.948, abundance: 'High', boilingPoint: 87.3 }];
+            }
+          }
+
+          //console.log(selectedGases);//This is what we alter for habitable atmos
+
+
+
+          // Calculate percentages
+          const { percentages, remainingPercentage } = calculatePercentages(numGases);
+          //console.log(remainingPercentage);
+          stopGapGasses = remainingPercentage;
+          // Store results in variables
+          //let primaryGas = selectedGases[0].name;
+          let gasData = selectedGases.map((gas, index) => ({
+              name: gas.name,
+              percentage: percentages[index].toFixed(2)
+          }));
+
+          atmosphereComp = gasData.map(gas => `${gas.name}: ${gas.percentage}%`).join(", ");
+          var gasData2 = gasData;
+          console.log("gasData2 is below");
+          console.log(gasData2);
+
+
+          let totalMolarMass = 0;
+          gasData.forEach(({ name, percentage }) => {
+              const gas = gases.find(g => g.name === name);
+              if (gas) {
+                  totalMolarMass += (parseFloat(percentage) / 100) * gas.molarMass;
+              }
+          });
+
+          const R = 0.08206; // Ideal gas constant in L atm / mol K
+          const T = planetEqulibriumTempature; // Temperature in Kelvin
+          const V = (4 / 3) * (Math.PI * Math.pow(planetRadi, 3)); // Volume of the atmosphere assuming a spherical planet
+
+          let partialPressures = {};
+          gasData.forEach(({ name, percentage }) => {
+              const gas = gases.find(g => g.name === name);
+              if (gas) {
+                  const n = (parseFloat(percentage) / 100) * (totalMolarMass / gas.molarMass);
+                  const partialPressure = (n * R * T) / V;
+                  partialPressures[name] = partialPressure;
+              }
+          });
+
+          let totalPressure = 0;
+          Object.values(partialPressures).forEach(partialPressure => {
+              totalPressure += partialPressure;
+          });//Calcs average molar mass of the atmospheric gas, outputs pascals. UPDATE: Apparently spitting out atmospheres?!
+
+          //Height of atmo = (Boltzmann's Constant * Tempature in Kelven) / (average mass of atoms in kg * acceleration of Gravity in m/s)
+          gasAverageMassKg = (totalPressure * 6.022141793e23) * 1000;//Average mass of atmo in kg
+          planetMassKG = planetMass * 5.972e24;//Should be mass of planet in Kg
+          planetRadiM = planetRadi * 6.378e6;//Should be the radius of planet in meters
+          planetLilG = (6.67430e-11 * planetMassKG) / Math.pow(planetRadiM, 2);//Gravitational acceleration in m/s
+          planetLilGinG = planetLilG / 9.8;
+
+          //if (planetSemiMajor == habplanetdist) {
+            //planetLilG = planetLittleGHab;
+          //}
+
+          //console.log("g = " + planetLilG + " m/s");
+
+          //Scalar Height of Atmosphere, meters
+          atmoHeight = (1.380649e-23 * planetEqulibriumTempature) * (gasAverageMassKg * planetLilG);
+          atmoHeight = atmoHeight / 1000000;//Error correcting factor
+          //console.log("Scalar Height is " + atmoHeight);
+
+          //Surfice area of planet, km2
+          planetSurficeArea = 4 * Math.PI * Math.pow(planetRadiCalc, 2);
+
+          //Volume of Atmosphere
+          planetAtmoVol = planetSurficeArea * (atmoHeight * 1000);
+
+
+
+          planetAtmoPressure = gasAverageMassKg * planetLilG * (atmoHeight * 1000);//Pressure in pascals
+          planetAtmoPressure = BigInt(planetAtmoPressure).toString();//Bootloop's de-hugeinate decimaplaces fix
+            if (planetForceHab == "yes") {
+              planetAtmoPressure = getRandomFloat(0.87, 1.24);
+              planetAtmoPressure = planetAtmoPressure * 101300;
+
+            }
+          planetAtmoPressureATM = planetAtmoPressure / 101300;//Convert to atm
+          planetAtmoPressure = parseInt(planetAtmoPressure);
+          planetAtmoPressureATMOutput = BigInt(planetAtmoPressure).toString();//Bootloop's de-hugeinate decimaplaces fix
+          planetAtmoPressureATMOutput = +String(planetAtmoPressureATM).slice(0, 10);//De-hugifies final number. StackOverflow actualy helped for once!
+          planetAtmoPressureATMOutput = parseFloat(planetAtmoPressureATMOutput);//string to number convert
+          shortPlanetAtmo = planetAtmoPressureATMOutput.toFixed(2);
+          //console.log("planetAtmoPressureATM " + planetAtmoPressureATM);
+
+
+          //Aproximates Surfice Temp given the atmosphere's thickness and density
+          atmoHeightEarths = (atmoHeight / 8.5);
+          gasAverageMassKgEarths = (gasAverageMassKg / 1.2);
+          meepsConstant = (atmoHeightEarths / gasAverageMassKgEarths) * 0.186;//Gets the multiplier for atmospheric heat retention, roughly. Woo math!
+          meepsConstant = +String(meepsConstant).slice(0, 10);
+          meepsConstant = parseFloat(meepsConstant);
+          meepsConstant = 1 + (meepsConstant / 10);//factor correction
+          planetEffectiveEmissivity = planetEqulibriumTempature * meepsConstant;
+          if (planetForceHab == "yes") {
+            planetEffectiveEmissivity = getRandomFloat(273.15, 373.15);
+          }
+
+          //console.log("Surfice Temp is " + planetEqulibriumTempature + " x " + meepsConstant);
+
+
+          //Calculates Hydrosphere, since you need an atmosphere for liquids to exist in liquid form.
+
+          //determines if a planet has a thasselagen.
+
+          die = getRandomInt(1, 100);
+
+          if (die <= 80 || planetForceHab == "yes") {
+            planetLiquidFlag = "yes";
+
+            //Gets the phase state of thasselagens on the planet's surfice.
+            let states = {};
+            const substances = ['water', 'hypochlorousAcid', 'ammonia', 'nitricAcid', 'sulfurDioxide', 'sulfuricAcid', 'ethane', 'methane'];
+            substances.forEach(substance => {
+                states[substance] = getSubstanceState(planetAtmoPressureATMOutput, planetEffectiveEmissivity, substance);
+            });
+            //console.log(states);
+            //Shortens the list to only liquid thasselagens
+            const liquidSubstances = getLiquidSubstances(states);
+            //console.log(liquidSubstances);
+            let planetThalassogen = choosePlanetThalassogen(liquidSubstances);
+
+            if (planetForceHab == "yes") {
+              if (atmotype == 'Nitro/Oxy') {
+                planetThalassogen = "water";
+              }
+              if (atmotype == 'Methane') {
+                planetThalassogen = "hypochlorousAcid";
+              }
+              if (atmotype == 'Ammonia/Nitro') {
+                planetThalassogen = "water";
+              }
+              if (atmotype == 'Neon/Oxy') {
+                planetThalassogen = "water";
+              }
+            }
+
+            die = getRandomInt(1, 100);
+            if (die <= 25 || planetForceHab == "yes") {
+              planetLiquidLoc = "surface";
+              planetLiquidAmmount = getRandomFloat(30, 100);
+              planetLiquidAmmount = planetLiquidAmmount.toFixed(2);
+              planetOcean = planetLiquidLoc + " " + planetThalassogen + " oceans covering " + planetLiquidAmmount + "% of the surfice"
+            } else {
+              planetLiquidLoc = "sub-surface";
+              planetLiquidAmmount = getRandomFloat(80, 100);
+              planetLiquidAmmount = planetLiquidAmmount.toFixed(2);
+              planetOcean = planetLiquidLoc + " " + planetThalassogen + " oceans covering the equivilent of " + planetLiquidAmmount + "% of the surfice"
+            }
+
+            if (planetLiquidAmmount >= 0 && planetLiquidAmmount <= 5) {
+              biomeTags.push("<span class='tag'>Desert World</span>")
+            } else if (planetLiquidAmmount >= 6 && planetLiquidAmmount <= 15) {
+              biomeTags.push("<span class='tag'>Dry World</span>")
+            } else if (planetLiquidAmmount >= 16 && planetLiquidAmmount <= 25) {
+              biomeTags.push("<span class='tag'>Small Seas</span>")
+            } else if (planetLiquidAmmount >= 26 && planetLiquidAmmount <= 35) {
+              biomeTags.push("<span class='tag'>Minor Oceans</span>")
+            } else if (planetLiquidAmmount >= 36 && planetLiquidAmmount <= 45) {
+              biomeTags.push("<span class='tag'>Wet World</span>")
+            } else if (planetLiquidAmmount >= 46 && planetLiquidAmmount <= 55) {
+              biomeTags.push("<span class='tag'>Large Oceans</span>")
+            } else if (planetLiquidAmmount >= 56 && planetLiquidAmmount <= 65) {
+              biomeTags.push("<span class='tag'>Robust Oceans</span>")
+            } else if (planetLiquidAmmount >= 66 && planetLiquidAmmount <= 75) {
+              biomeTags.push("<span class='tag'>Earth-Like Oceans</span>")
+            } else if (planetLiquidAmmount >= 76 && planetLiquidAmmount <= 85) {
+              biomeTags.push("<span class='tag'>Water World</span>")
+            } else if (planetLiquidAmmount >= 86 && planetLiquidAmmount <= 95) {
+              biomeTags.push("<span class='tag'>Island World</span>")
+            } else if (planetLiquidAmmount >= 96) {
+              biomeTags.push("<span class='tag'>" + "Abundent " + planetThalassogen + "</span>")
+            }
+          }
+
+          //atmosphere
+          shortTemp = planetEffectiveEmissivity.toFixed(2);
+
+          if (shortPlanetAtmo == 0) {
+            planetTags.push("<span class='tag'>No Atmosphere</span>")
+            planetTags.push("<span class='tag warn'>Vacc Suit Required</span>")
+          } else if (shortPlanetAtmo >= 0.001 && shortPlanetAtmo <= 0.09) {
+            planetTags.push("<span class='tag'>Trace Atmosphere" + "</span>")
+            planetTags.push("<span class='tag warn'>Vacc Suit Required</span>")
+          } else if (shortPlanetAtmo >= 0.1 && shortPlanetAtmo <= 0.42) {
+            dice = getRandomInt(1, 100)
+            if (dice > 80) {
+              planetTags.push("<span class='tag bad'>Very Thin Toxic Atmosphere</span>")
+              planetTags.push("<span class='tag warn'>Filtered Respirator Required</span>")
+            } else {
+              planetTags.push("<span class='tag'>Very Thin Atmosphere</span>")
+              planetTags.push("<span class='tag warn'>Respirator Required</span>")
+            }
+          } else if (shortPlanetAtmo >= 0.43 && shortPlanetAtmo <= 0.7) {
+            dice = getRandomInt(1, 100)
+            if (dice > 80) {
+              planetTags.push("<span class='tag bad'>Thin Toxic Atmosphere</span>")
+              planetTags.push("<span class='tag warn'>Filtered Respirator Required</span>")
+            } else {
+              planetTags.push("<span class='tag'>Thin Atmosphere</span>")
+              planetTags.push("<span class='tag warn'>Respirator Required</span>")
+            }
+          } else if (shortPlanetAtmo >= 0.71 && shortPlanetAtmo <= 1.49) {
+            dice = getRandomInt(1, 100)
+            if (dice > 80) {
+              planetTags.push("<span class='tag'>Standard Atmosphere</span>")
+              planetTags.push("<span class='tag warn'>Filtered Respirator Required</span>")
+            } else {
+              planetTags.push("<span class='tag'>Standard Atmosphere</span>")
+            }
+          } else if (shortPlanetAtmo >= 0.71 && shortPlanetAtmo <= 2.49) {
+            dice = getRandomInt(1, 100)
+            if (dice > 80) {
+              planetTags.push("<span class='tag'>Dense Atmosphere</span>")
+              planetTags.push("<span class='tag warn'>Filtered Respirator Required</span>")
+            } else {
+              planetTags.push("<span class='tag'>Dense Atmosphere</span>")
+            }
+          } else if (shortPlanetAtmo >= 2.5) {
+              planetTags.push("<span class='tag'>Extreemly Dense Atmosphere</span>")
+              planetTags.push("<span class='tag warn'>Pressure Suit Required</span>")
+          }
+
+
+
+
+      }
+
+      planetLilGinG = planetLilG / 9.8;
+      shortPlanetLG = planetLilGinG.toFixed(2);
+      //gravity
+      if (shortPlanetLG < 0.75) {
+        planetTags.push("<span class='tag warn'>Low Gravity</span>")
+      }
+      if (shortPlanetLG < 1.25) {
+        planetTags.push("<span class='tag warn'>High Gravity</span>")
+      }
+
+        //Moons
+        //console.log("Total Planets " + totalPlanets);
+        numMoons = 0;
+        if (totalPlanets <= 2) {
+          if (planetType == "Gas Giant") {
+            numMoons = getRandomInt(30, 80);
+          } else if (planetType == "Ice Giant") {
+            numMoons = getRandomInt(8, 50);
+          } else {
+            numMoons = getRandomInt(0, 1);
+          }
+        }
+        if (totalPlanets >= 3 && totalPlanets <= 7) {
+          if (planetType == "Gas Giant") {
+            numMoons = getRandomInt(40, 120);
+          } else if (planetType == "Ice Giant") {
+            numMoons = getRandomInt(12, 60);
+          } else {
+            numMoons = getRandomInt(0, 3);
+          }
+        }
+        if (totalPlanets > 8) {
+          if (planetType == "Gas Giant") {
+            numMoons = getRandomInt(50, 140);
+          } else if (planetType == "Ice Giant") {
+            numMoons = getRandomInt(16, 70);
+          } else {
+            numMoons = getRandomInt(0, 6);
+          }
+        }
+        if (planetType == "Terrestrial" || planetType == "Dwarf") {
+          planetMoon = generatePlanetMoons(totalPlanets, planetType);
+        } else {
+          moonType = "assorted moons of various types."
+          ringSystems = ["prominant rings", "notable rings", "thick rings", "faint rings", "no rings"];
+          planetRing = getRandomItem(ringSystems);
+          planetMoon = planetRing + ", and " + numMoons + " " + moonType
+        }
+        if (numMoons == 1) {
+          moonText = "Satellite"
+        } else {
+          moonText = "Satellites"
+        }
+
+        planetAverageDistanceAU = ((planetSemiMajor) + (planetSemiMinor)) / 2;
+
+        rotationPeriod = generateRandomRotationPeriod();
+
+        if (planetForceHab == "yes") {
+          if (atmotype == 'Nitro/Oxy') {
+            rotationPeriod = getRandomInt(15, 36);
+          }
+          if (atmotype == 'Methane') {
+            rotationPeriod = getRandomInt(15, 36);
+          }
+          if (atmotype == 'Ammonia/Nitro') {
+            rotationPeriod = getRandomInt(15, 36);
+          }
+          if (atmotype == 'Neon/Oxy') {
+            rotationPeriod = getRandomInt(15, 36);
+          }
+        }
+
+        //rotationPeriod = rotationPeriod * 3600;
+        formattedPeriod = formatRotationPeriod(rotationPeriod);
+        die = getRandomInt(1, 100)
+        if (die < 5) {
+          planetAxialTilt = getRandomFloat(0, 3);
+        } else if (die > 5 && die < 10) {
+          planetAxialTilt = getRandomFloat(3, 6);
+        } else if (die > 10 && die < 20) {
+          planetAxialTilt = getRandomFloat(6, 12);
+        } else if (die > 20 && die < 30) {
+          planetAxialTilt = getRandomFloat(12, 18);
+        } else if (die > 30 && die < 65) {
+          planetAxialTilt = getRandomFloat(18, 35);
+        } else if (die > 65 && die < 70) {
+          planetAxialTilt = getRandomFloat(35, 45);
+        } else if (die > 75 && die < 80) {
+          planetAxialTilt = getRandomFloat(45, 60);
+        } else if (die > 80 && die < 85) {
+          planetAxialTilt = getRandomFloat(60, 70);
+        } else if (die > 85 && die < 90) {
+          planetAxialTilt = getRandomFloat(70, 80);
+        } else if (die > 90 && die < 95) {
+          planetAxialTilt = getRandomFloat(80, 85);
+        } else if (die > 95) {
+          planetAxialTilt = getRandomFloat(85, 90);
+        } else {
+          planetAxialTilt = getRandomFloat(0, 90);
+        }
+
+
+
+
+
+        planetEqulibriumTempatureC = (planetEqulibriumTempature - 273.15).toFixed(2)
+        planetEqulibriumTempatureF = ((planetEqulibriumTempatureC * (9 / 5)) + 32).toFixed(2);
+        planetEffectiveEmissivityC = (planetEffectiveEmissivity - 273.15).toFixed(2)
+        planetEffectiveEmissivityF = ((planetEffectiveEmissivityC * (9 / 5)) + 32).toFixed(2);
+
+        //Planet Tag stuff
+
+          //Weather and Climate
+
+
+
+
+          //Climate Data
+          //Seasons
+          if (atmosphere == "Yes" && planetType =="Terrestrial") {
+              seasonLength = (orbitalPiriod * 3) * 30;//days
+              seasonLengthb = (orbitalPiriod * 3) * 30;//seasonLength * 2
+              seasonLengthString = getFormatedStringFromDays(seasonLength);
+              seasonLengthStringb = getFormatedStringFromDays(seasonLengthb);
+
+
+
+              if ((planetAxialTilt > 90 || planetAxialTilt < 0) || planetAxialTilt === null) {
+                planetAxialTilt = getRandomFloat(0, 90);
+                shortTilt = planetAxialTilt.toFixed(2);
+              } else {
+                shortTilt = planetAxialTilt.toFixed(2);
+              }
+              if (shortTilt >= 0 && shortTilt <= 5) {
+                planetSeasons = "No seasons. Uniform climate year-round with slight variation from orbital eccentricity.";
+                vegetation.push("<span class='tag'>Year-Round Flora</span>");
+                fauna.push("<span class='tag'>Non-Migratory Fauna</span>");
+              } else if (shortTilt >= 6 && shortTilt <= 10) {
+                planetSeasons = "Very mild seasons. Slight temperature changes and day length variation. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Year-Round Flora</span>");
+                fauna.push("<span class='tag'>Non-Migratory Fauna</span>");
+              } else if (shortTilt >= 11 && shortTilt <= 15) {
+                planetSeasons = "Mild seasons. Noticeable but not extreme differences in temperature and daylight. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Year-Round Flora</span>");
+                fauna.push("<span class='tag'>Non-Migratory Fauna</span>");
+              } else if (shortTilt >= 16 && shortTilt <= 20) {
+                planetSeasons = "Moderate seasons. Clear seasonal changes with moderate temperature variations. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Year-Round Flora</span>");
+                fauna.push("<span class='tag'>Non-Migratory Fauna</span>");
+              } else if (shortTilt >= 21 && shortTilt <= 25) {
+                planetSeasons = "Pronounced seasons. Significant temperature and daylight changes. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Year-Round Flora</span>");
+                fauna.push("<span class='tag'>Non-Migratory Fauna</span>");
+              } else if (shortTilt >= 26 && shortTilt <= 30) {
+                planetSeasons = "Distinct seasons. Strong temperature differences and noticeable changes in daylight. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Year-Round Flora</span>");
+                fauna.push("<span class='tag'>Non-Migratory Fauna</span>");
+              } else if (shortTilt >= 31 && shortTilt <= 35) {
+                planetSeasons = "Strong seasons. More extreme temperature differences and daylight variation. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Year-Round Flora</span>");
+                fauna.push("<span class='tag'>Non-Migratory Fauna</span>");
+              } else if (shortTilt >= 36 && shortTilt <= 40) {
+                planetSeasons = "Very strong seasons. Extreme temperature swings and significant daylight variation. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Year-Round Flora</span>");
+                fauna.push("<span class='tag'>Non-Migratory Fauna</span>");
+              } else if (shortTilt >= 41 && shortTilt <= 45) {
+                planetSeasons = "Intense seasons. Very hot summers and cold winters, with extreme daylight changes. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Year-Round Flora</span>");
+                fauna.push("<span class='tag'>Non-Migratory Fauna</span>");
+              } else if (shortTilt >= 46 && shortTilt <= 50) {
+                planetSeasons = "Harsh seasons. Extremely hot summers, very cold winters, and long periods of daylight or darkness. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Year-Round Flora</span>");
+                fauna.push("<span class='tag'>Non-Migratory Fauna</span>");
+              } else if (shortTilt >= 51 && shortTilt <= 55) {
+                planetSeasons = "Severe seasons. Extreme temperature fluctuations and periods of almost constant daylight or darkness. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Seasonally Adaptive Plants</span>");
+                fauna.push("<span class='tag'>Seasonally Migratory Animals</span>");
+              } else if (shortTilt >= 56 && shortTilt <= 60) {
+                planetSeasons = "Extreme seasons. Near-polar conditions with very hot summers and frigid winters. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Seasonally Adaptive Plants</span>");
+                fauna.push("<span class='tag'>Seasonally Migratory Animals</span>");
+              } else if (shortTilt >= 61 && shortTilt <= 65) {
+                planetSeasons = "Radical seasons. Extremely long, harsh summers and winters, with very short transitional periods. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Seasonally Adaptive Plants</span>");
+                fauna.push("<span class='tag'>Seasonally Migratory Animals</span>");
+              } else if (shortTilt >= 66 && shortTilt <= 70) {
+                planetSeasons = "Ultra-extreme seasons. Nearly constant daylight in summer and darkness in winter, with harsh temperature extremes. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Seasonally Adaptive Plants</span>");
+                fauna.push("<span class='tag'>Seasonally Migratory Animals</span>");
+              } else if (shortTilt >= 71 && shortTilt <= 75) {
+                planetSeasons = "Hyper-extreme seasons. Practically no transition between extreme summer and winter conditions. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Seasonally Adaptive Plants</span>");
+                fauna.push("<span class='tag'>Seasonally Migratory Animals</span>");
+              } else if (shortTilt >= 76 && shortTilt <= 80) {
+                planetSeasons = "Super-extreme seasons. Summer and winter become almost polar in nature, with long periods of continuous daylight or darkness. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Seasonally Adaptive Plants</span>");
+                fauna.push("<span class='tag'>Seasonally Migratory Animals</span>");
+              } else if (shortTilt >= 81 && shortTilt <= 85) {
+                planetSeasons = "Extreme polar-like seasons. Long periods of nearly constant sunlight or darkness, with extreme temperature variations. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Seasonally Adaptive Plants</span>");
+                fauna.push("<span class='tag'>Seasonally Migratory Animals</span>");
+              } else if (shortTilt >= 86 && shortTilt <= 90) {
+                planetSeasons = "Near-polar extreme seasons. Nearly complete annual periods of daylight or darkness, with harsh climate changes. 4 seasons lasting " + seasonLengthString + ".";
+                vegetation.push("<span class='tag'>Seasonally Adaptive Plants</span>");
+                fauna.push("<span class='tag'>Seasonally Migratory Animals</span>");
+              } else if (shortTilt >= 90) {
+                planetSeasons = "Polar seasons. One hemisphere experiences continuous daylight for half the year and darkness for the other half, with extreme temperature contrasts. 2 seasons lasting " + seasonLengthStringb + ".";
+                vegetation.push("<span class='tag'>Seasonally Adaptive Plants</span>");
+                fauna.push("<span class='tag'>Seasonally Migratory Animals</span>");
+              } else {
+                planetSeasons = "An Error has Occured."
+              }
+
+              //weather
+              planetWeather = "Earth-like weather, moderate seasons, varied precipitation, temperate climates."
+              if (shortTemp > 300 && shortPlanetAtmo > 1 && planetLiquidAmmount > 70) {
+                die = getRandomInt(1, 100)
+                if (die > 80) {
+                  frequencies = ["Regular", "Frequent", "Occasional", "Infrequent"];
+                  frequency = getRandomItem(frequencies);
+                  planetWeather = "Frequent thunderstorms, intense hurricanes, very high humidity. " + frequency + " acid rain.";
+                } else {
+                  planetWeather = "Frequent thunderstorms, intense hurricanes, very high humidity."
+                }
+              }
+              if (shortTemp > 300 && shortPlanetAtmo <= 1 && planetLiquidAmmount < 55) {
+                planetWeather = "Dust storms, large temperature variations, weak precipitation."
+              }
+              if ((shortTemp > 250 && shortTemp < 300) && (shortPlanetAtmo > 0.65 && shortPlanetAtmo > 1.2)) {
+                planetWeather = "Earth-like weather, moderate seasons, varied precipitation, temperate climates."
+              }
+              if ((shortTemp > 250 && shortTemp < 300) && shortPlanetAtmo < 0.65) {
+                planetWeather = "Mild weather, potential for dust storms, significant daily temperature swings."
+              }
+              if ((shortTemp > 200 && shortTemp < 250) && (shortPlanetAtmo > 0.65 && shortPlanetAtmo > 1.2)) {
+                die = getRandomInt(1, 100)
+                if (die > 80) {
+                  frequencies = ["Regular", "Frequent", "Occasional", "Infrequent"];
+                  frequency = getRandomItem(frequencies);
+                  percipitates = ["methane", "carbon dioxide"];
+                  percipitate = getRandomItem(percipitates);
+                  planetWeather = "Cold weather, snow and ice precipitation. " + frequency + " " + percipitate + " snow.";
+                } else {
+                  planetWeather = "Cold weather, snow and ice precipitation."
+                }
+              }
+              if ((shortTemp > 200 && shortTemp < 250) && shortPlanetAtmo < 0.65) {
+                die = getRandomInt(1, 100);
+                if (die > 50) {
+                  die = getRandomInt(1, 100);
+                  if (die > 80) {
+                    frequencies = ["Regular", "Frequent", "Occasional", "Infrequent"];
+                    frequency = getRandomItem(frequencies);
+                    planetWeather = "Very cold weather, minimal precipitation, slow atmospheric circulation. " + frequency + " carbon dioxide snow.";
+                  } else {
+                    planetWeather = "Very cold weather, minimal precipitation, slow atmospheric circulation."
+                  }
+                } else {
+                  planetWeather = "Extremely cold, minimal weather activity, weak winds.";
+                }
+              }
+            };//End Climate Stuff
+
+          //Utility
+
+
+        //Housekeeping
+        planetName = starName + " " + order;
+        planetShortName = order;
+
+        //Planet Drawing Data
+        starDrawBound = (starDrawSize + (starDrawSize * 0.1)) / 2;
+        distanceOldRange = outerLimit - innerLimit;
+        distanceNewRange = 1350 - starDrawBound;
+        planetDrawDistance = (((planetSemiMajor - innerLimit) * distanceNewRange) / distanceOldRange) + starDrawBound;
+        planetDrawDistance = Math.trunc(planetDrawDistance);
+
+
+        distanceOldRange2 = 9.13 - 0.63;
+        distanceNewRange2 = 80 - 5;
+        planetDrawRadi = (((planetRadi - 0.003) * distanceNewRange2) / distanceOldRange2) + 5;
+        if (planetType == "Gas Giant") {
+          planetDrawRadi = planetDrawRadi * 0.7;
+        }
+        planetDrawRadi = Math.trunc(planetDrawRadi);
+
+
+        //Check for Habitability
+
+        if (planetForceHab == "no") {
+          if ((planetLilGinG < 2.1 && planetLilGinG > 0.6) && (planetLiquidFlag == "yes") && (atmosphere === "Yes") && (planetEqulibriumTempature > 223.15 && planetEqulibriumTempature < 348.15)) {
+            planetHab = "yes";
+          }
+        }
+
+
+        if (planetHab == "yes" || planetForceHab == "yes") {
+            planetAtmoPressureATMOutput = getRandomFloat(0.83, 1.25);
+
+            vegetation = [];
+            fauna = [];
+            biomeTags = [];
+            planetTags = [];
+
+            planetPopulated = "no"
+            if (planetInHabAllow == "yes" || planetPopulate == "yes") {
+              dice = getRandomInt(1,100);
+              if (dice > 66 || planetPopulate == "yes") {
+                planetPopulated = "yes";
+
+                planetName = namegen(1);
+                planetName = String(planetName);
+                planetName = planetName.charAt(0).toUpperCase() + planetName.slice(1);
+              } else {
+                planetPopulated = "no";
+              }
+          } else {
+            planetPopulated = "no";
+          }
+          if (planetPopulated == "yes") {
+            die = d6() + d6() - 2;
+            if (die == 0) {
+                population = 0;
+                planetTags.push("<span class='tag warn'>Alien Ruins</span>");
+              } else if (die == 1) {
+                population = getRandomInt(1, 100);
+                planetTags.push("<span class='tag warn'>Inhabited</span>")
+                planetTags.push("<span class='tag'>Micro Colony</span>");
+              } else if (die == 2) {
+                population = getRandomInt(100, 1000);
+                planetTags.push("<span class='tag warn'>Inhabited</span>")
+                planetTags.push("<span class='tag'>Village</span>");
+              } else if (die == 3) {
+                population = getRandomInt(1000, 10000);
+                planetTags.push("<span class='tag warn'>Inhabited</span>")
+                planetTags.push("<span class='tag'>Villages</span>");
+              } else if (die == 4) {
+                population = getRandomInt(10000, 100000);
+                planetTags.push("<span class='tag warn'>Inhabited</span>")
+                planetTags.push("<span class='tag'>Small Towns</span>");
+              } else if (die == 5) {
+                population = getRandomInt(100000, 1000000);
+                planetTags.push("<span class='tag warn'>Inhabited</span>")
+                planetTags.push("<span class='tag'>City</span>");
+              } else if (die == 6) {
+                population = getRandomInt(1000000, 10000000);
+                planetTags.push("<span class='tag warn'>Inhabited</span>")
+                planetTags.push("<span class='tag'>Cities</span>");
+              } else if (die == 7) {
+                population = getRandomInt(10000000, 100000000);
+                planetTags.push("<span class='tag warn'>Inhabited</span>")
+                planetTags.push("<span class='tag'>Developing</span>");
+              } else if (die == 8) {
+                population = getRandomInt(100000000, 1000000000);
+                planetTags.push("<span class='tag warn'>Inhabited</span>")
+                planetTags.push("<span class='tag'>Developed</span>");
+              } else if (die == 9) {
+               population = getRandomInt(1000000000, 10000000000);
+               planetTags.push("<span class='tag warn'>Inhabited</span>")
+               planetTags.push("<span class='tag'>Fully Developed</span>");
+             } else if (die == 10) {
+              population = getRandomInt(10000000000, 100000000000);
+              planetTags.push("<span class='tag warn'>Inhabited</span>")
+              planetTags.push("<span class='tag'>Over Developed</span>");
+              }
+
+          }
+
+
+
+
+
+
+          //End of INhabited stuff
+            //Biome Data
+            dice = getRandomInt(1, 100);
+            if (dice > 95 || dice < 5) {
+              if (planetEqulibriumTempature > 300 && planetLiquidAmmount < 30) {
+                biomeTypeA = "Desert Planet"
+                vegetation.push("<span class='tag bad'>Sparse Flora</span>");
+                fauna.push("<span class='tag bad'>Sparse Fauna</span>");
+                biomeTags.push("<span class='tag bad'>Low Bio-Diversity</span>");
+                primaryBiomes = planetName + " is entirly composed of various desert biomes.";
+              } else if (planetEqulibriumTempature > 270 && planetLiquidAmmount < 30) {
+                biomeTypeA = "Tundra Planet"
+                primaryBiomes = planetName + " is entirly composed of various types of tundra.";
+                vegetation.push("<span class='tag bad'>Sparse Flora</span>");
+                fauna.push("<span class='tag bad'>Sparse Fauna</span>");
+                biomeTags.push("<span class='tag bad'>Low Bio-Diversity</span>");
+              } else if (planetEqulibriumTempature > 290 && planetLiquidAmmount > 75) {
+                biomeTypeA = "Jungle Planet"
+                primaryBiomes = planetName + " is entirly composed of various forms of warm rainforest.";
+                vegetation.push("<span class='tag good'>Extreemly Abundent Flora</span>");
+                fauna.push("<span class='tag good'>Extreemly Abundent Fauna</span>");
+                biomeTags.push("<span class='tag good'>High Bio-Diversity</span>");
+              } else if (planetEqulibriumTempature > 280 && planetLiquidAmmount > 60) {
+                biomeTypeA = "Forest Planet"
+                primaryBiomes = planetName + " is entirly composed of various forest biomes.";
+                vegetation.push("<span class='tag'>Abundent Flora</span>");
+                fauna.push("<span class='tag'>Abundent Fauna</span>");
+                biomeTags.push("<span class='tag'>Average Bio-Diversity</span>");
+              } else if (planetEqulibriumTempature > 295 && planetLiquidAmmount > 80) {
+                biomeTypeA = "Swamp Planet"
+                primaryBiomes = planetName + " is entirly composed of diffrent forms of swampland.";
+                vegetation.push("<span class='tag'>Abundent Flora</span>");
+                fauna.push("<span class='tag'>Abundent Fauna</span>");
+                fauna.push("<span class='tag'>Amphibious Fauna</span>");
+                biomeTags.push("<span class='tag good'>High Bio-Diversity</span>");
+              } else {
+                biomeTypeA = "Volcanic Planet"
+                primaryBiomes = planetName + " is extreemly volcanicly active. Its biomes take the forms of various volcanic ecosystems.";
+                vegetation.push("<span class='tag'>Abundent Flora</span>");
+                vegetation.push("<span class='tag'>Thermophile Flora</span>");
+                fauna.push("<span class='tag'>Abundent Fauna</span>");
+                fauna.push("<span class='tag'>Thermophile Fauna</span>");
+                biomeTags.push("<span class='tag'>Average Bio-Diversity</span>");
+              }
+            } else {
+              primaryBiomes = determineBiomes(planetEqulibriumTempature, planetLilGinG, planetAxialTilt, planetLiquidLoc);
+              primaryBiomes = primaryBiomes + "."
+              biomeTypeA = "Primary Biomes"
+              biopossbilities = [{"tag": "good", "class": "Extreme"}, {"tag": "good", "class": "High"}, {"tag": "normal", "class": "Average"}, {"tag": "warn", "class": "Low"}, {"tag": "bad", "class": "Neglagable"}];
+              biostates = getRandomItem(biopossbilities);
+              tag = biostates.tag
+              biostate = biostates.class
+              console.log("tag is " + tag)
+              console.log("biostate is " + biostate)
+              biomeTags.push("<span class='tag" + tag + "'>" + biostate + " Bio-Diversity</span>");
+              abundanceStates = ["Extremely Abundant", "Very Abundant", "Abundant", "Common", "Moderately Common", "Uncommon", "Scarce", "Very Scarce", "Extremely Scarce"];
+
+              plantState = getRandomItem(abundanceStates);
+              animalState = determineAnimalAbundance(plantState);
+
+                // Function to determine the abundance of animal life
+                function determineAnimalAbundance(plantAbundance) {
+                  // Get the index of the plant abundance state
+                  let index = abundanceStates.indexOf(plantAbundance);
+
+                  // Determine the range of possible indices for animal abundance
+                  let possibleIndices = [];
+                  if (index > 0) possibleIndices.push(index - 1); // One category down
+                  possibleIndices.push(index);                    // Same category
+                  if (index < abundanceStates.length - 1) possibleIndices.push(index + 1); // One category up
+
+                  // Randomly select an index from the possible indices
+                  let animalIndex = getRandomItem(possibleIndices);
+
+                  // Return the corresponding animal abundance state
+                  return abundanceStates[animalIndex];
+                }
+
+              if (plantState == "Extremely Abundant") {
+                  tag1 = "good"
+                } else if (plantState == "Very Abundant") {
+                  tag1 = "good"
+                } else if (plantState == "Uncommon") {
+                  tag1 = "warn"
+                } else if (plantState == "Scarce") {
+                  tag1 = "warn"
+                } else if (plantState == "Very Scarce") {
+                  tag1 = "bad"
+                } else if (plantState == "Extremely Scarce") {
+                  tag1 = "bad"
+                } else {
+                  tag1 = "norm"
+              }
+              if (animalState == "Extremely Abundant") {
+                  tag2 = "good"
+                } else if (animalState == "Very Abundant") {
+                  tag2 = "good"
+                } else if (animalState == "Uncommon") {
+                  tag2 = "warn"
+                } else if (animalState == "Scarce") {
+                  tag2 = "warn"
+                } else if (animalState == "Very Scarce") {
+                  tag2 = "bad"
+                } else if (animalState == "Extremely Scarce") {
+                  tag2 = "bad"
+                } else {
+                  tag2 = "norm"
+              }
+
+              vegetation.push("<span class='tag " + tag1 + "'>" + plantState + " Flora</span>");
+              fauna.push("<span class='tag " + tag2 + "'>" + animalState + " Fauna</span>");
+            }
+
+            //plants and animals
+            // Atmospheric Composition Effects
+            gasNames = gasData2.map(gas => gas.name);
+
+            if (gasNames.includes("Oxygen")) {
+              vegetation.push("<span class='tag'>Oxygen-Dependent Plants</span>");
+              fauna.push("<span class='tag'>Oxygen-Breathing Animals</span>");
+            }
+
+            if (gasNames.includes("Methane")) {
+              vegetation.push("<span class='tag'>Methane-Adapted Flora</span>");
+              fauna.push("<span class='tag'>Methane-Breathing Creatures</span>");
+            }
+
+            if (gasNames.includes("Carbon Dioxide")) {
+              vegetation.push("<span class='tag'>CO2-Absorbing Plants</span>");
+            }
+
+            if (gasNames.includes("Nitrogen")) {
+              vegetation.push("<span class='tag'>Nitrogen-Fixing Plants</span>");
+            }
+
+            if (gasNames.includes("Sulfur Dioxide")) {
+              vegetation.push("<span class='tag'>Sulfur-Tolerant Flora</span>");
+              fauna.push("<span class='tag'>Sulfur-Breathing Creatures</span>");
+            }
+
+            // Water Availability Effects
+            if (planetLiquidAmmount > 60) {
+                vegetation.push("<span class='tag'>Aquatic Plants</span>");
+                fauna.push("<span class='tag'>Aquatic Animals</span>");
+              } else if (planetLiquidAmmount < 55) {
+                vegetation.push("<span class='tag'>Drought-Resistant Plants</span>");
+                fauna.push("<span class='tag'>Water-Conserving Animals</span>");
+            }
+
+            if (shortTemp > 320) {
+                vegetation.push("<span class='tag'>Heat-adapted Vegetation</span>");
+                fauna.push("<span class='tag'>Heat-adapted Fauna</span>");
+              } else if (shortTemp > 290 && shortTemp < 320) {
+                vegetation.push("<span class='tag'>Common Vegetation</span>");
+                fauna.push("<span class='tag'>Common Fauna</span>");
+              } else if (shortTemp > 260 && shortTemp < 290) {
+                vegetation.push("<span class='tag'>Cold Vegetation</span>");
+                fauna.push("<span class='tag'>Cold Fauna" + "</span>");
+              } else {
+                vegetation.push("<span class='tag'>Artic-Adapted Vegetation</span>");
+                fauna.push("<span class='tag'>Artic-Adapted Fauna</span>");
+            }
+
+            if (shortPlanetLG < 0.5) {
+                fauna.push("<span class='tag'>Lightweight Creatures</span>");
+              } else if (shortPlanetLG > 1.5) {
+                fauna.push("<span class='tag'>Heavy-Bodied Creatures</span>");
+              } else {
+                fauna.push("<span class='tag'>Standard Creatures</span>");
+            }
+
+            //conditional modifiers
+
+              //finPlanetTags = planetTags.join(", ");
+              //finBiomeTags = biomeTags.join(", ");
+              //finVegetation = vegetation.join(", ");
+              //finFauna = fauna.join(", ");
+
+
+        };//End Habitable Stuff
+
+        if (planetType == "Terrestrial") {
+            planetClassColor = "#663300";
+          } else if (planetType == "Gas Giant") {
+            planetClassColor = "#CC6600";
+          } else if (planetType == "Ice Giant") {
+            planetClassColor = "#6666FF";
+          } else if (planetType == "Dwarf") {
+            planetClassColor = "#808080";
+          } else {
+            planetClassColor = "#009933";
+          }
+        if (planetForceHab == "yes") {
+          planetClassColor = "#009933";
+        }
+        if (planetHab == "yes") {
+          planetClassColor = "#009933";
+        }//Selects color for system chart
+
+        //planetDrawObj - { name: "Galactomos 1", distance: 179, radius: 13, satellites: [], color: '#663300' },
+        planets.push({"name": planetShortName, "distance": planetDrawDistance, "radius": planetDrawRadi, "satellites": [], "color": planetClassColor});//Passes instructions for the system drawing function
+
+        //Process Tag Lists
+
+        if (planetType == "Terrestrial") {
+          if (d100() > 75) {
+            planetTags.push("<span class='tag warn'>Volcanic Activity</span>")
+          }
+          if (d100() > 60) {
+            planetTags.push("<span class='tag warn'>Tectonic Activity</span>")
+          }
+          if (d100() > 75) {
+            planetTags.push("<span class='tag'>Mountainous Terrain</span>")
+          }
+          if (d100() > 90) {
+            planetTags.push("<span class='tag warn'>Abundant Canyons</span>")
+          }
+          if (d100() > 90) {
+            planetTags.push("<span class='tag warn'>Abundant Craters</span>")
+          }
+          dieroll = d100();
+          if (dieroll > 75) {
+            planetTags.push("<span class='tag good'>Abundant Minerals</span>")
+          } else if (dieroll < 25) {
+            planetTags.push("<span class='tag bad'>Scarse Minerals</span>")
+          }
+          dieroll = d100();
+          if (dieroll > 75) {
+            planetTags.push("<span class='tag good'>Easily Accessable Minerals</span>")
+          } else if (dieroll < 25) {
+            planetTags.push("<span class='tag bad'>Difficult to Access Minerals</span>")
+          }
+          if (d100() > 75) {
+            planetTags.push("<span class='tag warn'>Volcanic Activity</span>")
+          }
+          if (d100() > 75) {
+            planetTags.push("<span class='tag good'>Rich in Metals</span>")
+          }
+          if (d100() > 80) {
+            planetTags.push("<span class='tag bad'>Toxic Soil</span>")
+          }
+          if (d100() > 75) {
+            planetTags.push("<span class='tag bad'>Radioactive Elements</span>")
+          }
+          if (d100() > 60) {
+            planetTags.push("<span class='tag good'>Crystal Formations</span>")
+          }
+          if (d100() > 95) {
+            planetTags.push("<span class='tag good'>Microbial Life</span>")
+          }
+          if (d100() > 95) {
+            planetTags.push("<span class='tag warn'>Alien Ruins</span>")
+          }
+          if (d100() > 75) {
+            planetTags.push("<span class='tag good'>Beautiful Landscapes</span>")
+          }
+          if (d100() > 60) {
+            planetTags.push("<span class='tag warn'>Dangerous Terrain</span>")
+          }
+          if (d100() > 85) {
+            planetTags.push("<span class='tag good'>Auroras</span>")
+          }
+          if (d100() > 90) {
+            planetTags.push("<span class='tag warn'>Frequent Meteor Showers</span>")
+          }
+        }
+
+        if (planetType == "Gas Giant" || planetType == "Ice Giant" ) {
+          if (d100() > 75) {
+            planetTags.push("<span class='tag bad'>Intense Storms</span>")
+          }
+          if (d100() > 80) {
+            planetTags.push("<span class='tag warn'>Strong Magnetic Field</span>")
+          }
+          if (d100() > 60) {
+            planetTags.push("<span class='tag good'>Rich in Hydrogen</span>")
+          }
+          if (d100() > 60) {
+            planetTags.push("<span class='tag good'>Rich in Helium</span>")
+          }
+          if (d100() > 90) {
+            planetTags.push("<span class='tag bad'>High Radiation</span>")
+          }
+          if (d100() > 60) {
+            planetTags.push("<span class='tag warn'>Dense Cloud Layers</span>")
+          }
+          if (d100() > 90) {
+            planetTags.push("<span class='tag warn'>Thick Icy Atmosphere</span>")
+          }
+          if (d100() > 50) {
+            planetTags.push("<span class='tag warn'>Strong Winds</span>")
+          }
+          if (d100() > 75) {
+            planetTags.push("<span class='tag good'>Rich in Ammonia</span>")
+          }
+          if (d100() > 80) {
+            planetTags.push("<span class='tag warn'>Electromagnetic Interference</span>")
+          }
+          if (d100() > 50) {
+            planetTags.push("<span class='tag good'>Gas Mining Potential</span>")
+          }
+          if (d100() > 65) {
+            planetTags.push("<span class='tag bad'>Radiation Belts</span>")
+          }
+        }
+
+        if (planetType == "Dwarf") {
+          if (d100() > 30) {
+            planetTags.push("<span class='tag warn'>Craters</span>")
+          }
+          if (d100() > 65) {
+            planetTags.push("<span class='tag warn'>Mountain Ranges</span>")
+          }
+          if (d100() > 80) {
+            planetTags.push("<span class='tag warn'>Ice Volcanos</span>")
+          }
+          if (d100() > 65) {
+            planetTags.push("<span class='tag good'>Rich in Water Ice</span>")
+          }
+          if (d100() > 75) {
+            planetTags.push("<span class='tag warn'>Frozen Methane</span>")
+          }
+          if (d100() > 55) {
+            planetTags.push("<span class='tag warn'>Rocky Surface</span>")
+          }
+          if (d100() > 75) {
+            planetTags.push("<span class='tag good'>Ice Caves</span>")
+          }
+          if (d100() > 95) {
+            planetTags.push("<span class='tag good'>Prebiotic Chemistry</span>")
+          }
+          if (d100() > 80) {
+            planetTags.push("<span class='tag bad'>High Radiation Levels</span>")
+          }
+          diceroll = d100();
+          if (diceroll > 70) {
+            planetTags.push("<span class='tag good'>Rich in Minerals</span>")
+          } else if (diceroll < 30) {
+            planetTags.push("<span class='tag bad'>Scarce Resources</span>")
+          }
+          if (d100() > 65) {
+            planetTags.push("<span class='tag good'>Mining Potential</span>")
+          }
+          if (d100() > 65) {
+            planetTags.push("<span class='tag good'>Interesting Geological Features</span>")
+          }
+        }
+
+        if (planetTags.length === 0) {
+          planetTags.push("<span class='tag warn'>Boring</span>")
+        }//Ensures at least one planet tag per planet
+
+         planetTags = planetTags.join("");//Removes commas from tag string
+         biomeTags = biomeTags.join("");//Removes commas from tag string
+         vegetation = vegetation.join("");//Removes commas from tag string
+         fauna = fauna.join("");//Removes commas from tag string
+
+
+        // Other operations can be added here
+
+        let starCont1 = document.querySelector('.starCont1');
+        let newDiv = document.createElement('div');
+        cID = "canvas" + index;
+        newDiv.id = "planetContainer";
+        newDiv.classList.add('planetContainer');
+        let htmlTemplate = `<div id='planetData' class="planetData" style='margin-left: 2em;'>
+                            <h2 class="planetname">${planetName} — ${planetType}</h2>`;
+
+                            if (planetSemiMajor == habplanetdist) {
+                              htmlTemplate += `<h3 class="smallfont">FORCED HABITABLE</h3>`;
+                            };
+                            if (planetHab == "yes") {
+                              htmlTemplate += `<h3 class="smallfont">HABITABLE</h3>`;
+                            };
+
+              htmlTemplate += `<div class="container">
+                                <div class="Canvas">
+                                  <canvas id='${cID}' width='200' height='200'></canvas>
+                                </div>
+                                <div class="Orbitals">
+                                  <b class="miniheadder">Orbital Characteristics</b></br></br>
+                                  <div class="planetSection">
+                                  <b>Semi-Major Axis:</b> ${planetSemiMajor.toFixed(2)} AU</br>
+                                  <b>Eccentricity:</b> ${planetEccentricity.toFixed(3)}</br>
+                                  <b>Orbital period (sidereal):</b> ${planetOrbitalPiriod.toFixed(2)} Years</br>
+                                  <b>Inclination:</b> ${planetEcliptic.toFixed(2)}° to ecliptic</br>`;
+                                  if (numMoons > 0) {
+                                    htmlTemplate += `<b>${moonText}:</b> ${planetMoon}</br>`;
+                                  }
+              htmlTemplate += `  </div>
+                                </div>
+                                <div class="Characteristics">
+                                <b class="miniheadder">Physical Characteristics</b></br></br>
+                                  <div class="planetSection">
+                                    <b>Mass: </b> ${planetMass.toFixed(2)} M<sub>E</sub></br>
+                                    <b>Mean radius:</b> ${planetRadi.toFixed(2)} R<sub>E</sub></br>
+                                    <b>Surfice gravity:</b> ${planetLilG.toFixed(2)} m/s<sup>2</sup> | ${planetLilGinG.toFixed(2)}g</br>
+                                    <b>Escape Velocity:</b> ${planetEVkms.toFixed(2)} km/s</br>
+                                    <b>Rotation period:</b> ${rotationPeriod.toFixed(2)} hours</br>
+                                    <b>Axial Tilt:</b> ${planetAxialTilt.toFixed(2)}°</br>
+                                    <b>Albedo:</b> ${planetBondAlbedo.toFixed(2)} Bond</br>
+                                    <b>Blackbody Temperature:</b> ${planetEqulibriumTempature.toFixed(2)} K (${planetEqulibriumTempatureC} °C | ${planetEqulibriumTempatureF} °F)</br>`;
+                                    if (atmosphere == "Yes") {
+                                        htmlTemplate += `<b>Surfice Tempature:</b> ${planetEffectiveEmissivity.toFixed(2)} K (${planetEffectiveEmissivityC} °C | ${planetEffectiveEmissivityF} °F)</br>`;
+                                    }
+                                    if (planetLiquidFlag == "yes" && (planetType == "Terrestrial" || planetType == "Dwarf") && planetThalassogen != "Error") {
+                                        htmlTemplate += `<b>Hydrosphere:</b> ${planetOcean}</br>`;
+                                    }
+              htmlTemplate += `  </div>
+                                </div>`;
+              if (atmosphere === "Yes") {
+                  htmlTemplate += ` <div class="Atmo">
+                                     <b class="miniheadder">Atmosphere</b></br></br>
+                                     <div class="planetSection">
+                                     <b>Surface Pressure:</b> ${planetAtmoPressureATMOutput.toFixed(2)} atm</br>
+                                     <b>Composition by volume:</b> ${atmosphereComp}, and ${stopGapGasses.toFixed(2)}% Other Gasses</br>
+                                     </div></div>
+                                    </div>
+                                    <b class="miniheadder">Planetary Data</b><div class="planetSection"></br>`;
+                                } else {
+                                  htmlTemplate += ` <div class="Atmo">
+                                                     <b class="miniheadder">Atmosphere</b></br></br>
+                                                     <div class="planetSection">
+                                                     <b>None</b></div>
+                                                    </div></div>
+                                                    <b class="miniheadder">Planetary Data</b><div class="planetSection"></br>`
+                                }
+              if ((planetType == "Terrestrial" && atmosphere == "Yes") && planetHab != "yes" && planetForceHab != "yes") {
+                htmlTemplate += `<b class="miniheadder">Climate Data</b></br>
+                                    <b>Seasons:</b> ${planetSeasons}</br>
+                                    <b>Weather:</b> ${planetWeather}</br>`
+              }
+              //htmlTemplate += `</div>`
+
+              if (planetHab == "yes" || planetForceHab == "yes") {
+                  htmlTemplate += `
+                      <b>${biomeTypeA}: </b> ${primaryBiomes}</br>
+                      <b class="miniheadder">Climate Data</b></br>
+                      <b>Seasons:</b> ${planetSeasons}</br>
+                      <b>Weather:</b> ${planetWeather}</br>
+                        <div id="biome-tags" class="tags-container">${biomeTags}</div>
+                        <div id="vegetation-tags" class="tags-container">${vegetation}</div>
+                        <div id="fauna-tags" class="tags-container">${fauna}</div>`
+              }
+
+        htmlTemplate += `<div id="planet-tags" class="tags-container">${planetTags}</div></div>`;
+        newDiv.innerHTML = htmlTemplate;
+
+        starCont1.appendChild(newDiv);
+
+
+
+
+        //Planet Image generation
+        const planetCanvas1 = document.getElementById(cID);
+        const context = planetCanvas1.getContext('2d');
+
+        planetCanvas1.style.width = "256px";
+        planetCanvas1.style.height = "256px";
+        planetCanvas1.style.float = "left";
+        planetCanvas1.style.background = "black";
+        planetCanvas1.style.border = "2px solid gray";
+        planetCanvas1.style.marginRight = "1em";
+        planetCanvas1.style.marginBottom = "1em";
+
+        context.globalCompositeOperation = "source-over";
+
+        make_base1();
+
+        function make_base1() {
+
+            if ((planetType == "Gas Giant" || planetType == "Ice Giant") && ringSystems == "no rings") {
+              const base_image = new Image();
+              die = getRandomInt(1, 20);
+              base_image.src = "img/Gaseous/Gas" + die + ".webp";
+
+              base_image.onload = function() {
+                  console.log("Base image loaded", base_image.src);
+                  context.drawImage(base_image, 0, 0, planetCanvas1.width, planetCanvas1.height);
+              };
+            } else if ((planetType == "Gas Giant" || planetType == "Ice Giant") && (ringSystems != "faint rings" && ringSystems != "no rings")) {
+              const base_image = new Image();
+              die = getRandomInt(1, 20);
+              base_image.src = "img/Gaseous/Gas" + die + ".webp";
+
+              base_image.onload = function() {
+                  console.log("Base image loaded", base_image.src);
+                  drawBaseImage();
+              };
+
+              function drawBaseImage() {
+                  context.clearRect(0, 0, planetCanvas1.width, planetCanvas1.height);
+
+                  // Get rotation angle based on die1
+                  let die1 = getRandomInt(2, 3);
+                  let rotationAngle;
+                  switch(die1) {
+                      case 1:
+                          rotationAngle = 35;
+                          break;
+                      case 2:
+                          rotationAngle = 35;
+                          break;
+                      case 3:
+                          rotationAngle = -10;
+                          break;
+                  }
+
+                  const centerX = planetCanvas1.width / 2;
+                  const centerY = planetCanvas1.height / 2;
+
+                  context.save();
+                  context.translate(centerX, centerY);
+                  context.rotate(rotationAngle * Math.PI / 180);
+                  context.translate(-centerX, -centerY);
+                  context.drawImage(base_image, 0, 0, planetCanvas1.width, planetCanvas1.height);
+                  context.restore();
+
+                  loadAndDrawRingImage(die1);
+              }
+
+              function loadAndDrawRingImage(die1) {
+                  //let die1 = getRandomInt(2, 3);
+                  const ring_image = new Image();
+                  ring_image.src = "img/Rings/Prom" + die1 + ".webp";
+                  ring_image.onload = function() {
+                      console.log("Ring image loaded", ring_image.src);
+                      context.drawImage(ring_image, 0, 0, planetCanvas1.width, planetCanvas1.height);
+                  };
+              }
+            } else if ((planetType == "Gas Giant" || planetType == "Ice Giant") && (ringSystems == "faint rings" && ringSystems != "no rings")) {
+              const base_image = new Image();
+              die = getRandomInt(1, 20);
+              base_image.src = "img/Gaseous/Gas" + die + ".webp";
+
+              base_image.onload = function() {
+                  console.log("Base image loaded", base_image.src);
+                  drawBaseImage1();
+              };
+
+              function drawBaseImage1() {
+                  context.clearRect(0, 0, planetCanvas1.width, planetCanvas1.height);
+
+                  // Get rotation angle based on die1
+                  let die1 = getRandomInt(1, 2);
+                  let rotationAngle;
+                  switch(die1) {
+                      case 1:
+                          rotationAngle = 5;
+                          break;
+                      case 2:
+                          rotationAngle = 10;
+                          break;
+                      case 3:
+                          rotationAngle = -10;
+                          break;
+                  }
+
+                  const centerX = planetCanvas1.width / 2;
+                  const centerY = planetCanvas1.height / 2;
+
+                  context.save();
+                  context.translate(centerX, centerY);
+                  context.rotate(rotationAngle * Math.PI / 180);
+                  context.translate(-centerX, -centerY);
+                  context.drawImage(base_image, 0, 0, planetCanvas1.width, planetCanvas1.height);
+                  context.restore();
+
+                  loadAndDrawRingImage1(die1);
+              }
+
+              function loadAndDrawRingImage1(die1) {
+                  //let die1 = getRandomInt(1, 2);
+                  const ring_image = new Image();
+                  ring_image.src = "img/Rings/Faint" + die1 + ".webp";
+                  ring_image.onload = function() {
+                      console.log("Ring image loaded", ring_image.src);
+                      context.drawImage(ring_image, 0, 0, planetCanvas1.width, planetCanvas1.height);
+                  };
+              }
+            } else if (planetType == "Dwarf") {
+              const base_image = new Image();
+              die = getRandomInt(1, 5);
+              base_image.src = "img/Snowy/Snow" + die + ".webp";
+
+              base_image.onload = function() {
+                  console.log("Base image loaded", base_image.src);
+                  context.drawImage(base_image, 0, 0, planetCanvas1.width, planetCanvas1.height);
+            }
+          } else if ((planetType == "Terrestrial" && planetHab != "yes" && planetForceHab != "yes") && atmosphere == "no") {
+              const base_image = new Image();
+              baseImages = ["Arid", "Barren", "Dusty", "Martian"];
+              path = getRandomItem(baseImages);
+              fileName = path;
+              if (path == "Martian") {
+                fileName = "Mars";
+              }
+
+              die = getRandomInt(1, 5);
+              base_image.src = "img/" + path + "/" + fileName + die + ".webp";
+
+              base_image.onload = function() {
+                  console.log("Base image loaded", base_image.src);
+                  context.drawImage(base_image, 0, 0, planetCanvas1.width, planetCanvas1.height);
+            }
+          } else if (planetType == "Terrestrial" && planetHab != "yes" && planetForceHab != "yes" && atmosphere == "Yes") {
+              const base_image = new Image();
+              baseImages = ["Arid", "Barren", "Dusty", "Martian"];
+              path = getRandomItem(baseImages);
+              fileName = path;
+              if (path == "Martian") {
+                fileName = "Mars";
+              }
+
+              die = getRandomInt(1, 5);
+              base_image.src = "img/" + path + "/" + fileName + die + ".webp";
+
+              base_image.onload = function() {
+                  console.log("Base image loaded", base_image.src);
+                  context.drawImage(base_image, 0, 0, planetCanvas1.width, planetCanvas1.height);
+
+                }
+
+                die = getRandomInt(1, 4);
+                const Atmo1_image = new Image();
+                Atmo1_image.src = "img/Atmo/Atmo" + die + ".webp";
+                  Atmo1_image.onload = function() {
+                    console.log("Base image loaded", Atmo1_image.src);
+                    context.drawImage(Atmo1_image, 0, 0, planetCanvas1.width, planetCanvas1.height);
+                  }
+
+
+            } else if (planetType == "Terrestrial" && (planetHab == "yes" || planetForceHab == "yes")) {
+              const base_image = new Image();
+              baseImages = ["Grassland", "Jungle", "Marshy", "Sandy", "Tundra"];
+              path = getRandomItem(baseImages);
+              fileName = path;
+              if (path == "Grassland") {
+                fileName = "Grass";
+              }
+              if (path == "Marshy") {
+                fileName = "Marsh";
+              }
+
+              die = getRandomInt(1, 5);
+              base_image.src = "img/" + path + "/" + fileName + die + ".webp";
+
+              base_image.onload = function() {
+                  console.log("Base image loaded", base_image.src);
+                  context.drawImage(base_image, 0, 0, planetCanvas1.width, planetCanvas1.height);
+                }
+              die = getRandomInt(1, 5);
+              const cloud_image = new Image();
+              cloud_image.src = "img/Clouds/Clouds" + die + ".webp";
+                cloud_image.onload = function() {
+                  console.log("Base image loaded", cloud_image.src);
+                  context.drawImage(cloud_image, 0, 0, planetCanvas1.width, planetCanvas1.height);
+                }
+              die = getRandomInt(1, 4);
+              const Atmo_image = new Image();
+              Atmo_image.src = "img/Atmo/Atmo" + die + ".webp";
+                Atmo_image.onload = function() {
+                  console.log("Base image loaded", Atmo_image.src);
+                  context.drawImage(Atmo_image, 0, 0, planetCanvas1.width, planetCanvas1.height);
+                }
+
+
+
+
+          }
+        }
+
+
+    };//End Make Planet
+
+    //System Drawing Function
+    function drawStarSystem(star, planets) {
+        const canvas = document.getElementById("starSystemCanvas");
+        const ctx = canvas.getContext("2d");
+
+        console.log("starDrawSize " + starDrawSize);
+        console.log("starDrawColor " + starDrawColor);
+        console.log(planets);
+
+        const keyItems = [
+            { label: "Terrestrial", color: "#663300" },
+            { label: "Habitable", color: "#009933" },
+            { label: "Gas Giant", color: "#CC6600" },
+            { label: "Ice Giant", color: "#6666FF" },
+            { label: "Dwarf", color: "#808080" }
+        ];
+
+        //Function to enbrighten a hex value
+        function brightenHexColor(hex, factor = 0.2) {
+            // Ensure the input is a valid hex color code
+            if (hex.startsWith('#')) {
+                hex = hex.slice(1);
+            }
+            if (hex.length !== 6) {
+                throw new Error('Invalid hex color format. Must be a 6-digit hex value.');
+            }
+
+            // Convert hex to RGB
+            let r = parseInt(hex.substring(0, 2), 16);
+            let g = parseInt(hex.substring(2, 4), 16);
+            let b = parseInt(hex.substring(4, 6), 16);
+
+            // Brighten each color component
+            r = Math.min(255, Math.floor(r + (255 - r) * factor));
+            g = Math.min(255, Math.floor(g + (255 - g) * factor));
+            b = Math.min(255, Math.floor(b + (255 - b) * factor));
+
+            // Convert RGB back to hex
+            const toHex = (component) => {
+                const hex = component.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            };
+
+            return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+        };
+
+        // Function to draw a shaded circle
+        function drawShadedCircle(x, y, radius, color) {
+            // Create a radial gradient
+            const gradient = ctx.createRadialGradient(x - radius / 4, y - radius / 4, radius / 4, x, y, radius);
+            gradient.addColorStop(0, color);
+            if (color == "#663300") {
+              gradient.addColorStop(1, '#331a00');
+            } else if (color == "#009933") {
+              gradient.addColorStop(1, '#004d1a');
+            } else if (color == "#CC6600") {
+              gradient.addColorStop(1, '#663300');
+            } else if (color == "#6666FF") {
+              gradient.addColorStop(1, '#1a1aff');
+            } else if (color == "#808080") {
+              gradient.addColorStop(1, '#4d4d4d');
+            } else {
+              brighterColor = brightenHexColor(color, 0.5);
+              gradient.addColorStop(1, brighterColor);
+            }
+            //gradient.addColorStop(1, 'rgb(0% 0% 0% / 0.8)');
+
+            // Draw the circle with gradient fill
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+        }
+
+        // Function to draw text
+        function drawText(text, x, y, color = 'black', align = 'center') {
+            ctx.fillStyle = color;
+            ctx.textAlign = align;
+            ctx.font = '12px Courier New';
+            ctx.fillText(text, x, y);
+        }
+
+        // Function to check overlap between two circles
+        function isOverlapping(x1, y1, r1, x2, y2, r2) {
+            const distance = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+            return distance < r1 + r2;
+        }
+
+        // Function to check overlap between two text boxes
+        function isTextOverlapping(x1, y1, w1, h1, x2, y2, w2, h2) {
+            return x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2;
+        }
+
+        // Adjust positions to prevent overlapping
+        function adjustPositions(planets, buffer) {
+            for (let i = 0; i < planets.length; i++) {
+                for (let j = i + 1; j < planets.length; j++) {
+                    const planet1 = planets[i];
+                    const planet2 = planets[j];
+                    let planet1X = starDrawSize + planet1.distance;
+                    let planet2X = starDrawSize + planet2.distance;
+                    const planetY = canvas.height / 2;
+
+                    if (isOverlapping(planet1X, planetY, planet1.radius, planet2X, planetY, planet2.radius)) {
+                        const overlap = (planet1.radius + planet2.radius + buffer) - Math.abs(planet2X - planet1X);
+                        if (planet2X > planet1X) {
+                            planet2.distance += overlap * 2;// / 2;
+                            planet1.distance -= overlap * 2;// / 2;
+                        } else {
+                            planet1.distance += overlap * 2;// / 2;
+                            planet2.distance -= overlap * 2;// / 2;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Adjust text positions to prevent overlapping and clipping out of canvas
+        function adjustTextPositions(planets) {
+            const textHeight = 14; // Approximate height of text
+            const padding = 10; // Padding from canvas edge
+            planets.forEach((planet, i) => {
+                const planetX = starDrawSize + planet.distance;
+                const planetY = canvas.height / 2;
+                let textY = planetY + planet.radius + 20;
+
+                // Adjust text to prevent overlap with other texts
+                for (let j = 0; j < i; j++) {
+                    const otherPlanet = planets[j];
+                    const otherPlanetX = starDrawSize + otherPlanet.distance;
+                    const otherTextY = canvas.height / 2 + otherPlanet.radius + 20;
+                    const textWidth = ctx.measureText(planet.name).width;
+                    const otherTextWidth = ctx.measureText(otherPlanet.name).width;
+
+                    if (isTextOverlapping(planetX - textWidth / 2, textY, textWidth, textHeight, otherPlanetX - otherTextWidth / 2, otherTextY, otherTextWidth, textHeight)) {
+                        textY += textHeight + 5; // Move text down to avoid overlap
+                    }
+                }
+
+                // Adjust text to stay within canvas boundaries
+                const textWidth = ctx.measureText(planet.name).width;
+                if (planetX - textWidth / 2 < padding) {
+                    planet.textX = padding + textWidth / 2; // Move text right
+                } else if (planetX + textWidth / 2 > canvas.width - padding) {
+                    planet.textX = canvas.width - padding - textWidth / 2; // Move text left
+                } else {
+                    planet.textX = planetX; // Center text
+                }
+                if (textY + textHeight > canvas.height - padding) {
+                    planet.textY = canvas.height - padding - textHeight; // Move text up
+                } else {
+                    planet.textY = textY; // Default text position
+                }
+            });
+        }
+
+        // Call adjustPositions with buffer distance
+        const bufferDistance = 50; // Increase this value to increase the separation distance
+        adjustPositions(planets, bufferDistance);
+        adjustTextPositions(planets);
+
+        // Drawing the star
+        drawShadedCircle(starDrawSize / -2, canvas.height / 2, starDrawSize, starDrawColor);
+
+        // Drawing the planets and their satellites
+        planets.forEach(planet => {
+            const planetX = starDrawSize + planet.distance;
+            const planetY = canvas.height / 2;
+            console.log("Got to the draw planets bit.")
+            // Draw planet
+            drawShadedCircle(planetX, planetY, planet.radius, planet.color);
+            drawText(planet.name, planet.textX, planet.textY);
+
+            // Draw satellites
+            planet.satellites.forEach((satellite, index) => {
+                const satelliteX = planetX + satellite.distance;
+                const satelliteY = planetY + (index % 2 === 0 ? 40 : -40); // Alternate above and below the planet
+
+                drawShadedCircle(satelliteX, satelliteY, satellite.radius, satellite.color);
+                drawText(satellite.name, satelliteX, satelliteY + satellite.radius + 10, 'white', 'center');
+            });
+        });
+
+        // Adding connecting lines for satellites
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.3)';
+        planets.forEach(planet => {
+            const planetX = starDrawSize + planet.distance;
+            const planetY = canvas.height / 2;
+
+            planet.satellites.forEach((satellite, index) => {
+                const satelliteX = planetX + satellite.distance;
+                const satelliteY = planetY + (index % 2 === 0 ? 40 : -40);
+
+                ctx.beginPath();
+                ctx.moveTo(planetX, planetY);
+                ctx.lineTo(satelliteX, satelliteY);
+                ctx.stroke();
+            });
+        });
+
+        // Drawing the "Not to Scale" text in the upper right-hand corner
+        drawText("Not to Scale", canvas.width - 80, 20, 'black', 'center');
+
+        // Drawing the "Key" section in the bottom right-hand corner
+        function drawKey() {
+            const keyX = canvas.width - 150;
+            const keyY = canvas.height - 130;
+            const boxWidth = 140;
+            const boxHeight = 120;
+            const itemHeight = 20;
+
+            // Draw key box
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.fillRect(keyX, keyY, boxWidth, boxHeight);
+            ctx.strokeStyle = 'black';
+            ctx.strokeRect(keyX, keyY, boxWidth, boxHeight);
+
+            // Draw key items
+            keyItems.forEach((item, index) => {
+                const itemX = keyX + 10;
+                const itemY = keyY + 10 + index * itemHeight;
+
+                // Draw color square
+                ctx.fillStyle = item.color;
+                ctx.fillRect(itemX, itemY, 15, 15);
+
+                // Draw label
+                drawText(item.label, itemX + 25, itemY + 12, 'black', 'left');
+            });
+
+            // Draw "Key" label
+            drawText("Key", keyX + boxWidth / 2, keyY - 5, 'black', 'center');
+        }
+
+        drawKey();
+    }
+
+
+    // Function to format atmosphere composition for display
+    function formatComposition(composition) {
+        let compositionString = '';
+        for (const gas in composition) {
+            compositionString += `${gas}: ${(composition[gas] * 100).toFixed(2)}%, `;
+        }
+        // Remove the trailing comma and space
+        compositionString = compositionString.slice(0, -2);
+        return compositionString;
+    }
+
+        //Dtermines what 10th of a range a value is in
+        function determineTenth(number, minRange, maxRange) {
+            // Calculate the range of each 10th
+            var rangeSize = (maxRange - minRange + 1) / 10;
+
+            // Determine which 10th the number falls into
+            var tenth = Math.floor((number - minRange) / rangeSize);
+
+            // Ensure the tenth is within the range of 0 to 9
+            if (tenth < 0) {
+                tenth = 0;
+            } else if (tenth > 9) {
+                tenth = 9;
+            }
+
+            return tenth;
+        }
+
+        //Sphere volume calulator
+        function calculateSphereVolume(radius) {
+            const volume = (4 / 3) * Math.PI * Math.pow(radius, 3);
+            return volume;
+        }
+
+        //Star Name Componant Lists
+        const starFirst = ["A","Aa","Ab","Aba","Abe","Abi","Abo","Abso","Abu","Acero","Achi","Ad","Ada","Adeno","Adi","Ado","Adu","Ae","Aegi","Aeri","Aero","Aga","Ai","Air","Aire","Al","Ala","Albi","Algo","Ali","Alle","Alpha","Alsa","Alto","Alu","Ambi","Ambro","Ami","Amma","Ampa","Ampla","Ampli","Amplo","Ampro","Ana","Andro","Ano","Anona","Ante","Anthro","Anti","Ao","Aphro","Api","Apo","Apollo","Apos","Apri","Aqua","Arca","Are","Arga","Arge","Argi","Argo","Argu","Aris","Arka","Arr","Arte","As","Asa","Ase","Asi","Asia","Aso","Astra","Astro","Asu","Asylo","Ata","Athe","Atla","Atlanta","Ato","Au","Audio","Augu","Aura","Auto","Ava","Ave","Avio","Avo","Avu","Axa","Ay","Aye","Ba","Baba","Bag","Base","Be","Beam","Bee","Bena","Beta","Bi","Bibio","Biblio","Big","Bino","Bio","Bitroni","Bla","Blake","Blue","Bo","Bog","Bota","Brah","Brahma","Brea","Brew","Bronto","Bru","Brute","Bu","By","Bya","Bygie","Byo","Byu","Ca","Cali","Caly","Cana","Cani","Canna","Canni","Capi","Capri","Carbo","Cardio","Carno","Caro","Casi","Cataly","Cava","Ce","Ced","Centi","Cha","Chee","Chemo","Chi","Cho","Chro","Chromo","Chrono","Chu","Ci","Cina","Cine","Circa","Circu","Circum","Claw","Co","Cobra","Cogni","Coito","Combi","Combo","Commo","Commu","Communi","Compu","Condra","Conso","Contra","Cope","Coperni","Cor","Corne","Coro","Corpu","Corsy","Corti","Cosmo","Coulro","Cove","Cra","Crani","Cranio","Crea","Creta","Criti","Cro","Croco","Cryo","Cryoge","Crypto","Crys","Cu","Cy","Cyba","Cyber","Cybo","Cyclo","Cyla","Cylo","Cyn","Cyno","Cyr","Cysto","Da","Data","De","Dealta","Deca","Dece","Deci","Dee","Deka","Deme","Demi","Demo","Dermi","Dermo","Destro","Deva","Di","Dia","Digi","Dimento","Dina","Dini","Dino","Diplo","Dis","Disastro","Disca","Disco","Displa","Disso","Dista","Do","Domi","Doub","Draco","Dracu","Drago","Drap","Dreama","Dref","Drip","Dro","Drono","Du","Dual","Duo","Dy","Dyna","Dyno","Dyp","Dys","E","Ea","Echo","Eco","Ego","El","Ele","Electro","Elita","Ell","Elo","Embry","Empi","Empiro","Ener","Enigma","Ense","Enyo","Ephro","Epi","Ergo","Eri","Ery","Eryxa","Eu","Euro","Euroto","Eva","Ex","Exa","Exer","Exo","Extra","Fa","Facto","Fal","Falco","Faxo","Fe","Fef","Femi","Femmi","Femto","Fetu","Fi","Fia","Fir","Fire","Flexi","Fo","For","Formi","Forti","Fortre","Fortu","Forwa","Fra","Fu","Fuc","Fuch","Fud","Futura","Ga","Galacti","Galacto","Galva","Gamma","Gamo","Ge","Gea","Geni","Geno","Geo","Gi","Gia","Giga","Giganto","Gloto","Go","God","Gra","Gran","Grana","Gro","Grud","Gu","Gya","Gyo","Gyro","Ha","Hade","Hal","Halcy","Halo","Haplo","Harmo","He","Heka","Heli","Helio","Hemi","Hemo","Hepato","Hepta","Hercu","Hero","Hetero","Hexa","Hexi","Hi","Hi-","Hia","Hippa","Hippo","Histo","Ho","Holo","Homeo","Homi","Homino","Homo","Hoop","Horri","Hu","Huma","Hurri","Husmy","Hy","Hya","Hydra","Hydro","Hyo","Hyper","Hypno","Hyu","I","Ica","Ico","Ideo","Immorta","In","Infa","Infe","Inferno","Infi","Infra","Inno","Inpha","Inse","Insi","Inter","Intro","Iro","Iron","Iso","Ja","Jaf","Janu","Jay","Je","Jet","Ji","Jo","Ju","Juli","Juno","Jupi","Jura","Ka","Kaa","Kai","Kali","Kanga","Kango","Kao","Kay","Ke","Keno","Ki","Kia","Kii","Kila","Kilo","Kine","Ko","Koa","Koo","Kosmiko","Kosmo","Kra","Kry","Kryna","Kryo","Krypto","Krys","Kryte","Ku","Kya","Kyo","Kyu","La","Laser","Lasi","Laxa","Le","Lego","Lena","Leni","Leo","Leuko","Lexa","Lexi","Li","Lia","Light","Link","Lino","Linu","Lite","Lo","Lobo","Logo","Loki","Loli","Lordi","Lori","Lu","Luna","Lydi","Lystra","Ma","Machi","Macro","Maga","Magna","Mal","Malaxo","Mana","Manni","Manno","Mar","Mara","Marvi","Masi","Massi","Mata","Matri","Maxa","Maxi","Maxima","Mazo","Me","Mecha","Mechi","Medi","Medu","Mega","Mekka","Mela","Melo","Melona","Melono","Mem","Memo","Mercen","Merci","Mercu","Meta","Metri","Metro","Mezza","Mi","Micro","Midi","Milla","Milli","Mina","Mini","Minima","Minmi","Minu","Miri","Mixi","Mlito","Mo","Mobi","Modo","Modu","Modula","Moni","Mono","Moo","Moon","Morpho","Morta","Mother-","Motio","Moto","Mu","Multi","Musa","Musi","Muso","Muta","Muti","My","Mya","Myco","Myo","Myrmi","Myro","Myxo","N","Na","Nano","Narci","Nasp","Ne","Nebu","Nebula","Necro","Neme","Nemesi","Nen","Neo","Nepha","Nepto","Neptu","Nero","Nesp","Neu","Neuro","Neutro","Nexo","Nexu","Ni","Nico","Niger","Niki","Nissa","No","Noki","Noko","Nona","Noni","Nosp","Nou","Nova","Nu","Nupri","Ny","Nya","Nympho","Nyo","Nys","Nyu","O","Obe","Octo","Odessa","Oly","Omega","Omni","Omo","Omorphia","Ooh","Opti","Optimo","Opto","Ora","Oscilla","Osy","Outer","Oxy","Pa","Pago","Paleo","Pan","Pana","Panda","Pando","Pangi","Pano","Papa","Para","Pe","Pecto","Pee","Pega","Pena","Pene","Penelo","Penni","Penta","Pente","Peri","Pero","Perse","Persepho","Peta","Pexi","Pha","Phalli","Phanta","Pharma","Phaser","Phe","Phea","Phedra","Phene","Pheno","Phi","Phila","Philo","Pho","Photo","Phy","Physio","Pi","Pia","Pico","Pina","Pino","Pixi","Pla","Place","Plane","Plar","Plasmo","Plato","Platta","Platti","Plexi","Plor","Plu","Plura","Pluto","Po","Pole","Poly","Popla","Posei","Posi","Post","Posto","Pre","Prem","Premiu","Prima","Primo","Pro","Proeto","Proto","Pseudo","Psi","Psy","Psycha","Psycho","Psyno","Pu","Pya","Pyo","Pyra","Pyrena","Pyro","Pyu","Qua","Quadra","Quanto","Quantu","Quasi","Quatro","Que","Qui","Quik","Quinti","Quo","Ra","Radi","Radia","Radio","Radiu","Ram","Rama","Rampa","Ramsha","Rani","Rast","Rava","Ray","Re","Reco","Red","Regu","Rena","Repli","Reta","Retro","Rewi","Rexa","Rexo","Rhi","Rhia","Rhino","Ri","Ria","Rino","Rip","Rive","Riza","Ro","Robo","Rove","Ru","Rya","Ryu","Sa","Sana","Sap","Sapa","Satur","Sci","Scie","Sciento","Screen","Scylla","Se","See","Semi","Senti","Sentia","Sepi","Septa","Septe","Ses","Seta","Sexta","Sexu","Sha","Shado","Shadow-","Shi","Shiva","Sho","Shu","Sigma","Silo","Singu","Sino","Sky","Sna","Snej","Sojh","Sola","Solar","Soldi","Soma","Soni","Sopu","Space","Spectro","Stanza","Star","Ste","Stella","Ster","Stereo","Stra","Strata","Su","Sub","Sui","Supo","Supra","Supre","Swi","Swipe","Switch","Sword","Symme","Syn","Syne","Synthe","Sypa","Systema","Ta","Tama","Tamo","Tanni","Taxo","Te","Tea","Techno","Tee","Tekka","Tekla","Tele","Telexo","Telo","Tera","Termi","Terra","Tetra","Tetri","Tetro","Tha","Thali","Theo","Tho","Thore","Thu","Thunder","Thundra","Thy","Ti","Tita","Titania","To","Torpo","Toxi","Tra","Tran","Trans","Transa","Tri","Tria","Trina","Trio","Tro","Trona","Troni","Try","Trypti","Tsu","Tubu","Tycho","Tyrana","U","Ubw","Uch","Ucha","Ulti","Ultima","Ultra","Uly","Uni","Ura","Urano","Va","Ve","Vee","Vela","Veloci","Venu","Verba","Vero","Vexi","Vi","Via","Video","Vio","Viri","Viru","Vo","Voco","Vor","Vu","Vul","Vulca","Wa","Wadra","War","We","Why","Wi","Wo","Wu","Xa","Xana","Xanthe","Xantho","Xe","Xena","Xeni","Xeno","Xenu","Xi","Xia","Xo","Xu","Xy","Xyla","Xylo","Ya","Yaa","Yai","Yao","Yi","Yo","Yocto","Yotta","You","Yu","Za","Zapa","Zau","Ze","Zebi","Zed","Zefi","Zefir","Zela","Zelia","Zelo","Zemmi","Zeno","Zephe","Zepto","Zero","Zeta","Zetta","Zeuso","Zho","Zi","Zir","Zo","Zoe","Zoo","Zoro","Zoti","Zotico","Zu","Zyr"];
+        const starSecond = ["a","ani","ano","anon","ant","base","batum","bay","beam","being","bet","beta","bike","bile","bina","bino","bios","bird","bit","bite","blade","ble","block","blox","boat","bol","bolt","bon","borg","bot","botic","brain","bryo","bryon","bug","bugger","bula","bular","byte","c","ca","cable","cad","cal","can","cana","cane","cano","cant","cante","capo","cardios","cas","cast","cat","cate","cator","cazon","ccio","cent","centre","ceous","ception","ceptor","chanic","chemic","chi","chic","chilla","cho","chobot","chord","chrome","cia","cide","cific","cil","cillin","cinth","cioli","cise","cius","cize","ck","cki","claw","cle","clone","clonus","co","cology","com","command","con","conic","conoid","coptor","cord","core","counter","craft","crat","cro","crodor","cron","cronoid","cryl","ctron","cu","cular","cury","cus","cutio","cycle","d","da","dama","data","datum","dea","deck","decon","deli","dello","delo","delphi","dent","denza","deo","der","deroid","deron","dia","dial","diate","dice","dicon","dillo","din","dine","dio","dion","dious","disc","disk","dite","dium","dix","dock","dog","dol","dom","dome","don","done","donius","donix","donyx","dor","dora","dore","doria","dot","dox","dra","dragon","drate","dril","drin","drite","drius","drive","driver","dro","droid","drone","drove","dryl","du","dusa","dyne","e","ere","ex","face","fen","ferno","fi","fic","film","fina","fire","fish","fix","flare","fleet","fly","for","form","forma","former","formic","formica","formix","fornia","fornian","fox","frag","frak","fu","gaea","galactus","gape","gatha","gaze","ge","gea","gee","geline","gelus","gen","gene","genia","genus","ggle","ghia","gia","gina","gle","gles","glot","gnia","gnus","god","gon","gonal","gondra","gone","gonoid","gram","graph","graphic","graphy","grok","gun","gus","gynous","ha","hal","hawk","he","hex","hi","hide","ho","hora","hymnia","i","jack","jax","jet","job","ka","kanoid","kari","ke","ker","ki","kinetic","kino","kira","ko","kong","kos","krul","ku","kus","la","lactic","lake","lander","lanta","lantis","lar","larity","las","laser","lation","laton","lator","latron","lay","lazar","lcyon","lectra","lectro","lectron","lectronic","lectronica","lectronik","leet","lek","lena","lene","lento","ler","les","lex","lexoid","lia","lic","licon","liminal","limino","limo","limon","lin","line","ling","linix","link","linux","lio","liope","lios","lisc","lite","litron","lity","lius","lix","llica","llico","llis","llix","llo","lock","logic","logica","logical","logics","logix","logy","loid","lok","lon","lone","loop","lop","lope","lopus","lord","lore","lotia","lt","lta","luminal","luminix","luna","lus","lux","ly","lyn","lyngon","lys","lysia","lystra","ma","maera","mani","mania","maniac","manion","manix","mannic","mano","mara","mat","math","matic","matica","mato","mator","matrix","matron","matum","max","maxi","maximo","maximus","maxitron","mbi","mbic","mbix","mbo","me","meda","mede","mega","meganoid","megas","meme","mena","ment","mes","mesis","metalo","meter","metre","metro","metroid","mi","mia","mic","mica","mide","miko","million","min","mina","minadron","minatron","minimus","mirinoid","missive","missor","mnia","mo","mobile","mode","modo","mon","mone","moni","monia","monic","monica","monico","monium","moog","more","morph","mortal","mos","motion","moto","mous","mph","mphadroid","mphanoid","mphanon","mpho","mu","mus","mutant","n","na","nadroid","nak","nakko","nal","nals","nance","nane","nar","nara","narc","nary","nase","nate","nation","nator","natric","natrix","natro","natron","naur","naut","nder","ndo","ne","neas","nelope","net","netics","network","ng-Li","ngle","ni","nia","niak","nic","nica","nick","nico","nics","nicus","nide","night","nika","nine","ning","niom","nios","nira","nis","nite","nium","nius","nix","nix-Major","nize","no","noid","nok","nol","nome","nomi","nomic","nomical","nomics","nomik","nomix","non","nor","noto","nox","nsor","nt","nta","nticon","ntin","ntina","ntino","ntis","ntrophy","ntum","ntumo","nu","nuk","num","nus","nux","nx","nyes","nyx","o","omega","omegus","optimus","pad","pade","page","pard","path","pathic","patho","pathos","patio","pe","pede","pera","pha","phae","phant","phase","phedro","phelia","phenia","phenic","pheno","pher","phero","phette","phi","phide","phile","phink","phinx","pho","phobia","phobic","phode","phon","phone","phonic","phonica","phonics","phonix","phos","phrine","pia","pian","pica","picon","pig","pilla","pillar","plastic","plastico","plastics","play","pleo","pler","plex","plexo","pod","polic","polis","politan","poly","ponic","pore","port","preme","prime","pso","pticon","ptio","ption","pus","puter","pyr","ra","racle","radroid","raid","ram","rama","rami","ramine","ramme","ramo","ramus","ran","rani","ranoid","raptor","rasol","ratio","ratron","rature","raxi","raxis","ray","re","reme","ren","reo","ress","rette","rex","rgo","rgonoid","rgonol","rgonon","rgotron","rgozoid","rgy","rhythm","ri","ria","rica","ricon","riel","rig","ril","rime","rine","rion","riox","ris","rise","rity","rium","river","rix","rize","rkle","rno","ro","robos","robot","robotic","robotics","robotik","rofen","roid","roin","roine","ron","rona","roo","rope","rota","roto","roux","rover","rox","rrion","rs","rt","rtal","rth","ru","rum","runner","rus","ry","ryllis","ryn","rys","s","sa","sabre","sandra","sapian","sapient","sator","saur","saurus","scan","scape","scon","scope","screen","se","sect","seidon","sephone","sexual","sha","shade","shi","shine","ship","shock","shuttle","sia","sichore","side","sine","sios","sis","site","sius","siusNiger","sive","sivo","size","sizer","sizor","sma","smeg","smitter","so","soid","sol","some","son","sone","soni","sonic","sonics","soniq","sonix","sonoid","sony","sor","space","spectrum","sphere","splay","square","ss-wing","ssa","ssbone","ssey","ssic","ssus","sswing","stant","star","state","station","stavo","ster","stia","stolos","stra","stric","strics","strip","strix","stro","stroid","stros","sts","stu","styx","su","swipe","sword","sy","syne","system","ta","tacy","tal","talia","tanoid","tant","tape","tar","tard","tata","tate","tavo","taxia","te","tec","tech","tek","teknik","tel","telex","ter","terra","terrestrial","teus","tex","tha","than","thasize","thaso","thena","thenia","theno","thia","thine","tho","thol","thon","thya","thyne","thyst","tic","tica","ticon","ticus","tik","tilla","timus","tina","tine","tino","tiny","tio","tion","titas","tix","to","tobot","tolos","ton","tonal","tone","tor","tos","tot","tox","tra","tres","tress","tris","trius","trix","tro","troid","trolux","tron","tronic","tronik","tronika","tronium","tronix","troop","trooper","trophia","trophie","tropic","tropico","tropics","tros","trum","try","tsu","tte","tu","tude","tum","tune","ture","turn","tus","type","u","us","va","vage","vani","vania","vanise","vanisor","varc","vark","vasion","vastate","ve","velu","ver","verse","verso","vex","vin","virus","vision","visor","visual","vo","voco","vole","volux","von","vorac","vore","vos","vox","vus","wa","warp","wave","we","web","wi","wind","wing","wipe","wire","wo","wolf","word","work","works","worx","x","xa","xadon","xadroid","xadron","xanoid","xatron","xi","xide","xil","xilo","xima","ximo","xinol","xio","xious","xis","xius","xo","xos","xus","xy","ya","yo","yon","yu","z","zap","zar","zarus","zen","zero","zevo","zilla","zine","zino","zoid","zoline","zome","zon","zone","zonic","zora","zox","zus"];
+
+        //Planet Name Generator
+        function namegen(count) {
+        	var vowels = {  '1': ["b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"],
+        			'2': ["a", "e", "o", "u"],
+        			'3': ["br", "cr", "dr", "fr", "gr", "pr", "str", "tr", "bl", "cl", "fl", "gl", "pl", "sl", "sc", "sk", "sm", "sn", "sp", "st", "sw", "ch", "sh", "th", "wh"],
+        			'4': ["ae", "ai", "ao", "au", "a", "ay", "ea", "ei", "eo", "eu", "e", "ey", "ua", "ue", "ui", "uo", "u", "uy", "ia", "ie", "iu", "io", "iy", "oa", "oe", "ou", "oi", "o", "oy"],
+        			'5': ["turn", "ter", "nus", "rus", "tania", "hiri", "hines", "gawa", "nides", "carro", "rilia", "stea", "lia", "lea", "ria", "nov", "phus", "mia", "nerth", "wei", "ruta", "tov", "zuno", "vis", "lara", "nia", "liv", "tera", "gantu", "yama", "tune", "ter", "nus", "cury", "bos", "pra", "thea", "nope", "tis", "clite"],
+        			'6': ["una", "ion", "iea", "iri", "illes", "ides", "agua", "olla", "inda", "eshan", "oria", "ilia", "erth", "arth", "orth", "oth", "illon", "ichi", "ov", "arvis", "ara", "ars", "yke", "yria", "onoe", "ippe", "osie", "one", "ore", "ade", "adus", "urn", "ypso", "ora", "iuq", "orix", "apus", "ion", "eon", "eron", "ao", "omia"] },
+        		mtx = [[1,1, 2,2, 5,5],
+        			[2,2, 3,3, 6,6],
+        			[3,3, 4,4, 5,5],
+        			[4,4, 3,3, 6,6],
+        			[3,3, 4,4, 2,2, 5,5],
+        			[2,2, 1,1, 3,3, 6,6],
+        			[3,3, 4,4, 2,2, 5,5],
+        			[4,4, 3,3, 1,1, 6,6],
+        			[3,3, 4,4, 1,1, 4,4, 5,5],
+        			[4,4, 1,1, 4,4, 3,3, 6,6]],
+        		fn = function(i) { return Math.floor(Math.random() * vowels[i].length); },
+        		ret = [],
+        		name,
+        		comp,
+        		i, il,
+        		c = 0;
+
+        	for (; c<count; c++) {
+        		name = '';
+        		comp = mtx[c % mtx.length];
+        		for (i=0, il=comp.length/2; i<il; i++) {
+        			name += vowels[comp[i*2]][fn(comp[i*2+1])];
+        		}
+        		ret.push(name);
+        	}
+
+        	return ret;
+        };
+
+
+</script>
+<script type="text/javascript">
+function savePage() {
+    const fileName = document.getElementById('starSystemHeader').textContent.replace(/\s+/g, '') + '.html';
+
+    // Gather inline styles from within the document
+    let css = '';
+    for (const sheet of document.styleSheets) {
+        try {
+            if (sheet.href && sheet.href.includes('fonts.googleapis.com')) {
+                continue;
+            }
+            for (const rule of sheet.cssRules) {
+                css += rule.cssText;
+            }
+        } catch (e) {
+            console.warn('Could not access stylesheet:', sheet.href, e);
+        }
+    }
+
+    const outputDiv = document.getElementById('Output').cloneNode(true);
+    const canvasElements = outputDiv.getElementsByTagName('canvas');
+
+    const zip = new JSZip();
+    const imgFolder = zip.folder("images");
+
+    const promises = [];
+
+    for (const [index, canvas] of Array.from(canvasElements).entries()) {
+        const context = canvas.getContext('2d') || canvas.getContext('webgl', { preserveDrawingBuffer: true });
+
+        if (!context) {
+            console.error('Canvas context could not be initialized');
+            continue;
+        }
+
+        // Draw image on canvas with crossOrigin attribute
+        const imgSrc = canvas.toDataURL();
+        const promise = new Promise((resolve, reject) => {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => {
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = img.width;
+                tempCanvas.height = img.height;
+                const tempContext = tempCanvas.getContext('2d');
+                tempContext.drawImage(img, 0, 0);
+
+                tempCanvas.toBlob((blob) => {
+                    if (!blob) {
+                        reject(new Error('Canvas toBlob failed'));
+                        return;
+                    }
+
+                    const imgName = `canvas${index}.webp`;
+                    imgFolder.file(imgName, blob);
+
+                    const newImg = document.createElement('img');
+                    newImg.src = `images/${imgName}`;
+                    canvas.parentNode.replaceChild(newImg, canvas);
+
+                    resolve();
+                }, 'image/webp');
+            };
+            img.onerror = (e) => reject(e);
+            img.src = imgSrc;
+        });
+
+        promises.push(promise);
+    }
+
+    Promise.all(promises).then(() => {
+        const fullHTML = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>${fileName}</title>
+                <style>${css}</style>
+            </head>
+            <body>
+                <div id="Output">
+                    ${outputDiv.innerHTML}
+                </div>
+            </body>
+            </html>`;
+
+        zip.file(`${fileName}`, fullHTML);
+        zip.generateAsync({ type: "blob" }).then((content) => {
+            saveAs(content, `${fileName.replace('.html', '')}.zip`);
+        });
+    }).catch((error) => {
+        console.error('Error during canvas conversion:', error);
+    });
+}
+</script>
+</body>
+</html>
