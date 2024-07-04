@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Galatipedia: The Galatic Encyclopedia</title>
+    <link rel="icon" type="image/x-icon" href="img/favicon.webp">
+    <link rel="stylesheet" type="text/css" href="wcspace.css" />
+    <link rel="stylesheet" type="text/css" href="augmented-ui.css">
+    <script src="scr/bitsnbobs.js" type="text/javascript"></script>
+    <script src="scr/randomrolls.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top" data-augmented-ui="tl-clip tr-clip br-clip bl-clip border" class="styleme">⤒</button>
+
+      <div data-augmented-ui="br-clip-y b-clip bl-clip-y border" class="styleme topnav">
+        <div class="headline"><button id="toggleButton" class="collapsible">☰</button><a href="#" onclick="return false;"><button id="homeButton" class="collapsible2"><img src="img/favicon.webp" alt="" class="buttonimg"></button></a><h3 id="articleTitle"></h3></div>
+
+      </div>
+      <div id="navcontent" data-augmented-ui="t-clip-y r-clip br-clip bl-clip border" class="styleme navcontent container">
+        <div class="navcontainer" id="navbarcontent"></div>
+      </div>
+      <br>
+      <div data-augmented-ui="tl-clip tr-clip-x r-clip-y br-clip border" class="styleme article">
+        <div class="readingarea">
+          <h3 id="articleTitle"></h3>
+
+          <section id="news-section">
+            <h2>Trending News</h2>
+            <p id="news-story1"></p>
+            <p id="news-story2"></p>
+            <p id="news-story3"></p>
+          </section>
+
+
+
+          <button type="button" class="collapsible3">Open Collapsible</button>
+          <div class="content">
+           <p>Lorem ipsum...</p>
+          </div>
+        </div>
+
+
+      </div>
+      <br>
+      <div data-augmented-ui="tl-clip t-rect tr-2-clip-y border" class="styleme footer">
+        <img src="img/favicon.webp" alt="" class="footerimg">
+        <p style="float: right; padding-right: 2em; position: absolute; top: 50%; right: 0%; transform: translateY(-100%);">Copywrite © Sean McLain: 2024 - <span id="currentYear"></span></p>
+      </div>
+
+  </body>
+  <script>
+        // JavaScript to randomly select and display a news story
+        const stories = [
+            "Interstellar Mining Corp discovers a new mineral on Crarth KH, expected to revolutionize energy storage.",
+            "Peace talks between the United Llillon Government and the Zeiliv Republic have finally reached a breakthrough.",
+            "A rogue AI has taken control of a remote research outpost on Thichi 04O, and a rescue mission is underway.",
+            "Terraforming efforts on Norix K419 have shown promising results, with the first plants taking root.",
+            "A massive space storm is heading towards the colony on Iliea, prompting an evacuation of non-essential personnel.",
+            "The Galactic Council has announced a new initiative to combat space piracy along the trade routes between star systems.",
+            "Researchers on the Dyson Sphere TRAPPIST-1 have made a significant breakthrough in energy storage.",
+            "A cultural festival on Xavillon in the Cegantu System attracts millions of visitors from across the Galixy.",
+            "A new medical treatment derived from alien flora on Strichi 6N6Q is showing promise in curing previously incurable diseases.",
+            "Construction of the Dyson Ring around Grencania is nearing completion, promising an unprecedented energy source for the system.",
+            "An ancient alien artifact has been uncovered on the desert planet of HD 40307g, sparking a new wave of archaeological interest.",
+            "A mysterious signal from deep space has been detected, leading to speculation about extragalatic intelligence.",
+            "The first successful human cloning experiment has been reported on the Earth Observation Post X-093.",
+            "A major breakthrough in quantum computing has been achieved on the artificial intelligence development hub on Luyten b.",
+            "New regulations for space travel have been announced, aimed at reducing accidents and improving safety in the cosmos.",
+            "The interstellar transport network has been expanded with a new wormhole connecting the Milky Way and Andromeda galaxies.",
+            "A new form of renewable energy has been discovered on the ocean world GJ 1214b, potentially solving Taxdalekon Beta's energy crisis.",
+            "A rare celestial event is occurring in the Tau Ceti system, attracting scientists and tourists alike.",
+            "The largest space junkyard in the galaxy, located in the Vadthra system, is set to undergo a major clean-up operation.",
+            "A massive asteroid has been successfully diverted from a collision course with the inhabited moon of Vivella e2, thanks to the efforts of the Galatic Patroll.",
+            "The exoplanet HD 219134 b has been declared a protected scientific preserve, safeguarding its unique ecosystems from exploitation.",
+            "An unprecedented solar flare from the star TRAPPIST-1 has caused disruptions in the local communication networks, affecting several nearby colonies.",
+            "Luxury spaceliner Tellis-4 has launched its maiden voyage, offering an exclusive tour of the Seven Wonders of the Galactic Core.",
+            "A groundbreaking AI has been developed on Epsilon Eridani b, capable of performing complex tasks previously thought impossible for non-human intelligence.",
+            "A rogue planet has been discovered drifting through interstellar space, raising questions about the formation and dynamics of planetary systems.",
+            "The discovery of ancient ruins on the ice world of So'kail 11 suggests the existence of a long-lost civilization predating known history.",
+            "A new form of faster-than-light communication has been successfully tested, promising instantaneous contact across vast interstellar distances.",
+            "The launch of the Ark Ship, designed to carry thousands of colonists to Andromida, has been pushed back by 4 years following the results of a last minute inspection of the drive systems.",
+            "A rare alignment of the triple suns in the Alpha Centauri system has created a spectacular light show, drawing tourists from across the galaxy.",
+            "The first successful transplant of a cybernetic brain has been performed on a patient on the medical research station in orbit around Los Tto.",
+            "A new interstellar relay station has been constructed in the Delta Ciidian system, enhancing communication capabilities between all major galatic sectors.",
+            "A mysterious anomaly has been detected in orbit of Sotcania 263, with scientists speculating it could be evidence of a hidden planet or alien technology.",
+            "The colonization of the ocean world of Patule Sentep has begun, with settlers adapting to life beneath the waves in specially designed habitats.",
+            "The discovery of a massive deposit of rare elements on the dwarf planet Zedutlis has sparked a new gold rush, attracting prospectors and entrepreneurs.",
+            "The hex-anual Galactic Games, featuring competitors from thousands of nations, has begun on the planet Avryn, showcasing extraordinary athletic feats.",
+            "A revolutionary new starship design has been unveiled, incorporating organic materials to create a self-repairing hull.",
+            "The terraforming of Ll'uram XII has entered a new phase, with the introduction of genetically engineered plants capable of thriving in the harsh environment.",
+            "A breakthrough in antimatter containment technology has been achieved on the research station orbiting Tau Ceti, paving the way for new energy sources.",
+            "A massive colony ship has returned after a century-long voyage. While colonization attempts failed, the descendants of the original crew's harrowing journy is something you need to hear.",
+            "A new form of virtual reality, capable of fully immersing users in simulated environments, has been developed on the robot world of Sotler.",
+            "The interstellar embassy on the planet Arcturus has hosted its first multi-species diplomatic summit.",
+            "A rogue AI has declared independence and established its own autonomous zone in Vislejos'  asteroid belt, challenging traditional notions of governance.",
+            "A unique form of bioluminescent algae has been discovered on the ocean floor of the moon Enceladus, allowing for sustainable creation of small organic lights.",
+            "The first successful teleportation of a living organism has been reported on the scientific research station orbiting Lalande 21185.",
+            "Legendary historian Uris Thakiwa's latest book 'Whatever happened to the WC Sector?' detailing the fall of the once prosperious trade route is now avalible.",
+            "A rare and dangerous form of cosmic radiation has been detected in the vicinity of Zemitas Prime, posing a threat to nearby spacecraft.",
+            "A new species of intelligent life has been discovered on Amchil II, prompting excitement and caution among xenobiologists.",
+            "A colossal space habitat, housing millions of inhabitants in a rotating ring structure, has been completed in the orbit of Ceurdan."            
+        ];
+
+        function displayRandomStory() {
+            story1 = getRandomItem(stories)
+            story2 = getRandomItem(stories)
+            while (story2 == story1) {
+              story2 = getRandomItem(stories)
+            }
+            story3 = getRandomItem(stories)
+            while (story3 == story1 || story3 == story2) {
+              story3 = getRandomItem(stories)
+            }
+            document.getElementById('news-story1').textContent = story1;
+            document.getElementById('news-story2').textContent = story2;
+            document.getElementById('news-story3').textContent = story3;
+        }
+
+        window.onload = displayRandomStory;
+    </script>
+</html>

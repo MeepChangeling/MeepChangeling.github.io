@@ -1,0 +1,351 @@
+body {
+  background-position: left top;
+  background:
+      linear-gradient(
+        rgba(0, 0, 0, 0.75),
+        rgba(0, 0, 0, 0.75)
+      ),
+      url("./img/background2.webp");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  background-attachment: fixed;
+}
+
+h3 {
+  margin-left: auto;
+  margin-right: auto;
+}
+h4 {
+  border-bottom: solid 3px #aafffc;
+  border-radius: 3px;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+div.topnav {
+  width: 60vw;
+  max-width: 1280px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 14px;
+  line-height: 21px;
+  color: #aafffc;
+  backdrop-filter: blur(10px);
+  background-color: rgba(23,162,184,0.2);
+  font-family: "Titillium Web",sans-serif;
+  text-shadow: 0px 0px 5px rgba(43,237,230,0.3);
+  box-shadow: 0 0 20px 20px #2bede6;
+}
+
+div.footer {
+  width: 60vw;
+  max-width: 1280px;
+  height: 5em;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 14px;
+  line-height: 21px;
+  color: #aafffc;
+  backdrop-filter: blur(10px);
+  background-color: rgba(23,162,184,0.2);
+  font-family: "Titillium Web",sans-serif;
+  text-shadow: 0px 0px 5px rgba(43,237,230,0.3);
+  box-shadow: 0 0 20px 20px #2bede6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto; /* Ensures the footer is pushed to the bottom if content is short */
+}
+
+div.navcontent {
+  width: 58vw;
+  max-width: 1280px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: -2px;
+  font-size: 14px;
+  line-height: 21px;
+  color: #aafffc;
+  backdrop-filter: blur(10px);
+  background-color: rgba(23,162,184,0.2);
+  font-family: "Titillium Web",sans-serif;
+  text-shadow: 0px 0px 5px rgba(43,237,230,0.3);
+  box-shadow: 0 0 20px 20px #2bede6;
+}
+
+div.headline {
+  text-align: center;
+  height: 5em;
+  line-height: 4em;
+}
+
+div.article {
+  position: relative;
+  margin-top: 3em;
+  width: 60vw;
+  max-width: 1280px;
+  margin: auto;
+  backdrop-filter: blur(10px);
+  background-color: rgba(23,162,184,0.2);
+  color: #aafffc;
+  font-family: "Titillium Web",sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  text-shadow: 0px 0px 5px rgba(43,237,230,0.3);
+  box-shadow: 0 0 20px 20px #2bede6;
+  border-radius: 1em;
+}
+
+div.readingarea {
+  padding: 1em;
+  height: auto;
+  margin-right: 2em;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  font-size: 30px;
+  color: #aafffc;
+  text-shadow: 0px 0px 5px rgba(43,237,230,0.3);
+ cursor: pointer;
+ width: 5vw;
+ border: solid 3px #aafffc;
+ text-align: center;
+ outline: none;
+ font-size: 3em;
+ float: right;
+ margin-top: auto;
+ margin-bottom: auto;
+ margin-right: 0.8em;
+ background-color: rgba(23,162,184,0.0);
+ position: absolute;
+  top: 50%;
+  left: 92%;
+  transform: translateY(-50%);
+  padding-top: 0.1em;
+  padding-bottom: 0.2em;
+}
+
+.collapsible2 {
+  font-size: 30px;
+  color: #aafffc;
+  text-shadow: 0px 0px 5px rgba(43,237,230,0.3);
+ cursor: pointer;
+ width: 5vw;
+ border: solid 3px #aafffc;
+ text-align: center;
+ outline: none;
+ font-size: 3em;
+ float: right;
+ margin-top: auto;
+ margin-bottom: auto;
+ margin-right: 0.5em;
+ background-color: rgba(23,162,184,0.0);
+ position: absolute;
+  top: 50%;
+  right: 90%;
+  transform: translateY(-50%);
+}
+
+.collapsible3 {
+  font-weight:bold;
+  color: #aafffc;
+  text-shadow: 0px 0px 5px rgba(43,237,230,0.3);
+ cursor: pointer;
+ border: solid 3px #aafffc;
+ text-align: center;
+ outline: none;
+ margin-top: auto;
+ margin-bottom: auto;
+ margin-right: 0.8em;
+ background-color: rgba(23,162,184,0.0);
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+  padding-left: 1em;
+  padding-right: 1em;
+  border-width: 3px;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: rgba(23, 162, 184, 0.2); /* Add some background to see the zones */
+  padding: 10px;
+  border: 1px solid #2bede6;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+ background-color: rgba(43, 237, 230, 0.3);
+}
+
+.active, .collapsible2:hover {
+ background-color: rgba(43, 237, 230, 0.3);
+}
+
+/* Style the collapsible content. Note: hidden by default */
+#navcontent {
+ padding: 0 18px;
+ display: none;
+ overflow: hidden;
+}
+
+/* Navbar Styling */
+div.navcontent {
+    width: 58vw;
+    max-width: 1280px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -2px;
+    font-size: 14px;
+    line-height: 21px;
+    color: #aafffc;
+    backdrop-filter: blur(10px);
+    background-color: rgba(23,162,184,0.2);
+    font-family: "Titillium Web", sans-serif;
+    text-shadow: 0px 0px 5px rgba(43,237,230,0.3);
+    box-shadow: 0 0 20px 20px #2bede6;
+}
+
+.navcontainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.zone1, .zone2, .zone3, .zone4 {
+    background-color: rgba(23, 162, 184, 0.2); /* Add some background to see the zones */
+    padding: 10px;
+    border: 1px solid #2bede6;
+}
+
+.zone2 {
+  margin-right: 1.5em;
+}
+
+.zone3 {
+  margin-left: 1.5em;
+}
+
+.zone4 {
+  margin-right: 0.3em;
+}
+
+.buttonimg {
+  width: 1.3em;
+  height: auto;
+  margin-top: 0.2em;
+}
+
+.footerimg {
+  float:left;
+  width: 4em;
+  height: auto;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 1.2em; /* Increase font size */
+  font-weight: bold;
+  color: #aafffc;
+  backdrop-filter: blur(10px);
+  background-color: rgba(23,162,184,0.2);
+  font-family: "Titillium Web", sans-serif;
+  text-shadow: 0px 0px 5px rgba(43,237,230,0.3);
+  box-shadow: 0 0 20px 20px #2bede6;
+}
+
+#myBtn:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+
+figure.articleFigure {
+  width: 30%;
+  margin-left: 1em;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 1em;
+  border: solid 2px #aafffc;
+}
+
+figure.articleFigureDuo {
+  width: 45%;
+  
+  margin-left: 1em;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 1em;
+  border: solid 2px #aafffc;
+}
+
+img.articleImg {
+  width: 98%;
+  height: auto;
+  border: solid 3px #aafffc;
+}
+
+img.articleImgDuo {
+  width: 48.6%;
+  height: auto;
+  border: solid 3px #aafffc;
+}
+
+.floatL {float:left;}
+.floatR {float:right;}
+
+figure.articleFigure figcaption {
+  text-align: center;
+  font-weight: bold;
+}
+
+figure.articleFigureDuo figcaption {
+  text-align: center;
+  font-weight: bold;
+}
+
+.clearfix {
+  overflow: auto;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+#news-section {
+  background-color: rgba(23,162,184,0.2);
+  border: solid 3px #aafffc;
+  padding-left: 1em;
+  margin-bottom: 1em;
+}
+
+.quote {
+  border: solid -2px #aafffc;
+  background-color: rgba(23,162,184,0.2);
+  padding: 1em;
+  padding-left: 2em;
+  font-style: italic;
+}

@@ -1,0 +1,3980 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Lifeform Generator</title>
+    <style media="screen">
+      table.customTable {width: 40%; background-color: #FFFFFF; border-collapse: collapse; border-width: 2px; border-color: #7EA8F8; border-style: solid;  color: #000000; }
+      table.customTable td, table.customTable th { border-width: 2px; border-color: #7EA8F8; border-style: solid; padding: 5px; }
+      table.customTable thead { background-color: #7EA8F8; }
+      table.customTable td#first {width:500px;}
+      table.customTable td#second {width:1000px;}
+      table.customTable td#third {width:500px;}
+      td button { margin:auto; display:block;}
+    </style>
+  </head>
+  <body>
+    <label for="Lifeforms">Base Creature</label>
+    <select style="width: 140px" id="Lifeforms" name="Lifeforms">
+      <option selected="">Random</option>
+      <option>Aquatic</option>
+      <option>Avian</option>
+      <option>Insect</option>
+      <option>Hard Invertibrate</option>
+      <option>Soft Invertibrate</option>
+      <option>Mammel</option>
+      <option>Plant</option>
+      <option>Reptile</option>
+      <option>Silicoid</option>
+      <option>Exotic</option>
+    </select>
+    <br><br>
+    <button onclick="generateLifeform()">Generate Lifeform</button>
+    <br><br>
+    <div id="Output" class="output"></div>
+    <br><br>
+    <table class="customTable">
+      <colgroup>
+        <col id="first">
+        <col id="second">
+        <col id="third">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Detail</th>
+          <th>Redo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Base Creature</td>
+          <td><span id="baseCreature"></span></td>
+          <td><button onclick="rerollBaseCreature()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Height/Length</td>
+          <td><span id="heightOutput"></span></td>
+          <td><button onclick="rerollSize()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Weight</td>
+          <td><span id="weightOutput"></span></td>
+          <td><button onclick="rerollWeight()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Lifespan</td>
+          <td><span id="lifespan"></span></td>
+          <td><button onclick="rerollLifespan()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Colouration</td>
+          <td><span id="colorationOutput"></span></td>
+          <td><button onclick="rerollColoration()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Communication</td>
+          <td><span id="primeCom"></span></td>
+          <td><button onclick="rerollComm()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span id="secCom"></span></td>
+        </tr>
+        <tr>
+          <td>Diet</td>
+          <td><span id="diet"></span></td>
+          <td><button onclick="rerollDiet()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Intelegence Level</td>
+          <td><span id="intLevel"></span></td>
+          <td><button onclick="rerollInt()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Limbs</td>
+          <td><span id="limbs"></span></td>
+          <td><button onclick="rerollLimbs()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Movment</td>
+          <td><span id="movment"></span></td>
+          <td><button onclick="rerollMovment()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Reproduction</td>
+          <td><span id="reproduction"></span></td>
+          <td><button onclick="rerollRepro()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Senses</td>
+          <td><span id="eyes"></span></td>
+          <td><button onclick="rerollSenses()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span id="nose"></span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span id="ears"></span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span id="mouth"></span></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span id="touch"></span></td>
+        </tr>
+        <tr>
+          <td>Shape</td>
+          <td><span id="shape"></span></td>
+          <td><button onclick="rerollShape()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Sleep Cycle</td>
+          <td><span id="sleep"></span></td>
+          <td><button onclick="rerollSleep()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Skin/Hide</td>
+          <td><span id="skinHide"></span></td>
+          <td><button onclick="rerollSkin()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Strength</td>
+          <td><span id="strength"></span></td>
+          <td><button onclick="rerollStrength()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Favored Terrain</td>
+          <td><span id="terrain"></span></td>
+          <td><button onclick="rerollTerrain()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Temp Tolerance</td>
+          <td><span id="tempTolerance"></span></td>
+          <td><button onclick="rerollTemp()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Advantage</td>
+          <td><span id="advantage"></span></td>
+          <td><button onclick="rerollAdvantage()">Reroll</button></td>
+        </tr>
+        <tr>
+          <td>Disadvantage</td>
+          <td><span id="disadvantage"></span></td>
+        </tr>
+        <tr>
+          <td>Quirks</td>
+          <td><span id="quirks"></span></td>
+          <td><button onclick="rerollQuirk()">Reroll</button></td>
+        </tr>
+      </tbody>
+  </table>
+
+
+  </body>
+  <script type="text/javascript">
+    var size = "Unset"
+    var sizeRating = 0
+    var sizeNum = 0
+    var weight = 0
+    var age = "Unset"
+    var gestationPiriod = "Unset"
+    var maturation = "Unset"
+    var primeComA = "Unset"
+    var primeComB = "Unset"
+    var secComA = "Unset"
+    var secComB = "Unset"
+    var coloration = "Unset"
+    var colorName = "Unset"
+    var diet = "Unset"
+    var int = "Unset"
+    var iq = 0
+    var sapient = "Unset"
+    var limbs = "Unset"
+    var digitsFin = "Unset"
+    var primeMove = "Unset"
+    var secMove = "Unset"
+    var speedNorm = 0
+    var speedFast = 0
+    var speedMax = 0
+    var reproMethod = "Unset"
+    var reproSize = 0
+    var reproCycle = "Unset"
+    var eyesFin = 0
+    var eyeQuality = "Unset"
+    var noseType = "Unset"
+    var smellQuality = "Unset"
+    var lowerBound = 0
+    var upperBound = 0
+    var volTol = 0
+    var earType = "Unset"
+    var mouthType = "Unset"
+    var tasteQuality = "Unset"
+    var touchQuality = "Unset"
+    var painTolNegMod = 0
+    var painTolPlusMod = 0
+    var creatureShape = "Unset"
+    var creatureSleep = "Unset"
+    var creatureHide = "Unset"
+    var creatureStrength = 0
+    var homeTerrain = "Unset"
+    var creatureTempL = 0
+    var creatureTempH = 0
+    var creatureAdv = "Unset"
+    var creatureDis = "Unset"
+    var creatureQuirk = "Unset"
+    var baseCreature = "Unset"
+    var creatureSexes = "Unset"
+
+
+
+    //Main Function
+    function generateLifeform() {
+      baseCreatureGen()
+      document.getElementById("baseCreature").innerHTML = baseCreature
+      generateSize();
+      finsize = size.charAt(0).toUpperCase() + size.slice(1);
+      finheight = convertCMToSentence(sizeNum) + " (" + finsize +")"
+      document.getElementById("heightOutput").innerHTML = finheight
+      document.getElementById("weightOutput").innerHTML = weight + " kg"
+      generateAge(sizeRating);
+      document.getElementById("lifespan").innerHTML = age + ". Matures in " + maturation
+      generateColoration();
+      document.getElementById("colorationOutput").innerHTML = coloration
+      generateCommunication();
+      document.getElementById("primeCom").innerHTML = "<i>" + primeComA + "</i>: " + primeComB
+      document.getElementById("secCom").innerHTML = "<i>" + secComA + "</i>: " + secComB
+      generateDiet();
+      document.getElementById("diet").innerHTML = diet
+      generateIQ();
+      document.getElementById("intLevel").innerHTML =  iq + " IQ (" + int + ")<br><i>Sapient:</i> " + sapient
+      generateLimbs();
+      generateDigits();
+      document.getElementById("limbs").innerHTML = "<i>Limbs:</i> " + limbs + "<br><i>Digits:</i> " + digitsFin
+      generateMovment();
+      generateSpeed(sizeRating);
+      document.getElementById("movment").innerHTML = "<i>Movment Modes:</i> " + primeMove + "/" + secMove + "<br><i>Speed:</i> Normal - " + speedNorm + " kp/h, run - " + speedFast + " kp/h, sprint - " +  speedMax + " kp/h"
+      generateReproduction();
+      reproMethod = reproMethod.charAt(0).toUpperCase() + reproMethod.slice(1);
+      document.getElementById("reproduction").innerHTML = reproMethod + ". Produces " + reproSize + " offspring " + reproCycle + ".<br>" + creatureSexes
+      generateSenses(sizeRating);
+      document.getElementById("eyes").innerHTML = "<i>Eye Type:</i> " +eyesFin + ". <br>" + eyeQuality + " vision."
+      document.getElementById("nose").innerHTML = "<i>Nose Type:</i> " + noseType + ". <br>" + smellQuality + " scent detection."
+      document.getElementById("ears").innerHTML = "<i>Hearing Range:</i> " + lowerBound + " - " + upperBound + " hz. <br>" + volTol + " Db tollerence"
+      document.getElementById("mouth").innerHTML = "<i>Mouth Type:</i> " + mouthType + ". <br>" + tasteQuality  + " taste quality."
+      document.getElementById("touch").innerHTML = touchQuality + " touch sensativity."
+      generateShape();
+      creatureShape = creatureShape.charAt(0).toUpperCase() + creatureShape.slice(1);
+      document.getElementById("shape").innerHTML = creatureShape
+      generateSleep();
+      document.getElementById("sleep").innerHTML = creatureSleep
+      generateHide();
+      document.getElementById("skinHide").innerHTML = creatureHide
+      generateStrength(weight);
+      document.getElementById("strength").innerHTML = creatureStrength
+      generateTerrain();
+      document.getElementById("terrain").innerHTML = homeTerrain
+      generateTemp();
+      document.getElementById("tempTolerance").innerHTML = creatureTempL + "°C - " + creatureTempH + "°C"
+      generateAdvantage();
+      document.getElementById("advantage").innerHTML = creatureAdv
+      document.getElementById("disadvantage").innerHTML = creatureDis
+      generateQuirks()
+      document.getElementById("quirks").innerHTML = creatureQuirk
+    };
+
+    //reroll Functions
+    function rerollBaseCreature() {
+      baseCreatureGen()
+      document.getElementById("baseCreature").innerHTML = baseCreature
+    }
+    function rerollSize() {
+      generateSize();
+      finsize = size.charAt(0).toUpperCase() + size.slice(1);
+      finheight = convertCMToSentence(sizeNum) + " (" + finsize +")"
+      document.getElementById("heightOutput").innerHTML = finheight
+      document.getElementById("weightOutput").innerHTML = weight + " kg"
+      generateAge(sizeRating);
+      document.getElementById("lifespan").innerHTML = age + ". Matures in " + maturation
+      generateSpeed(sizeRating);
+      document.getElementById("movment").innerHTML = "<i>Movment Modes:</i> " + primeMove + "/" + secMove + "<br><i>Speed:</i> Normal - " + speedNorm + " kp/h, run - " + speedFast + " kp/h, sprint - " +  speedMax + " kp/h"
+      generateSenses(sizeRating);
+      document.getElementById("eyes").innerHTML = "<i>Eye Type:</i> " +eyesFin + ". <br>" + eyeQuality + " vision."
+      document.getElementById("nose").innerHTML = "<i>Nose Type:</i> " + noseType + ". <br>" + smellQuality + " scent detection."
+      document.getElementById("ears").innerHTML = "<i>Hearing Range:</i> " + lowerBound + " - " + upperBound + " hz. <br>" + volTol + " Db tollerence"
+      document.getElementById("mouth").innerHTML = "<i>Mouth Type:</i> " + mouthType + ". <br>" + tasteQuality  + " taste quality."
+      document.getElementById("touch").innerHTML = touchQuality + " touch sensativity."
+      generateStrength(weight);
+      document.getElementById("strength").innerHTML = creatureStrength
+    }
+    function rerollWeight() {
+      if (sizeRating == 0) {
+        weight = getRandomFloat(0.0001, 0.005)
+        weight = weight.toFixed(2)
+      } else if (sizeRating == 0.5) {
+        weight = getRandomFloat(0.005, 0.01)
+        weight = weight.toFixed(2)
+      } else if (sizeRating == 1) {
+        weight = getRandomFloat(0.01, 0.056699)
+        weight = weight.toFixed(2)
+      } else if (sizeRating == 2) {
+        weight = getRandomFloat(0.056699, 0.453592)
+        weight = weight.toFixed(2)
+      } else if (sizeRating == 3) {
+        weight = getRandomFloat(0.453592, 3.62874)
+        weight = weight.toFixed(2)
+      } else if (sizeRating == 4) {
+        weight = getRandomFloat(3.62874, 27.2155)
+        weight = weight.toFixed(2)
+      } else if (sizeRating == 5) {
+        weight = getRandomFloat(27.2155, 226.796)
+        weight = weight.toFixed(2)
+      } else if (sizeRating == 6) {
+        weight = getRandomFloat(226.796, 1814.369)
+        weight = weight.toFixed(2)
+      } else if (sizeRating == 7) {
+        weight = getRandomFloat(1814.369, 14514.956)
+        weight = weight.toFixed(2)
+      } else if (sizeRating == 8) {
+        weight = getRandomFloat(14514.956, 113398.0925)
+        weight = weight.toFixed(2)
+      } else if (sizeRating == 9) {
+        weight = getRandomFloat(113398.0925, 900380.8545)
+        weight = weight.toFixed(2)
+      } else if (sizeRating == 10) {
+        weight = getRandomFloat(900380.8545, 7150883.7131)
+        weight = weight.toFixed(2)
+      } else {
+          weight = getRandomFloat(27.2155, 226.796)
+          weight = weight.toFixed(2)
+      }
+      document.getElementById("weightOutput").innerHTML = weight + " kg"
+    }
+    function rerollLifespan() {
+      generateAge(sizeRating);
+      document.getElementById("lifespan").innerHTML = age + ". Matures in " + maturation
+    }
+    function rerollColoration() {
+      generateColoration();
+      document.getElementById("colorationOutput").innerHTML = coloration
+    }
+    function rerollComm() {
+      generateCommunication();
+      document.getElementById("primeCom").innerHTML = "<i>" + primeComA + "</i>: " + primeComB
+      document.getElementById("secCom").innerHTML = "<i>" + secComA + "</i>: " + secComB
+    }
+    function rerollDiet() {
+      generateDiet();
+      document.getElementById("diet").innerHTML = diet
+    }
+    function rerollInt() {
+      generateIQ();
+      document.getElementById("intLevel").innerHTML =  iq + " IQ (" + int + ")<br><i>Sapient:</i> " + sapient
+    }
+    function rerollLimbs() {
+      generateLimbs();
+      generateDigits();
+      document.getElementById("limbs").innerHTML = "<i>Limbs:</i> " + limbs + "<br><i>Digits:</i> " + digitsFin
+    }
+    function rerollMovment() {
+      generateMovment();
+      generateSpeed(sizeRating);
+      document.getElementById("movment").innerHTML = "<i>Movment Modes:</i> " + primeMove + "/" + secMove + "<br><i>Speed:</i> Normal - " + speedNorm + " kp/h, run - " + speedFast + " kp/h, sprint - " +  speedMax + " kp/h"
+    }
+    function rerollRepro() {
+      generateReproduction();
+      reproMethod = reproMethod.charAt(0).toUpperCase() + reproMethod.slice(1);
+      document.getElementById("reproduction").innerHTML = reproMethod + ". Produces " + reproSize + " offspring " + reproCycle + ".<br>" + creatureSexes
+    }
+    function rerollSenses() {
+      generateSenses(sizeRating);
+      document.getElementById("eyes").innerHTML = "<i>Eye Type:</i> " +eyesFin + ". <br>" + eyeQuality + " vision."
+      document.getElementById("nose").innerHTML = "<i>Nose Type:</i> " + noseType + ". <br>" + smellQuality + " scent detection."
+      document.getElementById("ears").innerHTML = "<i>Hearing Range:</i> " + lowerBound + " - " + upperBound + " hz. <br>" + volTol + " Db tollerence"
+      document.getElementById("mouth").innerHTML = "<i>Mouth Type:</i> " + mouthType + ". <br>" + tasteQuality  + " taste quality."
+      document.getElementById("touch").innerHTML = touchQuality + " touch sensativity."
+    }
+    function rerollShape() {
+      generateShape();
+      creatureShape = creatureShape.charAt(0).toUpperCase() + creatureShape.slice(1);
+      document.getElementById("shape").innerHTML = creatureShape
+    }
+    function rerollSleep() {
+      generateSleep();
+      document.getElementById("sleep").innerHTML = creatureSleep
+    }
+    function rerollSkin() {
+      generateHide();
+      document.getElementById("skinHide").innerHTML = creatureHide
+    }
+    function rerollStrength() {
+      generateStrength(weight);
+      document.getElementById("strength").innerHTML = creatureStrength
+    }
+    function rerollTerrain() {
+      generateTerrain();
+      document.getElementById("terrain").innerHTML = homeTerrain
+    }
+    function rerollTemp() {
+      generateTemp();
+      document.getElementById("tempTolerance").innerHTML = creatureTempL + "°C - " + creatureTempH + "°C"
+    }
+    function rerollAdvantage() {
+      generateAdvantage();
+      document.getElementById("advantage").innerHTML = creatureAdv
+      document.getElementById("disadvantage").innerHTML = creatureDis
+    }
+    function rerollQuirk() {
+      generateQuirks()
+      document.getElementById("quirks").innerHTML = creatureQuirk
+    }
+
+
+
+    //Work Functions
+    function generateAge(sizeRating) {
+      if (sizeRating == 0) {
+        die = 1
+      } else if (sizeRating == 0.5) {
+        die = getRandomInt(1, 5);
+      } else if (sizeRating == 1) {
+        die = d10()
+      } else if (sizeRating == 2) {
+        die = d10() + d10()
+      } else if (sizeRating == 3) {
+        die = d10() + d10() + d10()
+      } else if (sizeRating == 4) {
+        die = d10() + d10() + d10() + d10()
+      } else if (sizeRating == 5) {
+        die = d10() + d10() + d10() + d10() + d10()
+      } else if (sizeRating == 6) {
+        die = d10() + d10() + d10() + d10() + d10() + d10()
+      } else if (sizeRating == 7) {
+        die = d10() + d10() + d10() + d10() + d10() + d10() + d10()
+      } else if (sizeRating == 8) {
+        die = d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10()
+      } else if (sizeRating == 9) {
+        die = d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10()
+      } else if (sizeRating == 10) {
+        die = d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10()
+      }
+
+      if (die == 1) {
+        age = "Under 24 Hours";
+        gestationPiriod = "hours";
+        maturation = getRandomFloat(20, 120)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " minutes"
+      } else if (die == 2 || die == 3) {
+        age = "1 week";
+        gestationPiriod = 16.8 + getRandomFloat (-1.68, 1.68)
+        gestationPiriod = gestationPiriod + " hours"
+        maturation = getRandomFloat(20, 120)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " minutes"
+      } else if (die >= 4 && die <= 6) {
+        number = d4() + d4();
+        age = number + " weeks";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " days"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " hours"
+      } else if (die >= 7 && die <= 11) {
+        number = d10();
+        if (number == 1) {
+          age = number + " month";
+        } else {
+          age = number + " months";
+        }
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " days"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " days"
+      } else if (die >= 12 && die <= 15) {
+        number = d10() + d10();
+        age = number + " months";
+      } else if (die >= 16 && die <= 20) {
+        number = d6();
+        if (number == 1) {
+          age = number + " year";
+        } else {
+          age = number + " years";
+        }
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " days"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " months"
+      } else if (die >= 21 && die <= 24) {
+        number = d8();
+        if (number == 1) {
+          age = number + " year";
+        } else {
+          age = number + " years";
+        }
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " days"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " months"
+      } else if (die >= 25 && die <= 28) {
+        number = d10() + 1;
+        age = number + " years";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " weeks"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " months"
+      } else if (die >= 29 && die <= 33) {
+        number = d10() + 10;
+        age = number + " years";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " months"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " years"
+      } else if (die >= 34 && die <= 38) {
+        number = d10() + d10() + 20;
+        age = number + " years";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " months"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " years"
+      } else if (die >= 39 && die <= 45) {
+        number = d10() + d10() + 40;
+        age = number + " years";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " months"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " years"
+      } else if (die >= 46 && die <= 64) {
+        number = d10() + d10() + 60;
+        age = number + " years";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " months"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " years"
+      } else if (die >= 65 && die <= 70) {
+        number = d10() + d10() + 80;
+        age = number + " years";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " months"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " years"
+      } else if (die >= 71 && die <= 75) {
+        number = d20() + d20() + 100;
+        age = number + " years";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " months"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " years"
+      } else if (die >= 76 && die <= 80) {
+        number = d20() + d20() + 120;
+        age = number + " years";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " months"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " years"
+      } else if (die >= 81 && die <= 85) {
+        number = d20() + d20() + 140;
+        age = number + " years";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " months"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " years"
+      } else if (die >= 86 && die <= 90) {
+        number = d20() + d20() + 160;
+        age = number + " years";
+      } else if (die >= 91 && die <= 94) {
+        number = d20() + d20() + 180;
+        age = number + " years";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " months"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " years"
+      } else if (die >= 95 && die <= 97) {
+        number = d6();
+        age = number + " centuries";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " months"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " years"
+      } else if (die >= 98 && die <= 99) {
+        number = d8();
+        age = number + " centuries";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " years"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " years"
+      } else if (die == 100) {
+        number = d10();
+        age = number + " centuries";
+        gestationPiriod = gestationPriodCalc(number)
+        gestationPiriod = gestationPiriod + " years"
+        maturation = maturationCalc(number)
+        maturation = maturation.toFixed(2)
+        maturation = maturation + " years"
+      } else {
+         number = d20() + d20() + 100;
+         age = number + " years";
+         gestationPiriod = gestationPriodCalc(number)
+         gestationPiriod = gestationPiriod + " months"
+         maturation = maturationCalc(number)
+         maturation = maturation.toFixed(2)
+         maturation = maturation + " years"
+      }
+
+
+    };
+    function generateSize() {
+      //sizeNum is in CM
+      //weight is in KG
+      die = d100()
+      //console.log(die)
+      if (die == 1) {
+        size = "microscopic"
+        sizeRating = 0
+        sizeNum = getRandomFloat(0.00001, 0.01)
+        sizeNum = sizeNum.toFixed(2)
+        weight = getRandomFloat(0.0001, 0.005)
+        weight = weight.toFixed(2)
+      } else if (die == 2) {
+        size = "miniscule"
+        sizeRating = 0.5
+        sizeNum = getRandomFloat(0.01, 2.54)
+        sizeNum = sizeNum.toFixed(2)
+        weight = getRandomFloat(0.005, 0.01)
+        weight = weight.toFixed(2)
+      } else if (die == 3) {
+        size = "fine"
+        sizeRating = 1
+        sizeNum = getRandomFloat(2.54, 15.24)
+        sizeNum = sizeNum.toFixed(2)
+        weight = getRandomFloat(0.01, 0.056699)
+        weight = weight.toFixed(2)
+      } else if (die >= 4 && die <= 10) {
+        size = "diminutive"
+        sizeRating = 2
+        sizeNum = getRandomFloat(15.24, 30.48)
+        sizeNum = sizeNum.toFixed(2)
+        weight = getRandomFloat(0.056699, 0.453592)
+        weight = weight.toFixed(2)
+      } else if (die >= 11 && die <= 20) {
+        size = "tiny"
+        sizeRating = 3
+        sizeNum = getRandomFloat(30.48, 60.96)
+        sizeNum = sizeNum.toFixed(2)
+        weight = getRandomFloat(0.453592, 3.62874)
+        weight = weight.toFixed(2)
+      } else if (die >= 21 && die <= 30) {
+        size = "small"
+        sizeRating = 4
+        sizeNum = getRandomFloat(60.96, 121.92)
+        sizeNum = sizeNum.toFixed(2)
+        weight = getRandomFloat(3.62874, 27.2155)
+        weight = weight.toFixed(2)
+      } else if (die >= 31 && die <= 70) {
+        size = "medium"
+        sizeRating = 5
+        sizeNum = getRandomFloat(121.92, 243.84)
+        sizeNum = sizeNum.toFixed(2)
+        weight = getRandomFloat(27.2155, 226.796)
+        weight = weight.toFixed(2)
+      } else if (die >= 71 && die <= 80) {
+        size = "large"
+        sizeRating = 6
+        sizeNum = getRandomFloat(243.84, 487.68)
+        sizeNum = sizeNum.toFixed(2)
+        weight = getRandomFloat(226.796, 1814.369)
+        weight = weight.toFixed(2)
+      } else if (size >= 81 && size <= 90) {
+        size = "huge"
+
+        sizeRating = 7
+        sizeNum = getRandomFloat(487.68, 975.36)
+        sizeNum = sizeNum.toFixed(2)
+        weight = getRandomFloat(1814.369, 14514.956)
+        weight = weight.toFixed(2)
+      } else if (die >= 91 && die <= 97) {
+        size = "gargantuan"
+        sizeRating = 8
+        sizeNum = getRandomFloat(975.36, 1950.72)
+        sizeNum = sizeNum.toFixed(2)
+        weight = getRandomFloat(14514.956, 113398.0925)
+        weight = weight.toFixed(2)
+      } else if (die >= 98 && die <= 99) {
+        size = "colossal"
+        sizeRating = 9
+        sizeNum = getRandomFloat(1950.72, 3901.44)
+        sizeNum = sizeNum.toFixed(2)
+        weight = getRandomFloat(113398.0925, 900380.8545)
+        weight = weight.toFixed(2)
+      } else if (die == 100) {
+        size = "epic"
+        sizeRating = 10
+        sizeNum = getRandomFloat(3901.44, 7802.88)
+        sizeNum = sizeNum.toFixed(2)
+        weight = getRandomFloat(900380.8545, 7150883.7131)
+        weight = weight.toFixed(2)
+      } else {
+          size = "medium"
+          sizeRating = 5
+          sizeNum = getRandomFloat(121.92, 243.84)
+          sizeNum = sizeNum.toFixed(2)
+          weight = getRandomFloat(27.2155, 226.796)
+          weight = weight.toFixed(2)
+      }
+
+    };
+    function generateColoration() {
+      const colors = [
+        {name: "Absolute Zero", hex: "#0048BA"},
+        {name: "Acid green", hex: "#B0BF1A"},
+        {name: "Aero", hex: "#7CB9E8"},
+        {name: "African violet", hex: "#B284BE"},
+        {name: "Air superiority blue", hex: "#72A0C1"},
+        {name: "Alice blue", hex: "#F0F8FF"},
+        {name: "Alizarin", hex: "#E32636"},
+        {name: "Alloy orange", hex: "#C46210"},
+        {name: "Almond", hex: "#EFDECD"},
+        {name: "Amaranth deep purple", hex: "#9F2B68"},
+        {name: "Amaranth pink", hex: "#F19CBB"},
+        {name: "Amaranth purple", hex: "#AB274F"},
+        {name: "Amazon", hex: "#3B7A57"},
+        {name: "Amber", hex: "#FFBF00"},
+        {name: "Amethyst", hex: "#9966CC"},
+        {name: "Android green", hex: "#A4C639"},
+        {name: "Antique brass", hex: "#CD9575"},
+        {name: "Antique bronze", hex: "#665D1E"},
+        {name: "Antique fuchsia", hex: "#915C83"},
+        {name: "Antique ruby", hex: "#841B2D"},
+        {name: "Antique white", hex: "#FAEBD7"},
+        {name: "Apricot", hex: "#FBCEB1"},
+        {name: "Aqua", hex: "#00FFFF"},
+        {name: "Aquamarine", hex: "#7FFFD4"},
+        {name: "Arctic lime", hex: "#D0FF14"},
+        {name: "Artichoke green", hex: "#8F9779"},
+        {name: "Arylide yellow", hex: "#E9D66B"},
+        {name: "Ash gray", hex: "#B2BEB5"},
+        {name: "Atomic tangerine", hex: "#FF9966"},
+        {name: "Aureolin", hex: "#FDEE00"},
+        {name: "Azure", hex: "#007FFF"},
+        {name: "Baby blue", hex: "#89CFF0"},
+        {name: "Baby blue eyes", hex: "#A1CAF1"},
+        {name: "Baby pink", hex: "#F4C2C2"},
+        {name: "Baby powder", hex: "#FEFEFA"},
+        {name: "Baker-Miller pink", hex: "#FF91AF"},
+        {name: "Banana Mania", hex: "#FAE7B5"},
+        {name: "Barbie Pink", hex: "#E0218A"},
+        {name: "Barn red", hex: "#7C0A02"},
+        {name: "Battleship grey", hex: "#848482"},
+        {name: "Beau blue", hex: "#BCD4E6"},
+        {name: "Beaver", hex: "#9F8170"},
+        {name: "Beige", hex: "#F5F5DC"},
+        {name: "B'dazzled blue", hex: "#2E5894"},
+        {name: "Big dip o’ruby", hex: "#9C2542"},
+        {name: "Bisque", hex: "#FFE4C4"},
+        {name: "Bistre", hex: "#3D2B1F"},
+        {name: "Bistre brown", hex: "#967117"},
+        {name: "Bitter lemon", hex: "#CAE00D"},
+        {name: "Black", hex: "#000000"},
+        {name: "Black bean", hex: "#3D0C02"},
+        {name: "Black coral", hex: "#54626F"},
+        {name: "Black olive", hex: "#3B3C36"},
+        {name: "Black Shadows", hex: "#BFAFB2"},
+        {name: "Blanched almond", hex: "#FFEBCD"},
+        {name: "Blast-off bronze", hex: "#A57164"},
+        {name: "Bleu de France", hex: "#318CE7"},
+        {name: "Blizzard blue", hex: "#ACE5EE"},
+        {name: "Blood red", hex: "#660000"},
+        {name: "Blue", hex: "#0000FF"},
+        {name: "Blue bell", hex: "#A2A2D0"},
+        {name: "Blue-gray", hex: "#6699CC"},
+        {name: "Blue jeans", hex: "#5DADEC"},
+        {name: "Blue sapphire", hex: "#126180"},
+        {name: "Blue-violet", hex: "#8A2BE2"},
+        {name: "Blue yonder", hex: "#5072A7"},
+        {name: "Bluetiful", hex: "#3C69E7"},
+        {name: "Blush", hex: "#DE5D83"},
+        {name: "Bole", hex: "#79443B"},
+        {name: "Bone", hex: "#E3DAC9"},
+        {name: "Brick red", hex: "#CB4154"},
+        {name: "Bright lilac", hex: "#D891EF"},
+        {name: "Bright yellow", hex: "#FFAA1D"},
+        {name: "British racing green", hex: "#004225"},
+        {name: "Bronze", hex: "#CD7F32"},
+        {name: "Brown", hex: "#88540B"},
+        {name: "Brown sugar", hex: "#AF6E4D"},
+        {name: "Bud green", hex: "#7BB661"},
+        {name: "Buff", hex: "#F0DC82"},
+        {name: "Burgundy", hex: "#800020"},
+        {name: "Burlywood", hex: "#DEB887"},
+        {name: "Burnished brown", hex: "#A17A74"},
+        {name: "Burnt orange", hex: "#CC5500"},
+        {name: "Burnt sienna", hex: "#E97451"},
+        {name: "Burnt umber", hex: "#8A3324"},
+        {name: "Byzantine", hex: "#BD33A4"},
+        {name: "Byzantium", hex: "#702963"},
+        {name: "Cadet blue", hex: "#5F9EA0"},
+        {name: "Cadet grey", hex: "#91A3B0"},
+        {name: "Cadmium green", hex: "#006B3C"},
+        {name: "Cadmium orange", hex: "#ED872D"},
+        {name: "Café au lait", hex: "#A67B5B"},
+        {name: "Café noir", hex: "#4B3621"},
+        {name: "Cambridge blue", hex: "#A3C1AD"},
+        {name: "Camel", hex: "#C19A6B"},
+        {name: "Cameo pink", hex: "#EFBBCC"},
+        {name: "Canary", hex: "#FFFF99"},
+        {name: "Canary yellow", hex: "#FFEF00"},
+        {name: "Candy pink", hex: "#E4717A"},
+        {name: "Cardinal", hex: "#C41E3A"},
+        {name: "Caribbean green", hex: "#00CC99"},
+        {name: "Carmine", hex: "#960018"},
+        {name: "Carnation pink", hex: "#FFA6C9"},
+        {name: "Carnelian", hex: "#B31B1B"},
+        {name: "Carolina blue", hex: "#56A0D3"},
+        {name: "Carrot orange", hex: "#ED9121"},
+        {name: "Catawba", hex: "#703642"},
+        {name: "Cedar Chest", hex: "#C95A49"},
+        {name: "Celadon", hex: "#ACE1AF"},
+        {name: "Celeste", hex: "#B2FFFF"},
+        {name: "Cerise", hex: "#DE3163"},
+        {name: "Cerulean", hex: "#007BA7"},
+        {name: "Cerulean blue", hex: "#2A52BE"},
+        {name: "Cerulean frost", hex: "#6D9BC3"},
+        {name: "Champagne", hex: "#F7E7CE"},
+        {name: "Champagne pink", hex: "#F1DDCF"},
+        {name: "Charcoal", hex: "#36454F"},
+        {name: "Charm pink", hex: "#E68FAC"},
+        {name: "Chartreuse", hex: "#7FFF00"},
+        {name: "Cherry blossom pink", hex: "#FFB7C5"},
+        {name: "Chestnut", hex: "#954535"},
+        {name: "Chili red", hex: "#E23D28"},
+        {name: "China pink", hex: "#DE6FA1"},
+        {name: "Chinese red", hex: "#AA381E"},
+        {name: "Chinese violet", hex: "#856088"},
+        {name: "Chinese yellow", hex: "#FFB200"},
+        {name: "Chocolate", hex: "#7B3F00"},
+        {name: "Cinereous", hex: "#98817B"},
+        {name: "Cinnabar", hex: "#E34234"},
+        {name: "Cinnamon Satin", hex: "#CD607E"},
+        {name: "Citrine", hex: "#E4D00A"},
+        {name: "Citron", hex: "#9FA91F"},
+        {name: "Claret", hex: "#7F1734"},
+        {name: "Coffee", hex: "#6F4E37"},
+        {name: "Columbia Blue", hex: "#C4D8E2"},
+        {name: "Congo pink", hex: "#F88379"},
+        {name: "Cool grey", hex: "#8C92AC"},
+        {name: "Copper", hex: "#B87333"},
+        {name: "Copper red", hex: "#CB6D51"},
+        {name: "Copper rose", hex: "#996666"},
+        {name: "Coquelicot", hex: "#FF3800"},
+        {name: "Coral", hex: "#FF7F50"},
+        {name: "Coral pink", hex: "#F88379"},
+        {name: "Cordovan", hex: "#893F45"},
+        {name: "Corn", hex: "#FBEC5D"},
+        {name: "Cornflower blue", hex: "#6495ED"},
+        {name: "Cornsilk", hex: "#FFF8DC"},
+        {name: "Cosmic cobalt", hex: "#2E2D88"},
+        {name: "Cosmic latte", hex: "#FFF8E7"},
+        {name: "Coyote brown", hex: "#81613C"},
+        {name: "Cotton candy", hex: "#FFBCD9"},
+        {name: "Cream", hex: "#FFFDD0"},
+        {name: "Crimson", hex: "#DC143C"},
+        {name: "Cultured Pearl", hex: "#F5F5F5"},
+        {name: "Cyan", hex: "#00FFFF"},
+        {name: "Cyber grape", hex: "#58427C"},
+        {name: "Cyber yellow", hex: "#FFD300"},
+        {name: "Cyclamen", hex: "#F56FA1"},
+        {name: "Dandelion", hex: "#F0E130"},
+        {name: "Dark brown", hex: "#654321"},
+        {name: "Dark byzantium", hex: "#5D3954"},
+        {name: "Dark cyan", hex: "#008B8B"},
+        {name: "Dark electric blue", hex: "#536878"},
+        {name: "Dark goldenrod", hex: "#B8860B"},
+        {name: "Dark green", hex: "#013220"},
+        {name: "Dark jungle green", hex: "#1A2421"},
+        {name: "Dark khaki", hex: "#BDB76B"},
+        {name: "Dark lava", hex: "#483C32"},
+        {name: "Dark liver", hex: "#534B4F"},
+        {name: "Dark magenta", hex: "#8B008B"},
+        {name: "Dark olive green", hex: "#556B2F"},
+        {name: "Dark orange", hex: "#FF8C00"},
+        {name: "Dark orchid", hex: "#9932CC"},
+        {name: "Dark purple", hex: "#301934"},
+        {name: "Dark red", hex: "#8B0000"},
+        {name: "Dark salmon", hex: "#E9967A"},
+        {name: "Dark sea green", hex: "#8FBC8F"},
+        {name: "Dark sienna", hex: "#3C1414"},
+        {name: "Dark sky blue", hex: "#8CBED6"},
+        {name: "Dark slate blue", hex: "#483D8B"},
+        {name: "Dark slate gray", hex: "#2F4F4F"},
+        {name: "Dark spring green", hex: "#177245"},
+        {name: "Dark turquoise", hex: "#00CED1"},
+        {name: "Dark violet", hex: "#9400D3"},
+        {name: "Davy's grey", hex: "#555555"},
+        {name: "Deep cerise", hex: "#DA3287"},
+        {name: "Deep champagne", hex: "#FAD6A5"},
+        {name: "Deep chestnut", hex: "#B94E48"},
+        {name: "Deep jungle green", hex: "#004B49"},
+        {name: "Deep pink", hex: "#FF1493"},
+        {name: "Deep saffron", hex: "#FF9933"},
+        {name: "Deep sky blue", hex: "#00BFFF"},
+        {name: "Deep Space Sparkle", hex: "#4A646C"},
+        {name: "Deep taupe", hex: "#7E5E60"},
+        {name: "Denim", hex: "#1560BD"},
+        {name: "Denim blue", hex: "#2243B6"},
+        {name: "Desert", hex: "#C19A6B"},
+        {name: "Desert sand", hex: "#EDC9AF"},
+        {name: "Dim gray", hex: "#696969"},
+        {name: "Dodger blue", hex: "#1E90FF"},
+        {name: "Drab dark brown", hex: "#4A412A"},
+        {name: "Duke blue", hex: "#00009C"},
+        {name: "Dutch white", hex: "#EFDFBB"},
+        {name: "Ebony", hex: "#555D50"},
+        {name: "Ecru", hex: "#C2B280"},
+        {name: "Eerie black", hex: "#1B1B1B"},
+        {name: "Eggplant", hex: "#614051"},
+        {name: "Eggshell", hex: "#F0EAD6"},
+        {name: "Electric lime", hex: "#CCFF00"},
+        {name: "Electric purple", hex: "#BF00FF"},
+        {name: "Electric violet", hex: "#8F00FF"},
+        {name: "Emerald", hex: "#50C878"},
+        {name: "Eminence", hex: "#6C3082"},
+        {name: "English lavender", hex: "#B48395"},
+        {name: "English red", hex: "#AB4B52"},
+        {name: "English vermillion", hex: "#CC474B"},
+        {name: "English violet", hex: "#563C5C"},
+        {name: "Erin", hex: "#00FF40"},
+        {name: "Eton blue", hex: "#96C8A2"},
+        {name: "Fallow", hex: "#C19A6B"},
+        {name: "Falu red", hex: "#801818"},
+        {name: "Fandango", hex: "#B53389"},
+        {name: "Fandango pink", hex: "#DE5285"},
+        {name: "Fawn", hex: "#E5AA70"},
+        {name: "Fern green", hex: "#4F7942"},
+        {name: "Field drab", hex: "#6C541E"},
+        {name: "Fiery rose", hex: "#FF5470"},
+        {name: "Finn", hex: "#692D54"},
+        {name: "Firebrick", hex: "#B22222"},
+        {name: "Fire engine red", hex: "#CE2029"},
+        {name: "Flame", hex: "#E25822"},
+        {name: "Flax", hex: "#EEDC82"},
+        {name: "Flirt", hex: "#A2006D"},
+        {name: "Floral white", hex: "#FFFAF0"},
+        {name: "Forest green", hex: "#228B22"},
+        {name: "French beige", hex: "#A67B5B"},
+        {name: "French bistre", hex: "#856D4D"},
+        {name: "French blue", hex: "#0072BB"},
+        {name: "French fuchsia", hex: "#FD3F92"},
+        {name: "French lilac", hex: "#86608E"},
+        {name: "French lime", hex: "#9EFD38"},
+        {name: "French mauve", hex: "#D473D4"},
+        {name: "French pink", hex: "#FD6C9E"},
+        {name: "French raspberry", hex: "#C72C48"},
+        {name: "French sky blue", hex: "#77B5FE"},
+        {name: "French violet", hex: "#8806CE"},
+        {name: "Frostbite", hex: "#E936A7"},
+        {name: "Fuchsia", hex: "#FF00FF"},
+        {name: "Fulvous", hex: "#E48400"},
+        {name: "Gainsboro", hex: "#DCDCDC"},
+        {name: "Gamboge", hex: "#E49B0F"},
+        {name: "Generic viridian", hex: "#007F66"},
+        {name: "Ghost white", hex: "#F8F8FF"},
+        {name: "Glaucous", hex: "#6082B6"},
+        {name: "Glossy grape", hex: "#AB92B3"},
+        {name: "GO green", hex: "#00AB66"},
+        {name: "Gold", hex: "#A57C00"},
+        {name: "Gold Fusion", hex: "#85754E"},
+        {name: "Golden brown", hex: "#996515"},
+        {name: "Golden poppy", hex: "#FCC200"},
+        {name: "Golden yellow", hex: "#FFDF00"},
+        {name: "Goldenrod", hex: "#DAA520"},
+        {name: "Gotham green", hex: "#00573F"},
+        {name: "Granite gray", hex: "#676767"},
+        {name: "Granny Smith apple", hex: "#A8E4A0"},
+        {name: "Gray", hex: "#808080"},
+        {name: "Green", hex: "#00FF00"},
+        {name: "Green-blue", hex: "#1164B4"},
+        {name: "Green Lizard", hex: "#A7F432"},
+        {name: "Green Sheen", hex: "#6EAEA1"},
+        {name: "Gunmetal", hex: "#2A3439"},
+        {name: "Hansa yellow", hex: "#E9D66B"},
+        {name: "Harlequin", hex: "#3FFF00"},
+        {name: "Harvest gold", hex: "#DA9100"},
+        {name: "Heat Wave", hex: "#FF7A00"},
+        {name: "Heliotrope", hex: "#DF73FF"},
+        {name: "Heliotrope gray", hex: "#AA98A9"},
+        {name: "Hollywood cerise", hex: "#F400A1"},
+        {name: "Honolulu blue", hex: "#006DB0"},
+        {name: "Hooker's green", hex: "#49796B"},
+        {name: "Hot magenta", hex: "#FF1DCE"},
+        {name: "Hot pink", hex: "#FF69B4"},
+        {name: "Hunter green", hex: "#355E3B"},
+        {name: "Iceberg", hex: "#71A6D2"},
+        {name: "Illuminating emerald", hex: "#319177"},
+        {name: "Imperial red", hex: "#ED2939"},
+        {name: "Inchworm", hex: "#B2EC5D"},
+        {name: "Independence", hex: "#4C516D"},
+        {name: "India green", hex: "#138808"},
+        {name: "Indian red", hex: "#CD5C5C"},
+        {name: "Indian yellow", hex: "#E3A857"},
+        {name: "Indigo", hex: "#4B0082"},
+        {name: "Indigo dye", hex: "#00416A"},
+        {name: "Irresistible", hex: "#B3446C"},
+        {name: "Isabelline", hex: "#F4F0EC"},
+        {name: "Italian sky blue", hex: "#B2FFFF"},
+        {name: "Ivory", hex: "#FFFFF0"},
+        {name: "Japanese carmine", hex: "#9D2933"},
+        {name: "Japanese violet", hex: "#5B3256"},
+        {name: "Jasmine", hex: "#F8DE7E"},
+        {name: "Jazzberry jam", hex: "#A50B5E"},
+        {name: "Jet", hex: "#343434"},
+        {name: "Jonquil", hex: "#F4CA16"},
+        {name: "June bud", hex: "#BDDA57"},
+        {name: "Jungle green", hex: "#29AB87"},
+        {name: "Kelly green", hex: "#4CBB17"},
+        {name: "Keppel", hex: "#3AB09E"},
+        {name: "Key lime", hex: "#E8F48C"},
+        {name: "Khaki", hex: "#C3B091"},
+        {name: "Kobe", hex: "#882D17"},
+        {name: "Kobi", hex: "#E79FC4"},
+        {name: "Kobicha", hex: "#6B4423"},
+        {name: "KSU purple", hex: "#512888"},
+        {name: "Languid lavender", hex: "#D6CADD"},
+        {name: "Lapis lazuli", hex: "#26619C"},
+        {name: "Laser lemon", hex: "#FFFF66"},
+        {name: "Laurel green", hex: "#A9BA9D"},
+        {name: "Lava", hex: "#CF1020"},
+        {name: "Lavender", hex: "#E6E6FA"},
+        {name: "Lavender blue", hex: "#CCCCFF"},
+        {name: "Lavender gray", hex: "#C4C3D0"},
+        {name: "Lawn green", hex: "#7CFC00"},
+        {name: "Lemon", hex: "#FFF700"},
+        {name: "Lemon chiffon", hex: "#FFFACD"},
+        {name: "Lemon curry", hex: "#CCA01D"},
+        {name: "Lemon glacier", hex: "#FDFF00"},
+        {name: "Lemon meringue", hex: "#F6EABE"},
+        {name: "Lemon yellow", hex: "#FFF44F"},
+        {name: "Liberty", hex: "#545AA7"},
+        {name: "Light blue", hex: "#ADD8E6"},
+        {name: "Light coral", hex: "#F08080"},
+        {name: "Light cornflower blue", hex: "#93CCEA"},
+        {name: "Light cyan", hex: "#E0FFFF"},
+        {name: "Light French beige", hex: "#C8AD7F"},
+        {name: "Light goldenrod yellow", hex: "#FAFAD2"},
+        {name: "Light gray", hex: "#D3D3D3"},
+        {name: "Light green", hex: "#90EE90"},
+        {name: "Light orange", hex: "#FED8B1"},
+        {name: "Light periwinkle", hex: "#C5CBE1"},
+        {name: "Light pink", hex: "#FFB6C1"},
+        {name: "Light salmon", hex: "#FFA07A"},
+        {name: "Light sea green", hex: "#20B2AA"},
+        {name: "Light sky blue", hex: "#87CEFA"},
+        {name: "Light slate gray", hex: "#778899"},
+        {name: "Light steel blue", hex: "#B0C4DE"},
+        {name: "Light yellow", hex: "#FFFFE0"},
+        {name: "Lilac", hex: "#C8A2C8"},
+        {name: "Lilac Luster", hex: "#AE98AA"},
+        {name: "Lime", hex: "#BFFF00"},
+        {name: "Lime green", hex: "#32CD32"},
+        {name: "Lincoln green", hex: "#195905"},
+        {name: "Linen", hex: "#FAF0E6"},
+        {name: "Lion", hex: "#C19A6B"},
+        {name: "Liseran purple", hex: "#DE6FA1"},
+        {name: "Little boy blue", hex: "#6CA0DC"},
+        {name: "Liver", hex: "#674C47"},
+        {name: "Liver chestnut", hex: "#987456"},
+        {name: "Livid", hex: "#6699CC"},
+        {name: "Macaroni and Cheese", hex: "#FFBD88"},
+        {name: "Madder Lake", hex: "#CC3336"},
+        {name: "Magenta", hex: "#FF00FF"},
+        {name: "Magenta haze", hex: "#9F4576"},
+        {name: "Magic mint", hex: "#AAF0D1"},
+        {name: "Magnolia", hex: "#F8F4FF"},
+        {name: "Mahogany", hex: "#C04000"},
+        {name: "Maize", hex: "#FBEC5D"},
+        {name: "Majorelle blue", hex: "#6050DC"},
+        {name: "Malachite", hex: "#0BDA51"},
+        {name: "Manatee", hex: "#979AAA"},
+        {name: "Mandarin", hex: "#F37A48"},
+        {name: "Mango", hex: "#FDBE02"},
+        {name: "Mango Tango", hex: "#FF8243"},
+        {name: "Mantis", hex: "#74C365"},
+        {name: "Mardi Gras", hex: "#880085"},
+        {name: "Marigold", hex: "#EAA221"},
+        {name: "Maroon", hex: "#800000"},
+        {name: "Mauve", hex: "#E0B0FF"},
+        {name: "Mauve taupe", hex: "#915F6D"},
+        {name: "Mauvelous", hex: "#EF98AA"},
+        {name: "May green", hex: "#4C9141"},
+        {name: "Medium aquamarine", hex: "#66DDAA"},
+        {name: "Medium blue", hex: "#0000CD"},
+        {name: "Medium candy apple red", hex: "#E2062C"},
+        {name: "Medium carmine", hex: "#AF4035"},
+        {name: "Medium champagne", hex: "#F3E5AB"},
+        {name: "Medium electric blue", hex: "#035096"},
+        {name: "Medium jungle green", hex: "#1C352D"},
+        {name: "Medium lavender magenta", hex: "#DDA0DD"},
+        {name: "Medium orchid", hex: "#BA55D3"},
+        {name: "Medium persian blue", hex: "#0067A5"},
+        {name: "Medium purple", hex: "#9370DB"},
+        {name: "Medium red-violet", hex: "#BB3385"},
+        {name: "Medium ruby", hex: "#AA4069"},
+        {name: "Medium sea green", hex: "#3CB371"},
+        {name: "Medium sky blue", hex: "#80DAEB"},
+        {name: "Medium slate blue", hex: "#7B68EE"},
+        {name: "Medium spring bud", hex: "#C9DC87"},
+        {name: "Medium spring green", hex: "#00FA9A"},
+        {name: "Medium taupe", hex: "#674C47"},
+        {name: "Medium turquoise", hex: "#48D1CC"},
+        {name: "Medium violet-red", hex: "#C71585"},
+        {name: "Mellow apricot", hex: "#F8B878"},
+        {name: "Mellow yellow", hex: "#F8DE7E"},
+        {name: "Melon", hex: "#FEBAAD"},
+        {name: "Metallic gold", hex: "#D3AF37"},
+        {name: "Metallic Seaweed", hex: "#0A7E8C"},
+        {name: "Metallic Sunburst", hex: "#9C7C38"},
+        {name: "Mexican pink", hex: "#E4007C"},
+        {name: "Middle blue", hex: "#7ED4E6"},
+        {name: "Middle red", hex: "#E58E73"},
+        {name: "Midnight", hex: "#702670"},
+        {name: "Midnight blue", hex: "#191970"},
+        {name: "Midnight green", hex: "#004953"},
+        {name: "Mikado yellow", hex: "#FFC40C"},
+        {name: "Mimi pink", hex: "#FFDAE9"},
+        {name: "Mindaro", hex: "#E3F988"},
+        {name: "Ming", hex: "#36747D"},
+        {name: "Minion yellow", hex: "#F5E050"},
+        {name: "Mint", hex: "#3EB489"},
+        {name: "Mint cream", hex: "#F5FFFA"},
+        {name: "Mint green", hex: "#98FF98"},
+        {name: "Misty moss", hex: "#BBB477"},
+        {name: "Misty rose", hex: "#FFE4E1"},
+        {name: "Morning blue", hex: "#8DA399"},
+        {name: "Moss green", hex: "#8A9A5B"},
+        {name: "Mountain Meadow", hex: "#30BA8F"},
+        {name: "Mountbatten pink", hex: "#997A8D"},
+        {name: "MSU green", hex: "#18453B"},
+        {name: "Mughal green", hex: "#306030"},
+        {name: "Mulberry", hex: "#C54B8C"},
+        {name: "Mustard", hex: "#FFDB58"},
+        {name: "Myrtle green", hex: "#317873"},
+        {name: "Mystic", hex: "#D65282"},
+        {name: "Mystic maroon", hex: "#AD4379"},
+        {name: "Nadeshiko pink", hex: "#F6ADC6"},
+        {name: "Naples yellow", hex: "#FADA5E"},
+        {name: "Neon green", hex: "#39FF14"},
+        {name: "Neon fuchsia", hex: "#FE4164"},
+        {name: "Neon blue", hex: "#4666FF"},
+        {name: "New York pink", hex: "#D7837F"},
+        {name: "Nickel", hex: "#727472"},
+        {name: "Non-photo blue", hex: "#A4DDED"},
+        {name: "Nyanza", hex: "#E9FFDB"},
+        {name: "Ocean blue", hex: "#4F42B5"},
+        {name: "Ocean green", hex: "#48BF91"},
+        {name: "Ochre", hex: "#CC7722"},
+        {name: "Old burgundy", hex: "#43302E"},
+        {name: "Old gold", hex: "#CFB53B"},
+        {name: "Old lace", hex: "#FDF5E6"},
+        {name: "Old lavender", hex: "#796878"},
+        {name: "Old mauve", hex: "#673147"},
+        {name: "Old rose", hex: "#C08081"},
+        {name: "Olive", hex: "#808000"},
+        {name: "Olive Drab", hex: "#6B8E23"},
+        {name: "Olivine", hex: "#9AB973"},
+        {name: "Onyx", hex: "#353839"},
+        {name: "Opal", hex: "#A8C3BC"},
+        {name: "Opera mauve", hex: "#B784A7"},
+        {name: "Orange", hex: "#FF6600"},
+        {name: "Orange peel", hex: "#FF9F00"},
+        {name: "Orange-red", hex: "#FF4500"},
+        {name: "Orchid", hex: "#DA70D6"},
+        {name: "Orchid pink", hex: "#F2BDCD"},
+        {name: "Outer Space", hex: "#414A4C"},
+        {name: "Outrageous Orange", hex: "#FF6E4A"},
+        {name: "Oxford blue", hex: "#002147"},
+        {name: "OU Crimson red", hex: "#841617"},
+        {name: "Pacific blue", hex: "#1CA9C9"},
+        {name: "Pakistan green", hex: "#006600"},
+        {name: "Palatinate blue", hex: "#273BE2"},
+        {name: "Palatinate purple", hex: "#682860"},
+        {name: "Pale aqua", hex: "#BCD4E6"},
+        {name: "Pale cerulean", hex: "#9BC4E2"},
+        {name: "Pale dogwood", hex: "#ED7A9B"},
+        {name: "Pale pink", hex: "#FADADD"},
+        {name: "Pale red-violet", hex: "#DB7093"},
+        {name: "Pale robin egg blue", hex: "#96DED1"},
+        {name: "Pale silver", hex: "#C9C0BB"},
+        {name: "Pale spring bud", hex: "#ECEBBD"},
+        {name: "Pansy purple", hex: "#78184A"},
+        {name: "Paolo Veronese green", hex: "#009B7D"},
+        {name: "Papaya whip", hex: "#FFEFD5"},
+        {name: "Paradise pink", hex: "#E63E62"},
+        {name: "Pastel blue", hex: "#AEC6CF"},
+        {name: "Pastel brown", hex: "#836953"},
+        {name: "Pastel gray", hex: "#CFCFC4"},
+        {name: "Pastel green", hex: "#77DD77"},
+        {name: "Pastel magenta", hex: "#F49AC2"},
+        {name: "Pastel orange", hex: "#FFB347"},
+        {name: "Pastel pink", hex: "#FFD1DC"},
+        {name: "Pastel purple", hex: "#B39EB5"},
+        {name: "Pastel red", hex: "#FF6961"},
+        {name: "Pastel violet", hex: "#CB99C9"},
+        {name: "Pastel yellow", hex: "#FDFD96"},
+        {name: "Patriarch", hex: "#800080"},
+        {name: "Payne's gray", hex: "#536878"},
+        {name: "Peach", hex: "#FFE5B4"},
+        {name: "Peach puff", hex: "#FFDAB9"},
+        {name: "Peach-orange", hex: "#FFCC99"},
+        {name: "Peach-yellow", hex: "#FADFAD"},
+        {name: "Pear", hex: "#D1E231"},
+        {name: "Pearl", hex: "#EAE0C8"},
+        {name: "Pearl Aqua", hex: "#88D8C0"},
+        {name: "Pearly purple", hex: "#B768A2"},
+        {name: "Peridot", hex: "#E6E200"},
+        {name: "Periwinkle", hex: "#CCCCFF"},
+        {name: "Permanent Geranium Lake", hex: "#E12C2C"},
+        {name: "Persian blue", hex: "#1C39BB"},
+        {name: "Persian green", hex: "#00A693"},
+        {name: "Persian indigo", hex: "#32127A"},
+        {name: "Persian orange", hex: "#D99058"},
+        {name: "Persian pink", hex: "#F77FBE"},
+        {name: "Persian plum", hex: "#701C1C"},
+        {name: "Persian red", hex: "#CC3333"},
+        {name: "Persian rose", hex: "#FE28A2"},
+        {name: "Persimmon", hex: "#EC5800"},
+        {name: "Peru", hex: "#CD853F"},
+        {name: "Pewter Blue", hex: "#8BA8B7"},
+        {name: "Phlox", hex: "#DF00FF"},
+        {name: "Phthalo blue", hex: "#000F89"},
+        {name: "Phthalo green", hex: "#123524"},
+        {name: "Picotee blue", hex: "#2E2787"},
+        {name: "Pictorial carmine", hex: "#C30B4E"},
+        {name: "Piggy pink", hex: "#FDDDE6"},
+        {name: "Pine green", hex: "#01796F"},
+        {name: "Pineapple", hex: "#563C5C"},
+        {name: "Pink", hex: "#FFC0CB"},
+        {name: "Pink (Pantone)", hex: "#D74894"},
+        {name: "Pink Flamingo", hex: "#FC74FD"},
+        {name: "Pink lace", hex: "#FFDDF4"},
+        {name: "Pink lavender", hex: "#D8B2D1"},
+        {name: "Pink Sherbet", hex: "#F78FA7"},
+        {name: "Pistachio", hex: "#93C572"},
+        {name: "Platinum", hex: "#E5E4E2"},
+        {name: "Plum", hex: "#DDA0DD"},
+        {name: "Plump Purple", hex: "#5946B2"},
+        {name: "Polished Pine", hex: "#5DA493"},
+        {name: "Pomp and Power", hex: "#86608E"},
+        {name: "Popstar", hex: "#BE4F62"},
+        {name: "Portland Orange", hex: "#FF5A36"},
+        {name: "Powder blue", hex: "#B0E0E6"},
+        {name: "Princeton orange", hex: "#F58025"},
+        {name: "Prune", hex: "#701C1C"},
+        {name: "Prussian blue", hex: "#003153"},
+        {name: "Psychedelic purple", hex: "#DF00FF"},
+        {name: "Puce", hex: "#CC8899"},
+        {name: "Pullman Brown (UPS Brown)", hex: "#644117"},
+        {name: "Pumpkin", hex: "#FF7518"},
+        {name: "Purple", hex: "#6A0DAD"},
+        {name: "Purple Heart", hex: "#69359C"},
+        {name: "Purple mountain majesty", hex: "#9678B6"},
+        {name: "Purple navy", hex: "#4E5180"},
+        {name: "Purple pizzazz", hex: "#FE4EDA"},
+        {name: "Purple Plum", hex: "#9C51B6"},
+        {name: "Purpureus", hex: "#9A4EAE"},
+        {name: "Queen blue", hex: "#436B95"},
+        {name: "Queen pink", hex: "#E8CCD7"},
+        {name: "Quick Silver", hex: "#A6A6A6"},
+        {name: "Quinacridone magenta", hex: "#8E3A59"},
+        {name: "Radical Red", hex: "#FF355E"},
+        {name: "Raisin black", hex: "#242124"},
+        {name: "Rajah", hex: "#FBAB60"},
+        {name: "Raspberry", hex: "#E30B5D"},
+        {name: "Raspberry glace", hex: "#915F6D"},
+        {name: "Raspberry rose", hex: "#B3446C"},
+        {name: "Raw Sienna", hex: "#D68A59"},
+        {name: "Raw Umber", hex: "#826644"},
+        {name: "Razzle dazzle rose", hex: "#FF33CC"},
+        {name: "Razzmatazz", hex: "#E3256B"},
+        {name: "Razzmic Berry", hex: "#8D4E85"},
+        {name: "Rebecca Purple", hex: "#663399"},
+        {name: "Red", hex: "#FF0000"},
+        {name: "Red-orange", hex: "#FF5349"},
+        {name: "Red-purple", hex: "#E40078"},
+        {name: "Red Salsa", hex: "#FD3A4A"},
+        {name: "Red-violet", hex: "#C71585"},
+        {name: "Redwood", hex: "#A45A52"},
+        {name: "Resolution blue", hex: "#002387"},
+        {name: "Rhythm", hex: "#777696"},
+        {name: "Rich black", hex: "#004040"},
+        {name: "Rich brilliant lavender", hex: "#F1A7FE"},
+        {name: "Rich carmine", hex: "#D70040"},
+        {name: "Rich electric blue", hex: "#0892D0"},
+        {name: "Rich lavender", hex: "#A76BCF"},
+        {name: "Rich lilac", hex: "#B666D2"},
+        {name: "Rifle green", hex: "#444C38"},
+        {name: "Robin egg blue", hex: "#00CCCC"},
+        {name: "Rocket metallic", hex: "#8A7F80"},
+        {name: "Rojo Spanish red", hex: "#A91101"},
+        {name: "Roman silver", hex: "#838996"},
+        {name: "Rose", hex: "#FF007F"},
+        {name: "Rose bonbon", hex: "#F9429E"},
+        {name: "Rose Dust", hex: "#9E5E6F"},
+        {name: "Rose ebony", hex: "#674846"},
+        {name: "Rose gold", hex: "#B76E79"},
+        {name: "Rose madder", hex: "#E32636"},
+        {name: "Rose pink", hex: "#FF66CC"},
+        {name: "Rose Pompadour", hex: "#ED7A9B"},
+        {name: "Rose quartz", hex: "#AA98A9"},
+        {name: "Rose red", hex: "#C21E56"},
+        {name: "Rose taupe", hex: "#905D5D"},
+        {name: "Rose vale", hex: "#AB4E52"},
+        {name: "Rosewood", hex: "#65000B"},
+        {name: "Rosso corsa", hex: "#D40000"},
+        {name: "Rosy brown", hex: "#BC8F8F"},
+        {name: "Royal azure", hex: "#0038A8"},
+        {name: "Royal blue", hex: "#4169E1"},
+        {name: "Royal fuchsia", hex: "#CA2C92"},
+        {name: "Royal purple", hex: "#7851A9"},
+        {name: "Royal yellow", hex: "#FADA5E"},
+        {name: "Ruber", hex: "#CE4676"},
+        {name: "Rubine red", hex: "#D10056"},
+        {name: "Ruby", hex: "#E0115F"},
+        {name: "Ruby red", hex: "#9B111E"},
+        {name: "Ruddy", hex: "#FF0028"},
+        {name: "Ruddy brown", hex: "#BB6528"},
+        {name: "Ruddy pink", hex: "#E18E96"},
+        {name: "Rufous", hex: "#A81C07"},
+        {name: "Russet", hex: "#80461B"},
+        {name: "Russian green", hex: "#679267"},
+        {name: "Russian violet", hex: "#32174D"},
+        {name: "Rust", hex: "#B7410E"},
+        {name: "Rusty red", hex: "#DA2C43"},
+        {name: "Sacramento State green", hex: "#00563F"},
+        {name: "Saddle brown", hex: "#8B4513"},
+        {name: "Safety orange", hex: "#FF7800"},
+        {name: "Safety yellow", hex: "#EED202"},
+        {name: "Saffron", hex: "#F4C430"},
+        {name: "Sage", hex: "#BCB88A"},
+        {name: "St. Patrick's blue", hex: "#23297A"},
+        {name: "Salmon", hex: "#FA8072"},
+        {name: "Salmon pink", hex: "#FF91A4"},
+        {name: "Sand", hex: "#C2B280"},
+        {name: "Sand dune", hex: "#967117"},
+        {name: "Sandstorm", hex: "#ECD540"},
+        {name: "Sandy brown", hex: "#F4A460"},
+        {name: "Sandy taupe", hex: "#967117"},
+        {name: "Sangria", hex: "#92000A"},
+        {name: "Sap green", hex: "#507D2A"},
+        {name: "Sapphire", hex: "#0F52BA"},
+        {name: "Sapphire blue", hex: "#0067A5"},
+        {name: "Satin sheen gold", hex: "#CBA135"},
+        {name: "Scarlet", hex: "#FF2400"},
+        {name: "Schauss pink", hex: "#FF91AF"},
+        {name: "School bus yellow", hex: "#FFD800"},
+        {name: "Screamin' Green", hex: "#66FF66"},
+        {name: "Sea green", hex: "#2E8B57"},
+        {name: "Sea Serpent", hex: "#4BC7CF"},
+        {name: "Seal brown", hex: "#59260B"},
+        {name: "Seashell", hex: "#FFF5EE"},
+        {name: "Selective yellow", hex: "#FFBA00"},
+        {name: "Sepia", hex: "#704214"},
+        {name: "Shadow", hex: "#8A795D"},
+        {name: "Shadow blue", hex: "#778BA5"},
+        {name: "Shampoo", hex: "#FFCFF1"},
+        {name: "Shamrock green", hex: "#009E60"},
+        {name: "Sheen green", hex: "#8FD400"},
+        {name: "Shimmering Blush", hex: "#D98695"},
+        {name: "Shiny Shamrock", hex: "#5FA778"},
+        {name: "Shocking pink", hex: "#FC0FC0"},
+        {name: "Sienna", hex: "#882D17"},
+        {name: "Silver", hex: "#C0C0C0"},
+        {name: "Silver (Metallic)", hex: "#AAA9AD"},
+        {name: "Silver chalice", hex: "#ACACAC"},
+        {name: "Silver Lake blue", hex: "#5D89BA"},
+        {name: "Silver pink", hex: "#C4AEAD"},
+        {name: "Silver sand", hex: "#BFC1C2"},
+        {name: "Sinopia", hex: "#CB410B"},
+        {name: "Sizzling Red", hex: "#FF3855"},
+        {name: "Sizzling Sunrise", hex: "#FFDB00"},
+        {name: "Skobeloff", hex: "#007474"},
+        {name: "Sky blue", hex: "#87CEEB"},
+        {name: "Sky magenta", hex: "#CF71AF"},
+        {name: "Slate blue", hex: "#6A5ACD"},
+        {name: "Slate gray", hex: "#708090"},
+        {name: "Slimy green", hex: "#299617"},
+        {name: "Smokey topaz", hex: "#832A0D"},
+        {name: "Smoky black", hex: "#100C08"},
+        {name: "Snow", hex: "#FFFAFA"},
+        {name: "Soap", hex: "#CEC8EF"},
+        {name: "Solid pink", hex: "#893843"},
+        {name: "Sonic silver", hex: "#757575"},
+        {name: "Spartan Crimson", hex: "#9E1316"},
+        {name: "Space cadet", hex: "#1D2951"},
+        {name: "Spanish bistre", hex: "#807532"},
+        {name: "Spanish blue", hex: "#0070B8"},
+        {name: "Spanish carmine", hex: "#D10047"},
+        {name: "Spanish crimson", hex: "#E51A4C"},
+        {name: "Spanish gray", hex: "#989898"},
+        {name: "Spanish green", hex: "#009150"},
+        {name: "Spanish orange", hex: "#E86100"},
+        {name: "Spanish pink", hex: "#F7BFBE"},
+        {name: "Spanish purple", hex: "#66033C"},
+        {name: "Spanish red", hex: "#E60026"},
+        {name: "Spanish sky blue", hex: "#00FFFF"},
+        {name: "Spanish violet", hex: "#4C2882"},
+        {name: "Spanish viridian", hex: "#007F5C"},
+        {name: "Spanish yellow", hex: "#F6B511"},
+        {name: "Spicy mix", hex: "#8B5f4D"},
+        {name: "Spiro Disco Ball", hex: "#0FC0FC"},
+        {name: "Spring bud", hex: "#A7FC00"},
+        {name: "Spring Frost", hex: "#87FF2A"},
+        {name: "Spring green", hex: "#00FF7F"},
+        {name: "Star command blue", hex: "#007BB8"},
+        {name: "Steel blue", hex: "#4682B4"},
+        {name: "Steel pink", hex: "#CC33CC"},
+        {name: "Steel Teal", hex: "#5F8A8B"},
+        {name: "Stil de grain yellow", hex: "#FADA5E"},
+        {name: "Stizza", hex: "#990000"},
+        {name: "Stormcloud", hex: "#4F666A"},
+        {name: "Straw", hex: "#E4D96F"},
+        {name: "Strawberry", hex: "#FC5A8D"},
+        {name: "Strawberry ice", hex: "#E7807D"},
+        {name: "Sugar Plum", hex: "#914E75"},
+        {name: "Sunburnt Cyclops", hex: "#FF404C"},
+        {name: "Sunglow", hex: "#FFCC33"},
+        {name: "Sunny", hex: "#F2F27A"},
+        {name: "Sunray", hex: "#E3AB57"},
+        {name: "Sunset", hex: "#FAD6A5"},
+        {name: "Sunset orange", hex: "#FD5E53"},
+        {name: "Super pink", hex: "#CF6BA9"},
+        {name: "Sweet Brown", hex: "#A83731"},
+        {name: "Tan", hex: "#D2B48C"},
+        {name: "Tangelo", hex: "#F94D00"},
+        {name: "Tangerine", hex: "#F28500"},
+        {name: "Tangerine yellow", hex: "#FFCC00"},
+        {name: "Tango pink", hex: "#E4717A"},
+        {name: "Tart Orange", hex: "#FB4D46"},
+        {name: "Taupe", hex: "#483C32"},
+        {name: "Taupe gray", hex: "#8B8589"},
+        {name: "Tea green", hex: "#D0F0C0"},
+        {name: "Tea rose", hex: "#F88379"},
+        {name: "Teal", hex: "#008080"},
+        {name: "Teal blue", hex: "#367588"},
+        {name: "Telemagenta", hex: "#CF3476"},
+        {name: "Tenné", hex: "#CD5700"},
+        {name: "Terra cotta", hex: "#E2725B"},
+        {name: "Thistle", hex: "#D8BFD8"},
+        {name: "Thulian pink", hex: "#DE6FA1"},
+        {name: "Tickle Me Pink", hex: "#FC89AC"},
+        {name: "Tiffany Blue", hex: "#0ABAB5"},
+        {name: "Tiger's eye", hex: "#E08D3C"},
+        {name: "Timberwolf", hex: "#DBD7D2"},
+        {name: "Titanium yellow", hex: "#EEE600"},
+        {name: "Tomato", hex: "#FF6347"},
+        {name: "Toolbox", hex: "#746CC0"},
+        {name: "Topaz", hex: "#FFC87C"},
+        {name: "Tractor red", hex: "#FD0E35"},
+        {name: "Trolley grey", hex: "#808080"},
+        {name: "Tropical rain forest", hex: "#00755E"},
+        {name: "True Blue", hex: "#0073CF"},
+        {name: "Trypan Blue", hex: "#1C05B3"},
+        {name: "Tufts Blue", hex: "#3E8EDE"},
+        {name: "Tumbleweed", hex: "#DEAA88"},
+        {name: "Turkish rose", hex: "#B57281"},
+        {name: "Turquoise", hex: "#30D5C8"},
+        {name: "Turquoise blue", hex: "#00FFEF"},
+        {name: "Turquoise green", hex: "#A0D6B4"},
+        {name: "Tuscan", hex: "#FAD6A5"},
+        {name: "Tuscan brown", hex: "#6F4E37"},
+        {name: "Tuscan red", hex: "#7C4848"},
+        {name: "Tuscan tan", hex: "#A67B5B"},
+        {name: "Tuscany", hex: "#C09999"},
+        {name: "Twilight lavender", hex: "#8A496B"},
+        {name: "Tyrian purple", hex: "#66023C"},
+        {name: "UA blue", hex: "#0033AA"},
+        {name: "UA red", hex: "#D9004C"},
+        {name: "Ultramarine", hex: "#3F00FF"},
+        {name: "Ultramarine blue", hex: "#4166F5"},
+        {name: "Ultra pink", hex: "#FF6FFF"},
+        {name: "Ultra red", hex: "#FC6C85"},
+        {name: "Umber", hex: "#635147"},
+        {name: "Unbleached silk", hex: "#FFDDCA"},
+        {name: "United Nations blue", hex: "#5B92E5"},
+        {name: "University of California Gold", hex: "#B78727"},
+        {name: "University of Tennessee Orange", hex: "#F77F00"},
+        {name: "Unmellow Yellow", hex: "#FFFF66"},
+        {name: "UP Forest green", hex: "#014421"},
+        {name: "UP Maroon", hex: "#7B1113"},
+        {name: "Upsdell red", hex: "#AE2029"},
+        {name: "Uranian blue", hex: "#AFDBF5"},
+        {name: "USAFA blue", hex: "#004F98"},
+        {name: "Vanilla", hex: "#F3E5AB"},
+        {name: "Vanilla ice", hex: "#F38FA9"},
+        {name: "Vegas gold", hex: "#C5B358"},
+        {name: "Venetian red", hex: "#C80815"},
+        {name: "Verdigris", hex: "#43B3AE"},
+        {name: "Vermilion", hex: "#E34234"},
+        {name: "Veronica", hex: "#A020F0"},
+        {name: "Very light azure", hex: "#74BBFB"},
+        {name: "Very light blue", hex: "#6666FF"},
+        {name: "Very light malachite green", hex: "#64E986"},
+        {name: "Very light tangelo", hex: "#FFB077"},
+        {name: "Very pale orange", hex: "#FFDFBF"},
+        {name: "Very pale yellow", hex: "#FFFFBF"},
+        {name: "Violet", hex: "#8F00FF"},
+        {name: "Violet-blue", hex: "#324AB2"},
+        {name: "Violet-red", hex: "#F75394"},
+        {name: "Viridian", hex: "#40826D"},
+        {name: "Viridian green", hex: "#009698"},
+        {name: "Vista blue", hex: "#7C9ED9"},
+        {name: "Vivid amber", hex: "#CC9900"},
+        {name: "Vivid auburn", hex: "#922724"},
+        {name: "Vivid burgundy", hex: "#9F1D35"},
+        {name: "Vivid cerise", hex: "#DA1D81"},
+        {name: "Vivid cerulean", hex: "#00AAEE"},
+        {name: "Vivid crimson", hex: "#CC0033"},
+        {name: "Vivid gamboge", hex: "#FF9900"},
+        {name: "Vivid lime green", hex: "#A6D608"},
+        {name: "Vivid malachite", hex: "#00CC33"},
+        {name: "Vivid mulberry", hex: "#B80CE3"},
+        {name: "Vivid orange", hex: "#FF5F00"},
+        {name: "Vivid orange peel", hex: "#FFA000"},
+        {name: "Vivid orchid", hex: "#CC00FF"},
+        {name: "Vivid raspberry", hex: "#FF006C"},
+        {name: "Vivid red", hex: "#F70D1A"},
+        {name: "Vivid red-tangelo", hex: "#DF6124"},
+        {name: "Vivid sky blue", hex: "#00CCFF"},
+        {name: "Vivid tangelo", hex: "#F07427"},
+        {name: "Vivid tangerine", hex: "#FFA089"},
+        {name: "Vivid vermilion", hex: "#E56024"},
+        {name: "Vivid violet", hex: "#9F00FF"},
+        {name: "Vivid yellow", hex: "#FFE302"},
+        {name: "Volt", hex: "#CEFF00"},
+        {name: "Warm black", hex: "#004242"},
+        {name: "Wheat", hex: "#F5DEB3"},
+        {name: "White", hex: "#FFFFFF"},
+        {name: "Wild blue yonder", hex: "#A2ADD0"},
+        {name: "Wild orchid", hex: "#D470A2"},
+        {name: "Wild Strawberry", hex: "#FF43A4"},
+        {name: "Wild watermelon", hex: "#FC6C85"},
+        {name: "Willpower orange", hex: "#FD5800"},
+        {name: "Windsor tan", hex: "#A75502"},
+        {name: "Wine", hex: "#722F37"},
+        {name: "Wine dregs", hex: "#673147"},
+        {name: "Winter Sky", hex: "#FF007C"},
+        {name: "Wintergreen Dream", hex: "#56887D"},
+        {name: "Wisteria", hex: "#C9A0DC"},
+        {name: "Wood brown", hex: "#C19A6B"},
+        {name: "Xanadu", hex: "#738678"},
+        {name: "Xanthic", hex: "#EEED09"},
+        {name: "Xanthous", hex: "#F1B42F"},
+        {name: "Xiketic", hex: "#0F0F0F"},
+        {name: "Yellow", hex: "#FFFF00"},
+        {name: "Yellow (Crayola)", hex: "#FCE883"},
+        {name: "Yellow (Munsell)", hex: "#EFCC00"},
+        {name: "Yellow (NCS)", hex: "#FFD300"},
+        {name: "Yellow (Pantone)", hex: "#FEDF00"},
+        {name: "Yellow (process)", hex: "#FFEF00"},
+        {name: "Yellow (RYB)", hex: "#FEFE33"},
+        {name: "Yellow-green", hex: "#9ACD32"},
+        {name: "Yellow Orange", hex: "#FFAE42"},
+        {name: "Yellow rose", hex: "#FFF000"},
+        {name: "Yellow Sunshine", hex: "#FFF700"},
+        {name: "YInMn Blue", hex: "#2E5090"},
+        {name: "Zaffre", hex: "#0014A8"},
+        {name: "Zinnwaldite brown", hex: "#2C1608"},
+        {name: "Zomp", hex: "#39A78E"},
+        {name: "Zunza", hex: "#313830"}
+      ];
+      color = getRandomItem(colors)
+      colorName = color.name
+      colorHex = color.hex
+      //console.log(colorHex)
+      colorRGB = hexToRGB(colorHex)
+      regex = /rgb\((\d+),(\d+),(\d+)\)/;
+      result = regex.exec(colorRGB)
+      let r = parseInt(result[1], 10);
+      let g = parseInt(result[2], 10);
+      let b = parseInt(result[3], 10);
+      colorHSL = RGBToHSL(r,g,b)
+      rp = colorHSL
+      const complement = harmonize(rp, 180, 180, 1)
+      const triad = harmonize(rp, 120, 240, 120)
+      const tetrad = harmonize(rp, 90, 270, 90)
+      const analogous = harmonize(rp, 30, 90, 30)
+      primeColor = hslToHex(rp)
+      primeColor = String(primeColor)
+      compColor = complement[1]
+      //console.log(compColor)
+      compColor = hslToHex(compColor)
+      compColor = String(compColor)
+      triColor1 = triad[1]
+      triColor1 = String(triColor1)
+      triColor2 = triad[2]
+      triColor2 = String(triColor2)
+      //triColor1 = hslToHex(triColor1)
+      //triColor2 = hslToHex(triColor2)
+      tetColor1 = tetrad[1]
+      tetColor1 = String(tetColor1)
+      tetColor2 = tetrad[2]
+      tetColor2 = String(tetColor2)
+      tetColor3 = tetrad[3]
+      tetColor3 = String(tetColor3)
+      console.log(tetColor3)
+      //tetColor1 = hslToHex(tetColor1)
+      //tetColor2 = hslToHex(tetColor2)
+      //tetColor3 = hslToHex(tetColor3)
+      coloration = "<div class='colors'><i>Primary Color:</i> " + colorName + " <span style='color:" + primeColor + "'>▇▇</span></br><i>Compelemtary Color:</i> <span style='color:" + primeColor + "'>▇▇</span><span style='color:" + compColor + "'>▇▇</span></br><i>Triadic Colors:</i> <span style='color:" + primeColor + "'>▇▇</span><span style='color:" + triColor1 + "'>▇▇</span><span style='color:" + triColor2 + "'>▇▇</span></br><i>Tetradic Colors:</i> <span style='color:" + primeColor + "'>▇▇</span><span style='color:" + tetColor1 + "'>▇▇</span><span style='color:" + tetColor2 + "'>▇▇</span><span style='color:" + tetColor3 + "'>▇▇</span></br></div>"
+    }
+    function generateCommunication() {
+      comType1 = comTypeTable();
+      comType2 = comTypeTable();
+
+      // Ensure comType2 is different from comType1
+      while (comType2.name === comType1.name) {
+        comType2 = comTypeTable();
+      }
+
+      primeComA = comType1.name;
+      primeComB = comType1.method;
+      secComA = comType2.name;
+      secComB = comType2.method;
+
+      return { primeComA, primeComB, secComA, secComB };
+
+      function comTypeTable() {
+        let die = d20();
+        let comType;
+        if (die == 1) {
+          comType = {
+            "name": "Body Language",
+            "method": "The creature uses subtle movements used to convey meaning and nuance. Creature is exceptionally good at observing even the subtlest of motions."
+          };
+        } else if (die == 2) {
+          comType = {
+            "name": "Chroma Shifting",
+            "method": "The creature possesses some kind of chromatic organ that changes colour. The various colours and shades are as subtle and varied as normal speech. Their eyesight is exceptional and they can often see colours other species cannot."
+          };
+        } else if (die == 3) {
+          comType = {
+            "name": "Electrocommunication",
+            "method": "The creature has a bioelectric field they can modulate, allowing them to communicate via radiowaves."
+          };
+        } else if (die == 4) {
+          comType = {
+            "name": "Gesticulation",
+            "method": "The creature uses overt large scale movements to communicate, similar to body language but the fine details of a movement hold no meaning."
+          };
+        } else if (die >= 5 && die <= 9) {
+          comType = {
+            "name": "Pheromones",
+            "method": "The creature uses one of more organs to alter its scent or mark areas with scents. These scents are detectable as complex communication by other members of its species."
+          };
+        } else if (die >= 10 && die <= 17) {
+          comType = {
+            "name": "Vocalisation",
+            "method": "The creature uses sounds conducted through the air to communicate."
+          };
+        } else if (die == 18) {
+          comType = {
+            "name": "Telepathy",
+            "method": "The creature is able to make direct contact with the minds of others, passing thoughts to others as readily as they think them."
+          };
+        } else if (die == 19) {
+          comType = {
+            "name": "Touch",
+            "method": "The creature uses locations and subtle patterns of physical contact between themselves and others to convey information."
+          };
+        } else if (die >= 20) {
+          comType = {
+            "name": "Vibration",
+            "method": "The creature uses sounds conducted through the ground to communicate."
+          };
+        }
+        return comType;
+      }
+    };
+    function generateDiet() {
+      die = d20()
+      if (die >= 1 && die <= 5) {
+        diet = "Carnivorius"
+      } else if (die >= 6 && die <= 9) {
+        diet = "Herbivorius"
+      } else if (die >= 10 && die <= 16) {
+        diet = "Omniivorius"
+      } else if (die >= 17 && die <= 18) {
+        diet = "Photosynthetic"
+      } else if (die == 19) {
+        diet = "Radiovorius"
+      } else if (die >= 20) {
+        diet = "Lithovorius"
+      }
+    };
+    function generateIQ() {
+      die = d20()
+      if (die == 1) {
+        int = "Genius"
+        iq = getRandomInt(140, 180)
+      } else if (die ==2) {
+        int = "Exceptional"
+        iq = 120 + d20()
+      } else if (die >= 3 && die <= 4) {
+        int = "High Average"
+        iq = 100 + d20()
+      } else if (die >= 5 && die <= 13) {
+        int = "Average"
+        iq = 90 + d20()
+      } else if (die >= 14 && die <= 15) {
+        int = "Below Average"
+        iq = 80 + d20()
+      } else if (die == 16) {
+        int = "Dull"
+        iq = 70 + d20()
+      } else if (die == 17) {
+        int = "Borderline Deficiency"
+        iq = 60 + d20()
+      } else if (die == 18) {
+        int = "Deficiency"
+        iq = 50 + d20()
+      } else if (die == 19) {
+        int = "Pronounced Deficiency"
+        iq = 30 + d20()
+      } else if (die >= 20) {
+        int = "Extreme Deficiency"
+        iq = d20()
+      }
+      if (iq >= 100) {
+        threashold = iq - 100
+        die = d100()
+        if (die >= threashold) {
+          sapient = "yes"
+        } else {
+          sapient = "no"
+        }
+      } else {
+        sapient = "no"
+      }
+
+    };
+    function generateLimbs() {
+      die = d20()
+      if (die >= 1 && die <= 12) {
+        limbs = "No change"
+      } else if (die >= 13 && die <= 15) {
+        number = d4()
+        limbs = number + " extra pairs of arms"
+      } else if (die >= 16 && die <= 17) {
+        number = d4()
+        limbs = number + " extra pairs of legs"
+      } else if (die == 18) {
+        limbs = "+1 tail"
+      } else if (die == 19) {
+        limbs = "+1 prehencile tail"
+      } else if (die >= 20) {
+        number = d4()
+        die = d20()
+        length = appendageLength(sizeNum)
+        limbs = number + " " + length + "cm tentacles"
+      }
+    };
+    function generateDigits() {
+      digitsFin = "No Change"
+      die = d100()
+      if (die > 80) {
+        die = d100()
+        if (die >= 75) {
+          fingers = digitTable()
+          toes = digitTable()
+          die = d100()
+          if (die > 90) {
+            joints1 = d4() + 1
+            joints2 = d4() + 1
+            digitsFin = fingers + " " + joints1 + " jointed fingers / forelimb digits per limb, " + toes + " " + joints2 + " jointed toes / hindlimb digits per limb";
+          } else {
+            joints1 = d4() + 1
+            digitsFin = fingers + " " + joints1 + " jointed fingers / forelimb digits per limb, " + toes + " " + joints1 + " jointed toes / hindlimb digits per limb";
+          }
+        } else {
+          digits = digitTable()
+          die = d100()
+          if (die > 90) {
+            joints1 = d4() + 1
+            joints2 = d4() + 1
+            digitsFin = digits + " " + joints1 + " jointed fingers / forelimb digits per limb" + digits + " " + joints2 + " jointed toes / hindlimb digits per limb";
+          } else {
+            joints1 = d4() + 1
+            digitsFin = digits + " " + joints1 + " jointed digits per limb";
+          }
+        }
+      }
+        function digitTable(){
+          die = d20()
+          if (die == 1) {
+            digits = 2
+          } else if (die == 2 || die == 3) {
+            digits = 3
+          } else if (die >= 4 && die <= 6) {
+            digits = 4
+          } else if (die >= 7 && die <= 14) {
+            digits = 5
+          } else if (die >= 15 && die <= 17) {
+            digits = 6
+          } else if (die >= 18 && die <= 19) {
+            digits = 7
+          } else if (die >= 20) {
+            digits = 8
+          }
+          return digits
+        }
+    };
+    function generateMovment() {
+      primeMove = movmentTable()
+      secMove = movmentTable()
+      while (secMove === primeMove) {
+        secMove = movmentTable();
+      }
+
+      function movmentTable() {
+        die = d20()
+        if (die >= 1 && die <= 2) {
+          movetype = "crawling"
+        } else if (die >= 3 && die <= 4) {
+          movetype = "flight"
+        } else if (die >= 5 && die <= 6) {
+          movetype = "gliding"
+        } else if (die >= 7 && die <= 9) {
+          movetype = "jumping"
+        } else if (die >= 10 && die <= 20) {
+          movetype = "walking"
+        }
+        return movetype
+      }
+    };
+    function generateSpeed(sizeRating) {
+      die = d20() + sizeRating
+      if (die == 1) {
+        speed = getRandomInt(300, 400)
+      } else if (die == 2) {
+        speed = getRandomInt(200, 300)
+      } else if (die == 3) {
+        speed = getRandomInt(100, 200)
+      } else if (die == 4) {
+        speed = getRandomInt(60, 100)
+      } else if (die == 5) {
+        speed = getRandomInt(41, 60)
+      } else if (die >= 6 && die <= 8) {
+        speed = getRandomInt(21, 40)
+      } else if (die >= 9 && die <= 12) {
+        speed = getRandomInt(11, 20)
+      } else if (die >= 13 && die <= 15) {
+        speed = getRandomInt(6, 10)
+      } else if (die == 16) {
+        speed = getRandomInt(1, 5)
+      } else if (die == 17) {
+        speed = getRandomFloat(0.5, 1)
+      } else if (die == 18) {
+        speed = getRandomFloat(0.1, 0.5)
+      } else if (die == 19) {
+        speed = getRandomFloat(0.01, 0.1)
+      } else if (die >= 20) {
+        speed = getRandomFloat(0.001, 0.01)
+      }
+      speedMax = speed * 1.609
+      speedNorm = speedMax * 0.5
+      speedFast = speedMax * 0.75
+      speedMax = speedMax.toFixed(2)
+      speedNorm = speedNorm.toFixed(2)
+      speedFast = speedFast.toFixed(2)
+    };
+    function generateReproduction() {
+      die = d20()
+      if (die == 1) {
+        reproMethod = "mitosis"
+        reproSize = d4()
+      } else if (die >= 2 && die <= 3) {
+        reproMethod = "budding"
+        reproSize = d8()
+      } else if (die >= 4 && die <= 6) {
+        reproMethod = "oviposision (no host)"
+        reproSize = d6()
+      } else if (die >= 7 && die <= 14) {
+        reproMethod = "live birth"
+        reproSize = getRandomInt(1, 2)
+      } else if (die >= 15 && die <= 17) {
+        reproMethod = "parthenogenesis"
+        reproSize = getRandomInt(1, 3)
+      } else if (die == 18) {
+        reproMethod = "spoor"
+        reproSize = d4() * 1000
+      } else if (die == 19) {
+        reproMethod = "seed"
+        reproSize = d4() * 10
+      } else if (die >= 20) {
+        reproMethod = "oviposision (host)"
+        reproSize = 1
+      }
+      die = d20() + sizeRating
+      if (die == 1) {
+        reproCycle = "within 24 hours"
+      } else if (die >= 2 && die <= 3) {
+        reproCycle = "within 7 days"
+      } else if (die >= 4 && die <= 6) {
+        number = getRandomInt(1, 2) + getRandomInt(1, 2)
+        reproCycle = "within " + number + " weeks"
+      } else if (die >= 7 && die <= 10) {
+        reproCycle = "within a month"
+      } else if (die >= 11 && die <= 13) {
+        reproCycle = "once a year"
+      } else if (die >= 14 && die <= 16) {
+        number = d10()
+        reproCycle = "once every " + number + " years"
+      } else if (die >= 17 && die <= 18) {
+        reproCycle = "once a decade"
+      } else if (die == 19) {
+        reproCycle = "once a century"
+      } else if (die >= 20) {
+        reproCycle = "once a lifetime"
+      }
+
+      if (reproMethod == "mitosis" || reproMethod == "budding" || reproMethod == "spoor") {
+        creatureSexes = "<i>Sex System:</i> Asexual Reproduction - Individuals of this species do not posess a sex. Reproduction is achieved through a natural cloning process.";
+      } else if (reproMethod == "parthenogenesis") {
+        creatureSexes = "<i>Sex System:</i> Parthenogenesis - All individuals are female, but capable of self fertilization under certain environmental conditions.";
+      } else {
+        die = d100()
+        if (die >= 1 && die <= 50) {
+            creatureSexes = "<i>Sex System:</i> Gonochorism - Individuals are either male or female. They remain this sex for life.";
+        } else if (die >= 51 && die <= 70) {
+            creatureSexes = "<i>Sex System:</i> Dioicy - Individuals are either male or female, depending on their current life stage. This is a cycle, with each individual roating through sexes several times over their lifespan.";
+        } else if (die >= 71 && die <= 80) {
+            creatureSexes = "<i>Sex System:</i> Simultaneous hermaphroditism - Individuals produce both male and female gametes, allowing them to both sire and bare young.";
+        } else {
+            selectRareSexSystem();
+        }
+      }
+
+      function selectRareSexSystem() {
+          var rareDie = d100()
+          if (rareDie <= 25) {
+              creatureSexes = "<i>Sex System:</i> Androdioecy - Individuals can be either male, or true hermaphrodites (I.E. produce both types of gametes).";
+          } else if (rareDie >= 26 && rareDie <= 50) {
+              creatureSexes = "<i>Sex System:</i> Gynodioecy - Individuals can be either female, or true hermaphrodites (I.E. produce both types of gametes).";
+          } else if (rareDie >= 51 && rareDie <= 75) {
+              creatureSexes = "<i>Sex System:</i> Sequential hermaphroditism - Individuals start their adult lives as one sex (male or female), and change to the other sex at a later age. This occures once.";
+          } else if (rareDie >= 76) {
+              creatureSexes = "<i>Sex System:</i> Sequential monoecy - Individuals can be male, female or true hermaphrodites (I.E. produce both types of gametes). Their sex changes over time, with each individual being a diffrent sex at diffrent life stages, but ending their life as a true hermaphrodite.";
+          }
+
+      }
+
+
+
+    };
+    function generateSenses(sizeRating) {
+      //Eyes
+
+      die = d20()
+      eyes = eyeNumber()
+      if (die == 1) {
+          eyeStyle = "compound"
+          eyesFin = eyes + " " + eyeStyle + " eyes"
+        } else if (die >= 2 && die <= 11) {
+          eyeStyle = "forward facing"
+          eyeLoc = eyeStyleTable()
+          eyesFin = eyes + " " + eyeLoc + " " + eyeStyle + " eyes"
+        } else if (die >= 12 && die <= 14) {
+          eyeStyle = "stalk-mounted (retractable)"
+          eyeLoc = eyeStyleTable()
+          eyesFin = eyes + " " + eyeLoc + " " + eyeStyle + " eyes"
+        } else if (die >= 15 && die <= 17) {
+          eyeStyle = "side facing"
+          eyeLoc = eyeStyleTable()
+          eyesFin = eyes + " " + eyeLoc + " " + eyeStyle + " eyes"
+        } else if (die >= 18 && die <= 19) {
+          eyeStyle = "stalk-mounted (static)"
+          eyeLoc = eyeStyleTable()
+          eyesFin = eyes + " " + eyeLoc + " " + eyeStyle + " eyes"
+        } else if (die >= 2 && die <= 3) {
+          eyeStyle = "pit-like"
+          eyeLoc = eyeStyleTable()
+          eyesFin = eyes + " " + eyeLoc + " " + eyeStyle + " eyes"
+      }
+
+      eyeQual = d10() * 10
+      eyeQuality = "20/" + eyeQual
+
+      //Smell
+
+      die = d20()
+      if (die == 1 || die == 2) {
+          noseType = "no visible nose"
+        } else if (die >= 3 && die <= 6) {
+          noseType = "vomeronasal system (smell via taste)"
+        } else if (die >= 7 && die <= 15) {
+          noseType = "humanoid style nose"
+        } else if (die >= 16 && die <= 18) {
+          noseType = "trunk"
+        } else if (die >= 19 && die <= 20) {
+          noseType = "pit style nose"
+      }
+      smellQuality = d10()
+      smellQuality = smellQuality + "/10"
+
+      //Hearing
+
+      const animals = [
+        { name: 'Albino Rat', range: [390, 72000] },
+        { name: 'Beluga Whale', range: [1000, 123000] },
+        { name: 'Bottlenose Dolphin', range: [150, 150000] },
+        { name: 'Bullfrog', range: [100, 3000] },
+        { name: 'Canary', range: [250, 18000] },
+        { name: 'Cat', range: [55, 77000] },
+        { name: 'Catfish', range: [50, 4000] },
+        { name: 'Chicken', range: [125, 2000] },
+        { name: 'Chinchilla', range: [52, 33000] },
+        { name: 'Cockatiel', range: [250, 8000] },
+        { name: 'Cow', range: [23, 35000] },
+        { name: 'Dog', range: [64, 44000] },
+        { name: 'Elephant', range: [17, 10500] },
+        { name: 'Ferret', range: [16, 44000] },
+        { name: 'Gerbil', range: [56, 60000] },
+        { name: 'Goldfish', range: [20, 3000] },
+        { name: 'Guinea Pig', range: [47, 49000] },
+        { name: 'Hedgehog', range: [250, 45000] },
+        { name: 'Hooded Rat', range: [530, 75000] },
+        { name: 'Horse', range: [55, 33500] },
+        { name: 'Human', range: [31, 19000] },
+        { name: 'Little Brown Bat', range: [10300, 115000] },
+        { name: 'Mouse', range: [900, 79000] },
+        { name: 'Opossum', range: [500, 64000] },
+        { name: 'Owl', range: [200, 12000] },
+        { name: 'Parakeet', range: [200, 8500] },
+        { name: 'Porpoise', range: [75, 150000] },
+        { name: 'Rabbit', range: [96, 49000] },
+        { name: 'Raccoon', range: [100, 40000] },
+        { name: 'Sea Lion', range: [200, 50000] },
+        { name: 'Sheep', range: [125, 42500] },
+        { name: 'Tree Frog', range: [50, 4000] },
+        { name: 'Tuna', range: [50, 1100] }
+        // Add more animals as needed
+      ];
+
+      die = d100()
+      if (die <= 33) {
+        lowerBound = getRandomInt(16, 52)
+      } else if (die >= 34 && die <= 66) {
+        lowerBound = getRandomInt(53, 200)
+      } else if (die >= 67) {
+        lowerBound = getRandomInt(201, 1000)
+      }
+      die = d100()
+      if (die <= 33) {
+        upperBound = getRandomInt(1100, 10500)
+      } else if (die >= 34 && die <= 66) {
+        upperBound = getRandomInt(10501, 50000)
+      } else if (die >= 67) {
+        upperBound = getRandomInt(50001, 150000)
+      }
+
+
+      // Find the closest matching animal
+      let closestAnimal = null;
+      let closestDistance = Infinity;
+
+      animals.forEach(animal => {
+        let animalLower = animal.range[0];
+        let animalUpper = animal.range[1];
+
+        let distance = Math.abs(lowerBound - animalLower) + Math.abs(upperBound - animalUpper);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestAnimal = animal.name;
+        }
+      });
+
+      hearingRange = lowerBound + "-" + upperBound +" hz (" + closestAnimal + " like)"
+
+      volTol = d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10() + sizeRating
+
+      die = d20()
+      if (die == 1) {
+        earType = "None Visible"
+      } else if (die == 2) {
+        earType = "1 ear, top of head"
+      } else if (die == 3) {
+        earType = "1 ear, back of head"
+      } else if (die >= 4 && die <= 10) {
+        earType = "2 ears, top of head"
+      } else if (die >= 11 && die <= 17) {
+        earType = "2 ears, side of head"
+      } else if (die == 18) {
+        earType = "3 ears, equidistant arround head"
+      } else if (die == 19) {
+        earType = "4 ears, equidistant arround head"
+      } else if (die >= 20) {
+        earNum = d4() + d4()
+        earType = earNum + " ears, equidistant arround head"
+      }
+
+      //mouth
+      die = d20()
+      if (die >= 1 && die <= 6) {
+        mouthType = "human-like"
+      } else if (die >= 7 && die <= 12) {
+        mouthType = "muzzle"
+      } else if (die == 13) {
+        mouthType = "mandibles"
+      } else if (die >= 14 && die <= 16) {
+        mouthType = "beak (short)"
+      } else if (die >= 17 && die <= 19) {
+        mouthType = "beak (long)"
+      } else if (die >= 20) {
+        mouthType = "proboscis"
+      }
+      tasteQual = d10()
+      tasteQuality = tasteQual + "/10"
+
+      //touch
+      touchQual = d10() - sizeRating
+      if (touchQual < 1) {
+        touchQual = 1
+      }
+      touchQuality = touchQual + "/10"
+      painTolNegMod = touchQual
+
+
+
+      function eyeNumber() {
+        die = d20()
+        if (die == 1) {
+          eyes = 0
+        } else if (die >= 2 && die <= 3) {
+          eyes = 1
+        } else if (die >= 4 && die <= 16) {
+          eyes = 2
+        } else if (die == 17) {
+          eyes = 3
+        } else if (die >= 18 && die <= 19) {
+          eyes = 4
+        } else if (die >= 20) {
+          eyes = d6() + 4
+        }
+        return eyes
+      }
+      function eyeStyleTable(){
+        die = d20()
+        if (die == 1 || die == 2) {
+          pupil = "W"
+        } else if (die >= 3 && die <= 11) {
+          pupil = "circular"
+        } else if (die >= 12 && die <= 13) {
+          pupil = "cressant"
+        } else if (die == 14) {
+          pupil = "irregular"
+        } else if (die >= 15 && die <= 16) {
+          pupil = "horosontal slit"
+        } else if (die >= 17 && die <= 18) {
+          pupil = "vertical slit"
+        } else if (die == 19) {
+          pupil = "star"
+        } else if (die >= 20) {
+          pupil = "string-of-pearls"
+        }
+        return pupil
+      }
+
+
+    };
+    function generateShape() {
+      die = d20()
+      if (die == 1) {
+        creatureShape = "blob-like"
+      } else if (die == 2) {
+        creatureShape = "ovaular spheroid"
+      } else if (die == 3) {
+        creatureShape = "spheroid"
+      } else if (die == 4) {
+        creatureShape = "circular (equidistant radial limbs)"
+      } else if (die >= 5 || die <= 11) {
+        creatureShape = "humanoid"
+      } else if (die == 12) {
+        creatureShape = "conical"
+      } else if (die >= 13 || die <= 17) {
+        creatureShape = "resembles base creature"
+      } else if (die == 18) {
+        creatureShape = "cylindrical (long)"
+      } else if (die == 19) {
+        creatureShape = "cuboid"
+      } else if (die >= 20) {
+        creatureShape = "tauric"
+      }
+    };
+    function generateSleep() {
+      die = d20()
+      if (die >= 1 && die <= 10) {
+        sleep = "day"
+      } else if (die >= 11 && die <= 15) {
+        sleep = "dusk and/or dawn"
+      } else if (die >= 16 && die <= 20) {
+        sleep = "night"
+      }
+      time = d4() + d4()
+      creatureSleep = "<i>Active Pidiod:</i> " + sleep + ".<br>Sleeps for " + time + " hours."
+    };
+    function generateHide() {
+      die = d20()
+      if (die == 1) {
+        skinType = "blubber"
+      } else if (die == 2) {
+        skinType = "exoskeleton"
+      } else if (die == 3 || die == 4) {
+        skinType = "fur (thick)"
+      } else if (die == 5 || die == 6) {
+        skinType = "fur (thin)"
+      } else if (die >= 7 && die <= 10) {
+        skinType = "skin (humanoid)"
+      } else if (die >= 11 && die <= 12) {
+        skinType = "same as base creature"
+      } else if (die >= 13 && die <= 15) {
+        skinType = "scales"
+      } else if (die >= 16 && die <= 17) {
+        skinType = "feathers"
+      } else if (die >= 18 && die <= 19) {
+        skinType = "thick hide"
+      } else if (die >= 20) {
+        skinType = "other"
+      }
+      die = d20()
+      if (die == 1 || die == 2) {
+        skinPatern = "camoflauge based on native terrain"
+      } else if (die == 3 || die == 4) {
+        skinPatern = "darker patches"
+      } else if (die == 5 || die == 6) {
+        skinPatern = "dots"
+      } else if (die == 7) {
+        skinPatern = "geometric shapes"
+      } else if (die == 8 || die == 9) {
+        skinPatern = "lighter areas"
+      } else if (die == 10) {
+        skinPatern = "none / plain coloration"
+      } else if (die == 11 || die == 12) {
+        skinPatern = "resembles an organic material"
+      } else if (die == 13 || die == 14) {
+        skinPatern = "same as base creature"
+      } else if (die == 15) {
+        skinPatern = "stripes (diffrent colors)"
+      } else if (die >= 16 || die <= 18) {
+        skinPatern = "stripes (light & dark)"
+      } else if (die == 19) {
+        skinPatern = "swirls"
+      } else if (die == 15) {
+        skinPatern = "other"
+      }
+      creatureHide = "<i>Skin Type:</i> " + skinType + "<br><i>Skin Pattern</i>: " + skinPatern
+    };
+    function generateStrength(weight) {
+      die = d20()
+      if (die == 1) {
+        creatureStrength = "Negligible"
+      } else if (die == 2) {
+        strength = weight / 10
+        strength = strength.toFixed(2)
+        creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+      } else if (die == 3) {
+        strength = weight / 8
+        strength = strength.toFixed(2)
+        creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+      } else if (die == 4) {
+        strength = weight / 4
+        strength = strength.toFixed(2)
+        creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+      } else if (die == 5) {
+        strength = weight / 3
+        strength = strength.toFixed(2)
+        creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+      } else if (die >= 6 && die <= 7) {
+        strength = weight / 2
+        strength = strength.toFixed(2)
+        creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+      } else if (die >= 8 && die <= 10) {
+        strength = weight
+        strength = strength.toFixed(2)
+        creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+      } else if (die >= 11 && die <= 12) {
+        strength = weight * 1.5
+        strength = strength.toFixed(2)
+        creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+      } else if (die >= 13 && die <= 14) {
+        strength = weight * 2
+        strength = strength.toFixed(2)
+        creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+      } else if (die == 15) {
+        strength = weight * 3
+        strength = strength.toFixed(2)
+        creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+      }
+      else if (die == 16) {
+       strength = weight * 4
+       strength = strength.toFixed(2)
+       creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+     } else if (die == 17) {
+       strength = weight * 6
+       strength = strength.toFixed(2)
+       creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+     } else if (die == 18) {
+       strength = weight * 8
+       strength = strength.toFixed(2)
+       creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+     } else if (die == 19) {
+       strength = weight *  10
+       strength = strength.toFixed(2)
+       creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+     } else if (die == 15) {
+       creatureStrength = "Not easily measured (extereme)"
+     }
+    };
+    function generateTerrain() {
+      terrains = ["Alkali Flats", "Alluvial Fans", "Alpine Lakes", "Arctic", "Artesian Springs", "Badlands", "Barrens", "Bays", "Beachs",  "Bogs", "Calderas", "Canyons", "Caves", "Cliffs", "Crags", "Craters", "Dales", "Deserts", "Dry Lake Beds", "Estuaries", "Fens", "Fields", "Fissures", "Fjords", "Flood Plains", "Coniferous Forests", "Deciduous Forests", "Furroughs", "Glaciers", "Grasslands", "Shallows", "Hills", "Hinterlands", "Hogbacks", "Hollows", "Hot Springs", "Ice Sheets", "Jungles", "Kelp Beds", "Lakes", "Lava Fields", "Lava Tubes", "Marshs", "Meadows", "Meres", "Mountainious Deserts", "Mountains", "Moors", "Nettles", "Brambles", "Overgrowth", "Oasises", "Oceans", "Oxbow Lakes", "Lochs", "Plains", "Ponds", "Prairies", "Rain Forests", "Rapids", "Reefs", "Rivers", "River Deltas", "Salt Lakes", "Sandbars", "Sand Dunes", "Scorched Earth / Burned lands", "Stony Beachs", "Shallow Seas", "Silt Beds", "Springs", "Steppes", "Swamps", "Tide Pools", "Tundras", "Underground", "Valleies", "Volcanic Regions", "Wastelands", "Wetlands", "Wildlands"];
+      terrain = getRandomItem(terrains)
+      homeTerrain = terrain
+    };
+    function generateTemp() {
+      die = d100()
+      if (die >= 1 && die <= 50) {
+        creatureTempL = -10
+        creatureTempH = 40
+      } else if (die >= 51 && die <= 55) {
+        creatureTempL = -5
+        creatureTempH = 40
+      } else if (die >= 56 && die <= 60) {
+        creatureTempL = -15
+        creatureTempH = 40
+      } else if (die >= 61 && die <= 65) {
+        creatureTempL = -20
+        creatureTempH = 40
+      } else if (die >= 66 && die <= 70) {
+        creatureTempL = -5
+        creatureTempH = 40
+      } else if (die >= 71 && die <= 75) {
+        creatureTempL = 0
+        creatureTempH = 40
+      } else if (die >= 76 && die <= 80) {
+        creatureTempL = 0
+        creatureTempH = 35
+      } else if (die >= 81 && die <= 85) {
+        creatureTempL = -5
+        creatureTempH = 35
+      } else if (die >= 86 && die <= 89) {
+        creatureTempL = -10
+        creatureTempH = 35
+      } else if (die == 90) {
+        creatureTempL = -15
+        creatureTempH = 35
+      } else if (die == 91) {
+        creatureTempL = -20
+        creatureTempH = 35
+      } else if (die == 92) {
+        creatureTempL = 0
+        creatureTempH = 50
+      } else if (die == 93) {
+        creatureTempL = 5
+        creatureTempH = 50
+      } else if (die == 94) {
+        creatureTempL = 10
+        creatureTempH = 50
+      } else if (die == 95) {
+        creatureTempL = 15
+        creatureTempH = 50
+      } else if (die == 96) {
+        creatureTempL = 20
+        creatureTempH = 50
+      } else if (die == 97) {
+        creatureTempL = 25
+        creatureTempH = 50
+      } else if (die == 98) {
+        creatureTempL = 35
+        creatureTempH = 60
+      } else if (die == 99) {
+        creatureTempL = 40
+        creatureTempH = 60
+      } else if (die == 100) {
+        creatureTempL = 45
+        creatureTempH = 70
+      }
+
+
+
+    };
+    function generateAdvantage() {
+      var advanDesc = "Unset"
+      var advantage = "Unset"
+      var disadvanDesc = "Unset"
+      var disadvantage = "Unset"
+
+      die = d100()
+      if (die >= 1 && die <= 10) {
+        creatureAdv = "None"
+        creatureDis = "None"
+      } else if (die >= 11 && die <= 20) {
+        creatureDis = "None"
+        advantageTable()
+        creatureAdv = "<i>" + advantage + ":</i> " + advanDesc
+      } else if (die >= 21 && die <= 30) {
+        creatureAdv = "None"
+        disadvantageTable()
+        creatureDis = "<i>" + disadvantage + ":</i> " + disadvanDesc
+      } else if (die >= 31 && die <= 88) {
+        advantageTable()
+        creatureAdv = "<i>" + advantage + ":</i> " + advanDesc
+        disadvantageTable()
+        creatureDis = "<i>" + disadvantage + ":</i> " + disadvanDesc
+      } else if (die >= 89 && die <= 90) {
+        creatureDis = "None"
+        advantageTable()
+        creatureAdv = "<i>" + advantage + ":</i> " + advanDesc + "<br>"
+        advantageTable()
+        creatureAdv = creatureAdv + "<i>" + advantage + ":</i> " + advanDesc
+      } else if (die >= 91 && die <= 92) {
+        creatureAdv = "None"
+        disadvantageTable()
+        creatureDis = "<i>" + disadvantage + ":</i> " + disadvanDesc + "<br>"
+        disadvantageTable()
+        creatureDis = creatureDis + "<i>" + disadvantage + ":</i> " + disadvanDesc
+      } else if (die >= 93 && die <= 94) {
+        advantageTable()
+        creatureAdv = "<i>" + advantage + ":</i> " + advanDesc + "<br>" + "<br>"
+        advantageTable()
+        creatureAdv = creatureAdv + "<i>" + advantage + ":</i> " + advanDesc + "<br>"
+        disadvantageTable()
+        creatureDis = "<i>" + disadvantage + ":</i> " + disadvanDesc
+      } else if (die >= 95 && die <= 96) {
+        advantageTable()
+        creatureAdv = "<i>" + advantage + ":</i> " + advanDesc
+        disadvantageTable()
+        creatureDis = "<i>" + disadvantage + ":</i> " + disadvanDesc + "<br>"
+        disadvantageTable()
+        creatureDis = "<i>" + disadvantage + ":</i> " + disadvanDesc
+      } else if (die >= 97 && die <= 98) {
+        creatureDis = "None"
+        advantageTable()
+        creatureAdv = "<i>" + advantage + ":</i> " + advanDesc + "<br>"
+        advantageTable()
+        creatureAdv = creatureAdv + "<i>" + advantage + ":</i> " + advanDesc + "<br>"
+        advantageTable()
+        creatureAdv = creatureAdv + "<i>" + advantage + ":</i> " + advanDesc
+      } else if (die >= 99 && die <= 100) {
+        creatureAdv = "None"
+        disadvantageTable()
+        creatureDis = "<i>" + disadvantage + ":</i> " + disadvanDesc + "<br>"
+        disadvantageTable()
+        creatureDis = creatureDis + "<i>" + disadvantage + ":</i> " + disadvanDesc + "<br>"
+        disadvantageTable()
+        creatureDis = creatureDis + "<i>" + disadvantage + ":</i> " + disadvanDesc
+      }
+
+      function advantageTable() {
+          advantages = [{"name": "All-Round vision/sight", "desc": "A quirk in their eyes or how they are positioned allows a form of 360-degree vision."},
+          {"name": "Able to change skin markings", "desc": "This species is able to change or create marking on its skin at will, to varying degrees of control. (Scales with Int)"},
+          {"name": "Adaptable", "desc": "The new and the unknown hold no fear for this species. They can adapt to physical and environmental changes faster than other species."},
+          {"name": "Agility", "desc": "This species is unusually agile for its size."},
+          {"name": "Amphibious", "desc": "This species can also breathe the liquid of its home planet as if it was aquatic."},
+          {"name": "Artificially enhanced", "desc": "This species got to the pinnacle of the food chain due to the intervention of another species. Minor disadvantages, such as vestigial, useless and dangerous DNA etc. have been removed."},
+          {"name": "Bite/attacks hallucinogen", "desc": "If this species manages to bite another, something in their salvia causes a hallucinogenic reaction."},
+          {"name": "Blood change", "desc": "The blood of this species is not like normal blood. This blood can cause effects on others if exposed to it."},
+          {"name": "Bloodhound", "desc": "Able to smell blood like a shark or bloodhound. Tracking bleeding creatures is always successful, except in the extreme conditions."},
+          {"name": "Breath Weapon", "desc": "temp"},
+          {"name": "Calm", "desc": "It is almost impossible to make this species angry. When provoked, they are far more deadly than other species."},
+          {"name": "Can breed with another species", "desc": "This species can reproduce freely with any simmilar species, albiet with their genes being dominant."},
+          {"name": "Can pick up EM radiation", "desc": "temp"},
+          {"name": "Can unhinge mouth", "desc": "Self explanatory."},
+          {"name": "Chameleonic skin", "desc": "This species is able to blend into the background. D10 * 10 gives you the % chance they will not be spotted if they remain still."},
+          {"name": "Cold Tolerance", "desc": "Able to tolerate lower temperatures than one would expect."},
+          {"name": "Dark Sight", "desc": "Can see in the dark/low light as if it was a bright and sunny day. Sudden changes of light levels can blind them if they are unprepared."},
+          {"name": "Death Effect", "desc": "If a member of this species is killed"},
+          {"name": "Dextrous", "desc": "Extremely good with fine muscle control."},
+          {"name": "Diplomatic/Calm others", "desc": "This species can be very diplomatic and calm excess emotions in those they encounter. Some species use this ability to calm their prey before killing it."},
+          {"name": "Dislocate joints at will", "desc": "Can easily escape bounds and fit through small gaps"},
+          {"name": "Distributed brain/nervous system", "desc": "This species has its brain distributed through its body. Damage to the head has a vastly reduced effect on cognitive functions. However, body damage increases the chances of effects like concussions or other head trauma might have on other species"},
+          {"name": "Echolocation", "desc": "Can use sound to visualize complex environments."},
+          {"name": "Eidetic Memory", "desc": "This species lacks the capability to forget any information they directly experienced."},
+          {"name": "Electrical Resistance", "desc": "This species has an unusually high resistance to electricity. They can handle most any current safely, provided it lacks sufficient energy to cook meat."},
+          {"name": "Empathic abilities", "desc": "This species can read the emotions of those in close proximity to them."},
+          {"name": "Enhanced Hearing", "desc": "This species' hearing is notably excellent compared to related species."},
+          {"name": "Enhanced Vision", "desc": "This species can see further and more detail compared to related species."},
+          {"name": "Extra Jointed", "desc": "Each limb/digit has an extra joint, making tool use and grasping easier."},
+          {"name": "Extrasensory input", "desc": "Possesses a non-standard sense, such as detecting changes in magnetic fields, ionizing radiation, or even hostility."},
+          {"name": "Fangs", "desc": "Has notably pronounced fangs which can be used as a natural weapon."},
+          {"name": "Fast", "desc": "This species size is no hindrance to their speed."},
+          {"name": "Fast reactions", "desc": "It is very hard, if not impossible, to catch a member of this species off guard."},
+          {"name": "Fast reproduction cycle", "desc": "This species size is no hindrance to the rapidity of their reproduction."},
+          {"name": "Flesh is poisonous", "desc": "Anyone eating the flesh or meat of this species will have to deal with a very strong poison."},
+          {"name": "Flexible", "desc": "This species can bend and contort in ways others other can’t."},
+          {"name": "Genetic Immortality", "desc": "Ignoring accidental damage, disease and outside interference, this species has no upper age limit nor do they suffer effects of old age."},
+          {"name": "Genetic Memory", "desc": "temp"},
+          {"name": "Good Looks", "desc": "Regardless of their appearance, most other species consider this species to be beautiful in at least one way."},
+          {"name": "Harsh Environment survival", "desc": "temp"},
+          {"name": "Has working/useable wings", "desc": "This species has wings, granting them flight (If they already have wings they can fly faster and longer.)."},
+          {"name": "Hearing range increase", "desc": "The hearing range of this species is greater than that of related species."},
+          {"name": "Heat Tolerance", "desc": "The upper-temperature range the species can tolerate is greater than that of related species."},
+          {"name": "Heavy", "desc": "The creature is heavier than one would expect for something of its size."},
+          {"name": "Hibernation/Stasis", "desc": "This species can enter into a hibernation or stasis sleep where they require no food or water. They can be woken up early, but this requires knowledge of the species to do so safely without harming them."},
+          {"name": "High pain tolerance", "desc": "The creature can endure greater pain than related species."},
+          {"name": "Hive Mind", "desc": "A collective consciousness often found in insect-based species. (Does not necessarily remove individuality, can simply allow for impossible feats of coordination.)"},
+          {"name": "Hypnotic Gaze", "desc": "If eye contact is made and this species concentrate, they can make another being pause, almost in a daze."},
+          {"name": "Improved Exoskeleton", "desc": "If no exoskeleton is possessed then this species gains one. This acts like a suit of armour but has almost no penalties. This is shed as the creature rows and they are at a disadvantage until the new exoskeleton is hardened."},
+          {"name": "Increased Healing", "desc": "temp"},
+          {"name": "Infrasight", "desc": "The species possess it to see into infrared and use it as if it was normal light."},
+          {"name": "Internal Armour", "desc": "This species has natural armour guarding vital organs like the heart, lungs etc. Whilst this can protect the creature is does make them heavier and much harder to operate on if injured."},
+          {"name": "Iron Hard Skin/Hide", "desc": "This creature's skin is extremely tough, acting like a suit of armor."},
+          {"name": "Double Jointed", "desc": "This specie's joints can bend in either direction."},
+          {"name": "Learn Fast", "desc": "This species learns things 2d4 times faster than other species. This also grants an equivalent bonus to IQ levels."},
+          {"name": "Limited Precognition", "desc": "This species can predict their immediate future based on conscious and subconscious factors. While not infallible, they are extremely hard to catch by surprise"},
+          {"name": "Long Lifespan", "desc": "This species lives much longer than related species."},
+          {"name": "Long limbs/tail", "desc": "This species limbs are notably longer compared to related species."},
+          {"name": "Low respiration rate", "desc": "Member of this species do not breathe as much as other species. Inhaled chemicals effect them at a much slower rate."},
+          {"name": "Magnetic Location", "desc": "This species can navigate using a planet's magnetic field."},
+          {"name": "Musical/attractive voice", "desc": "This species has a voice or “speech” pattern that is considered to be beautiful and attractive by many other species."},
+          {"name": "Natural Cloak", "desc": "This species can become invisible by warping light around itself. They can conceal thin clothing and small objects in addition to themselves."},
+          {"name": "Polarized Vision", "desc": "This species is resistant to bright lights, and sees only one particular pole of light."},
+          {"name": "Powerful Legs", "desc": "This species can jump very high in relation to their size. Their kicks can also cause a great deal of damage in combat."},
+          {"name": "Psionic", "desc": "This species has mental abilities beyond those of others. The extent of their abilities varies species to species."},
+          {"name": "Psychokinesis", "desc": "Members of this species can telekneticly move objects up to 60% of what they could directly."},
+          {"name": "Radar sense", "desc": "This species has a built-in ability to detect moving metallic objects or other items that reflect radar signals."},
+          {"name": "Reduced diet", "desc": "temp"},
+          {"name": "Reduced/No Sleep", "desc": "This species requires very little sleep, with 10% not needing to sleep at all."},
+          {"name": "Regeneration", "desc": "If limbs are lost, they grow back. It takes a lot of damage to kill one of these creatures outright and even then they have a tendency to not “die” outright through injuries."},
+          {"name": "Resistant to disease", "desc": "This species' immune systems are extremely robust, able to fight off most diseases without any apparent symptoms."},
+          {"name": "Resistant to intoxicants", "desc": "Alcohol, drugs or other intoxicants have almost no effect on this species."},
+          {"name": "Resistant to poison", "desc": "Only the strongest poisons cause this species harm."},
+          {"name": "Resistant to radiation", "desc": "The cells of this species have a high resistance to radiation or energy based damage."},
+          {"name": "Retractable claws", "desc": "This species can extend claws from a suitable limb."},
+          {"name": "Secondary Eyelids", "desc": "This species has protective membranes which can cover their eyes, slightly reducing vision, but allowing them to see in conditions which would harm their eyes."},
+          {"name": "Secondary Heart", "desc": "If the primary heart is damaged, the second one takes over. This makes the species much harder to kill, but increases the speed at which intoxicants, poisons or other substances that use blood as a vector to take hold."},
+          {"name": "Secondary diet option", "desc": "This species gains full nutritional value from a second type of food."},
+          {"name": "Short gestation period", "desc": "This species reproduces faster than related species."},
+          {"name": "Short maturation period", "desc": "This species grows up faster than related species."},
+          {"name": "Spatial Awareness", "desc": "Even in total darkness or whilst being blinded, this creature has an awareness of everything around them. Similar to eco-location, but does not require sound to work. They cannot see the detail or differentiating between objects, but it allows them to know that something or a certain size is to their left, or behind them etc."},
+          {"name": "Stealth", "desc": "When moving they make very little if any sound."},
+          {"name": "Strength", "desc": "This species is notably strong for its size."},
+          {"name": "Symbioses with another species", "desc": "Another species works in harmony with this one for mutual benefit. This can be for defence, health, food or anything."},
+          {"name": "Synesthesia", "desc": "The ability to experience sensory input in other forms, such as seeing sound or feeling colors."},
+          {"name": "Thermal Vision", "desc": "Sources of heat, such as a fire, have the same effect on these creatures vision as bright lights do on standard eyes."},
+          {"name": "Touch Sensitive", "desc": "This species has much finer control and detection with the sense of touch. They can feel vibrations of creatures much smaller than themselves and ground-based attacks have virtually zero chances of surprising them."},
+          {"name": "Touch Taste", "desc": "Touching food or an item they could consume allows this species to taste it. They gain no nutrition from this sampling, but, neither are they affected by poisons or rotten food."},
+          {"name": "Touch Telepath", "desc": "This species can convay their thoughts to any creature or thinking machine they are in contact with."},
+          {"name": "UltraSight", "desc": "This allows the species to see into the ultraviolet spectrum as if it was normal light."},
+          {"name": "Virtually Immortal", "desc": "Species with this advantage are almost impossible to kill. They can heal virtually any damage and have no known upper age limit."},
+          {"name": "Venom", "desc": "If a species possess this advantage then any bite attacks also carry poison. The nature and effects of this poison vary from species to species and may not affect one species the same way as it affects another."}];
+        advantage = getRandomItem(advantages)
+        advanDesc = advantage.desc
+        advantage = advantage.name
+        if (advantage == "Agility") {
+          tempMod = getRandomInt(1, 2)
+          sizeRating = sizeRating - tempMod
+          generateSpeed(sizeRating);
+          document.getElementById("movment").innerHTML = "<i>Movment Modes:</i> " + primeMove + "/" + secMove + "<br><i>Speed:</i> Normal - " + speedNorm + " kp/h, run - " + speedFast + " kp/h, sprint - " +  speedMax + " kp/h"
+          sizeRating = sizeRating + tempMod
+        } else if (advantage == "Blood change") {
+          die = d6()
+          if (die == 1) {
+            type = "an acid (strong)"
+          } else if (die == 2) {
+            type = "an acid (weak)"
+          } else if (die == 3) {
+            type = "a liquid metal"
+          } else if (die == 4) {
+            type = "protoplasm"
+          } else if (die == 5) {
+            type = "an electricaly capasitant fluid"
+          } else if (die == 6) {
+            type = "oil"
+          }
+          advanDesc = "The blood of this species is composed of " + type + ". This blood can cause effects on others if exposed to it."
+        } else if (advantage == "Breath Weapon") {
+          die = d10()
+          if (die == 1) {
+            weap = " breathe out ionized gas, which can fataly electriute many creatures."
+          } else if (die == 2) {
+            weap = " breathe out a jet of burning liquid"
+          } else if (die == 3) {
+            weap = " breathe out a cloud of clorine gas, to which they are immune."
+          } else if (die == 4) {
+            weap = " breathe out a cloud of cryogenic gas, which rapidly freezes dealing little harm to flesh but can induse shock."
+          } else if (die == 5) {
+            weap = " breathe out a poisionious gas, to which they are immune."
+          } else if (die == 6) {
+            weap = " breathe out a potant neuro toxin, to which they are highly resistant."
+          } else if (die == 7) {
+            weap = " breathe out a cloud of thioacetone gas, the stench of which will incapaitate nearly everything."
+          } else if (die == 8) {
+            weap = " breathe out a jet of high pressure liquid contianing deadly bacteria. A victem will not die right away, but is doomed to suffer greatly."
+          } else if (die == 9) {
+            weap = "emit an extreemly high Db shriek, stunning nearby creatures in a manner simmialr to a flash bang."
+          } else if (die == 10) {
+            weap = "regurgitate their stumoch acid in a high pressure stream (without regurgitating food), melting any organic compounds it comes into contact with."
+          }
+          advanDesc = "This species possesses an organ that allows them to " + weap
+        } else if (advantage == "Can pick up EM radiation") {
+          die = getRandomInt(1, 3)
+          if (die == 1) {
+            rad1 = emRadType()
+            advanDesc = `This species can "hear"` + rad1 + " signals."
+          } else if (die == 2) {
+            rad1 = emRadType()
+            rad2 = emRadType()
+            while (rad2 == rad1) {
+              rad2 = emRadType()
+            }
+            advanDesc = "This species can, in essence, hear" + rad1 + " and " + rad2 + " signals."
+          }else if (die == 3) {
+            rad1 = emRadType()
+            rad2 = emRadType()
+            while (rad2 == rad1) {
+              rad2 = emRadType()
+            }
+            rad3 = emRadType()
+            while (rad3 == rad1 || rad3 == rad2) {
+              rad3 = emRadType()
+            }
+            advanDesc = "This species can hear" + rad1 + ", " + rad2 + ", and " + rad3 + " signals."
+          }
+
+          function emRadType() {
+            frequencies = ["Extremely low frequency (3–30 Hz)", "Super low frequency (30–300 Hz)", "Ultra low frequency (300–3,000 Hz)", "Very low frequency (3–30 kHz)", "Low frequency (30–300 kHz), Medium frequency (300–3,000 kHz)", "High frequency (3–30 MHz)", "Very high frequency (30–300 MHz)", "Ultra high frequency (300–3,000 MHz)", "Super high frequency (3–30 GHz)", "Extremely high frequency (30–300 GHz)", "Tremendously high frequency (300–3,000 GHz)"]
+            radType = getRandomItem()
+            return radType
+          }
+        } else if (advantage == "Chameleonic skin") {
+          num = d10()
+          num = num * 10
+          advanDesc = "Able to blend into the background, with " + num + "% effectivness if still."
+        } else if (advantage == "Cold Tolerance") {
+          mod = getRandomInt(1, 3)
+          mod = mod * 5
+          creatureTempL = creatureTempL - mod
+          document.getElementById("tempTolerance").innerHTML = creatureTempL + "°C - " + creatureTempH + "°C"
+        } else if (advantage == "Death Effect") {
+          die = d6()
+          if (die == 1) {
+            effect = "mix a series of inturnal chemicals, causing their body to burst into flames"
+          } else if (die == 2) {
+            effect = "explosivly decompress a series of small organs, detonating their corpse"
+          } else if (die == 3) {
+            effect = "releace compounds into their bloodstream which cause rapid mummification if consumed"
+          } else if (die == 4) {
+            effect = "discharge a large store of bio-electrisity"
+          } else if (die == 5) {
+            effect = "exude a cloud of toxic acidic vapor"
+          } else if (die == 6) {
+            effect = "sweat out the contents of their appendix, creating a bio-hazrdious film"
+          }
+          advanDesc = "When this species dies in stressful conditions, they " + effect + "."
+        } else if (advantage == "Fast") {
+          tempStorage = sizeRating
+          sizeRating = 0
+          generateSpeed(sizeRating);
+          document.getElementById("movment").innerHTML = "<i>Movment Modes:</i> " + primeMove + "/" + secMove + "<br><i>Speed:</i> Normal - " + speedNorm + " kp/h, run - " + speedFast + " kp/h, sprint - " +  speedMax + " kp/h"
+          sizeRating = tempStorage
+        } else if (advantage == "Fast reproduction cycle") {
+          tempStorage = sizeRating
+          sizeRating = 0
+          generateReproduction();
+          reproMethod = reproMethod.charAt(0).toUpperCase() + reproMethod.slice(1);
+          document.getElementById("reproduction").innerHTML = reproMethod + ". Produces " + reproSize + " offspring " + reproCycle + "."
+          sizeRating = tempStorage
+        } else if (advantage == "Genetic Immortality") {
+          document.getElementById("lifespan").innerHTML = "Biologicaly immortal"
+        } else if (advantage == "Genetic Memory") {
+          num = d10()
+          if (num == 1) {
+            advanDesc = "This species can remember their direct progenators' lives as if they lived them."
+          } else {
+            advanDesc = "This species can remember their ancestor' lives as if they lived them going back " + num + " generations."
+          }
+        } else if (advantage == "Harsh Environment survival") {
+          die = d6()
+          if (die == 1) {
+            type = "cold"
+          } else if (die == 2) {
+            type = "hot"
+          } else if (die == 3) {
+            type = "toxic"
+          } else if (die == 4) {
+            type = "radioactive"
+          } else if (die == 5) {
+            coin = getRandomInt(1, 2)
+            if (coin == 1) {
+              type = "high pressure"
+            } else {
+              type = "low pressure"
+            }
+          } else if (die == 6) {
+            type = "dry"
+          }
+          advanDesc = "This species is immune to the effects of all but the worst and most extreme " + type + " environments."
+        } else if (advantage == "Hearing range increase") {
+          mod = d10()
+          die = d20()
+          if (die >= 1 && die <= 7) {
+            tweakMod = (mod - lowerBound) / (lowerBound) * 100
+            lowerBound = lowerBound - tweakMod
+            if (lowerBound < 10) {
+              lowerBound = 10
+            }
+          } else if (die >= 8 && die <= 14) {
+            tweakMod = (mod - upperBound) / (upperBound) * 100
+            upperBound = upperBound + tweakMod
+          } else if (die >= 15 && die <= 20) {
+            tweakMod = (mod - lowerBound) / (lowerBound) * 100
+            lowerBound = lowerBound - tweakMod
+            if (lowerBound < 10) {
+              lowerBound = 10
+            }
+            tweakMod = (mod - upperBound) / (upperBound) * 100
+            upperBound = upperBound + tweakMod
+          }
+          document.getElementById("ears").innerHTML = "<i>Hearing Range:</i> " + lowerBound + " - " + upperBound + " hz. <br>" + volTol + " Db tollerence"
+        } else if (advantage == "Heat Tolerance") {
+          mod = getRandomInt(1, 3)
+          mod = mod * 5
+          creatureTempH = creatureTempH - mod
+          document.getElementById("tempTolerance").innerHTML = creatureTempL + "°C - " + creatureTempH + "°C"
+        } else if (advantage == "Death Effect") {
+          bonus = getRandomInt(1, 3)
+          bonus = bonus * 10
+          painTolPlusMod = painTolPlusMod + bonus
+        } else if (advantage == "Increased Healing") {
+          mod = d10() + d10()
+          advanDesc = "This species can heal " + mod + " times faster than the base creature."
+        } else if (advantage == "Learn Fast") {
+          bonus = d4() + d4()
+          die = d20() - bonus
+          if (die <= 1) {
+            int = "Genius"
+            iq = getRandomInt(140, 180)
+          } else if (die ==2) {
+            int = "Exceptional"
+            iq = 120 + d20()
+          } else if (die >= 3 && die <= 4) {
+            int = "High Average"
+            iq = 100 + d20()
+          } else if (die >= 5 && die <= 13) {
+            int = "Average"
+            iq = 90 + d20()
+          } else if (die >= 14 && die <= 15) {
+            int = "Below Average"
+            iq = 80 + d20()
+          } else if (die == 16) {
+            int = "Dull"
+            iq = 70 + d20()
+          } else if (die == 17) {
+            int = "Borderline Deficiency"
+            iq = 60 + d20()
+          } else if (die == 18) {
+            int = "Deficiency"
+            iq = 50 + d20()
+          } else if (die == 19) {
+            int = "Pronounced Deficiency"
+            iq = 30 + d20()
+          } else if (die >= 20) {
+            int = "Extreme Deficiency"
+            iq = d20()
+          }
+          if (iq >= 70) {
+            threashold = iq - 70
+            die = d100()
+            if (die >= threashold) {
+              sapient = "yes"
+            } else {
+              sapient = "no"
+            }
+          } else {
+            sapient = "no"
+          }
+          document.getElementById("intLevel").innerHTML =  iq + " IQ (" + int + ")<br><i>Sapient:</i> " + sapient
+          advanDesc = "This species learns " + bonus + " times faster than the base creature."
+        } else if (advantage == "Long Lifespan") {
+          tempStorage = sizeRating
+          bonus = getRandomInt(1, 3)
+          sizeRating = sizeRating + bonus
+          generateAge(sizeRating);
+          document.getElementById("lifespan").innerHTML = age + ". Matures in " + maturation
+          sizeRating = tempStorage
+        } else if (advantage == "Reduced diet") {
+          bonus = d6()
+          bonus = bonus * 10
+          advanDesc = "This species eats " + bonus + "% less than the base creature."
+        } else if (advantage == "Reduced/No Sleep") {
+          die = d20()
+          if (die >= 1 && die <= 10) {
+            sleep = "day"
+          } else if (die >= 11 && die <= 15) {
+            sleep = "dusk and/or dawn"
+          } else if (die >= 16 && die <= 20) {
+            sleep = "night"
+          }
+          time = d4()
+          creatureSleep = "<i>Active Pidiod:</i> " + sleep + ".<br>Sleeps for " + time + " hours. 10% of the species does not require sleep at all."
+          document.getElementById("sleep").innerHTML = creatureSleep
+        } else if (advantage == "Short gestation period") {
+          die = d20()
+          if (die == 1) {
+            reproCycle = "within 24 hours"
+          } else if (die >= 2 && die <= 3) {
+            reproCycle = "within 7 days"
+          } else if (die >= 4 && die <= 6) {
+            number = getRandomInt(1, 2) + getRandomInt(1, 2)
+            reproCycle = "within " + number + " weeks"
+          } else if (die >= 7 && die <= 10) {
+            reproCycle = "within a month"
+          } else if (die >= 11 && die <= 13) {
+            reproCycle = "once a year"
+          } else if (die >= 14 && die <= 16) {
+            number = d10()
+            reproCycle = "once every " + number + " years"
+          } else if (die >= 17 && die <= 18) {
+            reproCycle = "once a decade"
+          } else if (die == 19) {
+            reproCycle = "once a century"
+          } else if (die >= 20) {
+            reproCycle = "once a lifetime"
+          }
+          document.getElementById("reproduction").innerHTML = reproMethod + ". Produces " + reproSize + " offspring " + reproCycle + "."
+        } else if (advantage == "Strength") {
+            die = d20() + d6()
+            if (die == 1) {
+              creatureStrength = "Negligible"
+            } else if (die == 2) {
+              strength = weight / 10
+              strength = strength.toFixed(2)
+              creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+            } else if (die == 3) {
+              strength = weight / 8
+              strength = strength.toFixed(2)
+              creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+            } else if (die == 4) {
+              strength = weight / 4
+              strength = strength.toFixed(2)
+              creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+            } else if (die == 5) {
+              strength = weight / 3
+              strength = strength.toFixed(2)
+              creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+            } else if (die >= 6 && die <= 7) {
+              strength = weight / 2
+              strength = strength.toFixed(2)
+              creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+            } else if (die >= 8 && die <= 10) {
+              strength = weight
+              strength = strength.toFixed(2)
+              creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+            } else if (die >= 11 && die <= 12) {
+              strength = weight * 1.5
+              strength = strength.toFixed(2)
+              creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+            } else if (die >= 13 && die <= 14) {
+              strength = weight * 2
+              strength = strength.toFixed(2)
+              creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+            } else if (die == 15) {
+              strength = weight * 3
+              strength = strength.toFixed(2)
+              creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+            }
+            else if (die == 16) {
+             strength = weight * 4
+             strength = strength.toFixed(2)
+             creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+           } else if (die == 17) {
+             strength = weight * 6
+             strength = strength.toFixed(2)
+             creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+           } else if (die == 18) {
+             strength = weight * 8
+             strength = strength.toFixed(2)
+             creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+           } else if (die == 19) {
+             strength = weight *  10
+             strength = strength.toFixed(2)
+             creatureStrength = "<i>Max Lift:</i> " + strength + " kg"
+           } else if (die == 15) {
+             creatureStrength = "Not easily measured (extereme)"
+           }
+          document.getElementById("strength").innerHTML = creatureStrength
+        } else if (advantage == "Virtually Immortal") {
+          reproCycle = "once a lifetime"
+          document.getElementById("reproduction").innerHTML = reproMethod + ". Produces " + reproSize + " offspring " + reproCycle + "."
+          document.getElementById("lifespan").innerHTML = "Biologicaly immortal"
+        }
+        return advantage
+      }
+      function disadvantageTable() {
+        disadvantages = [{"name": "ADD", "desc": "This species has difficulty focus on one task at a time and are easily distracted."},
+        {"name": "Addiction", "desc": "In addition to their regular diet, this species requires another chemical, normally some kind of intoxicant. Failure to take this on a regular basis will result in a painful withdrawal, then often death."},
+        {"name": "Aggressive/Rage", "desc": "The smallest things can make this species angry, and dealing with them in a rage state can be dangerous."},
+        {"name": "Albino", "desc": "This species has no pigmentation. This can be unnerving to others and can make their eyesight worse, plus a host of other defects, such as increased chances of skin cancer and sun-burns."},
+        {"name": "Allergies", "desc": "A particular item causes an intense allergic and sometimes fatal reaction."},
+        {"name": "Bad Breath", "desc": "No matter what this species does or eats, or how often then brush their teeth, their breath is considered by others species to be most foul."},
+        {"name": "Bad Memory", "desc": "This species has trouble retaining memories occurring after a certain amount of time."},
+        {"name": "Bad Smell/Body Odour", "desc": "This species has an odour they can’t detect, but that 90% of other species find offensive."},
+        {"name": "Bestial Aspect", "desc": "An aspect of the base creature they come from is quite prominent; this could be psychological or physical."},
+        {"name": "Bipolar", "desc": "This species lacks an emotional baseline, instead oscillating through peeks and vallies of joy and despair."},
+        {"name": "Bright light hurts them", "desc": "Bright sunlight, and even certain types of artificial light causes this species harm, and they react as if burnt."},
+        {"name": "Brittle bones", "desc": "While this species can support its own weight, their skeleton is prone to breakages from even slight forces."},
+        {"name": "Can’t open mouth wide", "desc": "The mouth of this species can only open a small amount."},
+        {"name": "Chance of dying after breeding", "desc": "Each time members of this species breed, there is a cumulative 20% chance they will die."},
+        {"name": "Chronological Dyslexia", "desc": "This species has a very poor awareness of time, and cannot accuratly track the passage of time unaided. Changes in regular natural events can cause them distress or confusion."},
+        {"name": "Claustrophobic", "desc": "Being in confined spaces is terrifying for this species and causes them to panic."},
+        {"name": "Clumsy", "desc": "Quite often drops items or suffers accidents."},
+        {"name": "Cold intolerance", "desc": "This species cannot tolerate the same level of cold that related species can."},
+        {"name": "Cold-Blooded", "desc": "If no external heat is provided, this species can often shut down into a sleep-like mode. This can often be found in reptilian based species and a few insects."},
+        {"name": "Colour Clash", "desc": "A colour on this species hide/skin makes them stand out quite obviously when trying to hide, especially in foliage."},
+        {"name": "Color Vision Deficiency", "desc": "temp"},
+        {"name": "True Color Blindness", "desc": "This species cannot see hues, only luminescence. IE their vision is grayscale."},
+        {"name": "Cowardice", "desc": "This species tends to flee from danger and confrontation."},
+        {"name": "Difficulty being revived", "desc": "If they are ever knocked out or faint, reviving them is very hard."},
+        {"name": "Directionless", "desc": "This species has a very poor sense of direction and finds navigation of even just a few kilometers extremely challenging without aid."},
+        {"name": "Disease Carrier", "desc": "This species carries a disease that can infect others, but to which they are normally immune."},
+        {"name": "Disease Prone", "desc": "This species has a high chance of catching any disease they are exposed to, even if they have had it before."},
+        {"name": "Easily Corruptible", "desc": "This species is weak-willed when it comes to being bribed etc."},
+        {"name": "Easily exhausted", "desc": "This species tires easy and rests a lot. Anything involving high energy use, like sprinting, using abilities costs twice as much energy and can only be done for half the amount of time. "},
+        {"name": "Electrical conductive", "desc": "Electricity does several times damage to them than other species."},
+        {"name": "General Phobia", "desc": "temp"},
+        {"name": "Goes into shock easy", "desc": "If this species experience blood loss, such as from combat, a major fright or anything that causes shock, there is a much higher chance of death."},
+        {"name": "Grating voice", "desc": "The voice (Or a natural sound this creature makes.) has harmonics to it that grate on most sentient beings aural organs, making communication harder and being around them unpleasant."},
+        {"name": "Glutton", "desc": "This species will consume all food available to it, even if already full."},
+        {"name": "Haemophiliac", "desc": "This species blood doesn’t clot quickly , making it much more likely they will bleed to death from an injury."},
+        {"name": "Has a few useless organs", "desc": "One or more of this species' internal organs serve no real purpose anymore but get in the way and cause problems if infected or damaged."},
+        {"name": "Hearing range decrease", "desc": "This species hearing range is notably smaller than that of related species."},
+        {"name": "Heat intolerance", "desc": "The maximum temperature this species can tolerate is notably lower than that of related species."},
+        {"name": "Heavy-footed", "desc": "This species simply can’t sneak or be subtle when moving. The faster they move, the more sound they make."},
+        {"name": "Humourless", "desc": "Humour is a concept this species simply cannot grasp and are serious about everything they do."},
+        {"name": "Increased consumption", "desc": "This species has to eat several times as much as the base creature but gains no extra benefit from doing so."},
+        {"name": "Inflexible", "desc": "This species has a lower range of movment than related species."},
+        {"name": "Intoxicants work quicker", "desc": "Drinks and drugs work x1d10 faster in this species and the after effects are worse by the same amount as well."},
+        {"name": "Joints have chance to dislocate", "desc": "When moving fast or putting a strain on their joints, there is a 10% chance of them becoming painfully dislocated."},
+        {"name": "Lazy", "desc": "If this species can get away with not doing something, they will."},
+        {"name": "Lack of agility", "desc": "This species cannot dodge or move in an agile way at all. "},
+        {"name": "Lightweight", "desc": "This species is light for its size, which results in worse health, strength etc."},
+        {"name": "Limited diet range", "desc": "This species can only eat a certain meat, or a certain plant, or a certain rock type etc. If omnivorious, they can eat only a select few items from each category."},
+        {"name": "Locking joints", "desc": "After an extended period of non-movement such as sleep, there is a flat 10% chance the creatures’ limbs will lock and take 10 seconds or so to clear."},
+        {"name": "Long gestation period", "desc": "The gestation period of this species is notably long."},
+        {"name": "Long maturation period", "desc": "The maturation period of this species is notably long."},
+        {"name": "Low Hearing tolerance", "desc": "The hearing tolerance of this species is notably lower compared to related species."},
+        {"name": "Low impulse control", "desc": "If a member of this species thinks about something or wants something, they go after it, often to the detriment of themselves or others."},
+        {"name": "Low pain tolerance", "desc": "The pain tolerance of this species is notably lower compared to related species."},
+        {"name": "Movement-based vision", "desc": "This species has difficulty paying attention to objects smaller than themselves if they are not moving."},
+        {"name": "No concept of personal space", "desc": "The idea of having your own personal space is a foreign one to this species."},
+        {"name": "Paranoid", "desc": "This species survival instincts are overtuned and they often misread signals due to this, resulting in paranoia."},
+        {"name": "Poor memory", "desc": "This species has difficulty with short term memory, making learning difficult. They have no difficulty retaining learned information over long periods."},
+        {"name": "Poor night vision", "desc": "This species is almost blind at night and in the dark."},
+        {"name": "Prone to insanity", "desc": "This species has a high chance of suffering from mental problems when compared to other species."},
+        {"name": "Reduced Intelligence", "desc": "This species is notably less intelligent than related species."},
+        {"name": "Reduced birth rate", "desc": "This species' birth rate is notably smaller than related species."},
+        {"name": "Short lifespan", "desc": "This species has a shorter lifespan compared to related species."},
+        {"name": "Short limbs/tail", "desc": "This species limbs are shorter compared to related species."},
+        {"name": "Shy/Withdrawn", "desc": 'This species has difficulty “coming out its shell”.'},
+        {"name": "Sleeps a lot", "desc": "This species sleeps much longer compared to related species."},
+        {"name": "Slow", "desc": "This species is slower compared to related species."},
+        {"name": "Slow thinker", "desc": "This species takes twice as long as normal to articulate a point or convay a thought."},
+        {"name": "Slow healing", "desc": "Healing takes several times as long compared to base species or other similar creatures."},
+        {"name": "Slow reactions", "desc": "These creatures have a hard time reacting to anything fast."},
+        {"name": "Slow to learn", "desc": "It can take this species several attempts to learn new skills and infomration."},
+        {"name": "Squeamish", "desc": "Blood and guts, even from their own kills, have a 10% chance of making this species sick/vomit."},
+        {"name": "Stubborn", "desc": "Getting this species to change its mind is practicaly impossible."},
+        {"name": "PBCAK Error", "desc": "This species is seemingly entirety normal, but cannot typically operate high technology in anything close to the intended or correct manner."},
+        {"name": "UV Intolerance", "desc": "Sunlight, or any light with UV content, rapidly burns this species as if it were albino, even if its not."},
+        {"name": "Uncontrolled Growth", "desc": "This species has the potential to keep growing as they get older. Each individual member has at least at 20% chance of growing up to twice their normal size. While there are no health issues with their increaced size, it makes many tasks impractical or impossible, especially finding enough food to survive."},
+        {"name": "Ugly", "desc": "There is just something about them that is off-putting or repulsive to others not of the same species."},
+        {"name": "Vulnerability to hallucinogens", "desc": "When exposed to something this species is vulnerable to, this species suffers more extreme results and for longer than typical."},
+        {"name": "Vulnerability to poison", "desc": "When exposed to toxins or poisons this species is vulnerable to, this species suffers more extreme results and for longer than typical."},
+        {"name": "Vulnerability to radiation", "desc": "When exposed to radiation this species is vulnerable to, this species suffers more extreme results and for longer than typical."},
+        {"name": "Weak Stomach", "desc": "Rotten or contaminated food is harder for a species like this to deal with. Their food needs to be almost 100% fresh or it can make them ill. Even food that is preserved somehow, such as being frozen, can run the risk of making them ill."},
+        {"name": "Xenophobic", "desc": "Due to a survival mechanism, the majority of this species hates other species. They see acceptance of others as a mental disability (at least within their own species, though also likly in general)."}]
+        disadvantage = getRandomItem(disadvantages)
+        disadvanDesc = disadvantage.desc
+        disadvantage = disadvantage.name
+        if (disadvantage == "Cold intolerance") {
+          mod = getRandomInt(1, 3)
+          mod = mod * 5
+          creatureTempL = creatureTempL + mod
+          document.getElementById("tempTolerance").innerHTML = creatureTempL + "°C - " + creatureTempH + "°C"
+        } else if (disadvantage == "Color Vision Deficiency") {
+          subdisadvantages =[{"name": "Deuteranomaly", "desc":"Certain shades of green look more red."},
+            {"name": "Protanomaly", "desc":"Certain shades of red look more green and less bright."},
+            {"name": "Protanopia", "desc":"Cannot diffrenchiate between green and red."},
+            {"name": "Deuteranopia", "desc":"Cannot diffrenchiate between green and red."},
+            {"name": "Tritanomaly", "desc":"The species has difficulty telling the difference between blue and green and between yellow and red."},
+            {"name": "Tritanopia", "desc":"Unable to tell the difference between blue and green, purple and red, and yellow and pink. It also makes colors look less bright."}]
+          subdisadvantage = getRandomItem(subdisadvantages)
+          disadvanDesc = subdisadvantage.desc
+          disadvantage = subdisadvantage.name
+        } else if (disadvantage == "General Phobia") {
+          die = d6()
+          if (die == 1) {
+            phobia = "certain sounds."
+          } else if (die == 2) {
+            phobia = "dark areas."
+          } else if (die == 3) {
+            phobia = "fire."
+          } else if (die == 4) {
+            phobia = "larger creatures."
+          } else if (die == 5) {
+            phobia = "loud noises."
+          } else if (die == 6) {
+            phobia = "still pools of water."
+          }
+          disadvanDesc = "This species has a serious, possibly crippling phobia realting to " + phobia
+        } else if (disadvantage == "Hearing range decrease") {
+          mod = d10()
+          die = d20()
+          if (die >= 1 && die <= 7) {
+            tweakMod = (mod - lowerBound) / (lowerBound) * 100
+            lowerBound = lowerBound + tweakMod
+            if (lowerBound < 10) {
+              lowerBound = 10
+            }
+          } else if (die >= 8 && die <= 14) {
+            tweakMod = (mod - upperBound) / (upperBound) * 100
+            upperBound = upperBound - tweakMod
+          } else if (die >= 15 && die <= 20) {
+            tweakMod = (mod - lowerBound) / (lowerBound) * 100
+            lowerBound = lowerBound + tweakMod
+            if (lowerBound < 10) {
+              lowerBound = 10
+            }
+            tweakMod = (mod - upperBound) / (upperBound) * 100
+            upperBound = upperBound - tweakMod
+          }
+          document.getElementById("ears").innerHTML = "<i>Hearing Range:</i> " + lowerBound + " - " + upperBound + " hz. <br>" + volTol + " Db tollerence"
+        } else if (disadvantage == "Heat intolerance") {
+          mod = getRandomInt(1, 3)
+          mod = mod * 5
+          creatureTempH = creatureTempH - mod
+          document.getElementById("tempTolerance").innerHTML = creatureTempL + "°C - " + creatureTempH + "°C"
+        } else if (disadvantage == "Intoxicants work quicker") {
+          temp = d10()
+          othertemp = d10()
+          disadvanDesc = "Drugs and other intoxicants effect this species " + temp + " times faster than normal, and impact them " + othertemp + " times as much."
+        } else if (disadvantage == "Long gestation period") {
+          die = d20() + sizeRating
+          if (getRandomInt(1, 2) == 1) {
+            mod = 1.2
+          } else {
+            mod = 1.1
+          }
+          if (die == 1) {
+            reproCycle = "within 24 hours"
+          } else if (die >= 2 && die <= 3) {
+            reproCycle = "within 7 days"
+          } else if (die >= 4 && die <= 6) {
+            number = getRandomInt(1, 2) + getRandomInt(1, 2)
+            number = number * mod
+            reproCycle = "within " + number + " weeks"
+          } else if (die >= 7 && die <= 10) {
+            reproCycle = "within a month"
+          } else if (die >= 11 && die <= 13) {
+            reproCycle = "once a year"
+          } else if (die >= 14 && die <= 16) {
+            number = d10()
+            number = number * mod
+            reproCycle = "once every " + number + " years"
+          } else if (die >= 17 && die <= 18) {
+            reproCycle = "once a decade"
+          } else if (die == 19) {
+            reproCycle = "once a century"
+          } else if (die >= 20) {
+            reproCycle = "once a lifetime"
+          }
+          document.getElementById("reproduction").innerHTML = reproMethod + ". Produces " + reproSize + " offspring " + reproCycle + "."
+        } else if (disadvantage == "Long maturation period") {
+          die = getRandomInt(1, 5)
+          if (die == 1) {
+            mod = 1.1
+          } else if (die = 2) {
+            mod = 1.2
+          } else if (die = 3) {
+            mod = 1.3
+          } else if (die = 4) {
+            mod = 1.4
+          } else if (die = 5) {
+            mod = 1.5
+          }
+
+          if (sizeRating == 0) {
+            die = 1
+          } else if (sizeRating == 0.5) {
+            die = getRandomInt(1, 5);
+          } else if (sizeRating == 1) {
+            die = d10()
+          } else if (sizeRating == 2) {
+            die = d10() + d10()
+          } else if (sizeRating == 3) {
+            die = d10() + d10() + d10()
+          } else if (sizeRating == 4) {
+            die = d10() + d10() + d10() + d10()
+          } else if (sizeRating == 5) {
+            die = d10() + d10() + d10() + d10() + d10()
+          } else if (sizeRating == 6) {
+            die = d10() + d10() + d10() + d10() + d10() + d10()
+          } else if (sizeRating == 7) {
+            die = d10() + d10() + d10() + d10() + d10() + d10() + d10()
+          } else if (sizeRating == 8) {
+            die = d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10()
+          } else if (sizeRating == 9) {
+            die = d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10()
+          } else if (sizeRating == 10) {
+            die = d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10() + d10()
+          }
+
+          if (die == 1) {
+            age = "Under 24 Hours";
+            gestationPiriod = "hours";
+            maturation = getRandomFloat(20, 120)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " minutes"
+          } else if (die == 2 || die == 3) {
+            age = "1 week";
+            gestationPiriod = 16.8 + getRandomFloat (-1.68, 1.68)
+            gestationPiriod = gestationPiriod + " hours"
+            maturation = getRandomFloat(20, 120)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " minutes"
+          } else if (die >= 4 && die <= 6) {
+            number = d4() + d4();
+            age = number + " weeks";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " days"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " hours"
+          } else if (die >= 7 && die <= 11) {
+            number = d10();
+            if (number == 1) {
+              age = number + " month";
+            } else {
+              age = number + " months";
+            }
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " days"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " days"
+          } else if (die >= 12 && die <= 15) {
+            number = d10() + d10();
+            age = number + " months";
+          } else if (die >= 16 && die <= 20) {
+            number = d6();
+            if (number == 1) {
+              age = number + " year";
+            } else {
+              age = number + " years";
+            }
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " days"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " months"
+          } else if (die >= 21 && die <= 24) {
+            number = d8();
+            if (number == 1) {
+              age = number + " year";
+            } else {
+              age = number + " years";
+            }
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " days"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " months"
+          } else if (die >= 25 && die <= 28) {
+            number = d10() + 1;
+            age = number + " years";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " weeks"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " months"
+          } else if (die >= 29 && die <= 33) {
+            number = d10() + 10;
+            age = number + " years";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " months"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " years"
+          } else if (die >= 34 && die <= 38) {
+            number = d10() + d10() + 20;
+            age = number + " years";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " months"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " years"
+          } else if (die >= 39 && die <= 45) {
+            number = d10() + d10() + 40;
+            age = number + " years";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " months"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " years"
+          } else if (die >= 46 && die <= 64) {
+            number = d10() + d10() + 60;
+            age = number + " years";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " months"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " years"
+          } else if (die >= 65 && die <= 70) {
+            number = d10() + d10() + 80;
+            age = number + " years";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " months"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " years"
+          } else if (die >= 71 && die <= 75) {
+            number = d20() + d20() + 100;
+            age = number + " years";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " months"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " years"
+          } else if (die >= 76 && die <= 80) {
+            number = d20() + d20() + 120;
+            age = number + " years";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " months"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " years"
+          } else if (die >= 81 && die <= 85) {
+            number = d20() + d20() + 140;
+            age = number + " years";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " months"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " years"
+          } else if (die >= 86 && die <= 90) {
+            number = d20() + d20() + 160;
+            age = number + " years";
+          } else if (die >= 91 && die <= 94) {
+            number = d20() + d20() + 180;
+            age = number + " years";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " months"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " years"
+          } else if (die >= 95 && die <= 97) {
+            number = d6();
+            age = number + " centuries";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " months"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " years"
+          } else if (die >= 98 && die <= 99) {
+            number = d8();
+            age = number + " centuries";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " years"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " years"
+          } else if (die == 100) {
+            number = d10();
+            age = number + " centuries";
+            gestationPiriod = gestationPriodCalc(number)
+            gestationPiriod = gestationPiriod + " years"
+            maturation = maturationCalc(number)
+            maturation = maturation * mod
+            maturation = maturation.toFixed(2)
+            maturation = maturation + " years"
+          } else {
+             number = d20() + d20() + 100;
+             age = number + " years";
+             gestationPiriod = gestationPriodCalc(number)
+             gestationPiriod = gestationPiriod + " months"
+             maturation = maturationCalc(number)
+             maturation = maturation * mod
+             maturation = maturation.toFixed(2)
+             maturation = maturation + " years"
+          }
+
+          document.getElementById("lifespan").innerHTML = age + ". Matures in " + maturation
+        } else if (disadvantage == "Reduced birth rate") {
+          die = d20()
+          mod = d4()
+          die = die + mod
+          if (die == 1) {
+            reproMethod = "mitosis"
+            reproSize = d4()
+          } else if (die >= 2 && die <= 3) {
+            reproMethod = "budding"
+            reproSize = d8()
+          } else if (die >= 4 && die <= 6) {
+            reproMethod = "oviposision (no host)"
+            reproSize = d6()
+          } else if (die >= 7 && die <= 14) {
+            reproMethod = "live birth"
+            reproSize = getRandomInt(1, 2)
+          } else if (die >= 15 && die <= 17) {
+            reproMethod = "marsupial"
+            reproSize = getRandomInt(1, 3)
+          } else if (die == 18) {
+            reproMethod = "spoor"
+            reproSize = d4() * 1000
+          } else if (die == 19) {
+            reproMethod = "seed"
+            reproSize = d4() * 10
+          } else if (die >= 20) {
+            reproMethod = "oviposision (host)"
+            reproSize = 1
+          }
+          reproMethod = reproMethod.charAt(0).toUpperCase() + reproMethod.slice(1);
+          document.getElementById("reproduction").innerHTML = reproMethod + ". Produces " + reproSize + " offspring " + reproCycle + "."
+        } else if (disadvantage == "Slow") {
+          mod = getRandomInt(1, 3)
+          die = d20() + sizeRating + mod
+          if (die == 1) {
+            speed = getRandomInt(300, 400)
+          } else if (die == 2) {
+            speed = getRandomInt(200, 300)
+          } else if (die == 3) {
+            speed = getRandomInt(100, 200)
+          } else if (die == 4) {
+            speed = getRandomInt(60, 100)
+          } else if (die == 5) {
+            speed = getRandomInt(41, 60)
+          } else if (die >= 6 && die <= 8) {
+            speed = getRandomInt(21, 40)
+          } else if (die >= 9 && die <= 12) {
+            speed = getRandomInt(11, 20)
+          } else if (die >= 13 && die <= 15) {
+            speed = getRandomInt(6, 10)
+          } else if (die == 16) {
+            speed = getRandomInt(1, 5)
+          } else if (die == 17) {
+            speed = getRandomFloat(0.5, 1)
+          } else if (die == 18) {
+            speed = getRandomFloat(0.1, 0.5)
+          } else if (die == 19) {
+            speed = getRandomFloat(0.01, 0.1)
+          } else if (die >= 20) {
+            speed = getRandomFloat(0.001, 0.01)
+          }
+
+          speedMax = speed * 1.609
+          speedNorm = speedMax * 0.5
+          speedFast = speedMax * 0.75
+          speedMax = speedMax.toFixed(2)
+          speedNorm = speedNorm.toFixed(2)
+          speedFast = speedFast.toFixed(2)
+
+          document.getElementById("movment").innerHTML = "<i>Movment Modes:</i> " + primeMove + "/" + secMove + "<br><i>Speed:</i> Normal - " + speedNorm + " kp/h, run - " + speedFast + " kp/h, sprint - " +  speedMax + " kp/h"
+        }
+      }
+
+    };
+    function baseCreatureGen() {
+      lifeformType = document.getElementById('Lifeforms').value;
+      if (lifeformType == "Exotic") {
+        exoticLifeforms = [{"name": "Energy", "desc":"These highly evolved beings are often mistaken for gods by lower-life forms. They require nothing to sustain themselves, and their mental abilities are almost beyond measure. Most of them though have some kind of “non-interference” rule to prevent damage to the lower beings. Sometimes, however, this rule is broken. The results are not always pleasant."},
+          {"name": "Fantastical", "desc":"This covers dragons, unicorns and demonic looking creatures, amongst others. This is quite a broad category. They are often artificially created by another race or even could be the creature that inspired those legends in the first place."},
+          {"name": "Gas", "desc":"Gas based life forms are an intelligent and non-corporeal life-form. They can dwell in voids as easily as others do in the air. Require very little, if any, nutrition. For the most part are pacifists or non-agressive, but when angered their wrath is nothing to scoff at."},
+          {"name": "Liquid", "desc":"Often have the ability to change or shift shapes, but this can vary from species to species and individuals as to the quality of this change. Often have problems with cold temperatures."},
+          {"name": "Mechanical", "desc":"Sometimes a species embrace technology so much they start to integrate it into their bodies, sometimes down to the cellular level. Others are simply advanced machines of such complexity they must be thought of as living beings."},
+          {"name": "Unique", "desc":"Sometimes, the universe throws up something truly alien. Something so odd, or weird, that there is simply no other category for it. It might be a race of mutants or something from beyond the known regions of space and time. Ancient horrors that all races fear tend to fall into this category."}]
+        lifeform = getRandomItem(exoticLifeforms)
+        baseCreature = lifeform.name + ": " + lifeform.desc
+      } else if (lifeformType == "Aquatic") {
+        catagory = "<i>Aquatic:</i>"
+        lifeforms = ["Angelfish", "Barracuda", "Bass", "Blue Whale", "Catfish", "Clownfish", "Cod", "Dolphin", "Eel", "Goldfish", "Killer Whale", "Narwhale", "Salmon", "Seahorse", "Shark", "Squid", "Octopuss", "Stingray", "Sturgeon", "Trout", "Whale"]
+        lifeform = getRandomItem(lifeforms)
+        baseCreature = catagory + " " + lifeform
+      } else if (lifeformType == "Avian") {
+        catagory = "<i>Avian:</i>"
+        lifeforms = ["Buderigar", "Chicken", 'Crow', "Duck", "Eagle", "Flamingo", "Goose", "Magpie", "Ostrich", "Owl", "Parrot", "Penguin", "Pigeon", "Raven", "Robin", "Swan", "Turky", "Vulture", "Hawk"]
+        lifeform = getRandomItem(lifeforms)
+        baseCreature = catagory + " " + lifeform
+      } else if (lifeformType == "Insect") {
+        catagory = "<i>Insect:</i>"
+        lifeforms = ["Ant", "Aphid", "Bee", "Butterfly", "Centipede", "Cockroach", "Cricket", "Dragonfly", "Earwig", "Flea", "Fly", "Ladybug", "Locus", "Moth", "Scrab", "Wasp", "Stag Beetle", "Hornet"]
+        lifeform = getRandomItem(lifeforms)
+        baseCreature = catagory + " " + lifeform
+      } else if (lifeformType == "Hard Invertibrate") {
+        catagory = "<i>Hard Invertibrate:</i>"
+        lifeforms = ["Clam", "Crab", "Lobster", "Shrimp", "Scorpian", "Spider", "Wood Louse", "Spider Crab", "Isopod", "Coral", "Urchin", "Snail"]
+        lifeform = getRandomItem(lifeforms)
+        baseCreature = catagory + " " + lifeform
+      } else if (lifeformType == "Soft Invertibrate") {
+        catagory = "<i>Soft Invertibrate:</i>"
+        lifeforms = ["Jellyfish", "Sponge", "Worm", "Leech", "Isopod", "Krill", "Slug"]
+        lifeform = getRandomItem(lifeforms)
+        baseCreature = catagory + " " + lifeform
+      } else if (lifeformType == "Mammel") {
+        catagory = "<i>Mammel:</i>"
+        lifeforms = ["Antelope", "Ape", "Monkey", "Bear", "Boar", "Pig", "Cat", "Cheetah", "Cow", "Dog", "Giraffe", "Hippo", "Horse", "Kangaroo", "Lion", "Lynx", "Mouse", "Rabbit", "Rat", "Seal", "Sheep", "Tiger"]
+        lifeform = getRandomItem(lifeforms)
+        baseCreature = catagory + " " + lifeform
+      } else if (lifeformType == "Plant") {
+        catagory = "<i>Plant:</i>"
+        lifeforms = ["Venus Fly-Trap", "Waterwheel Plant", "Bladderwort", "Aeschynomene, Catclaw Brier", "Neptunia"]
+        lifeform = getRandomItem(lifeforms)
+        baseCreature = catagory + " " + lifeform
+      } else if (lifeformType == "Reptile") {
+        catagory = "<i>Reptile:</i>"
+        lifeforms = ["Alligator", "Anole Lizard", "Boa", "Box Turtle", "Cobra", "Copperhead snake", "Crocodile", "Garter Snake", "Gecko", "Iguana", "Komodo Dragon", "Lizard", "Painted Turtle", "Python", "Rattlesnake", "Salamander", "Skink", "Terrapin", "Turtle", "Viper"]
+        lifeform = getRandomItem(lifeforms)
+        baseCreature = catagory + " " + lifeform
+      } else if (lifeformType == "Silicoid") {
+        catagory = "<i>Silicoid:</i>"
+        lifeforms = ["Anthracite", "Basalt", "Bauxite", "Breccia", "Chalk", "Clay", "Coal", "Dolomite", "Flint", "Gneiss", "Granite", "Limestone", "Marble", "Murdock", "Pumice", "Quartz", "Sandstone", "Shale", "Silicon", "Slate"]
+        lifeform = getRandomItem(lifeforms)
+        baseCreature = catagory + " " + lifeform
+      } else {
+        if (d100() > 98) {
+          exoticLifeforms = [{"name": "Energy", "desc":"These highly evolved beings are often mistaken for gods by lower-life forms. They require nothing to sustain themselves, and their mental abilities are almost beyond measure. Most of them though have some kind of “non-interference” rule to prevent damage to the lower beings. Sometimes, however, this rule is broken. The results are not always pleasant."},
+            {"name": "Fantastical", "desc":"This covers dragons, unicorns and demonic looking creatures, amongst others. This is quite a broad category. They are often artificially created by another race or even could be the creature that inspired those legends in the first place."},
+            {"name": "Gas", "desc":"Gas based life forms are an intelligent and non-corporeal life-form. They can dwell in voids as easily as others do in the air. Require very little, if any, nutrition. For the most part are pacifists or non-agressive, but when angered their wrath is nothing to scoff at."},
+            {"name": "Liquid", "desc":"Often have the ability to change or shift shapes, but this can vary from species to species and individuals as to the quality of this change. Often have problems with cold temperatures."},
+            {"name": "Mechanical", "desc":"Sometimes a species embrace technology so much they start to integrate it into their bodies, sometimes down to the cellular level. Others are simply advanced machines of such complexity they must be thought of as living beings."},
+            {"name": "Unique", "desc":"Sometimes, the universe throws up something truly alien. Something so odd, or weird, that there is simply no other category for it. It might be a race of mutants or something from beyond the known regions of space and time. Ancient horrors that all races fear tend to fall into this category."}]
+          lifeform = getRandomItem(exoticLifeforms)
+          baseCreature = lifeform.name + ": " + lifeform.desc
+        } else {
+          die = d20()
+          if (die == 1) {
+            catagory = "<i>Aquatic:</i>"
+            lifeforms = ["Angelfish", "Barracuda", "Bass", "Blue Whale", "Catfish", "Clownfish", "Cod", "Dolphin", "Eel", "Goldfish", "Killer Whale", "Narwhale", "Salmon", "Seahorse", "Shark", "Squid", "Octopuss", "Stingray", "Sturgeon", "Trout", "Whale"]
+            lifeform = getRandomItem(lifeforms)
+            baseCreature = catagory + " " + lifeform
+          } else if (die == 2 || die == 3) {
+            catagory = "<i>Avian:</i>"
+            lifeforms = ["Buderigar", "Chicken", 'Crow', "Duck", "Eagle", "Flamingo", "Goose", "Magpie", "Ostrich", "Owl", "Parrot", "Penguin", "Pigeon", "Raven", "Robin", "Swan", "Turky", "Vulture", "Hawk"]
+            lifeform = getRandomItem(lifeforms)
+            baseCreature = catagory + " " + lifeform
+          } else if (die == 4 || die == 5) {
+            catagory = "<i>Insect:</i>"
+            lifeforms = ["Ant", "Aphid", "Bee", "Butterfly", "Centipede", "Cockroach", "Cricket", "Dragonfly", "Earwig", "Flea", "Fly", "Ladybug", "Locus", "Moth", "Scrab", "Wasp", "Stag Beetle", "Hornet"]
+            lifeform = getRandomItem(lifeforms)
+            baseCreature = catagory + " " + lifeform
+          } else if (die == 6) {
+            catagory = "<i>Hard Invertibrate:</i>"
+            lifeforms = ["Clam", "Crab", "Lobster", "Shrimp", "Scorpian", "Spider", "Wood Louse", "Spider Crab", "Isopod", "Coral", "Urchin", "Snail"]
+            lifeform = getRandomItem(lifeforms)
+            baseCreature = catagory + " " + lifeform
+          } else if (die == 7) {
+            catagory = "<i>Soft Invertibrate:</i>"
+            lifeforms = ["Jellyfish", "Sponge", "Worm", "Leech", "Isopod", "Krill", "Slug"]
+            lifeform = getRandomItem(lifeforms)
+            baseCreature = catagory + " " + lifeform
+          } else if (die >= 8 && die <= 14) {
+            catagory = "<i>Mammel:</i>"
+            lifeforms = ["Antelope", "Ape", "Monkey", "Bear", "Boar", "Pig", "Cat", "Cheetah", "Cow", "Dog", "Giraffe", "Hippo", "Horse", "Kangaroo", "Lion", "Lynx", "Mouse", "Rabbit", "Rat", "Seal", "Sheep", "Tiger"]
+            lifeform = getRandomItem(lifeforms)
+            baseCreature = catagory + " " + lifeform
+          } else if (die == 15) {
+            catagory = "<i>Plant:</i>"
+            lifeforms = ["Venus Fly-Trap", "Waterwheel Plant", "Bladderwort", "Aeschynomene, Catclaw Brier", "Neptunia"]
+            lifeform = getRandomItem(lifeforms)
+            baseCreature = catagory + " " + lifeform
+          } else if (die >= 16 && die <= 19) {
+            catagory = "<i>Reptile:</i>"
+            lifeforms = ["Alligator", "Anole Lizard", "Boa", "Box Turtle", "Cobra", "Copperhead snake", "Crocodile", "Garter Snake", "Gecko", "Iguana", "Komodo Dragon", "Lizard", "Painted Turtle", "Python", "Rattlesnake", "Salamander", "Skink", "Terrapin", "Turtle", "Viper"]
+            lifeform = getRandomItem(lifeforms)
+            baseCreature = catagory + " " + lifeform
+          } else if (die == 20) {
+            catagory = "<i>Silicoid:</i>"
+            lifeforms = ["Anthracite", "Basalt", "Bauxite", "Breccia", "Chalk", "Clay", "Coal", "Dolomite", "Flint", "Gneiss", "Granite", "Limestone", "Marble", "Murdock", "Pumice", "Quartz", "Sandstone", "Shale", "Silicon", "Slate"]
+            lifeform = getRandomItem(lifeforms)
+            baseCreature = catagory + " " + lifeform
+          }
+        }
+      }
+      return baseCreature
+    }
+    function generateQuirks() {
+      var quirkName = "Unset"
+      var quirkDesc = "Unset"
+      quirks = [
+        {"name": "Aspect of …", "desc": "tmp"},
+        {"name": "Appears to be emotionally...", "desc": "tmp"},
+        {"name": "Blood colour is...", "desc": "tmp"},
+        {"name": "Bruises easy", "desc": "When damaged they bruise easily."},
+        {"name": "Can fake being dead", "desc": "This species can fake being dead by not moving, slowing heart rate etc"},
+        {"name": "Can shed its’...", "desc": "tmp"},
+        {"name": "Can sleep...", "desc": "tmp"},
+        {"name": "Cannot live away from their homeworld", "desc": "For some inherently simple reason, this species gets very ill if they leave their homeworld. "},
+        {"name": "Does not eat in public/in front of others", "desc": "This species will never eat in front of others, even of the same species, unless there is absolute 100% trust."},
+        {"name": "Doesn’t dream", "desc": "Whilst this species does sleep, they experience no REM sleep that can lead to dreaming."},
+        {"name": "Doesn’t need to blink as often as others", "desc": "These species eyes require less blinking when compared to others. This can be unsettling for other spices when talking to them in close quarters."},
+        {"name": "When talking/speaking it...", "desc": "tmp"},
+        {"name": "Eyes are each different colours", "desc": "The eye colours on this species are never the same as each other."},
+        {"name": "Eyes blink vertically", "desc": "When this species blink, their eyelids come in from the sides rather than top and bottom."},
+        {"name": "Eyes change colour depending on mood/emotion", "desc": "tmp"},
+        {"name": "Growth slows as they age, but never truly stops", "desc": "This species never stops growing, but the rate at which this takes place drops off dramatically once they reach the adult stage. Long-lived species like this can get to be extremely large, as long as there is a food supply adequate for them."},
+        {"name": "Hair/Fur grows back fast if removed", "desc": "Any hair or fur this creature possess can be safely removed or shaved as it grows back quite quickly in a matter of days."},
+        {"name": 'Has a summer/winter coat', "desc": "These creatures have a “coat” adapted to one season. When the season changes, they shed it for one better suited to the new season."},
+        {"name": "Highly mutable species", "desc": "This species is highly mutable due to a quirk in their genetics. Random mutations occur much more frequently, leading to a high degree of variation between individuals. "},
+        {"name": "If companions/family injured will...", "desc": "tmp"},
+        {"name": "If injured will...", "desc": "tmp"},
+        {"name": "If needed, can breathe through...", "desc": "tmp"},
+        {"name": "If needed, can drink...", "desc": "tmp"},
+        {"name": "If shown a certain colour they...", "desc": "tmp"},
+        {"name": "Is most comfortable...", "desc": "tmp"},
+        {"name": "Integrated Head", "desc": "The species head/brain is integrated into the main bulk of the body. They often still possess what other species would refer to as a head, where sense organs might be located, but an injury to this does not have the same effects as it would to others. Injuries to the torso or chest area now cause them many more issues."},
+        {"name": "Intoxicated by...", "desc": "tmp"},
+        {"name": "Likes collecting junk", "desc": "This species loves collecting stuff, even if it doesn’t work. Small, shiny and easy to carry items are preferred."},
+        {"name": "Loves speed/going fast as possible", "desc": '<a href="https://www.youtube.com/watch?v=BJ0xBCwkg3E" target="_blank" rel="noopener noreferrer">Nirvana</a>'},
+        {"name": "Mouth breather", "desc": "Even if they possess a nose, these species breaths through their mouths in a way that many others consider rude and very noticeable."}
+      ]
+        quirk = getRandomItem(quirks)
+        quirkName = quirk.name
+        quirkDesc = quirk.desc
+        if (quirkName == "Aspect of …") {
+          critter = baseCreatureGen()
+          quirkName = "Aspect of " + critter
+          quirkDesc = "Some aspects of this species come from " + critter + " biology instead of the base species."
+        } else if (quirkName == "Appears to be emotionally...") {
+          die = d6()
+          if (die == 1) {
+            emotions = ["Angry", "Frightened", "Disgusted", "Sad", "Anxious", "Amerious", "Happy", "Calm", "Disappointed", "Excited", "Gratfull", "Kind", "Ashamed", "Bored", "Joyious", "Surprised", "Amused", "Confident", "Frustrated", "Prideful"]
+            emotion = getRandomItem(emotions)
+            quirkName = "Always " + emotion
+            emotion = emotion.toLowerCase();
+            quirkDesc = "This species outwardly appears to be " + emotion + " at all times."
+          } else if (die == 2) {
+            quirkName = "Amplified Emotions"
+            quirkDesc = "This species expresses its emotions to a much greater degree than normal."
+          } else if (die == 3) {
+            quirkName = "Stunted Emotions"
+            quirkDesc = "This species expresses its emotions with little intinsity."
+          } else if (die == 4) {
+             quirkName = "Missing Emotions"
+             quirkDesc = "This species does not exturnalize its feelings, making them appear emotionless to others."
+          } else if (die == 5) {
+            quirkName = "Extremely Varriable Emotions"
+            quirkDesc = "This species rapidly changes its emotional state, though does not express its emotions any more or less strongly than other species."
+          } else if (die == 6) {
+            quirkName = "Predictable Emotions"
+            quirkDesc = "This species emotional states are easily predicted if one knows the basic details of what they have recently experianced. IE all of them will always feel the same way given the same situation."
+          }
+        } else if (quirkName == "Blood colour is...") {
+          bloodColors = ["Black", "Blue", "Green", "Pink", "White", "Yellow"]
+          bloodColor = getRandomItem(bloodColors)
+          quirkName = bloodColor + " Blooded"
+          bloodColor = bloodColor.toLowerCase()
+          quirkDesc = "This species blood is " + bloodColor + " in hue."
+        } else if (quirkName == "Can shed its...") {
+          sheds = ["Arms", "Feet", "Hands", "Legs", "Tails"]
+          shed = getRandomItem(sheds)
+          quirkName = "Can Shed " + shed
+          shed = shed.toLowerCase()
+          quirkDesc = "This species can detatch their " + shed + " to escape preditors. There is a 10% chance they won't grow back."
+        } else if (quirkName == "Can sleep...") {
+          sleeps = ["Upside-down", "Standing up", "With Their Eyes Open", "Face Down"]
+          sleep = getRandomItem(sleeps)
+          quirkName = "Sleeps " + sleep
+          sleep = sleep.toLowerCase()
+          quirkDesc = "This species sleeps " + sleep + "."
+        } else if (quirkName == "When talking/speaking it...") {
+          talkings = [
+            {"name": "Drools While Talking", "desc": "drool while speaking"},
+            {"name": "Speaks in Monotone", "desc": "speak in a monotone"},
+            {"name": "Wide Moulthed", "desc": "open their moulth extreemly wide while speaking"},
+            {"name": "Speed Ramps Their Speech", "desc": "speed up and slow down their rate of speech, seemingly at random, with great frequency"},
+            {"name": "Universal Stutter", "desc": "stutter when speaking"},
+          ]
+          talking = getRandomInt(talkings)
+          quirkName = talking.name
+          quirkDesc = "This species cannot help but  " + talking.desc + "."
+        } else if (quirkName == "Eyes change colour depending on mood/emotion") {
+          eyeEmotions = [
+            {"name": "Emotion Darkening Eyes", "desc":"This species eyes darken when they experiance strong emotions."},
+            {"name": "Emotion Brightening Eyes", "desc":"This species eyes brighten when they experiance strong emotions."},
+            {"name": "Mood Eyes", "desc":"This species eyes change color to match their current mood."}
+          ]
+          eyeEmotion = getRandomItem(eyeEmotions)
+          quirkName = eyeEmotion.name
+          quirkDesc = eyeEmotion.desc
+        } else if (quirkName == "If companions/family injured will...") {
+          eyeEmotions = [
+            {"name": "Instinctive Assult", "desc":"This species will reflexivly attack anything that harms their "},
+            {"name": "Instictive Retreat", "desc":"This species will refelxivly flee from anything that harms their "},
+            {"name": "Unavoidable Panic", "desc":"This species cannot help but panic when anything harms their "},
+            {"name": "Power On, Emotion Off", "desc":"This species shuts down their emotional responces entirly and act purly on logic and calculation when anything harms their "},
+            {"name": "Stand By Mode", "desc":"This species will never leave the side of any injured "}
+          ]
+          eyeEmotion = getRandomItem(eyeEmotions)
+          quirkName = eyeEmotion.name
+          quirkDesc = eyeEmotion.desc + "family member, bond mate, or close friend."
+        } else if (quirkName == "If injured will...") {
+          eyeEmotions = [
+            {"name": "Auto Counterattack", "desc":"This species will reflexivly attack anything that "},
+            {"name": "Flight Responce", "desc":"This species will refelxivly flee from anything that "},
+            {"name": "Faints at the Sight of Blood", "desc":"This species cannot help but faint if anything "},
+            {"name": "Astonishing Acceptance", "desc":"This species is capable of ignoring anything that "},
+            {"name": "Modified Stationary Panic", "desc":"This species will always panic in place if something "},
+            {"name": "Auto Doc", "desc":"This species will instinctivly attempt to preform their own medical care if something "}
+          ]
+          eyeEmotion = getRandomItem(eyeEmotions)
+          quirkName = eyeEmotion.name
+          quirkDesc = eyeEmotion.desc + "injures them."
+        } else if (quirkName == "If needed, can breathe through...") {
+          eyeEmotions = [
+            {"name": "Respratory Digits", "desc":"This species can breath though their digits "},
+            {"name": "Aural Resperation", "desc":"This species is able to inhale through their ears "},
+            {"name": "Multi-Purpose Ducting", "desc":"This species can breath through their tear ducts "},
+            {"name": "Subdermal Respratory Membrain", "desc":"This species can breathe through its skin "}
+          ]
+          eyeEmotion = getRandomItem(eyeEmotions)
+          quirkName = eyeEmotion.name
+          quirkDesc = eyeEmotion.desc + "if the situation calls for it."
+        } else if (quirkName == "If needed, can drink...") {
+          eyeEmotions = [
+            {"name": "Ethonal Hydration", "desc":"This species can hydrate themselves with ethonol and ethonol products, rendering them immune to conventional alchohols."},
+            {"name": "Vamperic", "desc":"This species is able to drink the blood of other species as a means of remaining hydrated, and obtaining vitamins."},
+            {"name": "Smoothie Optimised", "desc":"This species can consume fruit juices for hydration without weight gain as they do not extract nutrients from the juice."},
+            {"name": "Saline Solution is Suitable", "desc":"This species is able to survive on fresh and salt water without any ill effects."}
+          ]
+          eyeEmotion = getRandomItem(eyeEmotions)
+          quirkName = eyeEmotion.name
+          quirkDesc = eyeEmotion.desc
+        } else if (quirkName == "If shown a certain colour they...") {
+          generateColoration()
+          things = [
+            {"name":"Attraction", "desc":"This species has an innate attraction to anything that happens to be "},
+            {"name":"Hunger", "desc":"This species can't help but want to eat things that are the color "},
+            {"name":"Greed", "desc":"This species feels a deep inner desire to posess things that are "},
+            {"name":"Fassenation", "desc":"This species is intrinicaly fassenated by the color "},
+            {"name":"Fear", "desc":"This species is affraid of things that are "},
+            {"name":"Agression", "desc":"This species feels the need to destroy anything that happens to be the color "}
+          ]
+          thing = getRandomItem(things)
+          quirkName = "Color " + thing.name
+          quirkDesc = thing.desc + colorName + "."
+        } else if (quirkName == "Is most comfortable…") {
+          things = ["Cool", "Cold", "in Bright Areas", "in Open Areas", "Outdoors", "in the Shade", "in the Dark", "in Small Spaces", "Indoors", "on the Ground", "Underground", "up High", "Warm", "Dry", "Wet", "Damp", "Hot"]
+          thing = getRandomItem(things)
+          quirkName = "Is Most Comfortable When" + thing.name
+          quirkDesc = "This species is at its most comfortable when " + thing.desc.toLowerCase() + "."
+        } else if (quirkName == "Intoxicated by...") {
+          things = [
+            {"name":"Blood", "desc":"This species is intoxicated by the blood of other species."},
+            {"name":"Blood", "desc":"This species is intoxicated by the blood of others of its own species."},
+            {"name":"Flesh", "desc":"This species becomes intoxicated if it consumes certain types of meat."},
+            {"name":"Seed", "desc":"This species becomes intoxicated if it consumes certain types of seeds."},
+            {"name":"Fruit", "desc":"This species becomes intoxicated if it consumes certain fruits."},
+            {"name":"Milk", "desc":"This species becomes intoxicated if it consumes milk (Excepting while nursing, if a mammel)."}
+          ]
+          thing = getRandomItem(things)
+          quirkName = thing.name + " Intoxication"
+          quirkDesc = thing.desc
+        }
+        creatureQuirk = "<i>" + quirkName + ":</i> " + quirkDesc
+      };
+
+
+
+    //dice
+    function d4(){
+      die = getRandomInt(1, 4);
+
+      return die
+    };
+    function d6(){
+      die = getRandomInt(1, 6);
+
+      return die
+    };
+    function d8(){
+      die = getRandomInt(1, 8);
+
+      return die
+    };
+    function d10(){
+      die = getRandomInt(1, 10);
+
+
+      return die
+    };
+    function d20(){
+      die = getRandomInt(1, 20);
+
+      return die
+    };
+    function d100(){
+      die = getRandomInt(1, 100);
+
+      return die
+    };
+
+    //Helpers
+    function getRandomItem(arr) {
+        if (!Array.isArray(arr) || arr.length === 0) {
+            throw new Error("Please provide a non-empty array.");
+        }
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    };
+    function getRandomInt(min, max) {
+      const minCeiled = Math.ceil(min);
+      const maxFloored = Math.floor(max);
+      return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled); // The maximum is exclusive and the minimum is inclusive
+    };
+    function getRandomFloat(min, max) {
+        return Math.random() * (max - min) + min;
+    };
+    function gestationPriodCalc(number) {
+      gestationPiriod = number * 0.1
+      gestModA = gestationPiriod * 0.1
+      gestModB = -Math.abs(gestModA)
+      gestationPiriod = gestationPiriod + getRandomFloat (gestModB, gestModA)
+
+      return gestationPiriod
+    }
+    function maturationCalc(number) {
+      maturationPiriod = number * 0.2
+      matModA = maturationPiriod * 0.1
+      matModB = -Math.abs(matModA)
+      maturationPiriod = maturationPiriod + getRandomFloat (matModB, matModA)
+
+      return maturationPiriod
+    }
+    function hexToRGB(h) {
+      let r = 0, g = 0, b = 0;
+
+      // 3 digits
+      if (h.length == 4) {
+        r = "0x" + h[1] + h[1];
+        g = "0x" + h[2] + h[2];
+        b = "0x" + h[3] + h[3];
+
+      // 6 digits
+      } else if (h.length == 7) {
+        r = "0x" + h[1] + h[2];
+        g = "0x" + h[3] + h[4];
+        b = "0x" + h[5] + h[6];
+      }
+
+      return "rgb("+ +r + "," + +g + "," + +b + ")";
+    }
+    function hexToHSL(hex) {
+      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        r = parseInt(result[1], 16);
+        g = parseInt(result[2], 16);
+        b = parseInt(result[3], 16);
+        r /= 255, g /= 255, b /= 255;
+        var max = Math.max(r, g, b), min = Math.min(r, g, b);
+        var h, s, l = (max + min) / 2;
+        if(max == min){
+          h = s = 0; // achromatic
+        }else{
+          var d = max - min;
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+          switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+          }
+          h /= 6;
+        }
+      var HSL = new Object();
+      HSL['h']=h;
+      HSL['s']=s;
+      HSL['l']=l;
+      return HSL;
+    }
+    function RGBToHSL(r, g, b) {
+        // Make r, g, and b fractions of 1
+        r /= 255;
+        g /= 255;
+        b /= 255;
+
+        // Find greatest and smallest channel values
+        let cmin = Math.min(r, g, b),
+            cmax = Math.max(r, g, b),
+            delta = cmax - cmin,
+            h = 0,
+            s = 0,
+            l = 0;
+
+        // Calculate hue
+        if (delta == 0) {
+            h = 0;
+        } else if (cmax == r) {
+            h = ((g - b) / delta) % 6;
+        } else if (cmax == g) {
+            h = (b - r) / delta + 2;
+        } else {
+            h = (r - g) / delta + 4;
+        }
+
+        h = Math.round(h * 60);
+        if (h < 0) h += 360;
+
+        // Calculate lightness
+        l = (cmax + cmin) / 2;
+
+        // Calculate saturation
+        s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+
+        // Multiply l and s by 100 and round to 1 decimal place
+        s = +(s * 100).toFixed(1);
+        l = +(l * 100).toFixed(1);
+
+        // Log intermediate values for debugging
+        //console.log(`R: ${r * 255}, G: ${g * 255}, B: ${b * 255}`);
+        //console.log(`CMin: ${cmin}, CMax: ${cmax}, Delta: ${delta}`);
+        //console.log(`H: ${h}, S: ${s}%, L: ${l}%`);
+
+        // Ensure l is within the valid range (0 to 100)
+        if (l > 100) l = 100;
+        if (l < 0) l = 0;
+
+        return `hsl(${h},${s}%,${l}%)`;
+    }
+    function parseHSL(str) {
+        var hsl, h, s, l;
+        hsl = str.replace(/[^\d.,]/g, '').split(','); // allow for decimal points
+        h = Number(hsl[0]);
+        s = hsl[1];  // keep as string to maintain formatting
+        l = hsl[2];  // keep as string to maintain formatting
+        return [h, s, l];
+    }
+    function harmonize(color, start, end, interval) {
+      const colors = [color];
+      const [h, s, l] = parseHSL(color);
+
+        for (let i = start; i <= end; i += interval) {
+            const h1 = (h + i) % 360;
+            const c1 = `hsl(${h1}, ${s}%, ${l}%)`;
+            colors.push(c1);
+        }
+
+        return colors;
+    }
+    function hslToHex(str) {
+      [h, s, l] = parseHSL(str)
+        l /= 100;
+        const a = s * Math.min(l, 1 - l) / 100;
+        const f = n => {
+          const k = (n + h / 30) % 12;
+          const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+          return Math.round(255 * color).toString(16).padStart(2, '0');   // convert to Hex and prefix "0" if needed
+        };
+        return `#${f(0)}${f(8)}${f(4)}`;
+      }
+    function nth(obj, n) {
+        var key, i;
+
+        for (key in obj)
+        {
+          if (obj.hasOwnProperty(key)) // always do this when you scan an object
+          {
+            if (key.indexOf("item") === 0) // this is the filter
+            {
+              i = parseInt(key.substring(4), 10); // parse the numeral after "item"
+              if (i === n)
+              {
+                return obj[key]; // return this value
+              }
+            }
+          }
+        }
+
+        return null;
+      }
+    function appendageLength(tsf) {
+      die = d20()
+      if (die == 1) {
+        length = tsf / 4
+      } else if (die == 2) {
+        length = tsf / 3
+      } else if (die == 3) {
+        length = tsf / 2
+      } else if (die == 4) {
+        length = tsf * 0.75
+      } else if (die >= 5 && die <= 9) {
+        length = tsf
+      } else if (die >= 10 && die <= 12) {
+        length = tsf * 1.25
+      } else if (die >= 13 && die <= 14) {
+        length = tsf * 1.5
+      } else if (die >= 15 && die <= 16) {
+        length = tsf * 1.5
+      } else if (die == 17) {
+        length = tsf * 1.75
+      } else if (die == 18) {
+        length = tsf * 2
+      } else if (die == 19) {
+        length = tsf * 3
+      } else if (die >= 20) {
+        length = tsf * (d4() + d4())
+      }
+      return length
+    };
+    function convertCMToSentence(cm) {
+      let meters = Math.floor(cm / 100);
+      let remainingCM = cm % 100;
+      let centimeters = Math.floor(remainingCM);
+      let millimeters = Math.round((remainingCM - centimeters) * 10);
+
+      let sentence = '';
+      if (meters > 0) {
+        sentence += meters + ' meter' + (meters > 1 ? 's' : '');
+      }
+      if (centimeters > 0) {
+        if (sentence) sentence += ', ';
+        sentence += centimeters + ' centimeter' + (centimeters > 1 ? 's' : '');
+      }
+
+
+      return sentence;
+    }
+
+  </script>
+</html>

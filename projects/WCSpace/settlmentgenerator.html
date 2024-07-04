@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Place Generator</title>
+    <script src="scr/randomrolls.js" type="text/javascript"></script>
+    <script src="scr/placenamegen.js" type="text/javascript"></script>
+    <script src="scr/formatstrings.js" type="text/javascript"></script>
+    <style media="screen">
+      .tg  {border-collapse:collapse;border-spacing:0;}
+      .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        overflow:hidden;padding:10px 5px;word-break:normal;}
+      .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+      .tg .tg-0lax{text-align:left;vertical-align:top}
+      th {text-align: center; font-weight: bold;}
+      .container {
+  display: grid;
+  grid-template-columns: max-content auto;
+  grid-template-rows: 1fr;
+  gap: 0px 12px;
+  grid-template-areas:
+    "table text";
+}
+      .table { grid-area: table; }
+      .text { grid-area: text; }
+      div.reader { width: 60%;}
+    </style>
+  </head>
+  <body>
+    <label for="genType">Make a </label>
+    <select style="width: 140px" id="genType" name="genType">
+      <option selected="">Random</option>
+      <option>Starbase</option>
+      <option>Outpost</option>
+      <option>Settlment</option>
+    </select>
+    <br><br>
+    <button onclick="genStructure()" type="button" name="button">Generate</button>
+    <br><br>
+    <div class="reader">
+      <div id="output" class="container">
+        <div id="table" class="table"></div>
+        <div id="text" class="text"></div>
+      </div>
+    </div>
+
+  </body>
+
+  <script type="text/javascript">
+    var stationName = "unset"
+    var stationAgeDie = 0
+    var stationPurpose = "unset"
+    var stationNameFull = "unset"
+    var constructA = "unset"
+    var percentile = "unset"
+    var mainresourse = "unset"
+
+    //Generation Controller
+    function genStructure() {
+      stationName = String(namegenSciFiPlace(1));
+      stationName = stationName.charAt(0).toUpperCase() + stationName.slice(1);
+      stationAge = genStationAge();//Ensures no system can be older than the station by default.
+      stationQuality = markTier()
+      constructA = document.getElementById('genType').value;
+      if (constructA == "Starbase") {
+        genStarbase()
+      } else if (constructA == "Outpost") {
+        genOutpost()
+      } else if (constructA == "Settlment") {
+        genSettlment()
+      } else {
+        die = d100()
+        if (range(die, 1, 33)) {
+          genStarbase()
+        } else if (range(die, 34, 66)) {
+          genOutpost()
+        } else if (range(die, 67, 100)) {
+          genSettlment()
+        }
+      }
+    };
+
+    function genStarbase() {
+      die = dieroll(3, d6)
+      if (die == 3) {
+        sizeOBJ = {"name": "Personal Station", "sizeMin": 100, "sizeMax": 500, "crewMin": 1, "crewMax": 5, "popMin": 1, "popMax": 5}
+      } else if (die == 4) {
+        sizeOBJ = {"name": "Micro Station", "sizeMin": 500, "sizeMax": 1000, "crewMin": 5, "crewMax": 10, "popMin": 5, "popMax": 20}
+      } else if (die == 5) {
+        sizeOBJ = {"name": "Small Station", "sizeMin": 1000, "sizeMax": 3000, "crewMin": 10, "crewMax": 30, "popMin": 10, "popMax": 50}
+      } else if (die == 6) {
+        sizeOBJ = {"name": "Space Station", "sizeMin":	3000, "sizeMax": 10000, "crewMin": 30, "crewMax": 100, "popMin": 50, "popMax": 150}
+      } else if (die == 7) {
+        sizeOBJ = {"name": "Large Station", "sizeMin": 10000, "sizeMax": 30000, "crewMin": 100, "crewMax": 300, "popMin": 150, "popMax": 500}
+      } else if (die == 8 || die == 9) {
+        sizeOBJ = {"name": "Small Starbase", "sizeMin": 30000, "sizeMax": 60000, "crewMin": 300, "crewMax": 600, "popMin": 500, "popMax": 1000}
+      } else if (die == 10 || die == 11) {
+        sizeOBJ = {"name": "Starbase", "sizeMin": 60000, "sizeMax": 100000, "crewMin": 600, "crewMax": 1000, "popMin": 1000, "popMax": 2000}
+      } else if (die == 12 || die == 13) {
+        sizeOBJ = {"name": "Large Starbase", "sizeMin": 100000, "sizeMax": 150000, "crewMin": 1000, "crewMax": 1500, "popMin": 2000, "popMax": 3000}
+      } else if (die == 14) {
+        sizeOBJ = {"name": "Small Stellar Settlement", "sizeMin": 150000, "sizeMax": 200000, "crewMin": 1500, "crewMax": 2000, "popMin": 3000, "popMax": 5000}
+      } else if (die == 15) {
+        sizeOBJ = {"name": "Stellar Settlement", "sizeMin": 200000, "sizeMax": 300000, "crewMin": 2000, "crewMax": 3000, "popMin": 5000, "popMax": 10000}
+      } else if (die == 16) {
+        sizeOBJ = {"name": "Large Stellar Settlement", "sizeMin": 300000, "sizeMax": 500000, "crewMin": 3000, "crewMax": 5000, "popMin": 10000, "popMax": 20000}
+      } else if (die == 17) {
+        sizeOBJ = {"name": "Star City", "sizeMin": 500000, "sizeMax": 1000000, "crewMin": 5000, "crewMax": 10000, "popMin": 20000, "popMax": 50000}
+      } else if (die == 18) {
+        sizeOBJ = {"name": "Star Metropolis", "sizeMin":	1000000, "sizeMax": 5000000, "crewMin": 10000, "crewMax": 50000, "popMin": 50000, "popMax": 200000}
+      }
+      constructA = sizeOBJ.name
+      stationSize = getRandomInt(sizeOBJ.sizeMin, sizeOBJ.sizeMax)
+      stationSize = stationSize.toFixed(0)
+      stationCrew = getRandomInt(sizeOBJ.crewMin, sizeOBJ.crewMax)
+      stationPop = getRandomInt(sizeOBJ.popMin, sizeOBJ.popMax)
+      totalPop = stationCrew + stationPop
+      if (constructA == "Personal Station") {
+        stationPop = 0
+      }
+      die = d100()
+      if (range(die, 1, 10)) {
+        stationPurpose = "Waystation"
+        lables = ["Transit Hub", "Transfer Point", "Crossroads Station", "Relay Node", "Passage Terminal", "Gateway Outpost", "Junction", "Rest Stop", "Staging Post"]
+        resourses = ["Rest and refuel", "Cargo transfer", "Crew exchange", "Minor repairs", "Supplies replenishment"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 11, 20)) {
+        stationPurpose = "Military Outpost"
+        lables = ["Naval Yard", "Regional HQ", "Sector Command Post", "Defense Bastion", "Fortified Enclave", "Strategic Station", "Garrison Base", "Combat Post", "Tactical Outpost", "Battle Station"]
+        resourses = ["Defense operations", "Military training", "Weapon storage", "Strategic planning", "Surveillance"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 21, 30)) {
+        stationPurpose = "Shipping Hub"
+        lables = ["Cargo Terminal", "Freight Depot", "Logistics Center", "Transport Nexus", "Distribution Node", "Shipping Yard", "Supply Port", "Freight Exchange", "Commerce Dock"]
+        resourses = ["Cargo handling", "Logistics management", "Customs and inspections", "Freight storage", "Distribution"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 31, 40)) {
+        stationPurpose = "Residential Colony"
+        lables = ["Hab Station", "Quarter", "Settlement", "Enclave", "Homestead Station", "Community", "Civil Starbase", "Colony"]
+        resourses = ["Housing", "Local governance", "Community services", "Education", "Healthcare"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 41, 47)) {
+        stationPurpose = "Research Station"
+        lables = ["Science Hub", "Experimental Base", "Discovery Post", "Observation Point", "Laboratory", "Investigation Center", "Analysis Station", "Innovation Station", "Exploration Base"]
+        resourses = ["Scientific experiments", "Data collection", "Lab facilities", "Exploration missions", "Academic  collaboration"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 48, 54)) {
+        stationPurpose = "Trading Post"
+        lables = ["Merchant Hub", "Market Station", "Commerce Outpost", "Barter Node", "Trade Nexus", "Merchant Port", "Bazaar Post", "Commercial Dock", "Retail Yard"]
+        resourses = ["Goods exchange", "Marketplaces", "Bartering", "Economic transactions", "Resource allocation"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 55, 61)) {
+        stationPurpose = "Diplomatic Headquarters"
+        lables = ["Embassy Station", "Consulate Outpost", "Negotiation Hub", "Accord Node", "Treaty Post", "Alliance Station", "Diplomatic Nexus", "Envoy Base", "Peacekeeper Station"]
+        resourses = ["Negotiations", "Treaty signings", "Embassy services", "Conflict resolution", "Interstellar relations"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 62, 68)) {
+        stationPurpose = "Mining Outpost"
+        lables = ["Extraction Point", "Resource Node", "Ore Depot", "Dig Site", "Mineral Hub", "Quarry", "Excavation Post", "Harvest Node", "Resource Extraction Base"]
+        resourses = ["Resource extraction", "Ore processing", "Geological surveys", "Mining equipment maintenance", "Export of raw materials"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 69, 74)) {
+        stationPurpose = "Refugee Haven"
+        lables = ["Sanctuary Station", "Asylum", "Safe Haven", "Relief Hub", "Shelter Station", "Resettlement Post", "Starbase", "Haven Point", "Refuge Node"]
+        resourses = ["Resource extraction", "Ore processing", "Geological surveys", "Mining equipment maintenance", "Export of raw materials"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 75, 80)) {
+        stationPurpose = "Entertainment Complex"
+        lables = ["Leisure Hub", "Amusement Station", "Recreation Station", "Fun Zone", "Pleasure Outpost", "Resort Station", "Entertainment Nexus", "Spectacle Hub", "Festival Center"]
+        resourses = ["Shelter", "Food distribution", "Medical care", "Rehabilitation programs", "Asylum processing"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 81, 85)) {
+        stationPurpose = "Medical Facility"
+        lables = ["Health Station", "Treatment Hub", "Infirmary", "Care Center", "Medical Outpost", "Wellness Base", "Clinic Station", "Recovery Point", "Hospital"]
+        resourses = ["Patient treatment", "Medical research", "Emergency care", "Surgical operations", "Health services"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 86, 89)) {
+        stationPurpose = "Educational Institution"
+        lables = ["Learning Center", "Institute", "Academy", "Training Post", "Scholastic Outpost", "University", "Research Academy", "Education Center"]
+        resourses = ["its Classrooms", "its Research facilities", "its Libraries", "its Student housing", "its Lecture halls"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 90, 92)) {
+        stationPurpose = "Energy Production Facility"
+        lables = ["Power Station", "Reactor Station", "Energy Depot", "Power Plant", "Energy Nexus"]
+        resourses = ["Power generation", "Energy storage", "Distribution of power", "Resource management", "Efficiency optimization"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 93, 94)) {
+        stationPurpose = "Cultural Center"
+        lables = ["Heritage Hub", 'Gallery', "Museum Station", "Cultural Outpost", "Muceum", "Arts and Culture Post", "Tradition Node", "Cultural Exchange Station", "Ethno-Center"]
+        resourses = ["Exhibitions", "Performances", "Cultural preservation", "Workshops", "Community events"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 95, 96)) {
+        stationPurpose = "Penal Colony"
+        lables = ["Correctional Facility", "Detention Center", "Prison Outpost", "Penal Station", "Incarceration Node", "Confinement Base", "Rehabilitation Post", "Holding Hub", "Penitentiary Node"]
+        resourses = ["Incarceration", "Rehabilitation programs", "Labor assignments", "Security management", "Legal processing"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 97, 98)) {
+        stationPurpose = "Agricultural Hub"
+        lables = ["Farming Station", "Hydroponics Center", "Agro Outpost", "Plantation Hub", "Food Production Post", "Agrarian Node", "Cultivation Station", "Greenhouse Base"]
+        resourse = genProduce()
+      } else if (die == 99) {
+        stationPurpose = "Communication Relay"
+        lables = ["Signal Hub", "Relay", "Broadcast Station", "Comms Outpost", "Transmission Point", "Network Base", "Communication Nexus", "Satellite Station"]
+        resourses = ["Signal boosting", "Data transmission", "Communication network management", "Message relaying", "Broadcasting"]
+        resourse = getRandomItem(resourses)
+      } else if (die == 100) {
+        stationPurpose = "Salvage Yard"
+        lables = ["Reclamation Station", "Scrap Depot", "Recovery Hub", "Junkyard", "Salvage Post", "Wreckage Yard", "Retrieval Station", "Recycling Center"]
+        resourses = ["Scrap processing", "Resource reclamation", "Repair services", "Disassembly operations", "Resale of salvaged goods"]
+        resourse = getRandomItem(resourses)
+      }
+      stationNameFull = stationName + " " + getRandomItem(lables)
+      sentence1 = "The " + stationNameFull + " is a " + constructA.toLowerCase() + " serving as a " + stationPurpose.toLowerCase() + ". It was built " + stationAge + " ago."
+      sentence2 = stationName + " is primarily known for " + resourse.toLowerCase() + "."
+      sentence3 = "It is home to " + totalPop + " people, with " + stationCrew + " serving as crew."
+
+      table = `<table class="tg"><thead>
+                <tr>
+                  <th class="tg-0lax" colspan="2" style="text-align: center;font-weight: bold;">${stationNameFull}</th>
+                </tr></thead>
+              <tbody>
+                <tr>
+                  <td class="tg-0lax">Class:</td>
+                  <td class="tg-0lax">${constructA}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Designation:</td>
+                  <td class="tg-0lax">${stationPurpose}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Function:</td>
+                  <td class="tg-0lax">${resourse}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Quality</td>
+                  <td class="tg-0lax">${percentile}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Crew:</td>
+                  <td class="tg-0lax">${stationCrew}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Size:</td>
+                  <td class="tg-0lax">${stationSize} m²</td>
+                </tr>
+              </tbody>
+              </table>`
+      document.getElementById("table").innerHTML = table
+      document.getElementById("text").innerHTML = sentence1 + " " + sentence2 + " " + sentence3
+    };
+    function genOutpost() {
+      die = dieroll(3, d6)
+      if (die == 3) {
+        sizeOBJ = {"name": "Small Building", "sizeMin": 50, "sizeMax": 150, "popMin": 1, "popMax": 5}
+      } else if (die == 4) {
+        sizeOBJ = {"name": "Building", "sizeMin": 150, "sizeMax": 300, "popMin": 5, "popMax": 15}
+      } else if (die == 5) {
+        sizeOBJ = {"name": "Large Building", "sizeMin": 300, "sizeMax": 500, "popMin": 15, "popMax": 30}
+      } else if (die == 6) {
+        sizeOBJ = {"name": "Small Office Building", "sizeMin": 50, "sizeMax": 150, "popMin": 15, "popMax": 30}
+      } else if (die == 7) {
+        sizeOBJ = {"name": "Office Building", "sizeMin": 150, "sizeMax": 300, "popMin": 30, "popMax": 45}
+      } else if (die == 8 || die == 9) {
+        sizeOBJ = {"name": "Large Office Building", "sizeMin": 300, "sizeMax": 500, "popMin": 45, "popMax": 80}
+      } else if (die == 10 || die == 11) {
+        sizeOBJ = {"name": "Small Complex", "sizeMin": 150, "sizeMax": 300, "popMin": 45, "popMax": 80}
+      } else if (die == 12 || die == 13) {
+        sizeOBJ = {"name": "Complex", "sizeMin": 300, "sizeMax": 600, "popMin": 80, "popMax": 140}
+      } else if (die == 14) {
+        sizeOBJ = {"name": "Large Complex", "sizeMin": 600, "sizeMax": 1200, "popMin": 140, "popMax": 250}
+      } else if (die == 15) {
+        sizeOBJ = {"name": "Small Skyscraper", "sizeMin": 800, "sizeMax": 1200, "popMin": 250, "popMax": 320}
+      } else if (die == 16) {
+        sizeOBJ = {"name": "Skyscraper", "sizeMin": 1200, "sizeMax": 1600, "popMin": 320, "popMax": 500}
+      } else if (die == 17) {
+        sizeOBJ = {"name": "Large Skyscraper", "sizeMin": 1600, "sizeMax": 3000, "popMin": 500, "popMax": 1200}
+      } else if (die == 18) {
+        sizeOBJ = {"name": "Megabuilding", "sizeMin": 3000, "sizeMax": 9000, "popMin": 1200, "popMax": 3000}
+      }
+      constructA = sizeOBJ.name
+      stationSize = getRandomInt(sizeOBJ.sizeMin, sizeOBJ.sizeMax)
+      stationPop = getRandomInt(sizeOBJ.popMin, sizeOBJ.popMax)
+      totalPop = stationPop
+      if (constructA == "Small Complex" ) {
+        constructA = constructA + " of " + getRandomInt(2, 4) + " buildings"
+      }
+      if (constructA == "Complex" ) {
+        constructA = constructA + " of " + getRandomInt(3, 12) + " buildings"
+      }
+      if (constructA == "Large Complex" ) {
+        constructA = constructA + " of " + getRandomInt(8, 23) + " buildings"
+      }
+      die = d100()
+      if (range(die, 1, 10)) {
+        stationPurpose = "Government Center"
+        lables = ["Administrative Hub", "Capitol Building", "Civic Center", "Plaza", "Governance Node", "Bureaucratic Headquarters", "Legislative Hall", "State House"]
+        resourses = ["Legislative sessions", "Administrative offices", "Public services", "Policy-making", "Judicial proceedings"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 11, 20)) {
+        stationPurpose = "Commercial District"
+        lables = ["Business Hub", "Commerce Quarter", 'Trade Zone', "Market District", "Retail Plaza", "Financial Center", "Economic Node", "Mercantile Area", "Commercial Plaza"]
+        resourses = ["Retail stores", "Restaurants and cafes", "Banks and financial services", "Office spaces", "Shopping centers"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 21, 30)) {
+        stationPurpose = "Residential Complex"
+        lables = ["Tower", "Commune", "Apartment Cluster", "Housing Block", "Residential Zone", "Living Quarters", "Homestead Area", "Dwelling Enclave", "Habitat Cluster"]
+        resourses = ["its housing units", "Community amenities", "Residential services", "Security systems", "Community events"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 31, 40)) {
+        stationPurpose = "Industrial Facility"
+        lables = ["Manufacturing Plant", "Production Complex", "Industrial Zone", "Factory Yard", 'Processing Center', "Industrial Park", "Workshop", "Foundry"]
+        resourses = ["Manufacturing", "Production lines", "Assembly plants", "Warehouse storage", "Quality control"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 41, 47)) {
+        stationPurpose = "Educational Institution"
+        lables = ["Academic Center", "Learning Complex", "Education Center", "University Campus", "School", "Training Institute", "Knowledge Center", "Education Facility"]
+        resourses = ["its Classrooms", "its Research facilities", "its Libraries", "its Student housing", "its Lecture halls"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 48, 54)) {
+        stationPurpose = "Hospital/Medical Facility"
+        lables = ["Health Center", "Medical Complex", "Treatment Facility", "Infirmary", "Hospice", "Wellness Center", "Clinic", "Recovery Facility", "Hospital"]
+        resourses = ["its Patient care", "Emergency services", "Surgical theaters", "Medical research", "its Healthcare professionals"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 55, 61)) {
+        stationPurpose = "Research Lab"
+        lables = ["Science Center", "Experimental Lab", "Research Facility", "Innovation Hub", "Discovery Lab", "Analytical Lab", "Exploration Center"]
+        resourses = ["Scientific experiments", "Laboratory research", "Data analysis", "Prototype development", "Collaborative projects"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 62, 68)) {
+        stationPurpose = "Shopping Mall"
+        lables = ["Retail Complex", "Market Hub", "Shopping Center", "Commercial Plaza", "Retail Plaza", "Trade Center", "Shopping Arcade", "Market Hall", "Retail Pavilion"]
+        resourses = ["Retail outlets", "Food courts", "Entertainment venues", "Shopping concourses", "Specialty stores"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 69, 74)) {
+        stationPurpose = "Military Base"
+        lables = ["Army Camp", "Defense Headquarters", "Garrison", "Fortified Base", "Military Complex", "Barracks", "Command Post", "Operations Center", "Security Hub"]
+        resourses = ["its Training grounds", "Armory storage", "Barracks", "its Command center", "its Security perimeters"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 75, 80)) {
+        stationPurpose = "Spaceport"
+        lables = ["Launch Facility", "Space Terminal", "Astronaut Complex", "Shuttleport", "Gateway", 'Rocket Base', "Launchpad", "Aerospace Hub", "Space Travel Center"]
+        resourses = ["its Launch pads", "Cargo handling", "Passenger terminals", "Refueling stations", "Spacecraft maintenance"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 81, 85)) {
+        stationPurpose = "Entertainment Complex"
+        lables = ["Leisure Center", "Amusement Park", "Recreation Hub", "Fun Zone", "Entertainment Plaza", "Resort Complex", "Spectacle Arena", "Play Center", "Festival Grounds"]
+        resourses = ["Theaters and cinemas", "Arcades and amusement parks", "Concert halls", "Nightclubs and bars", "Event venues"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 86, 89)) {
+        stationPurpose = "Cultural Center"
+        lables = ["Heritage Center", 'Arts Complex', "Museum", "Cultural Plaza", "Historic Site", "Arts District", "Tradition Center", "Cultural Forum", "Ethnic Complex"]
+        resourses = ["Exhibitions", "Cultural performances", "Art galleries", "Workshops and classes", "Cultural events"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 90, 92)) {
+        stationPurpose = "Energy Plant"
+        lables = ["Power Station", "Energy Complex", "Generation Facility", "Reactor", "Power Hub", "Energy Production Center", "Powerhouse", "Electric Plant"]
+        resourses = ["Power generation", "Energy distribution", "Renewable energy sources", "Power grid management",  "Environmental controls"]
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 93, 94)) {
+        stationPurpose = "Agricultural Facility"
+        lables = ["Farming Complex", "Plantation", "Facility", "Agricultural Zone", "Food Production Complex", "Greenhouse", "Cultivation Grounds", "Agro Hub"]
+        resourse = genProduce()
+      } else if (range(die, 95, 96)) {
+        stationPurpose = "Historical Monument"
+        lables = ["Heritage Site", "Memorial", "Historic Landmark", "Commemoration Center", "Monument Plaza", "Heritage Monument", "Historic Center", "Tribute Site", "Remembrance Complex"]
+        resourses = []
+        resourse = getRandomItem(resourses)
+      } else if (range(die, 97, 98)) {
+        stationPurpose = "Refugee Center"
+        lables = ["Sanctuary Complex", "Asylum", "Safe Haven", "Relief Facility", "Shelter", "Resettlement Complex", "Protection Hub", "Haven Center", "Refugee Compound"]
+        resourses = ["offering Temporary shelter", "Food and water distribution", "Medical aid", "Legal assistance", "its Resettlement programs"]
+        resourse = getRandomItem(resourses)
+      } else if (die == 99) {
+        stationPurpose = "Communications Hub"
+        lables = ["Signal Center", "Broadcast Facility", "Relay Station", "Comms Complex", "Transmission Hub", "Network Center", "Communication Node", "Satellite Facility", "Messaging Center"]
+        resourses = ["Data transmission", "Network management", "Telecommunication services", "Satellite operations", "Information exchange"]
+        resourse = getRandomItem(resourses)
+      } else if (die == 100) {
+        stationPurpose = "Luxury Resort"
+        lables = ["High-End Retreat", "Exclusive Resort", "Premium Complex", "Luxury Getaway", 'Deluxe Resort', "Upscale Retreat", "Elite Complex", "Prestigious Resort", "Theme Park"]
+        resourses = ["Luxury accommodations", "Fine dining restaurants", "Spa and wellness centers", "Exclusive services",  "Recreational activities"]
+        resourse = getRandomItem(resourses)
+      }
+      stationNameFull = stationName + " " + getRandomItem(lables)
+      sentence1 = "The " + stationNameFull + " is a " + constructA.toLowerCase() + " serving as a " + stationPurpose.toLowerCase() + ". It was built " + stationAge + " ago."
+      sentence2 = stationName + " is primarily known for " + resourse.toLowerCase() + "."
+      stationCrew = totalPop * getRandomFloat(0.2, 0.35)
+      stationCrew = stationCrew.toFixed(0)
+      sentence3 = "It is frequented by " + totalPop + " people, " + stationCrew + " of whom work there."
+
+      table = `<table class="tg"><thead>
+                <tr>
+                  <th class="tg-0lax" colspan="2" style="text-align: center;font-weight: bold;">${stationNameFull}</th>
+                </tr></thead>
+              <tbody>
+                <tr>
+                  <td class="tg-0lax">Class:</td>
+                  <td class="tg-0lax">${constructA}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Designation:</td>
+                  <td class="tg-0lax">${stationPurpose}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Function:</td>
+                  <td class="tg-0lax">${resourse}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Quality</td>
+                  <td class="tg-0lax">${percentile}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Workers:</td>
+                  <td class="tg-0lax">${stationCrew}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Size:</td>
+                  <td class="tg-0lax">${stationSize} m²</td>
+                </tr>
+              </tbody>
+              </table>`
+      document.getElementById("table").innerHTML = table
+      document.getElementById("text").innerHTML = sentence1 + " " + sentence2 + " " + sentence3
+    };
+    function genSettlment() {
+      die = dieroll(3, d4)
+      if (die == 3) {
+        sizeOBJ = {"name": "Village", "sizeMin": 0.5, "sizeMax": 1, "popMin": 500, "popMax": 1000}
+        townType = "Village"
+      } else if (die == 4) {
+        sizeOBJ = {"name": "Town", "sizeMin": 1, "sizeMax": 50, "popMin": 1000, "popMax": 10000}
+        townType = "Town"
+      } else if (die == 5) {
+        sizeOBJ = {"name": "Large Town", "sizeMin": 50, "sizeMax": 80, "popMin": 10000, "popMax": 40000}
+        townType = "Town"
+      } else if (die == 6) {
+        sizeOBJ = {"name": "Small City", "sizeMin": 80, "sizeMax": 100, "popMin": 40000, "popMax": 100000}
+        townType = "City"
+      } else if (die == 7 || die == 8) {
+        sizeOBJ = {"name": "City", "sizeMin": 100, "sizeMax": 200, "popMin": 100000, "popMax": 500000}
+        townType = "City"
+      } else if (die == 9) {
+        sizeOBJ = {"name": "Large City", "sizeMin": 200, "sizeMax": 500, "popMin": 500000, "popMax": 1000000}
+        townType = "City"
+      } else if (die == 10) {
+        sizeOBJ = {"name": "Major City", "sizeMin": 500, "sizeMax": 2000, "popMin": 1000000, "popMax": 5000000}
+        townType = "City"
+      } else if (die == 11) {
+        sizeOBJ = {"name": "Metropolis", "sizeMin": 2000, "sizeMax": 5000, "popMin": 5000000, "popMax": 10000000}
+        townType = "Metropolis"
+      } else if (die == 12) {
+        sizeOBJ = {"name": "Major Metropolis", "sizeMin": 5000, "sizeMax": 10000, "popMin": 10000000, "popMax": 50000000}
+        townType = "Metropolis"
+      }
+      constructA = sizeOBJ.name
+      stationSize = getRandomFloat(sizeOBJ.sizeMin, sizeOBJ.sizeMax)
+      stationSize = stationSize.toFixed(2)
+      stationPop = getRandomInt(sizeOBJ.popMin, sizeOBJ.popMax)
+      stationPopulationDesnity = stationPop / stationSize
+      totalPop = stationPop
+      die = d100()
+      if (range(die, 1, 10)) {
+        stationPurpose = "Mining Colony"
+        lables = ["Extraction Settlement", "Resource " + townType, "Ore Processing " + townType, "Dig Site " + townType, "Mineral Camp", "Prospecting " + townType, "Excavation Community", "Resource Extraction " + townType]
+        resourses = ["Resource extraction (minerals, ores)", "Mining equipment manufacturing", "Geological surveys and research", "Worker accommodations and services", "Environmental impact assessments"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Mining"
+      } else if (range(die, 11, 20)) {
+        stationPurpose = "Research Outpost"
+        lables = ["Science " + townType, "Discovery " + townType, "Experimental " + townType, "Observation " + townType, "Analysis Community", "Research Base", "Exploration Hub"]
+        resourses = ["Scientific experiments and research projects", "Data analysis and computational modeling", "Field research expeditions", "Laboratory facilities and equipment", "Collaboration with academic institutions"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Science"
+      } else if (range(die, 21, 30)) {
+        stationPurpose = "Trade Hub"
+        lables = ["Commerce " + townType, "Market " + townType, "Trade " + townType, "Merchant " + townType, "Economic Enclave", "Exchange Community", "Barter Town", "Retail " + townType, "Trading Post"]
+        resourses = ["Import and export of goods and materials", "Warehousing and logistics management", "Trade negotiations and agreements", "Financial services (banking, currency exchange)", "Marketplaces and trading posts"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Commerse"
+      } else if (range(die, 31, 40)) {
+        stationPurpose = "Agricultural Settlement"
+        lables = ["Farming Community", "Crop " + townType, "Harvest " + townType, "Plantation " + townType, "Agro Enclave", "Food Production Settlement", "Agrarian " + townType, "Greenhouse " + townType, "Cultivation " + townType]
+        resourse = genProduce()
+      } else if (range(die, 41, 47)) {
+        stationPurpose = "Military Outpost"
+        lables = ["Garrison " + townType, "Defense Settlement", "Fortified " + townType, "Command " + townType, "Security Enclave", "Strategic Community", "Combat Base " + townType, "Barracks Settlement", "Tactical " + townType]
+        resourses = ["Defense operations and strategic planning", "Training facilities and live-fire exercises", "Military logistics and supply chains", "Veteran rehabilitation services", "Security and surveillance systems"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Defense Industry"
+      } else if (range(die, 48, 54)) {
+        stationPurpose = "Tourist Resort"
+        lables = ["Vacation " + townType, "Leisure " + townType, "Holiday " + townType, "Resort Enclave", "Getaway Community", "Recreational " + townType, "Tourism Settlement", "Resort " + townType, "Relaxation " + townType]
+        resourses = ["Luxury accommodations and hospitality services", "Recreational activities and entertainment", "Tourist attractions and sightseeing tours", "Spa and wellness facilities", "Event planning and cultural experiences"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Tourism"
+      } else if (range(die, 55, 61)) {
+        stationPurpose = "Religious Enclave"
+        lables = ["Sanctuary " + townType, "Pilgrim Settlement", "Faith " + townType, "Spiritual Community", "Worship Enclave", "Devotion Community", "Monastic " + townType, "Religious Retreat", "Sacred Settlement"]
+        resourses = ["Places of worship and religious ceremonies", "Theological studies and religious education", "Community outreach and charitable services", "Religious art and cultural preservation",  "Pilgrimage destinations and spiritual retreats"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Faith"
+      } else if (range(die, 62, 68)) {
+        stationPurpose = "Spaceport"
+        lables = ["Launch " + townType, "Space Gateway", "Shuttle Link " + townType, "Space Terminal Settlement", "Aerospace Enclave", "Spacer " + townType, "Spaceport Community", "Launchpad " + townType]
+        resourses = ["Launch facilities for spacecraft", "Cargo handling and logistics", "Passenger terminals and immigration services", "Refueling stations and spacecraft maintenance", "Space tourism and orbital excursions"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Transportation"
+      } else if (range(die, 69, 74)) {
+        stationPurpose = "Refugee Haven"
+        lables = ["Sanctuary " + townType, "Asylum " + townType, "Safe Haven Settlement", "Relief " + townType, "Shelter Enclave", "Resettlement Community", "Protection " + townType, "Refuge " + townType, "Haven Settlement"]
+        resourses = ["Temporary housing and resettlement programs", "Emergency medical care and counseling services", "Legal aid and documentation assistance", "Community integration and cultural support",  "Humanitarian aid distribution"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Residential"
+      } else if (range(die, 75, 80)) {
+        stationPurpose = "Scientific Preserve"
+        lables = ["Research Sanctuary", "Discovery Enclave", "Experimental Preserve", "Observation " + townType, "Investigation Sanctuary", "Analysis Preserve", "Science Community", "Exploration Sanctuary", "Study Preserve"]
+        resourses = ["Preservation of unique ecosystems or species", "Research on biodiversity and ecological balance", "Environmental monitoring and conservation efforts", "Educational programs and eco-tourism",  "Scientific collaboration with conservation organizations"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Conservation"
+      } else if (range(die, 81, 85)) {
+        stationPurpose = "Medical Sanctuary"
+        lables = ["Health " + townType, "Treatment " + townType, "Infirmary " + townType, "Care " + townType, "Wellness Enclave", "Clinic Community", "Recovery " + townType, "Medical Retreat", "Healthcare Settlement"]
+        resourses = ["Advanced medical treatments and surgeries", "Medical research and pharmaceutical development", "Rehabilitation services and specialized care units", "Emergency response and disaster relief", "Healthcare training and professional development"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Medical Care"
+      } else if (range(die, 86, 89)) {
+        stationPurpose = "Power Sourse"
+        lables = ["Power " + townType, "Energy " + townType, "Reactor Settlement", "Generation " + townType, "Power Plant Enclave", "Energy Production Community", "Powerhouse " + townType, "Energy Extraction " + townType, "Electric Settlement"]
+        resourses = ["Power generation (fusion reactors, solar farms)", "Energy storage and distribution networks", "Resource management and efficiency optimization", "Environmental impact assessments",  "Energy export and trade agreements"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Energy"
+      } else if (range(die, 90, 92)) {
+        stationPurpose = "Artificial Intelligence Development Hub"
+        lables = ["AI " + townType, "Robotics " + townType, "Tech Settlement", "Innovation " + townType, "Digital Enclave", "Algorithm Community", "Smart " + townType, "AI Research " + townType, "Cognitive Development " + townType]
+        resourses = ["Artificial intelligence research and development", "Data analytics and machine learning algorithms", "Robotics engineering and autonomous systems", "Integration of AI with daily life and industry"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "AI & Robotics"
+      } else if (range(die, 93, 94)) {
+        stationPurpose = "Cultural Archive"
+        lables = ["Heritage " + townType, "Arts " + townType, "Museum " + townType, "Cultural " + townType, "Historic Enclave", "Tradition Community", "Archival " + townType, "Cultural Preservation " + townType, "Ethnology " + townType]
+        resourses = ["Preservation of cultural artifacts and historical records", "Exhibitions and cultural events", "Archival research and digital preservation", "Cultural exchange programs and educational workshops", "Collaboration with museums and academic institutions"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Tourism"
+      } else if (range(die, 95, 96)) {
+        stationPurpose = "Terraforming Base"
+        lables = ["Planetary Engineering " + townType, "Habitat Settlement", "Biosphere", "Ecological " + townType, "Environmental Enclave", "Terraformation Community", "Terraformer " + townType, "Habitat Engineering Settlement"]
+        resourses = ["Climate control and atmospheric manipulation", "Terraforming technologies and geoengineering", "Biosphere simulations and ecological modeling", "Infrastructure development and urban planning", "Colonization efforts and habitat construction"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Terraforming"
+      } else if (range(die, 97, 98)) {
+        stationPurpose = "Underwater Colony"
+        lables = ["Submarine " + townType, "Ocean Settlement", "Aquatic " + townType, "Marine Enclave", "Undersea Community", "Deep-Sea " + townType, "Aquatic Base", "Subaquatic " + townType, "Marine " + townType]
+        resourses = ["Undersea exploration and marine research", "Aquatic farming and sustainable fisheries",  "Underwater habitats and pressure-resistant architecture", "Oceanic energy generation (tidal, thermal)", "Submarine transportation and aquaculture logistics"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Aquaculture"
+      } else if (die == 99) {
+        stationPurpose = "Interstellar Embassy"
+        lables = ["Galactic Diplomatic Enclave", "Star System Embassy", "Cosmic Diplomatic Hub", "Celestial Envoy", "Universal Embassy", "Stellar Diplomatic Settlement", "Diplomatic " + townType, "Intergalactic Embassy Enclave", "Star Embassy Community"]
+        resourses = ["Diplomatic negotiations and interstellar relations", "Cultural exchange and international treaties", "Consular services and visa applications", "Security and protection of foreign nationals",  "Trade agreements and diplomatic immunity"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Diplomasy"
+      } else if (die == 100) {
+        stationPurpose = "Space Junkyard"
+        lables = ["Salvage " + townType, "Scrap " + townType, "Wreckage " + townType, "Junk " + townType, "Reclamation " + townType, "Recovery Community " + townType, "Recycling " + townType, "Dismantling " + townType, "Junkyard " + townType]
+        resourses = ["Salvage operations and scrap processing", "Resource recycling and waste management",  "Parts reclamation and component resale", "Spacecraft repair and refurbishment", "Research on space debris and orbital hazards"]
+        resourse = getRandomItem(resourses)
+        mainresourse = "Recycling"
+      }
+      townVariety = getRandomItem(lables)
+      resourse2 = genCityResourses(townType)
+      stationPopulationDesnity = stationPopulationDesnity.toFixed(0)
+
+      stationNameFull = stationName + " " + getRandomItem(lables)
+      sentence1 = stationNameFull + " is a " + constructA.toLowerCase() + ". It is best known for " + resourse.toLowerCase() + ", but also " + resourse2 + ". It has a population of " + stationPop + " living at a average density of " + stationPopulationDesnity + " people per km²."
+      sentence2 = stationName + " was founded " + stationAge + " ago arround a " + stationPurpose.toLowerCase() + "."
+      //sentence3 = "It is frequented by " + totalPop + " people, " + stationCrew.toFixed(0) + " of whom work there."
+
+      table = `<table class="tg"><thead>
+                <tr>
+                  <th class="tg-0lax" colspan="2" style="text-align: center;font-weight: bold;">${stationNameFull}</th>
+                </tr></thead>
+              <tbody>
+                <tr>
+                  <td class="tg-0lax">Class:</td>
+                  <td class="tg-0lax">${constructA}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Founded as:</td>
+                  <td class="tg-0lax">${stationPurpose}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Main Industry:</td>
+                  <td class="tg-0lax">${mainresourse}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Quality:</td>
+                  <td class="tg-0lax">${percentile}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Population:</td>
+                  <td class="tg-0lax">${stationPop}</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Area:</td>
+                  <td class="tg-0lax">${stationSize} km²</td>
+                </tr>
+                <tr>
+                  <td class="tg-0lax">Population Density:</td>
+                  <td class="tg-0lax">${stationPopulationDesnity} per km²</td>
+                </tr>
+              </tbody>
+              </table>`
+      document.getElementById("table").innerHTML = table
+      document.getElementById("text").innerHTML = sentence1 + " " + sentence2// + " " + sentence3
+    };
+
+
+
+    //document.getElementById("output").innerHTML =
+
+
+    //work functions
+    function genStationAge() {
+      die = d100()
+      stationAgeDie = die
+      if (range(die, 1, 2)) {
+        age = d4() + " weeks"
+      } else if (range(die, 3, 5)) {
+        age = d4() + " months"
+      } else if (range(die, 6, 9)) {
+        age = dieroll(2, d4) + " months"
+      } else if (range(die, 10, 30)) {
+        age = dieroll(3, d4) + " months"
+      } else if (range(die, 31, 45)) {
+        age = d10() + " years"
+      } else if (range(die, 46, 50)) {
+        age = dieroll(2, d10) + " years"
+      } else if (range(die, 51, 57)) {
+        age = dieroll(3, d10) + " years"
+      } else if (range(die, 58, 62)) {
+        age = dieroll(4, d10) + " years"
+      } else if (range(die, 63, 68)) {
+        age = dieroll(5, d10) + " years"
+      } else if (range(die, 69, 73)) {
+        age = dieroll(6, d10) + " years"
+      } else if (range(die, 74, 77)) {
+        age = dieroll(7, d10) + " years"
+      } else if (range(die, 78, 81)) {
+        age = dieroll(8, d10) + " years"
+      } else if (range(die, 82, 85)) {
+        age = dieroll(9, d10) + " years"
+      } else if (range(die, 86, 88)) {
+        age = dieroll(10, d10) + " years"
+      } else if (range(die, 89, 91)) {
+        age = d20() + 100 + " years"
+      } else if (range(die, 92, 94)) {
+        age = dieroll(2, d20) + 100 + " years"
+      } else if (range(die, 95, 96)) {
+        age = dieroll(3, d20) + 100 + " years"
+      } else if (range(die, 97, 98)) {
+        age = dieroll(4, d20) + 100 + " years"
+      } else if (die == 99) {
+        age = dieroll(5, d20) + 100 + " years"
+      } else if (die == 100) {
+        age = "More than 200 years old"
+      }
+      return age
+    };
+    function markTier() {
+      die = dieroll(5, d20) + 20
+      if (range(die, 1, 2)) {
+        tier = d5()
+      } else if (range(die, 3, 5)) {
+        tier = d5() + 5
+      } else if (range(die, 6, 9)) {
+        tier = d5() + 10
+      } else if (range(die, 10, 30)) {
+        tier = d5() + 15
+      } else if (range(die, 31, 45)) {
+        tier = d5() + 20
+      } else if (range(die, 46, 50)) {
+        tier = d5() + 25
+      } else if (range(die, 51, 57)) {
+        tier = d5() + 30
+      } else if (range(die, 58, 62)) {
+        tier = d5() + 35
+      } else if (range(die, 63, 68)) {
+        tier = d5() + 40
+      } else if (range(die, 69, 73)) {
+        tier = d5() + 45
+      } else if (range(die, 74, 77)) {
+        tier = d5() + 50
+      } else if (range(die, 78, 81)) {
+        tier = d5() + 55
+      } else if (range(die, 82, 85)) {
+        tier = d5() + 60
+      } else if (range(die, 86, 88)) {
+        tier = d5() + 65
+      } else if (range(die, 89, 91)) {
+        tier = d5() + 70
+      } else if (range(die, 92, 94)) {
+        tier = d5() + 75
+      } else if (range(die, 95, 96)) {
+        tier = d5() + 80
+      } else if (range(die, 97, 98)) {
+        tier = d5() + 85
+      } else if (die == 99) {
+        tier = d5() + 90
+      } else if (die >= 100) {
+        tier = d5() + 95
+      }
+      suff = calc_suffix(tier)
+      percentile = tier + suff + " percentile"
+      result = {"tier": tier, "percentile": percentile}
+      return result
+    };
+    function systemAge() {
+      die = getRandomInt(1, stationAgeDie)
+      if (range(die, 1, 2)) {
+        age = d4() + " weeks"
+      } else if (range(die, 3, 5)) {
+        age = d4() + " months"
+      } else if (range(die, 6, 9)) {
+        age = dieroll(2, d4) + " months"
+      } else if (range(die, 10, 30)) {
+        age = dieroll(3, d4) + " months"
+      } else if (range(die, 31, 45)) {
+        age = d10() + " years"
+      } else if (range(die, 46, 50)) {
+        age = dieroll(2, d10) + " years"
+      } else if (range(die, 51, 57)) {
+        age = dieroll(3, d10) + " years"
+      } else if (range(die, 58, 62)) {
+        age = dieroll(4, d10) + " years"
+      } else if (range(die, 63, 68)) {
+        age = dieroll(5, d10) + " years"
+      } else if (range(die, 69, 73)) {
+        age = dieroll(6, d10) + " years"
+      } else if (range(die, 74, 77)) {
+        age = dieroll(7, d10) + " years"
+      } else if (range(die, 78, 81)) {
+        age = dieroll(8, d10) + " years"
+      } else if (range(die, 82, 85)) {
+        age = dieroll(9, d10) + " years"
+      } else if (range(die, 86, 88)) {
+        age = dieroll(10, d10) + " years"
+      } else if (range(die, 89, 91)) {
+        age = d20() + 100 + " years"
+      } else if (range(die, 92, 94)) {
+        age = dieroll(2, d20) + 100 + " years"
+      } else if (range(die, 95, 96)) {
+        age = dieroll(3, d20) + 100 + " years"
+      } else if (range(die, 97, 98)) {
+        age = dieroll(4, d20) + 100 + " years"
+      } else if (die == 99) {
+        age = dieroll(5, d20) + 100 + " years"
+      } else if (die == 100) {
+        age = "More than 200 years old"
+      }
+      return age
+    };
+    function genAutomation() {
+      die = d100()
+      if (range(die, 1, 5)) {
+        automation = {"level": "0", "desig": "Manual Operations Only"}
+      } else if (range(die, 6, 15)) {
+        automation = {"level": "1", "desig": "Basic Automation"}
+      } else if (range(die, 16, 25)) {
+        automation = {"level": "2", "desig": "Enhanced Automation"}
+      } else if (range(die, 26, 55)) {
+        automation = {"level": "3", "desig": "Semi-Autonomous Systems"}
+      } else if (range(die, 56, 70)) {
+        automation = {"level": "4", "desig": "Highly Autonomous Systems"}
+      } else if (range(die, 71, 85)) {
+        automation = {"level": "5", "desig": "Fully Autonomous Systems"}
+      } else if (range(die, 86, 98)) {
+        automation = {"level": "6", "desig": "Sentient AI System"}
+      } else if (range(die, 99, 100)) {
+        automation = {"level": "7", "desig": "Organic Synthesis"}
+      }
+      return automation
+    };
+    function selectAnimal() {
+      animals = [
+        {"name": "Horses", "res": ["riding", "racing", "draught", "meat", "milk"]},
+        {"name": "Donkies", "res": ["draught"]},
+        {"name": "Cattle", "res": ["meat", "milk", "draught"]},
+        {"name": "Zebu", "res": ["milk", "meat", "draught"]},
+        {"name": "Bali cattle", "res": ["meat", "milk", "draught"]},
+        {"name": "Yaks", "res": ["pack animals", "milk", "meat", "hide"]},
+        {"name": "Water buffalo", "res": ["meat", "milk", "draught"]},
+        {"name": "Sheep", "res": ["meat", "milk", "fleece"]},
+        {"name": "Goats", "res": ["meat", "milk", "fleece"]},
+        {"name": "Reindeer", "res": ["draught", "milk", "meat", "hide"]},
+        {"name": "Camels", "res": ["riding", "racing", "meat", "milk", "fur"]},
+        {"name": "Llamas", "res": ["pack animals", "meat", "fleece"]},
+        {"name": "Alpacas", "res": ["meat", "fleece"]},
+        {"name": "Pig", "res": ["meat"]},
+        {"name": "Chickens", "res": ["meat", "eggs"]},
+        {"name": "Rabbits", "res": ["meat", "wool"]},
+        {"name": "Guinea pigs", "res": ["meat"]},
+        {"name": "Fish", "res": ["meat", "oil"]},
+        {"name": "Shrimp", "res": ["meat"]},
+        {"name": "Prawns", "res": ["meat"]},
+        {"name": "Shellfish", "res": ["meat"]}
+        ]
+      animalObj = getRandomItem(animals)
+      resourses = animalObj.res
+      resource = getRandomItem(resourses)
+      animal = animalObj.name
+      produce = " the " + animal.toLowerCase() + " they raise for " + resource.toLowerCase()
+      mainresourse = "livestock"
+      return produce
+    };
+    function selectCrop() {
+      crops = [
+        {"name": "Food Crops", "crops": ["Wheat", "Rice", "Corn (Maize)", "Barley", "Oats", "Rye", "Millet", "Sorghum", "Soybeans", "Peanuts", "Potatoes", "Sweet Potatoes", "Cassava", "Yams", "Taro", "Sugarcane", "Sugar Beets", "Tomatoes", "Lettuce", "Spinach", "Cabbage", "Broccoli", "Cauliflower", "Carrots", "Onions", "Garlic", "Peppers", "Cucumbers", "Pumpkins", "Squash", "Zucchini", "Eggplant", "Okra", "Beans", "Peas", "Lentils", "Chickpeas", "Alfalfa", "Sunflowers", "Rapeseed (Canola)", "Flax", "Sesame", "Quinoa", "Amaranth", "Buckwheat", "Sorghum", "Chia", "Teff", "Bananas", "Plantains", "Apples", "Oranges", "Grapes", "Pears", "Peaches", "Plums", "Cherries", "Strawberries", "Raspberries", "Blueberries", "Blackberries", "Melons", "Watermelons", "Pineapples", "Papayas", "Mangoes", "Avocados", "Coconuts", "Dates", "Figs", "Kiwis", "Pomegranates", "Olives", "Coffee", "Tea", "Cocoa"]},
+        {"name": "Cash Crops", "crops": ["Cotton", "Coffee", "Tea", "Tobacco", "Sugarcane", "Sugar Beets", "Cocoa", "Rubber", "Oil Palm", "Soybeans", "Corn (Maize)", "Wheat", "Barley", "Rice", "Jute", "Hemp", "Flax", "Sunflowers", "Rapeseed (Canola)", "Almonds", "Peanuts", "Hazelnuts", "Cashews", "Macadamia Nuts", "Pistachios", "Walnuts", "Cotton", "Silk", "Wool", "Mohair", "Linen", "Leather", "Grapes", "Oranges", "Apples", "Bananas", "Pineapples", "Mangoes", "Avocados", "Olives", "Dates", "Figs", "Pomegranates", "Rubber", "Tobacco", "Vanilla", "Pepper", "Cinnamon", "Cloves", "Nutmeg", "Ginger", "Cardamom", "Turmeric", "Saffron", "Peppermint", "Spearmint", "Lavender", "Rosemary", "Thyme", "Basil", "Oregano", "Parsley", "Coriander (Cilantro)", "Dill", "Sage", "Chives", "Tarragon", "Marjoram", "Lemongrass", "Bay Leaves", "Chia", "Quinoa", "Amaranth", "Aloe Vera", "Ginseng", "Eucalyptus", "Cranberries", "Blueberries", "Blackberries", "Raspberries", "Strawberries", "Roses", "Lilies", "Orchids", "Tulips", "Daffodils", "Marigolds"]},
+        {"name": "Timber", "crops": ["Oak", "Pine", "Spruce", "Fir", "Cedar", "Douglas Fir", "Hemlock", "Redwood", "Teak", "Mahogany", "Walnut", "Maple", "Birch", "Cherry", "Ash", "Beech", "Poplar", "Eucalyptus", "Sycamore", "Hickory", "Alder", "Basswood (Linden)", "Balsa", "Rosewood", "Ebony", "Elm", "Iroko", "Meranti", "Merbau", "Ramin", "Sapele", "Yellow Pine", "White Pine", "Black Walnut", "Red Oak", "White Oak", "YellowCedar", "Western Red Cedar", "Larch", "Tamarack", "Acacia", "Bamboo", "Sandalwood", "Mango Wood", "Rubberwood", "Paulownia", "CherryLaurel", "Chestnut", "Koa", "Laurel", "Lignum Vitae", "Mulberry", "Osage Orange", "Padauk", "Pecan", "Persimmon", "Purpleheart", "Quina", "Raintree", "Sassafras", "Sequoia", "Sitka Spruce", "Sweetgum", "Tualang", "Willow", "Yew"]}
+      ]
+      cropGroup = getRandomItem(crops)
+      cropType = cropGroup.name
+      cropList = cropGroup.crops
+      crop1 = getRandomItem(cropList)
+      crop2 = getRandomItem(cropList)
+      while (crop2 == crop1) {
+        crop2 = getRandomItem(cropList)
+      }
+      crop3 = getRandomItem(cropList)
+      while (crop3 == crop1 || crop3 == crop2) {
+        crop3 = getRandomItem(cropList)
+      }
+      produce = " their " + cropType.toLowerCase() + ", specificly: " + crop1 + ", " + crop2 + ", and " + crop3
+      mainresourse = cropType
+      return produce
+    };
+    function genProduce() {
+      if (getRandomInt(1, 2) == 1) {
+        produse = selectCrop()
+      } else {
+        produse = selectAnimal()
+      }
+      return produse
+    };
+    function genCityResourses(townType) {
+      newResourse = []
+      if (townType == "Village") {
+          loops = 2
+      } else if (townType == "Town") {
+        loops = 3
+      } else if (townType == "City") {
+        loops = 4
+      } else if (townType == "Metropolis") {
+        loops = 5
+      }
+      while (loops > 0) {
+        die = getRandomInt(1, 18)
+        if (die == 1) {
+          lables = ["Transit Hub", "Transfer Point", "Crossroads Station", "Relay Node", "Passage Terminal", "Gateway Outpost", "Junction", "Rest Stop", "Staging Post"]
+          resourses = ["Rest and refuel", "Cargo transfer", "Crew exchange", "Minor repairs", "Supplies replenishment"]
+        } else if (die == 2) {
+          lables = ["Naval Yard", "Regional HQ", "Sector Command Post", "Defense Bastion", "Fortified Enclave", "Strategic Station", "Garrison Base", "Combat Post", "Tactical Outpost", "Battle Station"]
+          resourses = ["Defense operations", "Military training", "Weapon storage", "Strategic planning", "Surveillance"]
+        } else if (die == 3) {
+          lables = ["Cargo Terminal", "Freight Depot", "Logistics Center", "Transport Nexus", "Distribution Node", "Shipping Yard", "Supply Port", "Freight Exchange", "Commerce Dock"]
+          resourses = ["Cargo handling", "Logistics management", "Customs and inspections", "Freight storage", "Distribution"]
+        } else if (die == 4) {
+          lables = ["Hab Station", "Quarter", "Settlement", "Enclave", "Homestead Station", "Community", "Civil Starbase", "Colony"]
+          resourses = ["Housing", "Local governance", "Community services", "Education", "Healthcare"]
+        } else if (die == 5) {
+          lables = ["Science Hub", "Experimental Base", "Discovery Post", "Observation Point", "Laboratory", "Investigation Center", "Analysis Station", "Innovation Station", "Exploration Base"]
+          resourses = ["Scientific experiments", "Data collection", "Lab facilities", "Exploration missions", "Academic  collaboration"]
+        } else if (die == 6) {
+          lables = ["Merchant Hub", "Market Station", "Commerce Outpost", "Barter Node", "Trade Nexus", "Merchant Port", "Bazaar Post", "Commercial Dock", "Retail Yard"]
+          resourses = ["Goods exchange", "Marketplaces", "Bartering", "Economic transactions", "Resource allocation"]
+        } else if (die == 7) {
+          lables = ["Embassy Station", "Consulate Outpost", "Negotiation Hub", "Accord Node", "Treaty Post", "Alliance Station", "Diplomatic Nexus", "Envoy Base", "Peacekeeper Station"]
+          resourses = ["Negotiations", "Treaty signings", "Embassy services", "Conflict resolution", "Interstellar relations"]
+        } else if (die == 8) {
+          lables = ["Extraction Point", "Resource Node", "Ore Depot", "Dig Site", "Mineral Hub", "Quarry", "Excavation Post", "Harvest Node", "Resource Extraction Base"]
+          resourses = ["Resource extraction", "Ore processing", "Geological surveys", "Mining equipment maintenance", "Export of raw materials"]
+        } else if (die == 9) {
+          lables = ["Sanctuary Station", "Asylum", "Safe Haven", "Relief Hub", "Shelter Station", "Resettlement Post", "Starbase", "Haven Point", "Refuge Node"]
+          resourses = ["Resource extraction", "Ore processing", "Geological surveys", "Mining equipment maintenance", "Export of raw materials"]
+        } else if (die == 10) {
+          lables = ["Leisure Hub", "Amusement Station", "Recreation Station", "Fun Zone", "Pleasure Outpost", "Resort Station", "Entertainment Nexus", "Spectacle Hub", "Festival Center"]
+          resourses = ["Shelter", "Food distribution", "Medical care", "Rehabilitation programs", "Asylum processing"]
+        } else if (die == 11) {
+          lables = ["Health Station", "Treatment Hub", "Infirmary", "Care Center", "Medical Outpost", "Wellness Base", "Clinic Station", "Recovery Point", "Hospital"]
+          resourses = ["Patient treatment", "Medical research", "Emergency care", "Surgical operations", "Health services"]
+        } else if (die == 12) {
+          lables = ["Learning Center", "Institute", "Academy", "Training Post", "Scholastic Outpost", "University", "Research Academy", "Education Center"]
+          resourses = ["its Classrooms", "its Research facilities", "its Libraries", "its Student housing", "its Lecture halls"]
+        } else if (die == 13) {
+          lables = ["Power Station", "Reactor Station", "Energy Depot", "Power Plant", "Energy Nexus"]
+          resourses = ["Power generation", "Energy storage", "Distribution of power", "Resource management", "Efficiency optimization"]
+        } else if (die == 14) {
+          lables = ["Heritage Hub", 'Gallery', "Museum Station", "Cultural Outpost", "Muceum", "Arts and Culture Post", "Tradition Node", "Cultural Exchange Station", "Ethno-Center"]
+          resourses = ["Exhibitions", "Performances", "Cultural preservation", "Workshops", "Community events"]
+        } else if (die == 15) {
+          lables = ["Correctional Facility", "Detention Center", "Prison Outpost", "Penal Station", "Incarceration Node", "Confinement Base", "Rehabilitation Post", "Holding Hub", "Penitentiary Node"]
+          resourses = ["Incarceration", "Rehabilitation programs", "Labor assignments", "Security management", "Legal processing"]
+        } else if (die == 16) {
+          lables = ["Farming Station", "Hydroponics Center", "Agro Outpost", "Plantation Hub", "Food Production Post", "Agrarian Node", "Cultivation Station", "Greenhouse Base"]
+          resourses = ["Cash Crops", "Food Clops", "Timber"]
+        } else if (die == 17) {
+          lables = ["Signal Hub", "Relay", "Broadcast Station", "Comms Outpost", "Transmission Point", "Network Base", "Communication Nexus", "Satellite Station"]
+          resourses = ["Signal boosting", "Data transmission", "Communication network management", "Message relaying", "Broadcasting"]
+        } else if (die == 18) {
+          lables = ["Reclamation Station", "Scrap Depot", "Recovery Hub", "Junkyard", "Salvage Post", "Wreckage Yard", "Retrieval Station", "Recycling Center"]
+          resourses = ["Scrap processing", "Resource reclamation", "Repair services", "Disassembly operations", "Resale of salvaged goods"]
+        }
+        resourseNew = getRandomItem(resourses)
+        lableNew = getRandomItem(lables)
+        if (loops == 1) {
+          newResourse += "and its " + lableNew.toLowerCase() + " for " + resourseNew.toLowerCase()
+        } else {
+          newResourse += "its " + lableNew.toLowerCase() + " for " + resourseNew.toLowerCase() + ", "
+        }
+        loops = loops - 1
+      }
+
+      return newResourse
+    };
+
+
+  </script>
+
+</html>
