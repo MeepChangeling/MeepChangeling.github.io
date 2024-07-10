@@ -20,6 +20,37 @@ h4 {
   border-radius: 3px;
 }
 
+h5 {
+  font-weight: bold;
+  font-size: 0.85em;
+  border-bottom: solid 3px #aafffc;
+  border-radius: 3px;
+}
+
+.indent {
+  margin-left: 1em;
+}
+
+/* unvisited link */
+a:link {
+ color: #4fe38b;
+}
+
+/* visited link */
+a:visited {
+ color: #c800c8;
+}
+
+/* mouse over link */
+a:hover {
+ color: #17a2b8;
+}
+
+/* selected link */
+a:active {
+ color: #007bff;
+}
+
 #wrapper {
   display: flex;
   flex-direction: column;
@@ -283,7 +314,7 @@ div.navcontent {
 }
 
 figure.articleFigure {
-  width: 30%;
+  width: 25%;
   margin-left: 1em;
   margin-right: 0;
   margin-top: 0;
@@ -293,12 +324,16 @@ figure.articleFigure {
 
 figure.articleFigureDuo {
   width: 45%;
-  
+
   margin-left: 1em;
   margin-right: 0;
   margin-top: 0;
   margin-bottom: 1em;
   border: solid 2px #aafffc;
+}
+
+figure figcaption {
+  padding-bottom: 0.5em;
 }
 
 img.articleImg {
