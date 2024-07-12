@@ -188,6 +188,12 @@ div.readingarea {
   transform: translateY(-50%);
 }
 
+.center {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .collapsible3 {
   font-weight:bold;
   color: #aafffc;
@@ -215,6 +221,12 @@ div.readingarea {
   background-color: rgba(23, 162, 184, 0.2); /* Add some background to see the zones */
   padding: 10px;
   border: 1px solid #2bede6;
+}
+
+video {
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid #aafffc;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
@@ -383,4 +395,30 @@ figure.articleFigureDuo figcaption {
   padding: 1em;
   padding-left: 2em;
   font-style: italic;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
