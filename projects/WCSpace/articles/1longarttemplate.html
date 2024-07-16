@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>The Galactic Navy</title>
+    <link rel="icon" type="image/x-icon" href="../img/favicon.webp">
+    <link rel="stylesheet" type="text/css" href="../wcspace.css" />
+    <link rel="stylesheet" type="text/css" href="../augmented-ui.css">
+    <script src="../scr/bitsnbobs.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <button onclick="topFunction()" id="myBtn" title="Go to top" data-augmented-ui="tl-clip tr-clip br-clip bl-clip border" class="styleme">⤒</button>
+
+
+    <div data-augmented-ui="br-clip-y b-clip bl-clip-y border" class="styleme topnav">
+      <div class="headline"><button id="toggleButton" class="collapsible">☰</button><a href="../home.html"><button id="homeButton" class="collapsible2"><img src="../img/favicon.webp" alt="" class="buttonimg"></button></a><h3 id="articleTitle"></h3></div>
+
+    </div>
+    <div id="navcontent" data-augmented-ui="t-clip-y r-clip br-clip bl-clip border" class="styleme navcontent container">
+      <div class="navcontainer" id="navbarcontent"></div>
+    </div>
+    <br>
+    <div data-augmented-ui="tr-clip-x r-clip-y br-clip border" class="styleme article">
+      <div class="readingarea clearfix">
+
+        <p data-augmented-ui="tl-2-clip-y tr-rect br-rect-x bl-2-clip-xy border" class="styleme quote" style="width:90%; margin-right: auto; margin-left: auto;">This article has been coppied verbatium from the Glatic Beruccrasy's public facing site. It is presented here as a refrencial asset and does not represent the views of anyone working on the Galatipedia project.</p>
+
+        <h3 id="articleTitle"></h3>
+
+        <div id="toc" data-augmented-ui="t-clip-x tr-rect r-rect br-2-clip-x l-clip border" class="styleme">
+        <h3>Table of Contents</h3>
+        </div>
+
+      </div>
+
+
+    </div>
+    <br>
+    <div data-augmented-ui="tl-clip t-rect tr-2-clip-y border" class="styleme footer">
+      <img src="../img/favicon.webp" alt="" class="footerimg">
+      <p style="float: right; padding-right: 2em; position: absolute; top: 50%; right: 0%; transform: translateY(-100%);">Copywrite © Sean McLain: 2024 - <span id="currentYear"></span></p>
+    </div>
+  </body>
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        if (document.getElementById("toc")) {
+            generateTOC(["h4"]);
+        }
+    });
+  </script>
+</html>

@@ -1,3 +1,7 @@
+
+
+
+
 body {
   background-position: left top;
   background:
@@ -421,4 +425,89 @@ figure.articleFigureDuo figcaption {
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+#toc {
+  float: left;
+  width: 25%;
+  margin-left: 0em;
+  margin-right: 2em;
+  margin-bottom: 2em;
+  padding-right: 2em;
+  padding-top: 0.5em;
+  padding-left: 0.5em;
+  backdrop-filter: blur(10px);
+  border: solid -4px #aafffc;
+  background-color: rgba(23,162,184,0.35);
+  overflow:hidden;
+}
+
+#toc h3 {
+  text-align: center;
+}
+
+.sidebar {
+  float: right;
+  width: 25%;
+  backdrop-filter: blur(10px);
+  border: solid -4px #aafffc;
+  background-color: rgba(23,162,184,0.35);
+  overflow:hidden;
+}
+
+.sidebar table {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1.5em;
+  padding-bottom: 1.3em;
+  width:85%;
+
+}
+
+
+.tg {border-spacing:0;}
+.tg td{border: solid 1px #aafffc;padding:0.2em;padding-left: 2.5em;padding-right:0.3em; font-size: 10px;}
+.tg tr:nth-child(even) {
+  background-color: rgba(23,162,184,0.35);
+}
+.tg th{border: solid 1px #aafffc;padding:0.2em;padding-top: 1.5em;padding-left: 0.3em;padding-right:0.3em;text-align: center;font-size: 12px;background-color: rgba(23,162,184,0.5);border-bottom: solid 2px #aafffc;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-1wig{font-weight:bold;}
+
+
+
+/* Mobile shit */
+@media only screen and (max-width: 768px) {
+  h3 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h4 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h5 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  div.topnav {
+    width: 90%;
+  }
+  div.article {
+    width: 100%;
+  }
+  .collapsible {float:none;}
+  .collapsible2 {float:none;}
+  .floatL {float:none;}
+  .floatR {float:none;}
+  #toc {float:none; width: 95%;}
+  .sidebar {float:none;}
+  video {width:100%;}
+  .center {width:100%;}
+  #homeButton {margin-left: 25vw;width: 8vw;}
+  #toggleButton {margin-right: 40vw;width: 8vw;}
+  figure.articleFigure {width: 100%;float:none;}
+  figure.articleFigureDuo {width: 100%;float:none;}
+  .quote {width: 100%}
 }

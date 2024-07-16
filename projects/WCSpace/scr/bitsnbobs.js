@@ -75,9 +75,33 @@ document.addEventListener("DOMContentLoaded", function() {
 var coll = document.getElementsByClassName("collapsible3");
 var i;
 
+//Generates TOC
+    function generateTOC(levels) {
+        const tocContainer = document.getElementById("toc");
+        const headings = document.querySelectorAll(levels.join(", "));
+        const tocList = document.createElement("ul");
+
+        headings.forEach(heading => {
+            const id = heading.innerText.replace(/\s+/g, '-').toLowerCase();
+            heading.setAttribute("id", id);
+
+            const tocItem = document.createElement("li");
+            const tocLink = document.createElement("a");
+            tocLink.setAttribute("href", `#${id}`);
+            tocLink.innerText = heading.innerText;
+
+            tocItem.appendChild(tocLink);
+            tocList.appendChild(tocItem);
+        });
+
+        tocContainer.appendChild(tocList);
+    }
 
 
 
+
+
+//navbar
 document.addEventListener("DOMContentLoaded", function() {
     var navbar = document.getElementById("navbarcontent");
     var htmlTemplate = `
