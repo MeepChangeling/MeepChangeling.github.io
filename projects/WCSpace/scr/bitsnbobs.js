@@ -106,19 +106,19 @@ document.addEventListener("DOMContentLoaded", function() {
     var navbar = document.getElementById("navbarcontent");
     var htmlTemplate = `
         <div class="zone1">
-            <b>Zone 1</b>
-            <p>Placeholder...</p>
+            <b>People</b>
+            <p><a href="specieshub.html">Species Hub</a></p>
         </div>
         <div class="zone2">
-            <b>Zone 2</b>
-            <p>Placeholder...</p>
+            <b>Places</b>
+            <p><a href="QuietSpace.html">Sector Hub</a></p>
         </div>
         <div class="zone3">
-            <b>Zone 3</b>
+            <b>Things</b>
             <p>Placeholder...</p>
         </div>
         <div class="zone4">
-            <b>Zone 4</b>
+            <b>Other</b>
             <p>Placeholder...</p>
         </div>`;
     navbar.innerHTML = htmlTemplate;

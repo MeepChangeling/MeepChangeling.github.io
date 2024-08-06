@@ -13,6 +13,17 @@ body {
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
   background-attachment: fixed;
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+}
+
+#preload * {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
 }
 
 h3 {
@@ -22,6 +33,7 @@ h3 {
 h4 {
   border-bottom: solid 3px #aafffc;
   border-radius: 3px;
+  overflow: hidden;
 }
 
 h5 {
@@ -29,10 +41,14 @@ h5 {
   font-size: 0.85em;
   border-bottom: solid 3px #aafffc;
   border-radius: 3px;
+  overflow: hidden;
 }
 
 .indent {
   margin-left: 1em;
+  border-left: solid 3px #aafffc;
+  border-radius: 3px;
+  padding-left: 0.5em;
 }
 
 /* unvisited link */
@@ -76,6 +92,7 @@ div.topnav {
   font-family: "Titillium Web",sans-serif;
   text-shadow: 0px 0px 5px rgba(43,237,230,0.3);
   box-shadow: 0 0 20px 20px #2bede6;
+  background: linear-gradient(135deg, rgba(170,255,252,0.2) 0%, rgba(1,149,144,0.4) 100%);
 }
 
 div.footer {
@@ -98,6 +115,7 @@ div.footer {
   justify-content: space-between;
   align-items: center;
   margin-top: auto; /* Ensures the footer is pushed to the bottom if content is short */
+  background: linear-gradient(135deg, rgba(170,255,252,0.2) 0%, rgba(1,149,144,0.4) 100%);
 }
 
 div.navcontent {
@@ -133,19 +151,25 @@ div.article {
   backdrop-filter: blur(10px);
   background-color: rgba(23,162,184,0.2);
   color: #aafffc;
+
   font-family: "Titillium Web",sans-serif;
   font-size: 16px;
   line-height: 24px;
   text-shadow: 0px 0px 5px rgba(43,237,230,0.3);
+  text-shadow: 1px 1px 2px black;
   box-shadow: 0 0 20px 20px #2bede6;
   border-radius: 1em;
-  
+  /* background: linear-gradient(90deg, rgba(170,255,252,0.3), rgba(42,231,224,0.5) 50%, rgba(170,255,252,0.3) 100%); */
+  background: linear-gradient(90deg, rgba(42,231,224,0.1), rgba(170,255,252,0.3) 20%, rgba(170,255,252,0.3) 80%, rgba(42,231,224,0.1) 100%);
 }
 
 div.readingarea {
   padding: 1em;
   height: auto;
   margin-right: 2em;
+  background-image: radial-gradient(rgba(26, 199, 193, 0.33) 1px, transparent 0);
+  background-size: 40px 40px;
+  background-position: -19px -19px;
 }
 
 /* Style the button that is used to open and close the collapsible content */
@@ -164,6 +188,7 @@ div.readingarea {
  margin-bottom: auto;
  margin-right: 0.8em;
  background-color: rgba(23,162,184,0.0);
+
  position: absolute;
   top: 50%;
   left: 92%;
@@ -216,16 +241,36 @@ div.readingarea {
   padding-left: 1em;
   padding-right: 1em;
   border-width: 3px;
+  transition: border-radius .5s ease;
 }
+.collapsible3:before {
+    content: ' ';
+    border: 2px transparent solid;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    box-sizing: border-box;
+    width: 110px;
+    height: 40px;
+    transition: border-radius .7s ease; }
+.collapsible3:hover {
+  background-color: rgba(66, 214, 202, 0.7);
+  color: #fff;
+  border-radius: 20px; }
+.collapsible3:hover:before {
+    border-radius: 20px;
+    border: 2px #42D6CA solid; }
 
 /* Style the collapsible content. Note: hidden by default */
 .content {
   padding: 0 18px;
   display: none;
   overflow: hidden;
-  background-color: rgba(23, 162, 184, 0.2); /* Add some background to see the zones */
+  /* background-color: rgba(23, 162, 184, 0.2); /* Add some background to see the zones */
+  background: linear-gradient(135deg, rgba(170,255,252,0.2) 0%, rgba(1,149,144,0.4) 100%);
   padding: 10px;
   border: 1px solid #2bede6;
+  transition: all .7s ease;
 }
 
 video {
@@ -332,12 +377,14 @@ div.navcontent {
 }
 
 figure.articleFigure {
-  width: 25%;
-  margin-left: 1em;
+  width: 33%;
+
   margin-right: 0;
   margin-top: 0;
   margin-bottom: 1em;
   border: solid 2px #aafffc;
+  background: linear-gradient(135deg, rgba(170,255,252,0.2) 0%, rgba(1,149,144,0.4) 100%);
+
 }
 
 figure.articleFigureDuo {
@@ -348,26 +395,42 @@ figure.articleFigureDuo {
   margin-top: 0;
   margin-bottom: 1em;
   border: solid 2px #aafffc;
+  background: linear-gradient(135deg, rgba(170,255,252,0.2) 0%, rgba(1,149,144,0.4) 100%);
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto min-content;
+  gap: 10px 0px;
+  grid-template-areas:
+    "DuoZone1 DuoZone2"
+    "DuoZone-3 DuoZone-3";
 }
+.DuoZone1 { grid-area: DuoZone1; }
+.DuoZone2 { grid-area: DuoZone2; }
+.DuoZone-3 { grid-area: DuoZone-3; }
 
 figure figcaption {
   padding-bottom: 0.5em;
+
 }
 
 img.articleImg {
   width: 98%;
   height: auto;
   border: solid 3px #aafffc;
+  position: relative;
+  overflow: hidden;
 }
 
 img.articleImgDuo {
-  width: 48.6%;
+  width:98%;
   height: auto;
   border: solid 3px #aafffc;
+  position: relative;
+  overflow: hidden;
 }
 
-.floatL {float:left;}
-.floatR {float:right;}
+.floatL {float:left; margin-left: 1em;}
+.floatR {float:right; margin-right: 1em;}
 
 figure.articleFigure figcaption {
   text-align: center;
@@ -398,9 +461,12 @@ figure.articleFigureDuo figcaption {
 .quote {
   border: solid -2px #aafffc;
   background-color: rgba(23,162,184,0.2);
+  background: linear-gradient(135deg, rgba(170,255,252,0.2) 0%, rgba(1,149,144,0.4) 100%);
   padding: 1em;
   padding-left: 2em;
   font-style: italic;
+  overflow: hidden;
+  max-width: 90%;
 }
 
 .tooltip {
@@ -466,6 +532,16 @@ figure.articleFigureDuo figcaption {
 
 }
 
+table {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1.5em;
+  padding-bottom: 1.3em;
+  width:85%;
+}
+td{border: solid 1px #aafffc;padding:0.2em;padding-left: 2.5em;padding-right:0.3em; font-size: 0.9em;}
+tr:nth-child(even) {background-color: rgba(23,162,184,0.35);}
+th{border: solid 1px #aafffc;padding:0.2em;padding-top: 1.5em;padding-left: 0.3em;padding-right:0.3em;text-align: center;font-size: 1.2em;background-color: rgba(23,162,184,0.5);border-bottom: solid 2px #aafffc;}
 
 .tg {border-spacing:0;}
 .tg td{border: solid 1px #aafffc;padding:0.2em;padding-left: 2.5em;padding-right:0.3em; font-size: 10px;}
@@ -478,6 +554,14 @@ figure.articleFigureDuo figcaption {
 
 
 
+/* Responsive Design Stuff */
+@media only screen and (max-width: 1250px) {
+  figure.articleFigure {width: 100% !important;float:none; margin-left:auto; margin-right:auto; }
+  figure.articleFigureDuo {width: 100%!important;float:none; margin-left:auto; margin-right:auto; }
+  .quote {width: 100%}
+  img {width: 100%}
+}
+
 /* Mobile shit */
 @media only screen and (max-width: 768px) {
   h3 {
@@ -487,6 +571,7 @@ figure.articleFigureDuo figcaption {
   h4 {
     margin-left: auto;
     margin-right: auto;
+    overflow: auto;
   }
 
   h5 {
@@ -501,15 +586,15 @@ figure.articleFigureDuo figcaption {
   }
   .collapsible {float:none;}
   .collapsible2 {float:none;}
-  .floatL {float:none;}
-  .floatR {float:none;}
-  #toc {float:none; width: 95%;}
+  .floatL {float:none!important; margin-left: 0!important;}
+  .floatR {float:none!important; margin-right: 0!important;}
+  #toc {float:none; margin-right: 0;}
   .sidebar {float:none;}
   video {width:100%;}
   .center {width:100%;}
   #homeButton {margin-left: 25vw;width: 8vw;}
   #toggleButton {margin-right: 40vw;width: 8vw;}
-  figure.articleFigure {width: 100%;float:none;}
-  figure.articleFigureDuo {width: 100%;float:none;}
+  figure.articleFigure {width: 100% !important;float:none; margin-left:auto; margin-right:auto; }
+  figure.articleFigureDuo {width: 100%!important;float:none; margin-left:auto; margin-right:auto; }
   .quote {width: 100%}
 }
