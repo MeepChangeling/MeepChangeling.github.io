@@ -563,7 +563,43 @@ th{border: solid 1px #aafffc;padding:0.2em;padding-top: 1.5em;padding-left: 0.3e
 }
 
 /* Mobile shit */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
+  h3 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  h4 {
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+  }
+
+  h5 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  div.topnav {
+    width: 90%;
+  }
+  div.article {
+    width: 100%;
+  }
+  .collapsible {float:none;}
+  .collapsible2 {float:none;}
+  .floatL {float:none!important; margin-left: 0!important;}
+  .floatR {float:none!important; margin-right: 0!important;}
+  #toc {float:none; margin-right: 0;}
+  .sidebar {float:none;}
+  video {width:100%;}
+  .center {width:100%;}
+  #homeButton {margin-left: 25vw;width: 8vw;}
+  #toggleButton {margin-right: 40vw;width: 8vw;}
+  figure.articleFigure {width: 100% !important;float:none; margin-left:auto; margin-right:auto; }
+  figure.articleFigureDuo {width: 100%!important;float:none; margin-left:auto; margin-right:auto; }
+  .quote {width: 100%}
+}
+
+@media only screen and (orientation: portrait) {
   h3 {
     margin-left: auto;
     margin-right: auto;
