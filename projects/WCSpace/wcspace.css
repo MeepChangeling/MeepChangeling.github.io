@@ -577,26 +577,16 @@ th{border: solid 1px #aafffc;padding:0.2em;padding-top: 1.5em;padding-left: 0.3e
       background-size: cover;
       background-repeat: no-repeat;
   }
-  h3 {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  h4 {
-    margin-left: auto;
-    margin-right: auto;
-    overflow: auto;
-  }
-
-  h5 {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  div.topnav {
-    width: 90%;
-  }
-  div.article {
-    width: 100%;
-  }
+  h1 {font-size: 3em !important;}
+  h2 {font-size: 2em !important;}
+  h3 {font-size: 1.5em !important;margin-left: auto;margin-right: auto;}
+  h4 {font-size: 1.2em !important;margin-left: auto;margin-right: auto;overflow: auto;}
+  h5 {font-size: 1em !important;margin-left: auto;margin-right: auto;}
+  h6 {font-size: 1em !important;}
+  p {font-size: 1em !important;}
+  div.topnav {width: 90%;}
+  div.article {width: 100%;}
+  div.footer {display:none;}
   .collapsible {float:none;}
   .collapsible2 {float:none;}
   .floatL {float:none!important; margin-left: 0!important;}
