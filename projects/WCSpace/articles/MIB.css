@@ -1,0 +1,231 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.animation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+    z-index:0;
+}
+
+.authorization-key {
+    z-index:1;
+}
+
+.main-content {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+.authorization-key {
+    text-align: center;
+}
+
+.input-container {
+    position: relative;
+    margin-top: 20px;
+}
+
+#censored-dots {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    font-size: 20px;
+    color: #333; /* Match this color with your background */
+}
+
+#censored-dots::after {
+    content: "•";
+    animation: censoredAnimation 0.8s infinite;
+}
+
+@keyframes censoredAnimation {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+bigtext {font-weight: bolder; font-size: 15em;}
+
+midtext {font-weight: bolder; font-size: 5em;}
+
+/* Add borders to the table */
+table {
+  border-collapse: collapse;
+  width: auto;
+  border: 1px solid #ddd; /* Border color for the entire table */
+}
+
+/* Style for table header cells */
+th, td {
+  border: 1px solid #ddd; /* Border color for cells */
+  padding: 8px;
+  text-align: left;
+}
+
+/* Color every other row with a pale gray background */
+tr:nth-child(even) {
+  background-color: #f9f9f9; /* Pale gray color */
+}
+
+div.textcontainer {
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+  background-color: rgba(155, 155, 155, 0.12);
+  padding-left: 0.75vw;
+  padding-right: 0.75vw;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+div.textcontainer a {
+  color: rgba(15, 0, 99, 1);
+}
+
+div.textcontainer a:visited {
+  color: rgba(96, 0, 99, 1)
+}
+
+.indent {
+  margin-left: 2em;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.imgborder {
+  border: 1px solid #ddd;
+  padding: 3px;
+}
+
+.smallimg {
+  width: 40em;
+}
+
+.whiteoutlinebig {
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: white;
+}
+
+.whiteoutlinesmall {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+}
+
+.PageBG {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.15;
+  z-index: -1;
+}
+
+.PageBGa {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  z-index: -1;
+}
+
+.PageFooter {
+  height: 100px;
+  padding-left: 17vw;
+  margin-right: 0.75vw;
+}
+
+div.agency {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: -7px 0 0 0;
+}
+
+div.agency h1 {
+  align-self: center;
+  font-size: 3.9em;
+  font-weight: 600;
+  font-family: "Arial Black",sans-serif,Arial,Helvetica;
+  text-shadow: 0 4px 3px rgba(0,0,0,0.4),0 8px 13px rgba(0,0,0,0.1),0 18px 23px rgba(0,0,0,0.1);
+  margin: 1px 0 0;
+  color: #fff;
+}
+
+div.agency h3 {
+  font-size: 1.6em;
+  width: 10.1em;
+  letter-spacing: 1px;
+  font-weight: 300;
+  line-height: 1.1em;
+  margin: 4px 0 0 7px;
+  text-shadow: 0 4px 3px rgba(0,0,0,0.4),0 8px 13px rgba(0,0,0,0.1),0 18px 23px rgba(0,0,0,0.1);
+  color: #fff;
+}
+
+div.footer {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background-color: #0a0a12;
+  height: 120px;
+}
+
+header.mainheader {
+  background-color: #000;
+  min-height: 39px;
+  border: 0;
+  box-shadow: 0 0 9px 0 #000;
+  position: relative;
+}
+
+div.nav-logo {
+  display: flex;
+  color: #fff;
+  font-size: 2.8em;
+  font-family: "Arial Black",sans-serif,Arial,Helvetica;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+nav.navbar .navbar-default .top-navigation-container {
+  display: flex;
+  transition: margin 500ms cubic-bezier(.565, 1.65, .765, .88) 0s;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: #000;
+  min-height: 39px;
+  border: 0;
+  box-shadow: 0 0 9px 0 #000;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+
+.invertimg {
+  filter: invert();
+}
