@@ -1,6 +1,6 @@
 {
   "vaultName": "Runa",
-  "lastExport": 1737417380757,
+  "lastExport": 1737418766874,
   "pluginVersion": "1.8.01",
   "validBodyClasses": "publish css-settings-manager theme-dark show-inline-title show-ribbon",
   "useCustomHeadContent": false,
@@ -172,7 +172,6 @@
     "Things/Structures/Star City.md",
     "Things/Structures/Yggdrasil Station.md",
     "Index.md",
-    "Pasted image 20250120002836.webp",
     "lib/fonts/94f2f163d4b698242fef.otf",
     "lib/fonts/72505e6a122c6acd5471.woff2",
     "lib/fonts/2d5198822ab091ce4305.woff2",
@@ -250,1221 +249,1215 @@
   ],
   "fileInfo": {
     "Caracters/Historic Figures/Galador.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 2160,
       "exportedPath": "Caracters/Historic Figures/Galador.html",
       "dependencies": []
     },
     "Caracters/Reshi Station/Blue Hills/Amelia Hollencrest.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 6516,
       "exportedPath": "Caracters/Reshi Station/Blue Hills/Amelia Hollencrest.html",
       "dependencies": []
     },
     "Caracters/Reshi Station/Blue Hills/Katera Jien.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 6857,
       "exportedPath": "Caracters/Reshi Station/Blue Hills/Katera Jien.html",
       "dependencies": []
     },
     "Caracters/Reshi Station/Blue Hills/Leurea.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5545,
       "exportedPath": "Caracters/Reshi Station/Blue Hills/Leurea.html",
       "dependencies": []
     },
     "Caracters/Reshi Station/Blue Hills/Magdalene Fellweather.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5601,
       "exportedPath": "Caracters/Reshi Station/Blue Hills/Magdalene Fellweather.html",
       "dependencies": []
     },
     "Caracters/Reshi Station/Blue Hills/Salvatore Fletcher.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 10166,
       "exportedPath": "Caracters/Reshi Station/Blue Hills/Salvatore Fletcher.html",
       "dependencies": []
     },
     "Caracters/Reshi Station/Blue Hills/Selioniour.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 7201,
       "exportedPath": "Caracters/Reshi Station/Blue Hills/Selioniour.html",
       "dependencies": []
     },
     "Caracters/Reshi Station/Lālā Kāngnī.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 6822,
       "exportedPath": "Caracters/Reshi Station/Lālā Kāngnī.html",
       "dependencies": []
     },
     "Caracters/Runi Power Saga/Protags/Lin.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 19959,
       "exportedPath": "Caracters/Runi Power Saga/Protags/Lin.html",
       "dependencies": []
     },
     "Caracters/Runi Power Saga/Protags/Sam.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 11558,
       "exportedPath": "Caracters/Runi Power Saga/Protags/Sam.html",
       "dependencies": []
     },
     "Caracters/Runi Power Saga/Protags/Vae.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 794,
       "exportedPath": "Caracters/Runi Power Saga/Protags/Vae.html",
       "dependencies": []
     },
     "Caracters/Runi Power Saga/Supporting Caracters/Doctor Kalius.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 2792,
       "exportedPath": "Caracters/Runi Power Saga/Supporting Caracters/Doctor Kalius.html",
       "dependencies": []
     },
     "Caracters/Runi Power Saga/The Deputies/Ali.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 12034,
       "exportedPath": "Caracters/Runi Power Saga/The Deputies/Ali.html",
       "dependencies": []
     },
     "Caracters/Runi Power Saga/The Deputies/Gwen.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 15149,
       "exportedPath": "Caracters/Runi Power Saga/The Deputies/Gwen.html",
       "dependencies": []
     },
     "Caracters/Runi Power Saga/The Deputies/Izzy.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 23554,
       "exportedPath": "Caracters/Runi Power Saga/The Deputies/Izzy.html",
       "dependencies": []
     },
     "Caracters/Setting Important/Central.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 3718,
       "exportedPath": "Caracters/Setting Important/Central.html",
       "dependencies": []
     },
     "Data Analisis/Caracter Info.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 101,
       "exportedPath": "Data Analisis/Caracter Info.html",
       "dependencies": []
     },
     "Data Analisis/ERP Caracter Info.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 78,
       "exportedPath": "Data Analisis/ERP Caracter Info.html",
       "dependencies": []
     },
     "Data Analisis/Species.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 589,
       "exportedPath": "Data Analisis/Species.html",
       "dependencies": []
     },
     "img/chars/18325-2922301074-line art drawing score_9, score_8_up, score_7_up, score_6_up, BREAK, digital media _(artwork_), taur, fox taur, gynomorph, paws,-1.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 38964,
       "exportedPath": "img/chars/18325-2922301074-line art drawing score_9, score_8_up, score_7_up, score_6_up, BREAK, digital media _(artwork_), taur, fox taur, gynomorph, paws,-1.webp",
       "dependencies": []
     },
     "img/chars/18475-1979067738-line art drawing score_9, score_8_up, score_7_up, score_6_up, BREAK, digital media _(artwork_), anthro, rodent, hybrid, mouse, r.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 52764,
       "exportedPath": "img/chars/18475-1979067738-line art drawing score_9, score_8_up, score_7_up, score_6_up, BREAK, digital media _(artwork_), anthro, rodent, hybrid, mouse, r.webp",
       "dependencies": []
     },
     "img/chars/Central Use.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 40922,
       "exportedPath": "img/chars/Central Use.webp",
       "dependencies": []
     },
     "img/chars/Kay.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 33706,
       "exportedPath": "img/chars/Kay.webp",
       "dependencies": []
     },
     "img/chars/Lay-1.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 31678,
       "exportedPath": "img/chars/Lay-1.webp",
       "dependencies": []
     },
     "img/chars/May.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 33480,
       "exportedPath": "img/chars/May.webp",
       "dependencies": []
     },
     "img/chars/Pasted image 20241225075112.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 29622,
       "exportedPath": "img/chars/Pasted image 20241225075112.webp",
       "dependencies": []
     },
     "img/chars/Pasted image 20250111013226-1.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 52300,
       "exportedPath": "img/chars/Pasted image 20250111013226-1.webp",
       "dependencies": []
     },
     "img/chars/rattyposter.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 92914,
       "exportedPath": "img/chars/rattyposter.webp",
       "dependencies": []
     },
     "img/chars/Sally outfit.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 47616,
       "exportedPath": "img/chars/Sally outfit.webp",
       "dependencies": []
     },
     "img/chars/Seli.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 48246,
       "exportedPath": "img/chars/Seli.webp",
       "dependencies": []
     },
     "img/refrences/18610-1291214365-line art drawing score_9, score_8_up, score_7_up, score_6_up, BREAK, digital media _(artwork_), landscape, forest clearing, smal.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 147052,
       "exportedPath": "img/refrences/18610-1291214365-line art drawing score_9, score_8_up, score_7_up, score_6_up, BREAK, digital media _(artwork_), landscape, forest clearing, smal.webp",
       "dependencies": []
     },
     "img/refrences/HV2112System 1-1.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 21148,
       "exportedPath": "img/refrences/HV2112System 1-1.webp",
       "dependencies": []
     },
     "img/refrences/Pasted image 20241222192905.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 1244,
       "exportedPath": "img/refrences/Pasted image 20241222192905.webp",
       "dependencies": []
     },
     "img/refrences/Pasted image 20241222205810.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 2354,
       "exportedPath": "img/refrences/Pasted image 20241222205810.webp",
       "dependencies": []
     },
     "img/refrences/Pasted image 20241222210704.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 1210,
       "exportedPath": "img/refrences/Pasted image 20241222210704.webp",
       "dependencies": []
     },
     "img/refrences/Pasted image 20241222210742.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 1220,
       "exportedPath": "img/refrences/Pasted image 20241222210742.webp",
       "dependencies": []
     },
     "img/refrences/Pasted image 20241222211030.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 1844,
       "exportedPath": "img/refrences/Pasted image 20241222211030.webp",
       "dependencies": []
     },
     "img/refrences/Pasted image 20241222211202.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 1936,
       "exportedPath": "img/refrences/Pasted image 20241222211202.webp",
       "dependencies": []
     },
     "img/refrences/Pasted image 20241222211246.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 1648,
       "exportedPath": "img/refrences/Pasted image 20241222211246.webp",
       "dependencies": []
     },
     "img/refrences/Runa 2025-01-04-09-22.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 194210,
       "exportedPath": "img/refrences/Runa 2025-01-04-09-22.webp",
       "dependencies": []
     },
     "img/refrences/Stanford Torus - V4.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 66694,
       "exportedPath": "img/refrences/Stanford Torus - V4.webp",
       "dependencies": []
     },
     "img/refrences/vitivorm-bg.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 143986,
       "exportedPath": "img/refrences/vitivorm-bg.webp",
       "dependencies": []
     },
     "img/species/Ai Species Chart.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 65316,
       "exportedPath": "img/species/Ai Species Chart.webp",
       "dependencies": []
     },
     "img/species/Axxani Species Chart.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 185802,
       "exportedPath": "img/species/Axxani Species Chart.webp",
       "dependencies": []
     },
     "img/species/Dellin Species Chart.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 52126,
       "exportedPath": "img/species/Dellin Species Chart.webp",
       "dependencies": []
     },
     "img/species/Gid Species Chart.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 37222,
       "exportedPath": "img/species/Gid Species Chart.webp",
       "dependencies": []
     },
     "img/species/Gray Species Chart.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 91912,
       "exportedPath": "img/species/Gray Species Chart.webp",
       "dependencies": []
     },
     "img/species/Jirrin Species Chart-1.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 47232,
       "exportedPath": "img/species/Jirrin Species Chart-1.webp",
       "dependencies": []
     },
     "img/species/Kessian Species Chart-1.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 72538,
       "exportedPath": "img/species/Kessian Species Chart-1.webp",
       "dependencies": []
     },
     "img/species/meepthechangeling_monsterdesign.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 82286,
       "exportedPath": "img/species/meepthechangeling_monsterdesign.webp",
       "dependencies": []
     },
     "img/species/Niandr Species Chart.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 95950,
       "exportedPath": "img/species/Niandr Species Chart.webp",
       "dependencies": []
     },
     "img/species/Runi SPecies Ref.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 80640,
       "exportedPath": "img/species/Runi SPecies Ref.webp",
       "dependencies": []
     },
     "img/species/Unda Species Chart.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 45578,
       "exportedPath": "img/species/Unda Species Chart.webp",
       "dependencies": []
     },
     "img/species/Unicae Species Chart.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 37122,
       "exportedPath": "img/species/Unicae Species Chart.webp",
       "dependencies": []
     },
     "Places/Interstellar Nations/Techno Union.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 3951,
       "exportedPath": "Places/Interstellar Nations/Techno Union.html",
       "dependencies": []
     },
     "Places/Interstellar Nations/Terran Protectorate.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 23836,
       "exportedPath": "Places/Interstellar Nations/Terran Protectorate.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Flora and Fauna/Vitrivorms.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 9026,
       "exportedPath": "Places/Worlds/Runa/Flora and Fauna/Vitrivorms.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Nations/Kairn Communion.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4151,
       "exportedPath": "Places/Worlds/Runa/Nations/Kairn Communion.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Nations/Kingdom of Kairn.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4284,
       "exportedPath": "Places/Worlds/Runa/Nations/Kingdom of Kairn.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Nations/Ludedian Empire.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4207,
       "exportedPath": "Places/Worlds/Runa/Nations/Ludedian Empire.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Nations/United States of Lania.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 0,
       "exportedPath": "Places/Worlds/Runa/Nations/United States of Lania.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Nations/Velis.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4609,
       "exportedPath": "Places/Worlds/Runa/Nations/Velis.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Places/Kairn Valley.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4172,
       "exportedPath": "Places/Worlds/Runa/Places/Kairn Valley.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Reshi Station/Reshi Station.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 9323,
       "exportedPath": "Places/Worlds/Runa/Reshi Station/Reshi Station.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Settlments/Koten.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 3580,
       "exportedPath": "Places/Worlds/Runa/Settlments/Koten.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Settlments/New Glaswik.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 3255,
       "exportedPath": "Places/Worlds/Runa/Settlments/New Glaswik.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Planet Runa.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 8368,
       "exportedPath": "Places/Worlds/Runa/Planet Runa.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Star - HV 2112.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 8567,
       "exportedPath": "Places/Worlds/Runa/Star - HV 2112.html",
       "dependencies": []
     },
     "Places/Worlds/Terran Worlds/Elris Prime.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 2911,
       "exportedPath": "Places/Worlds/Terran Worlds/Elris Prime.html",
       "dependencies": []
     },
     "Places/Worlds/Terran Worlds/Planet Kellsi.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 2722,
       "exportedPath": "Places/Worlds/Terran Worlds/Planet Kellsi.html",
       "dependencies": []
     },
     "Places/Worlds/Terran Worlds/Sol Dyson Sphere.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 695,
       "exportedPath": "Places/Worlds/Terran Worlds/Sol Dyson Sphere.html",
       "dependencies": []
     },
     "Templates/Caracter Template.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 2830,
       "exportedPath": "Templates/Caracter Template.html",
       "dependencies": []
     },
     "Templates/Caracter Template - Powered.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 799,
       "exportedPath": "Templates/Caracter Template - Powered.html",
       "dependencies": []
     },
     "Templates/Concept Template.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4427,
       "exportedPath": "Templates/Concept Template.html",
       "dependencies": []
     },
     "Templates/Event Template.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 74,
       "exportedPath": "Templates/Event Template.html",
       "dependencies": []
     },
     "Templates/Language Template.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4631,
       "exportedPath": "Templates/Language Template.html",
       "dependencies": []
     },
     "Templates/Minor Caracter Template.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 1740,
       "exportedPath": "Templates/Minor Caracter Template.html",
       "dependencies": []
     },
     "Templates/Nation Template.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 3948,
       "exportedPath": "Templates/Nation Template.html",
       "dependencies": []
     },
     "Templates/Planet Template.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 2906,
       "exportedPath": "Templates/Planet Template.html",
       "dependencies": []
     },
     "Templates/Settlement Template.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 3117,
       "exportedPath": "Templates/Settlement Template.html",
       "dependencies": []
     },
     "Templates/Species Template.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 3403,
       "exportedPath": "Templates/Species Template.html",
       "dependencies": []
     },
     "Templates/Star System Template.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 3181,
       "exportedPath": "Templates/Star System Template.html",
       "dependencies": []
     },
     "Things/Concepts/overculture.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5547,
       "exportedPath": "Things/Concepts/overculture.html",
       "dependencies": []
     },
     "Things/Concepts/Post Labor.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 11387,
       "exportedPath": "Things/Concepts/Post Labor.html",
       "dependencies": []
     },
     "Things/Concepts/Post Scarsity.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5263,
       "exportedPath": "Things/Concepts/Post Scarsity.html",
       "dependencies": []
     },
     "Things/Concepts/Temporal Credits.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 12887,
       "exportedPath": "Things/Concepts/Temporal Credits.html",
       "dependencies": []
     },
     "Things/Cosmic/Pythonic Crystals.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 9829,
       "exportedPath": "Things/Cosmic/Pythonic Crystals.html",
       "dependencies": []
     },
     "Things/Cosmic/Star-mist.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4791,
       "exportedPath": "Things/Cosmic/Star-mist.html",
       "dependencies": []
     },
     "Things/Events/Ancient History/Galactic Pulse.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5209,
       "exportedPath": "Things/Events/Ancient History/Galactic Pulse.html",
       "dependencies": []
     },
     "Things/Events/Timelines/Terran History.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 59,
       "exportedPath": "Things/Events/Timelines/Terran History.html",
       "dependencies": []
     },
     "Things/Events/Human-AI Intigration.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 7870,
       "exportedPath": "Things/Events/Human-AI Intigration.html",
       "dependencies": []
     },
     "Things/Events/Inline Events (Terran).md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 96,
       "exportedPath": "Things/Events/Inline Events (Terran).html",
       "dependencies": []
     },
     "Things/Events/Kairn Slave Uprising.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 19058,
       "exportedPath": "Things/Events/Kairn Slave Uprising.html",
       "dependencies": []
     },
     "Things/Events/Life in the Protectorate.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 6842,
       "exportedPath": "Things/Events/Life in the Protectorate.html",
       "dependencies": []
     },
     "Things/Events/Post-Human Earth.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 1577,
       "exportedPath": "Things/Events/Post-Human Earth.html",
       "dependencies": []
     },
     "Things/Events/The Death of Earth.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 9682,
       "exportedPath": "Things/Events/The Death of Earth.html",
       "dependencies": []
     },
     "Things/Events/The Wreck of the Gaia Ascendant & Creation of the Runi.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 7989,
       "exportedPath": "Things/Events/The Wreck of the Gaia Ascendant & Creation of the Runi.html",
       "dependencies": []
     },
     "Things/Items/Gaia Ascendant.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5938,
       "exportedPath": "Things/Items/Gaia Ascendant.html",
       "dependencies": []
     },
     "Things/Items/Weapons of Power.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5131,
       "exportedPath": "Things/Items/Weapons of Power.html",
       "dependencies": []
     },
     "Things/Languages/Aldtongue.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5060,
       "exportedPath": "Things/Languages/Aldtongue.html",
       "dependencies": []
     },
     "Things/Organizations/Central.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 8303,
       "exportedPath": "Things/Organizations/Central.html",
       "dependencies": []
     },
     "Things/Organizations/Elyndari.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5085,
       "exportedPath": "Things/Organizations/Elyndari.html",
       "dependencies": []
     },
     "Things/Organizations/Pre-Starfaring Culture Protection Services.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5096,
       "exportedPath": "Things/Organizations/Pre-Starfaring Culture Protection Services.html",
       "dependencies": []
     },
     "Things/Organizations/S.C.I..md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5742,
       "exportedPath": "Things/Organizations/S.C.I..html",
       "dependencies": []
     },
     "Things/Organizations/Skunkworks.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4521,
       "exportedPath": "Things/Organizations/Skunkworks.html",
       "dependencies": []
     },
     "Things/Organizations/Sol Disposal and Recycling.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5446,
       "exportedPath": "Things/Organizations/Sol Disposal and Recycling.html",
       "dependencies": []
     },
     "Things/Organizations/University of Melis.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4808,
       "exportedPath": "Things/Organizations/University of Melis.html",
       "dependencies": []
     },
     "Things/Processes/Biosculpting.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 16237,
       "exportedPath": "Things/Processes/Biosculpting.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Alien Prespective on Human Diversity.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5379,
       "exportedPath": "Things/Species/Terran Species/Human/Alien Prespective on Human Diversity.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Cultural Notes on Human Scociety.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 6787,
       "exportedPath": "Things/Species/Terran Species/Human/Cultural Notes on Human Scociety.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Dragon Clan.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 13903,
       "exportedPath": "Things/Species/Terran Species/Human/Dragon Clan.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Feline Clan.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 7402,
       "exportedPath": "Things/Species/Terran Species/Human/Feline Clan.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Fox Clan.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 7411,
       "exportedPath": "Things/Species/Terran Species/Human/Fox Clan.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Human.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 14442,
       "exportedPath": "Things/Species/Terran Species/Human/Human.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Human Clan.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4773,
       "exportedPath": "Things/Species/Terran Species/Human/Human Clan.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Lagomimi Clan.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 8184,
       "exportedPath": "Things/Species/Terran Species/Human/Lagomimi Clan.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Skunkworks.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 8133,
       "exportedPath": "Things/Species/Terran Species/Human/Skunkworks.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Wolf Clan.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 7041,
       "exportedPath": "Things/Species/Terran Species/Human/Wolf Clan.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Axxani.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 26743,
       "exportedPath": "Things/Species/Terran Species/Axxani.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Dellin.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 15679,
       "exportedPath": "Things/Species/Terran Species/Dellin.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Gid.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 8351,
       "exportedPath": "Things/Species/Terran Species/Gid.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Grays.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 16032,
       "exportedPath": "Things/Species/Terran Species/Grays.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Jirrin.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 12682,
       "exportedPath": "Things/Species/Terran Species/Jirrin.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Soft AI.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 7300,
       "exportedPath": "Things/Species/Terran Species/Soft AI.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Terran.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4327,
       "exportedPath": "Things/Species/Terran Species/Terran.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Unicae.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 29933,
       "exportedPath": "Things/Species/Terran Species/Unicae.html",
       "dependencies": []
     },
     "Things/Species/Kessian.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 13805,
       "exportedPath": "Things/Species/Kessian.html",
       "dependencies": []
     },
     "Things/Species/Niandr.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 12158,
       "exportedPath": "Things/Species/Niandr.html",
       "dependencies": []
     },
     "Things/Species/Ralux.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 8732,
       "exportedPath": "Things/Species/Ralux.html",
       "dependencies": []
     },
     "Things/Species/Runi.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 19159,
       "exportedPath": "Things/Species/Runi.html",
       "dependencies": []
     },
     "Things/Species/Sepinte.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5711,
       "exportedPath": "Things/Species/Sepinte.html",
       "dependencies": []
     },
     "Things/Species/Unda.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 6100,
       "exportedPath": "Things/Species/Unda.html",
       "dependencies": []
     },
     "Things/Species/Vier.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4143,
       "exportedPath": "Things/Species/Vier.html",
       "dependencies": []
     },
     "Things/Structures/Garden of Extinction.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 1953,
       "exportedPath": "Things/Structures/Garden of Extinction.html",
       "dependencies": []
     },
     "Things/Structures/Jovian Archipelago.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4856,
       "exportedPath": "Things/Structures/Jovian Archipelago.html",
       "dependencies": []
     },
     "Things/Structures/Star City.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 6461,
       "exportedPath": "Things/Structures/Star City.html",
       "dependencies": []
     },
     "Index.md": {
-      "modifiedTime": 1737417380757,
-      "sourceSize": 32713,
+      "modifiedTime": 1737418766874,
+      "sourceSize": 32470,
       "exportedPath": "Index.html",
       "dependencies": []
     },
     "lib/fonts/94f2f163d4b698242fef.otf": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 66800,
       "exportedPath": "lib/fonts/94f2f163d4b698242fef.otf",
       "dependencies": []
     },
     "lib/fonts/72505e6a122c6acd5471.woff2": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 104232,
       "exportedPath": "lib/fonts/72505e6a122c6acd5471.woff2",
       "dependencies": []
     },
     "lib/fonts/2d5198822ab091ce4305.woff2": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 104332,
       "exportedPath": "lib/fonts/2d5198822ab091ce4305.woff2",
       "dependencies": []
     },
     "lib/fonts/c8ba52b05a9ef10f4758.woff2": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 98868,
       "exportedPath": "lib/fonts/c8ba52b05a9ef10f4758.woff2",
       "dependencies": []
     },
     "lib/fonts/cb10ffd7684cd9836a05.woff2": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 106876,
       "exportedPath": "lib/fonts/cb10ffd7684cd9836a05.woff2",
       "dependencies": []
     },
     "lib/fonts/b5f0f109bc88052d4000.woff2": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 105804,
       "exportedPath": "lib/fonts/b5f0f109bc88052d4000.woff2",
       "dependencies": []
     },
     "lib/fonts/cbe0ae49c52c920fd563.woff2": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 106108,
       "exportedPath": "lib/fonts/cbe0ae49c52c920fd563.woff2",
       "dependencies": []
     },
     "lib/fonts/535a6cf662596b3bd6a6.woff2": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 111708,
       "exportedPath": "lib/fonts/535a6cf662596b3bd6a6.woff2",
       "dependencies": []
     },
     "lib/fonts/70cc7ff27245e82ad414.ttf": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 192740,
       "exportedPath": "lib/fonts/70cc7ff27245e82ad414.ttf",
       "dependencies": []
     },
     "lib/fonts/454577c22304619db035.ttf": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 161376,
       "exportedPath": "lib/fonts/454577c22304619db035.ttf",
       "dependencies": []
     },
     "lib/fonts/52ac8f3034507f1d9e53.ttf": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 191568,
       "exportedPath": "lib/fonts/52ac8f3034507f1d9e53.ttf",
       "dependencies": []
     },
     "lib/fonts/05b618077343fbbd92b7.ttf": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 155288,
       "exportedPath": "lib/fonts/05b618077343fbbd92b7.ttf",
       "dependencies": []
     },
     "lib/fonts/4bb6ac751d1c5478ff3a.woff2": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 7876,
       "exportedPath": "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
       "dependencies": []
     },
     "lib/media/874d8b8e340f75575caa.svg": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 317,
       "exportedPath": "lib/media/874d8b8e340f75575caa.svg",
       "dependencies": []
     },
     "lib/fonts/MathJax_Zero.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 1368,
       "exportedPath": "lib/fonts/MathJax_Zero.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Main-Regular.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 34160,
       "exportedPath": "lib/fonts/MathJax_Main-Regular.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Main-Bold.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 34464,
       "exportedPath": "lib/fonts/MathJax_Main-Bold.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Math-Italic.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 19360,
       "exportedPath": "lib/fonts/MathJax_Math-Italic.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Main-Italic.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 20832,
       "exportedPath": "lib/fonts/MathJax_Main-Italic.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Math-BoldItalic.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 19776,
       "exportedPath": "lib/fonts/MathJax_Math-BoldItalic.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Size1-Regular.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5792,
       "exportedPath": "lib/fonts/MathJax_Size1-Regular.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Size2-Regular.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5464,
       "exportedPath": "lib/fonts/MathJax_Size2-Regular.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Size3-Regular.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 3244,
       "exportedPath": "lib/fonts/MathJax_Size3-Regular.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Size4-Regular.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5148,
       "exportedPath": "lib/fonts/MathJax_Size4-Regular.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_AMS-Regular.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 40808,
       "exportedPath": "lib/fonts/MathJax_AMS-Regular.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Calligraphic-Regular.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 9600,
       "exportedPath": "lib/fonts/MathJax_Calligraphic-Regular.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Calligraphic-Bold.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 9908,
       "exportedPath": "lib/fonts/MathJax_Calligraphic-Bold.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Fraktur-Regular.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 21480,
       "exportedPath": "lib/fonts/MathJax_Fraktur-Regular.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Fraktur-Bold.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 22340,
       "exportedPath": "lib/fonts/MathJax_Fraktur-Bold.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_SansSerif-Regular.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 12660,
       "exportedPath": "lib/fonts/MathJax_SansSerif-Regular.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_SansSerif-Bold.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 15944,
       "exportedPath": "lib/fonts/MathJax_SansSerif-Bold.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_SansSerif-Italic.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 14628,
       "exportedPath": "lib/fonts/MathJax_SansSerif-Italic.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Script-Regular.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 11852,
       "exportedPath": "lib/fonts/MathJax_Script-Regular.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Typewriter-Regular.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 17604,
       "exportedPath": "lib/fonts/MathJax_Typewriter-Regular.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Vector-Regular.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 1136,
       "exportedPath": "lib/fonts/MathJax_Vector-Regular.woff",
       "dependencies": []
     },
     "lib/fonts/MathJax_Vector-Bold.woff": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 1116,
       "exportedPath": "lib/fonts/MathJax_Vector-Bold.woff",
       "dependencies": []
     },
     "Caracters/Reshi Station/Blue Hills/The Noras/Kathryn Nora.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 3146,
       "exportedPath": "Caracters/Reshi Station/Blue Hills/The Noras/Kathryn Nora.html",
       "dependencies": []
     },
     "Caracters/Reshi Station/Blue Hills/The Terisons/Kay Terison.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5146,
       "exportedPath": "Caracters/Reshi Station/Blue Hills/The Terisons/Kay Terison.html",
       "dependencies": []
     },
     "Caracters/Reshi Station/Blue Hills/The Terisons/May Terison.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5017,
       "exportedPath": "Caracters/Reshi Station/Blue Hills/The Terisons/May Terison.html",
       "dependencies": []
     },
     "img/refrences/wmremove-transformed-1.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 48764,
       "exportedPath": "img/refrences/wmremove-transformed-1.webp",
       "dependencies": []
     },
     "img/species/Marie Species Chart-1.webp": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 60640,
       "exportedPath": "img/species/Marie Species Chart-1.webp",
       "dependencies": []
     },
     "Places/Worlds/Runa/Reshi Station/Districts/Ketis District/Blue Hills.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4674,
       "exportedPath": "Places/Worlds/Runa/Reshi Station/Districts/Ketis District/Blue Hills.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Reshi Station/Districts/Ketis District/Ketis District.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 9717,
       "exportedPath": "Places/Worlds/Runa/Reshi Station/Districts/Ketis District/Ketis District.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Reshi Station/Districts/Aegis District.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 6612,
       "exportedPath": "Places/Worlds/Runa/Reshi Station/Districts/Aegis District.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Reshi Station/Districts/Aether District.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 7172,
       "exportedPath": "Places/Worlds/Runa/Reshi Station/Districts/Aether District.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Reshi Station/Districts/Aurora District.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4816,
       "exportedPath": "Places/Worlds/Runa/Reshi Station/Districts/Aurora District.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Reshi Station/Districts/Eudaimonia District.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 6057,
       "exportedPath": "Places/Worlds/Runa/Reshi Station/Districts/Eudaimonia District.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Reshi Station/Districts/Horizon District.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5889,
       "exportedPath": "Places/Worlds/Runa/Reshi Station/Districts/Horizon District.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Reshi Station/Districts/Mosaic District.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5941,
       "exportedPath": "Places/Worlds/Runa/Reshi Station/Districts/Mosaic District.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Reshi Station/Districts/Osiris District.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5260,
       "exportedPath": "Places/Worlds/Runa/Reshi Station/Districts/Osiris District.html",
       "dependencies": []
     },
     "Places/Worlds/Runa/Reshi Station/Districts/Solace District.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5633,
       "exportedPath": "Places/Worlds/Runa/Reshi Station/Districts/Solace District.html",
       "dependencies": []
     },
     "Things/Concepts/Runi Powers.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 11648,
       "exportedPath": "Things/Concepts/Runi Powers.html",
       "dependencies": []
     },
     "Things/Lore/Terran Leisure and Recreation.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 6751,
       "exportedPath": "Things/Lore/Terran Leisure and Recreation.html",
       "dependencies": []
     },
     "Things/Lore/Terrans and Technology.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 9826,
       "exportedPath": "Things/Lore/Terrans and Technology.html",
       "dependencies": []
     },
     "Things/Organizations/Human Clan.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 6646,
       "exportedPath": "Things/Organizations/Human Clan.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Sciurid Clan/Aeralis.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 5363,
       "exportedPath": "Things/Species/Terran Species/Human/Sciurid Clan/Aeralis.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Sciurid Clan/Full-Furs.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 766,
       "exportedPath": "Things/Species/Terran Species/Human/Sciurid Clan/Full-Furs.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Sciurid Clan/Minimalists.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 2317,
       "exportedPath": "Things/Species/Terran Species/Human/Sciurid Clan/Minimalists.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Sciurid Clan/Quads.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 4025,
       "exportedPath": "Things/Species/Terran Species/Human/Sciurid Clan/Quads.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Sciurid Clan/Sciurid Clan.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 53027,
       "exportedPath": "Things/Species/Terran Species/Human/Sciurid Clan/Sciurid Clan.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Sciurid Clan/Sciuritaur.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 2720,
       "exportedPath": "Things/Species/Terran Species/Human/Sciurid Clan/Sciuritaur.html",
       "dependencies": []
     },
     "Things/Species/Terran Species/Human/Sciurid Clan/Semi-Furs.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 3018,
       "exportedPath": "Things/Species/Terran Species/Human/Sciurid Clan/Semi-Furs.html",
       "dependencies": []
     },
     "Things/Species/Maries.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 10397,
       "exportedPath": "Things/Species/Maries.html",
       "dependencies": []
     },
     "Things/Structures/Hyperlane.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 2456,
       "exportedPath": "Things/Structures/Hyperlane.html",
       "dependencies": []
     },
     "Things/Structures/Yggdrasil Station.md": {
-      "modifiedTime": 1737417380757,
+      "modifiedTime": 1737418766874,
       "sourceSize": 10951,
       "exportedPath": "Things/Structures/Yggdrasil Station.html",
-      "dependencies": []
-    },
-    "Pasted image 20250120002836.webp": {
-      "modifiedTime": 1737417380757,
-      "sourceSize": 15480,
-      "exportedPath": "Pasted image 20250120002836.webp",
       "dependencies": []
     }
   }
