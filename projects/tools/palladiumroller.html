@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stat Roller</title>
+<script>
+// Function to roll a single d6
+function rollD6() {
+    return Math.floor(Math.random() * 6) + 1;
+}
+
+// Function to roll 3d6 and add an extra d6 if result is 16 or higher
+function rollStat() {
+    let result = rollD6() + rollD6() + rollD6();
+    if (result >= 16) {
+        result += rollD6();
+    }
+    return result;
+}
+
+// Function to remap a value from one range to another
+function remap(value, fromMin, fromMax, toMin, toMax) {
+    return toMin + ((value - fromMin) * (toMax - toMin)) / (fromMax - fromMin);
+}
+
+// Main function to roll stats and calculate derived values
+function rollStats() {
+    // Roll each stat
+    const stats = {
+        IQ: rollStat(),
+        ME: rollStat(),
+        MA: rollStat(),
+        PS: rollStat(),
+        PP: rollStat(),
+        PE: rollStat(),
+        PB: rollStat(),
+        Spd: rollStat()
+    };
+
+    // Derived values for IQ (KABC-II and Wechsler scales)
+    const iqKABCII = stats.IQ * 10;
+    const iqWechsler = Math.round(remap(stats.IQ * 10, 30, 300, 60, 130));
+
+    // Max Carry and Max Lift based on PS
+    const maxCarry = stats.PS < 17 ? stats.PS * 10 : stats.PS * 20;
+    const maxLift = maxCarry * 2;
+
+    // Speed Factor
+    const speedFactor = (stats.Spd * 0.7).toFixed(1);
+
+    // Display results
+    document.getElementById("iq").textContent = stats.IQ;
+    document.getElementById("me").textContent = stats.ME;
+    document.getElementById("ma").textContent = stats.MA;
+    document.getElementById("ps").textContent = stats.PS;
+    document.getElementById("pp").textContent = stats.PP;
+    document.getElementById("pe").textContent = stats.PE;
+    document.getElementById("pb").textContent = stats.PB;
+    document.getElementById("spd").textContent = stats.Spd;
+
+    document.getElementById("iqScores").textContent = `${iqKABCII} (KABC-II), ${iqWechsler} (Wechsler)`;
+    document.getElementById("maxCarry").textContent = maxCarry;
+    document.getElementById("maxLift").textContent = maxLift;
+    document.getElementById("speedFactor").textContent = `Max Speed ${speedFactor} Mph`;
+}
+// Functions to re-roll individual stats
+function rollIQ() {
+    IQ = rollStat();
+    // Derived values for IQ (KABC-II and Wechsler scales)
+    const iqKABCII = IQ * 10;
+    const iqWechsler = Math.round(remap(IQ * 10, 30, 300, 60, 130));
+    document.getElementById("iq").textContent = IQ;
+    document.getElementById("iqScores").textContent = `${iqKABCII} (KABC-II), ${iqWechsler} (Wechsler)`;
+}
+function rollME() {
+    ME = rollStat();
+    document.getElementById("me").textContent = ME;
+}
+function rollMA() {
+    MA = rollStat();
+    document.getElementById("ma").textContent = MA;
+}
+function rollPS() {
+    PS = rollStat();
+    // Max Carry and Max Lift based on PS
+    const maxCarry = PS < 17 ? PS * 10 : PS * 20;
+    const maxLift = maxCarry * 2;
+    document.getElementById("ps").textContent = PS;
+    document.getElementById("maxCarry").textContent = maxCarry;
+    document.getElementById("maxLift").textContent = maxLift;
+}
+function rollPP() {
+    PP = rollStat();
+    document.getElementById("pp").textContent = PP;
+}
+function rollPE() {
+    PE = rollStat();
+    document.getElementById("pe").textContent = PE;
+}
+function rollPB() {
+    PB = rollStat();
+    document.getElementById("pb").textContent = PB;
+}
+function rollSPD() {
+    SPD = rollStat();
+    // Speed Factor
+    const speedFactor = (SPD * 0.7).toFixed(1);
+    document.getElementById("spd").textContent = SPD;
+    document.getElementById("speedFactor").textContent = `Max Speed ${speedFactor} Mph`;
+}
+</script>
+</head>
+<body>
+
+<h2>Character Stats</h2>
+<button onclick="rollStats()">Roll Stats</button>
+
+<table border="1">
+    <tr>
+        <th>Attribute</th>
+        <th>Score</th>
+        <th>Derived Values</th>
+    </tr>
+    <tr>
+        <td>IQ</td>
+        <td id="iq">X</td>
+        <td id="iqScores">X (KABC-II), Y (Wechsler)</td>
+    </tr>
+    <tr>
+        <td>ME</td>
+        <td id="me">X</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>MA</td>
+        <td id="ma">X</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>PS</td>
+        <td id="ps">X</td>
+        <td>Max Carry: <span id="maxCarry">X</span> | Max Lift: <span id="maxLift">X</span></td>
+    </tr>
+    <tr>
+        <td>PP</td>
+        <td id="pp">X</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>PE</td>
+        <td id="pe">X</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>PB</td>
+        <td id="pb">X</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Spd</td>
+        <td id="spd">X</td>
+        <td><span id="speedFactor">Max Speed X Mph</span></td>
+    </tr>
+</table>
+<br>
+<button onclick="rollIQ()">Roll IQ</button>
+<button onclick="rollME()">Roll ME</button>
+<button onclick="rollMA()">Roll MA</button>
+<button onclick="rollPS()">Roll PS</button>
+<button onclick="rollPP()">Roll PP</button>
+<button onclick="rollPE()">Roll PE</button>
+<button onclick="rollPB()">Roll PB</button>
+<button onclick="rollSPD()">Roll SPD</button>
+
+</body>
+</html>

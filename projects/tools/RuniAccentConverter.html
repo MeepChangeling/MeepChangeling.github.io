@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runi Accent Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Runi Accent Converter</h1>
+        <p><b>Note:</b> The Runi accent comes from biological diffrences between human and Runi layrenxes. While individual cultures have their own slang and slight diffrences, all Runi sound like this to a human ear.</p>
+        <textarea id="inputText" placeholder="Paste your text here..."></textarea>
+        <button onclick="convertToNZAccent()">Convert</button>
+        <div class="output" id="outputText"></div>
+    </div>
+
+    <script>
+     function convertToNZAccent() {
+         const inputText = document.getElementById('inputText').value;
+         let outputText = inputText;
+
+         // Stage 1: Whole word and phrase conversions
+         const wholeWordReplacements = [
+             // Add any specific whole-word or phrase conversions here
+             // Example: [/mate/g, 'bro']
+             [/fool/g, 'div'],
+             [/eejit/g, 'idiot'],
+             [/I/g, 'ah'],
+             [/everybody/g, "a'body"],
+             [/know/g, 'ken'],
+             [/old/g, 'auld'],
+             [/yes/g, 'aye'],
+             [/slippers/g, 'baffies'],
+             [/baby/g, 'bairn'],
+             [/dirty/g, 'barkit'],
+             [/unclean/g, 'barkit'],
+             [/excellent/g, 'belter'],
+             [/great/g, 'belter'],
+             [/fantastic/g, 'belter'],
+             [/down/g, 'ben'],
+             [/through/g, 'ben'],
+             [/mountain/g, 'ben'],
+             [/stay/g, 'bide'],
+             [/live/g, 'bide'],
+             [/go away/g, 'bolt'],
+             [/can not/g, 'cannae'],
+             [/can't/g, 'cannae'],
+             [/stab/g, 'chib'],
+             [/vomit/g, 'cowk'],
+             [/drain/g, 'cundie'],
+             [/fauther/g, 'da'],
+             [/dad/g, 'da'],
+             [/didn't/g, 'didnae'],
+             [/wipe/g, 'dircht'],
+             [/clean/g, 'dircht'],
+             [/crazy/g, 'doolally'],
+             [/damp/g, 'drookit'],
+             [/overcast/g, 'drookit'],
+             [/wet/g, 'drookit'],
+             [/what/g, 'eh'],
+             [/ass/g, 'erse'],
+             [/fuck/g, 'fek'],
+             [/for/g, 'fir'],
+             [/why/g, 'wye'],
+             [/gross/g, 'gads'],
+             [/go/g, 'gan'],
+             [/very/g, 'gay'],
+             [/grandfauther/g, 'granda'],
+             [/grandmother/g, 'granma'],
+             [/mom/g, 'ma'],
+             [/mother/g, 'ma'],
+             [/as well/g, 'inna'],
+             [/is not/g, 'isnae'],
+             [/isn't it/g, 'int it'],
+             [/drunk/g, 'jaked'],
+             [/wow/g, 'woe'],
+             [/know/g, 'ken'],
+             [/nap/g, 'kip'],
+             [/sleep/g, 'kip'],
+             [/kiss/g, 'nip'],
+             [/spicy/g, 'nippy'],
+             [/dust/g, 'oose'],
+             [/break/g, 'pan'],
+             [/sandwhich/g, 'piece'],
+             [/small/g, 'peedie'],
+             [/totally/g, 'pure'],
+             [/disgusting/g, 'rank'],
+             [/horrible/g, 'reekbeek'],
+             [/scavangers/g, 'scaffies'],
+             [/smack/g, 'skelp'],
+             [/hit/g, 'skelp'],
+             [/cheat/g, 'swick'],
+             [/tiny/g, 'tad'],
+             [/barrow/g, 'tap'],
+             [/potato/g, 'tatti'],
+             [/potatos/g, 'tattis'],
+             [/be quiet/g, 'wheesht'],
+             [/all you/g, 'ye'],
+             [/you/g, 'ye'],
+             [/your/g, 'yer']
+         ];
+
+         wholeWordReplacements.forEach(([pattern, replacement]) => {
+             outputText = outputText.replace(pattern, replacement);
+         });
+
+         // Stage 2: Phonetic transcription replacements
+         const phoneticSubstitutions = [
+             [/u|oo/g, 'ōh'], // Replace "u" and "oo" with "ōh"
+             [/o/g, 'ae'], // Replace a single "o" with "ae"
+             [/ing\b/g, 'in̆'], // Replace words ending in "ing" with "in̆"
+             [/tt/g, 'h̆'], // Replace glottal stops or "tt" with "h̆"
+             [/(d|g|t)r/g, '$1ṝ'], // Replace "r" after "d," "g," or "t" with "ṝ"
+             [/([aeiou])r/g, '$1̄r'] // Replace vowels before "r" with their long version (macron diacritic)
+         ];
+
+         phoneticSubstitutions.forEach(([pattern, replacement]) => {
+             outputText = outputText.replace(pattern, replacement);
+         });
+
+         // Stage 3: Cleanup phase
+         const cleanupRules = [
+             [/(\B[^aeiou])e\b/g, '$1'] // Remove "e" at the end of words if the preceding letter is not a vowel
+         ];
+
+         cleanupRules.forEach(([pattern, replacement]) => {
+             outputText = outputText.replace(pattern, replacement);
+         });
+
+         // Display the converted text
+         document.getElementById('outputText').textContent = outputText;
+     }
+ </script>
+</body>
+</html>

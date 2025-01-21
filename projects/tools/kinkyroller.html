@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinkyroller</title>
+</head>
+<body>
+    <h1>Kinkyroller</h1>
+    <div id="buttonContainer">
+
+    </div>
+
+</body>
+
+
+
+
+<script type="text/javascript">
+  // Function to pick 5 unique items from an array
+  function pickUniqueItems(array) {
+    const selected = [];
+    const availableItems = [...array]; // Copy array to avoid modifying original
+
+    while (selected.length < 5 && availableItems.length > 0) {
+      const randomIndex = Math.floor(Math.random() * availableItems.length);
+      const item = availableItems.splice(randomIndex, 1)[0];
+      selected.push(item);
+    }
+
+    return selected;
+  }
+
+  // Function to handle button clicks
+  function handleButtonClick(arrayName, array) {
+    const selectedItems = pickUniqueItems(array);
+    updateOutput(arrayName, selectedItems);
+  }
+
+  // Function to update the output on the screen
+  function updateOutput(arrayName, selectedItems) {
+    let outputField = document.getElementById(`output-${arrayName}`);
+
+    if (!outputField) {
+      // Create a new output field if it doesn't exist
+      outputField = document.createElement("div");
+      outputField.id = `output-${arrayName}`;
+      outputField.className = "output-field";
+      document.body.appendChild(outputField);
+    }
+
+    // Update the output field with the selected items
+    outputField.textContent = `${arrayName}: ${selectedItems.join(", ")}`;
+  }
+
+  // Example arrays
+  const general = ["Ahegao", "Aphrodisiacs", "Condoms", "Crotch Sniffing", "Drug / Alcohol Use", "Flexibility / Contortionism", "Food Play", "Foreplay", "Ice", "Inflatables", "Interracial", "Multiple Orgasms", "Natural Musk", "Objectophilia", "Potions / Injections", "Sex Toys", "Sexual Exhaustion", "Sexual Frustration", "Shaving", "Smoking", "Stomach Bulging", "Strap-ons", "Stuckage", "Sweat", "Tail Pulling", "Teasing", "Tickling", "Clothed Sex", "Clothing Play", "Crossdressing", "Diapers", "Footgear Worship", "Forced Clotheswearing", "Glasses", "Latex / Rubber", "Leather", "Masks", "Sexy / Slutty Clothing", "Socks / Stockings", "Strip Tease", "Underwear", "Underwear Bulges", "Uniforms", "Wardrobe Malfunctions", "Anal Fisting", "Anal Prolapse", "Anal Sex (Giving)", "Anal Sex (Receiving)", "Anal Training", "Anal Virginity", "Enemas", "Fingering (Anal)", "Gaping (Anal)", "Prostate Play", "Rimming (Giving)", "Rimming (Receiving)", "Cervical Penetration", "Clit Play", "Fingering (Vaginal)", "Gaping (Vaginal)", "Pussy Worship", "Queefing", "Squirting", "Tribadism / Scissoring", "Vaginal Fisting", "Vaginal Prolapse", "Vaginal Sex (Giving)", "Vaginal Sex (Receiving)", "Vaginal Virginity", "Ass to Mouth", "Auto-Fellatio", "Cunnilingus (Giving)", "Cunnilingus (Receiving)", "Face-Fucking", "Face-Sitting", "Fellatio (Performing)", "Fellatio (Receiving)", "Fingers in Mouth", "Kissing", "Licking", "Oral Fixation", "Oral Sex (Giving)", "Oral Sex (Receiving)", "Oral Virginity", "Saliva", "Teeth Play", "Throat Penetration", "Cock / Ball Smothering", "Cock / Balls Worship", "Cock Fucking", "Cock Slapping", "Cock Warming", "Docking", "Flaccid Play", "Foreskin Worship", "Frotting", "Sheath Play", "Bukkake", "Creampie", "Cum", "Cum Bath", "Cum Enemas", "Cum From Mouth / Nose", "Cum Marking", "Cum Milking", "Cum on Clothes", "Cum Vomit", "Excessive Precum", "Excessive Semen", "Felching", "Hard Cum Facials", "Heavily Excessive Precum", "Heavily Excessive Semen", "Internal Cumshots", "Premature Ejaculation", "Realistic Cum", "Shooting Precum", "Sloppy Seconds", "Snowballing", "Soft Cum Facials", "Swallowing Semen", "Thick / Sticky Cum", "Unusual Semen", "3+ Penetration", "All the Way Through", "Double Penetration", "Extreme Tightness", "Gangbangs", "Knotting / Tying", "Living Insertions", "Nipple Penetration", "Non-Standard Penetration", "Somnophilia", "Sounding", "Tailsex", "Tantric Sex", "Urethra Play", "Vanilla Sex"];
+  const preferences = ["Amputees", "Anatomically Correct", "Androgyny", "Animal Anatomy", "Anthro Individuals", "Barbed Cocks", "Body Hair", "Canon Individuals", "Chubby", "Cut Cocks", "Disabilities", "Exotic Cocks", "Facial Hair / Beards", "Fangs / Sharp Teeth", "Femboys", "Femininity", "Genital / Nipple Piercings", "Hirsute", "Horns", "Human Cocks", "Hyper Asses", "Hyper Balls", "Hyper Breasts", "Hyper Cocks", "Hyper Fat", "Hyper Muscle", "Hyper Vaginas", "Hyper-Voluptuous", "Intelligent Individuals", "Knotted Cocks", "Large Asses", "Large Balls", "Large Breasts", "Large Cocks", "Large Tails", "Macro Asses", "Macro Balls", "Macro Breasts", "Macro Cocks", "Macrophilia", "Magic Users", "Masculinity", "Mega Macro", "Microphilia", "Moobs", "Multi Genitalia", "Multiple Breasts", "Muscular Individuals", "Nonsexual Piercings", "Older Individuals", "Original Individuals", "Prehensile Cocks", "Pubic Hair", "Quadrupeds", "Rubber / Elastic Individuals", "Sheaths", "Shorter Individuals", "Size Differences (1-3 Feet)", "Size Differences (Micro / Macro)", "Skinny Individuals", "Slime / Goo Individuals", "Small Breasts", "Small Cocks", "Superheroes / Villains", "Tails", "Taller Individuals", "Tattoos / Body Art", "Tentacles", "Tomboys", "Twinks", "Twins / Clones", "Udders", "Uncut Cocks", "Unintelligent Individuals", "Very Fat Individuals", "Very Lithe Individuals", "Very Muscular Individuals", "Voluptuousness", "Wings", "Younger Individuals"];
+  const gender = ["Cuntboys", "Females", "Hermaphrodites", "Male-Herms", "Males", "Nonbinary", "Shemales", "Trans Females", "Transgender", "Trans Males"];
+  const species = ["Amphibians", "Angels", "Quadrapeds", "Avians", "Bats", "Bovines", "Canines", "Caprinae", "Cervines", "Demons", "Digimon", "Dinosaurs", "Divinities", "Dragons", "Driders", "Elves", "Equines", "Exotic Species", "Fae", "Felines", "Fish / Sharks", "Humanoids", "Humans", "Hyaenidae", "Insects / Arachnids", "Kemonomimi", "Lamia / Naga", "Lapines", "Lycanthropes", "Mammals", "Marine Mammals", "Marsupials", "Mephitis", "Mollusca", "Monkeys / Primates", "Monsters", "Moogles", "Mustelidae", "My Little Ponies", "Orcs", "Parasites", "Plants", "Pokémon", "Predator Species", "Prey Species", "Procyonidae", "Reptiles", "Robots", "Cyborgs", "Androids", "Rodents", "Sentient Cocks", "Taurs", "Undead", "Ursines", "Vampires", "Vulpines", "Xeno / Alien"];
+  const bodyworship = ["Armpits", "Ass Worship", "Belly Fucking", "Belly Play", "Body Writing", "Breast / Nipple Play", "Breast / Nipple Worship", "Breast Smothering", "Cuddling", "Ear Play", "Fat", "Footjobs", "Foot Play", "Handjobs", "Hand Play", "Hotdogging", "Hyper Lactation", "Intercrural Sex", "Lactation", "Massages", "Masturbation", "Muscle Worship", "Navel Play", "Nursing", "Paw Play", "Titfucking"];
+  const bdsm = ["Begging", "Chastity", "Coercion / Blackmail", "Corruption", "Degradation", "Dirty Talking", "Discipline / Reinforcement", "Extreme Humiliation", "Fear", "Femdom", "Feminization", "Forced Incest", "Forced Nudity", "Force Feeding", "Humiliation", "Hypnotism / Mind Control", "Impotence", "Lima Syndrome", "Master / Pet", "Master / Slave", "Mental Torture", "Objectification", "Orientation Play", "Physical Restraints", "Possessiveness / Jealousy", "Powerbottoming", "Public Humiliation", "Puppy / Pony Play", "Sexual Restraints", "Speech Restrictions", "Stockholm Syndrome", "Uppity", "Verbal Abuse", "Aftercare", "Apparatuses", "Blindfolds", "Caging", "Coiling", "Crying", "Electric Toys", "Flogging / Whipping", "Gags", "Hand Cuffs", "Heavy / Extreme Bondage", "Immobilization (Bondage)", "Leash & Collar", "Light / Medium Bondage", "Orgasm Control / Denial", "Pleasure Control / Denial", "Sensory Deprivation", "Suspension Play"];
+  const rough = ["Abuse", "Ballbusting", "Biting", "Breath", "Choking", "Crushing (Living)", "Crushing (Objects)", "Face Slapping", "Hair Pulling", "Roughness", "Sadism / Masochism", "Scratching", "Sexual Pain", "Spanking", "Violence", "Wax Play", "Abrasions", "Bloodplay", "Branding", "Breast / Nipple Torture", "Burning", "Castration", "Death", "Emasculation", "Execution / Murder", "Genital Torture", "Gore", "Impalement", "Menses", "Mutilation", "Necrophilia", "Nonsexual Pain", "Nonsexual Torture", "Nullification", "Piercing", "Sexual Torture", "Swallowing Blood", "Tooth Removal", "Wound Fucking"];
+  const inflation = ["Ass Growth", "Blueberrification", "Breast Growth", "Cock / Ball Growth", "Cum Inflation (Heavy / Extreme)", "Cum Inflation (Light / Medium)", "Forced Growth", "Growth", "Growth (Macro)", "Hyper Muscle Growth", "Immobilization (Size)", "Inflation (Heavy / Extreme)", "Inflation (Light / Medium)", "Muscle Growth", "Popping", "Shrinking", "Shrinking (Micro)", "Weight Gain (Heavy / Extreme)", "Weight Gain (Light / Medium)", "Weight Loss"];
+  const transfromation = ["Animal Transformation", "Bimbofication", "Body Part Transformation", "Body Swapping", "Gender Transformation", "Inanimate Object Transformation", "Species Transformation", "Supernatural Transformation", "Transformation"];
+  const preg = ["Alternative Pregnancy", "Anal Pregnancy", "Birthing", "Breeding", "Extreme Pregnancy", "Heat / Rut", "Impregnation", "Male Pregnancy", "Oviposition", "Pregnancy", "Risk of Pregnancy"];
+  const vore = ["Absorption", "Alternative Vore", "Anal Vore", "Cannibalism", "Cock Vore", "Cooking (Vore)", "Digestion", "Disposal", "Hard Vore", "Realistic Vore", "Soft Vore", "Unbirthing", "Unrealistic Vore", "Vore (Being Predator)", "Vore (Being Prey)"];
+  const unclean = ["Belching / Burping", "Dirty Feet", "Extreme Musk", "Farting", "Filth", "Messy", "Slob", "Smegma", "Swallowing Vomit", "Unwashed Musk", "Vomiting"];
+  const water = ["Bathroom Control", "Hyper Scat", "Hyper Watersports", "Marking", "Piss Enemas", "Scat", "Scat Torture", "Soiling", "Swallowing Feces", "Swallowing Urine", "Watersports", "Wetting"];
+
+  // Dynamically create buttons for each array
+  function setupButtons() {
+    const container = document.getElementById("buttonContainer");
+
+    const buttonData = [
+      { name: "General Kinks", array: general },
+      { name: "Partner Preferences", array: preferences },
+      { name: "Gender Preferences", array: gender },
+      { name: "Species Preferences", array: species },
+      { name: "Body Worship & Play", array: bodyworship},
+      { name: "Dom / Sub & Psyche Play", array: bdsm},
+      { name: "Roughness / Pain", array: rough},
+      { name: "Inflation, Growth, & Sizeplay", array: inflation},
+      { name: "Transformation", array: transfromation},
+      { name: "Pregnancy & Breeding", array: preg},
+      { name: "Vore & Unbirth", array: vore},
+      { name: "Unclean Themes & Play", array: unclean},
+      { name: "Watersports & Scat", array: water}
+    ];
+
+    buttonData.forEach(({ name, array }) => {
+      const button = document.createElement("button");
+      button.textContent = `Pick from ${name}`;
+      button.onclick = () => handleButtonClick(name, array);
+      container.appendChild(button);
+    });
+  }
+
+  // Initialize buttons on page load
+  window.onload = setupButtons;
+
+</script>
