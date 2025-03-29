@@ -32,6 +32,8 @@
 
 <h3>Relative Coordinates to Sol:</h3>
 <p id="result"></p>
+<h3>Relative Coordinates to Sagitarius A:</h3>
+<p id="result2"></p>
 
 <script>
 function hmsToDegrees(hours, minutes, seconds) {
@@ -85,6 +87,10 @@ function calculateCoordinates() {
   const { relativeX, relativeY, relativeZ } = relativeToSol(raHours, raMinutes, raSeconds, decDegrees, decMinutes, decSeconds, distance);
 
   document.getElementById("result").textContent = `(${relativeX.toFixed(2)} LY, ${relativeY.toFixed(2)} LY, ${relativeZ.toFixed(2)} LY)`;
+  const galmapX = relativeX + -26986.745743;
+  const galmapY = relativeY + 0;
+  const galmapZ = relativeZ + 60.483408;
+  document.getElementById("result2").textContent = `(${galmapX.toFixed(2)} LY, ${galmapY.toFixed(2)} LY, ${galmapZ.toFixed(2)} LY)`;
 }
 </script>
 
