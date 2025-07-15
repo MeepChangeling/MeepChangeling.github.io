@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topographic Map Generator</title>
+  <style>
+    body {
+      background: #111;
+      color: #eee;
+      font-family: sans-serif;
+      text-align: center;
+    }
+    canvas {
+      border: 1px solid #444;
+      image-rendering: pixelated;
+    }
+    #controls {
+      margin: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Topographic Map Generator</h1>
+  <div id="controls">
+    <label>Seed: <input type="number" id="seed" value="42" /></label>
+    <label>Resolution: <input type="number" id="resolution" value="512" /></label>
+    <button onclick="generate()">Generate</button>
+  </div>
+  <canvas id="mapCanvas" width="512" height="512"></canvas>
+
+  <script src="src/simplex-noise.js"></script>
+  <script src="src/seedrandom.js"></script>
+  <script>
+    const canvas = document.getElementById("mapCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function generate() {
+      const seedValue = parseInt(document.getElementById("seed").value);
+      const resolution = parseInt(document.getElementById("resolution").value);
+
+      canvas.width = resolution;
+      canvas.height = resolution;
+
+      Math.seedrandom(seedValue);
+      const simplex = openSimplexNoise(seedValue);
+
+      const elevationMap = [];
+      for (let y = 0; y < resolution; y++) {
+        elevationMap[y] = [];
+        for (let x = 0; x < resolution; x++) {
+          const nx = x / resolution - 0.5;
+          const ny = y / resolution - 0.5;
+          let e = 0;
+          let scale = 1;
+          let weight = 1;
+          let totalWeight = 0;
+
+          for (let i = 0; i < 5; i++) {
+            const val = simplex.noise2D(nx * scale, ny * scale);
+            e += val * weight;
+            totalWeight += weight;
+            weight *= 0.5;
+            scale *= 2;
+          }
+          e /= totalWeight;
+
+          elevationMap[y][x] = (e + 1) / 2;
+        }
+      }
+
+      const imageData = ctx.createImageData(resolution, resolution);
+      const data = imageData.data;
+      const sunAngle = Math.PI / 4; // 45 degrees
+      const lightX = Math.cos(sunAngle);
+      const lightY = Math.sin(sunAngle);
+
+      for (let y = 0; y < resolution; y++) {
+        for (let x = 0; x < resolution; x++) {
+          const elevation = elevationMap[y][x];
+
+          // Calculate gradient for hillshading
+          const left = elevationMap[y][Math.max(0, x - 1)];
+          const right = elevationMap[y][Math.min(resolution - 1, x + 1)];
+          const up = elevationMap[Math.max(0, y - 1)][x];
+          const down = elevationMap[Math.min(resolution - 1, y + 1)][x];
+
+          const exaggeration = 30 + 100 * elevation;
+          const dx = (right - left) * exaggeration;
+          const dy = (down - up) * exaggeration;
+
+          const slope = dx * lightX + dy * lightY;
+          const shade = Math.max(0, Math.min(1, 0.5 + slope * 0.5));
+
+          let r, g, b;
+          if (elevation < 0.3) {
+            r = 30 * shade;
+            g = 60 * shade;
+            b = 140 * shade;
+          } else if (elevation < 0.5) {
+            r = 80 * shade;
+            g = 180 * shade;
+            b = 60 * shade;
+          } else if (elevation < 0.7) {
+            r = 160 * shade;
+            g = 140 * shade;
+            b = 90 * shade;
+          } else if (elevation < 0.9) {
+            r = 130 * shade;
+            g = 130 * shade;
+            b = 130 * shade;
+          } else {
+            r = 240 * shade;
+            g = 240 * shade;
+            b = 240 * shade;
+          }
+
+          const idx = (y * resolution + x) * 4;
+          data[idx] = r;
+          data[idx + 1] = g;
+          data[idx + 2] = b;
+          data[idx + 3] = 255;
+        }
+      }
+
+      ctx.putImageData(imageData, 0, 0);
+    }
+
+    generate();
+  </script>
+</body>
+</html>

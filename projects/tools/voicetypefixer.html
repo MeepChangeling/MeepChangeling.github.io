@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quote Fixer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2em;
+      background: #f4f4f9;
+    }
+    .editor {
+      width: 100%;
+      min-height: 200px;
+      margin-bottom: 1em;
+      padding: 1em;
+      border: 1px solid #ccc;
+      background: white;
+      overflow-y: auto;
+    }
+    button {
+      padding: 0.5em 1em;
+      font-size: 1em;
+    }
+    h1 {
+      font-size: 1.5em;
+    }
+    .output {
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Fix My Quotes</h1>
+  <p>Paste your formatted text below, then click "Fix Quotes" to clean up spacing and replace straight quotes with smart ones.</p>
+
+  <div id="input" class="editor" contenteditable="true" placeholder="Paste formatted text here..."></div>
+  <button onclick="fixQuotes()">Fix Quotes</button>
+  <button onclick="copyOutput()">Copy Output</button>
+
+  <h2>Output:</h2>
+  <div id="output" class="editor output" contenteditable="false"></div>
+
+  <script>
+    function fixQuotes() {
+      const input = document.getElementById('input');
+      const output = document.getElementById('output');
+
+      // Clone and manipulate input DOM content
+      const tempDiv = input.cloneNode(true);
+
+      function processTextNode(node) {
+        let text = node.textContent;
+
+        // Trim leading spaces from each line
+        text = text.split('\n').map(line => line.trimStart()).join('\n');
+
+        // Replace straight quotes with smart quotes and capitalize inside
+        text = text.replace(/" *([^"]*?) *"/g, (match, innerText) => {
+          innerText = innerText.trim();
+          if (innerText.length > 0) {
+            innerText = innerText.charAt(0).toUpperCase() + innerText.slice(1);
+          }
+          return '“' + innerText + '”';
+        });
+
+        // Capitalize after sentence endings inside quotes
+        text = text.replace(/([.!?])” (\w)/g, (match, p1, p2) => {
+          return p1 + '” ' + p2.toUpperCase();
+        });
+
+        // Capitalize first letter after sentence ends (general)
+        text = text.replace(/([.!?]\s+)(\w)/g, (_, sep, char) => sep + char.toUpperCase());
+
+        // Capitalize first letter of the entire text
+        text = text.replace(/^(\s*)(\w)/, (_, spaces, char) => spaces + char.toUpperCase());
+
+        // Capitalize first letter of each paragraph
+        text = text.replace(/(\n+)(\s*)(\w)/g, (_, breaks, spaces, char) => breaks + spaces + char.toUpperCase());
+
+        node.textContent = text;
+      }
+
+      function walkDOM(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          processTextNode(node);
+        } else {
+          node.childNodes.forEach(walkDOM);
+        }
+      }
+
+      walkDOM(tempDiv);
+      output.innerHTML = tempDiv.innerHTML;
+    }
+    function copyOutput() {
+      const output = document.getElementById('output');
+      const text = output.innerText;
+
+      navigator.clipboard.writeText(text)
+        .then(() => alert('Output copied to clipboard!'))
+        .catch(err => alert('Copy failed: ' + err));
+    }
+  </script>
+</body>
+</html>

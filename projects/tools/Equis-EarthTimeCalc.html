@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Equis-Earth Time</title>
+  </head>
+  <body>
+    <h1>Equis ↔ Earth Date Converter</h1>
+
+      <label>
+        Epoch (shared reference point):
+        <input type="datetime-local" id="epoch" value="2025-01-01T00:00">
+      </label>
+      <hr>
+
+      <form id="equis-form">
+        <h2>Convert Equis → Earth</h2>
+        <label>Year: <input type="number" id="equis-year" value="0"></label>
+        <label>Month (0–15): <input type="number" id="equis-month" value="0" min="0" max="15"></label>
+        <label>Day (0–24): <input type="number" id="equis-day" value="0" min="0" max="24"></label>
+        <button type="submit">Convert to Earth Date</button>
+      </form>
+
+      <form id="earth-form">
+        <h2>Convert Earth → Equis</h2>
+        <label>Earth Date: <input type="datetime-local" id="earth-date" value="2025-01-01T00:00"></label>
+        <button type="submit">Convert to Equis Date</button>
+      </form>
+
+      <div id="result" style="margin-top: 2em; font-weight: bold;"></div>
+
+
+    <script type="text/javascript">
+      // Basic JS tool to convert between Earth and Equis dates
+
+      // Basic JS tool to convert between Earth and Equis dates with UI integration
+
+      const EQUIS_HOUR_IN_EARTH_HOURS = 1.38;
+      const EQUIS_DAY_IN_EARTH_HOURS = 32.72;
+      const EARTH_HOUR_IN_MS = 3600000;
+      const EARTH_DAY_IN_MS = 24 * EARTH_HOUR_IN_MS;
+      const EQUIS_DAY_IN_MS = EQUIS_DAY_IN_EARTH_HOURS * EARTH_HOUR_IN_MS;
+
+      const EQUIS_WEEK_DAYS = 5;
+      const EQUIS_WEEKS_PER_MONTH = 5;
+      const EQUIS_MONTHS_PER_SEASON = 4;
+      const EQUIS_SEASONS_PER_YEAR = 4;
+      const EQUIS_MONTHS_PER_YEAR = EQUIS_MONTHS_PER_SEASON * EQUIS_SEASONS_PER_YEAR;
+      const EQUIS_DAYS_PER_MONTH = EQUIS_WEEK_DAYS * EQUIS_WEEKS_PER_MONTH;
+      const EQUIS_DAYS_PER_YEAR = EQUIS_DAYS_PER_MONTH * EQUIS_MONTHS_PER_YEAR;
+
+      const EQUIS_MONTH_NAMES = [
+        "Solar Dawn", "Firstbloom", "Megan", "Plantation",
+        "Solarus", "Midsummer", "Faust", "Solar Dusk",
+        "Lunar Dawn", "Thanksgiving", "Harvestide", "Leaffall",
+        "Chillfrost", "Snowfall", "Midwinter", "Lunar Dusk"
+      ];
+
+      function equisDateToEarth(equisDate) {
+        const equisDaysTotal =
+          equisDate.year * EQUIS_DAYS_PER_YEAR +
+          equisDate.month * EQUIS_DAYS_PER_MONTH +
+          equisDate.day;
+        const earthTimePassed = equisDaysTotal * EQUIS_DAY_IN_MS;
+        const earthDate = new Date(equisDate.epoch.getTime() + earthTimePassed);
+        return earthDate;
+      }
+
+      function earthDateToEquis(earthDate, equisEpoch) {
+        const timeDiff = earthDate.getTime() - equisEpoch.getTime();
+        const equisDaysPassed = timeDiff / EQUIS_DAY_IN_MS;
+
+        let totalDays = Math.floor(equisDaysPassed);
+        let year = Math.floor(totalDays / EQUIS_DAYS_PER_YEAR);
+        totalDays %= EQUIS_DAYS_PER_YEAR;
+        let month = Math.floor(totalDays / EQUIS_DAYS_PER_MONTH);
+        let day = totalDays % EQUIS_DAYS_PER_MONTH;
+
+        return { year, month, day, monthName: EQUIS_MONTH_NAMES[month], epoch: equisEpoch };
+      }
+
+      function advanceEquisDate(equisDate, equisDays = 0) {
+        const earthDate = equisDateToEarth(equisDate);
+        const newEarthTime = earthDate.getTime() + equisDays * EQUIS_DAY_IN_MS;
+        return earthDateToEquis(new Date(newEarthTime), equisDate.epoch);
+      }
+
+      function advanceEarthDate(earthDate, earthDays = 0) {
+        const newDate = new Date(earthDate.getTime() + earthDays * EARTH_DAY_IN_MS);
+        return newDate;
+      }
+
+      // UI Hookup
+      window.addEventListener('DOMContentLoaded', () => {
+        const equisForm = document.getElementById('equis-form');
+        const earthForm = document.getElementById('earth-form');
+        const resultDiv = document.getElementById('result');
+        const equisEpoch = new Date(document.getElementById('epoch').value);
+
+        equisForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const year = parseInt(document.getElementById('equis-year').value);
+          const month = parseInt(document.getElementById('equis-month').value);
+          const day = parseInt(document.getElementById('equis-day').value);
+          const equisDate = { year, month, day, epoch: equisEpoch };
+          const earthDate = equisDateToEarth(equisDate);
+          resultDiv.textContent = `Equis ${day} ${EQUIS_MONTH_NAMES[month]}, Year ${year} → Earth ${earthDate.toUTCString()}`;
+        });
+
+        earthForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const earthInput = new Date(document.getElementById('earth-date').value);
+          const equisDate = earthDateToEquis(earthInput, equisEpoch);
+          resultDiv.textContent = `Earth ${earthInput.toUTCString()} → Equis ${equisDate.day} ${equisDate.monthName}, Year ${equisDate.year}`;
+        });
+      });
+    </script>
+  </body>
+</html>

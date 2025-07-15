@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aussie Accent Converter</title>
+  <style>
+    textarea { width: 100%; height: 150px; margin-bottom: 10px; }
+    button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Aussie Accent Converter</h1>
+  <textarea id="input" placeholder="Paste your text here..."></textarea>
+  <button onclick="convertToAussie()">Convert to Aussie</button>
+  <textarea id="output" placeholder="Your Aussie-fied text will appear here..."></textarea>
+
+  <script>
+    function convertToAussie() {
+      let text = document.getElementById("input").value;
+      const wordSwaps = {
+        "hello": "g’day",
+        "hi": "g’day",
+        "friend": "mate",
+        "friends": "mates",
+        "afternoon": "arvo",
+        "goodbye": "hoo roo",
+        "very": "bloody",
+        "really": "bloody",
+        "thanks": "cheers",
+        "thank you": "ta",
+        "okay": "no worries",
+        "yes": "yeah",
+        "no": "nah",
+        "food": "tucker",
+        "barbecue": "barbie",
+        "man": "bloke",
+        "woman": "sheila",
+      };
+
+      const regexReplacements = [
+        { pattern: /\bgoing to\b/gi, replacement: "gonna" },
+        { pattern: /\bwant to\b/gi, replacement: "wanna" },
+        { pattern: /\bgive me\b/gi, replacement: "gimme" },
+        { pattern: /\bgot to\b/gi, replacement: "gotta" },
+        { pattern: /ing\b/g, replacement: "in’" },
+        { pattern: /\byou\b/gi, replacement: "ya" },
+        { pattern: /\byour\b/gi, replacement: "ya" },
+      ];
+
+      for (const [key, value] of Object.entries(wordSwaps)) {
+        const regex = new RegExp(`\\b${key}\\b`, 'gi');
+        text = text.replace(regex, (match) =>
+          match[0] === match[0].toUpperCase()
+            ? value.charAt(0).toUpperCase() + value.slice(1)
+            : value
+        );
+      }
+
+      regexReplacements.forEach(({ pattern, replacement }) => {
+        text = text.replace(pattern, replacement);
+      });
+
+      document.getElementById("output").value = text;
+    }
+  </script>
+</body>
+</html>

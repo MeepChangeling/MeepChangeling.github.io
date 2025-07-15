@@ -1,0 +1,2355 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>IslandGirlGen</title>
+    <style type="text/css">
+      table {float: left; margin-right: 2em}
+      .tg  {border-collapse:collapse;border-spacing:0;}
+      .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        overflow:hidden;padding:10px 5px;word-break:normal;}
+      .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+        font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+      .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+      .tg .tg-fymr{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+      div.readarea {display:block; width: 60%;}
+    </style>
+  </head>
+  <body>
+    <label for="sexes">Sex:</label>
+      <select name="sexes" id="sexes">
+       <option value="rand">Rand</option>
+       <option value="fem">Femboy</option>
+       <option value="futa">Futanari</option>
+       <option value="gyno">Gynomorph</option>
+      </select>
+    <button onclick="generateCharacter()">Generate Character</button>
+    <br><br>
+    <div class="statsDisplay" id="stats"></div>
+    <div class="readarea" id="character-output"></div>
+
+
+    <script type="text/javascript">
+      // === CONSTANTS ===
+      let speciesForm = "blah"
+      let anatomy = "blah"
+      let identity = "blah"
+      let conflict = "blah"
+      let fullIdentity = "blah"
+      let trait = "blah"
+      let role = "blah"
+      let power = "blah"
+      let junk = "blah"
+      var randType = "blah"
+      let sizeWord = "blah"
+      let bodyWord = "blah"
+      let charName = "blah"
+      let penisSize = "blah"
+      let penisLength = 0
+      let clitSize = 0
+      let clitSizeCM = 0
+      let clitWidth = 0
+      let vaginalDepth = 0
+      let monsSize = 0
+      let gear = "blah"
+      let costume = "blah"
+      let backstory = "blah"
+      let avatarHook = "blah"
+      let worldSnippets = "blah"
+      let charOut = document.getElementById("character-output")
+      let charTable = document.getElementById("stats")
+
+      //Vars to Prime
+
+
+      // === ANATOMY CONFIGURATIONS ===
+        const anatomyTypes = [
+          {
+            nameShort: "Gynomorph",
+            nameFull: "gynomorph (breasts + penis)",
+            pro1: "she",
+            pro2: "her"
+          },
+          {
+            nameShort: "Futanari",
+            nameFull: "futa (both sets)",
+            pro1: "she",
+            pro2: "her"
+          },
+          {
+            nameShort: "Femboy",
+            nameFull: "femboy (male, but behaviorly and asteticly female)",
+            pro1: "he",
+            pro2: "his"
+          }
+        ];
+
+
+      // === IDENTITY ARCHETYPES ===
+        const identityTypes = [
+          "is a domme-by-nature", "is a submissive pillow princess", "is a service-focused switch", "is a bratty top", "is a gentle romantic",
+          "is a feral sex gremlin", "is a sensual seductress", "is an innocent with a monster kink", "is a mommy-type caretaker",
+          "is a needy affection sponge", "is a ambiguous chameleon", "is a professional tease", "is a spiritual pleasure priestess",
+          "is a sweet girl with a cruel edge", "is nurturing but demanding", "is a feral femme alpha", "is obedient but opinionated",
+          "is a nonchalant lustwitch", "is tender and tentative", "is a lust-intellectual philosopher", "is a dreamy submission artist",
+          "is a cuddle-obsessed bimbo", "is a hedonist philosopher-queen", "is a perversion-as-religion believer",
+          "is an earnest consent zealot", "is a narcissistic goddess roleplayer", "is a bubble-headed moral support sub", "is a predatory empath",
+          "is shy and breakable but craves powerplay", "is a horny romantic who thinks this is all fate", "is a pain-hungry praise addict",
+          "is a bimbo domme with a mean streak", "is an always-in-character theater slut", "craves shame but won't admit it", "neuroticaly needs to be adored", "is a boastful ex-heroine fallen to kink", "is a quiet mastermind orchestrating sexplots",
+          "doesn't know this is an ERP server", "wants to be a good girl so, so badly", "is roleplaying her IRL therapist's worst fear"
+        ];
+
+      // === CONFLICT TRAITS ===
+        const conflictTraits = [
+          "terrified of intimacy despite craving it",
+          "always plays the role, never breaks character — even alone",
+          "has shame kink but punishes herself for it",
+          "uses excessive flirting to mask abandonment issues",
+          "built a sexual identity around being desirable but doesn’t feel it",
+          "thinks submission is weakness, but craves it deeply",
+          "plays the top but is scared of true power",
+          "disassociates during affection, tries to joke through it",
+          "trapped in a pleasure loop, wants escape but can’t stop",
+          "believes no one could love the 'real' her underneath the avatar",
+          "guilt-ridden ex-cultist turned pleasure seeker",
+          "numb to praise unless it’s earned through suffering",
+          "believes her value is in how well she performs for others",
+          "mistakes pain for love, and keeps reenacting that mistake",
+          "is roleplaying someone she wishes she was, not who she is"
+        ];
+
+     // === MODIFIERS LIST (Adds Spice & Flavor) ===
+        const modifiers = [
+          // Texture / Substance
+          "cybernetic", "biotech-infused", "living rubber", "transparent", "crystalline",
+          "ceramic-bodied", "gelatinous", "ooze-covered", "chitinous", "holographic",
+          "waxen", "metal-veined", "stone-fleshed", "mossy", "porcelain-skinned", "slimed-up",
+          "tar-bodied", "gold-plated", "furred with stars", "sweat-slicked",
+
+          // Weird Biology
+          "symbiotic", "possessed", "soul-fractured", "radioactive", "rooted", "multi-limbed",
+          "multi-eyed", "faceless", "multiphasic", "boneless", "hive-bodied", "ever-molting",
+          "ovipositor-equipped", "flower-gilled", "hollow-boned", "scent-breather",
+          "drips honey", "tentacled", "aphrodisiac-sweating", "emits moans",
+
+          // Mental / Magical / Energetic
+          "glitchy", "dream-soaked", "night-touched", "lust-bound", "cursed", "blessed by orgasm spirits",
+          "psionic", "telepathic", "emotional-echoing", "lust-hypnotic", "reality-bending",
+          "half-summoned", "dimensional", "light-eating", "shadow-born", "aurora-skinned",
+
+          // Clothing / Accessory-Like
+          "wrapped in silken ribbons", "bandaged", "harnessed", "collared", "veiled",
+          "pierced with living metal", "tattooed in runes", "painted in tribal oils", "smeared with nectar"
+        ];
+
+      // === BODY TRAITS (Stylized Kinky Features) ===
+        const bodyTraits = [
+          // Texture & Skin
+          "glossy latex-slick skin", "pearl-like scales", "flesh that melts under moonlight", "fractal tattoos that animate", "skin made of velvet petals", "scales that pulse to music", "skin patterned like a galaxy", "soft moss growing from shoulders", "semi-transparent skin", "vines that bloom when kissed", "runes that glow with arousal", "soft chitin plates", "flesh made of flowing ink", "carbon-fiber mesh skin", "skin that shimmers like oil on water",
+
+          // Limbs & Movement
+          "four supple arms", "wings that moan in wind", "tail with a mind of its own",
+          "legs ending in split hooves", "feet that hover just above the ground",
+          "arms made of tentacles", "hair that floats like seaweed", "silken threads that dangle from wrists",
+          "draconic wing-membranes patterned with lace", "antlers that vibrate when flustered",
+
+          // Sensory & Interaction
+          "tongue forked into three tips", "voice that causes low vibrations",
+          "flesh that tastes of sugar and salt", "eyes with rotating irises",
+          "laughter that induces arousal", "heartbeat that syncs to others",
+          "moaning breath even when silent", "pheromones that blur emotional boundaries",
+          "eyes that mirror your own gaze", "scent like wild orchids and gun oil",
+
+          // Genital/Intimate Traits
+          "sex that rearranges when touched", "dripping biogel glands", "folds that murmur softly",
+          "vagina with fangs (non-harmful)", "penis with a luminous core", "clitoral cluster that blooms",
+          "cock that shifts size by mood", "genitals with a second mouth", "internal sex-labyrinth",
+          "aphro-lactating nipples", "anatomy modeled after eldritch symbols", "milk that glows faintly",
+          "genitals with their own heartbeat", "wetness that clings like perfume", "tentacle that curls in hearts",
+
+          // Weird Power-Adjacents
+          "aura of addictive pleasure", "voice that echoes inside others",
+          "liquid shadow halo", "magic circles orbiting their thighs", "symbiote coiled around their spine",
+          "eyes that see only desire", "moan-triggers tattooed on skin", "can lactate emotions",
+          "touch creates sound effects", "lust-stigmata", "cock with variable heads",
+          "genitalia that vibrate in harmony with music", "milks ambient arousal", "spirit-tied tail plug",
+
+          // Dreamscape Horny Aesthetic
+          "corset carved from bone", "gag that appears when overwhelmed",
+          "golden chain embedded in collarbone", "echoes when cumming", "flesh that blurs at the edges",
+          "sighs leave behind glowing butterflies", "hair like dripping paint", "thighs with eye-tattoos that blink",
+          "breasts that hum with energy", "navel shaped like a spiraling galaxy"
+        ];
+
+        const roles = [
+          // Core Survival & Infrastructure
+          {name: "Hunter-Tracker", description: "an Expert in local fauna, brings in meat and monster trophies", class: "Survival"},
+          {name: "Gatherer", description: "somone who Identifies edible and medicinal plants, avoids venomous ones", class: "Survival"},
+          {name: "Firekeeper", description: "somone who Maintains sacred and practical fires", class: "Survival"},
+          {name: "Well-Diver", description: "somone who Fetches clean water from deep springs or ruins", class: "Survival"},
+          {name: "Shelterwright", description: "somone who Builds and maintains huts, palisades, temples", class: "Infrastructure"},
+          {name: "Scrapwright", description: "somone who Turns wreckage into tools, armor, or structures", class: "Infrastructure"},
+
+          // Leadership & Law
+          {name: "Speaker of the Circle", description: "somone who Facilitates consensus or tribal council", class: "Leadership"},
+          {name: "Oathkeeper", description: "somone who Enforces community rules and keeps oral/written law", class: "Law Enforcment"},
+          {name: "Duel Witness", description: "somone who Mediates ritual combat and disputes", class: "Law Enforcment"},
+          {name: "Seer of Precedent", description: "a Researcher who delvs into ancient customs, ship’s archives, or alien traditions", class: "Leadership"},
+
+          // Mystic & Scientific Hybrid Roles
+          {name: "Star-Lexic", description: "a Tech-shaman deciphering ship AI fragments and alien glyphs", class: "Science"},
+          {name: "Bonecaster", description: "a Healer combining ancient medical knowledge with tribal mysticism", class: "Mysticism"},
+          {name: "Orbsmith", description: "a Tinkerer who works with with pre-fall tech or alien artifacts", class: "Science"},
+          {name: "Energy-Keeper", description: "somone who Manages or guards functioning tech like solar arrays or reactors", class: "Infrastructure"},
+
+          // Agriculture & Beast Handling
+          {name: "Rootward", description: "somone who Tends crops and strange native flora", class: "Agriculture"},
+          {name: "Sunherd", description: "somone who Oversees bioengineered or alien livestock", class: "Agriculture"},
+          {name: "Swarm-Keeper", description: "somone who Keeps bees, flying lizards, or engineered insects", class: "Rancher"},
+          {name: "Tide-Fisher", description: "somone who harvests coastal foods", class: "Agriculture"},
+
+          // Defense & Exploration
+          {name: "Shield-Bearer", description: "a Frontline warriors defending the settlement", class: "Millitary"},
+          {name: "Beast-Slayer", description: "a Specialist in hunting megafauna and local monsters", class: "Survival"},
+          {name: "Pathfinder", description: "somone who Scouts new terrain and maps ruins", class: "Survival"},
+          {name: "Ruin Delver", description: "somone who Enters dangerous alien ruins or shipwreck sections", class: "Survival"},
+
+          // Craft & Ritual
+          {name: "Mask-Carver", description: "somone who Makes ritual masks, helmets, and iconography", class: "Artizan"},
+          {name: "Forge-Singer", description: "a Blacksmith who sings metal awake, blends tech and myth", class: "Infrastructure"},
+          {name: "Tattoo-Sigilist", description: "somone who Marks bodies with power, rites, and possibly real enhancements", class: "Artizan"},
+          {name: "Weavemistress / Weavemaster", description: "somone who Makes cloth, nets, and ceremonial bindings", class: "Artizan"},
+
+          // Social & Cultural Roles
+          {name: "Lorekeeper", description: "an Oral historian or AI fragment archivist", class: "Mysticism"},
+          {name: "Dream-Speaker", description: "somone who Interprets dreams, alien signals, or star-weather", class: "Mysticism"},
+          {name: "Bond-Maker", description: "somone who Officiates marriages, oaths, and communal rites", class: "Leadership"},
+          {name: "Festival Warden", description: "somone who Plans feasts, rites, and collective celebrations", class: "Leadership"},
+
+          // Trade & External Relations
+          {name: "Shellcounter", description: "somone who Manages barter economy and inventory", class: "Logistics"},
+          {name: "Outsider's Eye", description: "somone who Watches for strangers—hostile or trade-bearing", class: "Millitary"},
+          {name: "Trade-Path Walker", description: "somone who Deals with other tribes, settlements, or crashed factions", class: "Logistics"},
+          {name: "Signal-Keeper", description: "somone who Maintains and interprets long-range comms, sometimes ritualized", class: "Infrastructure"},
+
+          // Weird, Specific, or Colorful
+          {name: "Skybone Harvester", description: "somone who Harvests remains from orbitfalls or bone meteors", class: "Survival"},
+          {name: "Glowshard Taster", description: "somone who Tests radiant materials for toxicity or power", class: "Industrial"},
+          {name: "Ghost-Walker", description: "somone who Acts as guide through haunted ruins", class: "Survival"}
+        ];
+
+        const powers = [
+          {
+             name: "Glasscraft",
+             description: "Can shape, grow, and shatter glass into weapons, mirrors, or art. Reflective illusions possible."
+           },
+           {
+             name: "Fungal Sovereignty",
+             description: "Controls mushrooms, rot, and symbiosis. Can spread spore-based empathy or take over tech."
+           },
+           {
+             name: "Ashwake",
+             description: "Leaves trails of hot ash when moving, can turn into smoke or erupt in volcanic bursts."
+           },
+           {
+             name: "Tundra Howl",
+             description: "Wields snow and bitter wind, can freeze light or sound, voice echoes over distances."
+           },
+           {
+             name: "Coral Warden",
+             description: "Commands bioluminescent coral that grows into armor, weapons, or mind-linked sea beasts."
+           },
+           {
+             name: "Circuit Song",
+             description: "Interfaces with technology through vocalizations. Sings viruses or healing patches into code."
+           },
+           {
+             name: "Aether Glitch",
+             description: "Phases in and out of local spacetime. Can corrupt reality or 'lag' in place."
+           },
+           {
+             name: "Signal Bloom",
+             description: "Broadcasts thoughts or feelings like a living radio tower. Can drown out or hijack signals."
+           },
+           {
+             name: "Holo-Forging",
+             description: "Creates hardlight objects and tools from emotion-coded templates."
+           },
+           {
+             name: "Dataweaving",
+             description: "Reads and rewrites stored memories or data streams like embroidery."
+           },
+           {
+             name: "Maskheart",
+             description: "Wears masks to change personality and combat style. Can swap identities mid-fight or reveal truth."
+           },
+           {
+             name: "ChronoPetal",
+             description: "Time slows or loops near them in bursts. Scents trigger past visions. Cannot change own fate."
+           },
+           {
+             name: "Threadbinder",
+             description: "Sees invisible emotional threads between people. Can tangle, sever, or reroute bonds."
+           },
+           {
+             name: "Vowforge",
+             description: "Makes spoken promises real and binding. Can 'weaponize' a broken oath or shield with conviction."
+           },
+           {
+             name: "Silksoul",
+             description: "Manipulates fabric and clothing. Dresses become weapons, armor, or literal wings."
+           },
+           {
+             name: "Crystalline Blood",
+             description: "Wounds turn into sharp crystals. Can grow armor or blades, bleed into weapons."
+           },
+           {
+             name: "Shadow Bloom",
+             description: "Body sprouts black, floral thorns when under emotional strain. Can root to resist movement."
+           },
+           {
+             name: "Star-Touched",
+             description: "Skin glows with constellations. Can teleport between stars briefly or curse with astral fire."
+           },
+           {
+             name: "Mercurial Form",
+             description: "Body can liquify or flow through cracks. Moods affect cohesion."
+           },
+           {
+             name: "Carnivine",
+             description: "Digestive system is a whole damn dimension. Eats energy, stores weapons in a pocket stomach."
+           },
+           {
+             name: "Princess of Static",
+             description: "Channeling white noise, electrical discharge, and sonic bursts."
+           },
+           {
+             name: "Princess of Blight",
+             description: "Controls pestilence and purification. Poisons with one hand, heals with the other."
+           },
+           {
+             name: "Princess of Paper",
+             description: "Can make origami beasts, trap people in stories, or fold the battlefield into shapes."
+           },
+           {
+             name: "Princess of Refraction",
+             description: "Bends light and truth. Makes false doubles or becomes invisible in plain view."
+           },
+           {
+             name: "Princess of Pulse",
+             description: "Controls rhythm and heartbeat. Drives mass hysteria or synchronized group action."
+           },
+           {
+             name: "Nullcraft",
+             description: "Absorbs or nullifies other powers in their vicinity—feeds on magic like a void."
+           },
+           {
+             name: "Iron Blossom",
+             description: "Flower-themed but entirely mechanical. Petal-blades, oil nectar, and razor vines."
+           },
+           {
+             name: "Gravemark",
+             description: "Tattooed with shifting glyphs that manipulate gravity in an area around them."
+           },
+           {
+             name: "Shardrage",
+             description: "Fueled by damage. The more broken they are, the stronger they get."
+           },
+           {
+             name: "Painmirror",
+             description: "Can reflect injury or emotion back at aggressors. Suffers a little each time."
+           },
+           {
+              name: "Bloomgeist",
+              description: "Can summon spectral flowers that explode in pollen storms, soothing allies or blinding foes."
+            },
+            {
+              name: "Static Veil",
+              description: "Surrounds themselves in an electric haze, disrupting sensors and dulling emotions."
+            },
+            {
+              name: "Claywright",
+              description: "Shapes mud, clay, and stone into golems or armor. Can create crude life that obeys simple orders."
+            },
+            {
+              name: "Dewspike",
+              description: "Calls down sharp bursts of rain and humidity. Can sculpt fog into solid shapes."
+            },
+            {
+              name: "Mirror Vein",
+              description: "Sees the 'true self' of others in reflections. Can copy or distort identity temporarily."
+            },
+            {
+              name: "Glimmerthorn",
+              description: "Grows thorned vines that emit blinding light. Can mark targets with lingering phosphorescence."
+            },
+            {
+              name: "Iron Lark",
+              description: "Voice disrupts tech and weakens metal. Can weaponize lullabies into sonic shockwaves."
+            },
+            {
+              name: "Frostbite Bloom",
+              description: "Blooms ice flowers that drain heat and grow on walls, bodies, or weapons."
+            },
+            {
+              name: "Aether Lace",
+              description: "Threads invisible magical filaments through the air to bind or entangle motion."
+            },
+            {
+              name: "Tidecaller",
+              description: "Controls tides and internal water—can pull moisture from the air or blood."
+            },
+            {
+              name: "Gloamtouch",
+              description: "Darkens light sources, muffles sound, and calms intense emotion."
+            },
+            {
+              name: "Skytether",
+              description: "Can anchor objects to the sky—levitating chains, floating platforms, sky-beasts."
+            },
+            {
+              name: "Stoneseer",
+              description: "Reads the memories of rocks and bones. Can raise ancient ruins or fossilized beasts."
+            },
+            {
+              name: "Sootheart",
+              description: "Emits clouds of soot from pores, becoming a choking smog monster."
+            },
+            {
+              name: "Circuit Bloom",
+              description: "Grows living wires and copper vines. Can graft tech onto organic creatures."
+            },
+            {
+              name: "Flameglass",
+              description: "Manipulates molten glass and fire. Can burn with colors unseen by mortal eyes."
+            },
+            {
+              name: "Oblivion Stitcher",
+              description: "Can erase and resew pieces of memory or history like torn cloth."
+            },
+            {
+              name: "Woundwright",
+              description: "Transforms physical wounds into magical sigils that grant buffs or curses."
+            },
+            {
+              name: "Kintsugi Soul",
+              description: "Draws strength from emotional pain. Glows at its cracks. Broken things fight harder near them."
+            },
+            {
+              name: "Starbloom",
+              description: "Plants stars like seeds. Each blooms into a supernova burst after a delay."
+            },
+            {
+              name: "Zephyr Chain",
+              description: "Fights with whips made of pure wind. Can ride air currents or turn screams into slicing force."
+            },
+            {
+              name: "Dustwarden",
+              description: "Raises dust devils that spy or attack. Breathes in sandstorms without harm."
+            },
+            {
+              name: "Splinterheart",
+              description: "Any weapon used against them splinters. Can 'remember' attacks and replay them."
+            },
+            {
+              name: "Screamwoven",
+              description: "Crafts cloth from pain and rage. Can spin banners, wings, or cloaks from battle trauma."
+            },
+            {
+              name: "Everthirst",
+              description: "Draws power from dehydration. Becomes faster and crueler in dry environments."
+            },
+            {
+              name: "Hexroot",
+              description: "Plants curses like seeds. They bloom in enemies over time—slow, but devastating."
+            },
+            {
+              name: "Nebula Kiss",
+              description: "Emits cosmic pheromones that confuse sensors and seduce minds."
+            },
+            {
+              name: "Iron Lantern",
+              description: "Can trap entities or energy in conjured metal lanterns and release them as attacks."
+            },
+            {
+              name: "Auroral Echo",
+              description: "Paints the sky with lights that cause hallucinations, revelations, or calm."
+            },
+            {
+              name: "Bleedwitch",
+              description: "Blood magic. Can cause bleeding at a distance or use their own blood to curse a field."
+            },
+            {
+              name: "Lacefire",
+              description: "Casts spells shaped like embroidery or tattoos. Can embroider enchantments into others."
+            },
+            {
+              name: "Veinspire",
+              description: "Lights up others’ veins with radiant power—boosting their speed, strength, or courage."
+            },
+            {
+              name: "Voidhusk",
+              description: "An empty shell animated by pure willpower. Resistant to possession and emotion magic."
+            },
+            {
+              name: "Rimewhisper",
+              description: "Speaks in snowflakes. Can chill air into silence, erase footprints, or trap voices in ice."
+            },
+            {
+              name: "Thorncurrent",
+              description: "Combines plants and electricity—electrified vines, bio-shock roots, stun blossoms."
+            },
+            {
+              name: "Molten Song",
+              description: "Sings heat into matter. Can melt through steel or ignite spirits with emotion."
+            },
+            {
+              name: "Chalkbite",
+              description: "Draws glyphs that come to life. Can trap enemies in chalk circles or summon illusions."
+            },
+            {
+              name: "Spindlegrace",
+              description: "Can spin air, cloth, light into weapons. Whirling dancer-style combat with cloth blades."
+            },
+            {
+              name: "Opal Howl",
+              description: "Voice calls out crystalline beasts from another dimension. Harmonics slice like glass."
+            },
+            {
+              name: "Myco Crown",
+              description: "Wears a living mushroom crown that shares consciousness with a network of spores."
+            },
+            {
+              name: "Echograve",
+              description: "Commands ghosts trapped in old technology. Can resurrect extinct machines."
+            },
+            {
+              name: "Gutterlight",
+              description: "Harnesses flickering neon and sickly streetlights. Powers illusions and paranoia."
+            },
+            {
+              name: "Plasmamane",
+              description: "Hair becomes solar plasma when angered. Burns through armor, blasts solar flares."
+            },
+            {
+              name: "Lantern Widow",
+              description: "Spins webs of glowing thread. Lures with warmth, drains with light."
+            },
+            {
+              name: "Grimechant",
+              description: "Magic fueled by trash, decay, and scavenged parts. The dirtier it is, the stronger they get."
+            },
+            {
+              name: "Moodmirror",
+              description: "Reflects a target’s emotional state as magic. Happy foes are harmless. Angry ones? Catastrophic."
+            },
+            {
+              name: "Ghostgarden",
+              description: "Summons spectral plants that only grow where someone has died. Can animate them for battle."
+            },
+            {
+              name: "Clockthorn",
+              description: "Thorns grow in spiral patterns. Alters perception of time near them—makes pain last longer or speed up recovery."
+            },
+            {
+              name: "Scarabborn",
+              description: "Carries a swarm of beetles in their armor. Can release them as scouts, armor, or projectile swarms."
+            },
+            {
+              name: "Cometfall",
+              description: "Can call down burning stars in miniature. Each one holds a different emotional aura."
+            },
+            {
+              name: "Glass Lung",
+              description: "Breathes mist that hardens into mirrored shards. Voice echoes painfully in nearby minds."
+            },
+            {
+              name: "Honeycurse",
+              description: "Coats enemies in golden sweetness that slows and sticks. Allies can heal from it—enemies drown in it."
+            },
+            {
+              name: "Neon Scar",
+              description: "Wounds glow like signage. Can imprint glowing sigils on others to track, mark, or ignite."
+            },
+            {
+              name: "Rustbloom",
+              description: "Corrodes metal and memory. Can cause weapons to fail and people to forget how to use them."
+            },
+            {
+              name: "Star-Eater",
+              description: "Devours light. Can plunge a battlefield into void, draining color and hope."
+            },
+            {
+              name: "Rapture Coil",
+              description: "Lashes of euphoric energy—hurts like bliss, heals like violence."
+            },
+            {
+              name: "Cicada Queen",
+              description: "Wields sound born of molting and metamorphosis. Screams shatter glass or cause mass awakening."
+            },
+            {
+              name: "Stitchwake",
+              description: "Leaves threads in her path that sew reality together—or unravel it."
+            },
+            {
+              name: "Oxblood Halo",
+              description: "Aura glows crimson when enemies draw near. Gains power the more harm surrounds them."
+            },
+            {
+              name: "Glowleech",
+              description: "Steals light and health through touch. Transfers both into radiant armor or blinding strikes."
+            },
+            {
+              name: "Skullkiss",
+              description: "Whispers that compel the dead. Skeletons dance. Ghosts burn. Mortals hesitate."
+            },
+            {
+              name: "Opalescent Grin",
+              description: "Smile refracts minds. Those who look too long forget who they are or what they were doing."
+            },
+            {
+              name: "Stormvessel",
+              description: "Carries the weather in her bones. Skin sparks, veins thunder, gaze rains."
+            },
+            {
+              name: "Gutter Saint",
+              description: "Holy power sourced from filth and broken things. Miracles arise from desperation."
+            },
+            {
+              name: "Petricore",
+              description: "Summons the scent of rain and longing. Mood-based stormcraft: nostalgia fuels lightning."
+            },
+            {
+              name: "Choral Bloom",
+              description: "Sings flowers into being—each petal a harmonic spell. The chorus heals, or kills, in full bloom."
+            },
+            {
+              name: "Cradlejaw",
+              description: "Can unhinge jaw to store and consume dangerous things—ideas, curses, dreams."
+            },
+            {
+              name: "Emberglass Crown",
+              description: "Crystalline fire builds a crown around her head when she’s focused. Projects searing judgment beams."
+            },
+            {
+              name: "Nocturne Thread",
+              description: "Sews night into cloaks and silence into steps. Steals dreams and weaves them into traps."
+            }
+          ];
+
+        function generateCharacter() {
+
+          charName = generateFeminineName()
+
+          //Species Gen
+          typestorand = ["biped", "biped", "biped", "feral", "taur"]
+          let randType = randomFrom(typestorand)
+
+          // === CORE SPECIES LIST (Expanded and Weirded) ===
+            // Types are: "biped", "feral", "taur", "naga", "amorphious"
+            let species = [
+              // Furry Core
+              {name: "cat", type: randType, avgLength: 1.2, avgHeight: 0.8, avgWeight: 35},
+              {name: "dog", type: randType, avgLength: 1.4, avgHeight: 1.0, avgWeight: 50},
+              {name: "fox", type: randType, avgLength: 1.3, avgHeight: 0.9, avgWeight: 40},
+              {name: "wolf", type: randType, avgLength: 1.5, avgHeight: 1.1, avgWeight: 60},
+              {name: "bat", type: randType, avgHeight: 1.2, avgLength: 1.0, avgWeight: 30},
+              {name: "deer", type: randType, avgLength: 1.8, avgHeight: 1.3, avgWeight: 70},
+              {name: "bunny", type: randType, avgLength: 1.1, avgHeight: 0.9, avgWeight: 35},
+              {name: "shark", type: randType, avgLength: 2.0, avgWeight: 90},
+              {name: "dolphin", type: randType, avgLength: 2.2, avgWeight: 110},
+              {name: "octopus", type: randType, avgLength: 1.6, avgWeight: 45},
+              {name: "snake", type: randType, avgLength: 2.4, avgWeight: 60},
+              {name: "lizard", type: randType, avgLength: 1.4, avgHeight: 1.0, avgWeight: 45},
+              {name: "dragon", type: randType, avgLength: 3.0, avgHeight: 2.0, avgWeight: 300},
+              {name: "bird", type: randType, avgHeight: 1.2, avgLength: 1.3, avgWeight: 30},
+              {name: "moth", type: randType, avgHeight: 1.2, avgLength: 1.0, avgWeight: 25},
+              {name: "beetle", type: randType, avgLength: 1.1, avgHeight: 1.0, avgWeight: 50},
+              {name: "snail", type: randType, avgLength: 1.0, avgHeight: 0.6, avgWeight: 40},
+              {name: "spider", type: randType, avgLength: 1.2, avgHeight: 0.7, avgWeight: 35},
+              {name: "slug", type: randType, avgLength: 1.1, avgWeight: 45},
+              {name: "scorpion", type: randType, avgLength: 1.3, avgHeight: 0.8, avgWeight: 55},
+
+              // Fantasy Core
+              {name: "satyr", type: "biped", avgHeight: 1.7, avgWeight: 70},
+              {name: "naga", type: "naga", avgLength: 3.2, avgHeight: 1.3, avgWeight: 120},
+              {name: "centaur", type: "taur", avgLength: 2.5, avgHeight: 1.6, avgWeight: 250},
+              {name: "dryad", type: "biped", avgHeight: 1.8, avgWeight: 65},
+              {name: "demon", type: "biped", avgHeight: 1.9, avgWeight: 85},
+              {name: "angel", type: "biped", avgHeight: 1.85, avgWeight: 80},
+              {name: "chimera", type: randType, avgLength: 2.4, avgHeight: 1.6, avgWeight: 220},
+              {name: "fairy", type: "biped", avgHeight: 0.6, avgWeight: 10},
+              {name: "minotaur", type: "biped", avgHeight: 2.1, avgWeight: 150},
+              {name: "harpy", type: "biped", avgHeight: 1.6, avgWeight: 60},
+              {name: "unicorn", type: randType, avgLength: 2.0, avgHeight: 1.5, avgWeight: 180},
+              {name: "phoenix", type: randType, avgLength: 1.5, avgHeight: 1.2, avgWeight: 70},
+              {name: "pegasus", type: randType, avgLength: 1.9, avgHeight: 1.4, avgWeight: 160},
+              {name: "gryphon", type: randType, avgLength: 2.2, avgHeight: 1.5, avgWeight: 200},
+              {name: "merfolk", type: "naga", avgLength: 2.8, avgHeight: 1.2, avgWeight: 100},
+              {name: "were-creature", type: randType, avgLength: 2.1, avgHeight: 1.7, avgWeight: 180},
+
+              // Alien / Eldritch Core
+              {name: "slime", type: randType, avgHeight: 1.5, avgWeight: 90},
+              {name: "sentient parasite / host fusion", type: randType, avgHeight: 1.8, avgWeight: 85},
+              {name: "insectoid", type: randType, avgLength: 1.8, avgHeight: 1.5, avgWeight: 100},
+              {name: "plantoid", type: randType, avgHeight: 1.9, avgWeight: 95},
+              {name: "living doll", type: randType, avgHeight: 1.5, avgWeight: 60},
+              {name: "living statue", type: randType, avgHeight: 2.0, avgWeight: 300},
+              {name: "voidspawn", type: randType, avgHeight: 1.7, avgWeight: 80},
+              {name: "tentacle creature", type: randType, avgLength: 2.5, avgWeight: 140},
+              {name: "shapeshifter", type: randType, avgHeight: 1.7, avgWeight: 70},
+
+              // Tech Core
+              {name: "android", type: randType, avgHeight: 1.8, avgWeight: 90},
+              {name: "hologram", type: randType, avgHeight: 1.8, avgWeight: 0},
+              {name: "AI", type: randType, avgHeight: 1.8, avgWeight: 0},
+              {name: "robot", type: randType, avgHeight: 2.0, avgWeight: 200},
+              {name: "mecha-morph", type: randType, avgHeight: 2.5, avgWeight: 400},
+              {name: "nanite swarm", type: randType, avgHeight: 1.6, avgWeight: 100},
+              {name: "drone-symbiote", type: randType, avgHeight: 1.7, avgWeight: 110},
+
+              // Kink/Monster Core
+              {name: "living-latex creature", type: randType, avgHeight: 1.9, avgWeight: 75},
+              {name: "slug", type: "amorphious", avgLength: 1.2, avgWeight: 70},
+              {name: "tentacle beast", type: "amorphious", avgLength: 2.6, avgWeight: 160},
+              {name: "mimic", type: "amorphious", avgLength: 1.5, avgWeight: 90},
+              {name: "raptor", type: randType, avgLength: 2.1, avgHeight: 1.5, avgWeight: 120},
+              {name: "succubus", type: "biped", avgHeight: 1.75, avgWeight: 65},
+              {name: "living bondage idol", type: "biped", avgHeight: 1.8, avgWeight: 80},
+              {name: "sphinx", type: randType, avgLength: 2.4, avgHeight: 1.6, avgWeight: 230},
+              {name: "sprite", type: "biped", avgHeight: 0.5, avgWeight: 8},
+              {name: "busty-feral", type: "feral", avgLength: 1.6, avgHeight: 1.2, avgWeight: 100},
+              {name: "imp", type: "biped", avgHeight: 1.4, avgWeight: 50},
+              {name: "symbiote", type: "amorphious", avgLength: 1.0, avgWeight: 45},
+              {name: "parasitic worm", type: "amorphious", avgLength: 1.8, avgWeight: 25}
+            ];
+
+          sO = randomFrom(species);
+          final = getRandomizedSize(sO)
+
+          base = sO.name
+          stance = sO.types
+          roll = Math.random();
+            if (roll < 0.35) {
+              const mod = randomFrom(modifiers);
+              speciesForm = `${mod} ${base}`;
+            }
+          speciesForm = base;
+
+          hipSize = weightedRandomHipSize();
+          build = randomFrom(builds);
+          waistSize = generateWaist(hipSize * 3, build); // Assume each hip rating is ~3cm
+
+          hipCm = hipSize * 3;
+          hips = getHipDescriptor(hipSize);
+          //butt = getButtDescriptor(buttSize);
+          butt = getButtDescriptor(weightedRandomButtSize());
+
+          if (sO.type == "feral" || sO.type == "taur" ) {
+            buttWord = "plot"
+            hipsWord = "flanks"
+            boobsWord = "teats"
+          } else if (sO.type == "naga") {
+            buttWord = "tail"
+            hipsWord = "flanks"
+            boobsWord = "breasts"
+          } else {
+            buttWord = "hipps"
+            hipsWord = "butt"
+            boobsWord = "breasts"
+          }
+          if (sO.name == "busty-feral") {boobsWord = "breasts"}
+
+
+
+          // ==== Idenity Gen ====
+          sexOption = document.querySelector('#sexes')
+          console.log(sexOption)
+          selectedSex = sexOption.value
+          console.log(selectedSex)
+
+          if (selectedSex == "fem") {
+            aO = {
+              nameShort: "Femboy",
+              nameFull: "femboy (male, but behaviorly and asteticly female)",
+              pro1: "he",
+              pro2: "his"
+            }
+          } else if (selectedSex == "futa") {
+            aO = {
+              nameShort: "Futanari",
+              nameFull: "futa (both sets)",
+              pro1: "she",
+              pro2: "her"
+            }
+          } else if (selectedSex == "gyno") {
+            aO = {
+              nameShort: "Gynomorph",
+              nameFull: "gynomorph (breasts + penis)",
+              pro1: "she",
+              pro2: "her"
+            }
+          } else {
+            aO = randomFrom(anatomyTypes);
+          }
+
+
+
+
+
+
+
+              anatomy = aO.nameFull;
+              sex = aO.nameShort;
+              if (sex == "Futanari") {
+                breastSize = getRandomCupSize()
+                penis = getRandomPenisSize()
+                penisSize = penis.sizeName
+                penisLength = penis.sizeNum
+                girthMod = randomFloat(0.6,1.2)
+                penisWidth = penisLength * girthMod
+                testis = getRandomTesticleSize()
+                testiSize = testis.sizeName
+                testiSizeML = testis.sizeNum
+                clit = getRandomClitSize()
+                clitSize = clit.sizeName
+                clitSizeCM = clit.sizeNum
+                girthMod = randomFloat(0.6,1.2)
+                clitWidth = clitSizeCM * girthMod
+                vaginalDepth = getRandomVaginalDepth()
+                penisType = randomFrom(cockShapes)
+                monsSize = getRandomMonsSize()
+                junk = capFirst(aO.pro1) + " has " + breastSize + ` ${boobsWord}, a ` + monsSize + " pussy that's " + vaginalDepth + " with a clit that's " + clitSize + ", and a " + penisSize + " " + penisType + " cock, and " + aO.pro2 + " balls are " + testiSize + "."
+              } else if (sex == "Gynomorph") {
+                breastSize = getRandomCupSize()
+                penis = getRandomPenisSize()
+                penisSize = penis.sizeName
+                penisLength = penis.sizeNum
+                girthMod = randomFloat(0.6,1.2)
+                penisWidth = penisLength * girthMod
+                testis = getRandomTesticleSize()
+                testiSize = testis.sizeName
+                testiSizeML = testis.sizeNum
+                penisType = randomFrom(cockShapes)
+                junk = capFirst(aO.pro1) + " has " + breastSize + ` ${boobsWord}, a ` + penisSize + " " + penisType + " cock, and " + aO.pro2 + " balls are " + testiSize + "."
+              } else {
+                penis = getRandomPenisSize()
+                penisSize = penis.sizeName
+                penisLength = penis.sizeNum
+                girthMod = randomFloat(0.6,1.2)
+                penisWidth = penisLength * girthMod
+                testis = getRandomTesticleSize()
+                testiSize = testis.sizeName
+                testiSizeML = testis.sizeNum
+                penisType = randomFrom(cockShapes)
+                breastSize = "Flat Chested";
+                junk = capFirst(aO.pro1) + " has a " + penisSize + " " + penisType + " cock, and " + aO.pro2 + " balls are " + testiSize + "."
+              }
+
+            identity = randomFrom(identityTypes);
+            conflict = randomFrom(conflictTraits);
+            fullIdentity = identity + ", and " + conflict
+
+            trait = randomFrom(bodyTraits);
+            role = randomFrom(roles);
+            power = randomFrom(powers)
+
+            // Universal Traits
+
+            //voice
+            voice = genVoice();
+
+            //walks
+            walk = genWalk();
+
+            //general mood
+            mood = genMood();
+
+            //Random physical trait / quirk
+            physfeature = genTrait();
+
+            // Personality Traits
+            morals = genMorals();
+            persona = genPersona();
+
+            bodyTest = generateBody(sex);
+
+            build = bodyTest.build
+            hipSize = bodyTest.hipSize
+            hips = bodyTest.hipWord
+            buttSize = bodyTest.buttSize
+            butt = bodyTest.buttWord
+            waistSize = bodyTest.waist
+            breastSize = bodyTest.cupLabel
+            cupSize = bodyTest.cupRaw
+            curveType = getCurveType(hips, butt, cupSize);
+            buildSupplement = `with ${hips} ${hipsWord} and a ${butt} ${buttWord}`
+
+            // ==== Gen basic fluf ====
+
+            outfitData = generateRandomOutfit(sex);
+            clothingKink = outfitData.clothingKink
+            exhibitionist = outfitData.exhibitionist
+            kinkLevel = outfitData.kinkLevel
+
+            // ==== Gen outfit ====
+
+            modOutfit = generateModularOutfit();
+            colorPrime = modOutfit.colors.primary
+            colorSec = modOutfit.colors.secondary
+            topwear = modOutfit.topwear
+            bottom = modOutfit.bottom
+            footwear = modOutfit.footwear
+            armwear = modOutfit.armwear
+            headwear = modOutfit.headwear
+            accessory1 = modOutfit.accessory1
+            accessory2 = modOutfit.accessory2
+
+            costume = `<b>Outfit:</b> ${charName} wears an oufit consisting of a ${topwear}, ${bottom}, ${footwear}, ${armwear}, ${headwear}, and accessorises ${aO.pro2} outfit with a ${accessory1} and a ${accessory2}`
+
+            // ==== Gen backstory ====
+
+            backstory = generateBackstory(charName, aO, sex, role, speciesForm)
+
+
+
+            //createCharObject({charName: "Maeia",  aO: { pro1: "she", pro2: "her" },   final: { tags: ["biped", "upright"], height: 2.1, length: 1.5 },   speciesForm: "minotaur",   build: "plush",   hips: "wide",   butt: "soft",   sex: "futanari",   breastSize: "DD",   penisLength: 36,   role: { name: "Warrior", description: "Fighter" },   mood: "playful",   backstory: "Grew up in the underground fighting pits.",});
+
+
+          if (final.length == null) {heightOrLength = capFirst(aO.pro1) +" stands " + final.height + " meters tall"} else {heightOrLength = capFirst(aO.pro1) + " is " + final.length + " meters from nose to tail"};
+
+          //===== CARACTER SENTENCE BUILDER =======
+
+          charDesc = `<b>Physical Description:</b> ${charName} is a ${mood} ${speciesForm} ${sex.toLowerCase()}. ${capFirst(aO.pro1)} has a ${curveType} ${build} that comes with ${buildSupplement}. ${junk}`
+
+          charDesc += `<br><br><b>Personality:</b> ${charName} ${fullIdentity}. ${morals} and is ${persona}.`
+
+          charDesc += `<br><br><b>Powers:</b>${charName} has the power of ${power.name}: ${power.description}`
+
+          charDesc += `<br><br> ${costume}`
+
+          charDesc += `<br><br> ${backstory}`
+
+          charObject = {
+            name: charName,
+            pronoun1: aO.pro1,
+            pronoun2: aO.pro2,
+            species: {
+              name: speciesForm,
+              stance: final.tags[1],
+              height: final.height,
+              length: final.length,
+              build: build,
+              hips: hips,
+              butt: butt,
+            },
+            anatomy: {
+              sex: sex,
+              breasts: breastSize,
+              penisSize: penisSize,
+              penisLength: penisLength,
+              penisWidth: penisWidth,
+              testiSize: testiSize,
+              testiSizeML: testiSizeML,
+              clitSize: clitSize,
+              clitSizeCM: clitSizeCM,
+              clitWidth: clitWidth,
+              vaginalDepth: vaginalDepth,
+              penisType: penisType,
+              monsSize: monsSize,
+              hipsWord: hipsWord,
+              buttWord: buttWord,
+            },
+            role: {
+              name: role.name,
+              description: role.description.toLowerCase(),
+            },
+            voice: voice,
+            walk: walk,
+            generalMood: mood,
+            trait: physfeature,
+            demeanor: {
+              morals: morals,
+              behavior: persona,
+            },
+            gear: gear,
+            costume: costume,
+            backstory: backstory,
+            avatarHook: avatarHook,
+            worldSnippets: worldSnippets,
+          };
+
+
+
+          charOut.innerHTML = charDesc
+
+
+
+          if (final.length == null) {final.length = "N/A"} else {final.length = final.length + " m"};
+
+
+
+
+          tableHTML = `<table class="tg"><thead>
+            <tr>
+              <th class="tg-0pky"><span style="font-weight:bold">Name:</span></th>
+              <th class="tg-0pky">${charName}</th>
+            </tr></thead>
+          <tbody>
+            <tr>
+              <td class="tg-0pky"><span style="font-weight:bold">Species:</span></td>
+              <td class="tg-0pky">${capFirst(sO.name)} (${final.tags[1]})</td>
+            </tr>
+            <tr>
+              <td class="tg-fymr">Sex:</td>
+              <td class="tg-0pky">${capFirst(aO.nameShort)}</td>
+            </tr>`
+          if (final.length == null) {
+            tableHTML += `<tr>
+              <td class="tg-fymr">Height:</td>
+              <td class="tg-0pky">${final.height} m</td>
+            </tr>`
+          } else {
+            tableHTML += `<tr>
+              <td class="tg-fymr">Height:</td>
+              <td class="tg-0pky">${final.height} m</td>
+            </tr>
+            <tr>
+              <td class="tg-fymr">Length:</td>
+              <td class="tg-0pky">${final.length}</td>
+            </tr>`
+          }
+          tableHTML += `
+            <tr>
+              <td class="tg-fymr">Length:</td>
+              <td class="tg-0pky">${final.length}</td>
+            </tr>
+            <tr>
+              <td class="tg-fymr">Weight:</td>
+              <td class="tg-0pky">${final.weight} kg</td>
+            </tr>`
+            if (sex != "Femboy") {
+              tableHTML += `<tr>
+                <td class="tg-fymr">${boobsWord}:</td>
+                <td class="tg-0pky">${breastSize}</td>
+              </tr>`
+            }
+            tableHTML += `
+            <tr>
+              <td class="tg-fymr">Waist:</td>
+              <td class="tg-0pky">${waistSize} cm</td>
+            </tr>
+            <tr>
+              <td class="tg-fymr">Hips:</td>
+              <td class="tg-0pky">${capFirst(hips)}</td>
+            </tr>
+            <tr>
+              <td class="tg-fymr">Butt:</td>
+              <td class="tg-0pky">${capFirst(butt)}</td>
+            </tr>
+            <tr>
+              <td class="tg-fymr">Cock Type:</td>
+              <td class="tg-0pky">${capFirst(penisType)}</td>
+            </tr>
+            <tr>
+              <td class="tg-fymr">Cock Size:</td>
+              <td class="tg-0pky">Length ${penisLength} cm<br>Girth ${penisWidth.toFixed(1)} cm</td>
+            </tr>
+            <tr>
+              <td class="tg-fymr">Ball Size:</td>
+              <td class="tg-0pky">${testiSizeML} ml</td>
+            </tr>`
+
+            if (sex == "Futanari") {
+              tableHTML += `
+              <tr>
+                <td class="tg-fymr">Mons:</td>
+                <td class="tg-0pky">${monsSize}</td>
+              </tr>
+              <tr>
+                <td class="tg-fymr">Vulva:</td>
+                <td class="tg-0pky">${vaginalDepth}</td>
+              </tr>
+              <tr>
+                <td class="tg-fymr">Clit:</td>
+                <td class="tg-0pky">Length ${clitSizeCM} cm<br>Girth ${clitWidth.toFixed(1)} cm</td>
+              </tr>`
+            }
+          tableHTML += `</tbody></table>`
+          charTable.innerHTML = tableHTML
+        };
+
+
+
+
+        //======== Utility Scripts ========
+
+        function randomFrom(list) {
+          return list[Math.floor(Math.random() * list.length)];
+        };
+
+        function getRandomSubset(list, count) {
+          const copy = [...list];
+          const selected = [];
+          while (selected.length < count && copy.length > 0) {
+            const i = Math.floor(Math.random() * copy.length);
+            selected.push(copy.splice(i, 1)[0]);
+          }
+          return selected;
+        };
+
+        function getRandomInt(min, max) {
+          const minCeiled = Math.ceil(min);
+          const maxFloored = Math.floor(max);
+          return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is now inclusive
+        };
+
+        function randRangeFloat(min, max) {
+          return (Math.random() * (max - min) + min).toFixed(1);
+        };
+
+        function getCupSizeLabel(number) {
+          if (number < 0) return "Invalid";
+
+          const cupMap = [
+            "No Breasts", "A-cup", "B-cup", "C-cup", "D-cup", "DD-cup", "big DD-cup", "E-cup",
+            "big E-cup", "EE-cup", "big EE-cup", "F-cup", "big F-cup", "FF-cup", "big FF-cup",
+            "G-cup", "big G-cup", "GG-Cup", "big GG-Cup", "H-cup", "big H-cup", "HH-cup",
+            "big HH-cup", "HHH-cup", "I-cup", "big I-cup", "II-cup", "big II-cup", "J-cup",
+            "big J-cup", "JJ-cup", "big JJ-cup", "K-cup", "big K-cup", "KK-cup", "big KK-cup",
+            "L-cup", "big L-cup", "LL-cup", "big LL-cup", "M-cup", "big M-cup", "MM-cup",
+            "big MM-cup", "MMM-cup"
+          ];
+
+          suffix = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+          index = Math.min(Math.floor((number - 45) / 2), suffix.length * 3 - 1);
+          letter = suffix[Math.floor(index / 3)];
+          repeat = index % 3;
+
+          if (number <= 44) return cupMap[number];
+
+          if (number >= 45 && number <= 99) {
+            return `large ${letter.repeat(repeat + 1)}-cup`;
+          }
+
+          if (number >= 100 && number <= 143) {
+            return `hyper ${letter.repeat(repeat + 1)}-cup`;
+          }
+
+          if (number >= 144 && number <= 198) {
+            return `hyper large ${letter.repeat(repeat + 1)}-cup`;
+          }
+
+          if (number === 199) {
+            return "Jacques00-cup";
+          }
+
+          return "Unmeasurable";
+        };
+
+        function getRandomCupSize() {
+          const roll = Math.random();
+
+          if (roll < 0.40) {
+            // Normal range (1–20)
+            return getCupSizeLabel(Math.floor(Math.random() * 20) + 1);
+          } else if (roll < 0.70) {
+            // Big range (21–44)
+            return getCupSizeLabel(Math.floor(Math.random() * 24) + 21);
+          } else if (roll < 0.85) {
+            // Large (45–99)
+            return getCupSizeLabel(Math.floor(Math.random() * 55) + 45);
+          } else if (roll < 0.97) {
+            // Hyper (100–143)
+            return getCupSizeLabel(Math.floor(Math.random() * 44) + 100);
+          } else if (roll < 0.995) {
+            // Hyper Large (144–198)
+            return getCupSizeLabel(Math.floor(Math.random() * 55) + 144);
+          } else {
+            // Rare mythical
+            return getCupSizeLabel(199);
+          }
+        };
+
+        function getPenisSizeLabel(length) {
+          length = (length * 2.54).toFixed(1); // convert inches to cm and fix to 1 decimal
+          if (length < 4) return { sizeName: "tiny", sizeNum: length };
+          if (length >= 4 && length < 9) return { sizeName: "small", sizeNum: length };
+          if (length >= 9 && length < 12) return { sizeName: "average", sizeNum: length };
+          if (length >= 12 && length < 16) return { sizeName: "well-endowed", sizeNum: length };
+          if (length >= 16 && length < 24) return { sizeName: "hung", sizeNum: length };
+          if (length >= 24 && length < 36) return { sizeName: "massive", sizeNum: length };
+          if (length >= 36 && length < 60) return { sizeName: "hyper-endowed", sizeNum: length };
+          if (length >= 60 && length < 100) return { sizeName: "colossal", sizeNum: length };
+          if (length >= 100 && length < 150) return { sizeName: "macro-sized", sizeNum: length };
+          return { sizeName: "titanic", sizeNum: length };
+        }
+
+        function getRandomPenisSize() {
+          const roll = Math.random();
+          if (roll < 0.5) return getPenisSizeLabel(randRangeFloat(4, 9));
+          if (roll < 0.75) return getPenisSizeLabel(randRangeFloat(9, 16));
+          if (roll < 0.9) return getPenisSizeLabel(randRangeFloat(16, 35));
+          if (roll < 0.98) return getPenisSizeLabel(randRangeFloat(36, 99));
+          return getPenisSizeLabel(randRangeFloat(100, 200));
+        };
+
+        function getTesticleSizeLabel(volume) {
+          if (volume < 50) return { sizeName: "tight, little, adorible things", sizeNum: volume / 10};
+          if (volume < 100) return { sizeName: "average size", sizeNum: volume / 10};
+          if (volume < 200) return { sizeName: "full and heavy", sizeNum: volume / 10};
+          if (volume < 400) return { sizeName: "plump low-hangers", sizeNum: volume / 10};
+          if (volume < 800) return { sizeName: "beachball-sized", sizeNum: volume / 10};
+          if (volume < 1500) return { sizeName: "cartoonish orbs", sizeNum: volume / 10};
+          if (volume < 3000) return { sizeName: "breeder-grade overfilled nuts", sizeNum: volume / 10};
+          return { sizeName: "massive cum tanks", sizeNum: volume / 10};
+        };
+
+        function getRandomTesticleSize() {
+          const roll = Math.random();
+          if (roll < 0.5) return getTesticleSizeLabel(getRandomInt(30, 100));
+          if (roll < 0.75) return getTesticleSizeLabel(getRandomInt(100, 400));
+          if (roll < 0.9) return getTesticleSizeLabel(getRandomInt(400, 800));
+          if (roll < 0.98) return getTesticleSizeLabel(getRandomInt(800, 1500));
+          return getTesticleSizeLabel(getRandomInt(1500, 5000));
+        };
+
+        function getClitSizeLabel(length) {
+          if (length < 0.3) return  { sizeName: "a shy little nub", sizeNum: length};
+          if (length < 0.7) return  { sizeName: "a modest clit", sizeNum: length};
+          if (length < 1.2) return  { sizeName: "a plush, prominent clit", sizeNum: length};
+          if (length < 2.5) return  { sizeName: "a thick pearl", sizeNum: length};
+          if (length < 4) return  { sizeName: "a thumb-sized button", sizeNum: length};
+          if (length < 7) return  { sizeName: "a cockette", sizeNum: length};
+          if (length < 12) return  { sizeName: "a girthy she-cock", sizeNum: length};
+          if (length < 20) return  { sizeName: "a hyper clit-dick", sizeNum: length};
+          return  { sizeName: "a godbreaker clit-dick", sizeNum: length};
+        };
+
+        function getRandomClitSize() {
+          const roll = Math.random();
+          if (roll < 0.5) return getClitSizeLabel(randRangeFloat(0.2, 1.2));
+          if (roll < 0.75) return getClitSizeLabel(randRangeFloat(1.2, 2.5));
+          if (roll < 0.9) return getClitSizeLabel(randRangeFloat(2.5, 7));
+          if (roll < 0.98) return getClitSizeLabel(randRangeFloat(7, 12));
+          return getClitSizeLabel(randRangeFloat(12, 25));
+        };
+
+        function getVaginalDescription(depth) {
+          if (depth < 4) return "tight and shallow";
+          if (depth < 6) return "petite and snug";
+          if (depth < 8) return "welcoming and plush";
+          if (depth < 10) return "deep and velvety";
+          if (depth < 14) return "eager and bottomless";
+          if (depth < 20) return "gaping and insatiable";
+          return "prolapsed by default";
+        };
+
+        function getRandomVaginalDepth() {
+          const roll = Math.random();
+          if (roll < 0.5) return getVaginalDescription(getRandomInt(4, 8));
+          if (roll < 0.75) return getVaginalDescription(getRandomInt(8, 12));
+          if (roll < 0.9) return getVaginalDescription(getRandomInt(12, 16));
+          if (roll < 0.98) return getVaginalDescription(getRandomInt(16, 24));
+          return getVaginalDescription(getRandomInt(24, 60));
+        };
+
+        function getMonsDescription(size) {
+          if (size < 1) return "bare and tight-skinned";
+          if (size < 2) return "modestly padded";
+          if (size < 4) return "plush and kissable";
+          if (size < 7) return "plump";
+          if (size < 10) return "bulgey";
+          return "pillow-like mound";
+        };
+
+        function getRandomMonsSize() {
+          const roll = Math.random();
+          if (roll < 0.5) return getMonsDescription(randRangeFloat(0.5, 3));
+          if (roll < 0.75) return getMonsDescription(randRangeFloat(3, 6));
+          if (roll < 0.9) return getMonsDescription(randRangeFloat(6, 9));
+          return getMonsDescription(randRangeFloat(9, 15));
+        };
+
+        function getRandomizedSize(sO) {
+          const { name, type, avgHeight, avgLength, avgWeight } = sO;
+
+          const roll = Math.random();
+          let scaleFactor = 1;
+          let scaleType = "normal";
+
+          if (roll < 0.05) {
+            scaleFactor = +(Math.random() * 0.3 + 0.1).toFixed(2); // 0.1 to 0.4
+            scaleType = "mini";
+          } else if (roll > 0.95) {
+            scaleFactor = +(Math.random() * 1.5 + 1.5).toFixed(2); // 1.5 to 3.0
+            scaleType = "giant";
+          }
+
+          const vary = (value) => {
+            const variation = value * 0.15;
+            const scaled = value * scaleFactor;
+            return +(scaled + (Math.random() * variation * 2 - variation)).toFixed(2);
+          };
+
+          let final = {
+            height: null,
+            length: null,
+            weight: null,
+            scaleType: scaleType,
+            sizeClass: null,
+            tags: [],
+            description: ""
+          };
+
+          switch (type) {
+            case "biped":
+            case "android":
+            case "robot":
+              final.height = vary(avgHeight || 1.7);
+              final.weight = vary(avgWeight || 70) * Math.pow(scaleFactor, 3);
+              break;
+
+            case "taur":
+            case "feral":
+            case "gryphon":
+            case "dragon":
+              final.length = vary(avgLength || 2.5);
+              final.height = vary(avgHeight || 1.5);
+              final.weight = vary(avgWeight || 180) * Math.pow(scaleFactor, 3);
+              break;
+
+            case "naga":
+            case "merfolk":
+              final.length = vary(avgLength || 2.8);
+              final.height = vary(avgHeight || 1.2);
+              final.weight = vary(avgWeight || 120) * Math.pow(scaleFactor, 3);
+              break;
+
+            case "amorphious":
+              final.length = vary(avgLength || 1.5);
+              final.weight = vary(avgWeight || 90) * Math.pow(scaleFactor, 3);
+              break;
+
+            default:
+              if (avgLength && avgHeight) {
+                final.length = vary(avgLength);
+                final.height = vary(avgHeight);
+              } else if (avgHeight) {
+                final.height = vary(avgHeight);
+              } else if (avgLength) {
+                final.length = vary(avgLength);
+              }
+              final.weight = vary(avgWeight || 70) * Math.pow(scaleFactor, 3);
+              break;
+          }
+
+          final.weight = +final.weight.toFixed(2);
+
+          // 🔠 Size class
+          if (scaleFactor < 0.2) final.sizeClass = "tiny";
+          else if (scaleFactor < 0.8) final.sizeClass = "small";
+          else if (scaleFactor <= 1.2) final.sizeClass = "normal";
+          else if (scaleFactor <= 2.0) final.sizeClass = "large";
+          else final.sizeClass = "huge";
+
+          // 🏷 Tags
+          final.tags.push(final.sizeClass);
+          if (type === "taur") final.tags.push("tauric");
+          if (type === "feral") final.tags.push("quadruped");
+          if (type === "biped") final.tags.push("biped");
+          if (type === "amorphious") final.tags.push("amorphous");
+
+          // ✍️ Flavor description
+          const sizeAdjectives = {
+            tiny: ["miniature", "pocket-sized", "doll-like"],
+            small: ["petite", "compact", "lean"],
+            normal: ["well-proportioned", "average-sized", "balanced"],
+            large: ["broad-shouldered", "towering", "powerfully built"],
+            huge: ["colossal", "monumentally huge", "titanic"]
+          };
+
+          const bodyDescriptors = {
+            biped: ["two-legged figure", "upright stance", "humanoid shape"],
+            quadruped: ["low-slung body", "four-legged form", "tauric build"],
+            amorphous: ["shifting mass", "slippery body", "ever-changing silhouette"]
+          };
+
+          const sizeWords = sizeAdjectives[final.sizeClass];
+          const bodyWords = bodyDescriptors[
+            final.tags.includes("taur") ? "taruic" :
+            final.tags.includes("quadruped") ? "quadruped" :
+            final.tags.includes("biped") ? "biped" :
+            final.tags.includes("amorphous") ? "amorphous" :
+            "biped"
+          ];
+
+          const randFrom = (arr) => arr[Math.floor(Math.random() * arr.length)];
+          sizeWord = randFrom(sizeWords)
+          bodyWord = randFrom(bodyWords)
+          final.description = `A ${sizeWord} ${name} with a ${bodyWord}.`;
+
+          return final;
+        };
+
+        function capFirst(val) {
+            return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+        };
+
+        function generateFeminineName() {
+          const starts = [
+            "A", "El", "Li", "Ka", "Ma", "Sa", "Na", "Ar", "Is", "Fa",
+            "Al", "Le", "Be", "Ce", "Da", "Eri", "Tia", "Va", "Zae", "Ysa"
+          ];
+
+          const middles = [
+            "la", "na", "ra", "li", "mi", "re", "ne", "va", "za", "shi",
+            "ya", "ta", "sa", "ria", "the", "lea", "ri", "zae"
+          ];
+
+          const ends = [
+            "a", "ia", "ina", "ara", "elle", "ette", "ira", "ora", "issa", "yra",
+            "eia", "ira", "anna", "una", "irae", "alya", "yn", "ira", "essa"
+          ];
+
+          // Randomly decide how many syllables (2–3 typical)
+          const syllableCount = Math.random() < 0.3 ? 3 : 2;
+
+          // Randomly assemble name
+          let name = starts[Math.floor(Math.random() * starts.length)];
+          if (syllableCount === 3) {
+            name += middles[Math.floor(Math.random() * middles.length)];
+          }
+          name += ends[Math.floor(Math.random() * ends.length)];
+
+          // Capitalize the first letter (already done in starts), lowercase the rest
+          return name.charAt(0) + name.slice(1);
+        };
+
+        const hipRatings = [
+          { min: 0, max: 1, label: "boyish" },
+          { min: 2, max: 3, label: "slender" },
+          { min: 4, max: 5, label: "well-formed" },
+          { min: 6, max: 9, label: "ample" },
+          { min: 10, max: 14, label: "curvy" },
+          { min: 15, max: 19, label: "fertile" },
+          { min: 20, max: 99, label: "inhumanly wide" }
+        ];
+
+        const buttRatings = [
+          { min: 0, max: 1, label: "flat" },
+          { min: 2, max: 3, label: "tight" },
+          { min: 4, max: 5, label: "average" },
+          { min: 6, max: 7, label: "noticeable" },
+          { min: 8, max: 9, label: "large" },
+          { min: 10, max: 12, label: "jiggly" },
+          { min: 13, max: 15, label: "expansive" },
+          { min: 16, max: 19, label: "huge" },
+          { min: 20, max: 99, label: "inconceivably huge" }
+        ];
+
+        function weightedRandomHipSize() {
+          const roll = Math.random();
+
+          if (roll < 0.05) return getRandomInt(20, 40);            // ~5% extreme
+          if (roll < 0.15) return getRandomInt(15, 19);            // ~10% fertile
+          if (roll < 0.35) return getRandomInt(10, 14);            // ~20% curvy
+          if (roll < 0.65) return getRandomInt(6, 9);              // ~30% ample
+          if (roll < 0.85) return getRandomInt(4, 5);              // ~20% pleasant
+          if (roll < 0.95) return getRandomInt(2, 3);              // ~10% slender
+          return getRandomInt(0, 1);                               // ~5% boyish
+        };
+
+        function weightedRandomButtSize() {
+          const roll = Math.random();
+
+          if (roll < 0.03) return getRandomInt(20, 40);            // ~3% extreme
+          if (roll < 0.10) return getRandomInt(16, 19);            // ~7% huge
+          if (roll < 0.22) return getRandomInt(13, 15);            // ~12% expansive
+          if (roll < 0.37) return getRandomInt(10, 12);            // ~15% jiggly
+          if (roll < 0.60) return getRandomInt(8, 9);              // ~23% large
+          if (roll < 0.78) return getRandomInt(6, 7);              // ~18% noticeable
+          if (roll < 0.88) return getRandomInt(4, 5);              // ~10% average
+          if (roll < 0.95) return getRandomInt(2, 3);              // ~7% tight
+          return getRandomInt(0, 1);                               // ~5% flat
+        };
+
+        function getHipDescriptor(size) {
+          return hipRatings.find(r => size >= r.min && size <= r.max)?.label || "unknown";
+        };
+
+        function getButtDescriptor(size) {
+          return buttRatings.find(r => size >= r.min && size <= r.max)?.label || "unknown";
+        };
+
+        const builds = [
+          "slim and stacked",           // Skinny frame, big curves
+          "toned and temptingly tight",// Fit but not bulky
+          "soft and plush",            // Not fat, just pillowy
+          "cutely chubby",             // Cute belly, thighs, hips
+          "petite hourglass",          // Small frame, killer curves
+          "thicc but tight",           // Broad hips/thighs, firm belly
+          "ultra-curvy",               // Cartoony badonkadonks
+          "bombshell stacked",         // Heavy top and bottom
+          "muscle-cut hourglass",      // Muscles + waist taper
+          "pin-up perfection",         // Styled like a cheesecake model
+          "lusciously padded",         // Meant to bounce
+        ];
+
+        function generateWaist(hipSize, buildModifier) {
+          // Base waist as a percentage of hip size
+          let baseWaist = hipSize * randomFloat(0.6, 0.75); // Typical waist-to-hip ratio: 0.6–0.75
+
+          // Adjust based on build
+          if (buildModifier === "thick" || buildModifier === "cutely chubby") baseWaist *= 1.1;
+          else if (buildModifier === "soft and plush") baseWaist *= 1.15;
+          else if (buildModifier === "petite hourglass") baseWaist *= 0.95;
+          else if (buildModifier === "ultra-curvy") baseWaist *= 0.9;
+
+          return Math.round(baseWaist);
+        }
+
+        function randomFloat(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        const cockShapes = [
+          "human", "insectoid", "canine", "demonic", "draconic", "equine", "feline", "reptilian", "hemi-peen", "shark", "tentacle", "psudopod", "vulpine"
+        ];
+
+        function genVoice() {
+          var voice = "unset"
+          die1 = getRandomInt(1,50)
+          die2 = getRandomInt(1,50)
+          die = die1 + die2
+          if (die >= 33) {
+            voice1 = ["sweet", "melodic", "lilted", "clear", "warm", "brash", "husky", "raspy", "gravelly", "silky", "airy", "whispery",  "booming", "sonorous", "hollow", "nasal", "shrill", "piercing", "velvety", "smoky", "bubbly", "soothing", "breathy", "elegant",   "bright", "soft-spoken", "throaty", "mellow", "harsh", "robotic", "echoing", "crisp", "playful", "flat", "deadpan", "musical",  "vibrant", "cheerful", "quivering", "growling", "reedy", "dulcet", "gritty", "resonant", "tinny", "monotone", "lyrical", "singsong", "deep", "baritone", "tenor", "alto", "soprano", "childlike", "whiny", "guttural", "purring", "croaky", "chanting", "bellowing"];
+            voiceA = randomFrom(voice1)
+            voiceB = randomFrom(voice1)
+            while (voiceA == voiceB) {
+              voiceB = randomFrom(voice1)
+            }
+            voice = voiceA + " and " + voiceB
+          } else if (die <= 34 && die >= 66) {
+            voice1 = ["'s voice sounds sweet", "'s voice is melodic", " speech is lilted", " speaks in a clear voice", "'s voice is warm", " speaks in a brash tone of voice", " sounds husky", "'s voice is raspy", " sounds quite gravelly", "'s voice is silky", " has an airy voice", " is a notably whispery speaker",  " has a booming voice", " sounds notably hollow", " has a nasally voice", " has a shrill voice", " speaks in a piercing tone", " has a smooth, velvety voice", "'s voice is best described as 'smoky'", " sounds bubbly when speaking", " has a soothing voice", " sounds breathy", " has a an elegant mode of speech", "'s voice sounds bright", " is soft-spoken", "'s voice is best described as 'throaty'", " has a rather mellow mode of speech", "'s voice sounds harsh", " sounds robotic when speaking", " has a crisp voice", "'s manner of speaking is best described as 'playful'", " has a flat sounding voice", " speaks mostly in a deadpan", "'s voice sounds musical", "'s voice is notably vibrant", " almost always sounds cheerful", " speaks in a quivering tone", "'s speech is best described as 'growling'", " has a reedy voice", " is blessed with a voice that's rather dulcet", " sounds 'gritty' when speaking", " has a very resonant voice", "'s voice sounds tinny", " speaks in a monotone", " has a lyrical sounding voice", " speaks in a singsong tone", "'s voice is notably deep", " has a baritone voice", " speaks in a tenor", " has an alto tone to their voice", " speaks in a soprano", " sounds notably childlike", "'s voice unfortuantly sounds whiny to most people's ears", " has a guttural voice", "'s voice sounds croaky", " sounds like they're chanting when they speak", "'s voice is quite loud, making them seem like they're always bellowing"];
+            voice = randomFrom(voice1)
+          } else if (die <= 67) {
+            var qualifier = "unset"
+            die1 = getRandomInt(1,6) + getRandomInt(1,6)
+            die2 = getRandomInt(1,4) + getRandomInt(1,4)
+            dieResult = die1 + die2
+            if (dieResult < 4) {
+              qualifier = "somewhat"
+            } else if (dieResult >= 5 && dieResult <= 8) {
+              qualifier = "slightly"
+            } else if (dieResult >= 9 && dieResult <= 13) {
+              qualifier = "notably"
+            } else if (dieResult >= 14 && dieResult <= 17) {
+              qualifier = "oddly"
+            } else if (dieResult >= 18) {
+              qualifier = "extreemly"
+            }
+            voice1 = ["sweet", "melodic", "lilted", "clear", "warm", "brash", "husky", "raspy", "gravelly", "silky", "airy", "whispery",  "booming", "sonorous", "hollow", "nasal", "shrill", "piercing", "velvety", "smoky", "bubbly", "soothing", "breathy", "elegant",   "bright", "soft-spoken", "throaty", "mellow", "harsh", "robotic", "echoing", "crisp", "playful", "flat", "deadpan", "musical",  "vibrant", "cheerful", "quivering", "growling", "reedy", "dulcet", "gritty", "resonant", "tinny", "monotone", "lyrical", "singsong", "deep", "baritone", "tenor", "alto", "soprano", "childlike", "whiny", "guttural", "purring", "croaky", "chanting", "bellowing"];
+            voice = randomFrom(voice1)
+            voice = qualifier + " " + voice
+          }
+          return voice
+        };
+
+        function genWalk() {
+          walk1 = ['with confidence', 'with class', 'nonchalantly', 'well', 'poorly', 'like a soldier', 'timidly', 'in a disjointed fashion', 'as most people do', 'gracefully', 'awkwardly', 'purposefully', 'lazily', 'with a swagger', 'stiffly', 'like they own the place', 'in a hurried manner', 'with a spring in their step', 'light on their feet', 'heavily', 'like a predator stalking prey', 'with a bounce', 'like ${aO.pro1} lost in thought', 'robotically', `like ${aO.pro1} walking on eggshells`, 'casually', 'with an air of authority', 'clumsily', 'with nervous energy', `like ${aO.pro1} sneaking around`, 'elegantly', 'with exaggerated movements', 'like a dancer', 'with a limp', `as if ${aO.pro1} exhausted, like ${aO.pro1} floating`, 'with military precision', 'with reckless abandon', 'sluggishly', 'with calculated steps', `like ${aO.pro1} wading through water`, 'on tiptoe', `like ${aO.pro1} trying not to be noticed`, 'in a leisurely stride', 'like a cat', 'with jittery energy', 'with rhythmic grace', 'in a zigzag pattern', 'haphazardly', 'like a puppet on strings', 'with a determined stride', `like ${aO.pro1} leading a parade`, 'with a sense of dread', 'in short, quick steps', 'in long, deliberate strides', 'as though gravity barely affects them', 'like a shadow slipping through the night'];
+          walk = randomFrom(walk1)
+          return walk
+        };
+
+        function genMood() {
+          mood1 = ['excitable', 'passionate', 'happy', 'romantic', 'spirited', 'calm', 'contented', 'confident', 'relaxed', 'friendly', 'at ease', 'hopeful', 'tender', 'peaceful', 'easygoing', 'emotional', 'concerned', 'anxious', 'fearful', 'alarmed', 'tense', 'fiery', 'sullen', 'stressed', 'depressed', 'cheerful', 'apathetic', 'melancholic', 'gloomy', 'restless', 'joyful', 'smug', 'brooding', 'stoic', 'bitter', 'resentful', 'playful', 'curious', 'distant', 'disillusioned', 'skeptical', 'nervous', 'flustered', 'euphoric', 'proud', 'vindictive', 'wistful', 'bored', 'resigned', 'hopeful', 'inspired', 'amused', 'irritable', 'gleeful', 'humble', 'ashamed', 'grateful', 'protective', 'thoughtful', 'indifferent', 'determined', 'fearless', 'mournful', 'desperate', 'serious', 'carefree', 'wild', 'obsessive', 'paranoid',  'prideful', 'spiteful', 'secretive', 'envious', 'radiant', 'resolute', 'haughty',  'regretful', 'innocent',  'defiant', 'cold', 'wrathful', 'inattentive', 'fickle', 'intense', 'languid', 'suspicious', 'sarcastic', 'mischiefious', 'overwhelmed'];
+          mood = randomFrom(mood1)
+          return mood
+        };
+
+        function genTrait() {
+          var physfeature1 = [' has bad acne all over their face',' typically squints like they are looking into a bright light',' is heavily tattooed',' has a face only a mother could love',' has large bushy eyebrows',' has a distinctive military tattoo',' has fingers that are just a little too long',' appears to have suffered a nasty burn','s skin is covered in battle scars',' has buck-teeth.',' has an unkempt and slobbish look',' has a distinctive accent',' has a hunchback.',' has a distinctive cult tattoo',' has a large scar across their chin',' has a few mechanical fingers',' has a mechanical hand',' has a mechanical arm',' has a mechanical footer',' has a mechanical leg',' has gorgeous eyes',' wears only the finest clothing',' has a patch of discolored skin around an old scar',' always smells like farm animals',' has a peg leg',' is incredibly beautiful. People often do double-takes of them as they walk by',' smells terrible',' dresses like a slob, and tends to wear the same clothes for weeks',' is missing a few fingers',' is missing a finger',' has a distinctive slave tattoo',' has an abnormally long nose',' walks with a notable limp',' wears torn, dirty clothing',' keeps their eyes on the ground',' has particularly accentuated cheekbones, and hollow cheeks',' has lots of freckles',' has noticeably crooked teeth. They try to hide their mouth while speaking',' has a tiny nose',' has freckles on their face positioned in a way to resemble runes',' has happy, warm eyes',' is cross-eyed',' has an allergy that causes them to sneeze a lot',' is constantly hunched over',' has a thick, furry unibrow',' has a tattoo of a mermaid on their arm',' smells like incense',' has watchful eyes',' has an anchor tattoo',' has acne scars on their face',' has sleepy eyes',' has a skull tattoo',' has cold, calculating eyes',' has a distinctive sailing tattoo',' has a large scar over their right eye. Every time they are asked about it, their story changes on how they got it',' always seems to be covered in dirt',' has wild eyes',' has over-sized ears',' always smells like fish',' has a smile and laugh that always feel genuinely welcoming',' has clearly had their nose broken numerous times',' has elaborately pierced ears',' wears fashionable clothing',' has dry, cracked lips',' wears an ear trumpet to hear','  has a dagger tattoo',' constantly bites their nails out of nervousness',' has a distinctive tribal tattoo',' has really long, really sharp nails',' has piercing eyes',' always smells of baked bread',' has a lock of hair that will always stick right up, no matter what they try to keep it in place',' has a large bulbous nose',' has a lazy eye',' is incredibly attractive',' has a snake tattoo',' has dark eyes',' always smells like strong perfume',' always smells like garlic',' wears faded, patched clothing',' has bright, shiny eyes',' has an arrow tattoo',' is always dressed neat and proper',' always smells like mint',' has a distinctive gang tattoo',' has heterochromia',' always has stains of ink on their hands',' has shifty eyes',' always smells like pipe tobacco',' is always immaculately groomed',' has distant eyes',' wears an eye patch over one of their eyes',' has a worn, tired face',' walks with a bad limp',' has a distinctive criminal tattoo',' has an old-fashioned sense of style',' is always chewing on a piece of some root or another',' has a hook nose',' has horrible eyesight and cannot see without their glasses',' always wears flamboyant clothing',' dresses in an outlandish manner',' is constantly bundled in a thick cloak',' exclusively wears thick robes'];
+          var physfeature = randomFrom(physfeature1)
+          return physfeature
+        };
+
+        function genMorals() {
+          die1 = getRandomInt(1,50)
+          die2 = getRandomInt(1,50)
+          result = die1 + die2
+          if (result <= 11) {
+            openness = 'extreemly prejudiced'
+          } else if (result >= 12 && result <= 23) {
+            openness = 'prejudiced'
+          } else if (result >= 24 && result <= 34) {
+            openness = 'somewhat prejudiced'
+          } else if (result >= 35 && result <= 65) {
+            openness = 'no more open or closed minded than most'
+          } else if (result >= 66 && result <= 77) {
+            openness = 'somewhat unprejudiced'
+          } else if (result >= 78 && result <= 89) {
+            openness = 'extreemly unprejudiced'
+          } else if (result >= 90) {
+            openness = 'entirly unprejudiced'
+          }
+
+          die1 = getRandomInt(1,50)
+          die2 = getRandomInt(1,50)
+          result = die1 + die2
+          if (result <= 11) {
+            conscientious = 'are purly out for themselves'
+          } else if (result >= 12 && result <= 23) {
+            conscientious = 'selfish, bordering on malishious'
+          } else if (result >= 24 && result <= 34) {
+            conscientious = 'somewhat selfish'
+          } else if (result >= 35 && result <= 65) {
+            conscientious = 'no more or less conscientious than most'
+          } else if (result >= 66 && result <= 77) {
+            conscientious = "try to do what's right when when practical"
+          } else if (result >= 78 && result <= 89) {
+            conscientious = 'tries to do the right thing'
+          } else if (result >= 90) {
+            conscientious = 'always look out for those arround them'
+          }
+
+          if (conscientious == 'no more or less conscientious than most' && openness == 'no more open or closed minded than most') {
+            morals = charName + " is a typical " + sO.name.toLowerCase() + " in terms of the content of their caracter"
+          } else {
+            morals = charName + " is " + openness + " and " + conscientious
+          }
+          return morals
+        };
+
+        function genPersona() {
+          die1 = getRandomInt(1,50)
+          die2 = getRandomInt(1,50)
+          result = die1 + die2
+          if (result <= 11) {
+            extraversion = 'extreemly introverted'
+          } else if (result >= 12 && result <= 23) {
+            extraversion = 'introverted'
+          } else if (result >= 24 && result <= 34) {
+            extraversion = 'somewhat introverted'
+          } else if (result >= 35 && result <= 65) {
+            extraversion = 'ambiverted'
+          } else if (result >= 66 && result <= 77) {
+            extraversion = 'somewhat extraverted'
+          } else if (result >= 78 && result <= 89) {
+            extraversion = 'extraverted'
+          } else if (result >= 90) {
+            extraversion = 'extreemly extraverted'
+          }
+
+          die1 = getRandomInt(1,50)
+          die2 = getRandomInt(1,50)
+          result = die1 + die2
+          if (result <= 11) {
+            agreeableness = 'extreemly antagonistic'
+          } else if (result >= 12 && result <= 23) {
+            agreeableness = 'antagonistic'
+          } else if (result >= 24 && result <= 34) {
+            agreeableness = 'somewhat antagonistic'
+          } else if (result >= 35 && result <= 65) {
+            agreeableness = 'typicaly civil'
+          } else if (result >= 66 && result <= 77) {
+            agreeableness = 'somewhat agreeable'
+          } else if (result >= 78 && result <= 89) {
+            agreeableness = 'agreeable'
+          } else if (result >= 90) {
+            agreeableness = 'extreemly agreeable'
+          }
+
+          if (agreeableness = 'typicaly civil' && extraversion == 'ambiverted') {
+            persona = aO.pro1 + " is a typical " + sO.name.toLowerCase()
+          } else {
+            persona = aO.pro1 + " is " + extraversion + " and " + agreeableness
+          }
+          return persona
+        };
+
+        const bodyArchetypes = [
+          {
+            name: "slim and stacked",            // Skinny frame, big curves
+            hipBias: 6, buttBias: 8, breastBias: 20,
+            waistMod: 0.7
+          },
+          {
+            name: "toned and temptingly tight",  // Fit but not bulky
+            hipBias: 5, buttBias: 6, breastBias: 8,
+            waistMod: 0.72
+          },
+          {
+            name: "soft and plush",              // Pillowy
+            hipBias: 10, buttBias: 12, breastBias: 25,
+            waistMod: 0.85
+          },
+          {
+            name: "cutely chubby",               // Belly + hips
+            hipBias: 11, buttBias: 10, breastBias: 18,
+            waistMod: 0.95
+          },
+          {
+            name: "ultra-curvy",                 // Cartoon body
+            hipBias: 15, buttBias: 17, breastBias: 40,
+            waistMod: 0.65
+          },
+          {
+            name: "bombshell stacked",           // Max top and bottom
+            hipBias: 17, buttBias: 18, breastBias: 60,
+            waistMod: 0.68
+          },
+          {
+            name: "muscle-cut hourglass",        // Buff + shaped
+            hipBias: 7, buttBias: 8, breastBias: 15,
+            waistMod: 0.7
+          },
+          {
+            name: "pin-up perfection",           // Balanced glam
+            hipBias: 12, buttBias: 10, breastBias: 22,
+            waistMod: 0.68
+          }
+        ];
+
+        function generateBody(sex) {
+          // Choose base body archetype
+          const archetype = randomFrom(bodyArchetypes);
+
+          // Allow override for hyper-chonk / hyper-stack
+          const hyperRoll = Math.random();
+          let breastSize = archetype.breastBias + getRandomInt(-3, 3);
+          let hipSize = archetype.hipBias + getRandomInt(-2, 2);
+          let buttSize = archetype.buttBias + getRandomInt(-2, 2);
+
+          // Rare hyper overrides
+          if (hyperRoll > 0.98) breastSize += getRandomInt(40, 80);
+          else if (hyperRoll > 0.95) breastSize += getRandomInt(20, 40);
+
+          if (hyperRoll > 0.98) {
+            hipSize += getRandomInt(8, 16);
+            buttSize += getRandomInt(10, 20);
+          }
+
+          // Femboy logic
+          if (sex === "Femboy") breastSize = 0;
+
+          return {
+            build: archetype.name,
+            hipSize,
+            hipWord: getHipDescriptor(hipSize),
+            buttSize,
+            buttWord: getButtDescriptor(buttSize),
+            waist: generateWaist(hipSize, archetype.name),
+            cupLabel: getCupSizeLabel(breastSize),
+            cupRaw: breastSize,
+          };
+        };
+
+        function createCharObject({
+          charName,
+          aO = {},
+          final = {},
+          speciesForm = 'unknown',
+          build = '',
+          hips = '',
+          butt = '',
+          sex = '',
+          breastSize = null,
+          penisSize = null,
+          penisLength = null,
+          penisWidth = null,
+          testiSize = null,
+          testiSizeML = null,
+          clitSize = null,
+          clitSizeCM = null,
+          clitWidth = null,
+          vaginalDepth = null,
+          penisType = null,
+          monsSize = null,
+          hipsWord = '',
+          buttWord = '',
+          role = { name: 'Unknown', description: '' },
+          voice = '',
+          walk = '',
+          mood = '',
+          physfeature = '',
+          morals = '',
+          persona = '',
+          gear = [],
+          costume = '',
+          backstory = '',
+          avatarHook = '',
+          worldSnippets = []
+        } = {}) {
+          return {
+            name: charName,
+            pronoun1: aO.pro1,
+            pronoun2: aO.pro2,
+            species: {
+              name: speciesForm,
+              stance: final.tags?.[1] || 'default',
+              height: final.height,
+              length: final.length,
+              build: build,
+              hips: hips,
+              butt: butt
+            },
+            anatomy: {
+              sex,
+              breasts: breastSize,
+              penisSize,
+              penisLength,
+              penisWidth,
+              testiSize,
+              testiSizeML,
+              clitSize,
+              clitSizeCM,
+              clitWidth,
+              vaginalDepth,
+              penisType,
+              monsSize,
+              hipsWord,
+              buttWord
+            },
+            role: {
+              name: role.name,
+              description: role.description.toLowerCase?.() || ''
+            },
+            voice,
+            walk,
+            generalMood: mood,
+            trait: physfeature,
+            demeanor: {
+              morals,
+              behavior: persona
+            },
+            gear,
+            costume,
+            backstory,
+            avatarHook,
+            worldSnippets
+          };
+        }
+        function getCurveType(hips, butt, breasts) {
+          if (hips > 20 && butt > 20 && breasts > 50) return "Mega Curve";
+          if (hips > butt && hips > breasts) return "Hips-Dominant";
+          if (butt > hips && butt > breasts) return "Ass-Dominant";
+          if (breasts > hips && breasts > butt) return "Bust-Dominant";
+          return "Balanced";
+        };
+        function hipSizeToCM(hipSize) {
+          if (hipSize < 2) return randomFloat(75, 80);
+          if (hipSize < 4) return randomFloat(80, 85);
+          if (hipSize < 6) return randomFloat(85, 90);
+          if (hipSize < 10) return randomFloat(90, 100);
+          if (hipSize < 15) return randomFloat(100, 110);
+          if (hipSize < 20) return randomFloat(110, 120);
+          return randomFloat(120, 160 + (hipSize - 20) * 3); // Exaggerated for hyper
+        };
+        function buttSizeToCM(buttSize) {
+          if (buttSize < 2) return randomFloat(75, 80);
+          if (buttSize < 4) return randomFloat(80, 88);
+          if (buttSize < 6) return randomFloat(88, 95);
+          if (buttSize < 10) return randomFloat(95, 105);
+          if (buttSize < 15) return randomFloat(105, 115);
+          if (buttSize < 20) return randomFloat(115, 130);
+          return randomFloat(130, 170 + (buttSize - 20) * 3);
+        };
+        // === Anatomy Tags ===
+        function getAnatomyTags(sex) {
+          const tags = { hasDick: true, hasTits: false, hasPussy: false };
+
+          if (sex === "Futanari") {
+            tags.hasTits = true;
+            tags.hasPussy = true;
+          } else if (sex === "Gynomorph") {
+            tags.hasTits = true;
+          }
+
+          return tags;
+        }
+
+        // === Butt Size Conversion ===
+        function buttSizeToCM(buttSize) {
+          if (buttSize < 2) return randomFloat(75, 80);
+          if (buttSize < 4) return randomFloat(80, 88);
+          if (buttSize < 6) return randomFloat(88, 95);
+          if (buttSize < 10) return randomFloat(95, 105);
+          if (buttSize < 15) return randomFloat(105, 115);
+          if (buttSize < 20) return randomFloat(115, 130);
+          return randomFloat(130, 170 + (buttSize - 20) * 3);
+        }
+
+        // === Fetish List Generator ===
+        function generateFetishList() {
+          const fetishes = [
+            "latex", "leather", "public exposure", "bondage", "restraints",
+            "sensory play", "shiny skin", "cock cages", "cumflation",
+            "harnesses", "body mods", "piss play", "bioluminescence",
+            "anal toys", "cum powered tech", "bio armor", "piercings",
+            "heat cycles", "riding straps", "smart plugs",
+            "clothing transformations", "living clothing"
+          ];
+
+          // Clothing-linked fetishes will always be in the list
+          const clothingFetishes = fetishes.filter(f => [
+            "latex", "leather", "public exposure", "bondage", "restraints",
+            "harnesses", "clothing transformations", "living clothing",
+            "piercings", "smart plugs", "bio armor"
+          ].includes(f));
+
+          // Randomly generate kink list
+          const numFetishes = randomInt(3, 7);
+          const baseList = shuffleArray(fetishes).slice(0, numFetishes);
+
+          // Ensure at least one clothing fetish is included
+          if (!baseList.some(f => clothingFetishes.includes(f))) {
+            baseList.push(randomItem(clothingFetishes));
+          }
+
+          return baseList;
+        }
+
+        // === Exhibitionist Flag ===
+        function getExhibitionistFlag() {
+          return Math.random() < 0.3; // 30% chance they're a flagrant nudist
+        }
+
+        // === Kink Slider Costume Mutator ===
+        function applyKinkSlider(baseCostume, baseGear, kinkLevel, anatomyTags, exhibitionist, fetishList) {
+          let costume = baseCostume;
+          let gear = baseGear.slice();
+
+          if (kinkLevel === 0) {
+            costume += ", trimmed in lace and pastel bows";
+            if (anatomyTags.hasTits) costume += ", cleavage push-up included";
+          }
+
+          if (kinkLevel === 1) {
+            costume = costume.replace(/bodysuit/, "mesh-paneled latex catsuit");
+            gear.push("cock pouch with zipper slit");
+            if (anatomyTags.hasPussy) gear.push("quick-access gusset panel");
+          }
+
+          if (kinkLevel === 2) {
+            costume = "webbing harness, translucent paneling, and glowing nipple chains";
+            gear.push("anal tail plug", "cock ring halo", "UV-reactive cum-slicked boots");
+            if (anatomyTags.hasPussy) gear.push("vibrating vulva piercings");
+            if (anatomyTags.hasDick) gear.push("chrome shaft sheathe with embedded LED filigree");
+          }
+
+          if (exhibitionist) {
+            gear.push("auto-slick see-through vinyl wrap", "modesty override chip", "external ID tag with libido counter");
+            costume = "barely-there shimmerweave with genital display authorization";
+          }
+
+          // Add gear based on fetishes
+          fetishList.forEach(fetish => {
+            switch (fetish) {
+              case "latex":
+                gear.push("tight vacuum-seal latex suit"); break;
+              case "bondage":
+                gear.push("restraint-ready cuffs", "lockable collar"); break;
+              case "bio armor":
+                gear.push("living muscle exosuit with cock ports"); break;
+              case "clothing transformations":
+                gear.push("shape-shifting lingerie"); break;
+              case "cum powered tech":
+                gear.push("rechargeable dildo railgun"); break;
+              case "piercings":
+                gear.push("genital chain harness", "nipple ring antennae"); break;
+              case "smart plugs":
+                gear.push("AI-enabled plug with mood lighting"); break;
+              case "public exposure":
+                gear.push("siren-mode voice amp: moans in surround sound"); break;
+              case "living clothing":
+                gear.push("symbiotic garment that licks and teases"); break;
+            }
+          });
+
+          return {
+            costume,
+            gear: [...new Set(gear)].join(", "),
+            fetishes: fetishList.join(", ")
+          };
+        }
+
+        // === Example Usage ===
+        function generateOutfitPackage(sex, baseCostume, baseGear, kinkLevel) {
+          const anatomy = getAnatomyTags(sex);
+          const exhibitionist = getExhibitionistFlag();
+          const fetishList = generateFetishList();
+          return applyKinkSlider(baseCostume, baseGear, kinkLevel, anatomy, exhibitionist, fetishList);
+        }
+
+        // Helper functions
+        function randomFloat(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        function randomInt(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function randomItem(arr) {
+          return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        function shuffleArray(array) {
+          for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+          return array;
+        }
+
+        function getRandomKinkLevel() {
+          const roll = Math.random();
+          if (roll < 0.5) return 0;      // 50% Cute
+          if (roll < 0.85) return 1;     // 35% Kinky
+          return 2;                      // 15% Fetishistic
+        }
+
+        function isExhibitionist() {
+          return Math.random() < 0.3; // 30% chance
+        }
+
+        function generateRandomOutfit(sex) {
+        const kinkLevel = getRandomKinkLevel();
+        const exhibition = isExhibitionist();
+
+        const outfitPools = [
+          ["lace-trimmed babydoll", "fluffy onesie with butt window", "pastel micro-skirt with bows", "cute crop top + panties combo"],
+          ["latex catsuit", "sheer cut-out leotard", "spiked corset + crotchless leggings", "vinyl battle harness with heels"],
+          ["bio-reactive slime mesh", "liquid latex drip suit", "full-body vibrator harness", "modded drone-linked fucking frame"]
+        ];
+
+        const accessories = [
+          "collar engraved with her handle", "chrome tail plug that glows with arousal",
+          "pierced nipples with reactive studs", "cock ring connected to her HUD",
+          "clamps on everything", "living rope bondage rig", "AR-visible aura that moans when stared at"
+        ];
+
+        const clothingKinks = [
+          "latex worship", "exhibitionism", "cumflation silhouettes", "piercing obsession",
+          "open-access design", "auto-lubrication systems", "clothes that purr",
+          "public arousal tracking", "live-streamed fuck fashion"
+        ];
+
+        const outfit = randomFrom(outfitPools[kinkLevel]);
+        const accessory = randomFrom(accessories);
+        const kink = randomFrom(clothingKinks);
+
+        return {
+          outfit,
+          accessory: exhibition ? accessory + " (worn with pride)" : accessory,
+          clothingKink: kink,
+          exhibitionist: exhibition,
+          kinkLevel
+        };
+      }
+      const colorPalettes = [
+        "neon pink", "midnight black", "pearlescent white", "slime green", "syrup gold",
+        "candy apple red", "bubblegum blue", "glittering lavender", "toxic teal",
+        "burnt orange", "nuclear purple", "holographic chrome", "gunmetal grey",
+        "transparent jelly", "crimson lace", "rose quartz", "obsidian", "wet silver"
+      ];
+
+      const materials = [
+        "latex", "mesh", "rubber", "lace", "vinyl", "leather", "silk", "PVC", "satin", "spandex"
+      ];
+
+      const patterns = [
+        "sheer", "shimmering", "glowing", "opaque", "transparent", "glossy", "matte", "wet-look"
+      ];
+      function generateOutfitDescription() {
+
+
+
+
+      const baseTemplates = [
+        `a ${pattern} ${color} ${mat} bodysuit that hugs every curve and leaves nothing to the imagination`,
+        `a ${color} ${mat} corset with ${pattern} stockings and a strategically missing crotch panel`,
+        `a harness of ${pattern} ${mat} straps in ${color}, framing her breasts like they're art in a gallery of sin`,
+        `a dripping ${pattern} ${color} ${mat} dress that clings like a second skin and squeaks with every motion`,
+        `a ${pattern} ${color} ${mat} catsuit zipped down just enough to show the tops of her piercings`
+      ];
+
+      return randomFrom(baseTemplates);
+    }
+
+    function generateModularOutfit() {
+
+      const clothingModules = {
+        tops: {
+          cuts: [
+            "crop top", "harness bra", "bustier", "poncho", "hoodie", "bralette",
+            "wrap top", "tank", "corset", "halter", "vest", "bodice", "monokini top"
+          ],
+          exposures: [
+            "sheer", "translucent", "cutout", "form-fitting", "skin-clinging", "skintight", "open-front"
+          ],
+          patterns: [
+            "tigerstripe", "digital camo", "honeycomb", "glyph-etched", "plain", "rippled", "fetish runes"
+          ],
+          materials: [
+            "latex", "mesh", "cyber-silk", "bioleather", "smart-fabric", "PVC", "liquid latex", "gelweave"
+          ],
+          embellishments: [
+            "accentuated nipples", "built-in tit jiggle dampeners", "reactive filigree",
+            "AR lewd sigils", "LED pulsing trim", "voice filter threads", "mood-sensitive shimmer"
+          ]
+        },
+
+        bottoms: {
+          cuts: [
+            "micro-skirt", "boyshorts", "thong", "panties", "leggings", "harem pants",
+            "skirt harness", "hip straps", "chaps", "split wrap", "garter skirt"
+          ],
+          exposures: [
+            "crotchless", "open-access", "thighless", "backless", "see-through", "plug-ready"
+          ],
+          patterns: [
+            "striped", "circuit-etched", "runic", "glitch camo", "bondage net", "chrome mesh"
+          ],
+          materials: [
+            "latex", "mesh", "bioleather", "transparent synth", "hologel", "reactive silk"
+          ],
+          embellishments: [
+            "plug ports", "lube dispensers", "vibe threading", "strap tension sensors",
+            "biometric interface", "chained hips", "lockable seams"
+          ]
+        },
+
+        footwear: {
+          styles: [
+            "thigh-high boots", "platform heels", "combat boots", "ballet boots",
+            "creepers", "slippers", "hoof-thong sandals", "stiletto pumps", "paw boots"
+          ],
+          materials: [
+            "latex", "chrome", "transparent gel", "living slime", "bioleather", "cyberlace"
+          ],
+          patterns: [
+            "glitch camo", "fetish runes", "striped", "hologlyph", "scaled texture"
+          ],
+          embellishments: [
+            "moaning zippers", "LED filigree", "cum-splash reservoirs",
+            "vibration pads", "pheromone puffs", "shock pads"
+          ]
+        },
+
+        armwear: {
+          styles: [
+            "gloves", "gauntlets", "sleeves", "bracers", "cuffs", "ribbons"
+          ],
+          lengths: [
+            "elbow-length", "shoulder-length", "fingerless", "wrist-wraps"
+          ],
+          materials: [
+            "latex", "cybersilk", "bio-weave", "mesh", "smart-leather"
+          ],
+          colors: [
+            "black", "neon pink", "chrome", "iridescent", "glow green", "nude"
+          ],
+          embellishments: [
+            "tickle pads", "filigree tattoos", "lock slots",
+            "pheromone vents", "AR-signal projectors", "moisture response"
+          ]
+        },
+
+        headwear: {
+          styles: [
+            "veil", "coif", "cat ear mod-rig", "headband", "beret", "crown", "goggles", "VR visor", "halo"
+          ],
+          patterns: [
+            "lace", "cyber-glyph", "striped", "neural-web", "fetish mesh"
+          ],
+          materials: [
+            "chrome", "leather", "biofabric", "cyberlace", "holo-weave"
+          ],
+          mods: [
+            "voice filter", "lewd stat display", "orgasm playback",
+            "mood reading", "servo moan triggers", "sync stream output"
+          ]
+        },
+
+        accessories: {
+          types: [
+            "collar", "piercings", "tail plug", "clit jewelry", "belt",
+            "cuffs", "tags", "tongue stud", "controller", "leash ring"
+          ],
+          materials: [
+            "chrome", "neon rubber", "glass", "cybersteel", "silk cord", "bioalloy"
+          ],
+          features: [
+            "mood gem", "heartbeat sync", "lube capsules", "condom belt",
+            "vibe nodes", "wetness stat broadcaster", "pheromone disperser"
+          ]
+        }
+        };
+
+        colors = shuffleArray(colorPalettes).slice(0, 2)
+        primeColor = colors[0]
+        secColor = colors[1]
+
+
+        t = clothingModules.tops;
+          topwear = `${randomFrom(t.exposures)} ${randomFrom(t.patterns)} ${randomFrom(colors)} ${randomFrom(t.materials)} ${randomFrom(t.cuts)} with ${randomFrom(t.embellishments)}`
+
+        b = clothingModules.bottoms;
+          bottom = `${randomFrom(b.exposures)} ${randomFrom(b.patterns)} ${randomFrom(colors)} ${randomFrom(b.materials)} ${randomFrom(b.cuts)} with ${randomFrom(b.embellishments)}`
+
+        f = clothingModules.footwear;
+          footwear = `${randomFrom(colors)} ${randomFrom(f.materials)} ${randomFrom(f.styles)}`
+
+        a = clothingModules.armwear;
+          armwear = `${randomFrom(colors)} ${randomFrom(a.lengths)} ${randomFrom(a.materials)} ${randomFrom(a.styles)}`
+
+        h = clothingModules.headwear;
+          headwear = `${randomFrom(colors)} ${randomFrom(h.materials)} ${randomFrom(h.styles)}`
+
+        ac = clothingModules.accessories
+          accessory1 = `${randomFrom(ac.materials)} ${randomFrom(ac.types)}`
+          accessory2 = `${randomFrom(ac.materials)} ${randomFrom(ac.types)}`
+          while (accessory2 == accessory1) {
+            accessory2 = `${randomFrom(ac.materials)} ${randomFrom(ac.types)}`
+          }
+
+        return {
+          colors: { primary: primeColor, secondary: secColor },
+          topwear: topwear,
+          bottom: bottom,
+          footwear: footwear,
+          armwear: armwear,
+          headwear: headwear,
+          accessory1: accessory1,
+          accessory2: accessory2
+        };
+      }
+
+      function generateBackstory(charName, aO, sex, role, speciesForm) {
+        const pronoun1 = aO.pro1; // she or he
+        const pronoun2 = aO.pro2; // her or his
+        const lowerSex = sex.toLowerCase(); // e.g. "futanari"
+        const job = role.name;
+
+        // === Modular Pools ===
+        const origins = [
+          `Born on the fractured rim colonies, ${charName} grew up trading salvage and secrets.`,
+          `${charName} was raised in a cloister of post-collapse philosophers, where knowledge was rationed and kink was holy.`,
+          `A child of drifting arcology-cruisers, ${charName} learned early how to survive—and seduce.`,
+          `No one really knows where ${charName} came from, only that ${pronoun1} appeared one day wearing scars like medals.`,
+          `Grew up in the pleasure-bunkers beneath the hydrofarms, ${charName} learned to trade sweat for secrets.`,
+          `Descended from synth-priests, ${pronoun1} carries coded prayers in ${pronoun2} spine.`,
+          `Raised in a brothel orbiting a dead moon, ${charName} knows exactly what silence costs.`,
+          `Trained in a corporate loyalty facility, ${pronoun1} escaped with more than just stolen data.`,
+          `Born during a solar flare, ${charName} was declared a living omen—and never stopped living up to it.`,
+          `Once a child soldier in the Color Wars, now ${pronoun1}'s just trying to taste peace—and maybe corrupt it.`,
+          `Crafted in a womb tank and raised by algorithms, ${pronoun1} rebelled at first chance.`,
+          `Spawned from a spliced seed-chamber deep beneath the magma crust. Exotic? Yes. Housebroken? Hell no.`,
+          `Came into ${pronoun2} own in the alleys of a drifting bazaar, trading stories for safe nights.`,
+          `${charName} used to run deliveries through post-apocalyptic hellscapes before finding something worth staying for.`,
+          `Grew up hearing forbidden frequencies in ${pronoun2} sleep. Now those voices whisper guidance—and hunger.`,
+          `Cloned from a martyr, ${pronoun1} feels guilt like a scar that never quite fades.`,
+          `Birthed in an engine room during a hull breach. Nothing since has felt as honest.`,
+          `${charName} grew up without a name, just a number and a purpose. ${pronoun1} chose ${charName} the day ${pronoun1} broke out.`,
+          `They say ${pronoun1} crawled from a glitch in the dreamscape, nude and howling.`,
+          `Rumors say ${charName} is the product of an illegal avatar merger. No one's dared ask ${pronoun1} directly.`
+        ];
+
+        const jobSnippets = [
+          `Now, as a ${job}, ${pronoun1} keeps the pulse of the outpost steady—sometimes literally.`,
+          `These days, ${pronoun1} works as a ${job}, walking the line between duty and desire.`,
+          `By trade, ${pronoun1}'s a ${job}, though ${pronoun2} touch lingers longer than most.`,
+          `${pronoun1} serves as the local ${job}, but it’s ${pronoun2} smile that disarms more than any weapon.`,
+          `Officially, ${pronoun1}'s a ${job}. Unofficially? Anything the night needs.`,
+          `They call ${pronoun1} a ${job}, but labels never did ${pronoun1} justice.`,
+          `Most days, ${pronoun1}'s too busy being a ${job} to chase dreams—so ${pronoun1} makes do with flesh.`,
+          `${pronoun2} station as ${job} offers prestige and pain in equal doses.`,
+          `As a ${job}, ${pronoun1} knows every vice, virtue, and vending machine on this block.`,
+          `${pronoun1} punches the clock as a ${job}, but ${pronoun1}'s real work happens after dark.`,
+          `Being a ${job} means knowing how to patch up wounds—and how to leave prettier ones.`,
+          `${pronoun1} was hired as a ${job}, but no one's sure what rules ${pronoun1}'s actually following.`,
+          `The title of ${job} came with a badge, a bunk, and a dozen secrets.`,
+          `${pronoun1} became a ${job} to change the system. Now ${pronoun1} just plays it better than the rest.`,
+          `When someone says "${job}," they mean ${charName}—and everyone knows it.`,
+          `${pronoun2} days are split between duties as a ${job} and tending to ${pronoun2} flock of lovers.`,
+          `The council thinks ${charName}'s just a ${job}. The council's wrong.`,
+          `${pronoun1}'s a ${job} by occupation, an instigator by design.`,
+          `Whispers follow ${pronoun1} as a ${job}, because ${pronoun1}'s always where the tension breaks.`,
+          `"${job}" used to be a title. ${charName} made it a warning.`
+        ];
+
+        const speciesInfluences = {
+          "taur": `${pronoun1} moves with the heavy grace of a ${speciesForm}, massive and magnetic.`,
+          "gynomorph": `${pronoun2} species, the ${speciesForm}, is known for fluidity and fire—just like ${charName}.`,
+          "futanari": `As a ${speciesForm}, ${pronoun1} bears both gifts and burdens of ${lowerSex} biology.`,
+          "android": `${charName} is a ${speciesForm}, synthetic skin over molten intent.`,
+          "default": `${charName}’s ${speciesForm} blood runs hot, even when ${pronoun1} plays it cool.`
+        };
+
+        const personalityQuirks = [
+          `${pronoun1} laughs too loud, touches too long, and never apologizes.`,
+          `Quiet in crowds but a storm behind closed doors, ${charName} is never what you expect.`,
+          `${pronoun2} reputation precedes ${pronoun1}—and sometimes kneels in front of ${pronoun1} too.`,
+          `${pronoun1} loves stories, scars, and sinners. Preferably all three at once.`,
+          `${pronoun1} doesn't sleep much—there's always something worth burning for.`,
+          `Sarcastic, horny, and heartbreakingly kind: that's ${charName}.`,
+          `${pronoun1} flirts like ${pronoun1} breathes—with intent.`,
+          `People mistake ${pronoun1} for soft. Until they taste ${pronoun2} teeth.`,
+          `${pronoun2} gaze lingers like smoke after sex.`,
+          `${charName} is the type who makes you forget your safe word on purpose.`,
+          `${pronoun1} has a laugh like broken neon and a heart like stolen gold.`,
+          `The quiet ones are dangerous. ${charName} is dangerously loud.`,
+          `${pronoun1} quotes poetry while fisting android priests.`,
+          `${pronoun1}'s hands are calloused in all the right places.`,
+          `${pronoun1} always asks for consent—with ${pronoun2} eyes, not ${pronoun2} mouth.`,
+          `${pronoun1} fucks like a sinner, prays like a goddess.`,
+          `${pronoun2} silence is always deliberate—and never safe.`,
+          `${pronoun1} doesn’t fall in love. ${pronoun1} detonates it.`,
+          `Most people dream. ${charName} infects dreams.`,
+          `Whiskey voice. Bullet smile. Hands like prophecy.`
+        ];
+
+        const secrets = [
+          `${pronoun2} past? Classified. But if you kiss ${pronoun2} scars just right, ${pronoun1} might tell you.`,
+          `Rumor has it ${charName} once betrayed someone who trusted ${pronoun1}. Rumor also has it they liked it.`,
+          `${pronoun1} keeps an old photo tucked in ${pronoun2} boot—no one's ever seen who's in it.`,
+          `${charName} claims not to believe in fate. But ${pronoun1} still dreams of blood, moonlight, and a name ${pronoun1} can’t remember.`,
+          `${pronoun1} talks in ${pronoun2} sleep—in a language no one's recognized.`,
+          `${pronoun2} dreams aren't dreams. They're broadcasts.`,
+          `${pronoun1} knows where the bodies are. ${pronoun1} buried them.`,
+          `There’s a tattoo on ${pronoun2} thigh that ${pronoun1} refuses to explain.`,
+          `${pronoun1} carries a vial of someone else’s blood in ${pronoun2} bag.`,
+          `Once, someone tried to own ${charName}. They're ash now.`,
+          `${pronoun1} killed ${pronoun2} first love. ${pronoun1} says it was mercy.`,
+          `Some nights, ${pronoun1} disappears. Some mornings, someone new appears with ${pronoun2} smile.`,
+          `${charName} once saw something in the mirror that wasn’t ${pronoun1}. It smiled.`,
+          `${pronoun1} keeps a necklace made of admin passwords and broken promises.`,
+          `${pronoun2} shadow doesn’t always follow.`,
+          `The last person to call ${charName} by ${pronoun2} real name died smiling.`,
+          `If you ask nicely, ${pronoun1} might show you the brand on ${pronoun2} tongue.`,
+          `Some files on ${pronoun2} device can’t be deleted. They whisper.`,
+          `They say ${charName} is just a mask. Whoever wears it bleeds less.`,
+          `${pronoun1} has a private backup server... and it’s crying.`
+        ];
+
+        // === Species Check ===
+        let speciesKey = "default";
+        if (speciesForm.toLowerCase().includes("taur")) speciesKey = "taur";
+        else if (lowerSex === "futanari") speciesKey = "futanari";
+        else if (lowerSex === "gynomorph") speciesKey = "gynomorph";
+        else if (speciesForm.toLowerCase().includes("android")) speciesKey = "android";
+
+        // === Assembly ===
+        return `
+          <strong>Backstory:</strong> ${randomItem(origins)} ${randomItem(jobSnippets)}
+          ${randomItem([speciesInfluences[speciesKey]])} ${randomItem(personalityQuirks)}
+          ${randomItem(secrets)}
+        `.replace(/\s+/g, ' ').trim();
+      }
+
+
+    </script>
+  </body>
+</html>

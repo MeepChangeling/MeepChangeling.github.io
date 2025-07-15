@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>MLP Place Name Generator</title>
+    <style>
+      body {
+        background-color: #111;
+        color: #b9f;
+        font-family: 'Courier New', Courier, monospace;
+        padding: 2em;
+      }
+      select, button, input {
+        background-color: #222;
+        color: #b9f;
+        border: 1px solid #555;
+        margin: 0.5em;
+        padding: 0.5em;
+        font-size: 1em;
+      }
+      #output {
+        margin-top: 1em;
+        font-size: 1.5em;
+        background-color: #222;
+        padding: 1em;
+        border: 1px solid #444;
+      }
+      #history {
+        margin-top: 1em;
+        font-size: 0.9em;
+        max-height: 200px;
+        overflow-y: auto;
+        border-top: 1px dashed #666;
+        padding-top: 1em;
+      }
+  </style>
+  </head>
+  <body>
+    <h1>MLP Placename Generator</h1>
+
+    <label for="region">Region:</label>
+    <select id="region">
+      <option value="">(Random)</option>
+      <option value="Equestria">Equestria</option>
+      <option value="Zebrican Hegemony">Zebrican Hegemony</option>
+      <option value="Eagleland">Eagleland</option>
+      <option value="Drake Federation">Drake Federation</option>
+      <option value="Bloodstone Hive">Bloodstone Hive</option>
+      <option value="Shorefall">Shorefall</option>
+      <option value="Spmane">Spmane</option>
+    </select>
+
+    <label for="biome">Biome:</label>
+    <select id="biome">
+      <option value="">(Random)</option>
+      <option value="forest">Forest</option>
+      <option value="desert">Desert</option>
+      <option value="mountain">Mountain</option>
+      <option value="coast">Coast</option>
+      <option value="savanna">Savanna</option>
+      <option value="volcano">Volcano</option>
+    </select>
+
+    <label for="placeType">Place Type:</label>
+    <select id="placeType">
+      <option value="natural">Natural Feature</option>
+      <option value="settlement">Settlement</option>
+    </select>
+
+    <label for="tone">Tone:</label>
+    <select id="tone">
+      <option value="punny">Punny</option>
+      <option value="fantasy">Fantasy</option>
+    </select>
+
+    <button onclick="generateName()">Generate Name</button>
+    <button onclick="generateName(true)">Pure Random</button>
+
+    <div id="output">Your placename will appear here...</div>
+    <div id="history"></div>
+
+    <script type="text/javascript">
+      const REGIONS = {
+        "Equestria": { species: "pony" },
+        "Zebrican Hegemony": { species: "zebra" },
+        "Eagleland": { species: "griffon" },
+        "Drake Federation": { species: "dragon" },
+        "Bloodstone Hive": { species: "changeling" },
+        "Shorefall": { species: "seapony" },
+        "Spmane": { species: "lamia" },
+      };
+
+      const SPECIES_PUNS = {
+        pony: ["hoof", "neigh", "mane", "trot", "canter", "gallop", "whinny"],
+        zebra: ["hoof", "mane", "stripe", "gallop", "whinny"],
+        griffon: ["beak", "claw", "talon", "feather", "wing", "roost"],
+        dragon: ["scale", "talon", "claw", "fang", "spike", "flame", "ash"],
+        changeling: ["hive", "drone", "sting", "carapace", "chrysalis"],
+        seapony: ["wave", "fin", "tide", "reef", "shoal", "kelp"],
+        lamia: ["coil", "scale", "hiss", "venom", "slither", "wrap"],
+      };
+
+      const BIOME_TEMPLATES = {
+        forest: {
+          formats: ["{adj} {noun} Forest", "{noun}grove", "{adj}{noun}wood"],
+          adjectives: ["Whispering", "Dark", "Moonlit", "Frozen", "Wailing"],
+          nouns: ["Hollow", "Vale", "Thicket", "Shade", "Bough"]
+        },
+        desert: {
+          formats: ["{adj} Dunes", "{noun} Expanse", "{noun} Wastes"],
+          adjectives: ["Scorching", "Bleached", "Silent", "Burning", "Ashen"],
+          nouns: ["Sun", "Dust", "Glass", "Salt", "Mane"]
+        },
+        mountain: {
+          formats: ["Mount {noun}", "{adj} Peaks", "{noun}horns"],
+          adjectives: ["Jagged", "Skyward", "Thunderous", "Cold"],
+          nouns: ["Hoof", "Claw", "Echo", "Stone", "Fang"]
+        },
+        coast: {
+          formats: ["{noun} Shoals", "Cape {noun}", "{adj} Tides"],
+          adjectives: ["Stormy", "Calm", "Hidden", "Crashing"],
+          nouns: ["Fin", "Wave", "Tide", "Bay", "Gulf"]
+        },
+        savanna: {
+          formats: ["{adj} Plains", "{noun} Fields", "The {noun} Expanse"],
+          adjectives: ["Endless", "Golden", "Sweeping", "Dry"],
+          nouns: ["Stripe", "Dust", "Grass", "Horizon"]
+        },
+        volcano: {
+          formats: ["{noun} Crater", "Mount {noun}", "{adj} Pyre"],
+          adjectives: ["Molten", "Fiery", "Ashen"],
+          nouns: ["Flame", "Spike", "Fang", "Cinder"]
+        },
+      jungle: {
+        formats: ["{adj} {noun} Jungle", "{noun}thicket", "{adj}{noun}canopy"],
+        adjectives: ["Verdant", "Steaming", "Coiling", "Echoing", "Shrouded"],
+        nouns: ["Vine", "Mist", "Leaf", "Bark", "Root"]
+      },
+      swamp: {
+        formats: ["{adj} Bog", "{noun}mire", "{adj} Fen", "The {noun} Slough"],
+        adjectives: ["Murky", "Fetid", "Sunken", "Twisting", "Rotting"],
+        nouns: ["Marsh", "Frog", "Bile", "Gloom", "Lily"]
+      },
+      tundra: {
+        formats: ["{adj} Tundra", "Frost{noun}", "{noun} Expanse"],
+        adjectives: ["Frozen", "Bitter", "Windchilled", "Cracked", "Bleak"],
+        nouns: ["Ice", "Permafrost", "Frost", "Drift", "Howl"]
+      },
+      badlands: {
+        formats: ["The {adj} Bluffs", "{adj} Ravine", "{noun} Flats"],
+        adjectives: ["Broken", "Ravaged", "Rusting", "Sharp"],
+        nouns: ["Canyon", "Fang", "Spur", "Ash", "Ridge"]
+      }
+      };
+
+      const SETTLEMENT_TEMPLATES = {
+        formats: [
+          "{adj}{noun}",
+          "{noun}{suffix}",
+          "{prefix}{noun}",
+          "{noun} {suffix}",
+          "{adj} {noun}",
+        ],
+        adjectives: [
+          "New", "Old", "Silver", "Golden", "Dusty", "Quiet", "Shady", "Cloudy", "Whinny", "Stormy"
+        ],
+        nouns: [
+          "Hoof", "Trot", "Mane", "Rock", "Cliff", "Vale", "Grove", "Stone", "Spring", "Bay", "Nest"
+        ],
+        prefixes: ["Neigh", "Canter", "Bray", "Trott", "Gallop"],
+        suffixes: ["ton", "ville", "stead", "shire", "burg", "grad", "polis", "gate"]
+      };
+
+      const history = [];
+
+      function randFrom(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+      }
+
+      function generateName(pureRandom = false) {
+        const regionEl = document.getElementById("region");
+        const biomeEl = document.getElementById("biome");
+        const toneEl = document.getElementById("tone");
+        const placeTypeEl = document.getElementById("placeType");
+
+        let region = regionEl.value || randFrom(Object.keys(REGIONS));
+        let biome = biomeEl.value || randFrom(Object.keys(BIOME_TEMPLATES));
+        let tone = toneEl.value || "punny";
+        let placeType = placeTypeEl.value || "natural";
+        let species = pureRandom ? randFrom(Object.keys(SPECIES_PUNS)) : REGIONS[region]?.species;
+
+        const punPool = SPECIES_PUNS[species] || [];
+
+        let name = "";
+
+        if (placeType === "natural") {
+          const biomeTemplates = BIOME_TEMPLATES[biome];
+          let format = randFrom(biomeTemplates.formats);
+          let adj = randFrom(biomeTemplates.adjectives);
+          let noun = randFrom(biomeTemplates.nouns);
+          if (tone === "punny" && punPool.length > 0) {
+            if (Math.random() > 0.5) noun = randFrom(punPool);
+            else adj = randFrom(punPool);
+          }
+          name = format
+            .replace("{adj}", adj)
+            .replace("{noun}", noun);
+        } else {
+          // Settlement name
+          let format = randFrom(SETTLEMENT_TEMPLATES.formats);
+          let adj = randFrom(SETTLEMENT_TEMPLATES.adjectives);
+          let noun = randFrom(SETTLEMENT_TEMPLATES.nouns);
+          let prefix = randFrom(SETTLEMENT_TEMPLATES.prefixes);
+          let suffix = randFrom(SETTLEMENT_TEMPLATES.suffixes);
+
+          if (tone === "punny" && punPool.length > 0) {
+            if (Math.random() > 0.5) noun = randFrom(punPool);
+            else adj = randFrom(punPool);
+          }
+
+          name = format
+            .replace("{adj}", adj)
+            .replace("{noun}", noun)
+            .replace("{prefix}", prefix)
+            .replace("{suffix}", suffix);
+        }
+
+        name = convertToTitleCase(name);
+
+        // Display output
+        document.getElementById("output").innerText = name;
+
+        history.unshift(name);
+        if (history.length > 10) history.pop();
+        document.getElementById("history").innerHTML = "<strong>Recent Names:</strong><br>" + history.join("<br>");
+      }
+
+      function convertToTitleCase(str) {
+        if (!str) {
+            return ""
+        }
+
+        return str.toLowerCase().split(' ').map(function (word) {
+           return word.charAt(0).toUpperCase().concat(word.substr(1));
+        }).join(' ');
+      };
+    </script>
+  </body>
+</html>

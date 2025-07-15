@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accentifier</title>
+  <style>
+    textarea { width: 100%; height: 150px; margin-bottom: 10px; }
+    button { padding: 10px 20px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <label for="accentMode">Accent Mode:</label>
+  <select id="accentMode">
+    <option value="oblight">Oatbuck Light (Vertex)</option>
+    <option value="obheavy">Oatbuck Heavy (Hearth Steel)</option>
+    <option value="luna">Old Equish (Luna)</option>
+    <option value="country">Rural Equish (Aplejack)</option>
+  </select>
+  <h1>Accentifier Converter</h1>
+  <textarea id="input" placeholder="Paste your text here..."></textarea>
+  <button onclick="convertToAussie()">Accentify</button>
+  <textarea id="output" placeholder="Your Accented text will appear here..."></textarea>
+
+  <script>
+  const accentModes = {
+  oblight: {
+    // Greetings & Phrases
+    "hello": "g’day",
+    "hi": "g’day",
+    "good morning": "mornin’",
+    "good afternoon": "arvo",
+    "good evening": "eve’n",
+    "goodbye": "catch ya",
+    "how are you": "how ya goin’",
+
+    // Acknowledgements
+    "thanks": "cheers",
+    "thank you": "ta",
+    "you're welcome": "no worries",
+    "okay": "no worries",
+    "yes": "yeah",
+    "no": "nah",
+
+    // People
+    "friend": "mate",
+    "friends": "mates",
+    "pony": "cobber",
+    "stallion": "bloke",
+    "mare": "sheila",
+    "colt": "ankle biter",
+    "foal": "ankle biter",
+
+    // Food & Drink
+    "food": "grub",
+    "drink": "cold one",
+    "barbecue": "barbie",
+    "breakfast": "brekky",
+    "sandwich": "sanger",
+    "sausage": "snag",
+    "beer": "coldie",
+
+    // Time & Place
+    "afternoon": "arvo",
+    "evening": "eve’n",
+    "morning": "mornin’",
+    "bathroom": "dunny",
+    "toilet": "dunny",
+    "home": "shack",
+    "countryside": "bush",
+    "nowhere": "woop woop",
+
+    // Emotions & States
+    "tired": "stuffed",
+    "excited": "keen",
+    "happy": "stoked",
+    "sad": "devo",
+    "angry": "cranky",
+    "sick": "crook",
+    "affection": "warm fuzzies",
+    "joy": "bit o’ bliss",
+    "fear": "nerves",
+    "anxiety": "jitters",
+    "pride": "chuffed",
+
+    // Military Terms
+    "orders": "marchin’ notes",
+    "report": "sitrep",
+    "mission": "op",
+    "command": "brass",
+    "commander": "top brass",
+    "troops": "the crew",
+    "objective": "goalpost",
+    "enemy": "hostiles",
+    "squad": "team",
+    "recon": "sneak peek",
+
+    // MLP Lore
+    "cutie mark": "talent stamp",
+    "princess": "high-mane",
+    "pegasus": "cloud-stepper",
+    "unicorn": "horn-head",
+    "earth pony": "pone",
+    "changeling": "buggo",
+    "griffon": "beak-face",
+    "alicorn": "wing’n’horn",
+    "equestria": "the heartland",
+    "canterlot": "Can’lot",
+    "ponyville": "the Ville",
+    "crystal empire": "shiny north",
+
+    // Sentence-level transforms
+    "i do not know": "dunno",
+    "i don't know": "dunno",
+    "i am going to": "i’m gonna",
+    "i do not want to": "don’t wanna",
+    "we have to go": "we gotta leg it",
+    "are you okay": "ya right there?",
+    "what is going on": "what’s the fuss?",
+    "this is very important": "this matters heaps",
+    "that is not my problem": "ain’t my paddock to muck"
+  },
+  obheavy: {
+    // Greetings & Phrases
+    "hello": "g’day mate",
+    "hi": "oi there",
+    "good morning": "mornin’, ya drongo",
+    "good afternoon": "s’arvo",
+    "good evening": "nighty mate",
+    "goodbye": "rack off",
+    "how are you": "how’s it hangin’, ya galah?",
+
+    // Acknowledgements
+    "thanks": "cheers",
+    "thank you": "ta",
+    "you're welcome": "too right",
+    "okay": "no wucka’s",
+    "yes": "yea",
+    "no": "nup",
+
+    // People
+    "friend": "mate",
+    "friends": "mob",
+    "pony": "hoofface",
+    "stallion": "bloke",
+    "mare": "sheila",
+    "colt": "ankle biter",
+    "foal": "shark biscuit",
+
+    // Food & Drink
+    "food": "tucker",
+    "drink": "coldie",
+    "barbecue": "barbie bash",
+    "breakfast": "brekky",
+    "sandwich": "sanger",
+    "sausage": "snag",
+    "beer": "tinny",
+
+    // Time & Place
+    "afternoon": "s’arvo",
+    "evening": "s’eve’n",
+    "morning": "blinkin’ dawn",
+    "bathroom": "thunderbox",
+    "toilet": "dunny",
+    "home": "swag heap",
+    "countryside": "arse-end of the bush",
+    "nowhere": "woop woop",
+
+    // Emotions & States
+    "tired": "buggered",
+    "excited": "frothin’",
+    "happy": "rapt",
+    "sad": "devo as hell",
+    "angry": "crackin’ the shits",
+    "sick": "crook as a dog",
+    "love": "mad for ya",
+    "affection": "mushy stuff",
+    "joy": "a real hoot",
+    "fear": "gutful of dread",
+    "anxiety": "buzzin’ too hard",
+    "pride": "walkin’ tall",
+
+    // Military Terms
+    "orders": "marchin’ words",
+    "report": "sitrep",
+    "mission": "op",
+    "command": "top brass",
+    "commander": "the big bugger",
+    "troops": "mob",
+    "objective": "the thing to nick",
+    "enemy": "tossers",
+    "squad": "my lot",
+    "recon": "sneaky peek",
+
+    // MLP Lore
+    "cutie mark": "arse badge",
+    "princess": "shiny-head",
+    "pegasus": "wingnut",
+    "unicorn": "pointy",
+    "earth pony": "mudhoover",
+    "changeling": "bugger-shifter",
+    "griffon": "clawface",
+    "alicorn": "shiny-hybrid",
+    "equestria": "the sunspot",
+    "canterlot": "Cannylot",
+    "ponyville": "Podunkville",
+    "crystal empire": "shiny hole up north",
+
+    // Sentence-level transforms
+    "i do not know": "dunno, mate",
+    "i am going to": "i’m gonna leg it",
+    "i do not want to": "don’t fancy it",
+    "we have to go": "we gotta hoof it",
+    "are you okay": "ya crook or what?",
+    "what is going on": "what’s the bloody story?",
+    "this is very important": "this is bloody huge",
+    "that is not my problem": "not my paddock, not my dung heap"
+  },
+  luna: {
+    // Greetings & Phrases
+    "hello": "hail",
+    "hi": "well met",
+    "good morning": "a fair morn to thee",
+    "good evening": "a quiet eve to thee",
+    "goodbye": "fare thee well",
+    "how are you": "how dost thou fare?",
+    "nice to meet you": "’tis a pleasure to make thy acquaintance",
+    "it is good to see you": "’tis a joy to behold thee once more",
+
+
+    // Acknowledgements
+    "thanks": "our thanks",
+    "thank you": "we thank thee",
+    "you're welcome": "’tis naught",
+    "okay": "very well",
+    "yes": "aye",
+    "no": "nay",
+    "sure": "verily",
+
+    // People
+    "friend": "companion",
+    "friends": "comrades",
+    "pony": "subject",
+    "ponies": "our subjects",
+    "stallion": "gentlestallion",
+    "mare": "gentlemare",
+    "colt": "young one",
+    "filly": "young one",
+    "foal": "babe",
+    "changeling": "shifter-fey",
+    "alicorn": "sister in power",
+    "pegasus": "skyborne one",
+    "earth pony": "earthbound soul",
+    "unicorn": "horned kin",
+
+    // Emotions
+    "tired": "weary",
+    "happy": "gladdened",
+    "sad": "burdened in heart",
+    "angry": "incensed",
+    "love": "devotion",
+    "affection": "fondness",
+    "joy": "elation",
+    "fear": "dread",
+    "anxiety": "unquiet mind",
+    "pride": "honor held high",
+
+    // Miscellaneous
+    "food": "nourishment",
+    "drink": "draught",
+    "sleep": "rest",
+    "dream": "vision of night",
+    "nightmare": "phantom dread",
+    "light": "radiance",
+    "darkness": "the shade",
+
+    // MLP Lore (reworded with her voice)
+    "cutie mark": "soul-crest",
+    "magic": "arcane",
+    "princess": "crown-bearer",
+    "equestria": "the realm",
+    "canterlot": "the high city",
+    "ponyville": "the village of harmony",
+    "crystal empire": "the northern gleam",
+    "nightmare moon": "our former shadow",
+
+    // Military & Guard Speak
+    "orders": "directives",
+    "commander": "warden",
+    "soldier": "mare-at-arms",
+    "guard": "watchmare",
+    "mission": "quest",
+    "enemy": "foe",
+
+    // Terms from blindness / batpony heritage
+    "look": "mark well",
+    "see": "perceive",
+    "watch": "attend",
+    "hear": "harken",
+    "listen": "lend thine ear",
+    "dark": "gloom",
+    "light": "radience",
+
+    // Sentence-level transforms
+    "i do not know": "we knoweth not",
+    "i am going to": "we shall venture forth",
+    "i do not want to": "we wish it not",
+    "are you okay": "dost thou fare well?",
+    "what is going on": "what transpires hither?",
+    "this is very important": "this matter beareth great weight",
+    "that is not my problem": "that burden is not ours to bear",
+    "i am sorry": "we beg thy pardon",
+    "i understand": "we comprehend thy meaning",
+    "you must be careful": "thou must take heed",
+    "we have to go": "we needs must away",
+    "i have no choice": "our hoof is forced",
+    "this is my duty": "this task is our charge"
+  },
+  country: {
+    // Greetings & Phrases
+    "hello": "howdy",
+    "hi": "howdy",
+    "good morning": "mornin’ y’all",
+    "good evening": "evenin’",
+    "goodbye": "see y’all later",
+    "how are you": "how ya doin’",
+    "nice to meet you": "real pleased t’meetcha",
+
+    // Acknowledgements
+    "thanks": "much obliged",
+    "thank you": "’preciate it",
+    "you're welcome": "don’t mention it",
+    "okay": "alrighty",
+    "yes": "yep",
+    "no": "nope",
+
+    // People
+    "friend": "pardner",
+    "friends": "folks",
+    "pony": "critter",
+    "stallion": "feller",
+    "mare": "gal",
+    "colt": "young’un",
+    "filly": "little lady",
+    "foal": "young’un",
+
+    // Food & Drink
+    "food": "chow",
+    "drink": "swig",
+    "breakfast": "mornin’ grub",
+    "lunch": "midday fixin’s",
+    "dinner": "supper",
+
+    // Time & Place
+    "home": "homestead",
+    "town": "village",
+    "city": "big ol’ place",
+    "farm": "spread",
+    "countryside": "back forty",
+
+    // Emotions
+    "tired": "worn out",
+    "happy": "tickled",
+    "sad": "blue",
+    "angry": "fit to be tied",
+    "love": "sweet on ya",
+    "pride": "plumb proud",
+
+    // Sentence-level
+    "i do not know": "ain’t got a clue",
+    "i don't know": "dunno",
+    "i am going to": "i’m fixin’ to",
+    "we have to go": "we best be movin’",
+    "are you okay": "y’all doin’ alright?",
+    "what is going on": "what in tarnation?",
+    "this is very important": "this here’s mighty serious",
+    "that is not my problem": "ain’t my hog to wrestle"
+  }
+  };
+
+  function escapeRegExp(string) {
+return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function convertToAussie() {
+let text = document.getElementById("input").value;
+const mode = document.getElementById("accentMode").value;
+console.log("Accent mode:", mode);
+const wordSwaps = accentModes[mode];
+
+// Sort longest keys first
+const sortedWordSwaps = Object.entries(wordSwaps).sort(
+  ([a], [b]) => b.length - a.length
+);
+
+for (const [key, value] of sortedWordSwaps) {
+  const regex = new RegExp(`(^|[^\\w'])${escapeRegExp(key)}(?=[^\\w']|$)`, 'gi');
+  text = text.replace(regex, (match, p1) => p1 + matchCase(match.slice(p1.length), value));
+}
+
+const regexByMode = {
+  oblight: [
+    { pattern: /\bgoing to\b/gi, replacement: "gonna" },
+    { pattern: /\bwant to\b/gi, replacement: "wanna" },
+    { pattern: /\bgive me\b/gi, replacement: "gimme" },
+    { pattern: /\bgot to\b/gi, replacement: "gotta" },
+    { pattern: /ing\b/g, replacement: "in’" },
+    { pattern: /\byour\b/gi, replacement: "ya" }
+  ],
+  obheavy: [
+    { pattern: /\bgoing to\b/gi, replacement: "gonna" },
+    { pattern: /\bwant to\b/gi, replacement: "wanna" },
+    { pattern: /\bgive me\b/gi, replacement: "gimme" },
+    { pattern: /\bgot to\b/gi, replacement: "gotta" },
+    { pattern: /ing\b/g, replacement: "in’" },
+    { pattern: /\byour\b/gi, replacement: "ya" }
+  ],
+  luna: [
+    { pattern: /\byou are\b/gi, replacement: "thou art" },
+    { pattern: /\byour\b/gi, replacement: "thy" },
+    { pattern: /\byours\b/gi, replacement: "thine" },
+    { pattern: /\byou\b/gi, replacement: "thee" },
+    { pattern: /\bi am\b/gi, replacement: "we are" },
+    { pattern: /\bi have\b/gi, replacement: "we possess" },
+    { pattern: /\bi will\b/gi, replacement: "we shall" },
+    { pattern: /\bi shall\b/gi, replacement: "we shall" },
+    { pattern: /\bwill you\b/gi, replacement: "wilt thou" },
+    { pattern: /\bdo you\b/gi, replacement: "dost thou" },
+    { pattern: /\bdid you\b/gi, replacement: "didst thou" },
+    { pattern: /\bdoes\b/gi, replacement: "doth" },
+    { pattern: /\bis\b/gi, replacement: "be" },
+    { pattern: /\bwas\b/gi, replacement: "wert" },
+    { pattern: /\bwere\b/gi, replacement: "wast" },
+    { pattern: /\bit is\b/gi, replacement: "’tis" },
+    { pattern: /\bit was\b/gi, replacement: "’twas" },
+
+    // Poetic inversions
+    { pattern: /\bi (\w+) not\b/gi, replacement: "not $1 I" },
+    { pattern: /\bthis is\b/gi, replacement: "’tis" },
+    { pattern: /\bthat is\b/gi, replacement: "’tis that" },
+    { pattern: /\bthe (\w+) is\b/gi, replacement: "$1 is the" },
+    { pattern: /\bwe must (\w+)\b/gi, replacement: "$1 must we" }
+  ],
+  country: [
+    { pattern: /\bgoing to\b/gi, replacement: "fixin’ to" },
+    { pattern: /(\w+)ing\b/gi, replacement: "$1in’" }, // "running" -> "runnin’"
+    { pattern: /\byou all\b/gi, replacement: "y’all" },
+    { pattern: /\bdo not\b/gi, replacement: "don’t" },
+    { pattern: /\bdoes not\b/gi, replacement: "don’t" },
+    { pattern: /\bdid not\b/gi, replacement: "didn’t" },
+    { pattern: /\bis not\b/gi, replacement: "ain’t" },
+    { pattern: /\bare not\b/gi, replacement: "ain’t" },
+    { pattern: /\bwas not\b/gi, replacement: "weren’t" },
+    { pattern: /\bwere not\b/gi, replacement: "weren’t" },
+    { pattern: /\bcannot\b/gi, replacement: "can’t" }
+  ]
+};
+
+const regexReplacements = regexByMode[mode] || [];
+regexReplacements.forEach(({ pattern, replacement }) => {
+  text = text.replace(pattern, replacement);
+});
+
+document.getElementById("output").value = text;
+}
+
+function matchCase(original, replacement) {
+if (original === original.toUpperCase()) {
+  return replacement.toUpperCase();
+}
+if (original[0] === original[0].toUpperCase()) {
+  return replacement[0].toUpperCase() + replacement.slice(1);
+}
+return replacement;
+}
+
+  </script>
+</body>
+</html>
