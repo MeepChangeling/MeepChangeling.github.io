@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+@font-face {
+    font-family: 'hyperlegibler';
+    src: url('./../../fonts/atkinson-hyperlegible-regular-102.woff2') format('woff2'),
+         url('./../../fonts/atkinson-hyperlegible-regular-102.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+  background-image: url(./img/wooddesktop.webp);
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #06080F;
+}
+h1 {
+  font-family: "Italianno", cursive;
+  font-style: normal;
+  font-size: 3rem;
+}
+h2 {
+  font-family: "Italianno", cursive;
+  font-style: normal;
+  font-size: 1.8rem;
+}
+p {
+  font-family: 'hyperlegibler';
+}
+p.script {
+  font-family: "Italianno", cursive;
+  font-style: normal;
+}
+div.readingarea {
+  margin-left: auto;
+  margin-right: auto;
+  width: 65vw;
+  background:tan;
+  padding:12px;
+  aspect-ratio:4/3;
+  border:solid calc(0.8vw + 4px ) #F9E2C3;
+ border-image: url(./img/parchment-hand-painted_zfdfpt.avif);
+  border-image-slice: 64 fill;
+    border-image-repeat: stretch;
+background-clip: padding-box;
+}
+div.types {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60vw;
+}
+div.item {
+  border-bottom: 5px double #06080f;
+  padding-left: 1vw;
+  padding-bottom: 1vw;
+}
+div.item:first-child {
+  border-top: none;
+}
+div.item:last-child {
+  border-bottom: none;
+}
+#types span::after {
+  font-family:
+    "Times New Roman",
+    "Georgia",
+    "Arial",
+    sans-serif;
+  margin-left: 0.4em;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+#grades span::after {
+  font-family:
+    "Times New Roman",
+    "Georgia",
+    "Arial",
+    sans-serif;
+  margin-left: 0.4em;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+#types span.type1 {
+  color: #06080f;
+}
+#types span.type1::after {
+  content: " 🌢";
+  color: #c84849;
+}
+#types span.type2 {
+  color: #06080f;
+}
+#types span.type2::after {
+  content: " 🜛";
+  color: #b0cde1;
+}
+#types span.type3 {
+  color: #06080f;
+}
+#types span.type3::after {
+  content: " ✴";
+  color: #edcb80;
+}
+#types span.type4 {
+  color: #06080f;
+}
+#types span.type4::after {
+  content: "  ❖";
+  color: #e134e9;
+}
+#grades span.grade1::after {
+  content: " ◼";
+  color: #eadbdc;
+}
+#grades span.grade2::after {
+  content: " ◆";
+  color: #c05b5c;
+}
+#grades span.grade3::after {
+  content: " ▲";
+  color: #ad3536;
+}
+#grades span.grade4::after {
+  content: "  ⬤";
+  color: #d86f72;
+  font-size: 2rem;
+}

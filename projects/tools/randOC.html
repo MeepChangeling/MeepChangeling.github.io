@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Rand OC</title>
+    <style>
+      div.reading {
+        width: 60vw;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reading">
+      <button onclick="makeOC()" type="button" name="button">Random</button>
+      <br><br>
+      <div id="output"></div>
+    </div>
+
+  </body>
+  <script type="text/javascript">
+    function getRandomItem(arr) {
+        if (!Array.isArray(arr) || arr.length === 0) {
+            throw new Error("Please provide a non-empty array.");
+        }
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    };
+    function makeOC() {
+      arr1 = ["<b>The Dreamer:</b> Always wanted more than their small-town life, obsessed with stars and mysteries.", "<b>The Burnout:</b> Exhausted from obligations, work, or family; sees space as escape.", "<b>The Outsider:</b> Never fit in socially; wants a place they truly belong.", "<b>The Idealist:</b> Believes exploring space is a higher calling — destined to make history.", "<b>The Runaway:</b> Escaping shame, failure, or a bad situation. Leaving isn’t adventure — it’s survival."
+      ]
+      var1 = getRandomItem(arr1)
+      arr2 =["<b>Tinkerer/Inventor:</b> Good with machines, loves to hack things together. (AB energy, but older.)", "<b>Scholar/Archivist:</b> Knows lore, languages, or history — useful for alien ruins.", "<b>Medic/Healer:</b> Compassionate, practical, good at keeping others alive.", "<b>Performer/Storyteller:</b> Charismatic, disarming, able to win allies with words.", "<b>Warrior/Ex-Guard:</b> Physically capable, disciplined, but maybe broken by past fights.", "<b>Explorer/Survivor:</b> Outdoorsy, resourceful, knows how to live off nothing."]
+      var2 = getRandomItem(arr2)
+      arr3 = ["<b>Wide-eyed Wonder:</b> Everything’s amazing — aliens, stars, even danger.", "<b>Cynical Realist:</b> They expect betrayal, but that makes them hard to shake.", "<b>Arrogant Thrill-seeker:</b> Lives for the adrenaline, laughs at risk.", "<b>Nervous Wreck:</b> Full of self-doubt, grows into strength later.", "<b>Stoic Caretaker:</b> Quiet, reliable, deeply loyal once bonded.", "<b>Romantic Idealist:</b> Sees beauty in everything — even ruins and warships."]
+      var3 = getRandomItem(arr3)
+      arr4 = ["<b>Imposter Syndrome:</b> Feels unworthy of being chosen.", "<b>Short Temper: Quick to snap at allies and enemies alike.", "<b>Attachment Issues: Runs away from bonds, or clings too hard.", "<b>Curiosity Problem:</b> Will touch the glowing alien artifact every time.", "<b>Fear of Violence:</b> Unsure if they can handle the realities of conflict.", "<b>Selfish Streak: Joins the adventure for themselves, not for noble reasons."]
+      var4 = getRandomItem(arr4)
+      arr5 = ["<b>From Nobody to Hero:</b> Realizing they do matter, even in a vast galaxy.", "<b>Learning Belonging:</b> Finding family with Midnight (and later crew).", "<b>Embracing Destiny:</b> They are the pony meant to stand among stars.", "<b>Reconciling with Past:</b> Eventually facing what they left behind — on their own terms.", "<b>Breaking the Mask:</b> Dropping bravado or cynicism to show who they really are."]
+      var5 = getRandomItem(arr5)
+      document.getElementById("output").innerHTML = var1 + "<BR>" + var2 + "<BR>" + var3 + "<BR>" + var4 + "<BR>" + var5
+    };
+  </script>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Sci-Fi Adventure Gen</title>
+    <style media="screen">
+
+    </style>
+    <script src="src/randomrolls.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <p id="output"></p>
+    <button onclick="pickList()">Generate</button>
+    <label for="modes">Choose a mode:</label>
+      <select name="modes" id="modes">
+       <option selected value="1">Full</option>
+       <option value="2">Giver & Mission</option>
+       <option value="3">Giver Personality & Mission</option>
+       <option value="4">Mission Only</option>
+       <option value="5">Mission & Location</option>
+       <option value="6">Mission & Reward</option>
+       <option value="7">Mission & Help/Opposition</option>
+      </select>
+
+    <script type="text/javascript">
+      const contactPersonalities = [
+        "Accomplished", "Action oriented", "Adorable", "Affectionate", "Afraid", "Agreeable", "Available", "Boring", "Boundless", "Brash", "Brazen", "Classy", "Clever", "Cold", "Concerned", "Confused", "Controlling", "Cooperative", "Courteous", "Dazzling", "Deceiving", "Defective", "Dependent", "Detached", "Detailed", "Determined", "Disagreeable", "Disciplined", "Discouraged", "Doubtful", "Egotistic", "Enchanting", "Fanciful", "Fantastic", "Filthy", "Flamboyant", "Fortunate", "Fresh", "Frigid", "Gentle", "Gives up easily", "Graceful", "Gracious", "Guilt ridden", "Haggling", "Haughty", "Hedonistic", "Horrible", "Humble", "Humorous", "Ill", "Inconsiderate", "Innocent", "Interrupting", "Involved", "Irreverent", "Joyful", "Languid", "Loud", "Loving", "Melancholic", "Miserly", "Never hungry", "Nonchalant", "Open-Minded", "Peaceful", "Persuasive", "Placid", "Pleasant", "Punctual", "Pushy", "Quixotic", "Realistic", "Relaxed", "Repulsive", "Rich", "Rough", "Sanctimonious", "Secretive", "Self-disciplined", "Sexy", "Sharp", "Sorry", "Spunky", "Supercilious", "Talented", "Tentative", "Terrified", "Testy", "Timid", "Tiresome", "Understanding", "Unhappy", "Unkind", "Unsure", "Vulnerable", "Wild", "Wishy Washy", "Youthful", "Zany"
+      ]
+      const contactProfessions = [
+        "Accountant", "Actor", "Administrator", "Adult Services", "Anarchist", "Anaesthesiologist", "Anthropologist", "Apprentice", "Architect", "Archaeologist", "Armoured Infantary", "Armoury Officer", "Art Dealer", "Artist", "Assassin", "Assistant", "Astrobiologist", "Astrophysicist", "Asylum Seeker/Refugee", "Atmospheric Pilot", "Author", "Barber/Hairdresser", "Bartender", "Bio-engineer", "Biochemist", "Bioweapon Dealer", "Bodyguard", "Bombers Pilot", "Botanist", "Bounty Hunter", "Bureaucrat", "Cartographer", "Chef/Cook", "Chief Executive Officer", "Chemist", "Chief of Security", "Child carer", "Colonist", "Communications", "Computer Technician", "Convertor/Missionary", "Corporate Operative", "Counsellor/Therapist", "Counter Terrorist", "Courier", "Covert Operative", "Crime lord", "Cryptographer", "Custodial Staff", "Cybernetics Engineer", "Delivery Driver", "Diagnostic Technician", "Diplomat", "Drill/Training Instructor", "Drive/Engine Operator", "Drone Commander", "Drone/Bot Technician", "Drop Pod Commander", "Drug Mule", "Duty Medic", "Duty Officer", "Ecologist", "Economist", "Emergency Systems", "Energy Weapon Specialist", "Engineer", "Environmental Inspector", "Equipment Specialist", "Exorcist", "Exotic Goods Trader", "Exotic Weapon Specialist", "Explorer", "Factory Worker", "Fashion Designer", "Field Medic", "Field Medic", "Fighter Pilot", "Film Maker/Archiver", "Fire/Damage Control", "Firearms Trainer", "First Contact Specialist", "First Responder", "Flight Controller", "Gambler", "Games Designer", "General Goods Trader", "Geneticist", "Geologist", "Guard/Private Security", "Gym Instructor", "Hacker", "Health & Safety Officer", "Historian", "IT Security", "Illegal Goods Trader", "Industrial Pilot", "Industrial Trader", "Infantry", "Information Broker", "Inquisitor", "Instructor", "Investigator", "Journalist", "Judge", "Lawyer", "Librarian/Record Keeper", "Linguistics Officer", "Livestock Trader", "Loadmaster", "Locksmith", "Long term carer", "Mathematician", "Mech. Pilot", "Mechanised Infantry", "Media Advisor", "Melee Expert", "Mechanic", "Mercenary", "Military Person (High Rank)", "Military Person (Low Rank)", "Military Person (Med Rank)", "Military Police/JAG", "Miner", "Model", "Morale Officer", "Mutant Hunter", "Nano Technician", "Navigator", "Negotiator", "Neurology", "Nuclear Technician", "Nurse", "Nutrition", "Operations Manager", "Organ Dealer/Thief", "Oversight Committee Member", "Party Coordinator/Planner", "Personal Guard", "Pharmacist", "Physiotherapist", "Physisistit", "Police Officer", "Political Activist", "Political Officer", "Politician", "Precog", "Prison/Brigg Officer", "Private Detective", "Privateer/Pirate", "Projectile Weapon Specialist", "Prospector", "Psionist/Psyker", "Psychiatry", "Programmer", "Public Liaison", "Radio/Broadcaster", "Rebel Fighter", "Religious Leader", "Religious Police", "Remote Drone Operator", "Reporter", "Robotics Engineer", "Sanitation Technician", "Scout", "Scrap Merchant", "Security Officer", "Sensor Maintenance Engineer", "Sensors/Radar", "Servant", "Service Conductor", "Shield Monitor", "Shop Keeper", "Shuttle/Small Craft Pilot", "Slaver", "Smuggler", "Social Media Officer", "Spy", "Standards Inspector", "Strategic Operations", "Street Surgeon", "Structural Maintenance", "Surgeon", "System Monitor", "Tactical Officer", "Teacher", "Technician", "Telepath", "Temporal Police Officer", "Terraformer", "Test Pilot", "Translator", "Transient/Homeless person", "Transporter Chief", "Unarmed Combat Teacher", "Vigilante", "Waiter/Waitress", "Weapons Dealer", "Wing Commander", "Xeno Archaeology", "Xeno Biology"
+      ]
+      const missionActions = [
+        "Aid", "Assassinate", "Assault", "Assist", "Attack", "Avenge", "Battle", "Beg for forgiveness", "Beg for mercy", "Beset", "Blackmail", "Break", "Chase", "Chase", "Cleanse", "Combat", "Conceal", "Contend with", "Create", "Defeat", "Defend", "Deliver message to", "Deliver object to", "Destroy", "Destroy", "Discover", "Disguise", "Disrupt", "Distract", "Encounter", "Entertain", "Escape From", "Escort", "Escort", "Explore", "Fight", "Find", "Find", "Foil", "Foil", "Get", "Guard", "Guide", "Hide from", "Implicate", "Infiltrate", "Insert", "Intercept", "Intimidate", "Investigate", "Join", "Journey to", "Kidnap", "Kill", "Liberate", "Locate", "Meet", "Move", "Negotiate with", "Obliterate", "Observe", "Offer Forgiveness", "Offer Mercy", "Oppose", "Overthrow", "Plead", "Poison", "Protect", "Protect", "Race", "Raid", "Recover", "Repair", "Repel", "Replace", "Rescue", "Rescue", "Resist", "Retrieve", "Reveal", "Revenge", "Sabotage", "Safeguard", "Salvage", "Save", "Scan", "Seek", "Serve", "Shield", "Speak with", "Steal", "Strike", "Support", "Survey", "Stop", "Take", "Threaten", "Track", "Trap", "Travel with/to"
+      ]
+      const missionTargets = [
+        "Airforce", "Alien (Humanoid Alien)", "Alien (Other Alien)", "Ally", "Animal (Common)", "Animal (Rare)", "Animal (Unique/Thought Extinct)", "Armour (Experimental)", "Armour", "Army", "Artefact", "Beast", "Building", "Changeling/Shapeshifter", "Child", "City", "Clone", "Colony", "Construct", "Corporation CEO/Board Member", "Corporation Manager", "Corporation Worker", "Corporation/Company", "Country", "Creature", "Credits/Cash", "Data crystal", "Data grid/Network", "Document/Data (Blackmail)", "Document/Data (Confessions)", "Document/Data (Deeds)", "Document/Data (Map)", "Document/Data (Other)", "Document/Data (Recipe)", "Document/Data (Religious)", "Document/Data (Sentimental)", "Drugs", "Energy Being", "Event", "Experiment", "Fake Item", "Family (Other)", "Family (Party Member)", "Family (Quest Giver)", "Fortress", "Friend", "Gem/Jewel", "Ghost like creature", "God/deity like being", "Government Building", "Government Enforcer", "Government Official", "Guards", "Humanoid", "Implant", "Love Interest", "Merchant/Trader", "Monument", "Moon", "Mutant", "Navy", "Network", "Noble", "Organization - Popular", "Organization - Unpopular", "Outpost", "PCs Enemy", "Planatary Ruler", "Planet", "Program", "Prophercy/Prediction", "Propulsion/Drive Technology", "Rare Mineral", "Rebel", "Religious Item", "Rival", "Robot/Droid", "Sattelite", "Secret", "Secret", "Slave", "Small/Non public company", "Soldier", "Species", "Starbase", "Starship", "Stranger", "Technology", "Theif", "Valuable Item", "Villain", "Warlord", "Weapon (Experimental)", "Weapon (Melee)", "Weapon (Ranged)", "Weapon (Starship)", "[Roll on Location Table]", "[Roll on Profession Table]", "[Roll on Reward Table]"
+      ]
+      const missionLocations = [
+        "Abandoned Settlement", "Another Dimension", "Artefact", "Asteroid", "Asteroid Belt", "Asteroid Field", "Asylum", "Bank", "Battlefield", "Bomb Site", "Border Zone", "Carrier", "Casino Planet", "Cave/Cavern", "City Ship", "Cloud", "Colony", "Colony Ship", "Comet", "Communication Satellite", "Container", "Corpse", "Courier", "Covert Operations Vessel", "Crash Site", "Crater", "Cruise Ship", "Cruiser", "Debris Field", "Deep Space", "Deep Undergound", "Defence Post", "Derelict", "Desert Planet", "Drone", "Dust cloud", "Dyson Sphere", "Enforcement Vessel", "Factory", "Fortress (Space)", "Fortress (Terrestial)", "Freighter", "Frontier Town", "Frozen Wasteland/Planet", "Gaia World", "Garden/Farm World", "Gas Cloud", "Gateway", "Government Building", "Graveyard", "Hive", "Hospital World", "Island", "Jungle world", "Junkyard", "Laboratory", "Library", "Location related to [Roll on Profession table]", "Lost City", "Military Base", "Mine Field", "Moon", "Mueseum", "Nebula", "Nursery World", "Observatory", "Outpost", "Planet", "Prison", "Private Club", "Private Vessel", "Quranteen Zone", "Rift", "Rogue Moon", "Ruins", "Satellite", "Secret Location", "Space station", "Spacedock/Construction", "Starship", "Temple", "Temporal Location - Future", "Temporal Location - Past", "Testing Zone", "Tower Block", "Trade Route (Space)", "Trade Route (Terrestrial)", "Trading outpost", "Transport", "University", "VR/AR/Game world", "Warehouse", "Water World", "Weapons Platform", "Wormhole", "Wreckage", "Zone", "Zoo/Safari Planet", "[Roll twice and use both]"
+      ]
+      const complications = [
+        "Abduction", "Advanced Technology", "Ambush", "Attention", "Accusation", "Barriers", "Battle/Skirmish", "Betrayal from within party", "Betrayal from outside the party", "Bureaucracy", "Bigotry", "Computer Glitch", "Criminals", "Delayed", "Desperation", "Differing motivations", "Diplomatic Issue", "Disaster - Natural", "Disaster - Artificial", "Distractions", "Disease", "Double-Cross", "Drugs/addiction", "Enemies", "Enemy", "Equipment failure", "Escort", "Exploration", "Fear", "Fight", "Getting", "Group/Company Influence", "Illness", "Insanity", "Interested Parties", "Interference", "Invasion", "Increased Costs", "Insanity", "Injury - New one acquired", "Injury - Old one acting up", "Lack of trust", "Language barrier", "Legal Trouble", "Lost", "Lost Item", "Love Interest", "Magical Event", "Military influence", "Misdirection", "Misinformation", "Mistaken Identity - Party", "Mistaken Identity - Target", "Money - Forgery", "Monsters", "Mystery", "News", "None", "Outbid", "Overcharged", "Paranoia", "Poisoned", "Politics", "Power Struggle", "Powerful Entities", "Previous Arrangement/promise", "Phase Shift", "Puzzles", "Species/Cultural tension", "Radiation", "Recurring NPC", "Red Herring", "Red Tape", "Religion", "Riddles", "Rivalry", "Powerful influence", "Revelation", "Rumours", "Sacrifice", "Side-tracked", "Spies/covert activity", "Squabbling", "Superstition", "Social Obligation", "Theft/Something stolen", "Time Travel", "Traps - Annoying", "Traps - Complicated", "Traps - Lethal", "Travel", "Trickery", "Unreliable Technology", "Vendetta", "War - On-going", "War - Starting", "War - Aftermath", "Weather", "[Roll twice and use both]"
+      ]
+      const helpOppositions = [
+        "A.I.", "Addict", "Alien (Humanoid)", "Alien (Non-humanoid)", "Alien (Technologically Advanced)", "Assassin", "Automated Security", "Animal (Enhanced/Sentient)", "Banker/Money Lender", "Bureaucrat (competent)", "Bureaucrat (corrupt)", "Bounty Hunter", "Bug/Insect", "Champion", "Child", "Childhood friend", "Computer Crash", "Conspiracy", "Creature - Altered Humanoid", "Creature - Controlled/guided", "Creature - Naturally Sentient", "Criminals", "Criminals", "Cult/Cultist", "Dealer", "Dimensional Flux", "Enemy of your enemy", "Energy Being", "Environment", "Escaped Prisoner", "Escaped Slave", "Family - Aunt/Uncle", "Family - Long lost relative", "Family - Parents", "Family - Siblings", "Fanatic", "Former Ally", "Former Enemy", "Friend", "Friend", "Gang/Gang member", "God-like being", "Government Officer", "Immortal being", "Intelligent Artefact/Item", "Invader", "Law Enforcement", "Law Enforcement", "Librarian", "Lost Data", "Love Interest", "Lunatic", "Mastermind", "Mayor", "Mercenaries", "Mercenary", "Merchant", "Military (Land)", "Military (Sea)", "Military (Air)", "Military (Space)", "Nation", "Noble/Aristocrat", "None/No Help or Opposition", "None/No Help or Opposition", "Old Person", "Outlaw", "Patron/mentor", "Pilot", "Police", "Priest/Cleric", "Programmer", "Puzzle", "Recurring NPC", "Robot/Droid (Humanoid)", "Robot/Droid (Non-Humanoid)", "Ruler", "Scientist", "Secretary/Receptionist", "Security Guard", "Sentient Animal", "Shadowy Figure", "Spy", "Stranger", "Teenager", "Temporal Fluctuation", "Time", "Traitor", "Veteran", "Vigilante", "Villain", "Villains Child", "Villains Henchman", "Villains Love Interest", "Villains Relative", "Warlord", "[Roll again but their number or power is increased]", "[Roll on Profession table]", "[Roll twice and combine]"
+      ]
+      const rewards = [
+        "Animal - Domestic", "Animal - Exotic/Rare", "Animal - Other", "Animal - Trained/hunting", "Armour - Ehanced", "Armour - Normal/standard", "Armour - Old", "Artwork - Other", "Artwork - Painting", "Artwork - Sculpture", "Book - st edition/rare", "Book - Other", "Clothing - Expensive", "Clothing - Other", "Clothing - Practical", "Credits - Large", "Credits - Medium", "Credits - Small", "Debt/Payment owed forgiven", "Discount on purchases", "Drug - Medical", "Drug - Personal Supply", "Family Heirloom", "Favour owed - major", "Favour owed - minor", "Follower - permanent", "Follower - temporary", "Free lodgings", "Free meal/drinks", "Get out of jail", "Investment opportunity", "Invitation - Exclusive Event", "Invitation - Guild/Club/group", "membership", "Invitation - Other", "Invitation - Private Club", "Items repaired", "Illegial Goods", "Jewelry or gemstone", "Land/permission to build", "Map", "Medal", "Medical - Cybernetics/Bionics", "Medical Treatment - Addiction", "Medical Treatment - Expensive", "Medical Treatment -", "Experimental", "Permit - Business", "Permit - Certain action in public", "Permit - Certain goods", "Permit - Other", "Permit - Privateer", "Permit - Technology", "Psychiatric Treatment", "Purchase Opportunity", "Rare Materials", "Recommendation for job/employment", "Robot/Droid", "Safe Passage", "Secret Information - Blackmail material", "Secret Information - Blueprints", "Secret Information - Password", "Secret Information - Recipe", "Servant/Service", "Service - Free Upgrade", "Service - Reduced Cost", "Services of a [roll on profession table] - One time use", "Services of a [roll on profession table] - Period of time", "Services of a [roll on profession table] - Until dismissed, killed etc.", "Taxes - reduced", "Taxes - refund", "Technical Manual/Blueprint", "Title - major", "Title - minor", "Tool - Enhanced", "Tool - Rare or expensive", "Tool - Regular", "Training - Military", "Training - Other", "Training - Social", "Transport paid for/arranged – Air", "Transport paid for/arranged - Land", "Transport paid for/arranged - Other", "Transport paid for/arranged - Sea/Water", "Transport paid for/arranged - Space", "Valuable trade goods", "Vehicle/transport - other", "Vehicle/transport - terrestrial", "Vehicle/transport - star/space", "Weapon - Melee - Enhanced", "Weapon - Melee - Normal/standard", "Weapon - Melee - Old", "Weapon - Melee - Valuable", "Weapon - Ranged - Enhanced", "Weapon - Ranged - Normal/standard", "Weapon - Ranged - Old", "Weapon - Ranged - Valuable", "[Roll twice and combine]", "[Roll again, but this time the reward is worth a lot more than it seems or has a hidden benefit]", "[Roll again, but this time the reward is worth a lot less than it seems or has a hidden problem/downside with it]", "[Bait and switch] - Roll twice to determine what they started to offer and what you get"
+      ]
+
+      function pickList(){
+        let mode = document.getElementById("modes").value;
+        //document.getElementById("output").innerText = mode;
+        if (mode == 1) {
+          output = fullGen()
+        } else if (mode == 2) {
+          output = firstGen()
+        } else if (mode == 3) {
+          output = secondGen()
+        } else if (mode == 4) {
+          output = thirdGen()
+        } else if (mode == 5) {
+          output = fourthGen()
+        } else if (mode == 6) {
+          output = fifthGen()
+        } else if (mode == 7) {
+          output = sixthGen()
+        }
+        document.getElementById("output").innerHTML = output;
+      };
+
+      function fullGen(){
+        personality = getRandomItem(contactPersonalities)
+        profession = getRandomItem(contactProfessions)
+        missionAction = getRandomItem(missionActions)
+        missionTarget = getRandomItem(missionTargets)
+        missionLocation = getMissionLocation()
+        complication = getComplication()
+        helpOpposition = getHelpOpposition()
+        reward = getReward()
+
+        output = `A <b>` + personality.toLowerCase() + `</b> <b>` + profession.toLowerCase() + `</b> wants you to <b>` + missionAction.toLowerCase() + `</b> a <b>` + missionTarget.toLowerCase() + `</b> that is located in <b>` + missionLocation.toLowerCase() + `</b>. Along the way, the party runs into <b>` + complication.toLowerCase() + `</b> and are aided or hindered by <b>` + helpOpposition.toLowerCase() + `</b>. Their reward on success is <b>` + reward.toLowerCase() + `</b>.`
+        return output
+      };
+
+      function getMissionLocation() {
+        missionLocation = getRandomItem(missionLocations)
+        missionLocation = "[Roll twice and use both]"
+        if (missionLocation == "Location related to [Roll on Profession table]") {
+          missionLocation = "Location related to the " + profession
+        } else if (missionLocation == "[Roll twice and use both]") {
+          missionLocation1 = getRandomItem(missionLocations)
+          while (missionLocation1 == "[Roll twice and use both]") {
+            missionLocation1 = getRandomItem(missionLocations)
+          }
+          missionLocation2 = getRandomItem(missionLocations)
+          while (missionLocation2 == "[Roll twice and use both]" || missionLocation2 == missionLocation1) {
+            missionLocation2 = getRandomItem(missionLocations)
+          }
+          missionLocation = missionLocation1 + " " + missionLocation2
+        }
+        return missionLocation
+      };
+      function getComplication(){
+        complication = getRandomItem(complications)
+        if (complication == "[Roll twice and use both]") {
+          complication1 = getRandomItem(complications)
+          while (complication1 == "[Roll twice and use both]") {
+            complication1 = getRandomItem(complications)
+          }
+          complication2 = getRandomItem(complications)
+          while (complication2 == "[Roll twice and use both]" || complication2 == complication1) {
+            complication2 = getRandomItem(complications)
+          }
+          complication = complication1 + " and " + complication2
+        }
+        return complication
+      };
+      function getHelpOpposition(){
+        helpOpposition = getRandomItem(helpOppositions)
+        if (helpOpposition == "[Roll again but their number or power is increased]") {
+          helpOpposition = getRandomItem(helpOppositions)
+          while (helpOpposition == "[Roll again but their number or power is increased]" || helpOpposition == "[Roll on Profession table]" || helpOpposition == "[Roll twice and combine]") {
+            helpOpposition = getRandomItem(helpOppositions)
+          }
+          die = d100()
+          if (die >= 50) {
+            helpOpposition = "a notably large group of " + helpOpposition
+          } else {
+            helpOpposition = "a notably powerful " + helpOpposition
+          }
+        } else if (helpOpposition == "[Roll on Profession table]") {
+          helpOpposition = "a " + getRandomItem(contactProfessions)
+        } else if (helpOpposition == "[Roll twice and combine]") {
+          helpOpposition1 = getRandomItem(helpOppositions)
+          while (helpOpposition1 == "[Roll again but their number or power is increased]" || helpOpposition1 == "[Roll on Profession table]" || helpOpposition1 == "[Roll twice and combine]") {
+            helpOpposition1 = getRandomItem(helpOppositions)
+          }
+          helpOpposition2 = getRandomItem(helpOppositions)
+          while (helpOpposition2 == "[Roll again but their number or power is increased]" || helpOpposition2 == "[Roll on Profession table]" || helpOpposition2 == "[Roll twice and combine]" || helpOpposition1 == helpOpposition2) {
+            helpOpposition2 = getRandomItem(helpOppositions)
+          }
+          helpOpposition = helpOpposition1 + " and " + helpOpposition2
+        }
+        return helpOpposition
+      };
+      function getReward(){
+        reward = getRandomItem(rewards)
+        if (reward = "[roll on profession table] - One time use") {
+          reward = "one time services of a " + getRandomItem(contactProfessions)
+        } else if (reward = "Services of a [roll on profession table] - Period of time") {
+          reward = "the services of a " + getRandomItem(contactProfessions) + " for a piriod of time"
+        } else if (reward = "Services of a [roll on profession table] - Until dismissed, killed etc.") {
+          reward = "a " + getRandomItem(contactProfessions) + " as a crewman"
+        } else if (reward == "[Roll twice and combine]") {
+          reward1 = getRandomItem(rewards)
+          while (reward1 == "[roll on profession table] - One time use" || reward1 == "Services of a [roll on profession table] - Period of time" || reward1 == "Services of a [roll on profession table] - Until dismissed, killed etc." || reward1 == "[Roll twice and combine]" || reward1 == "[Roll again, but this time the reward is worth a lot more than it seems or has a hidden benefit]" || reward1 == "[Roll again, but this time the reward is worth a lot less than it seems or has a hidden problem/downside with it]" || reward1 == "[Bait and switch] - Roll twice to determine what they started to offer and what you get") {
+            reward1 = getRandomItem(rewards)
+          }
+          reward2 = getRandomItem(rewards)
+          while (reward2 == "[roll on profession table] - One time use" || reward2 == "Services of a [roll on profession table] - Period of time" || reward2 == "Services of a [roll on profession table] - Until dismissed, killed etc." || reward2 == "[Roll twice and combine]" || reward2 == "[Roll again, but this time the reward is worth a lot more than it seems or has a hidden benefit]" || reward2 == "[Roll again, but this time the reward is worth a lot less than it seems or has a hidden problem/downside with it]" || reward2 == "[Bait and switch] - Roll twice to determine what they started to offer and what you get" || reward2 == reward1) {
+            reward2 = getRandomItem(rewards)
+          }
+          reward = reward1 + " and " + reward2
+        } else if (reward == "[Roll again, but this time the reward is worth a lot more than it seems or has a hidden benefit]") {
+          reward1 = getRandomItem(rewards)
+          while (reward1 == "[roll on profession table] - One time use" || reward1 == "Services of a [roll on profession table] - Period of time" || reward1 == "Services of a [roll on profession table] - Until dismissed, killed etc." || reward1 == "[Roll twice and combine]" || reward1 == "[Roll again, but this time the reward is worth a lot more than it seems or has a hidden benefit]" || reward1 == "[Roll again, but this time the reward is worth a lot less than it seems or has a hidden problem/downside with it]" || reward1 == "[Bait and switch] - Roll twice to determine what they started to offer and what you get") {
+            reward1 = getRandomItem(rewards)
+          }
+          die = d100()
+          if (die >= 50) {
+            reward = "a notably valueable " + reward1
+          } else {
+            reward = "a " + reward1 + " with a hidden benifit"
+          }
+        } else if (reward == "[Roll again, but this time the reward is worth a lot less than it seems or has a hidden problem/downside with it]") {
+          reward1 = getRandomItem(rewards)
+          while (reward1 == "[roll on profession table] - One time use" || reward1 == "Services of a [roll on profession table] - Period of time" || reward1 == "Services of a [roll on profession table] - Until dismissed, killed etc." || reward1 == "[Roll twice and combine]" || reward1 == "[Roll again, but this time the reward is worth a lot more than it seems or has a hidden benefit]" || reward1 == "[Roll again, but this time the reward is worth a lot less than it seems or has a hidden problem/downside with it]" || reward1 == "[Bait and switch] - Roll twice to determine what they started to offer and what you get") {
+            reward1 = getRandomItem(rewards)
+          }
+          die = d100()
+          if (die >= 50) {
+            reward = "a subpar " + reward1
+          } else {
+            reward = "a " + reward1 + " with a hidden drawback"
+          }
+        } else if (reward == "[Bait and switch] - Roll twice to determine what they started to offer and what you get") {
+          reward1 = getRandomItem(rewards)
+          while (reward1 == "[roll on profession table] - One time use" || reward1 == "Services of a [roll on profession table] - Period of time" || reward1 == "Services of a [roll on profession table] - Until dismissed, killed etc." || reward1 == "[Roll twice and combine]" || reward1 == "[Roll again, but this time the reward is worth a lot more than it seems or has a hidden benefit]" || reward1 == "[Roll again, but this time the reward is worth a lot less than it seems or has a hidden problem/downside with it]" || reward1 == "[Bait and switch] - Roll twice to determine what they started to offer and what you get") {
+            reward1 = getRandomItem(rewards)
+          }
+          reward2 = getRandomItem(rewards)
+          while (reward2 == "[roll on profession table] - One time use" || reward2 == "Services of a [roll on profession table] - Period of time" || reward2 == "Services of a [roll on profession table] - Until dismissed, killed etc." || reward2 == "[Roll twice and combine]" || reward2 == "[Roll again, but this time the reward is worth a lot more than it seems or has a hidden benefit]" || reward2 == "[Roll again, but this time the reward is worth a lot less than it seems or has a hidden problem/downside with it]" || reward2 == "[Bait and switch] - Roll twice to determine what they started to offer and what you get" || reward2 == reward1) {
+            reward2 = getRandomItem(rewards)
+          }
+          reward = "claimed to be a " + reward1 + " but turns out to be a " + reward2
+        }
+        return reward
+      };
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VulgarLang Translator</title>
+  <script src="compromise.min.js"></script>
+  <style>
+    body { background: #111; color: #eee; font-family: sans-serif; padding: 2em; }
+    textarea {
+      width: 100%; height: 8em;
+      background: #222; color: #0f0;
+      font-family: monospace;
+      padding: 0.5em; border: 1px solid #333;
+      margin-bottom: 1em;
+    }
+    .word {
+      cursor: help;
+      text-decoration: underline dotted;
+      position: relative;
+    }
+    .word:has(.tooltip:empty) {
+      color: red;
+      font-style: italic;
+    }
+    .tooltip {
+      display: none;
+      position: absolute;
+      background: #222;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 0.5em;
+      white-space: pre;
+      z-index: 10;
+    }
+    .word:hover .tooltip {
+      display: block;
+      top: 1.5em;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>VulgarLang Translator (Smart Mode)</h1>
+
+  <input type="file" id="fileInput" accept=".txt">
+  <label><input type="checkbox" id="reverseMode"> Conlang → English</label>
+  <div id="wordOrderDisplay">Word Order: Unknown</div>
+  <div id="status">No file loaded.</div>
+
+  <h3 id="inputLabel">English Input:</h3>
+  <textarea id="inputText" placeholder="Type something..."></textarea>
+
+  <h3 id="outputLabel">Conlang Output:</h3>
+  <div id="outputText" style="background:#222; padding:1em;"></div>
+
+  <script>
+    let engToCon = {};
+    let conToEng = {};
+    let spellingRules = [];
+    let reversedRules = [];
+    let sentenceOrder = ["S", "V", "IO", "O"];
+
+    function applySpelling(word, rules) {
+      for (const [from, to] of rules) {
+        word = word.replaceAll(from, to);
+      }
+      return word;
+    }
+
+    function reverseRules(rules) {
+      return [...rules].sort((a, b) => b[1].length - a[1].length).map(([from, to]) => [to, from]);
+    }
+
+    function parseSpellingRules(raw) {
+      return raw.split('\n').filter(Boolean).map(line => {
+        const [from, to] = line.split('>').map(x => x.trim());
+        return [from, to];
+      });
+    }
+
+    function translateWord(word) {
+      let entry = engToCon[word.toLowerCase()];
+      if (!entry) return `[${word}]`;
+      return entry[0].meaning;
+    }
+
+    function translateWithTooltip(word) {
+      let entry = engToCon[word.toLowerCase()];
+      if (!entry) {
+        const span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = `[${word}] `;
+        return span;
+      }
+
+      const span = document.createElement('span');
+      span.className = 'word';
+      span.textContent = entry[0].meaning + ' ';
+
+      const tooltip = document.createElement('div');
+      tooltip.className = 'tooltip';
+      tooltip.textContent = entry.map(e => `${e.pos} → ${e.meaning}`).join('\n');
+
+      span.appendChild(tooltip);
+      return span;
+    }
+
+    function translateSentenceSmart(input) {
+      const doc = nlp(input);
+      const terms = doc.terms().out('array');
+      const roles = {};
+
+      // Subject: assume it's the first noun or pronoun
+      const subjMatch = doc.match('#Pronoun').first();
+      if (subjMatch.found) {
+        roles['S'] = subjMatch.out('text');
+      }
+
+      // Verb: first verb in sentence
+      const verbMatch = doc.match('#Verb').first();
+      if (verbMatch.found) {
+        roles['V'] = verbMatch.out('text');
+      }
+
+      // Indirect Object: look for "to X" or "for X"
+      const ioMatch = doc.match('(to|for) #Noun').first();
+      if (ioMatch.found) {
+        roles['IO'] = ioMatch.out('text');
+      }
+
+      // Direct Object: anything after the verb that’s a noun
+      const verbIndex = terms.findIndex(word => nlp(word).has('#Verb'));
+      if (verbIndex !== -1) {
+        const afterVerb = terms.slice(verbIndex + 1);
+        const objectGuess = afterVerb.find(word => nlp(word).has('#Noun'));
+        if (objectGuess) {
+          roles['O'] = objectGuess;
+        }
+      }
+
+      const container = document.createElement('div');
+      for (let role of sentenceOrder) {
+        let phrase = roles[role];
+        if (!phrase) continue;
+        let translatedWords = phrase.split(/\s+/).map(translateWithTooltip);
+        translatedWords.forEach(el => container.appendChild(el));
+      }
+
+      const output = document.getElementById('outputText');
+      output.innerHTML = '';
+      output.appendChild(container);
+    }
+
+    function translateWordByWord(input) {
+      const words = input.split(/\s+/);
+      const output = document.getElementById('outputText');
+      output.innerHTML = '';
+
+      for (let word of words) {
+        let span = translateWithTooltip(word);
+        output.appendChild(span);
+      }
+    }
+
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          const wordLines = data.words.value.split('\n');
+          const rules = data.spellingRules?.value || '';
+          spellingRules = parseSpellingRules(rules);
+          reversedRules = reverseRules(spellingRules);
+
+          const orderRaw = data.sentenceWordOrder?.value || data.sentenceWordOrder;
+          if (orderRaw) {
+            sentenceOrder = orderRaw.split('-');
+            document.getElementById('wordOrderDisplay').textContent = `Word Order: ${orderRaw}`;
+          }
+
+          engToCon = {};
+          conToEng = {};
+
+          for (const line of wordLines) {
+            const match = line.match(/^(.+?)\s*:\s*(\w+)\s*=\s*(.+)$/);
+            if (match) {
+              const engWords = match[1].split(',').map(w => w.trim().toLowerCase());
+              const pos = match[2].trim();
+              const rawConlang = match[3].trim();
+              const spelled = applySpelling(rawConlang, spellingRules);
+
+              for (let word of engWords) {
+                if (!engToCon[word]) engToCon[word] = [];
+                engToCon[word].push({ pos: pos, meaning: spelled });
+              }
+
+              if (!conToEng[spelled]) conToEng[spelled] = engWords[0];
+            }
+          }
+
+          document.getElementById('status').textContent = `✅ Loaded ${Object.keys(engToCon).length} words, using ${sentenceOrder.join('-')} order.`;
+          translateText(); // auto-refresh output
+        } catch (err) {
+          document.getElementById('status').textContent = '❌ Error loading file: ' + err.message;
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    function translateText() {
+      const reverse = document.getElementById('reverseMode').checked;
+      const input = document.getElementById('inputText').value.trim();
+      const output = document.getElementById('outputText');
+      output.innerHTML = '';
+
+      if (!input) return;
+
+      if (reverse) {
+        const words = input.split(/\s+/);
+        const result = words.map(word => {
+          const ipa = applySpelling(word, reversedRules);
+          return conToEng[word] || conToEng[ipa] || `[${word}]`;
+        });
+        output.textContent = result.join(' ');
+      } else {
+        translateSentenceSmart(input);
+      }
+    }
+
+    document.getElementById('inputText').addEventListener('input', translateText);
+    document.getElementById('reverseMode').addEventListener('change', function () {
+      const checked = this.checked;
+      document.getElementById('inputLabel').textContent = checked ? "Conlang Input:" : "English Input:";
+      document.getElementById('outputLabel').textContent = checked ? "English Output:" : "Conlang Output:";
+      translateText();
+    });
+  </script>
+</body>
+</html>

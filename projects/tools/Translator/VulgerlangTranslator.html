@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VulgarLang POS Translator</title>
+  <style>
+    body { background: #111; color: #eee; font-family: sans-serif; padding: 2em; }
+    textarea {
+      width: 100%; height: 8em;
+      background: #222; color: #0f0;
+      font-family: monospace;
+      padding: 0.5em; border: 1px solid #333;
+      margin-bottom: 1em;
+    }
+    .word {
+      cursor: help;
+      text-decoration: underline dotted;
+      position: relative;
+    }
+    .tooltip {
+      display: none;
+      position: absolute;
+      background: #222;
+      color: #fff;
+      border: 1px solid #555;
+      padding: 0.5em;
+      white-space: pre;
+      z-index: 10;
+    }
+    .word:hover .tooltip {
+      display: block;
+      top: 1.5em;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔄 VulgarLang POS Translator</h1>
+
+  <input type="file" id="fileInput" accept=".txt">
+  <label><input type="checkbox" id="reverseMode"> Conlang → English</label>
+
+  <div id="status">No file loaded.</div>
+
+  <h3 id="inputLabel">English Input:</h3>
+  <textarea id="inputText" placeholder="Type something..."></textarea>
+
+  <h3 id="outputLabel">Conlang Output:</h3>
+  <div id="outputText" style="background:#222; padding:1em;"></div>
+
+  <script>
+    let engToCon = {};
+    let conToEng = {};
+    let spellingRules = [];
+    let reversedRules = [];
+
+    function applySpelling(word, rules) {
+      for (const [from, to] of rules) {
+        word = word.replaceAll(from, to);
+      }
+      return word;
+    }
+
+    function reverseRules(rules) {
+      return [...rules].sort((a, b) => b[1].length - a[1].length).map(([from, to]) => [to, from]);
+    }
+
+    function parseSpellingRules(raw) {
+      return raw.split('\n').filter(Boolean).map(line => {
+        const [from, to] = line.split('>').map(x => x.trim());
+        return [from, to];
+      });
+    }
+
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          const wordLines = data.words.value.split('\n');
+          const rules = data.spellingRules?.value || '';
+          spellingRules = parseSpellingRules(rules);
+          reversedRules = reverseRules(spellingRules);
+
+          engToCon = {};
+          conToEng = {};
+
+          for (const line of wordLines) {
+            const match = line.match(/^(.+?)\s*:\s*(\w+)\s*=\s*(.+)$/);
+            if (match) {
+              const engWords = match[1].split(',').map(w => w.trim().toLowerCase());
+              const pos = match[2].trim();
+              const rawConlang = match[3].trim();
+              const spelled = applySpelling(rawConlang, spellingRules);
+
+              for (let word of engWords) {
+                if (!engToCon[word]) engToCon[word] = [];
+                engToCon[word].push({ pos: pos, meaning: spelled });
+              }
+
+              if (!conToEng[spelled]) conToEng[spelled] = engWords[0];
+            }
+          }
+
+          document.getElementById('status').textContent = `Loaded ${Object.keys(engToCon).length} words. POS aware.`;
+        } catch (err) {
+          document.getElementById('status').textContent = '❌ Error loading file: ' + err.message;
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    function translateText() {
+      const reverse = document.getElementById('reverseMode').checked;
+      const input = document.getElementById('inputText').value.trim();
+      const words = input.split(/\s+/);
+      const outputDiv = document.getElementById('outputText');
+      outputDiv.innerHTML = '';
+
+      if (reverse) {
+        const result = words.map(word => {
+          const ipa = applySpelling(word, reversedRules);
+          return conToEng[word] || conToEng[ipa] || `[${word}]`;
+        });
+        outputDiv.textContent = result.join(' ');
+      } else {
+        for (let word of words) {
+          let entry = engToCon[word.toLowerCase()];
+          if (!entry) {
+            outputDiv.innerHTML += `[${word}] `;
+            continue;
+          }
+          const defaultMeaning = entry[0].meaning;
+          const span = document.createElement('span');
+          span.className = 'word';
+          span.textContent = defaultMeaning + ' ';
+
+          const tooltip = document.createElement('div');
+          tooltip.className = 'tooltip';
+          tooltip.textContent = entry.map(e => `${e.pos} → ${e.meaning}`).join('\n');
+
+          span.appendChild(tooltip);
+          outputDiv.appendChild(span);
+        }
+      }
+    }
+
+    document.getElementById('inputText').addEventListener('input', translateText);
+    document.getElementById('reverseMode').addEventListener('change', function () {
+      const checked = this.checked;
+      document.getElementById('inputLabel').textContent = checked ? "Conlang Input:" : "English Input:";
+      document.getElementById('outputLabel').textContent = checked ? "English Output:" : "Conlang Output:";
+      translateText();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Compromise Plugin Test</title>
+  <script src="compromise.min.js"></script>
+  <script src="compromise-sentences.min.js"></script>
+  <script>
+    // Plugin check
+    console.log("Compromise version:", nlp.version);
+    if (typeof window.compromiseSentences !== "undefined") {
+      console.log("Plugin loaded from global:", window.compromiseSentences);
+      nlp.extend(window.compromiseSentences);
+    } else {
+      console.error("❌ compromiseSentences not found on window.");
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const doc = nlp("The cat gives the dog a fish.");
+      if (typeof doc.subjects === "function") {
+        console.log("✅ SUCCESS: .subjects() is available");
+        console.log("Subjects:", doc.subjects().out('text'));
+        console.log("Verbs:", doc.verbs().out('text'));
+        console.log("Objects:", doc.objects().out('text'));
+      } else {
+        console.error("❌ FAILURE: .subjects() is NOT available");
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>Check console (F12) for results</h1>
+</body>
+</html>

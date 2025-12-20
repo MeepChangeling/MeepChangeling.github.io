@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pony Stardate Converter</title>
+<style>
+  body { font-family: sans-serif; background: #111; color: #eee; }
+  label, input { margin: 5px; display: block; }
+  .result { margin-top: 15px; font-size: 1.2em; color: #6cf; }
+</style>
+</head>
+<body>
+<h2>Pony Stardate Converter</h2>
+<form id="ponyForm">
+  <label>Era Year:
+    <input type="number" id="year" value="985">
+  </label>
+  <label>Month (1-16):
+    <input type="number" id="month" min="1" max="16" value="1">
+  </label>
+  <label>Day (1–25):
+    <input type="number" id="day" min="1" max="25" value="1">
+  </label>
+  <label>Hour (0–25, Pony hours):
+    <input type="number" id="hour" min="0" max="25" value="0">
+  </label>
+  <label>Minute (0–99, Pony minutes):
+    <input type="number" id="minute" min="0" max="99" value="0">
+  </label>
+  <button type="button" onclick="convert()">Convert</button>
+</form>
+
+<div class="result" id="output"></div>
+
+<script>
+function convert() {
+  let year = parseInt(document.getElementById("year").value);
+  let month = parseInt(document.getElementById("month").value);
+  let day = parseInt(document.getElementById("day").value);
+  let hour = parseInt(document.getElementById("hour").value);
+  let minute = parseInt(document.getElementById("minute").value);
+
+
+
+  // --- Fraction of the day (pony time: 25h × 100m) ---
+  let totalMinutes = (hour * 100) + minute;
+  let fracDay = totalMinutes / 2500; // 2500 pony-minutes in a day
+  if (fracDay >= 1) {
+    fracDay = fracDay - 1
+    day = day + 1
+  }
+  fracDay = fracDay.toFixed(2)
+  fracDay = fracDay.toString().replace(/^0+/, "");
+
+
+  // --- Day of year (1–400) ---
+  let dayOfYear = ((month - 1) * 25) + day;
+  if (dayOfYear > 400) {
+    year = year + 1
+    dayOfYear = dayOfYear - 400
+  }
+
+  // --- Stardate math ---
+  // 1000 stardates per year
+  let stardateDay = (dayOfYear / 400) * 1000
+  if (stardateDay < 100) {
+    stardateDay = "0" + stardateDay
+  }
+  //del random fractions
+  year = parseInt(year);
+  stardateDay = parseInt(stardateDay);
+  //Force Vars to Strings
+  year = year.toString()
+  stardateDay = stardateDay.toString()
+  fracDay = fracDay.toString()
+
+  let stardate = year + stardateDay + fracDay;
+
+  document.getElementById("output").innerText = "Stardate: " + stardate;
+}
+</script>
+</body>
+</html>
