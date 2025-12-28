@@ -33,7 +33,7 @@ p.script {
 div.readingarea {
   margin-left: auto;
   margin-right: auto;
-  width: 65vw;
+  width: 30vw;
   background:tan;
   padding:12px;
   aspect-ratio:4/3;
@@ -46,7 +46,7 @@ background-clip: padding-box;
 div.types {
   margin-left: auto;
   margin-right: auto;
-  width: 60vw;
+  width: 30vw;
 }
 div.item {
   border-bottom: 5px double #06080f;
@@ -58,6 +58,34 @@ div.item:first-child {
 }
 div.item:last-child {
   border-bottom: none;
+}
+div.mapcontainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60vw;
+  height: 90vh;
+  background:tan;
+  padding:12px;
+  aspect-ratio:4/3;
+  border:solid calc(0.8vw + 4px ) #F9E2C3;
+ border-image: url(./img/parchment-hand-painted_zfdfpt.avif);
+  border-image-slice: 64 fill;
+    border-image-repeat: stretch;
+background-clip: padding-box;
+float:left;
+position: fixed;
+top: 1vh;
+left: 1vw;
+}
+div.readingareaholder {
+  float: right;
+  width: 30vw;
+  padding-right: 5vw;
+}
+iframe {
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
 }
 #types span::after {
   font-family:
