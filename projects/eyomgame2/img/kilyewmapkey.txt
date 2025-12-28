@@ -1,0 +1,38 @@
+E1 — “Mystery Crop” field. Randomly seeded each year.
+F1 w — “Mystery Crop” field. Randomly seeded each year.
+F1 e — Massive pig pen for fertilizer production.
+J1 — Livestock feed fields.
+N1 — Small grazing area. Livestock veries by season.
+O1 — Brewing fields (hopps, flavorings)
+R1 — Defunct travel gate. Damaged (beyond repair?)
+A2 n — Old redoubt, abandoned.
+A2 s — Small saltwater lake. Thriving fish. 
+H2 — Wild vineyard (grapes allowed to grow as they may, only harvested, never attended. Luxury product.)
+K2 — Amber barley field.
+L2 — Amber barley field.
+M2 — Giant multi-wheel grain mill.
+N2 — Cereal grain field.
+J3 — Granary 8, and “produce of the day” “market”. Place townsfolk can get picked-fresh that day produce.
+S3 — Seer stone. Sit atop it to hear inane / unimportant predictions about your future. Occasionally useful. Claims to be “only an apprentice”.
+G4 — Black mountain. Lavatube cave.
+N4 — Pepper Ridge Farms.
+P4 — Old standing stones. Granite with quartz inlaid markings.
+T4 w — Mercenary company watchtower (Work with Pepper Ridge, hired to safeguard the river).
+T4 e — Waterway town
+U4 — Waterway town
+C5 — Manor Albidon
+E5 — Workshop for repairing and building farm equipment.
+F5 — Wizard’s Tower (Wizard is retired. Full “gerrof my lawn” retired. Likes helping Kilyew’s kids.)
+L6 — Grove of petrified trees, that grow. Bear fruit on occasion.
+G7 — Kilyew Dale
+F8 — Kilyew Dale
+G8 — Kilyew Dale
+J8 — Old fishing pier.
+A9 — Bridge and bridge house.
+B9 — Bridge and bridge house.
+C9 — Hunting lodge and stable.
+M9 — Yews Explorer’s Guildhall.
+K10 — Sacred tree, and temple.
+H11 — Therin Manor (Vacation home for a wealthy vampire, Kelis Rae. Landed Gentry. Not that old.)
+O11 — Burial Cairn, signs of mass grave surrounding it.
+B12 — Silver Mine.
