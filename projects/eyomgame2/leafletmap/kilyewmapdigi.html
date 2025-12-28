@@ -68,7 +68,7 @@
             if (e.target._path) {
                 e.target._path.classList.add('hover-glow');
             }
-            e.target.openPopup();
+            e.target;
         }
         var map = L.map('map', {
             zoomControl:false, maxZoom:13, minZoom:1
@@ -189,23 +189,20 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Biome'] !== null ? autolinker.link(String(feature.properties['Biome']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['Name'] !== null ? autolinker.link(String(feature.properties['Name']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['descrip'] !== null ? autolinker.link(String(feature.properties['descrip']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2" style="display: none;">' + (feature.properties['Biome'] !== null ? autolinker.link(String(feature.properties['Biome']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -326,13 +323,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -424,13 +418,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -522,13 +513,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -605,13 +593,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -688,13 +673,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -771,13 +753,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -854,13 +833,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -937,13 +913,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1020,13 +993,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1103,13 +1073,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1192,13 +1159,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1259,13 +1223,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1358,13 +1319,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1450,13 +1408,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1478,7 +1433,7 @@
             if (exp_kilyewdalelocals_16rule0_eval_expression(context)) {
                   return {
                 pane: 'pane_kilyewdalelocals_16',
-                radius: 4.0,
+                radius: 6.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1494,7 +1449,7 @@
                 else if (exp_kilyewdalelocals_16rule1_eval_expression(context)) {
                   return {
                 pane: 'pane_kilyewdalelocals_16',
-                radius: 4.4,
+                radius: 6.4,
                 opacity: 1,
                 color: 'rgba(0,0,0,1.0)',
                 dashArray: '',
@@ -1510,7 +1465,7 @@
                 else if (exp_kilyewdalelocals_16rule2_eval_expression(context)) {
                   return {
                 pane: 'pane_kilyewdalelocals_16',
-                radius: 4.4,
+                radius: 6.4,
                 opacity: 1,
                 color: 'rgba(128,17,25,1.0)',
                 dashArray: '',
@@ -1565,13 +1520,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1603,7 +1555,7 @@
                   return {
                 pane: 'pane_KilyewLocalPoints_17',
                 shape: 'square',
-                radius: 4.0,
+                radius: 6.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1620,7 +1572,7 @@
                   return {
                 pane: 'pane_KilyewLocalPoints_17',
                 shape: 'square',
-                radius: 4.0,
+                radius: 6.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1637,7 +1589,7 @@
                   return {
                 pane: 'pane_KilyewLocalPoints_17',
                 shape: 'square',
-                radius: 4.0,
+                radius: 6.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1654,7 +1606,7 @@
                   return {
                 pane: 'pane_KilyewLocalPoints_17',
                 shape: 'square',
-                radius: 4.0,
+                radius: 6.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1671,7 +1623,7 @@
                 return {
                 pane: 'pane_KilyewLocalPoints_17',
                 shape: 'square',
-                radius: 4.0,
+                radius: 6.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1723,13 +1675,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1746,7 +1695,7 @@
         function style_killyewtowns_18_0() {
             return {
                 pane: 'pane_killyewtowns_18',
-                radius: 4.0,
+                radius: 6.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -1797,13 +1746,10 @@
                 },
                 mouseover: highlightFeature,
                 mouseout: function (e) {
-                    if (e.target._path) {
-                        e.target._path.classList.remove('hover-glow');
-                    }
-                    if (typeof layer.closePopup === 'function') {
-                        layer.closePopup();
-                    }
-                }
+        if (e.target._path) {
+            e.target._path.classList.remove('hover-glow');
+        }
+    }
             });
             var popupContent = '<table>\
                     <tr>\
@@ -1949,10 +1895,12 @@
         map.addLayer(layer_KilyewMinorRivers_4);
         map.addLayer(layer_Roads_14);
         map.addLayer(layer_Railroad_15);
-        map.addLayer(layer_kilyewdalelocals_16);
-        map.addLayer(layer_KilyewLocalPoints_17);
+        //map.addLayer(layer_kilyewdalelocals_16);
+        //map.addLayer(layer_KilyewLocalPoints_17);
         map.addLayer(layer_killyewtowns_18);
         map.addLayer(layer_Clipmask_19);
+
+        var pois = L.layerGroup([layer_kilyewdalelocals_16, layer_KilyewLocalPoints_17]);
 
         var types = L.layerGroup([layer_KilyewTypeBlood_9, layer_KilyewTypeSilver_10, layer_KilyewTypeLight_11, layer_KilyewTypeHope_12]);
         var grades = L.layerGroup([layer_KilyewGradesA_5, layer_KilyewGradesB_6, layer_KilyewGradesC_7, layer_KilyewGradesD_8])
@@ -1960,8 +1908,15 @@
         var controlLayers = {
           "Biomes": layer_kilyewLocalBiomes_2,
           "Grades": grades,
-          "Types": types
+          "Types": types,
+          "Points of Intrest": pois
         };
+
+        pois.addTo(map)
+
+
+
+
 
         var layerControl = L.control.layers(baseMaps, controlLayers).addTo(map);
 
