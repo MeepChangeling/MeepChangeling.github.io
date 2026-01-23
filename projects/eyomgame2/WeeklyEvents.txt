@@ -1,0 +1,60 @@
+1	23	the publication, 26	Wolvarine Moose migration, X Power Cell Distribution
+2	19	Angel 1, 31	inishal contact, X	dole-tokens dispenced
+3	3	funny cravings, 25	transposed west two arc seconds, 27	grain festavle
+4	20	master fails a moderate task due to age issues, 32	tannins, 22	Alien that needs a legal local fuel
+5	19	Angel 2, 12	Passing e-girl adventure magical girl team
+6	4	end of glory days, 24 end of the monopoly, 33	Steel Mill needs a new heating coil, X	Tax rebaits despenced
+7	2	overpromice investment, 35	aaa, X	school starts, X	murderfeast
+8	21	The desire to master marshal skill, X	rainy season prep
+9	15	hard times for the dungeon,
+10  X	disel yule, 19	Angel 3
+11	32	bitterness, X	Story week
+12	23	the backlash, 28 Yews Exploration Guild makes first copiable map, 6	Drought
+13	20	regrets life of solitude & seeks companionship, 27	dark solstis, 35	aaa, X	a light snow flurry
+14	3	unfortunate cramps, 24	the taste tasts
+15	21	finding an instructor
+16	19	Angel 4, 31	international shock, 9	Frogs
+17	15	union involvment
+18	19	Angel 5, 25	traversed east two arc seconds
+19	2	shortcomings, 8	Locusts, X	witch’s night (Walpergusnought)
+20	23	the forced retraction, 18	Plot of ET Phone Home, X Tankred’s birthday (inflatable Tankred)
+21	3	comfort over dignaty, 20	fails to find a worthy apprentice, 35	aaa
+22	4	coupon craze, 19 Angel 6
+23	32	tarry growth
+24	21	enduring the climb up the cliff of beginnings, 10	Wierd fog, X	Picklefest
+25	24	the price war, 5	Monster attacking Pepper Ridge Farm, X	moonshine week, X	roadweek
+26	19	Angel 7
+27	25	sheathe all weapons, X	the grand mud wrastle
+28	15	kickstarter takes off
+29	23	the dirived proof, 26	Wolvarine Moose migration
+30	32	oily slicks, 11	Passing shonen squad, X	Pact-renewl awarness week
+31	19	Angel 8, X	changeling day
+32	24	the secrate ingreedients scandle, X	end of school
+33	19	Angel 9, 31	repair efforts
+34	2	making up for it, 25	minimize ground contact signature
+35	4	debts mount, 27	fiddlehead fest, 35	aaa, X	Start of secret second school
+36	20	regrets and laments, 14	Travelling necromancer
+37	19	Angel 10, 13	Passing doomed wandering prince
+38	23	the backlash again, X	house washing day, X	slaughterquail hunts
+39	21	delighting in mastery of the basics, 32	the resin
+40	X	Market paperwork deadline, 40	X	mandatory physicals
+41	3	amnion rupture, 24	the backrooms deal, X	Kelpie icecream scocial (on the beach), X	The quiet week
+42	19	Angel 11, 35	aaa, X	Flower festivle,
+43  X	two weeks before market
+44	X	one week before market,	15	venture capitalist, 32	polyps
+45	X	market, 23	the revised publication, 16	The Camping Trip
+46	X	week after market, 19	Angel 12, 25	inishiate local casade, 17	Plot of The Searchers, 29	Zamaquilu Hell Week
+47	20	an apprentice comes to them, 27	market, 31	treery renewal rush, X	dead philisopher cage matches
+48	4	potential emergences, 35	aaa, X	other quiet week
+49	19	Angel 13, 24	smuggling legal goods in, 7	Flood, X Goblin Week
+50  21	discovery of the road ahead, 32	when bleach fails,
+51	30	Scamuel Ripoffen's orphanage
+52	25	temporal bridge endpoint, X	Tankred’s aniversary, X	seacret second school ends
+53	19	Angel 14, X	yearly boring invasions
+54	23	the peer review with a steel chair, 35	aaa, X	Gekken Day
+55	20	the circle is compleated, 34	Fermentation in the grain silos
+56	3	hardlabor, X	pipe smoke week
+57	19	Angel 15, 32	flourine is infact nessisary, X	trial week
+58	2	excelling, 24	public decides, X	mimic week
+59	4	victory, 31	full recovery
+60	15	grand reopening, 21	eagerly persuing mastery through experiance, 35	aaa, X	rememberence lanturn festival

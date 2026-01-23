@@ -8,7 +8,7 @@
   <body>
     <div class="mapcontainer">
       <h1 class="textcenter">Kilyew Dale Area Map</h1>
-      <iframe src="./leafletmap/kilyewmapdigi.html" width="99%" height="85%"></iframe>
+      <iframe src="./leafletmap/kilyewmapdigi.html" id="kilyewmap" width="99%" height="85%"></iframe>
     </div>
     <div class="readingareaholder">
       <div class="readingarea">
@@ -16,7 +16,7 @@
           <div class="types" id="types">
             <div class="item">
               <div class="name">
-                <h2><span class="type1">A Nice Troll</span></h2>
+                <h2><span data-point="26.795,34.085"  class="type1">A Nice Troll</span></h2>
               </div>
               <div class="content">
                 <p>The toll is low but the ferry's free,<br> how much does three minutes mean to thee?</p>
@@ -25,7 +25,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type1">Alien Repo Deamons</span></h2>
+                <h2><span  data-point="26.71,34.144" class="type1">Alien Repo Deamons</span></h2>
               </div>
               <div class="content">
                 <p>Yes blood magic works on them,<br> but they should not be your problem.<br><br> Somebody owes Lord Kibo a moon.</p>
@@ -34,7 +34,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">An Evil Bridge</span></h2>
+                <h2><span  data-point="26.795,34.084" class="type3">An Evil Bridge</span></h2>
               </div>
               <div class="content">
                 <p>Built of menace and not stone,<br> just take a boat don't cross alone.</p>
@@ -43,7 +43,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">Ancestor Mummies</span></h2>
+                <h2><span  data-point="26.74,34.013" class="type2">Ancestor Mummies</span></h2>
               </div>
               <div class="content">
                 <p>In form of old they stalk our time,<br> flesh withered byond reason and rhyme.<br> With silver nails you bind them down,<br> and cart them back out of town.</p>
@@ -52,7 +52,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">Ancient Temple Guardians</span></h2>
+                <h2><span  data-point="27.011,33.791" class="type3">Ancient Temple Guardians</span></h2>
               </div>
               <div class="content">
                 <p>In shadow and deep of the woods,<br> in armor and shrouded with hoods.<br> They stalk in the night,<br> so fight them with light,<br> and report any chants understood.</p>
@@ -61,7 +61,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type4">Ancient Temple Priests</span></h2>
+                <h2><span  data-point="27.034,33.774" class="type4">Ancient Temple Priests</span></h2>
               </div>
               <div class="content">
                 <p>When something once holy then falls,<br> the ritual leaks out of walls.<br> With crook and with censor<br> much more can they sense<br> than our gods to whom our mute prayer falls.<br> With hope must you find then the path,<br> though the way ever shifting won't last,<br> be swift and don't fight,<br> don't camp here at night...<br><br> Scribe finish this rhyme.<br><br> <i>No</i>.</p>
@@ -70,7 +70,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type4">Astral Barnicals (That hate you)</span></h2>
+                <h2><span  data-point="27.185,34.524" class="type4">Astral Barnicals (That hate you)</span></h2>
               </div>
               <div class="content">
                 <p>My brother in Mallum, I am not writing a poem for an invasive species of barnical.<br><br> We barely even know 'em.<br> With hope you must fight,<br> and I think that that's right,<br> I'm new at this job,<br> Xyem, flow 'em.</p>
@@ -79,7 +79,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">Blackbramble Hunting Packs</span></h2>
+                <h2><span  data-point="27.125,34.219" class="type3">Blackbramble Hunting Packs</span></h2>
               </div>
               <div class="content">
                 <p>Say it once got ahold of a sheep,<br> now its appitite's taken a leap.<br> They hunt and they kill<br> and they do it for thrill<br> with a torch take a fight to the heap.</p>
@@ -88,7 +88,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type1">Blood Ashes</span></h2>
+                <h2><span  data-point="26.751,34.339" class="type1">Blood Ashes</span></h2>
               </div>
               <div class="content">
                 <p>In blood dripping bough,<br> don't stop to ask how,<br> just run when the forest turns red.<br> In menace upending<br> and war never ending<br> these traces were treachery treads.</p>
@@ -97,7 +97,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type4">Costs A Child</span></h2>
+                <h2><span  data-point="26.694,33.998" class="type4">Costs A Child</span></h2>
               </div>
               <div class="content">
                 <p>Oh wishing well,<br> go back to hell.<br> Thy depths unplumbed.<br> I would dispel.</p>
@@ -106,7 +106,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type4">Curse Witches (sounds redundant, isn't)</span></h2>
+                <h2><span  data-point="27.005,34.028" class="type4">Curse Witches (sounds redundant, isn't)</span></h2>
               </div>
               <div class="content">
                 <p>Older than stone,<br> vein under bone,<br> eye that just twitches and just glares,<br> crooked and bent,<br> the tapestry wrent,<br> in hopes light keep hold of your prayers.</p>
@@ -115,7 +115,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">Dead Philisophers</span></h2>
+                <h2><span  data-point="26.996,34.493" class="type2">Dead Philisophers</span></h2>
               </div>
               <div class="content">
                 <p>Ashen ink and silver quill,<br> the restless dead are called to will.<br> Those who argue call them up,<br> to put them down,<br> with silver sup.</p>
@@ -124,7 +124,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">Deadsnakes</span></h2>
+                <h2><span  data-point="27.091,33.852" class="type2">Deadsnakes</span></h2>
               </div>
               <div class="content">
                 <p>The tangled turmoil of teaming serpents dies not to bolt or blade.<br> In silver shing moonlight comes the sacred only aid.</p>
@@ -133,7 +133,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type1">Demonic Astral Barnicals</span></h2>
+                <h2><span  data-point="27.112,34.501" class="type1">Demonic Astral Barnicals</span></h2>
               </div>
               <div class="content">
                 <p>These ones don't care for the wood,<br> they're going for meat if they could.<br> Your flesh they'd devour.<br> Holy chum, every hour.<br> And...<br><br> A rhyme about upsetting parasites.<br><br> I'm not writing that.</p>
@@ -142,7 +142,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">Disgruntled Algebra</span></h2>
+                <h2><span data-point="26.675,34.471"  class="type2">Disgruntled Algebra</span></h2>
               </div>
               <div class="content">
                 <p>When the math has opinions,<br> you'll feel you can't win.<br> And the weight of good silver in hand,<br> will let you right wrongs<br> correct measures heal songs<br> and give the wrong math your command.</p>
@@ -151,7 +151,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type1">Disrespected Tree Guardians</span></h2>
+                <h2><span  data-point="26.959,33.715" class="type1">Disrespected Tree Guardians</span></h2>
               </div>
               <div class="content">
                 <p>I don't know, you be a sacred tree that gets an axe put in it and stay calm. Maybe <u>you're</u> the badguys here?</p>
@@ -160,7 +160,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type4">Do Not Bring Children</span></h2>
+                <h2><span  data-point="26.702,34.016" class="type4">Do Not Bring Children</span></h2>
               </div>
               <div class="content">
                 <p>You feast on youth,<br> oh beast uncouth,<br> in zeal get back to hell.<br> And there unwell,<br> I would dispel<br> all that you did compel.<br><br> No more you'll eat of supple meat<br> no tender ragged, cries.<br> In light of hope in one clear stroke, your ragged menace dies.</p>
@@ -169,7 +169,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">Entombed Barrier Knights</span></h2>
+                <h2><span  data-point="27.107,34.569" class="type2">Entombed Barrier Knights</span></h2>
               </div>
               <div class="content">
                 <p>As though they lay only in sleep,<br> they fight those who through barriers creep.<br> Entombed with their armor<br> harmed by no blade or charmer<br> in mirror glass lies their defeat.</p>
@@ -178,7 +178,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">Fiend Pines</span></h2>
+                <h2><span  data-point="26.791,34.291" class="type3">Fiend Pines</span></h2>
               </div>
               <div class="content">
                 <p>You cannot just set them on fire,<br> we tried that don't call me a liar.<br><br> In shadows they dwell that flames light can't expel,<br> not even the forest its pyre.</p>
@@ -187,7 +187,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type1">Fire Elemental Clan</span></h2>
+                <h2><span  data-point="27.029,33.932" class="type1">Fire Elemental Clan</span></h2>
               </div>
               <div class="content">
                 <p>Honored cinder from ember of old,<br> I would douse thee with blood I shed cold.<br> In old pacts renewed with new fire imbued,<br> in the ash's peace our story told.</p>
@@ -196,7 +196,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">Ghost Witches</span></h2>
+                <h2><span  data-point="27.08,34.044" class="type2">Ghost Witches</span></h2>
               </div>
               <div class="content">
                 <p>Dead with the crones in times older than stone,<br> thrice with good silver, they'll leave you alone.</p>
@@ -205,7 +205,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type1">God's Toilet</span></h2>
+                <h2><span  data-point="26.966,33.864" class="type1">God's Toilet</span></h2>
               </div>
                 <div class="content">
                   <p>On an alter they sacrifice bulls,<br> where to put all the guts they pull?<br> Just throw them down hill,<br> where they twitch as they will,<br> half sacred and never devoured.</p>
@@ -214,7 +214,7 @@
               </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type1">Hag's Bucket</span></h2>
+                <h2><span  data-point="26.69,33.998" class="type1">Hag's Bucket</span></h2>
               </div>
               <div class="content">
                 <p>Butchered, wretched, churning, foul.<br> Know the contents, start to scowl.<br> Be disgusted, be repulsed,<br> in blood offended they're avulsed.</p>
@@ -223,7 +223,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">Hinter Crypts</span></h2>
+                <h2><span  data-point="26.523,34.293" class="type2">Hinter Crypts</span></h2>
               </div>
               <div class="content">
                 <p>Oh ancient dead, your ire I dread.<br> Your strings I seek to sever in silver cut,<br> I bid you shut the tomb and wake ye never.</p>
@@ -232,7 +232,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type1">Hungry Angels</span></h2>
+                <h2><span  data-point="26.729,34.5" class="type1">Hungry Angels</span></h2>
               </div>
               <div class="content">
                 <p>From heaven lost bent to the kitchens they went,<br> empty bellys no sins and much time.<br> Empty pantries they found, and turned they like hounds,<br> sacred blood sates them now.<br> Fresh on ground.</p>
@@ -241,7 +241,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type4">Ignorance</span></h2>
+                <h2><span  data-point="26.97,34.506" class="type4">Ignorance</span></h2>
               </div>
               <div class="content">
                 <p>To heights you've arisen,<br> to ends you've been driven,<br> you've sacrificed and you've made do.<br> In times turning tide<br> that despair now arise<br> the last thing to have hope in is you.</p>
@@ -250,7 +250,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type1">Infernal Witches</span></h2>
+                <h2><span  data-point="27.085,34.001" class="type1">Infernal Witches</span></h2>
               </div>
               <div class="content">
                 <p>Sacred was the sacrifice and sacred was the blade,<br> dark though was the name they called and darker still the shade,<br> weep no more of salt and sour times and bite on ash.<br> Wet yourself with sacred blood, or fear infernal lash.</p>
@@ -259,7 +259,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type4">Introspection Wraiths</span></h2>
+                <h2><span  data-point="26.648,34.566" class="type4">Introspection Wraiths</span></h2>
               </div>
               <div class="content">
                 <p>Countermeasure devlopment has cost us three lives.<br> Help.</p>
@@ -268,7 +268,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">Junk Eaters</span></h2>
+                <h2><span  data-point="26.69,34.141" class="type3">Junk Eaters</span></h2>
               </div>
               <div class="content">
                 <p>When doing your deals bring a light,<br> but come out with money not might.<br> In coin from the stars<br> and knives wrought out of bars<br> of star metal do these fiends delight.</p>
@@ -277,7 +277,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">Nightmare Witches</span></h2>
+                <h2><span  data-point="27.027,33.986" class="type3">Nightmare Witches</span></h2>
               </div>
               <div class="content">
                 <p>Out of the fire light into the dark,<br> gnashing and raving, they'll come straight and stark.<br> Hold to your candles and hold to your hymns<br> and hold out against the nightmare witch's whims.</p>
@@ -286,7 +286,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type1">Party Pirate Devil Crew</span></h2>
+                <h2><span  data-point="26.945,34.443" class="type1">Party Pirate Devil Crew</span></h2>
               </div>
               <div class="content">
                 <p>Party hijacked minivan!<br> Party hijacked minivan!<br> Party hijacked minivan!</p>
@@ -295,7 +295,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type1">Posessed Soil Bacteria</span></h2>
+                <h2><span  data-point="26.94,34.065" class="type1">Posessed Soil Bacteria</span></h2>
               </div>
               <div class="content">
                 <p>A rift to a ruinous hell,<br> gives us daemons who in the loam dwell,<br> in sacred blood spilled,<br> their abatement is willed,<br> but back quick the evil will well.</p>
@@ -304,7 +304,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">Shadow Astral Barnicals</span></h2>
+                <h2><span  data-point="27.167,34.551" class="type3">Shadow Astral Barnicals</span></h2>
               </div>
               <div class="content">
                 <p>By starlight or torch,<br> your hull you must scorch,<br> or these nasty things will devour.<br> By means I can't tell.<br> That are not a spell,<br> about a foot of wood an hour.</p>
@@ -313,7 +313,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">Silver Maples</span></h2>
+                <h2><span  data-point="26.817,34.413" class="type2">Silver Maples</span></h2>
               </div>
               <div class="content">
                 <p>These trees speak binary, that is a problem.</p>
@@ -322,7 +322,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">Some Kind of Ghoul</span></h2>
+                <h2><span  data-point="26.606,34.491" class="type3">Some Kind of Ghoul</span></h2>
               </div>
               <div class="content">
                 <p>In darkness dwelling,<br> light compelling,<br> go back and be still.<br><br> Did not work repeat. Did not work. Testing needed.</p>
@@ -331,7 +331,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">Sour Times</span></h2>
+                <h2><span  data-point="26.571,34.151" class="type3">Sour Times</span></h2>
               </div>
               <div class="content">
                 <p>With sour times on fortune's breath,<br> we lay our own conscience to rest.<br> and though the frost has come to creep,<br> this dying warmth alone I'll keep.</p>
@@ -340,7 +340,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">Spectral Capitalists</span></h2>
+                <h2><span  data-point="26.656,34.652" class="type3">Spectral Capitalists</span></h2>
               </div>
               <div class="content">
                 <p>With torch to crypt your debts I hunt,<br> your mystic haunting ledger shut.<br> You'll tax no more, you gold crust spoor.<br> With light I burn you out.</p>
@@ -349,7 +349,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">Stupidity</span></h2>
+                <h2><span  data-point="26.911,34.461" class="type3">Stupidity</span></h2>
               </div>
               <div class="content">
                 <p>Read the manual, know the rules,<br> let the grave keep only fools.<br> Light to last a trying hour.<br> Turn away from the only tower.</p>
@@ -358,7 +358,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type4">Sugared Smiles</span></h2>
+                <h2><span  data-point="26.561,34.139" class="type4">Sugared Smiles</span></h2>
               </div>
               <div class="content">
                 <p>Beware the sweetness on the rise,<br> and watch for lotus eater lies.<br> Don't trust the honey on the tongue,<br> the truth beneath it smells like <b>[profanity redacted]</b>.</p>
@@ -367,7 +367,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">The Concequences</span></h2>
+                <h2><span  data-point="26.712,33.999" class="type3">The Concequences</span></h2>
               </div>
               <div class="content">
                 <p>Slaughtered young with faces dour,<br> child blood in buckets soured.<br> Graveless now and naught but ash.<br> Fight with daylight's seeing lash.</p>
@@ -376,7 +376,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">The Placentas</span></h2>
+                <h2><span  data-point="26.937,33.839" class="type2">The Placentas</span></h2>
               </div>
               <div class="content">
                 <p>Oh off cast of birth,<br> wretches heaving in Earth,<br> in silver I ward you and stone.<br> Oh amnion thing,<br> no wickedness bring,<br> in mercury be quenched alone.</p>
@@ -385,7 +385,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type3">The Shackled</span></h2>
+                <h2><span  data-point="26.972,34.282" class="type3">The Shackled</span></h2>
               </div>
               <div class="content">
                 <p>In light must you take to their binds,<br> but know that they pay for their crimes.<br> In sins done of old each link was foretold,<br> each destiny bound <b>[segment redacted]</b>.</p>
@@ -394,7 +394,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">The Unhsackled</span></h2>
+                <h2><span  data-point="26.963,34.267" class="type2">The Unhsackled</span></h2>
               </div>
               <div class="content">
                 <p>The bonds now lay broken<br> in deed and in oath spoken,<br> to hope turn at last in this hour.<br> From what was once forged<br> <b>[segment redacted]</b> now engorged<br> the world is what next they devour.</p>
@@ -403,7 +403,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">Undead Astral Barnicals</span></h2>
+                <h2><span  data-point="27.156,34.487" class="type2">Undead Astral Barnicals</span></h2>
               </div>
               <div class="content">
                 <p>Five percent silver was too low.<br> Previous poem redacted.</p>
@@ -412,7 +412,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">Undead Soil Bacteria</span></h2>
+                <h2><span  data-point="26.914,34.066" class="type2">Undead Soil Bacteria</span></h2>
               </div>
               <div class="content">
                 <p>The death eating death-taken rot,<br> heaves and blights under these plots.<br> In silver and steel,<br> with stomp of the heel,<br> know that victory cannot be got.</p>
@@ -421,7 +421,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type1">Vampire Deamon Bat People</span></h2>
+                <h2><span  data-point="26.593,34.603" class="type1">Vampire Deamon Bat People</span></h2>
               </div>
               <div class="content">
                 <p>Only bad as it sounds,<br> their just kind of around.<br> Bring a blood bag,<br> you'll have a good time.</p>
@@ -430,7 +430,7 @@
             </div>
             <div class="item">
               <div class="name">
-                <h2><span class="type2">Very Lost Celestial Purifiers</span></h2>
+                <h2><span  data-point="26.713,34.609" class="type2">Very Lost Celestial Purifiers</span></h2>
               </div>
               <div class="content">
                 <p>Our world they would purge,<br> with silver quell urge.<br> With might must you turn back the tide.<br> If left unattended our wold will be ended.<br> With moonlight now cut down the tide.</p>
@@ -446,7 +446,7 @@
         <div class="types" id="grades">
           <div class="item">
   <div class="name">
-    <h2><span class="grade1">Abladon Zone</span></h2>
+    <h2><span data-point="26.821,34.184" class="grade1">Abladon Zone</span></h2>
   </div>
   <div class="content">
     <p>Full coverage, founder tier.</p>
@@ -455,7 +455,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Aggression Herbs</span></h2>
+    <h2><span data-point="26.558,33.777" class="grade1">Aggression Herbs</span></h2>
   </div>
   <div class="content">
     <p>Imagine plants which can psychic-razor-leaf you to death if you don't macho luchador their lingo. Then add getting alien tetanus. We cover medical expenses, but not marketing.</p>
@@ -464,7 +464,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Ancient Farming Equipment</span></h2>
+    <h2><span data-point="26.92,34.264" class="grade2">Ancient Farming Equipment</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you worship the machine titans.</p>
@@ -473,7 +473,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Angle Grinder Ridge</span></h2>
+    <h2><span  data-point="26.586,33.661" class="grade2">Angle Grinder Ridge</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you touch it while it is running.</p>
@@ -482,7 +482,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade4">Beam Dump</span></h2>
+    <h2><span  data-point="26.672,33.928"class="grade4">Beam Dump</span></h2>
   </div>
   <div class="content">
     <p>Coverage limited to discharge events below 2 KT. Cancer treatment plans do not apply if you choose to keep any glass from the area.</p>
@@ -491,7 +491,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Bog People</span></h2>
+    <h2><span  data-point="27.108,34.381"class="grade1">Bog People</span></h2>
   </div>
   <div class="content">
     <p>Anyone care to explain how four mechanized nations have lost wars to these folks? No? Don't mess with them. Coverage ends if you start a war with the. Bog. People.</p>
@@ -500,7 +500,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Breadbasket Bramble</span></h2>
+    <h2><span cdata-point="26.61,33.822" lass="grade1">Breadbasket Bramble</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you start digging.</p>
@@ -518,7 +518,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Cardgames</span></h2>
+    <h2><span  data-point="26.911,34.526"class="grade1">Cardgames</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you cheat or bring a Red/Blue deck.</p>
@@ -527,7 +527,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Caves Full of Hydra Heads</span></h2>
+    <h2><span  data-point="26.902,34.412" class="grade2">Caves Full of Hydra Heads</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you walk in, idiot.</p>
@@ -536,7 +536,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Cheese Greater Air</span></h2>
+    <h2><span data-point="26.641,33.694" class="grade2">Cheese Greater Air</span></h2>
   </div>
   <div class="content">
     <p>Organics not covered, even if regenerative. Advisory: Air is not a food grade material. Do not use for food preparation.</p>
@@ -545,7 +545,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Climbing Gym</span></h2>
+    <h2><span  data-point="26.574,33.634" class="grade1">Climbing Gym</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you do not check your ropes confirm with belayer. Coverage also ends if the gym is climbing.</p>
@@ -554,7 +554,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Construct's Bane Nettles</span></h2>
+    <h2><span  data-point="27.163,34.271" class="grade1">Construct's Bane Nettles</span></h2>
   </div>
   <div class="content">
     <p>Policy terminated if you bring these into town. Constructs NOT covered.</p>
@@ -563,7 +563,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Contact Local Hexenguard</span></h2>
+    <h2><span  data-point="26.696,34.015" class="grade2">Contact Local Hexenguard</span></h2>
   </div>
   <div class="content">
     <p>Contact local hexenguard. Coverage ends if you don't.</p>
@@ -572,7 +572,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade4">Dandelion 2</span></h2>
+    <h2><span  data-point="26.649,33.849" class="grade4">Dandelion 2</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you begin listening to it.</p>
@@ -581,7 +581,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade4">Dandelion 3</span></h2>
+    <h2><span class="grade4" data-point = "26.56,33.814">Dandelion 3</span></h2>
   </div>
   <div class="content">
     <p>Forge vessel of the noon empire, the light is inhabited. That is not the sun. That is not. The sun. Coverage ends if its light touches you.</p>
@@ -590,7 +590,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade4">Dandelion 5</span></h2>
+    <h2><span  data-point="26.55,33.663" class="grade4">Dandelion 5</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you try to hijack it. Yes we know it works. Stop.</p>
@@ -599,7 +599,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade3">Dawnflurries</span></h2>
+    <h2><span  data-point="26.561,33.811" class="grade3">Dawnflurries</span></h2>
   </div>
   <div class="content">
     <p>The white powder in the air is not frozen water, it is crystals of high tension time filament leaking into physical space. Think of them as a million years of erosion per kilogram. You are not covered for age benefits (that would be fraud) or death.</p>
@@ -608,7 +608,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Divnipple</span></h2>
+    <h2><span  data-point="26.678,34.637" class="grade1">Divnipple</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you suckle.</p>
@@ -617,7 +617,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade4">Do Not Engage</span></h2>
+    <h2><span data-point="26.723,34.117"  class="grade4">Do Not Engage</span></h2>
   </div>
   <div class="content">
     <p>Enemy hostile detected. Withdraw withdraw withdraw. Do not engage.</p>
@@ -626,7 +626,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Dojo Ravine</span></h2>
+    <h2><span  data-point="26.592,33.828" class="grade2">Dojo Ravine</span></h2>
   </div>
   <div class="content">
     <p>The volume of the expose crustal rock down to 127 meters has been procedural tiled with realistic martial arts experts and their training areas. You're not covered for Krav Maga or Rough-n-Tumble.</p>
@@ -635,7 +635,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Dragback</span></h2>
+    <h2><span  data-point="26.803,34.207" class="grade1">Dragback</span></h2>
   </div>
   <div class="content">
     <p>Coverage limited, see agent.</p>
@@ -644,7 +644,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade3">Enlightenment Rain</span></h2>
+    <h2><span  data-point="26.55,33.662" class="grade3">Enlightenment Rain</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you begin singing and dancing.</p>
@@ -653,7 +653,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Excited Lead</span></h2>
+    <h2><span  data-point="26.669,33.674" class="grade1">Excited Lead</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if the lead becomes hot.</p>
@@ -662,7 +662,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade4">Fae Rift</span></h2>
+    <h2><span  data-point="27.03,34.463" class="grade4">Fae Rift</span></h2>
   </div>
   <div class="content">
     <p>Do you really need this one explained? Coverage ends if you can see the rift directly.</p>
@@ -671,7 +671,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade3">Fairy Blight</span></h2>
+    <h2><span  data-point="27.036,34.464" class="grade3">Fairy Blight</span></h2>
   </div>
   <div class="content">
     <p>Unattended matter erupts into faeries, do not persist in zone. Groups of up to four can count as unattended. Coverage ends if you do not follow the rescue team leader.</p>
@@ -680,7 +680,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Forever Picknicks</span></h2>
+    <h2><span  data-point="26.532,33.618" class="grade1">Forever Picknicks</span></h2>
   </div>
   <div class="content">
     <p>Yet to be graded. Awaiting return of investigators.</p>
@@ -689,7 +689,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Gentlehunts</span></h2>
+    <h2><span  data-point="26.627,33.823" class="grade1">Gentlehunts</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you agree to let them eat you.</p>
@@ -707,7 +707,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Glacier Zoo</span></h2>
+    <h2><span  data-point="26.55,33.747" class="grade1">Glacier Zoo</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you eat or interact with uncooked thaw specimens.</p>
@@ -716,7 +716,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Grade This Higher</span></h2>
+    <h2><span  data-point="26.634,33.84" class="grade2">Grade This Higher</span></h2>
   </div>
   <div class="content">
     <p>Internal note, do not publish. How many casualties? Blacklisted what?</p>
@@ -725,7 +725,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Gusty Doubts</span></h2>
+    <h2><span  data-point="26.536,33.702" class="grade2">Gusty Doubts</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends unless carrying proof someone loves you.</p>
@@ -743,7 +743,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Hot Target Sector</span></h2>
+    <h2><span  data-point="26.698,33.772" class="grade2">Hot Target Sector</span></h2>
   </div>
   <div class="content">
     <p>LITTERALY. Random effects from unknown entities targeting capabilities. Full coverage.</p>
@@ -752,7 +752,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">How the Woods Got Their Name</span></h2>
+    <h2><span  data-point="26.689,34.264" class="grade1">How the Woods Got Their Name</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you disturb the murder.</p>
@@ -761,7 +761,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Hunting Bramble</span></h2>
+    <h2><span  data-point="27.118,34.215" class="grade2">Hunting Bramble</span></h2>
   </div>
   <div class="content">
     <p>Full coverage requires total biome kill sustain suite. See our funding plan. Only you can prevent bramble forests.</p>
@@ -770,7 +770,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Interlaced Portals</span></h2>
+    <h2><span  data-point="26.653,34.557" class="grade2">Interlaced Portals</span></h2>
   </div>
   <div class="content">
     <p>You are covered for dead worlds. Coverage ends if you do not report a living world. Coverage limited on Thursdays.</p>
@@ -779,7 +779,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade4">Jim</span></h2>
+    <h2><span  data-point="26.759,34.043" class="grade4">Jim</span></h2>
   </div>
   <div class="content">
     <p>In this zone you can encounter the cabin of Jim. If you choose to accept a deal Jim offers, Tim will know and not deal with you. Coverage ends if you break this rule.</p>
@@ -788,7 +788,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Killgiggles</span></h2>
+    <h2><span  data-point="26.582,33.645" class="grade2">Killgiggles</span></h2>
   </div>
   <div class="content">
     <p>We named this so you wouldn't have to read the description. Coverage ends if you enter with a scene of humor.</p>
@@ -797,7 +797,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Lover's Grass</span></h2>
+    <h2><span  data-point="26.518,33.684" class="grade1">Lover's Grass</span></h2>
   </div>
   <div class="content">
     <p>Use protection or coverage ends.</p>
@@ -815,7 +815,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade4">Mama Vio</span></h2>
+    <h2><span  data-point="26.701,33.769" class="grade4">Mama Vio</span></h2>
   </div>
   <div class="content">
     <p>First era Zoman containment of unknown combat entity. Coverage ends if you cross the yellow line.</p>
@@ -851,7 +851,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Mountain God Domain</span></h2>
+    <h2><span  data-point="26.614,33.785" class="grade1">Mountain God Domain</span></h2>
   </div>
   <div class="content">
     <p>We are NOT responsible for party related damaged.</p>
@@ -860,7 +860,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade3">Neverweres</span></h2>
+    <h2><span  data-point="26.657,33.849" class="grade3">Neverweres</span></h2>
   </div>
   <div class="content">
     <p>Daisy? I knew Daisy. I'd sing to her. Wait. Daisy? Daisy come back. No let me go to Daisy now!</p>
@@ -869,7 +869,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Oil Seeps</span></h2>
+    <h2><span  data-point="26.946,34.643" class="grade2">Oil Seeps</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if used as lubricant or internationally liberated.</p>
@@ -887,7 +887,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Pacification Backsplash</span></h2>
+    <h2><span  data-point="26.524,33.635" class="grade2">Pacification Backsplash</span></h2>
   </div>
   <div class="content">
     <p>You are not covered for alterations in your aggression level.</p>
@@ -896,7 +896,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Persuasive Highwaymen</span></h2>
+    <h2><span  data-point="27.165,34.388" class="grade1">Persuasive Highwaymen</span></h2>
   </div>
   <div class="content">
     <p>You are covered for robbery, please report racketeering and graffiti.</p>
@@ -905,7 +905,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Pillow Zone</span></h2>
+    <h2><span  data-point="26.651,33.885" class="grade2">Pillow Zone</span></h2>
   </div>
   <div class="content">
     <p>Stained, threadbare, tattered, matted, sad pillows of every shape, filling, and cloth. Seriously impedes transit, can kill with mold or hayfeaver. Coverage ends if you steal a pillow. Borrowing is okay, they will know.</p>
@@ -914,7 +914,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Rail Defense Perimeter</span></h2>
+    <h2><span  data-point="27.113,33.71" class="grade1">Rail Defense Perimeter</span></h2>
   </div>
   <div class="content">
     <p>You are not authorized to enter the Rail Defense Parameter. You know if you are.</p>
@@ -923,7 +923,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Rock Candy Mountain</span></h2>
+    <h2><span  data-point="26.702,33.893" class="grade1">Rock Candy Mountain</span></h2>
   </div>
   <div class="content">
     <p>Warning: Literally Big Rock Candy Mountain. You are not a covered candy dealer or candy man (ignore if you happen to be).</p>
@@ -941,7 +941,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Safe on Paper</span></h2>
+    <h2><span  data-point="27.01,33.784" class="grade2">Safe on Paper</span></h2>
   </div>
   <div class="content">
     <p>Your coverage may vary.</p>
@@ -950,7 +950,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Serious Mapping Abnormality</span></h2>
+    <h2><span  data-point="26.788,34.351" class="grade2">Serious Mapping Abnormality</span></h2>
   </div>
   <div class="content">
     <p>Node graph out of date.</p>
@@ -959,7 +959,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Settlement Prohibition Zone 18</span></h2>
+    <h2><span  data-point="26.778,33.843" class="grade2">Settlement Prohibition Zone 18</span></h2>
   </div>
   <div class="content">
     <p>See name. Coverage ends if you settle here.</p>
@@ -968,7 +968,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Shady Parts Vendors</span></h2>
+    <h2><span  data-point="26.699,34.151" class="grade1">Shady Parts Vendors</span></h2>
   </div>
   <div class="content">
     <p>They say they're not stripping parts from the hulks and that passes a truth test. Literately no one believes this. Caviat emptor. Coverage ends if your vehicle is 100 percent or more unlicensed parts.</p>
@@ -977,7 +977,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Skyhook Service Zone</span></h2>
+    <h2><span  data-point="26.617,33.898" class="grade1">Skyhook Service Zone</span></h2>
   </div>
   <div class="content">
     <p>An unknown anchor provides cost-free skyhook delivery from this zone to anywhere in the Cogdales. Coverage ends if you try to rob the operators, Bob.</p>
@@ -986,7 +986,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Sluice Crick</span></h2>
+    <h2><span  data-point="26.656,33.656" class="grade2">Sluice Crick</span></h2>
   </div>
   <div class="content">
     <p>Be aware of traction loss and metal erosion. Due to the contamination of denatured engine slick. Full coverage.</p>
@@ -995,7 +995,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Snugly Radon</span></h2>
+    <h2><span  data-point="26.634,33.715" class="grade1">Snugly Radon</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends without hourly leak checks. Stay sealed, stay covered.</p>
@@ -1004,7 +1004,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Soporific Plants</span></h2>
+    <h2><span  data-point="27.176,34.003" class="grade1">Soporific Plants</span></h2>
   </div>
   <div class="content">
     <p>Coverage does not include opiate manufacture license.</p>
@@ -1013,7 +1013,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Starflint</span></h2>
+    <h2><span  data-point="26.531,33.811" class="grade2">Starflint</span></h2>
   </div>
   <div class="content">
     <p>The brittle black mineral in the soil is actually degenerate iron-60 crystals, but you can treat it like flint. That's not what causes trouble. You know who you are. Mining is not covered.</p>
@@ -1031,7 +1031,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Stop Building Here</span></h2>
+    <h2><span  data-point="26.935,34.099" class="grade2">Stop Building Here</span></h2>
   </div>
   <div class="content">
     <p>Three hundred and seventeen road projects. Eighty two canals. Ninety-five waystations. Two hundred and twenty one rest stops. Have failed in this area because of otherwise undocumented curses. This zone is a catch-all to administratively prevent future malinvestment. Stop. Building. Here. No building projects will be covered.</p>
@@ -1049,7 +1049,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Tea Parties</span></h2>
+    <h2><span  data-point="27.115,34.607" class="grade1">Tea Parties</span></h2>
   </div>
   <div class="content">
     <p>The crumpets are discouraged.</p>
@@ -1058,7 +1058,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Terror Bog</span></h2>
+    <h2><span  data-point="27.145,34.515" class="grade1">Terror Bog</span></h2>
   </div>
   <div class="content">
     <p>Mostly harmless. Full coverage.</p>
@@ -1067,7 +1067,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">The Barrier Wood</span></h2>
+    <h2><span  data-point="27.075,34.526" class="grade2">The Barrier Wood</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you fell a tree and do not replant two.</p>
@@ -1076,7 +1076,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade4">The Kettle</span></h2>
+    <h2><span  data-point="27.041,34.024" class="grade4">The Kettle</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you drink the results.</p>
@@ -1094,7 +1094,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">The Scissor's Gully</span></h2>
+    <h2><span  data-point="26.594,33.688" class="grade2">The Scissor's Gully</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you come in physical contact with the sediments of the gully.</p>
@@ -1103,7 +1103,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade4">The Zo Anomoly</span></h2>
+    <h2><span  data-point="26.623,33.674" class="grade4">The Zo Anomoly</span></h2>
   </div>
   <div class="content">
     <p>If you are close enough to see the license plate you are not covered.</p>
@@ -1112,7 +1112,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade4">Tim</span></h2>
+    <h2><span  data-point="26.759,34.055" class="grade4">Tim</span></h2>
   </div>
   <div class="content">
     <p>In this zone you can encounter the cabin of Tim. If you choose to accept a deal Tim offers, Jim will know and not deal with you. Coverage ends if you break this rule.</p>
@@ -1121,7 +1121,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Timespalling Damage</span></h2>
+    <h2><span  data-point="26.695,33.773" class="grade1">Timespalling Damage</span></h2>
   </div>
   <div class="content">
     <p>The glittering you see in the air is the decay of ribbons of our future being destroyed. It is not good for you. Coverage ends without sealed transit vessel.</p>
@@ -1130,7 +1130,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Too Many Snakes</span></h2>
+    <h2><span  data-point="27.124,33.916" class="grade1">Too Many Snakes</span></h2>
   </div>
   <div class="content">
     <p>Literally 1000% too many snakes. Coverage ends if you anger the snakes. Also how?</p>
@@ -1139,7 +1139,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Too Nice To Leave</span></h2>
+    <h2><span  data-point="26.561,34.253" class="grade1">Too Nice To Leave</span></h2>
   </div>
   <div class="content">
     <p>It's just too nice to leave.</p>
@@ -1148,7 +1148,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Transit Into Solid Rock</span></h2>
+    <h2><span  data-point="26.551,33.712" class="grade1">Transit Into Solid Rock</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if you gate jump.</p>
@@ -1157,7 +1157,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade2">Undead Trees</span></h2>
+    <h2><span  data-point="27.061,34.387" class="grade2">Undead Trees</span></h2>
   </div>
   <div class="content">
     <p>Motile petrified wood. End of warning.</p>
@@ -1166,7 +1166,7 @@
 </div>
 <div class="item">
   <div class="name">
-    <h2><span class="grade1">Underground Fires</span></h2>
+    <h2><span  data-point="26.869,33.642" class="grade1">Underground Fires</span></h2>
   </div>
   <div class="content">
     <p>Coverage ends if not immune to smoke and flame.</p>
@@ -1178,6 +1178,32 @@
       </div>
     </div>
 
+        <script>
+          ["grade1", "grade2", "grade3", "grade4"].forEach(function(grade){
+          Array.from(document.getElementsByClassName(grade)).forEach(function(element) {
+              element.addEventListener('click', function() {
+                  // https://stackoverflow.com/questions/19655189/javascript-click-event-listener-on-class
+                  var loc = this.getAttribute("data-point");
+                kilyewmap.contentWindow.postMessage('fly,'+loc, '*');
+                kilyewmap.contentWindow.postMessage('grades', '*');
+                  console.log('popup,'+loc+','+element.textContent)
+                  kilyewmap.contentWindow.postMessage('popup,'+loc+','+element.textContent, '*');
+              })
+          })})
+        </script>
+        <script>
+          ["type1", "type2", "type3", "type4"].forEach(function(grade){
+          Array.from(document.getElementsByClassName(grade)).forEach(function(element) {
+              element.addEventListener('click', function() {
+                  // https://stackoverflow.com/questions/19655189/javascript-click-event-listener-on-class
+                  var loc = this.getAttribute("data-point");
+                kilyewmap.contentWindow.postMessage('fly,'+loc, '*');
+                kilyewmap.contentWindow.postMessage('types', '*');
+                  console.log('popup,'+loc+','+element.textContent)
+                  kilyewmap.contentWindow.postMessage('popup,'+loc+','+element.textContent, '*');
+              })
+          })})
+        </script>
 
   </body>
 </html>

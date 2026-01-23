@@ -58,6 +58,7 @@
 	max-height: none !important;
 	width: auto;
 	padding: 0;
+    image-rendering: pixelated;
 	}
 
 .leaflet-container img.leaflet-tile {

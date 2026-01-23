@@ -1920,6 +1920,37 @@
 
         var layerControl = L.control.layers(baseMaps, controlLayers).addTo(map);
 
+map.on('baselayerchange', function(e) {console.log(e)});
+
+// https://gis.stackexchange.com/questions/147052/leaflet-js-map-pan-too-and-zoom-in-on-point
+// https://stackoverflow.com/questions/9153445/how-to-communicate-between-iframe-and-the-parent-site
+window.onmessage = function(e) {
+    var latlng = e.data.split(',');
+
+    if (latlng[0] === "fly") {
+        var lat = latlng[1];
+        var lng = latlng[2];
+        var zoom = 10;
+
+        map.flyTo([lat, lng], map.getZoom());
+        // L.popup().setLatLng([lat,lng]).setContent('<p>'+)
+        // L.circleMarker([lat,lng], {opacity:0.5}).addTo(map);
+    }
+
+    if (latlng[0] === "grades") {
+        map.removeLayer(grades);
+        grades.addTo(map);
+    }
+
+    if (latlng[0] === "types") {
+        map.removeLayer(types);
+        types.addTo(map);
+    }
+    if (latlng[0] === "popup") {
+        L.popup().setLatLng(L.latLng([latlng[1],latlng[2]])).setContent(latlng[3]).openOn(map);
+    }
+    
+};
 
         </script>
     </body>
