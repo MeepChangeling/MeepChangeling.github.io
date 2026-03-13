@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accentifier</title>
+  <style>
+    textarea { width: 100%; height: 150px; margin-bottom: 10px; }
+    button { padding: 10px 20px; font-size: 16px; }
+    div.content {
+      width: 60vw;
+    }
+    /* Mobile shit - detects if the page is loaded in a space of 900 px wide or less and alters how content is displayed accordingly */
+    @media only screen and (max-width: 900px),
+      screen and (orientation: portrait) {
+      div.content {
+        width: 95vw;
+        height: 100%;
+        left: 0;
+        top: 0;
+        margin-left: auto;
+        margin-right: auto;}
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <label for="accentMode">Accent Mode:</label>
+    <select id="accentMode">
+      <option value="oblight">Aussie Light (Vertex)</option>
+      <option value="obheavy">Aussie Heavy (Hearth Steel)</option>
+      <option value="luna">Old Equish (Luna)</option>
+      <option value="country">Rural Equish (Aplejack)</option>
+      <option value="oldenglish">Middle English Substrate</option>
+      <option value="egyptian">Ancient Egyptian Substrate</option>
+      <option value="coptic">Coptic Substrate</option>
+    </select>
+    <h1>Accentifier</h1>
+    <textarea id="input" placeholder="Paste your text here..."></textarea>
+    <button onclick="convertToAussie()">Accentify</button>
+    <textarea id="output" placeholder="Your Accented text will appear here..."></textarea>
+    <div class="instructions">
+      <h1>Input Dialouge Instructions</h1>
+      <div class="writingGuide" id="writingGuide">
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script src="./writingguide.js"></script>
+  <script src="./contractions.js"></script>
+
+    <!-- Loads dictionaries -->
+    <script src="./oblight.js"></script>
+    <script src="./obheavy.js"></script>
+    <script src="./luna.js"></script>
+    <script src="./country.js"></script>
+    <script src="./oldenglish.js"></script>
+    <script src="./egyptian.js"></script>
+    <script src="./coptic.js"></script>
+
+  <script>
+
+
+    //Changes Writing Guide by accent mode
+    document.getElementById("accentMode").addEventListener("change", e => {
+      const mode = e.target.value;
+      document.getElementById("writingGuide").innerText =
+        writingGuides[mode] || "";
+    });
+
+    //Loads Writing Guide on page load / refresh
+    function updateWritingGuide() {
+      const mode = document.getElementById("accentMode").value;
+      document.getElementById("writingGuide").innerText =
+        writingGuides[mode] || "";
+    }
+
+    const recontractionList = buildReContractionList(contractionList);
+
+
+
+    // Code that decompresses the dictionary files
+    function expandSynonyms(modes) {
+      for (const mode of Object.values(modes)) {
+        for (const [key, value] of Object.entries({...mode})) {
+
+          if (key.includes("|")) {
+            delete mode[key];
+
+            key.split("|").forEach(k => {
+              mode[k.trim()] = value;
+            });
+          }
+
+        }
+      }
+    }
+
+    // Code that picks word to use if a word has more than one possible meaning
+    function pickWeighted(value) {
+
+      // normal single replacement
+      if (!value.includes("||")) return value;
+
+      const options = value.split("||").map(entry => {
+        const [word, weight] = entry.split(":");
+        return {
+          word: word.trim(),
+          weight: Number(weight) || 1
+        };
+      });
+
+      const totalWeight = options.reduce((sum, o) => sum + o.weight, 0);
+      let roll = Math.random() * totalWeight;
+
+      for (const option of options) {
+        roll -= option.weight;
+        if (roll <= 0) return option.word;
+      }
+
+      return options[0].word; // fallback
+    }
+
+
+  function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  //Bulk of conversion (regex :/)
+  function convertToAussie() {
+    let text = document.getElementById("input").value;
+    // Normalize smart quotes to ASCII
+    text = text
+      .replace(/[’‘]/g, "'")
+      .replace(/[“”]/g, '"');
+    const mode = document.getElementById("accentMode").value;
+
+    //Handles contractions
+    var decontract = false
+    var recontract = false
+    if (mode == "oldenglish" || mode == "egyptian" || mode == "luna" || mode == "oblight" || mode == "obheavy" || mode == "coptic") {
+      decontract = true
+    }
+    if (mode == "oblight" || mode == "obheavy") {
+      recontract = true
+    }
+
+
+    //Selects dictionary files and decompresses dictionary arrays
+    if (mode == "oblight") {
+      wordSwaps = oblightdict;
+      regexReplacements = oblightregex;
+    } else if (mode == "luna") {
+      wordSwaps = lunadict;
+      regexReplacements = lunaregex;
+    } else if (mode == "country") {
+      wordSwaps = countrydict;
+      regexReplacements = contryregex;
+    } else if (mode == "obheavy") {
+      wordSwaps = obheavydict;
+      regexReplacements = obheavyregex;
+    } else if (mode == "oldenglish") {
+      wordSwaps = oldenglishdict;
+      regexReplacements = oldenglishregex;
+    } else if (mode == "egyptian") {
+      wordSwaps = egyptiandict;
+      regexReplacements = egyptianregex;
+    } else if (mode == "coptic") {
+      wordSwaps = copticdict;
+      regexReplacements = copticregex;
+    }
+
+    // Sort longest keys first
+    const sortedWordSwaps = Object.entries(wordSwaps).sort(
+      ([a], [b]) => b.length - a.length
+    );
+
+    for (const [key, value] of sortedWordSwaps) {
+      const regex = new RegExp(`(^|[^\\w'])${escapeRegExp(key)}(?=[^\\w']|$)`, 'gi');
+      text = text.replace(regex, (match, p1) => {
+        const chosen = pickWeighted(value);
+        return p1 + matchCase(match.slice(p1.length), chosen);
+      });
+    }
+
+    //Recontracts text
+    function recontractText(text) {
+
+      for (const { phrase, contraction } of recontractionList) {
+        const regex = new RegExp(
+          `\\b${escapeRegExp(phrase)}\\b`,
+          "gi"
+        );
+
+        text = text.replace(regex, match =>
+          matchCase(match, contraction)
+        );
+      }
+
+      return text;
+    }
+
+    //detects if decontractions should be preformed, preforms, it, then applies corrections as needed.
+    if (recontract == true) {
+      text = recontractText(text);
+    }
+
+
+
+    // Capitalize after . ! ?
+    text = text.replace(/([.!?])\s+([a-z])/g, (match, p1, p2) => p1 + " " + p2.toUpperCase());
+
+    // Capitalize first character of the text
+    text = text.charAt(0).toUpperCase() + text.slice(1);
+
+    document.getElementById("output").value = text;
+
+    //detects if decontractions should be preformed, preforms, it, then applies corrections as needed.
+    if (recontract == true) {
+      contractionList.forEach(({ pattern, replacement }) => {
+        text = text.replace(pattern, replacement);
+      });
+    }
+    regexReplacements.forEach(({ pattern, replacement }) => {
+        text = text.replace(pattern, replacement);
+      });
+
+
+    // Copy to clipboard automatically
+    navigator.clipboard.writeText(text).catch(err => {
+      console.error("Clipboard copy failed:", err);
+    });
+  }
+
+  //Fixes casing issues after conversion.
+  function matchCase(original, replacement) {
+    if (original === original.toUpperCase()) {
+      return replacement.toUpperCase();
+    }
+    if (original[0] === original[0].toUpperCase()) {
+      return replacement[0].toUpperCase() + replacement.slice(1);
+    }
+    return replacement;
+  }
+
+  // Allows scroll wheel to change dropdown selection
+  document.getElementById("accentMode").addEventListener("wheel", (event) => {
+    event.preventDefault();
+    const select = event.currentTarget;
+    let newIndex = select.selectedIndex + (event.deltaY > 0 ? 1 : -1);
+    if (newIndex < 0) newIndex = select.options.length - 1;
+    if (newIndex >= select.options.length) newIndex = 0;
+    select.selectedIndex = newIndex;
+    updateWritingGuide();
+  });
+
+  //Builds re-contraction list from the contraction list.
+  function buildReContractionList(list) {
+    const reversed = [];
+
+    for (const { pattern, replacement } of list) {
+
+      // extract the literal word from /\bWORD\b/gi
+      const match = pattern.source.match(/\\b(.+?)\\b/i);
+      if (!match) continue;
+
+      const contraction = match[1];
+
+      reversed.push({
+        phrase: replacement.toLowerCase(),
+        contraction: contraction
+      });
+    }
+
+
+
+    // longest phrases first (CRITICAL)
+    reversed.sort((a, b) => b.phrase.length - a.phrase.length);
+
+    return reversed;
+  }
+
+
+  // Expand dictionaries once at load
+    expandSynonyms(oblightdict);
+    expandSynonyms(obheavydict);
+    expandSynonyms(lunadict);
+    expandSynonyms(countrydict);
+    expandSynonyms(oldenglishdict);
+    expandSynonyms(egyptiandict);
+    expandSynonyms(copticdict);
+
+  //Trigger to update writing guide on page load.
+  window.addEventListener("DOMContentLoaded", updateWritingGuide);
+  </script>
+</body>
+</html>
