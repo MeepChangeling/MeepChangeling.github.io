@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pokémon Damage Desk Toy</title>
+  <style>
+    body { font-family: sans-serif; background: #1e1e1e; color: #eee; padding: 20px; }
+    input, select { margin: 5px; }
+    .section { margin-bottom: 15px; padding: 10px; border: 1px solid #444; }
+    .result { font-size: 1.5em; margin-top: 15px; }
+    .crit { color: #ff4d4d; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<h1>Pokémon Damage Desk Toy</h1>
+
+<div class="section">
+  <h3>Base Stats</h3>
+  Level: <input type="number" id="level" value="50"><br>
+  Power: <input type="number" id="power" value="80"><br>
+  Attack: <input type="number" id="attack" value="100"><br>
+  Defense: <input type="number" id="defense" value="100"><br>
+</div>
+
+<div class="section">
+  <h3>Battle Conditions</h3>
+
+  Targets:
+  <select id="targets">
+    <option value="1">Single</option>
+    <option value="0.75">Multiple</option>
+  </select><br>
+
+  Parental Bond:
+  <input type="checkbox" id="parental"><br>
+
+  Weather:
+  <select id="weather">
+    <option value="1">Neutral</option>
+    <option value="1.5">Boosted</option>
+    <option value="0.5">Weakened</option>
+  </select><br>
+
+  Glaive Rush:
+  <input type="checkbox" id="glaive"><br>
+
+  STAB:
+  <input type="checkbox" id="stab"><br>
+
+  Effectiveness:
+  <select id="effectiveness">
+    <option value="0.5">Not very effective</option>
+    <option value="1" selected>Normal</option>
+    <option value="2">Super effective</option>
+  </select><br>
+
+  Target Burned:
+  <input type="checkbox" id="burn"><br>
+
+  Z / Max Move:
+  <input type="checkbox" id="zmove"><br>
+
+  Critical Stage:
+  <select id="critStage">
+    <option value="0">Stage 0</option>
+    <option value="1">Stage 1</option>
+    <option value="2">Stage 2</option>
+    <option value="3">Stage 3+</option>
+  </select>
+</div>
+
+<label>
+  <input type="checkbox" id="rangeMode"> Damage Range Mode (100 hits)
+</label><br><br>
+
+<button onclick="calculate()">Calculate Damage</button>
+
+<div class="result" id="output"></div>
+<div id="critText"></div>
+
+<script>
+function getCritChance(stage) {
+  switch(stage) {
+    case 0: return 0.0417;
+    case 1: return 0.125;
+    case 2: return 0.5;
+    case 3: return 1.0;
+  }
+}
+
+function calculate() {
+  let level = +document.getElementById("level").value;
+  let power = +document.getElementById("power").value;
+  let atk = +document.getElementById("attack").value;
+  let def = +document.getElementById("defense").value;
+
+  let targets = +document.getElementById("targets").value;
+  let parental = document.getElementById("parental").checked ? 0.25 : 1;
+  let weather = +document.getElementById("weather").value;
+  let glaive = document.getElementById("glaive").checked ? 2 : 1;
+  let stab = document.getElementById("stab").checked ? 1.5 : 1;
+  let effectiveness = +document.getElementById("effectiveness").value;
+  let burn = document.getElementById("burn").checked ? 0.5 : 1;
+  let zmove = document.getElementById("zmove").checked ? 0.25 : 1;
+
+  let stage = +document.getElementById("critStage").value;
+  let critChance = getCritChance(stage);
+
+  function singleHit() {
+    let A = (level * 2) / 5;
+    let B = A + 2;
+    let C = B * power * (atk / def);
+    let D = (C / 50) + 2;
+
+    let rand = (Math.floor(Math.random() * 16) + 85) / 100;
+
+    let isCrit = Math.random() < critChance;
+    let crit = isCrit ? 1.5 : 1;
+
+    let damage = D * targets * parental * weather * glaive * crit * rand * stab * effectiveness * burn * zmove;
+
+    return {
+      damage: Math.floor(damage),
+      crit: isCrit
+    };
+  }
+
+  let rangeMode = document.getElementById("rangeMode").checked;
+
+  if (!rangeMode) {
+    let hit = singleHit();
+
+    document.getElementById("output").innerText = "Damage: " + hit.damage;
+
+    let critText = document.getElementById("critText");
+    if (hit.crit) {
+      critText.innerText = "CRITICAL HIT!";
+      critText.className = "crit";
+    } else {
+      critText.innerText = "";
+    }
+
+  } else {
+    let results = [];
+    let crits = 0;
+
+    for (let i = 0; i < 100; i++) {
+      let hit = singleHit();
+      results.push(hit.damage);
+      if (hit.crit) crits++;
+    }
+
+    let min = Math.min(...results);
+    let max = Math.max(...results);
+    let avg = Math.floor(results.reduce((a, b) => a + b, 0) / results.length);
+
+    document.getElementById("output").innerText =
+      `Min: ${min} | Max: ${max} | Avg: ${avg}`;
+
+    let critText = document.getElementById("critText");
+    critText.innerText = `Crits: ${crits}/100`;
+    critText.className = "crit";
+  }
+}
+</script>
+
+</body>
+</html>

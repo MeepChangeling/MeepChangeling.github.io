@@ -6,20 +6,37 @@
   <style>
     textarea { width: 100%; height: 150px; margin-bottom: 10px; }
     button { padding: 10px 20px; font-size: 16px; }
+    div.content {
+      width: 60vw;
+    }
+    /* Mobile shit - detects if the page is loaded in a space of 900 px wide or less and alters how content is displayed accordingly */
+    @media only screen and (max-width: 900px),
+      screen and (orientation: portrait) {
+      div.content {
+        width: 95vw;
+        height: 100%;
+        left: 0;
+        top: 0;
+        margin-left: auto;
+        margin-right: auto;}
+    }
   </style>
 </head>
 <body>
-  <label for="accentMode">Accent Mode:</label>
-  <select id="accentMode">
-    <option value="oblight">Oatbuck Light (Vertex)</option>
-    <option value="obheavy">Oatbuck Heavy (Hearth Steel)</option>
-    <option value="luna">Old Equish (Luna)</option>
-    <option value="country">Rural Equish (Aplejack)</option>
-  </select>
-  <h1>Accentifier Converter</h1>
-  <textarea id="input" placeholder="Paste your text here..."></textarea>
-  <button onclick="convertToAussie()">Accentify</button>
-  <textarea id="output" placeholder="Your Accented text will appear here..."></textarea>
+  <div class="content">
+    <label for="accentMode">Accent Mode:</label>
+    <select id="accentMode">
+      <option value="oblight">Oatbuck Light (Vertex)</option>
+      <option value="obheavy">Oatbuck Heavy (Hearth Steel)</option>
+      <option value="luna">Old Equish (Luna)</option>
+      <option value="country">Rural Equish (Aplejack)</option>
+    </select>
+    <h1>Accentifier Converter</h1>
+    <textarea id="input" placeholder="Paste your text here..."></textarea>
+    <button onclick="convertToAussie()">Accentify</button>
+    <textarea id="output" placeholder="Your Accented text will appear here..."></textarea>
+  </div>
+
 
   <script>
   const accentModes = {

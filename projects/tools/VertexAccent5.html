@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accentifier</title>
+  <style>
+    textarea { width: 100%; height: 150px; margin-bottom: 10px; }
+    button { padding: 10px 20px; font-size: 16px; }
+    div.content {
+      width: 60vw;
+    }
+    /* Mobile shit - detects if the page is loaded in a space of 900 px wide or less and alters how content is displayed accordingly */
+    @media only screen and (max-width: 900px),
+      screen and (orientation: portrait) {
+      div.content {
+        width: 95vw;
+        height: 100%;
+        left: 0;
+        top: 0;
+        margin-left: auto;
+        margin-right: auto;}
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <label for="accentMode">Accent Mode:</label>
+    <select id="accentMode">
+      <option value="oblight">Aussie Light (Vertex)</option>
+      <option value="obheavy">Aussie Heavy (Hearth Steel)</option>
+      <option value="luna">Old Equish (Luna)</option>
+      <option value="country">Rural Equish (Aplejack)</option>
+      <option value="daishi">Daishi (Equinox)</option>
+      <option value="oldenglish">Middle English Substrate</option>
+      <option value="egyptian">Ancient Egyptian Substrate</option>
+      <option value="coptic">Coptic Substrate</option>
+    </select>
+    <h1>Accentifier Converter</h1>
+    <textarea id="input" placeholder="Paste your text here..."></textarea>
+    <button onclick="convertToAussie()">Accentify</button>
+    <textarea id="output" placeholder="Your Accented text will appear here..."></textarea>
+    <div class="instructions">
+      <h1>Input Dialouge Instructions</h1>
+      <div class="writingGuide" id="writingGuide">
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <script>
+  // This section details how input dialouge should be designed.
+  const writingGuides = {
+      egyptian: `
+        • Think in states, not actions
+        • Avoid personal blame
+        • Treat the future as inevitable
+        • Possession is formal and explicit
+        • Emotion is physical or elemental
+        • Judgment is calm and ceremonial
+        • Avoid contractions and slang
+    `,
+      oldenglish: `
+        • Short clauses, heavy words
+        • Actions over explanations
+        • Place negation late
+        • Prefer Germanic roots
+        • Name emotions plainly
+        • Authority is asserted
+        • Use land and body metaphors
+    `,
+      oblight:`
+        • Shorten everything.
+        • Fewer syllables = more natural.
+        • Understate emotion.
+        • Big feelings sound small on purpose.
+        • Use humor to deflect tension.
+        • Even serious moments get a dry edge.
+        • Commands often end in a question (ie "Pick that up, yea?")
+      `,
+      obheavy:`
+        • Shorten everything.
+        • Fewer syllables = more natural.
+        • Understate emotion.
+        • Big feelings sound small on purpose.
+        • Use humor to deflect tension.
+        • Even serious moments get a dry edge.
+        • Commands often end in a question (ie "Pick that up, yea?")
+      `,
+      coptic: `
+        • Use plain statements, not emphasis
+        • Emotion is located in the body
+        • Possession is explicit ("the X of me")
+        • Events happen; people observe
+        • Avoid slang and idioms
+        • Prefer "it is" and "there is"
+        • Let certainty sound calm
+      `
+    };
+
+    //Changes Writing Guide by accent mode
+    document.getElementById("accentMode").addEventListener("change", e => {
+      const mode = e.target.value;
+      document.getElementById("writingGuide").innerText =
+        writingGuides[mode] || "";
+    });
+
+    //Loads Writing Guide on page load / refresh
+    function updateWritingGuide() {
+      const mode = document.getElementById("accentMode").value;
+      document.getElementById("writingGuide").innerText =
+        writingGuides[mode] || "";
+    }
+
+  //Removes contractions from the variable 'text'
+  const contractionList = [
+    { pattern: /\ba'ight\b/gi, replacement: "alright" },
+    { pattern: /\bain't\b/gi, replacement: "is not" },
+    { pattern: /\bamn't\b/gi, replacement: "am not" },
+    { pattern: /\bn\b/gi, replacement: "and" },
+    { pattern: /\barencha\b/gi, replacement: "are you not" },
+    { pattern: /\baren't\b/gi, replacement: "are not" },
+    { pattern: /\bbout\b/gi, replacement: "about" },
+    { pattern: /\bcan't\b/gi, replacement: "can not" },
+    { pattern: /\bcap'n\b/gi, replacement: "captain" },
+    { pattern: /\bcause\b/gi, replacement: "because" },
+    { pattern: /\bcuz\b/gi, replacement: "because" },
+    { pattern: /\bcept\b/gi, replacement: "except" },
+    { pattern: /\bc'mon\b/gi, replacement: "come on" },
+    { pattern: /\bcould've\b/gi, replacement: "could have" },
+    { pattern: /\bcouldn't\b/gi, replacement: "could not" },
+    { pattern: /\bcouldn't've\b/gi, replacement: "could not have" },
+    { pattern: /\bcuppa\b/gi, replacement: "cup of" },
+    { pattern: /\bdaren't\b/gi, replacement: "dare not" },
+    { pattern: /\bdaresn't\b/gi, replacement: "dare not" },
+    { pattern: /\bdasn't\b/gi, replacement: "dare not" },
+    { pattern: /\bdidn't\b/gi, replacement: "did not" },
+    { pattern: /\bdoesn't\b/gi, replacement: "does not" },
+    { pattern: /\bdon't\b/gi, replacement: "do not" },
+    { pattern: /\bdunno\b/gi, replacement: "do not know" },
+    { pattern: /\bd'ye\b/gi, replacement: "do you" },
+    { pattern: /\bd'ya\b/gi, replacement: "do you" },
+    { pattern: /\be'en\b/gi, replacement: "even" },
+    { pattern: /\be'er\b/gi, replacement: "ever" },
+    { pattern: /\bem\b/gi, replacement: "them" },
+    { pattern: /\beverybody's\b/gi, replacement: "everybody has" },
+    { pattern: /\beveryone's\b/gi, replacement: "everyone has" },
+    { pattern: /\beverything's\b/gi, replacement: "everything has" },
+    { pattern: /\bfinna\b/gi, replacement: "fixing to" },
+    { pattern: /\bfo'c'sle\b/gi, replacement: "forecastle" },
+    { pattern: /\bgainst\b/gi, replacement: "against" },
+    { pattern: /\bg'day\b/gi, replacement: "good day" },
+    { pattern: /\bgimme\b/gi, replacement: "give me" },
+    { pattern: /\bgiv'n\b/gi, replacement: "given" },
+    { pattern: /\bgi'z\b/gi, replacement: "give us" },
+    { pattern: /\bgonna\b/gi, replacement: "going to" },
+    { pattern: /\bgon't\b/gi, replacement: "go not" },
+    { pattern: /\bgotta\b/gi, replacement: "got to" },
+    { pattern: /\bhadn't\b/gi, replacement: "had not" },
+    { pattern: /\bhad've\b/gi, replacement: "had have" },
+    { pattern: /\bhasn't\b/gi, replacement: "has not" },
+    { pattern: /\bhaven't\b/gi, replacement: "have not" },
+    { pattern: /\bhe'd\b/gi, replacement: "he had" },
+    { pattern: /\bhe'd'nt've\b/gi, replacement: "he did not have" },
+    { pattern: /\bhe'll\b/gi, replacement: "he will" },
+    { pattern: /\bhelluva\b/gi, replacement: "hell of a" },
+    { pattern: /\byesn't\b/gi, replacement: "no" },
+    { pattern: /\bhe's\b/gi, replacement: "he is" },
+    { pattern: /\bhere's\b/gi, replacement: "here is" },
+    { pattern: /\bhow'd\b/gi, replacement: "how did" },
+    { pattern: /\bhowdy\b/gi, replacement: "how do you do" },
+    { pattern: /\bhow'll\b/gi, replacement: "how will" },
+    { pattern: /\bhow're\b/gi, replacement: "how are" },
+    { pattern: /\bhow's\b/gi, replacement: "how is" },
+    { pattern: /\bI'd\b/gi, replacement: "I would" },
+    { pattern: /\bI'd've\b/gi, replacement: "I would have" },
+    { pattern: /\bI'd'nt\b/gi, replacement: "I did not" },
+    { pattern: /\bI'd'nt've\b/gi, replacement: "I did not have" },
+    { pattern: /\bIf'n\b/gi, replacement: "If and when" },
+    { pattern: /\bI'll\b/gi, replacement: "I will" },
+    { pattern: /\bI'm\b/gi, replacement: "I am" },
+    { pattern: /\bI'm'onna\b/gi, replacement: "I am going to" },
+    { pattern: /\bImma\b/gi, replacement: "I am going to" },
+    { pattern: /\bI'm'o\b/gi, replacement: "I am going to" },
+    { pattern: /\bI'm'na\b/gi, replacement: "I am going to" },
+    { pattern: /\binnit\b/gi, replacement: "is it not" },
+    { pattern: /\bIon\b/gi, replacement: "I do not" },
+    { pattern: /\bI've\b/gi, replacement: "I have" },
+    { pattern: /\bisn't\b/gi, replacement: "is not" },
+    { pattern: /\bit'd\b/gi, replacement: "it would" },
+    { pattern: /\bit'll\b/gi, replacement: "it will" },
+    { pattern: /\bit's\b/gi, replacement: "it is" },
+    { pattern: /\bIdunno\b/gi, replacement: "I do not know" },
+    { pattern: /\bkinda\b/gi, replacement: "kind of" },
+    { pattern: /\blemme\b/gi, replacement: "let me" },
+    { pattern: /\blet's\b/gi, replacement: "let us" },
+    { pattern: /\bloven't\b/gi, replacement: "love not" },
+    { pattern: /\bma'am\b/gi, replacement: "madam" },
+    { pattern: /\bmayn't\b/gi, replacement: "may not" },
+    { pattern: /\bmay've\b/gi, replacement: "may have" },
+    { pattern: /\bmethinks\b/gi, replacement: "I think" },
+    { pattern: /\bmightn't\b/gi, replacement: "might not" },
+    { pattern: /\bmight've\b/gi, replacement: "might have" },
+    { pattern: /\bmine's\b/gi, replacement: "mine is" },
+    { pattern: /\bmustn't\b/gi, replacement: "must not" },
+    { pattern: /\bmustn't've\b/gi, replacement: "must not have" },
+    { pattern: /\bmust've\b/gi, replacement: "must have" },
+    { pattern: /\bneath\b/gi, replacement: "beneath" },
+    { pattern: /\bneedn't\b/gi, replacement: "need not" },
+    { pattern: /\bnal\b/gi, replacement: "and all" },
+    { pattern: /\bne'er\b/gi, replacement: "never" },
+    { pattern: /\bno one's\b/gi, replacement: "no one is" },
+    { pattern: /\bnothing's\b/gi, replacement: "nothing is" },
+    { pattern: /\bo'clock\b/gi, replacement: "of the clock" },
+    { pattern: /\bo'er\b/gi, replacement: "over" },
+    { pattern: /\bol'\b/gi, replacement: "old" },
+    { pattern: /\bought've\b/gi, replacement: "ought have" },
+    { pattern: /\boughtn't\b/gi, replacement: "ought not" },
+    { pattern: /\boughtn't've\b/gi, replacement: "ought not have" },
+    { pattern: /\bround\b/gi, replacement: "around" },
+    { pattern: /\bs\b/gi, replacement: "is" },
+    { pattern: /\bshalln't\b/gi, replacement: "shall not" },
+    { pattern: /\bshan'\b/gi, replacement: "shall not" },
+    { pattern: /\bshan't\b/gi, replacement: "shall not" },
+    { pattern: /\bshe'd\b/gi, replacement: "she had" },
+    { pattern: /\bshe'll\b/gi, replacement: "she will" },
+    { pattern: /\bshe's\b/gi, replacement: "she is" },
+    { pattern: /\bshe'd'nt've\b/gi, replacement: "she did not have" },
+    { pattern: /\bshould've\b/gi, replacement: "should have" },
+    { pattern: /\bshouldn't\b/gi, replacement: "should not" },
+    { pattern: /\bshouldn't've\b/gi, replacement: "should not have" },
+    { pattern: /\bsomebody's\b/gi, replacement: "somebody is" },
+    { pattern: /\bsomeone's\b/gi, replacement: "someone is" },
+    { pattern: /\bsomething's\b/gi, replacement: "something is" },
+    { pattern: /\bso're\b/gi, replacement: "so are" },
+    { pattern: /\bso's\b/gi, replacement: "so is" },
+    { pattern: /\bso've\b/gi, replacement: "so have" },
+    { pattern: /\bthat'll\b/gi, replacement: "that will" },
+    { pattern: /\bthat're\b/gi, replacement: "that are" },
+    { pattern: /\bthat's\b/gi, replacement: "that is" },
+    { pattern: /\bthat'd\b/gi, replacement: "that had" },
+    { pattern: /\bthere'd\b/gi, replacement: "there had" },
+    { pattern: /\bthere'll\b/gi, replacement: "there will" },
+    { pattern: /\bthere're\b/gi, replacement: "there are" },
+    { pattern: /\bthere's\b/gi, replacement: "there is" },
+    { pattern: /\bthese're\b/gi, replacement: "these are" },
+    { pattern: /\bthese've\b/gi, replacement: "these have" },
+    { pattern: /\bthey'd\b/gi, replacement: "they would" },
+    { pattern: /\bthey'd've\b/gi, replacement: "they would have" },
+    { pattern: /\bthey'll\b/gi, replacement: "they will" },
+    { pattern: /\bthey're\b/gi, replacement: "they are" },
+    { pattern: /\bthey've\b/gi, replacement: "they have" },
+    { pattern: /\bthis's\b/gi, replacement: "this is" },
+    { pattern: /\bthose're\b/gi, replacement: "those are" },
+    { pattern: /\bthose've\b/gi, replacement: "those have" },
+    { pattern: /\bthout\b/gi, replacement: "without" },
+    { pattern: /\btil\b/gi, replacement: "until" },
+    { pattern: /\btis\b/gi, replacement: "it is" },
+    { pattern: /\bto've\b/gi, replacement: "to have" },
+    { pattern: /\btryna\b/gi, replacement: "trying to" },
+    { pattern: /\btwas\b/gi, replacement: "it was" },
+    { pattern: /\btween\b/gi, replacement: "between" },
+    { pattern: /\btwere\b/gi, replacement: "it were" },
+    { pattern: /\bw'all\b/gi, replacement: "we all" },
+    { pattern: /\bw'at\b/gi, replacement: "we at" },
+    { pattern: /\bwanna\b/gi, replacement: "want to" },
+    { pattern: /\bwasn't\b/gi, replacement: "was not" },
+    { pattern: /\bwe'd\b/gi, replacement: "we had" },
+    { pattern: /\bwe'd've\b/gi, replacement: "we would have" },
+    { pattern: /\bwe'll\b/gi, replacement: "we will" },
+    { pattern: /\bwe're\b/gi, replacement: "we are" },
+    { pattern: /\bwe've\b/gi, replacement: "we have" },
+    { pattern: /\bweren't\b/gi, replacement: "were not" },
+    { pattern: /\bwhatcha\b/gi, replacement: "what are you" },
+    { pattern: /\bwhatchy'all\b/gi, replacement: "what do you all" },
+    { pattern: /\bwhat'd\b/gi, replacement: "what did" },
+    { pattern: /\bwhat'll\b/gi, replacement: "what will" },
+    { pattern: /\bwhat're\b/gi, replacement: "what are" },
+    { pattern: /\bwhat's\b/gi, replacement: "what is" },
+    { pattern: /\bwhat've\b/gi, replacement: "what have" },
+    { pattern: /\bwhen'd\b/gi, replacement: "when did" },
+    { pattern: /\bwhen's\b/gi, replacement: "when has" },
+    { pattern: /\bwhere'd\b/gi, replacement: "where did" },
+    { pattern: /\bwhere'll\b/gi, replacement: "where will" },
+    { pattern: /\bwhere're\b/gi, replacement: "where are" },
+    { pattern: /\bwhere's\b/gi, replacement: "where is" },
+    { pattern: /\bwhere've\b/gi, replacement: "where have" },
+    { pattern: /\bwhich'd\b/gi, replacement: "which would" },
+    { pattern: /\bwhich'll\b/gi, replacement: "which will" },
+    { pattern: /\bwhich're\b/gi, replacement: "which are" },
+    { pattern: /\bwhich's\b/gi, replacement: "which has" },
+    { pattern: /\bwhich've\b/gi, replacement: "which have" },
+    { pattern: /\bwho'd\b/gi, replacement: "who had" },
+    { pattern: /\bwho'd've\b/gi, replacement: "who would have" },
+    { pattern: /\bwho'll\b/gi, replacement: "who shall" },
+    { pattern: /\bwho're\b/gi, replacement: "who are" },
+    { pattern: /\bwho's\b/gi, replacement: "who is" },
+    { pattern: /\bwho've\b/gi, replacement: "who have" },
+    { pattern: /\bwhy'd\b/gi, replacement: "why did" },
+    { pattern: /\bwhy'dja\b/gi, replacement: "why did you" },
+    { pattern: /\bwhy're\b/gi, replacement: "why are" },
+    { pattern: /\bwhy's\b/gi, replacement: "why is" },
+    { pattern: /\bwilln't\b/gi, replacement: "will not" },
+    { pattern: /\bwon't\b/gi, replacement: "will not" },
+    { pattern: /\bwonnot\b/gi, replacement: "will not" },
+    { pattern: /\bwould've\b/gi, replacement: "would have" },
+    { pattern: /\bwouldn't\b/gi, replacement: "would not" },
+    { pattern: /\bwouldn't've\b/gi, replacement: "would not have" },
+    { pattern: /\by'ain't\b/gi, replacement: "you are not" },
+    { pattern: /\by'all\b/gi, replacement: "you all" },
+    { pattern: /\by'all'd've\b/gi, replacement: "you all would have" },
+    { pattern: /\by'all'dn't've\b/gi, replacement: "you all would not have" },
+    { pattern: /\by'all're\b/gi, replacement: "you all are" },
+    { pattern: /\by'all'ren't\b/gi, replacement: "you all are not " },
+    { pattern: /\by’all’d’nt’ve’d’d’I’d’nt’ve’d’y’all’t’ve’d\b/gi, replacement: "you all would not have had had I had not have had you all to have had" },
+    { pattern: /\by'at\b/gi, replacement: "you at" },
+    { pattern: /\byes'm\b/gi, replacement: "yes madam" },
+    { pattern: /\by'ever\b/gi, replacement: "have you ever" },
+    { pattern: /\by'know\b/gi, replacement: "you know" },
+    { pattern: /\byessir\b/gi, replacement: "yes sir" },
+    { pattern: /\byou'd\b/gi, replacement: "you would" },
+    { pattern: /\byou'dn't've\b/gi, replacement: "you would not have" },
+    { pattern: /\byou'll\b/gi, replacement: "you will" },
+    { pattern: /\byou're\b/gi, replacement: "you are" },
+    { pattern: /\byou've\b/gi, replacement: "you have" }
+  ];
+
+  //Defines basic alterations for selected accents
+  const accentModes = {
+    oblight: {
+      //General vocabulary
+       "excellent|very good": "ace",
+       "agressive|aggravation|aggravated": "aggro",
+       "ambulance": "ambo",
+       "aluminum foil": "al-foil",
+       "everything is all right": "she's apples",
+       "everything will be all right": "she'll be apples",
+       "not intrested|do not care": "not arsed",
+       "will not be intrested": "ain't arsed",
+       "as if": "'sif",
+       "reserve": "bags",
+       "reserved": "baged",
+       "barbecue": "barbie",
+       "great|fantastic|terrific": "beaut",
+       "a problem": "beef",
+       "biscuit|bic lighter": "bickie",
+       "brag|boast": "big-note",
+       "buisness": "bizz",
+       "very": "bloody",
+       "that's certainly true": "bloody oath",
+       "shirk|be lazy|waste time": "bludge",
+       "swim trunks": "boardies",
+       "eat!": "bog in",
+       "basic|unadorned|plain": "bog standard",
+       "pony": "brumbie",
+       "stag party|bachalor's party": "buck's night",
+       "tired|broken|in trouble": "buggered",
+       "cork|stopper|broken|not working": "bung",
+       "woods": "brush",
+       "woodland": "brushland",
+       "forest fire": "brushfire",
+       "hiking": "brushwalking",
+       "street musician": "busker",
+       "smoker": "buttsucker",
+       "dead|non-functional|not functioning": "cactus",
+       "die|break": "cark it",
+       "broke|dead": "carked it",
+       "come on!|go on!": "carn",
+       "that is great!|that is perfect!": "the cat's pyjamas",
+       "cattle rustler": "cattle duffer",
+       "chicken": "chook",
+       "feeling broody|feeling maternal": "clucky",
+       "farmer|cockatoo": "cockie",
+       "a beer|beer": "coldie",
+       "beers": "coldies",
+       "make a bad mistake|have an accident|made a bad mistake|had an accident": "come a guster",
+       "workers comp|workers compensation": "compo",
+       "drunk": "cooked",
+       "angred|sick|unfair": "crook",
+       "get drunk": "get crunk",
+       "upset": "cut",
+       "pants|trousers|shorts|underwear": "dacks",
+       "dork": "dag",
+       "dorky|uncool|unfashionable": "daggy",
+       "darling": "darl",
+       "certain|indisputable": "dead set",
+       "excellent!": "deadly!",
+       "devastated|deviant": "devo",
+       "that's obvious|duh": "der",
+       "idiot|stupid|homeless person": "derro",
+       "designated driver": "deso",
+       "look at|inspect": "dekko",
+       "condom": "dinger",
+       "honest|genuine|real": "dinkum",
+       "the real thing": "dinky-di",
+       "bad weather|weather is bad|weather will be bad": "dirty",
+       "electoral district": "division",
+       "inform on|inform about|snitch": "dob",
+       "bill|receipt": "docket",
+       "documentary": "doco",
+       "duvet|quilt": "doona",
+       "fool|foolish": "drongo",
+       "information|obsoless|become obsolete": "drum",
+       "sideboard": "duchess",
+       "perfectly suited": "duck's guts",
+       "passifier": "dummy",
+       "get upset|outraged": "spit the dummy",
+       "toilet": "dunny",
+       "top of the class|best in class|the best of its kind": "dux",
+       "nagging|chattering": "earbashing",
+       "evening": "evo",
+       "absolutly true": "fair dinkum",
+       "okay|OK|I don't see a problem with that": "fair enough",
+       "trashy|disgusting|unhygenic|rotten|out of controll": "feral",
+       "as fast as possible|buisy": "flat out",
+       "get rid of": "flick",
+       "sell|steal|treat roughly|beat up": "flog",
+       "window screen|door screen": "fly wire",
+       "walkway|sidewalk|pathway": "footpath",
+       "prospect": "fossick",
+       "fucking ugly|bucking ugly": "fugly",
+       "firefighter": "firey",
+       "go on|going": "garn",
+       "good day": "g'day",
+       "fed up with": "get jack of",
+       "try it|have a go|give it a go": "give it a burl",
+       "suprised|astounded": "gobsmacked",
+       "useful information|a good idea|the truth": "good oil",
+       "good for you|well done": "good onya",
+       "cheep wine|box wine": "goon",
+       "great|terrific|very good": "grouse",
+       "above average": "gun",
+       "mock|sully|genigrate|slander": "hang shit",
+       "clothes line": "hills hoist",
+       "a lot": "heaps",
+       "very good": "heaps good",
+       "hot water bottle": "hottie",
+       "how have you been|how are you doing": "how ya gahn",
+       "jaded|coming down": "jaded",
+       "fucking oath|bucking oath": "ken oath",
+       "kindergarten": "kindie",
+       "keroscene": "kero",
+       "exausted|very tired": "knackered",
+       "criticise": "knock",
+       "language|dialect": "lingo",
+       "lipstick": "lippy",
+       "sleeping roll|sleeping bag": "matilda",
+       "jinx": "moz",
+       "mosquieto": "mozzie",
+       "mangled|inebriated": "munted",
+       "round up|gather": "muster",
+       "no": "nah",
+       "no!": "yeah, nah!",
+       "you are welcome|no problem|that is all right": "no worries",
+       "an idiot": "a ning-nong",
+       "they are not bright|he is not bright|she is not bright": "they're not the full quid",
+       "hammer out": "nut out",
+       "bungie cord": "occy strap",
+       "good on you": "onya",
+       "thrift store|secondhand store": "op shop",
+       "good example": "pearler",
+       "pervert": "perv",
+       "easy task|easy job|very easy|that is easy": "piece of piss",
+       "get fired": "get the pink slip",
+       "got fired": "got the pink slip",
+       "get lost": "piss off",
+       "smidge|smidgen|miniscule ammount": "poofteenth",
+       "cheep looking": "povo",
+       "pregnant": "preggo",
+       "present|gift": "prezzy",
+       "earn a living": "make a quid",
+       "push off!|get lost!|get out of here!": "rack off!",
+       "pary": "rage",
+       "delighted|very happy": "rapt",
+       "extreemly drunk|very drunk": "ratshit",
+       "think|believe": "reckon",
+       "thought|believed": "reckon'd",
+       "arrive|turn up": "rock up",
+       "arrived|turned up": "rocked up",
+       "very angry": "ropeable",
+       "cheating|fiddling|defrauding|scamming": "rort",
+       "sandwich": "sanga",
+       "extremely wet": "satched",
+       "lottery ticket": "scratchie",
+       "paved road": "sealed road",
+       "service station|petrol station|gas station": "servo",
+       "woman": "sheila",
+       "talented": "shit-hot",
+       "full of shit": "showbag",
+       "poorly made|low quality|dishonest|dubious|underhanded": "shonky",
+       "very good": "sick",
+       "vomit": "spew",
+       "a look": "a squiz",
+       "pleasing|thanks": "stellar",
+       "nose around": "stickybeak",
+       "bad luck": "stiff bickies",
+       "tough luck": "stiff cheddar",
+       "very pleased": "stoked",
+       "sunbathe": "sunbake",
+       "suspicious|suspect|figure out|uncover": "sus",
+       "suspected|figured out|uncovered": "sused",
+       "thank you": "ta",
+       "thrifty": "tight",
+       "can of beer": "tinny",
+       "on edge|nervous|anxious|keyed up|horny": "toey",
+       "that is correct": "too right",
+       "completely loyal": "true blue",
+       "clumsy|uncoordinated|klutz": "unco",
+       "university": "uni",
+       "flat|appartment": "unit",
+       "vegetables": "veggies",
+       "skip school|skip work|skip out|play hookie": "wag",
+       "complain": "whinge",
+       "complained": "whinged",
+       "complaining": "whinging",
+       "flu": "wog",
+       "talk a lot": "yabber",
+       "talking a lot": "yabbering",
+       "yes!": "nah, yea!",
+
+
+      // Military Terms
+      "orders": "marchin’ notes",
+      "report": "sitrep",
+      "mission": "op",
+      "command": "brass",
+      "commander": "top brass",
+      "troops": "the crew",
+      "objective": "goalpost",
+      "enemy": "hostiles",
+      "squad": "team",
+      "recon": "sneak peek",
+
+      // MLP Lore
+      "cutie mark": "talent stamp",
+      "princess": "high-mane",
+      "pegasus": "cloud-stepper",
+      "unicorn": "horn-head",
+      "earth pony": "pone",
+      "changeling": "buggo",
+      "griffon": "beak-face",
+      "alicorn": "wing’n’horn",
+      "equestria": "the heartland",
+      "canterlot": "Can’lot",
+      "ponyville": "the Ville",
+      "crystal empire": "shiny north",
+
+      // Sentence-level transforms
+      "i do not know": "dunno",
+      "i don't know": "dunno",
+      "i am going to": "i’m gonna",
+      "i do not want to": "don’t wanna",
+      "we have to go": "we gotta leg it",
+      "are you okay": "ya right there?",
+      "what is going on": "what’s the fuss?",
+      "this is very important": "this matters heaps",
+      "that is not my problem": "ain’t my paddock to muck"
+    },
+    obheavy: {
+      // Greetings & Phrases
+      "hello": "g’day mate",
+      "hi": "oi there",
+      "good morning": "mornin’, ya drongo",
+      "good afternoon": "s’arvo",
+      "good evening": "nighty mate",
+      "goodbye": "rack off",
+      "how are you": "how’s it hangin’, ya galah?",
+
+      // Acknowledgements
+      "thanks": "cheers",
+      "thank you": "ta",
+      "you're welcome": "too right",
+      "okay": "no wucka’s",
+      "yes": "yea",
+      "no": "nup",
+
+      // People
+      "friend": "mate",
+      "friends": "mob",
+      "pony": "hoofface",
+      "stallion": "bloke",
+      "mare": "sheila",
+      "colt": "ankle biter",
+      "foal": "shark biscuit",
+
+      // Food & Drink
+      "food": "tucker",
+      "drink": "coldie",
+      "barbecue": "barbie bash",
+      "breakfast": "brekky",
+      "sandwich": "sanger",
+      "sausage": "snag",
+      "beer": "tinny",
+
+      // Time & Place
+      "afternoon": "s’arvo",
+      "evening": "s’eve’n",
+      "morning": "blinkin’ dawn",
+      "bathroom": "thunderbox",
+      "toilet": "dunny",
+      "home": "swag heap",
+      "countryside": "arse-end of the bush",
+      "nowhere": "woop woop",
+
+      // Emotions & States
+      "tired": "buggered",
+      "excited": "frothin’",
+      "happy": "rapt",
+      "sad": "devo as hell",
+      "angry": "crackin’ the shits",
+      "sick": "crook as a dog",
+      "love": "mad for ya",
+      "affection": "mushy stuff",
+      "joy": "a real hoot",
+      "fear": "gutful of dread",
+      "anxiety": "buzzin’ too hard",
+      "pride": "walkin’ tall",
+
+      // Military Terms
+      "orders": "marchin’ words",
+      "report": "sitrep",
+      "mission": "op",
+      "command": "top brass",
+      "commander": "the big bugger",
+      "troops": "mob",
+      "objective": "the thing to nick",
+      "enemy": "tossers",
+      "squad": "my lot",
+      "recon": "sneaky peek",
+
+      // MLP Lore
+      "cutie mark": "arse badge",
+      "princess": "shiny-head",
+      "pegasus": "wingnut",
+      "unicorn": "pointy",
+      "earth pony": "mudhoover",
+      "changeling": "bugger-shifter",
+      "griffon": "clawface",
+      "alicorn": "shiny-hybrid",
+      "equestria": "the sunspot",
+      "canterlot": "Cannylot",
+      "ponyville": "Podunkville",
+      "crystal empire": "shiny hole up north",
+
+      // Sentence-level transforms
+      "i do not know": "dunno, mate",
+      "i am going to": "i’m gonna leg it",
+      "i do not want to": "don’t fancy it",
+      "we have to go": "we gotta hoof it",
+      "are you okay": "ya crook or what?",
+      "what is going on": "what’s the bloody story?",
+      "this is very important": "this is bloody huge",
+      "that is not my problem": "not my paddock, not my dung heap"
+    },
+    luna: {
+      // Greetings & Phrases
+      "hello": "hail",
+      "hi": "well met",
+      "good morning": "a fair morn to thee",
+      "good evening": "a quiet eve to thee",
+      "goodbye": "fare thee well",
+      "how are you": "how dost thou fare?",
+      "nice to meet you": "’tis a pleasure to make thy acquaintance",
+      "it is good to see you": "’tis a joy to behold thee once more",
+
+
+      // Acknowledgements
+      "thanks": "our thanks",
+      "thank you": "we thank thee",
+      "you're welcome": "’tis naught",
+      "okay": "very well",
+      "yes": "aye",
+      "no": "nay",
+      "sure": "verily",
+
+      // People
+      "friend": "companion",
+      "friends": "comrades",
+      "pony": "subject",
+      "ponies": "our subjects",
+      "stallion": "gentlestallion",
+      "mare": "gentlemare",
+      "colt": "young one",
+      "filly": "young one",
+      "foal": "babe",
+      "changeling": "shifter-fey",
+      "alicorn": "sister in power",
+      "pegasus": "skyborne one",
+      "earth pony": "earthbound soul",
+      "unicorn": "horned kin",
+
+      // Emotions
+      "tired": "weary",
+      "happy": "gladdened",
+      "sad": "burdened in heart",
+      "angry": "incensed",
+      "love": "devotion",
+      "affection": "fondness",
+      "joy": "elation",
+      "fear": "dread",
+      "anxiety": "unquiet mind",
+      "pride": "honor held high",
+
+      // Miscellaneous
+      "food": "nourishment",
+      "drink": "draught",
+      "sleep": "rest",
+      "dream": "vision of night",
+      "nightmare": "phantom dread",
+      "light": "radiance",
+      "darkness": "the shade",
+
+      // MLP Lore (reworded with her voice)
+      "cutie mark": "soul-crest",
+      "magic": "arcane",
+      "princess": "crown-bearer",
+      "equestria": "the realm",
+      "canterlot": "the high city",
+      "ponyville": "the village of harmony",
+      "crystal empire": "the northern gleam",
+      "nightmare moon": "our former shadow",
+
+      // Military & Guard Speak
+      "orders": "directives",
+      "commander": "warden",
+      "soldier": "mare-at-arms",
+      "guard": "watchmare",
+      "mission": "quest",
+      "enemy": "foe",
+
+      // Terms from blindness / batpony heritage
+      "look": "mark well",
+      "see": "perceive",
+      "watch": "attend",
+      "hear": "harken",
+      "listen": "lend thine ear",
+      "dark": "gloom",
+      "light": "radience",
+
+      // Sentence-level transforms
+      "i do not know": "we knoweth not",
+      "i am going to": "we shall venture forth",
+      "i do not want to": "we wish it not",
+      "are you okay": "dost thou fare well?",
+      "what is going on": "what transpires hither?",
+      "this is very important": "this matter beareth great weight",
+      "that is not my problem": "that burden is not ours to bear",
+      "i am sorry": "we beg thy pardon",
+      "i understand": "we comprehend thy meaning",
+      "you must be careful": "thou must take heed",
+      "we have to go": "we needs must away",
+      "i have no choice": "our hoof is forced",
+      "this is my duty": "this task is our charge"
+    },
+    country: {
+      // Greetings & Phrases
+      "hello": "howdy",
+      "hi": "howdy",
+      "good morning": "mornin’ y’all",
+      "good evening": "evenin’",
+      "goodbye": "see y’all later",
+      "how are you": "how ya doin’",
+      "nice to meet you": "real pleased t’meetcha",
+
+      // Acknowledgements
+      "thanks": "much obliged",
+      "thank you": "’preciate it",
+      "you're welcome": "don’t mention it",
+      "okay": "alrighty",
+      "yes": "yep",
+      "no": "nope",
+
+      // People
+      "friend": "pardner",
+      "friends": "folks",
+      "pony": "critter",
+      "stallion": "feller",
+      "mare": "gal",
+      "colt": "young’un",
+      "filly": "little lady",
+      "foal": "young’un",
+
+      // Food & Drink
+      "food": "chow",
+      "drink": "swig",
+      "breakfast": "mornin’ grub",
+      "lunch": "midday fixin’s",
+      "dinner": "supper",
+
+      // Time & Place
+      "home": "homestead",
+      "town": "village",
+      "city": "big ol’ place",
+      "farm": "spread",
+      "countryside": "back forty",
+
+      // Emotions
+      "tired": "worn out",
+      "happy": "tickled",
+      "sad": "blue",
+      "angry": "fit to be tied",
+      "love": "sweet on ya",
+      "pride": "plumb proud",
+
+      // Sentence-level
+      "i do not know": "ain’t got a clue",
+      "i don't know": "dunno",
+      "i am going to": "i’m fixin’ to",
+      "we have to go": "we best be movin’",
+      "are you okay": "y’all doin’ alright?",
+      "what is going on": "what in tarnation?",
+      "this is very important": "this here’s mighty serious",
+      "that is not my problem": "ain’t my hog to wrestle"
+    },
+    daishi: {
+      // Core concept substitutions
+      "ai": "thinking machine",
+      "artificial intelligence": "thinking machine",
+      "soul": "self",
+      "spirit": "self",
+      "body": "vessel",
+      "blood": "brew",
+      "alive": "fermenting",
+      "living": "fermenting",
+      "computer": "logic-core",
+      "vehicle": "ground-walker",
+      "car": "ground-walker",
+      "ship": "sky-raft",
+      "group": "cluster",
+      "team": "cluster",
+      "friends": "swarm",
+      "friend": "swarm-mate"
+    },
+    oldenglish: {
+      // Core function words
+      "yes": "yea",
+      "no": "nay",
+      "maybe": "it may be so",
+      "very": "full",
+      "really": "truly",
+
+      // Verbs & states
+      "think": "reckon",
+      "understand": "grasp",
+      "know": "wot",
+      "believe": "hold",
+      "want": "wish",
+      "need": "have need of",
+      "try": "seek",
+
+      // Abstract → concrete bias
+      "problem": "trouble",
+      "idea": "thought",
+      "reason": "cause",
+      "future": "days yet to come",
+      "past": "days gone",
+      "danger": "peril",
+      "between": "betwix",
+      "long ago": "agon",
+
+      // People
+      "friend": "frīend",
+      "enemy": "foe",
+      "leader": "ring-giver",
+      "king": "cyning",
+      "queen": "cwēn",
+
+      // Time & place
+      "now": "this while",
+      "soon": "ere long",
+      "later": "after this",
+      "here": "in this stead",
+      "there": "in that stead",
+
+      // Stock phrases
+      "i do not know": "I wot not",
+      "i don't know": "I wot not",
+      "i understand": "I grasp thy meaning",
+      "i do not understand": "I grasp it not",
+      "what is going on": "what here unfolds",
+      "are you okay": "art thou whole?",
+      "this is important": "this bears great weight",
+      "be careful": "take heed",
+      "why my": "that my"
+    },
+    egyptian: {
+      // Core affirmations
+      "yes": "it is so",
+      "no": "it is not so",
+      "maybe": "it may yet be weighed",
+
+      // Knowledge & thought
+      "think": "consider",
+      "know": "know in the heart",
+      "understand": "see clearly",
+      "believe": "hold as true",
+      "remember": "keep in the heart",
+      "forget": "let fall from memory",
+
+      // Emotion as physical state
+      "happy": "light of heart",
+      "sad": "heavy of heart",
+      "angry": "burning within",
+      "afraid": "troubled in breath",
+      "calm": "still within",
+
+      // Abstract concepts grounded
+      "truth": "that which stands firm",
+      "lie": "crooked speech",
+      "order": "right balance",
+      "chaos": "unmaking",
+      "danger": "peril",
+      "problem": "a matter of weight",
+      "choice": "the path before the feet",
+
+      // Time & eternity
+      "now": "in this moment",
+      "soon": "before long",
+      "later": "after this time",
+      "forever": "for all cycles",
+      "past": "what has already come to pass",
+
+      // People & roles
+      "king": "he who wears the crown",
+      "queen": "she who wears the crown",
+      "leader": "one who stands foremost",
+      "enemy": "one who stands against",
+      "friend": "one who stands beside",
+
+      // Stock phrases
+      "i do not know": "this is not known to me",
+      "i don't know": "this is not known to me",
+      "i understand": "I see this clearly",
+      "i do not understand": "this is not clear to me",
+      "be careful": "walk with care",
+      "this is important": "this carries great weight",
+      "that is not my problem": "this matter does not rest upon me"
+    },
+    coptic: {
+      // Affirmation & certainty
+      "yes": "it is so",
+      "no": "it is not so",
+      "maybe": "it remains to be seen",
+
+      // Knowing & perception
+      "know": "know within",
+      "think": "consider within",
+      "understand": "see clearly",
+      "believe": "hold as true",
+      "remember": "keep within",
+
+      // Emotion as physical state
+      "happy": "light within the chest",
+      "sad": "heavy within the chest",
+      "angry": "heat within",
+      "afraid": "tightness of breath",
+      "calm": "stillness within",
+
+      // Abstract concepts grounded
+      "truth": "that which is firm",
+      "lie": "bent speech",
+      "order": "right arrangement",
+      "chaos": "falling apart",
+
+      // People
+      "friend": "one who is near",
+      "enemy": "one who stands against",
+      "leader": "one who stands before",
+
+      // Time
+      "now": "in this moment",
+      "later": "after this",
+      "forever": "without end"
+    }
+  };
+
+
+    function expandSynonyms(modes) {
+    for (const mode of Object.values(modes)) {
+      for (const [key, value] of Object.entries({...mode})) {
+
+        if (key.includes("|")) {
+          delete mode[key];
+
+          key.split("|").forEach(k => {
+            mode[k.trim()] = value;
+          });
+        }
+
+      }
+    }
+  }
+
+  expandSynonyms(accentModes);
+
+
+  function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  //Bulk of conversion (regex :/)
+  function convertToAussie() {
+    let text = document.getElementById("input").value;
+    // Normalize smart quotes to ASCII
+    text = text
+      .replace(/[’‘]/g, "'")
+      .replace(/[“”]/g, '"');
+    const mode = document.getElementById("accentMode").value;
+    var decontract = false
+    if (mode == "oldenglish" || mode == "egyptian" || mode == "luna" || mode == "oblight" || mode == "obheavy" || mode == "coptic") {
+      decontract = true
+    }
+    const wordSwaps = accentModes[mode];
+
+    // Sort longest keys first
+    const sortedWordSwaps = Object.entries(wordSwaps).sort(
+      ([a], [b]) => b.length - a.length
+    );
+
+    for (const [key, value] of sortedWordSwaps) {
+      const regex = new RegExp(`(^|[^\\w'])${escapeRegExp(key)}(?=[^\\w']|$)`, 'gi');
+      text = text.replace(regex, (match, p1) => p1 + matchCase(match.slice(p1.length), value));
+    }
+
+    const regexByMode = {
+      oblight: [
+        { pattern: /\bgoing to\b/gi, replacement: "gonna" },
+        { pattern: /\bwant to\b/gi, replacement: "wanna" },
+        { pattern: /\bgive me\b/gi, replacement: "gimme" },
+        { pattern: /\bgot to\b/gi, replacement: "gotta" },
+        { pattern: /ing\b/g, replacement: "in’" },
+        { pattern: /\byour\b/gi, replacement: "ya" }
+      ],
+      obheavy: [
+        { pattern: /\bgoing to\b/gi, replacement: "gonna" },
+        { pattern: /\bwant to\b/gi, replacement: "wanna" },
+        { pattern: /\bgive me\b/gi, replacement: "gimme" },
+        { pattern: /\bgot to\b/gi, replacement: "gotta" },
+        { pattern: /ing\b/g, replacement: "in’" },
+        { pattern: /\byour\b/gi, replacement: "ya" }
+      ],
+      luna: [
+        { pattern: /\byou are\b/gi, replacement: "thou art" },
+        { pattern: /\byour\b/gi, replacement: "thy" },
+        { pattern: /\byours\b/gi, replacement: "thine" },
+        { pattern: /\byou\b/gi, replacement: "thee" },
+        { pattern: /\bi am\b/gi, replacement: "we are" },
+        { pattern: /\bi have\b/gi, replacement: "we possess" },
+        { pattern: /\bi will\b/gi, replacement: "we shall" },
+        { pattern: /\bi shall\b/gi, replacement: "we shall" },
+        { pattern: /\bwill you\b/gi, replacement: "wilt thou" },
+        { pattern: /\bdo you\b/gi, replacement: "dost thou" },
+        { pattern: /\bdid you\b/gi, replacement: "didst thou" },
+        { pattern: /\bdoes\b/gi, replacement: "doth" },
+        { pattern: /\bis\b/gi, replacement: "be" },
+        { pattern: /\bwas\b/gi, replacement: "wert" },
+        { pattern: /\bwere\b/gi, replacement: "wast" },
+        { pattern: /\bit is\b/gi, replacement: "’tis" },
+        { pattern: /\bit was\b/gi, replacement: "’twas" },
+        { pattern: /\bi (\w+) not\b/gi, replacement: "not $1 I" },
+        { pattern: /\bthis is\b/gi, replacement: "’tis" },
+        { pattern: /\bthat is\b/gi, replacement: "’tis that" },
+        { pattern: /\bthe (\w+) is\b/gi, replacement: "$1 is the" },
+        { pattern: /\bwe must (\w+)\b/gi, replacement: "$1 must we" }
+      ],
+      country: [
+        { pattern: /\bgoing to\b/gi, replacement: "fixin’ to" },
+        { pattern: /(\w+)ing\b/gi, replacement: "$1in’" },
+        { pattern: /\byou all\b/gi, replacement: "y’all" },
+        { pattern: /\bdo not\b/gi, replacement: "don’t" },
+        { pattern: /\bdoes not\b/gi, replacement: "don’t" },
+        { pattern: /\bdid not\b/gi, replacement: "didn’t" },
+        { pattern: /\bis not\b/gi, replacement: "ain’t" },
+        { pattern: /\bare not\b/gi, replacement: "ain’t" },
+        { pattern: /\bwas not\b/gi, replacement: "weren’t" },
+        { pattern: /\bwere not\b/gi, replacement: "weren’t" },
+        { pattern: /\bcannot\b/gi, replacement: "can’t" }
+      ],
+      daishi: [
+        { pattern: /\bi understand\b/gi, replacement: "kay" },
+        { pattern: /\bi don'?t understand\b/gi, replacement: "the fuck" },
+        { pattern: /\bi agree\b/gi, replacement: "I feel you" },
+        { pattern: /\bi disagree\b/gi, replacement: "no way" },
+        { pattern: /\bi don'?t know\b/gi, replacement: "That path is fogged" },
+        { pattern: /\bthat'?s nonsense\b/gi, replacement: "That’s oxidised" },
+        { pattern: /\bbe patient\b/gi, replacement: "its in time's hands" },
+        { pattern: /\bstop lying\b/gi, replacement: "Stop fizzing" },
+
+        // Consonant substitutions
+        { pattern: /ch/gi, replacement: "j" },
+        { pattern: /j/gi, replacement: "zh" },
+        { pattern: /ar/gi, replacement: "ar̟" },
+        { pattern: /er/gi, replacement: "er̟" },
+        { pattern: /ur/gi, replacement: "ur̟" },
+
+        // Vowel approximations
+        { pattern: /io/gi, replacement: "e" },
+        { pattern: /oo/gi, replacement: "û" },
+        { pattern: /ie/gi, replacement: "î" },
+        { pattern: /ee/gi, replacement: "i" },
+        { pattern: /oo/gi, replacement: "ô" },
+        { pattern: /u/gi, replacement: "ǔ" },
+
+
+
+        // Possessive hack: convert "'s " to "ko-"
+        { pattern: /(\w+)'s\b/gi, replacement: "ko-$1" }
+      ],
+      oldenglish: [
+        // Normalize contractions (after quote normalization)
+        { pattern: /\bcan't\b/gi, replacement: "cannot" },
+        { pattern: /\bdon't\b/gi, replacement: "do not" },
+        { pattern: /\bdidn't\b/gi, replacement: "did not" },
+        { pattern: /\bwon't\b/gi, replacement: "will not" },
+        { pattern: /\bhadn't\b/gi, replacement: "had not" },
+        { pattern: /\bi'm\b/gi, replacement: "I am" },
+        { pattern: /\bit's\b/gi, replacement: "it is" },
+        { pattern: /\bwouldn't\b/gi, replacement: "would not" },
+
+        //Old English contractions
+        { pattern: /\bit was\b/gi, replacement: "twas" },
+        { pattern: /\bit is\b/gi, replacement: "tis" },
+        { pattern: /\bit would\b/gi, replacement: "twould" },
+        { pattern: /\bit will\b/gi, replacement: "twill" },
+        { pattern: /\bof it\b/gi, replacement: "on’t" },
+
+
+        // Negation after verb
+        { pattern: /\b(do|does|did)\s+not\s+([a-z]+)/gi, replacement: "$1 $2 not" },
+
+        // “I X not” instead of “I do not X”
+        { pattern: /\bi do not (\w+)/gi, replacement: "I $1 not" },
+
+        // Fronted objects
+        { pattern: /\bI understand (.+)/gi, replacement: "$1, I grasp" },
+
+        // Reduced auxiliaries
+        { pattern: /\bgoing to\b/gi, replacement: "bound to" },
+        { pattern: /\bwill\b/gi, replacement: "shall" },
+
+        // Slight archaism without going full Luna
+        { pattern: /\byour\b/gi, replacement: "thy" },
+        { pattern: /\byou\b/gi, replacement: "thee" },
+        { pattern: /\btheir\b/gi, replacement: "thy" },
+        { pattern: /\byou\b(?=\s+(are|were|will|shall|can|may|must|do|did|have|had|know|see|think))/gi, replacement: "thou" },
+        { pattern: /\byou\b/gi, replacement: "thee" },
+        { pattern: /\byour\s+([bcdfghjklmnpqrstvwxyz])/gi, replacement: "thy $1" },
+        { pattern: /\byour\s+([aeiou])/gi, replacement: "thine $1" },
+        { pattern: /\byours\b/gi, replacement: "thine" },
+
+        // Emphasis particles
+        { pattern: /\bvery\b/gi, replacement: "full" }
+      ],
+      egyptian: [
+        // Stative reframing FIRST (order matters)
+        { pattern: /\bthis is\b/gi, replacement: "this stands as" },
+        { pattern: /\bthat is\b/gi, replacement: "that stands as" },
+
+        // Normalize contractions (after quote normalization)
+        { pattern: /\bcan't\b/gi, replacement: "cannot" },
+        { pattern: /\bdon't\b/gi, replacement: "do not" },
+        { pattern: /\bwon't\b/gi, replacement: "will not" },
+        { pattern: /\bi'm\b/gi, replacement: "I am" },
+        { pattern: /\bit's\b/gi, replacement: "it is" },
+        { pattern: /\bwouldn't\b/gi, replacement: "would not" },
+
+        // Emotion reframed as state
+        { pattern: /\bi am afraid\b/gi, replacement: "my breath is troubled" },
+        { pattern: /\bi am angry\b/gi, replacement: "fire stirs within me" },
+
+        // Future softened into inevitability
+        { pattern: /\bwill\b/gi, replacement: "shall" },
+
+        // Possession made explicit (keep late, it’s aggressive)
+        { pattern: /\bmy\b/gi, replacement: "that which is mine" },
+
+        // Emphasis
+        { pattern: /\bvery\b/gi, replacement: "most" }
+      ],
+      coptic: [
+        // Copula emphasis
+        { pattern: /\bi am\b/gi, replacement: "I exist as" },
+        { pattern: /\byou are\b/gi, replacement: "you exist as" },
+        { pattern: /\bit is\b/gi, replacement: "it exists as" },
+
+        // Possession externalization
+        { pattern: /\bmy (\w+)\b/gi, replacement: "the $1 of me" },
+        { pattern: /\byour (\w+)\b/gi, replacement: "the $1 of you" },
+        { pattern: /\bhis (\w+)\b/gi, replacement: "the $1 of him" },
+        { pattern: /\bher (\w+)\b/gi, replacement: "the $1 of her" },
+        { pattern: /\btheir (\w+)\b/gi, replacement: "the $1 of them" },
+
+        // De-agentification
+        { pattern: /\bi decided to\b/gi, replacement: "it came to pass that I" },
+        { pattern: /\bi want to\b/gi, replacement: "there is desire within me to" },
+
+        // Causal phrasing
+        { pattern: /\bbecause\b/gi, replacement: "for this reason" },
+
+      ]
+    };
+
+    const regexReplacements = regexByMode[mode] || [];
+
+    //detects if decontractions should be preformed, preforms, it, then applies corrections as needed.
+    if (decontract == true) {
+      contractionList.forEach(({ pattern, replacement }) => {
+        text = text.replace(pattern, replacement);
+      });
+    }
+    regexReplacements.forEach(({ pattern, replacement }) => {
+        text = text.replace(pattern, replacement);
+      });
+
+
+
+    // Capitalize after . ! ?
+    text = text.replace(/([.!?])\s+([a-z])/g, (match, p1, p2) => p1 + " " + p2.toUpperCase());
+
+    // Capitalize first character of the text
+    text = text.charAt(0).toUpperCase() + text.slice(1);
+
+    document.getElementById("output").value = text;
+
+    // Copy to clipboard automatically
+    navigator.clipboard.writeText(text).catch(err => {
+      console.error("Clipboard copy failed:", err);
+    });
+  }
+
+  //Fixes casing issues after conversion.
+  function matchCase(original, replacement) {
+    if (original === original.toUpperCase()) {
+      return replacement.toUpperCase();
+    }
+    if (original[0] === original[0].toUpperCase()) {
+      return replacement[0].toUpperCase() + replacement.slice(1);
+    }
+    return replacement;
+  }
+
+  // Allows scroll wheel to change dropdown selection
+  document.getElementById("accentMode").addEventListener("wheel", (event) => {
+    event.preventDefault();
+    const select = event.currentTarget;
+    let newIndex = select.selectedIndex + (event.deltaY > 0 ? 1 : -1);
+    if (newIndex < 0) newIndex = select.options.length - 1;
+    if (newIndex >= select.options.length) newIndex = 0;
+    select.selectedIndex = newIndex;
+  });
+
+  //Trigger to update writing guide on page load.
+  window.addEventListener("DOMContentLoaded", updateWritingGuide);
+  </script>
+</body>
+</html>

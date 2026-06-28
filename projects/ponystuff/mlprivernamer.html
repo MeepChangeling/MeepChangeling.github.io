@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Equestrian River Generator</title>
+<style>
+  body {
+    font-family: sans-serif;
+    background: #f6f3ef;
+    padding: 2rem;
+  }
+  button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+  }
+  ul {
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<button onclick="generate()">Generate 20 Names</button>
+<ul id="output"></ul>
+
+<script>
+const descriptors = [
+  "Clear", "Bright", "Golden", "Silver", "Soft", "Low", "High",
+  "Red", "White", "Blue", "Green", "Shady", "Quiet", "Wild",
+  "Rolling", "Gentle", "Sweet", "Sunlit", "Moonlit", "Amber"
+];
+
+const ponyTerms = [
+  "Mane", "Tail", "Hoof", "Bridle", "Rein", "Saddle", "Horseshoe",
+  "Whinny", "Neigh", "Canter", "Gallop", "Trot", "Prance",
+  "Stallion", "Mare", "Foal", "Colt"
+];
+
+const natureWhimsy = [
+  "Pebble", "Willow", "Clover", "Honey", "Star", "Dew", "Thistle",
+  "Briar", "Feather", "Pollen", "Petal", "Glow", "Spark", "Mist"
+];
+
+const verbs = [
+  "Run", "Flow", "Rush", "Wash", "Glide", "Slip",
+  "Tumble", "Spill", "Wander", "Curl"
+];
+
+const waterFeatures = [
+  "River", "Creek", "Brook", "Stream", "Rill", "Run", "Wash", "Fork"
+];
+
+const rand = arr => arr[Math.floor(Math.random() * arr.length)];
+
+const patterns = [
+  () => `${rand(descriptors)} ${rand(waterFeatures)}`,
+  () => `${rand(ponyTerms)} ${rand(waterFeatures)}`,
+  () => `${rand(natureWhimsy)}${rand(verbs)}`,
+  () => `${rand(natureWhimsy)} ${rand(waterFeatures)}`,
+  () => `${rand(ponyTerms)}${rand(verbs)}`
+];
+
+function generate() {
+  const ul = document.getElementById("output");
+  ul.innerHTML = "";
+  for (let i = 0; i < 20; i++) {
+    const li = document.createElement("li");
+    li.textContent = rand(patterns)();
+    ul.appendChild(li);
+  }
+}
+</script>
+
+</body>
+</html>
